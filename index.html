@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Ben's Tiếng Việt</title>
+<title>Tiếng Việt · speak Saigon Vietnamese</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -409,8 +409,19 @@ body{font-size:16.5px}
 .fcg3{border-color:var(--accent)!important;color:var(--accent)}
 .fcrow{flex-direction:row;align-items:center;gap:12px;padding:12px}
 .settile.fcoff{opacity:.5}
-.tabs nav{grid-template-columns:repeat(5,1fr)}
+@media (max-width:899px){.tabs nav{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:900px){#app #v-fc,#app #v-more{max-width:900px}#z-fc .setgrid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}.fcard{max-width:560px;width:100%;margin:0 auto}.z7story{padding:28px 32px}}
 @media (min-width:900px){.fcard{min-height:340px}.z7para{font-size:22px}}
+.z7dots{display:flex;gap:6px;justify-content:center}.z7dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}.z7dots i.on{background:var(--accent);width:22px;border-radius:4px}
+.z7how{display:flex;gap:12px;align-items:center}.z7how b{font-size:16px}
+.z7status{font-size:18px;font-weight:600;color:var(--muted);min-height:28px}
+.z7status.on{color:var(--accent);animation:z7pulse 1s ease-in-out infinite}
+.z7status.good{color:var(--good)}.z7status.bad{color:var(--bad)}
+@keyframes z7pulse{50%{opacity:.45}}
+.z7heard{font-size:22px;min-height:32px;font-weight:600}
+.z7q.hid>*{filter:blur(9px);user-select:none}
+.z7speakbtn{justify-content:flex-start;gap:14px;border-radius:20px;padding:14px 16px;min-height:72px;border-color:color-mix(in srgb,var(--accent) 50%,var(--line));background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.z7speakbtn b{font-size:17px}
 </style>
 
 <div class="wrap" id="app">
@@ -1043,7 +1054,7 @@ function listenFor(ms,onInterim,onFinal){
     if(mr&&mr.state!=='inactive'){ mr.onstop=function(){ var url=null,bl=null; try{ bl=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); url=URL.createObjectURL(bl) }catch(e){} onFinal(out,url,bl) }; try{ mr.stop() }catch(e){ onFinal(out,null) } } else onFinal(out,null); }
   try{ if(SPEECH.stream&&window.MediaRecorder){ mr=new MediaRecorder(SPEECH.stream); mr.ondataavailable=function(e){ if(e.data&&e.data.size) chunks.push(e.data) }; mr.start(); } }catch(e){ mr=null }
   if(R){ try{ r=new R(); r.lang='vi-VN'; r.interimResults=true; r.continuous=true; r.maxAlternatives=3;
-    r.onresult=function(e){ var interim=''; for(var i=e.resultIndex;i<e.results.length;i++){ var res=e.results[i]; if(res.isFinal){ finals.push(res[0].transcript.trim()); if(finals.length===1) for(var k=1;k<res.length;k++) alts.push(res[k].transcript.trim()); } else interim+=res[0].transcript } last=interim; onInterim((finals.join(' ')+' '+interim).trim()); clearTimeout(quiet); quiet=setTimeout(finish,2600); };
+    r.onresult=function(e){ var interim=''; for(var i=e.resultIndex;i<e.results.length;i++){ var res=e.results[i]; if(res.isFinal){ finals.push(res[0].transcript.trim()); if(finals.length===1) for(var k=1;k<res.length;k++) alts.push(res[k].transcript.trim()); } else interim+=res[0].transcript } last=interim; onInterim((finals.join(' ')+' '+interim).trim()); clearTimeout(quiet); quiet=setTimeout(finish,SPEECH.fast||2600); };
     r.onerror=function(e){ SPEECH.err=e.error||'error'; if(e.error!=='no-speech') finish() };
     r.onend=function(){ if(finished) return; if(last){ finals.push(last.trim()); last='' } if(!IS_FILE&&Date.now()<deadline-800&&restarts<4&&SPEECH.err!=='not-allowed'&&SPEECH.err!=='service-not-allowed'){ restarts++; try{ r.start(); return }catch(e){} } setTimeout(finish,250) };
     r.start(); }catch(e){ SPEECH.err='start' } }
@@ -2667,6 +2678,57 @@ go=function(v){ if(VIEWS.indexOf(v)<0) v='home'; VIEWS.forEach(function(k){ var 
 var zRenderAll6=zRenderAll;
 zRenderAll=function(){ z7init(); zRenderAll6(); fcRender(); z7RenderMore() };
 z7init();
+
+/* ---- Welcome: a first-time visitor knows what this is and what to do ---- */
+function z7Welcome(force){ if(!C7) return; if(S.set.ob7&&!force) return; var body=zOpen(), step=0, nm=h('input',{type:'text',placeholder:'Your first name',autocomplete:'off',value:force?(S.me.name||''):''}), ctry=C6.slots.filter(function(s){ return s.k==='country' })[0], sel=h('select',{},(ctry?ctry.o:[]).map(function(o){ var op=h('option',{value:o[0],text:o[1]+' · '+o[0]}); if(S.me.country===o[0]) op.selected=true; return op }));
+  function done(start){ var n=nm.value.trim(); if(n&&n!==S.me.name){ if(!force&&S.me.name==='Ben'&&n!=='Ben') ['home','district','job','age','year','building','street','floor','apt','phone'].forEach(function(k){ if(k in S.me) S.me[k]='' }); S.me.name=n } if(sel.value) S.me.country=sel.value; S.set.ob7=1; save(); closeSheet(); if(start) setTimeout(function(){ zToday() },150) }
+  function dots(){ return h('div',{class:'z7dots'},[0,1,2].map(function(k){ return h('i',{class:k===step?'on':''}) })) }
+  function tile(e,t,s){ return h('div',{class:'z7how'},[h('span',{class:'gpic sm','aria-hidden':'true',text:e}),h('div',{},[h('b',{text:t}),h('div',{class:'small muted',text:s})])]) }
+  function draw(){ var kids=[dots()];
+    if(step===0) kids.push(h('div',{class:'z7pic','aria-hidden':'true',text:'🛵 🍜 ☕'}),h('h1',{text:'Xin chào! Learn to speak Saigon Vietnamese.'}),h('p',{class:'muted',text:'This is a speaking app, not a game. You hear real everyday questions in the southern accent and answer them out loud, a little every day. No typing in Vietnamese, no streaks to protect.'}),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'What should we call you?'}),nm,h('span',{class:'lbl',text:'Where are you from?'}),sel]),
+      h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=1; draw() }}));
+    else if(step===1) kids.push(h('h1',{text:'One session a day, about 25 minutes'}),h('p',{class:'muted',text:'Press Start on the Today page and the app walks you through five parts in order. Do less if you are short on time; tomorrow it picks up where you stopped.'}),
+      h('div',{class:'panel'},[tile('🎵','1 · Warm-up','Listen and repeat the six tones.'),tile('🃏','2 · Cards','Picture cards: hear a word, say what it means; see a picture, say the word.'),tile('💬','3 · Questions','Hear a question like “Anh tên gì?” and answer about your own life.'),tile('📖','4 · Story','A short story. Follow the gist; tap any word for its meaning.'),tile('🧑‍🍳','5 · Scene','A real situation, both sides: a café, a delivery call, a shop.')]),
+      h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=2; draw() }}));
+    else kids.push(h('h1',{text:'Three things that help'}),
+      h('div',{class:'panel'},[tile('🗣️','Say everything out loud','Reading silently will not get you speaking. Say it before you flip the card.'),tile('🐢','Slow it down','Every screen with sound has speed buttons. Slow is the default; Very slow is fine.'),tile('🎤','Turn the microphone on','On a computer in Chrome, the app can type back what it heard you say. It is on the Today page. Optional.'),tile('🙋','Make the answers yours','More → My answers: put in your name, country, work. Questions then use your real answers.')]),
+      h('button',{class:'btn primary wide',style:'min-height:56px;font-size:17px',text:'Start my first session',onclick:function(){ done(true) }}),h('button',{class:'btn wide',text:'Just look around first',onclick:function(){ done(false) }}));
+    if(step>0) kids.push(h('button',{class:'chip',style:'align-self:center',text:'‹ Back',onclick:function(){ step--; draw() }}));
+    zSwap(body,kids) }
+  body.appendChild(zTop('Welcome',null,null)); draw() }
+var z7RenderHomeA=zRenderHome;
+zRenderHome=function(){ z7RenderHomeA(); var hh=$('#v-home .zhero h1'); if(hh) hh.textContent='Chào '+((S.me&&S.me.name)||'bạn')+'.'; var el=$('#z-home'); if(el) el.appendChild(h('button',{class:'btn wide',text:'❓ How this app works',onclick:function(){ z7Welcome(true) }})) };
+setTimeout(function(){ try{ z7Welcome() }catch(e){} },600);
+
+/* ---- Speak now: hands-free. It asks, you answer straight away, it types what it heard, next. ---- */
+function z7Shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t } return a }
+function z7Speak(n,onDone){ var body=zOpen(), tok=Z.tok, N=n||20, ids=z7Shuffle(zAllIds().slice()).sort(function(a,b){ return ((S.q[a]&&S.q[a].sp)||0)-((S.q[b]&&S.q[b].sp)||0) }).slice(0,N), i=0, ok=0, said=0, firsts=[], paused=false, showQ=!!S.set.spq, timer=null;
+  body.appendChild(zTop('Nói ngay · speak now',0,null));
+  function alive(){ return tok===Z.tok }
+  function wait(ms,fn){ clearTimeout(timer); timer=setTimeout(function(){ if(alive()&&!paused) fn() },ms) }
+  if(!zMic()){ zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('div',{class:'fcpic sm','aria-hidden':'true',text:'🎤'}),h('h1',{text:'Turn the microphone on'}),h('p',{class:'muted',text:'Speak now needs the microphone: it asks a question out loud, listens to your answer and types back what it heard. Works in Chrome on a computer.'}),h('button',{class:'btn primary wide',text:'Turn on the microphone',onclick:function(e){ micOn().then(function(){ renderMic(); if(alive()) z7Speak(n,onDone) },function(){ e.target.replaceWith(h('p',{class:'small',style:'color:var(--bad)',text:'The browser did not allow the microphone. Click the lock icon in the address bar, allow the microphone, and try again.'})) }) }})])]); return }
+  function end(){ clearTimeout(timer); document.onkeydown=null; zDay('sp'); tick(); save(); var avg=firsts.length?Math.round(firsts.reduce(function(a,b){return a+b},0)/firsts.length/100)/10:0;
+    zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Round done'}),h('div',{class:'score',text:ok+' / '+said}),h('p',{class:'muted',text:'answers understood'+(avg?' · you started speaking after '+avg+' s on average':'')+'. Every answer is saved on the Teacher page.'}),h('button',{class:'btn primary wide',id:'rf-next',text:'Go again · '+N+' more',onclick:function(){ z7Speak(N,onDone) }}),h('button',{class:'btn wide',text:onDone?'Next part':'Done',onclick:function(){ if(onDone) onDone(); else closeSheet() }})])]) }
+  function next(){ if(!alive()){ SPEECH.fast=0; return } SPEECH.fast=1500; clearTimeout(timer); if(SPEECH.cur) SPEECH.cur.abort(); if(i>=ids.length){ SPEECH.fast=0; return end() } var bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/ids.length*100)+'%';
+    var id=ids[i], p=zP(id), ans=zAns(p), tries=0, status=h('p',{class:'z7status',text:'Listen…'}), heard=h('p',{class:'heard z7heard'}), out=h('div',{class:'stack'}), qbox=h('div',{class:'z7q'+(showQ?'':' hid')},[zVi(p.q,24),h('div',{class:'small muted',text:p.qEn||''})]);
+    var ctl=h('div',{class:'row',style:'justify-content:center'},[h('button',{class:'chip','aria-pressed':String(showQ),text:'Show the question',onclick:function(e){ showQ=!showQ; S.set.spq=showQ; save(); qbox.classList.toggle('hid',!showQ); e.target.setAttribute('aria-pressed',String(showQ)) }}),h('button',{class:'chip',text:'Hear it again (R)',onclick:function(){ ask() }}),h('button',{class:'chip',text:'Skip (S)',onclick:function(){ i++; next() }}),h('button',{class:'chip',text:'Pause (P)',onclick:function(e){ paused=!paused; e.target.textContent=paused?'Resume (P)':'Pause (P)'; if(paused){ clearTimeout(timer); if(SPEECH.cur) SPEECH.cur.abort(); ZS.tok++; stopAudio(); status.textContent='Paused' } else ask() }})]);
+    function listen(){ if(!alive()||paused){ if(!alive()) SPEECH.fast=0; return } status.textContent='🎤 Your turn · answer now'; status.className='z7status on'; heard.textContent='';
+      zHear(8000,function(t){ heard.textContent=t }).then(function(res){ if(!alive()||paused) return; status.className='z7status'; var j=zJudge(ans,res,p,true), s=zQNew(id); s.sp=(s.sp||0)+1; said++; tries++; if(res.first) firsts.push(res.first);
+        zRecSave({kind:'q',ref:id,lv:9,target:ans,prompt:p.q,heard:j.heard,score:Math.round(j.score*100)/100,ok:j.ok,ms:res.first},res.blob);
+        heard.textContent=j.heard||'(nothing heard)'; out.innerHTML='';
+        if(j.ok){ ok++; status.textContent='✓ Understood'+(res.first?' · started in '+(Math.round(res.first/100)/10)+' s':''); status.className='z7status good'; out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:zMine(p)?'Your saved answer':'Example answer'}),zVi(ans,20)])); save(); wait(1300,function(){ i++; next() }) }
+        else { s.miss=(s.miss||0)+1; status.textContent=j.heard?'Not quite · listen, then say it again':'I did not hear you · listen, then say it'; status.className='z7status bad'; out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:zMine(p)?'Your saved answer':'Example answer · your own answer is fine too'}),zVi(ans,22),h('div',{class:'small muted',text:zAnsEn(p)})])); save();
+          zSay(ans,{onend:function(){ if(!alive()||paused) return; if(tries<2) wait(300,listen); else wait(900,function(){ i++; next() }) }}) } }) }
+    function ask(){ if(!alive()) return; clearTimeout(timer); if(SPEECH.cur) SPEECH.cur.abort(); status.textContent='Listen…'; status.className='z7status'; out.innerHTML=''; heard.textContent=''; zSay(p.q,{onend:function(){ wait(120,listen) }}) }
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+ids.length+' · '+ok+' understood'}),h('div',{class:'panel fcard z7sp'},[p.pic?h('div',{class:'fcpic sm','aria-hidden':'true',text:p.pic}):null,qbox,status,heard]),ctl,out]);
+    document.onkeydown=function(ev){ if(!alive()){ document.onkeydown=null; return } if(ev.target&&/INPUT|TEXTAREA/.test(ev.target.tagName)) return; var k=ev.key.toLowerCase(); if(k==='r') ask(); else if(k==='s'){ i++; next() } else if(k==='p') ctl.lastChild.click() };
+    wait(350,ask) }
+  next() }
+var z7RenderHomeB=zRenderHome;
+zRenderHome=function(){ z7RenderHomeB(); var el=$('#z-home'), plan=$('#z-plan'); if(!el||!plan) return; var td=zTodayDone();
+  var b=h('button',{class:'btn wide z7speakbtn',onclick:function(){ z7Speak(20) }},[h('span',{class:'gpic sm','aria-hidden':'true',text:'🎤'}),h('div',{style:'text-align:left;flex:1'},[h('b',{text:'Nói ngay · speak now'}),h('div',{class:'small',text:'It asks, you answer out loud, it types what it heard. 20 questions, hands-free.'+(td.sp?' Done '+td.sp+'× today.':'')})])]);
+  plan.parentNode.insertBefore(b,plan) };
 
 go(location.hash.slice(1)||'home');
 renderAll();
