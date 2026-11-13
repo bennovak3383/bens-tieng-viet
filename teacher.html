@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Thầy · teacher view</title>
+<style>
+:root{--bg:#f2f4f3;--surface:#fff;--ink:#14201c;--muted:#5b6964;--line:#dfe5e2;--accent:#0c6b58;--accent-ink:#fff;--good:#157a3c;--bad:#b3261e;--warn:#a85b00}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#0f1513;--surface:#18201d;--ink:#e8efec;--muted:#9aa8a3;--line:#2a3531;--accent:#3fb89c;--accent-ink:#06211b;--good:#5fd08a;--bad:#ff8a80;--warn:#f0b35a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 60px;display:flex;flex-direction:column;gap:16px}
+h1{font-size:26px;margin:0}h2{font-size:19px;margin:0}.muted{color:var(--muted)}.small{font-size:13px}
+.lbl{font:600 11px/1.2 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+button,input,textarea{font:inherit;color:inherit}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer;min-height:44px}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+input[type=text],textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}
+.stu{display:flex;gap:12px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface);cursor:pointer;text-align:left;width:100%}
+.stu:hover{border-color:var(--accent)}.stu b{font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.stat{border:1px solid var(--line);border-radius:12px;padding:10px 12px}.stat strong{display:block;font-size:22px}
+.dots{display:grid;grid-template-columns:repeat(14,1fr);gap:5px}.dots i{height:14px;border-radius:4px;background:var(--line)}.dots i.on{background:var(--accent)}
+.rec{border-top:1px solid var(--line);padding:12px 0;display:flex;flex-direction:column;gap:6px}.rec:first-of-type{border-top:0}
+.vi{font-size:18px;font-weight:600}.ok{color:var(--good);font-weight:600}.no{color:var(--bad);font-weight:600}
+audio{width:100%;height:36px}.tag{font:600 11px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--muted)}
+.note{border-left:3px solid var(--accent);padding:2px 0 2px 12px}.err{color:var(--bad)}
+.filters .btn{min-height:34px;padding:4px 12px;font-size:13px}.filters .btn[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+</style></head><body><main id="app"></main>
+<script>
+(function(){
+var app=document.getElementById('app'), KEY='', LSK='bensvn.teacherkey';
+function h(t,a,k){ var e=document.createElement(t); a=a||{}; for(var n in a){ if(n==='text') e.textContent=a[n]; else if(n==='class') e.className=a[n]; else if(n.slice(0,2)==='on') e.addEventListener(n.slice(2),a[n]); else if(a[n]!=null&&a[n]!==false) e.setAttribute(n,a[n]) } (k||[]).forEach(function(c){ if(c) e.appendChild(typeof c==='string'?document.createTextNode(c):c) }); return e }
+function api(p,o){ o=o||{}; o.headers=Object.assign({'X-Teacher':KEY},o.headers||{}); return fetch('/api/'+p,o).then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.error||'Error'); return j }) }) }
+function ago(t){ if(!t) return 'never'; var m=Math.round((Date.now()-t)/60000); if(m<2) return 'just now'; if(m<60) return m+' min ago'; if(m<1440) return Math.round(m/60)+' h ago'; return Math.round(m/1440)+' days ago' }
+function dayKey(t){ var d=new Date(t); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2) }
+function setKey(k){ KEY=k; try{ localStorage.setItem(LSK,k) }catch(e){} }
+function start(){ var q=new URLSearchParams(location.search).get('k'); try{ KEY=q||localStorage.getItem(LSK)||'' }catch(e){ KEY=q||'' } if(q){ setKey(q); history.replaceState(null,'',location.pathname) } if(KEY) list(); else gate() }
+function gate(msg){ app.innerHTML=''; var inp=h('input',{type:'text',placeholder:'Teacher key',autocomplete:'off'}), out=h('div',{});
+  app.appendChild(h('div',{},[h('span',{class:'lbl',text:'Thầy · teacher view'}),h('h1',{text:'Review your students'})]));
+  app.appendChild(h('div',{class:'panel'},[h('h2',{text:'I have a teacher link or key'}),msg?h('p',{class:'err',text:msg}):null,inp,h('button',{class:'btn primary',text:'Open',onclick:function(){ var v=inp.value.trim().replace(/^.*[?&]k=/,''); if(v){ setKey(v); list() } }})]));
+  app.appendChild(h('div',{class:'panel'},[h('h2',{text:'First time: set up teacher access'}),h('p',{class:'muted',text:'This creates the one teacher key for this website. It can only be done once. Keep the link private: anyone who has it can see every student’s work.'}),h('button',{class:'btn',text:'Create the teacher key',onclick:function(e){ e.target.disabled=true; fetch('/api/setup',{method:'POST'}).then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.error||'Error'); setKey(j.key); var link=location.origin+location.pathname+'?k='+j.key; out.innerHTML=''; out.appendChild(h('p',{text:'Done. Save this link somewhere safe and send it to the teacher:'})); out.appendChild(h('input',{type:'text',value:link,readonly:'readonly',onclick:function(ev){ ev.target.select() }})); out.appendChild(h('button',{class:'btn primary',style:'margin-top:10px',text:'Open the teacher view',onclick:list})) }) }).catch(function(err){ out.innerHTML=''; out.appendChild(h('p',{class:'err',text:err.message})) }) }}),out])) }
+function list(){ app.innerHTML=''; app.appendChild(h('p',{class:'muted',text:'Loading…'}));
+  api('t/students').then(function(j){ app.innerHTML=''; var ss=j.students.sort(function(a,b){ return (b.last||0)-(a.last||0) });
+    app.appendChild(h('div',{class:'row between'},[h('div',{},[h('span',{class:'lbl',text:'Thầy · teacher view'}),h('h1',{text:'Học viên · students ('+ss.length+')'})]),h('button',{class:'btn',text:'Refresh',onclick:list})]));
+    if(!ss.length) app.appendChild(h('div',{class:'panel'},[h('p',{class:'muted',text:'No students yet. A student appears here after they press “Get my code” on the Progress page of the app.'})]));
+    ss.forEach(function(s){ var m=s.sum||{}; app.appendChild(h('button',{class:'stu',onclick:function(){ student(s.id,s.n) }},[h('div',{},[h('b',{text:s.n||'Student'}),h('div',{class:'small muted',text:'Last active '+ago(s.last)+' · '+(m.d||0)+' of the last 7 days'})]),h('div',{class:'small muted',style:'text-align:right',text:(m.van||0)+' sound lessons · '+(m.fc||0)+' cards · '+(m.q||0)+' questions · '+(m.st||0)+' chapters'})])) });
+  }).catch(function(err){ gate(err.message) }) }
+function student(id,name){ app.innerHTML=''; app.appendChild(h('p',{class:'muted',text:'Loading…'}));
+  api('t/student?id='+encodeURIComponent(id)).then(function(j){ app.innerHTML=''; var S=j.state||{}, recs=j.recs||[], notes=j.notes||[], filter='all';
+    app.appendChild(h('div',{class:'row between'},[h('div',{},[h('button',{class:'btn',style:'min-height:34px;padding:4px 12px',text:'‹ All students',onclick:list}),h('h1',{style:'margin-top:8px',text:(S.me&&S.me.name)||name||'Student'}),h('div',{class:'small muted',text:[S.me&&S.me.country?'From '+S.me.country:'',S.updatedAt?'last saved '+ago(S.updatedAt):''].filter(Boolean).join(' · ')})]),h('button',{class:'btn',text:'Refresh',onclick:function(){ student(id,name) }})]));
+    var dots=h('div',{class:'dots'}), days=0; for(var i=13;i>=0;i--){ var d=S.d6&&S.d6[dayKey(Date.now()-i*86400000)], on=!!(d&&(d.q||d.s||d.sc||d.w||d.fc||d.van||d.sp)); if(on&&i<7) days++; dots.appendChild(h('i',{class:on?'on':''})) }
+    var van=S.set&&S.set.van||{}, vanDone=Object.keys(van).filter(function(k){ return van[k]&&van[k].h!=null }).length, fc=S.fc||{}, fcl=Object.keys(fc).filter(function(k){ return fc[k]&&fc[k].ivl>=1 }).length, q=S.q||{}, qn=Object.keys(q).length, st=S.st||{}, stn=Object.keys(st).filter(function(k){ return st[k]&&st[k].n }).length;
+    var okc=recs.filter(function(r){ return r.ok }).length;
+    app.appendChild(h('div',{class:'panel'},[h('span',{class:'lbl',text:'Last 14 days'}),dots,h('div',{class:'stats'},[h('div',{class:'stat'},[h('span',{class:'lbl',text:'This week'}),h('strong',{text:days+' / 7'}),h('span',{class:'small muted',text:'days'})]),h('div',{class:'stat'},[h('span',{class:'lbl',text:'Sounds'}),h('strong',{text:String(vanDone)}),h('span',{class:'small muted',text:'lessons done'})]),h('div',{class:'stat'},[h('span',{class:'lbl',text:'Cards'}),h('strong',{text:String(fcl)}),h('span',{class:'small muted',text:'card sides learned'})]),h('div',{class:'stat'},[h('span',{class:'lbl',text:'Questions'}),h('strong',{text:String(qn)}),h('span',{class:'small muted',text:'started'})]),h('div',{class:'stat'},[h('span',{class:'lbl',text:'Stories'}),h('strong',{text:String(stn)}),h('span',{class:'small muted',text:'chapters read'})]),h('div',{class:'stat'},[h('span',{class:'lbl',text:'Recordings'}),h('strong',{text:okc+' / '+recs.length}),h('span',{class:'small muted',text:'understood by the app'})])])]));
+    var aib=h('button',{class:'btn'}), ait=h('div',{class:'small muted'}); function drawAi(){ aib.textContent=j.ai?'Turn AI conversation off':'Turn AI conversation on'; ait.textContent=(j.ai?'On. ':'Off. ')+(j.aiReady?'Each AI turn uses the website owner’s AI credit; limit 200 turns a day per student.':'No AI key is connected to this website yet, so it will not work until one is added in Cloudflare.') }
+    aib.addEventListener('click',function(){ aib.disabled=true; api('t/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,on:!j.ai})}).then(function(r){ j.ai=r.ai; drawAi() }).catch(function(err){ alert(err.message) }).then(function(){ aib.disabled=false }) }); drawAi();
+    app.appendChild(h('div',{class:'panel'},[h('div',{class:'row between'},[h('div',{},[h('h2',{text:'AI conversation'}),ait]),aib])]));
+    var vl=Object.keys(van).map(function(k){ return k+': ear '+(van[k].h==null?'–':van[k].h+'%')+', rules '+(van[k].q==null?'–':van[k].q+'%')+', mouth '+(van[k].s==null?'–':van[k].s+'%') });
+    if(vl.length) app.appendChild(h('div',{class:'panel'},[h('h2',{text:'Sound lessons'}),h('div',{class:'small',text:vl.join('  ·  ')})]));
+    var tap=S.tap||{}, tw=Object.keys(tap).sort(function(a,b){ return tap[b]-tap[a] }).slice(0,30);
+    if(tw.length) app.appendChild(h('div',{class:'panel'},[h('h2',{text:'Words looked up in stories'}),h('div',{class:'small',text:tw.map(function(w){ return w+(tap[w]>1?' ×'+tap[w]:'') }).join('  ·  ')})]));
+    var ta=h('textarea',{rows:'3',placeholder:'Lời nhận xét · a note for the student. It shows on their Progress page.'}), nl=h('div',{}), about='';
+    function drawNotes(){ nl.innerHTML=''; notes.slice(0,20).forEach(function(n){ nl.appendChild(h('div',{class:'note',style:'margin-top:8px'},[h('div',{class:'small muted',text:new Date(n.t).toLocaleString()+(n.about?' · about: '+n.about:'')}),h('div',{text:n.text})])) }) }
+    var ab=h('div',{class:'small muted'});
+    app.appendChild(h('div',{class:'panel',id:'notes'},[h('h2',{text:'Notes to the student'}),ab,ta,h('div',{class:'row'},[h('button',{class:'btn primary',text:'Send note',onclick:function(e){ var t=ta.value.trim(); if(!t) return; e.target.disabled=true; api('t/note',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,text:t,about:about})}).then(function(r){ notes=r.notes; ta.value=''; about=''; ab.textContent=''; drawNotes() }).catch(function(err){ alert(err.message) }).then(function(){ e.target.disabled=false }) }})]),nl])); drawNotes();
+    var rp=h('div',{class:'panel'}), rl=h('div',{}), fb=h('div',{class:'row filters'});
+    [['all','All'],['no','Not understood'],['q','Questions'],['story','Stories'],['card','Cards'],['van','Sounds'],['scene','Scenes'],['chat','AI talk']].forEach(function(f){ var b0=h('button',{class:'btn','aria-pressed':String(f[0]===filter),text:f[1]}); b0.addEventListener('click',function(){ filter=f[0]; Array.prototype.forEach.call(fb.children,function(b){ b.setAttribute('aria-pressed',String(b===b0)) }); drawRecs() }); fb.appendChild(b0) });
+    function drawRecs(){ rl.innerHTML=''; var show=recs.filter(function(r){ return filter==='all'||(filter==='no'?!r.ok:r.k===filter) }).slice(0,80); if(!show.length) rl.appendChild(h('p',{class:'muted',text:'Nothing here yet.'}));
+      show.forEach(function(r){ var slot=h('div',{}); rl.appendChild(h('div',{class:'rec'},[h('div',{class:'row between'},[h('div',{class:'row'},[h('span',{class:'tag',text:r.k||'rec'}),h('span',{class:'small muted',text:new Date(r.t).toLocaleString()+(r.ms?' · started after '+(Math.round(r.ms/100)/10)+' s':'')})]),h('span',{class:r.ok?'ok':'no',text:r.ok?'✓ understood':'✗ not understood'})]),r.pr?h('div',{class:'small muted',text:'Asked: '+r.pr}):null,h('div',{class:'vi',text:r.tg||''}),h('div',{class:'small',text:'The app heard: '+(r.hd||'(nothing)')}),
+        h('div',{class:'row'},[h('button',{class:'btn',style:'min-height:36px;padding:4px 14px',text:'▶ Play',onclick:function(e){ e.target.disabled=true; fetch('/api/t/audio?key='+encodeURIComponent(r.key),{headers:{'X-Teacher':KEY}}).then(function(x){ if(!x.ok) throw new Error('Could not load'); return x.blob() }).then(function(b){ var a=h('audio',{controls:'controls',autoplay:'autoplay'}); a.src=URL.createObjectURL(b); slot.innerHTML=''; slot.appendChild(a); e.target.remove() }).catch(function(err){ e.target.disabled=false; slot.textContent=err.message }) }}),h('button',{class:'btn',style:'min-height:36px;padding:4px 14px',text:'Write a note about this',onclick:function(){ about=(r.tg||'').slice(0,120); ab.textContent='About: '+about; ta.focus(); document.getElementById('notes').scrollIntoView({behavior:'smooth'}) }})]),slot])) }) }
+    rp.appendChild(h('h2',{text:'Recordings ('+recs.length+')'})); rp.appendChild(h('p',{class:'small muted',text:'Newest first. Recordings are kept for 90 days.'})); rp.appendChild(fb); rp.appendChild(rl); app.appendChild(rp); drawRecs();
+  }).catch(function(err){ app.innerHTML=''; app.appendChild(h('p',{class:'err',text:err.message})); app.appendChild(h('button',{class:'btn',text:'Back',onclick:list})) }) }
+start();
+})();
+</script></body></html>
