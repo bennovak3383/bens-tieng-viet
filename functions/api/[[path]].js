@@ -65,6 +65,7 @@ export async function onRequest(context) {
         'The learner is called ' + name + '. Call the learner "' + you + '" and call yourself "' + them + '".',
         'Rules: reply with ONE or TWO short sentences, at most 12 words in total, and usually end with ONE simple question so the learner has something to answer. Never switch to English in "vi". Stay in the scene. If the learner is silent or says they do not understand, say the same thing again in simpler words.',
         'The learner\'s lines come from speech recognition, so ignore missing tone marks and small recognition errors; only correct real mistakes in grammar or word choice.',
+        'Do not think out loud and do not explain. Output the JSON object only, no words before or after it. Keep "note" under 15 words.',
         mode === 'hint'
           ? 'TASK NOW: do not continue the conversation. Give the learner two short things THEY could say next, as a JSON object: {"hints":[{"vi":"...","en":"..."},{"vi":"...","en":"..."}]}'
           : 'Reply ONLY with a JSON object and nothing else: {"vi":"your reply in Vietnamese","en":"English translation of your reply","fix":"the learner\'s last line rewritten correctly in Vietnamese, or an empty string if it was fine or there was no line","note":"one short tip in English about that fix, or an empty string"}'
@@ -73,19 +74,25 @@ export async function onRequest(context) {
       if (env.ANTHROPIC_API_KEY) {
         const models = [env.AI_MODEL || 'claude-haiku-5-5', 'claude-haiku-4-5']; let r = null;
         for (const model of models) {
-          r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' }, body: JSON.stringify({ model, max_tokens: 400, system, messages: hist }) });
+          r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' }, body: JSON.stringify({ model, max_tokens: 2000, system, messages: hist }) });
           if (r.status !== 404 && r.status !== 400) break;
         }
         if (!r.ok) return J({ error: r.status === 401 ? 'The AI key was not accepted. Check the key in Cloudflare.' : (r.status === 429 || r.status === 529 ? 'The AI is busy. Try again in a moment.' : 'The AI did not answer (' + r.status + ').'), code: 'ai' }, 502);
         const j = await r.json(); text = (j.content || []).map(c => c.text || '').join('');
       } else {
-        const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + env.OPENAI_API_KEY }, body: JSON.stringify({ model: env.AI_MODEL || 'gpt-4o-mini', max_tokens: 400, messages: [{ role: 'system', content: system }].concat(hist) }) });
+        const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + env.OPENAI_API_KEY }, body: JSON.stringify({ model: env.AI_MODEL || 'gpt-4o-mini', max_tokens: 2000, messages: [{ role: 'system', content: system }].concat(hist) }) });
         if (!r.ok) return J({ error: r.status === 401 ? 'The AI key was not accepted. Check the key in Cloudflare.' : 'The AI did not answer (' + r.status + ').', code: 'ai' }, 502);
         const j = await r.json(); text = (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '';
       }
       let out = null; const a = text.indexOf('{'), z = text.lastIndexOf('}');
       if (a >= 0 && z > a) { try { out = JSON.parse(text.slice(a, z + 1)); } catch (e) {} }
-      if (!out) out = mode === 'hint' ? { hints: [] } : { vi: clean(text, 200), en: '', fix: '', note: '' };
+      if (!out && mode !== 'hint') {   // cut-off or untidy reply: pull the fields out by hand
+        const pick = (k) => { const m = text.match(new RegExp('"' + k + '"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"')); if (!m) return ''; try { return JSON.parse('"' + m[1] + '"'); } catch (e) { return m[1]; } };
+        const vi = pick('vi'); if (vi) out = { vi, en: pick('en'), fix: pick('fix'), note: pick('note') };
+        else if (text && text.indexOf('{') < 0) out = { vi: clean(text, 200), en: '', fix: '', note: '' };
+      }
+      if (!out) { if (mode === 'hint') out = { hints: [] }; else return J({ error: 'The AI answer came back garbled. Tap Speak or press Enter to try again.', code: 'ai' }, 502); }
+      if (mode !== 'hint' && !clean(out.vi, 240)) return J({ error: 'The AI answer came back empty. Try again.', code: 'ai' }, 502);
       context.waitUntil(env.KV.put(ck, String(used + 1), { expirationTtl: 60 * 60 * 48 }));
       if (mode === 'hint') return J({ hints: (Array.isArray(out.hints) ? out.hints : []).slice(0, 3).map(x => ({ vi: clean(x && x.vi, 120), en: clean(x && x.en, 120) })) });
       return J({ vi: clean(out.vi, 240), en: clean(out.en, 240), fix: clean(out.fix, 200), note: clean(out.note, 200), left: cap - used - 1 });
