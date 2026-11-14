@@ -56,6 +56,39 @@ SPEAK = [
   ('Tính mẹ anh thế nào?', 'What is your mother like as a person?', 'Mẹ tôi vui tính và rất thương mọi người.', 'My mother is good-humoured and cares about everyone.'),
   ('Anh giống ai trong gia đình?', 'Who do you take after in your family?', 'Tôi giống cha: cao và ít nói.', 'I take after my father: tall and quiet.')]),
 ]
+# The questions people in Saigon ask a foreigner every day, with one example answer each. Change the answer so it is true for you.
+DAILY = [
+ ('Anh tên gì?', 'What is your name?', 'Tôi tên là Ben.', 'My name is Ben.'),
+ ('Anh là người nước nào?', 'Which country are you from?', 'Tôi là người Mỹ.', 'I am American.'),
+ ('Anh từ đâu tới?', 'Where are you from?', 'Tôi từ California tới.', 'I come from California.'),
+ ('Anh cao bao nhiêu vậy?', 'How tall are you?', 'Dạ, tôi cao hai mét lẻ sáu.', 'I am two metres six (6 foot 9).'),
+ ('Trời ơi, anh cao quá! Anh có chơi bóng rổ không?', 'Wow, you are so tall! Do you play basketball?', 'Dạ có, hồi trước tôi chơi bóng rổ.', 'Yes, I used to play basketball.'),
+ ('Anh mang giày số mấy?', 'What shoe size do you wear?', 'Tôi mang giày số năm mươi.', 'I wear size fifty.'),
+ ('Anh bao nhiêu tuổi?', 'How old are you?', 'Tôi hơn bốn mươi tuổi rồi.', 'I am over forty.'),
+ ('Anh có vợ chưa?', 'Are you married?', 'Dạ chưa.', 'Not yet. (Married: Dạ rồi.)'),
+ ('Anh có bạn gái chưa?', 'Do you have a girlfriend?', 'Dạ có rồi.', 'Yes, I do.'),
+ ('Anh có con chưa?', 'Do you have children?', 'Dạ chưa có.', 'Not yet.'),
+ ('Anh sống ở đâu?', 'Where do you live?', 'Tôi sống ở Quận Bốn.', 'I live in District 4.'),
+ ('Anh đi du lịch hay sống ở đây?', 'Are you visiting or living here?', 'Tôi sống ở đây.', 'I live here.'),
+ ('Anh ở Việt Nam bao lâu rồi?', 'How long have you been in Vietnam?', 'Tôi ở đây khoảng hai năm rồi.', 'I have been here about two years.'),
+ ('Anh làm nghề gì?', 'What do you do for work?', 'Tôi kinh doanh. Tôi có một phòng tập ở Mỹ.', 'I am in business. I have a gym in the US.'),
+ ('Anh có thích Việt Nam không?', 'Do you like Vietnam?', 'Thích lắm.', 'Very much.'),
+ ('Anh thấy Sài Gòn thế nào?', 'How do you find Saigon?', 'Vui lắm, nhưng hơi nóng.', 'A lot of fun, but a bit hot.'),
+ ('Anh biết nói tiếng Việt hả?', 'You can speak Vietnamese?', 'Dạ, một chút thôi.', 'Yes, just a little.'),
+ ('Anh học tiếng Việt ở đâu?', 'Where do you study Vietnamese?', 'Tôi học với thầy và tự học ở nhà.', 'I study with a teacher and by myself at home.'),
+ ('Tiếng Việt khó không?', 'Is Vietnamese hard?', 'Khó lắm, nhất là sáu thanh.', 'Very hard, especially the six tones.'),
+ ('Anh ăn cơm chưa?', 'Have you eaten yet?', 'Dạ rồi. Còn anh?', 'Yes, I have. And you?'),
+ ('Anh đi đâu đó?', 'Where are you off to?', 'Tôi đi uống cà phê.', 'I am going for a coffee.'),
+ ('Anh thích ăn món gì?', 'What food do you like?', 'Tôi thích phở và cơm tấm.', 'I like phở and broken rice.'),
+ ('Anh ăn cay được không?', 'Can you eat spicy food?', 'Được, một chút thôi.', 'Yes, a little.'),
+ ('Gia đình anh ở đâu?', 'Where is your family?', 'Gia đình tôi ở Mỹ.', 'My family is in the US.'),
+ ('Khi nào anh về Mỹ?', 'When do you go back to the US?', 'Mỗi năm tôi về Mỹ vài lần.', 'I go back to the US a few times a year.'),
+ ('Ở Mỹ anh sống ở đâu?', 'Where do you live in the US?', 'Tôi sống ở Arizona.', 'I live in Arizona.'),
+ ('Anh chạy xe máy được không?', 'Can you ride a motorbike?', 'Được, tôi chạy xe máy mỗi ngày.', 'Yes, I ride every day.'),
+ ('Anh có chụp hình với em được không?', 'Can I take a photo with you?', 'Được chứ.', 'Of course.'),
+ ('Anh dạy tiếng Anh hả?', 'Do you teach English?', 'Dạ không, tôi không phải là thầy giáo.', 'No, I am not a teacher.'),
+ ('Anh có khỏe không?', 'How are you?', 'Dạ, tôi khỏe. Cảm ơn anh.', 'I am well. Thank you.'),
+]
 READ = [
  ('Nhà tôi', 'My home', 8, ['Tôi tên là Minh.', 'Tôi sống ở Quận Bốn, Sài Gòn.', 'Nhà tôi nhỏ nhưng rất đẹp.', 'Nhà tôi ở gần một quán cà phê.', 'Tôi sống với một người bạn.', 'Bạn tôi là người Mỹ.', 'Anh ấy đang học tiếng Việt.'], [
   ('Minh sống ở đâu?', ['Ở Quận Bốn', 'Ở Mỹ', 'Ở Huế'], 0), ('Nhà Minh thế nào?', ['Lớn và đẹp', 'Nhỏ nhưng đẹp', 'Nhỏ và xa'], 1),
@@ -76,7 +109,7 @@ READ = [
   ('Quán cà phê trông thế nào?', ['Rất hiện đại', 'Không hiện đại nhưng luôn có khách', 'Lớn và ít khách'], 1), ('Trước cửa quán có gì?', ['Nhiều tranh', 'Một cây lớn', 'Một chiếc xe'], 1),
   ('Chủ quán là ai?', ['Một chú khoảng sáu mươi tuổi', 'Một chị còn trẻ', 'Bạn của người viết'], 0), ('Người viết ghé quán khi nào?', ['Buổi tối, sau khi làm việc', 'Cuối tuần', 'Mỗi sáng, trước khi đi làm'], 2)]),
 ]
-out = {'v': 1, 'speak': [{'vi': N(a), 'en': b, 'gate': g, 'q': [[N(x[0]), x[1], N(x[2]), x[3]] for x in q]} for a, b, g, q in SPEAK],
+out = {'v': 1, 'daily': {'vi': 'Câu hỏi hằng ngày', 'en': 'What people ask you every day', 'gate': 0, 'q': [[N(x[0]), x[1], N(x[2]), x[3]] for x in DAILY]}, 'speak': [{'vi': N(a), 'en': b, 'gate': g, 'q': [[N(x[0]), x[1], N(x[2]), x[3]] for x in q]} for a, b, g, q in SPEAK],
        'read': [{'vi': N(a), 'en': b, 'gate': g, 'text': [N(x) for x in t], 'q': [[N(x[0]), [N(o) for o in x[1]], x[2]] for x in q]} for a, b, g, t, q in READ]}
 json.dump(out, open(sys.argv[1] + '/data/exam.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-print('speaking topics', len(SPEAK), 'questions', sum(len(x[3]) for x in SPEAK), '| reading texts', len(READ), 'questions', sum(len(x[4]) for x in READ))
+print('daily', len(DAILY), '| speaking topics', len(SPEAK), 'questions', sum(len(x[3]) for x in SPEAK), '| reading texts', len(READ), 'questions', sum(len(x[4]) for x in READ))

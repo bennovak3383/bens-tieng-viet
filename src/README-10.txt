@@ -150,3 +150,12 @@ VERSION 29 (15 Nov 2026) - a day plan at the learner's level, and test practice
   z29Hear1 (hear a question, pick the reply), z27Hear (hear a sentence, pick the meaning), z29Read, z29Write (pick the correctly tone-marked word; wrong options are made with z25Put), z29Speak (answer out loud; with the mic on the answer is recorded for the teacher as kind 'exam'). Scores: S.set.k27.ex[part] = {t,r,n}.
 - Recording list: parts x1 (questions and example answers) and x2 (reading texts).
 - Tests: src/tests/t29.py.
+
+VERSION 30 (15 Nov 2026) - pictures, the questions people ask you every day, a fuller day plan
+- Pictures: src/art/draw2.py adds 204 drawings (304 in all) in the same style: people and family words, actions, feelings, places, positions (trên, dưới, trong …), times of day and calendar words, qualities, colours, question words. It is run by draw.py (exec before saving): python3 src/art/draw.py art/cards.json . Helpers: fig() draws a person (feet at y=0, head at y=-92; limbs are point lists), Q() a question mark, bubble(), heart(), arrow(), cal(), clockface(), box(), ball().
+  Pictures are keyed by the Vietnamese word, so a word with several meanings (phải, nên, hay, về, chỉ, ký …) is left without one on purpose.
+  211 of the 817 core words now have a picture; the rest are grammar words, where the example sentence does the work.
+- Everyday questions: data/exam.json "daily" (30 questions people in Saigon ask a foreigner, with one example answer each; written in src/exam/make.py DAILY). They are a card deck "dq" (first among new cards), a day stop "kd" (8 at a time) at 30, 60 and 90 minutes, the first row on the check page, and recording part x0 (right after the beginner part).
+- Day plan at my level: 30 = ear, unit, cards, everyday questions; 60 adds listen, say it, marks; 90 adds a sound lesson, a speaking topic and 20 minutes of listening outside the app.
+- "Test practice" is now "Kiểm tra · Can I do it?": the same checks, framed as "can you use what you learned". The course follows the research plan; the university test papers were only a reference for task types.
+- Tests: src/tests/t30.py.

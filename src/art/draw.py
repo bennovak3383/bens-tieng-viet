@@ -125,5 +125,7 @@ A["mưa"]=cloud(0,ST)+L("M48 102 l-8 22 M72 102 l-8 22 M96 102 l-8 22 M120 102 l
 A["nắng"]=L("M80 12 V30 M80 130 V148 M12 80 H30 M130 80 H148 M32 32 L45 45 M115 115 L128 128 M128 32 L115 45 M45 115 L32 128",4,OR)+C(80,80,34,YE)+L("M62 70 q6 -12 18 -14",3,SA)
 A["gió"]=L("M14 58 H98 Q118 58 118 42 Q118 28 104 28 Q94 28 92 38",5,TE)+L("M14 84 H126 Q146 84 146 100 Q146 114 132 114 Q122 114 120 104",5,TE)+L("M14 110 H76 Q92 110 92 122 Q92 132 82 132",5,TE)+P("M34 30 Q48 16 62 28 Q48 40 34 30 Z",LG)
 A["ban đêm"]=R(14,14,132,132,"#22344A",16)+P("M96 36 Q62 44 62 82 Q62 118 98 124 Q64 136 44 108 Q26 76 46 48 Q66 26 96 36 Z",YE)+"".join(P(f"M{x} {y-7} l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 Z",CR) for x,y in ((116,50),(126,92),(100,76)))
+import os
+exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'draw2.py'),encoding='utf-8').read())   # 30: people, actions, feelings, places, time, positions, qualities
 json.dump(A,open(sys.argv[1],'w',encoding='utf-8'),ensure_ascii=False)
 print(len(A),'drawings',sum(len(v) for v in A.values())//1024,'KB')

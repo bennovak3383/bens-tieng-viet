@@ -1114,7 +1114,7 @@ function z27Rot(){ if(!Z27||!Z27.on) return; var open=z27Idx(), day=Math.floor(D
     if(c.k27==null||c.k27<open) for(var i=0;i<pool.length&&alt.length<6;i++) if(toks[i].indexOf(w)>=0&&pool[i][0]!==c.xv0) alt.push(pool[i]);
     var p=alt[(day+ci)%alt.length]; c.xv=p[0]; c.xe=p[1] }) }
 var fcOn27=fcOn; fcOn=function(c){ if(c.k27!=null&&Z27){ if(S.set.fcoff[c.c]) return false; var u=Z27.units[c.k27]; return !!(u&&z27St().d[u.id])||z13Started(c) } return fcOn27(c) };
-var fcFresh27=fcFresh; fcFresh=function(){ var a=fcFresh27(), k=[], r=[]; a.forEach(function(x){ var c=FCBY[x.split('|')[0]]; (c&&c.k27!=null?k:r).push(x) }); return k.concat(r) };
+var fcFresh27=fcFresh; fcFresh=function(){ var a=fcFresh27(), d=[], k=[], r=[]; a.forEach(function(x){ var c=FCBY[x.split('|')[0]]; (c&&c.c==='dq'?d:(c&&c.k27!=null?k:r)).push(x) }); return d.concat(k,r) };
 var z7init27=z7init; z7init=function(){ z7init27(); try{ z27Apply() }catch(e){} };
 var z13Words27=z13Words; z13Words=function(){ z13Words27(); try{ z27Apply() }catch(e){} };
 var z13Teach27=z13Teach; z13Teach=function(){ z13Teach27(); try{ if(Z27&&Z27.on){ FC.forEach(function(c){ delete c.xv0 }); Z27.rd=''; z27Rot() } }catch(e){} };
@@ -1187,7 +1187,10 @@ var z8RenderPrac27=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac27(); try{
 
 
 /* ===== 29 · a day plan at the learner's level, and test practice (data/exam.json) ===== */
-var Z29=null; try{ fetch('data/exam.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(j&&j.speak) Z29=j }).catch(function(){}) }catch(e){}
+var Z29=null; try{ fetch('data/exam.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(j&&j.speak){ Z29=j; try{ z29Deck(); fcRender(); if($('#sheet').hidden) zRenderHome() }catch(e){} } }).catch(function(){}) }catch(e){}
+/* 30: the questions people ask you every day, as a card deck (question on the front, an example answer under it) */
+function z29Deck(){ if(!Z29||!Z29.daily||!C7||!FC.length) return; C7.cats.dq=['Câu hỏi hằng ngày','What people ask you every day','']; Z29.daily.q.forEach(function(q,i){ var id='dq_'+(i+1), c=FCBY[id]; if(!c){ c={id:id,c:'dq',e:''}; FC.push(c); FCBY[id]=c } c.vi=q[0]; c.en=q[1]; c.xv=q[2]; c.xe=q[3] }) }
+var z7init30=z7init; z7init=function(){ z7init30(); try{ z29Deck() }catch(e){} };
 function z27Known(){ var open=Math.max(1,z27Idx()); return Z27.sent.filter(function(s){ return s[2]<open&&s[0]&&s[1] }) }
 function z29On(){ return !!(Z27&&Z27.on)&&!z27St().full&&!z26On()&&!z25Easy() }
 function z29Save(part,r,n){ var k=z27St(); if(!k.ex||typeof k.ex!=='object') k.ex={}; k.ex[part]={t:Date.now(),r:r,n:n}; tick(); save() }
@@ -1212,7 +1215,7 @@ function z29Write(onDone,n){ var body=zOpen(), tok=Z.tok, items=[], i=0, right=0
         out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(g.s[0],22),zPlay(g.s[0])])])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})); zSay(g.s[0]) }},[h('b',{text:o})]); grid.appendChild(b) });
     zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+items.length+' · which spelling is right?'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('div',{class:'vi z27gap',text:g.t}),h('div',{class:'z26en',text:g.s[1]})]),grid,out]) }
   if(!items.length){ if(onDone) onDone(); else closeSheet(); return } show() }
-function z29Topics(){ if(!Z29) return []; var done=Object.keys(z27St().d).length, t=Z29.speak.filter(function(x){ return x.gate<=done+1 }); return t.length?t:[Z29.speak[0]] }
+function z29Topics(){ if(!Z29) return []; var done=Object.keys(z27St().d).length, t=Z29.speak.filter(function(x){ return x.gate<=done+1 }); return (Z29.daily?[Z29.daily]:[]).concat(t.length?t:[Z29.speak[0]]) }
 function z29Texts(){ if(!Z29) return []; var done=Object.keys(z27St().d).length, t=Z29.read.filter(function(x){ return x.gate<=done+1 }); return t.length?t:[Z29.read[0]] }
 /* hear a question, pick the reply (first listening part of the test) */
 function z29Hear1(onDone){ var body=zOpen(), tok=Z.tok, all=[], i=0, right=0; z29Topics().forEach(function(t){ t.q.forEach(function(x){ all.push(x) }) }); var q=z7Shuffle(all.slice()).slice(0,8); function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
@@ -1231,9 +1234,9 @@ function z29Read(onDone){ var body=zOpen(), tok=Z.tok, ts=z29Texts(), k=z27St(),
     zSwap(body,[txt,h('span',{class:'lbl',text:'Question '+(i+1)+' of '+T.q.length}),h('div',{class:'vi',style:'font-size:20px',text:c[0]}),list,out]); if(i>0) setTimeout(function(){ var l=$('#sheet-body .lbl:last-of-type'); if(list.scrollIntoView) list.scrollIntoView({block:'center'}) },50) }
   show() }
 /* answer social questions out loud, one topic at a time (first speaking part of the test) */
-function z29Speak(onDone,ti){ var body=zOpen(), tok=Z.tok, ts=z29Topics(), k=z27St(), at=(ti!=null?ti:(k.exs||0))%ts.length, T=ts[at], i=0, right=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+function z29Speak(onDone,ti,lim){ var body=zOpen(), tok=Z.tok, ts=z29Topics(), k=z27St(), dl=!!(Z29&&Z29.daily), at=ti!=null?ti%ts.length:(dl&&ts.length>1?1+(k.exs||0)%(ts.length-1):(k.exs||0)%ts.length), T=ts[at], isD=dl&&T===Z29.daily, i=0, right=0; if(lim&&T.q.length>lim) T={vi:T.vi,en:T.en,q:z7Shuffle(T.q.slice()).slice(0,lim)}; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
   body.appendChild(zTop('Trả lời · answer about yourself · '+T.vi,0,null));
-  function show(){ if(!alive()) return; if(i>=T.q.length){ if(ti==null) k.exs=at+1; zDay('kq'); z29Save('s1',right,T.q.length); return z29End(body,T.vi+' · '+T.en,right,T.q.length,onDone,'Tell your teacher which questions you could not answer. These are the questions an examiner, a neighbour or a taxi driver asks first.') } var c=T.q[i], out=h('div',{class:'stack'}), qbox=h('div',{class:'stack'}), heard=h('p',{class:'small muted',text:''}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/T.q.length*100)+'%';
+  function show(){ if(!alive()) return; if(i>=T.q.length){ if(ti==null) k.exs=at; zDay(isD?'kd':'kq'); z29Save(isD?'dq':'s1',right,T.q.length); return z29End(body,T.vi+' · '+T.en,right,T.q.length,onDone,'Tell your teacher which questions you could not answer. These are the questions an examiner, a neighbour or a taxi driver asks first.') } var c=T.q[i], out=h('div',{class:'stack'}), qbox=h('div',{class:'stack'}), heard=h('p',{class:'small muted',text:''}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/T.q.length*100)+'%';
     function reveal(){ ans.remove(); if(rec) rec.remove(); out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:'One way to answer · change it so it is true for you'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c[2],22),zPlay(c[2])]),h('div',{class:'small muted',text:c[3]})]));
       out.appendChild(h('div',{class:'row'},[h('button',{class:'btn primary',style:'flex:1',text:'I could answer',onclick:function(){ right++; i++; show() }}),h('button',{class:'btn',style:'flex:1',text:'Not yet',onclick:function(){ i++; show() }})])) }
     var showq=h('button',{class:'chip',text:'Show the question',onclick:function(){ showq.remove(); qbox.appendChild(zVi(c[0],22)); qbox.appendChild(h('div',{class:'small muted',text:c[1]})) }});
@@ -1241,13 +1244,13 @@ function z29Speak(onDone,ti){ var body=zOpen(), tok=Z.tok, ts=z29Topics(), k=z27
     try{ if(zMic()) rec=h('button',{class:'btn wide',text:'Record my answer for my teacher',onclick:function(){ rec.disabled=true; rec.textContent='Listening… answer now'; zHear(9000,function(t){ heard.textContent='Heard: '+t }).then(function(res){ try{ if(res&&res.blob) zRecSave({kind:'exam',ref:'x'+at+'_'+i,lv:0,target:c[2],prompt:c[0],heard:(res.alts&&res.alts[0])||'',score:0,ok:true,ms:res.first||0},res.blob) }catch(e){} if(alive()) reveal() }) }}) }catch(e){}
     zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+T.q.length+' · listen, then answer out loud in a full sentence'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear the question again',html:PLAY_ICON,onclick:function(){ zSay(c[0]) }}),h('span',{class:'small muted',text:'Tap to hear the question again'}),showq,qbox]),rec,ans,heard,out]); setTimeout(function(){ if(alive()) zSay(c[0]) },300) }
   show() }
-function z29Exam(){ var body=zOpen(), k=z27St(), ex=k.ex||{}, ts=z29Topics(); body.appendChild(zTop('Thi thử · test practice',0,null));
+function z29Exam(){ var body=zOpen(), k=z27St(), ex=k.ex||{}, ts=z29Topics(); body.appendChild(zTop('Kiểm tra · can I do it?',0,null));
   function row(key,vi,en,run){ var r=ex[key]; return h('button',{class:'panel z27row',onclick:run},[h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:vi}),h('div',{class:'small muted',text:en+(r?' · last time '+r.r+'/'+r.n:'')})])]) }
-  var kids=[h('h1',{text:'Test practice'}),h('p',{class:'small muted',text:'The same kinds of task as the first parts of the Vietnamese proficiency test for foreigners, made only from what you have studied so far. The later parts of the real test (discussion, letters, essays) are for higher levels and are not here yet.'}),
+  var kids=[h('h1',{text:'Can I do it?'}),h('p',{class:'small muted',text:'Quick checks that you can use what you have learned: answer the questions people ask you, understand what you hear, read a short text, put the marks on words. The same kinds of task appear in proficiency tests, so these double as test practice. Made only from what you have studied so far.'}),
     row('h1','Nghe 1 · hear the question, pick the reply','Listening',function(){ z29Hear1(z29Exam) }),row('h2','Nghe 2 · hear it, pick the meaning','Listening',function(){ z27Hear(z29Exam,10) }),
     row('r1','Đọc · read a short text, answer 4 questions','Reading',function(){ z29Read(z29Exam) }),row('w1','Viết · pick the correctly marked word','Writing, part 1',function(){ z29Write(z29Exam,10) }),
-    h('span',{class:'lbl',text:'Nói · speaking, part 1: social questions'})];
-  ts.forEach(function(t,ti){ kids.push(h('button',{class:'panel z27row',onclick:function(){ z29Speak(z29Exam,ti) }},[h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:t.vi}),h('div',{class:'small muted',text:t.en+' · '+t.q.length+' questions'})])])) });
+    h('span',{class:'lbl',text:'Nói · answer out loud'})];
+  ts.forEach(function(t,ti){ kids.push(h('button',{class:'panel z27row',onclick:function(){ z29Speak(z29Exam,ti,ti===0&&Z29.daily?10:0) }},[h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:t.vi}),h('div',{class:'small muted',text:t.en+' · '+t.q.length+' questions'})])])) });
   if(Z29&&ts.length<Z29.speak.length) kids.push(h('p',{class:'small muted',text:(Z29.speak.length-ts.length)+' more topics open as you finish more core units.'}));
   zSwap(body,kids) }
 /* the day plan at the learner's level: sounds, the next core unit, cards, then listening, speaking and marks made only from finished units */
@@ -1259,12 +1262,14 @@ function z29Exam(){ var body=zOpen(), k=z27St(), ex=k.ex||{}, ts=z29Topics(); bo
     kl:{t:'Nghe',en:'Listen · only what you have learned',min:4,sub:'Hear a sentence, pick the meaning',done:!!td.kl,run:function(n){ z27Hear(n,8) }},
     ks:{t:'Nói',en:'Say it · only what you have learned',min:4,sub:'See the English, say the Vietnamese',done:!!td.ks,run:function(n){ z27SayDay(n) }},
     kw:{t:'Dấu',en:'Pick the right marks',min:3,sub:'Which spelling is right?',done:!!td.kw,run:function(n){ z29Write(n,8) }},
-    kq:Z29?{t:'Trả lời',en:'Answer about yourself',min:5,sub:'The questions people ask first',done:!!td.kq,run:function(n){ z29Speak(n) }}:null};
-  var core=snd?'ku':'van', plan=({10:['ear',core],30:['ear',core,'fc','kl'],60:['ear',core,'fc','kl','ks','kw'],90:['ear',snd?'van':null,core,'fc','kl','ks','kw','kq']})[m]||['ear',core,'fc','kl'];
+    kq:Z29?{t:'Trả lời',en:'Answer about yourself',min:5,sub:'One topic, out loud',done:!!td.kq,run:function(n){ z29Speak(n) }}:null,
+    kd:Z29&&Z29.daily?{t:'Câu hỏi hằng ngày',en:'What people ask you',min:4,sub:'How tall, where from, married, visiting or living here…',done:!!td.kd,run:function(n){ z29Speak(n,0,8) }}:null,
+    out:{t:'Nghe ngoài phố',en:'Listening outside the app',min:20,sub:'Log it in the card below',done:(td.out||0)>=20,run:null}};
+  var core=snd?'ku':'van', plan=({10:['ear',core],30:['ear',core,'fc','kd'],60:['ear',core,'fc','kd','kl','ks','kw'],90:['ear',snd?'van':null,core,'fc','kd','kl','ks','kw','kq','out']})[m]||['ear',core,'fc','kd'];
   var none=!Object.keys(z27St().d).length;
   return plan.filter(function(k,x){ return k&&A[k]&&plan.indexOf(k)===x&&!(none&&['kl','ks','kw','kq'].indexOf(k)>=0) }).map(function(k){ var x=A[k]; x.k=k; return x }) } })();
 var z12Pool29=z12Pool; z12Pool=function(){ var P=z12Pool29(); try{ if(!Z27||!Z27.on||z27St().full) return P; var extra=z27Known().map(function(s){ var hsh=0; for(var c=0;c<s[0].length;c++) hsh=(hsh*31+s[0].charCodeAt(c))|0; return {id:'ks'+(hsh>>>0).toString(36),vi:s[0],en:s[1],xv:s[0],xe:s[1]} }), seen=P.seen.concat(extra); return seen.length>=8?{seen:seen,rest:[]}:P }catch(e){ return P } };
 var zRenderHome29=zRenderHome; zRenderHome=function(){ zRenderHome29(); try{ if(!Z27||!Z27.on||z26On()) return; var el=$('#z-home'), sec=el&&el.querySelector('.z12sec'), k=z27St(); if(!sec||sec.querySelector('.z29lv')) return;
-  sec.appendChild(h('div',{class:'z12slip z29lv',style:'transform:none'},[h('span',{class:'z12lbl',text:k.full?'Full plan':'Đúng trình độ · at my level'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:k.full?'Today uses everything in the app: questions, stories, scenes. If it feels over your head, switch back.':'Today uses only the sounds, your next core unit, and listening and speaking made from units you have finished. Nothing you have not been taught.'}),h('button',{class:'chip',text:k.full?'Keep it at my level':'I am ready for more · use the full plan',onclick:function(){ k.full=k.full?0:1; save(); zRenderHome() }})])) }catch(e){} };
+  sec.appendChild(h('div',{class:'z12slip z29lv',style:'transform:none'},[h('span',{class:'z12lbl',text:k.full?'Full plan':'Đúng trình độ · at my level'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:(k.full?'Today uses everything in the app: questions, stories, scenes. If it feels over your head, switch back.':'Today uses only the sounds, your next core unit, the questions people ask you, and listening and speaking made from units you have finished.')+' After the app, the rest of the day counts too: listen to Saigon speech, and say something to a real person.'}),h('button',{class:'chip',text:k.full?'Keep it at my level':'I am ready for more · use the full plan',onclick:function(){ k.full=k.full?0:1; save(); zRenderHome() }})])) }catch(e){} };
 var z8RenderPrac29=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac29(); try{ if(!Z27||!Z27.on) return; var el=$('#z-prac'), g=el&&el.querySelector('.setgrid'); if(!g) return;
-  g.insertBefore(h('button',{class:'settile gt3',onclick:z29Exam},[h('b',{text:'Thi thử · Test practice'}),h('span',{class:'small muted',text:'Listening, reading, marks and speaking, in the test\'s task types, at your level'})]),g.children[1]||null) }catch(e){} };
+  g.insertBefore(h('button',{class:'settile gt3',onclick:z29Exam},[h('b',{text:'Kiểm tra · Can I do it?'}),h('span',{class:'small muted',text:'The questions people ask you, listening, reading and marks, at your level'})]),g.children[1]||null) }catch(e){} };
