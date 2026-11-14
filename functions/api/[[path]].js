@@ -127,6 +127,33 @@ export async function onRequest(context) {
       return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'private, max-age=3600' } });
     }
     if (path === 'words' && m === 'GET') { const w = await env.KV.get('cfg:words', 'json'); return J(w || { e: {}, d: {}, a: [] }); }
+    if (path === 'voice/index' && m === 'GET') { const w = await env.KV.get('vo:index', 'json'); return J(w || {}); }
+    if (path === 'voice/clip' && m === 'GET') {
+      const w = clean(url.searchParams.get('w') || '', 12).replace(/[^a-z0-9]/g, ''), i = clean(url.searchParams.get('i') || '', 24).replace(/[^a-z0-9_]/g, '');
+      const r = await env.KV.get('vo:' + w + ':' + i, 'arrayBuffer'); if (!r) return J({ error: 'Not found.' }, 404);
+      return new Response(r, { headers: { 'Content-Type': 'audio/wav', 'Cache-Control': 'public, max-age=31536000, immutable' } });
+    }
+    if (path === 'voice/rec' || path === 'voice/flag' || path === 'voice/mine') {
+      const vk = clean(request.headers.get('X-Voice') || url.searchParams.get('v') || '', 64), real = await env.KV.get('cfg:voice');
+      if (vk.length < 16 || !real || real !== vk) return J({ error: 'Recording link not recognised.' }, 401);
+      const w = clean(url.searchParams.get('who') || '', 12).replace(/[^a-z0-9]/g, ''); if (!w) return J({ error: 'Missing name.' }, 400);
+      const idx = (await env.KV.get('vo:index', 'json')) || {};
+      if (path === 'voice/mine' && m === 'GET') return J({ done: idx[w] || {}, flags: ((await env.KV.get('vo:flags', 'json')) || []).filter(f => f.w === w) });
+      const i = clean(url.searchParams.get('id') || '', 24).replace(/[^a-z0-9_]/g, ''); if (!i) return J({ error: 'Missing line.' }, 400);
+      let text = ''; try { text = clean(decodeURIComponent(request.headers.get('X-Text') || ''), 240).trim(); } catch (e) {}
+      if (path === 'voice/flag' && m === 'POST') {
+        const b = await request.json().catch(() => ({})); const fl = (await env.KV.get('vo:flags', 'json')) || [];
+        fl.unshift({ w, i, text, note: clean(b.note, 300), t: Date.now() }); await env.KV.put('vo:flags', JSON.stringify(fl.slice(0, 500))); return J({ ok: true });
+      }
+      if (path === 'voice/rec' && m === 'POST') {
+        const buf = await request.arrayBuffer(); if (buf.byteLength < 2000 || buf.byteLength > 900_000) return J({ error: 'Recording is empty or too long.' }, 413);
+        if (!text) return J({ error: 'Missing text.' }, 400);
+        const t = Date.now(); await env.KV.put('vo:' + w + ':' + i, buf, { metadata: { t } });
+        const fresh = (await env.KV.get('vo:index', 'json')) || {}; fresh[w] = fresh[w] || {}; fresh[w][i] = [t, text]; await env.KV.put('vo:index', JSON.stringify(fresh));
+        return J({ ok: true, t });
+      }
+      if (path === 'voice/rec' && m === 'DELETE') { await env.KV.delete('vo:' + w + ':' + i); if (idx[w]) { delete idx[w][i]; await env.KV.put('vo:index', JSON.stringify(idx)); } return J({ ok: true }); }
+    }
     if (path === 'setup' && m === 'POST') {
       if (await env.KV.get('cfg:teacher')) return J({ error: 'Teacher access is already set up.' }, 409);
       const k = rnd(24); await env.KV.put('cfg:teacher', k); return J({ key: k });
@@ -134,6 +161,7 @@ export async function onRequest(context) {
     if (path.startsWith('t/')) {
       if (!(await teacher(env, request, url))) return J({ error: 'Teacher link not recognised.' }, 401);
       if (path === 't/students') { const l = await env.KV.list({ prefix: 's:', limit: 1000 }); return J({ students: l.keys.map(k => ({ id: k.name.slice(2), ...(k.metadata || {}) })) }); }
+      if (path === 't/voice-key' && m === 'POST') { let k = await env.KV.get('cfg:voice'); if (!k) { k = rnd(24); await env.KV.put('cfg:voice', k); } const idx = (await env.KV.get('vo:index', 'json')) || {}; const counts = {}; for (const w of Object.keys(idx)) counts[w] = Object.keys(idx[w]).length; return J({ key: k, counts, flags: (await env.KV.get('vo:flags', 'json')) || [] }); }
       if (path === 't/words' && m === 'POST') {
         const b = await request.json().catch(() => null); if (!b || typeof b !== 'object') return J({ error: 'Bad data.' }, 400);
         const row = r => [clean(r[0], 80).trim(), clean(r[1], 120).trim(), clean(r[2], 160).trim(), clean(r[3], 200).trim()];

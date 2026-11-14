@@ -843,3 +843,13 @@ function z13First(){ var name=(S.me&&S.me.name)||'', mine='Tôi tên là '+(name
     h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'You answer, out loud'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(mine,24),zPlay(mine)]),h('div',{class:'small muted',text:'My name is '+(name||'…')+'.'}),heard]),
     say,h('button',{class:'btn'+(say?'':' primary')+' wide',text:'I said it · next',onclick:two})]);
   setTimeout(function(){ if(tok===Z.tok) zSay(q) },400) }
+
+
+/* ===== 17 · recordings made on the recording page (record.html) are used straight from the website ===== */
+var Z17={map:{}};
+try{ fetch('/api/voice/index').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; var m={}; Object.keys(j).forEach(function(w){ Object.keys(j[w]||{}).forEach(function(i){ var r=j[w][i], k=String(r[1]||'').normalize('NFC').trim(); if(!k) return; (m[k]=m[k]||[]).push('v:/api/voice/clip?w='+w+'&i='+i+'&t='+r[0]) }) }); Z17.map=m }).catch(function(){}) }catch(e){}
+var clipFor17=clipFor; clipFor=function(text){ var v=S.set.vx||'r'; if(AUD.el&&S.set.src!=='phone'&&(v==='r'||v==='both')){ var k=String(text).normalize('NFC').trim(), m=Z17.map[k]||Z17.map[k.toLowerCase()]; if(m&&m.length&&(v==='r'||Math.random()<.5)) return [pick(m),0,1e12,2] } return clipFor17(text) };
+var loadBundle17=loadBundle; loadBundle=function(i){ if(typeof i==='string'&&i.slice(0,2)==='v:'){ if(!AUD.buf[i]) AUD.buf[i]=fetch(i.slice(2)).then(function(r){ if(!r.ok) throw new Error('clip'); return r.arrayBuffer() }).catch(function(e){ delete AUD.buf[i]; throw e }); return AUD.buf[i] } return loadBundle17(i) };
+var playClip17=playClip; playClip=function(c,rate,onend,fb){ if(!c||typeof c[0]!=='string'||c[0].slice(0,2)!=='v:') return playClip17(c,rate,onend,fb);
+  var tok=++AUD.tok, failed=false, a=AUD.el; function fail(){ if(failed||tok!==AUD.tok) return; failed=true; if(fb) fb() }
+  try{ a.onended=function(){ if(tok===AUD.tok&&onend) onend() }; a.onerror=fail; a.src=c[0].slice(2); a.defaultPlaybackRate=rate; a.playbackRate=rate; var pr=a.play(); if(pr&&pr.catch) pr.catch(fail) }catch(e){ fail() } };

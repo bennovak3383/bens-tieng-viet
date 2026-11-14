@@ -1,0 +1,32 @@
+# Builds data/voice-lines.json: every line a real speaker can record, in priority order.
+import re,json,sys
+repo=sys.argv[1]; s=open(repo+'/index.html').read()
+C7=json.loads(re.search(r'<script[^>]*id="content7"[^>]*>(.*?)</script>',s,re.S).group(1))
+C6=json.loads(re.search(r'<script[^>]*id="content6"[^>]*>(.*?)</script>',s,re.S).group(1))
+parts=[]; seen=set()
+def add(pid,vi_title,en_title,rows):
+    out=[]
+    for vi,en in rows:
+        k=vi.strip().lower()
+        if not vi.strip() or k in seen or '{' in vi: continue
+        seen.add(k); out.append({'id':'%s_%03d'%(pid,len(out)+1),'vi':vi.strip(),'en':en})
+    if out: parts.append({'id':pid,'vi':vi_title,'en':en_title,'lines':out})
+cards=C7['cards']; by=lambda c:[x for x in cards if x['c']==c]
+add('a1','75 câu hằng ngày','75 everyday phrases',[(c['vi'],c['en']) for c in by('p75')])
+add('a2','Câu nói ngắn','Short sayings',[(c['vi'],c['en']) for c in by('say')])
+add('a3','Sáu thanh','The six tones',[(t,'') for t in ['ma','má','mà','mả','mã','mạ','ba','bá','bà','bả','bã','bạ']])
+add('b1','12 mẫu câu','12 sentence patterns',[(c['xv'],c['xe']) for c in by('pat') if c.get('xv')])
+L=[('c1','Ăn uống, nơi chốn, đi lại','Food, places, getting around',['food','place','move']),('c2','Động từ, tính từ','Doing and describing words',['verb','adj']),('c3','Nhà, đồ dùng, gia đình, thời gian','Home, things, family, time',['home','wear','ppl','time']),('c4','Tiền, cơ thể, nghề, màu, con vật','Money, body, jobs, colours, animals',['money','body','job','color','animal'])]
+for pid,vt,et,cs in L:
+    rows=[]
+    for c in cs:
+        for x in by(c):
+            rows.append((x['vi'],x['en']))
+            if x.get('xv'): rows.append((x['xv'],x['xe']))
+    add(pid,vt,et,rows)
+n=1
+for st in C7['stories']+C6['stories']:
+    rows=[(l['vi'],l.get('en','')) for ch in st['ch'] for l in ch['lines']]
+    add('s%d'%n,'Truyện: '+st['t'],'Story: '+st.get('en',st['t']),rows); n+=1
+json.dump({'parts':parts},open(repo+'/data/voice-lines.json','w'),ensure_ascii=False,separators=(',',':'))
+print([(p['id'],len(p['lines'])) for p in parts],'total',sum(len(p['lines']) for p in parts))

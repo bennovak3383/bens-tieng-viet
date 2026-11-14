@@ -77,3 +77,10 @@ VERSION 15 (14 Nov 2026) - first real voice
 VERSION 16 (14 Nov 2026) - mission rehearsals and the first three minutes
 - z13Rehearse(missionIndex): the four phrases for that mission (Z13RH, all from recorded lines), copy them out loud (z13Shadow with a fixed list), then a mock run with a matching scene, then "go and do it".
 - z13First(): what a new learner does straight after the welcome: answer "Anh tên gì?" out loud, copy two phrases and see the tone line, take away one street sentence. Then the first day starts.
+
+VERSION 17 (14 Nov 2026) - recording page
+- record.html?v=VOICEKEY&who=voice1|thay|voice2 : a speaker reads a line, taps record, it trims the silence, evens the loudness, saves a small WAV and uploads it. No files to send.
+- Lines to record: data/voice-lines.json (1,076 lines, built by src/voice/make_lines.py from the app's own content, in priority order). Lines with {placeholders} (the question drills and scenes) are not in it yet.
+- Server: cfg:voice = the recording key (made by POST /api/t/voice-key, teacher only). vo:<who>:<lineId> = the WAV. vo:index = {who:{lineId:[time,text]}}. vo:flags = lines a speaker marked as not natural. GET /api/voice/index and /api/voice/clip are open; POST /api/voice/rec and /flag need the key.
+- App: block 17 reads /api/voice/index at start and plays those recordings first (real voice). Nothing has to be rebuilt when someone records.
+- Teacher page: "Thu âm · recording links" shows the three links, the counts and the flagged lines.
