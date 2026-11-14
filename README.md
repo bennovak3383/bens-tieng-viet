@@ -20,3 +20,8 @@ A Vietnamese speaking app (Southern / Saigon accent): sound lessons, Sharp ears,
 4. Commit. Cloudflare puts it live.
 
 Secrets (AI key) live in Cloudflare only, never in this repo.
+
+## Recording lines (native speakers)
+- `data/voice-lines.json` is the list speakers record from. It is built from the app's own content by `python3 src/voice/make_lines.py .` — **run it again after any change to the words, phrases, situations or stories** and commit the result. The recording page picks up the new list straight away.
+- Recordings count by their words, not by line number, so rebuilding the list never loses one. A changed line becomes a gap again; a new line is a gap; a removed line just drops off the list.
+- Approved speaker fixes: `GET /api/voice/linefix` lists them (old → new wording). Put the new wording into the app content, then rebuild the list.

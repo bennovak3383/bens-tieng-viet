@@ -40,8 +40,10 @@ function api(p,o){ o=o||{}; o.headers=Object.assign({'X-Voice':KEY},o.headers||{
 function N(s){ return String(s||'').normalize('NFC').trim() }
 function TX(l){ return LF[l.id]||l.vi }
 /* who has a good recording of this line (the wording must match what the line says now) */
-function hasRec(w,l){ var r=ALL[w]&&ALL[w][l.id]; return !!(r&&N(r[1])===N(TX(l))) }
-function speakers(l){ var o=[]; Object.keys(ALL).forEach(function(w){ if(hasRec(w,l)) o.push(w) }); if(PRE[N(TX(l))]&&o.indexOf('voice1')<0) o.push('voice1'); return o }
+/* who has recorded these exact words (any line, any part). Matching by words, not line number, so recordings still count when the word lists are rebuilt. */
+var TXT=null; function K(t){ return N(t).toLowerCase() }
+function txt(){ if(TXT) return TXT; TXT={}; Object.keys(ALL).forEach(function(w){ Object.keys(ALL[w]||{}).forEach(function(i){ var k=K(ALL[w][i][1]); if(!k) return; (TXT[k]=TXT[k]||[]); if(TXT[k].indexOf(w)<0) TXT[k].push(w) }) }); Object.keys(PRE).forEach(function(t){ var k=K(t); (TXT[k]=TXT[k]||[]); if(TXT[k].indexOf('voice1')<0) TXT[k].push('voice1') }); return TXT }
+function speakers(l){ return (txt()[K(TX(l))]||[]).slice() }
 function mine(l){ return speakers(l).indexOf(WHO)>=0 }
 function covered(l){ return speakers(l).length>0 }
 /* first fill every gap with any native voice. Only when nothing is missing, ask for a second voice of the other kind (man / woman). */
@@ -52,7 +54,7 @@ function build(){ var ps=PARTS.slice().sort(function(a,b){ var x=ORDER.indexOf(a
   ps.forEach(function(p){ if(p.lines.length<=30){ CH.push({id:p.id,vi:p.vi,en:p.en,lines:p.lines}); return } var n=Math.ceil(p.lines.length/25);
     for(var k=0;k<n;k++) CH.push({id:p.id+'_'+(k+1),vi:p.vi+' · phần '+(k+1)+'/'+n,en:p.en+' · part '+(k+1)+' of '+n,lines:p.lines.slice(k*25,(k+1)*25)}) }) }
 function other(c){ return CL[c.id]&&CL[c.id]!==WHO }
-function load(){ return api('voice/mine').then(function(j){ ALL=j.all||{}; LF=j.lineFix||{}; FX=j.fixes||{}; CL=j.claims||{}; G=j.g||{}; MYG=(j.me&&j.me.g)||(WHO==='voice1'?'f':WHO==='thay'?'m':''); PH=0 }) }
+function load(){ return api('voice/mine').then(function(j){ ALL=j.all||{}; LF=j.lineFix||{}; FX=j.fixes||{}; CL=j.claims||{}; G=j.g||{}; MYG=(j.me&&j.me.g)||(WHO==='voice1'?'f':WHO==='thay'?'m':''); PH=0; TXT=null }) }
 function home(){ load().then(home2).catch(home2) }
 function home2(){ app.innerHTML=''; var total=0, cov=0, my=0, ph=PHASE();
   CH.forEach(function(c){ c.lines.forEach(function(l){ total++; if(covered(l)) cov++; if(mine(l)) my++ }) });
@@ -108,7 +110,7 @@ function line(c,i){ if(i>=c.lines.length){ micOff(); return home() } var l=c.lin
   var save=h('button',{class:'btn primary',text:'Lưu và tiếp',disabled:'disabled'});
   var r1=recorder('● Thu',function(b){ wav=b; if(b) save.removeAttribute('disabled'); else save.setAttribute('disabled','disabled') }); R.push(r1);
   r1.msg.textContent=mine(l)?'Bạn đã thu câu này rồi. Bạn có thể thu lại.':who.length?'Câu này đã có người thu. Bạn có thể bỏ qua.':'Bấm nút đỏ rồi đọc câu này.';
-  save.onclick=function(){ if(!wav) return; save.disabled=true; r1.msg.textContent='Đang lưu…'; api('voice/rec?id='+l.id+'&part='+c.id,{method:'POST',headers:{'Content-Type':'audio/wav','X-Text':encodeURIComponent(text)},body:wav}).then(function(j){ ALL[WHO]=ALL[WHO]||{}; ALL[WHO][l.id]=[j.t,text]; PH=0; var n=c.lines.findIndex(function(x,k){ return k>i&&need(x) }); go(n<0?c.lines.length:n) }).catch(function(e){ save.disabled=false; r1.msg.className='small err'; r1.msg.textContent='Chưa lưu được: '+e.message+'. Kiểm tra mạng rồi bấm lại.' }) };
+  save.onclick=function(){ if(!wav) return; save.disabled=true; r1.msg.textContent='Đang lưu…'; api('voice/rec?id='+l.id+'&part='+c.id,{method:'POST',headers:{'Content-Type':'audio/wav','X-Text':encodeURIComponent(text)},body:wav}).then(function(j){ ALL[WHO]=ALL[WHO]||{}; ALL[WHO][l.id]=[j.t,text]; PH=0; TXT=null; var n=c.lines.findIndex(function(x,k){ return k>i&&need(x) }); go(n<0?c.lines.length:n) }).catch(function(e){ save.disabled=false; r1.msg.className='small err'; r1.msg.textContent='Chưa lưu được: '+e.message+'. Kiểm tra mạng rồi bấm lại.' }) };
   app.appendChild(h('button',{class:'x',text:'‹ Tất cả các phần',onclick:function(){ go(c.lines.length) }}));
   app.appendChild(h('div',{},[h('div',{class:'small muted',text:c.vi+' · câu '+(i+1)+' / '+c.lines.length+' · còn '+left(c)}),h('div',{class:'bar',style:'margin-top:6px'},[h('i',{style:'width:'+Math.round((c.lines.length-left(c))/c.lines.length*100)+'%'})])]));
   app.appendChild(h('div',{class:'panel'},[h('div',{class:'line',text:text}),l.en?h('p',{class:'small muted',style:'text-align:center',text:l.en}):null,LF[l.id]?h('p',{class:'small',style:'text-align:center',text:'Câu này đã được sửa · this line was corrected'}):null]));
@@ -130,7 +132,7 @@ function line(c,i){ if(i>=c.lines.length){ micOff(); return home() } var l=c.lin
 if(!KEY){ app.innerHTML=''; app.appendChild(h('h1',{text:'Thu âm'})); app.appendChild(h('p',{class:'err',text:'Link này thiếu mã. Hãy mở đúng link mà Ben gửi. · This link is missing its key. Open the exact link Ben sent.'})); return }
 if(!navigator.mediaDevices||!window.MediaRecorder){ app.innerHTML=''; app.appendChild(h('p',{class:'err',text:'Trình duyệt này không thu âm được. Hãy mở link bằng Safari (iPhone) hoặc Chrome (Android).'})); return }
 Promise.all([fetch('data/voice-lines.json').then(function(r){ return r.json() }),load(),fetch('audio/index.json').then(function(r){ return r.json() }).catch(function(){ return {clips:{}} })]).then(function(R){
-  PARTS=R[0].parts; var c=R[2].clips||{}; Object.keys(c).forEach(function(t){ if(c[t].some(function(x){ return x[3]===2 })) PRE[N(t)]=1 }); build(); home2()
+  PARTS=R[0].parts; var c=R[2].clips||{}; Object.keys(c).forEach(function(t){ if(c[t].some(function(x){ return x[3]===2 })) PRE[N(t)]=1 }); TXT=null; build(); home2()
 }).catch(function(e){ app.innerHTML=''; app.appendChild(h('h1',{text:'Thu âm'})); app.appendChild(h('p',{class:'err',text:(e.message||'Lỗi')+' · Hãy mở đúng link mà Ben gửi.'})) });
 })();
 </script></body></html>
