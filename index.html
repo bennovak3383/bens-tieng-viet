@@ -582,6 +582,10 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z13ms textarea,.panel textarea{width:100%;box-sizing:border-box;font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
 .z13can{gap:8px;padding:14px}
 .z13nudge{transform:none}
+.z13wel{border:1.5px solid var(--ink);border-radius:var(--r);overflow:hidden;background:#CFE3DE;line-height:0}
+.z13wel svg{display:block;width:100%;height:auto}
+.z13how{display:flex;gap:12px;align-items:flex-start}
+.z7dots i.on{background:var(--tile)!important}
 </style>
 
 <div class="wrap" id="app">
@@ -2868,15 +2872,19 @@ function z7Welcome(force){ if(!C7) return; if(S.set.ob7&&!force) return; if(!S.s
   function dots(){ return h('div',{class:'z7dots'},[0,1,2].map(function(k){ return h('i',{class:k===step?'on':''}) })) }
   function tile(e,t,s){ return h('div',{class:'z7how'},[h('span',{class:'gpic sm','aria-hidden':'true',text:e}),h('div',{},[h('b',{text:t}),h('div',{class:'small muted',text:s})])]) }
   function draw(){ var kids=[dots()];
-    if(step===0) kids.push(h('div',{class:'z7pic','aria-hidden':'true',text:'🛵 🍜 ☕'}),h('h1',{text:'Xin chào! Learn to speak Saigon Vietnamese.'}),h('p',{class:'muted',text:'This is a speaking app, not a game. You hear real everyday questions in the southern accent and answer them out loud, a little every day. No typing in Vietnamese, no streaks to protect.'}),
-      h('div',{class:'panel'},[h('span',{class:'lbl',text:'What should we call you?'}),nm,h('span',{class:'lbl',text:'Where are you from?'}),sel,other]),
+    function line(n,t,d){ return h('div',{class:'z13how'},[h('span',{class:'z13lvn',text:String(n)}),h('div',{},[h('b',{text:t}),h('div',{class:'small muted',text:d})])]) }
+    if(step===0) kids.push(h('div',{class:'z13wel',html:(typeof Z12HDR==='string'?Z12HDR:'')}),h('span',{class:'z12sg',style:'color:var(--tile);font-size:12px',text:'SÀI GÒN'}),h('h1',{text:'Xin chào.'}),h('p',{class:'muted',text:'Speak and understand Vietnamese the way Saigon says it. A little, out loud, most days.'}),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'Your first name'}),nm,h('span',{class:'lbl',text:'Where are you from?'}),sel,other]),
       h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=1; draw() }}));
-    else if(step===1) kids.push(h('h1',{text:'One session a day, about 25 minutes'}),h('p',{class:'muted',text:'Press Start on the Today page and the app walks you through five parts in order. Do less if you are short on time; tomorrow it picks up where you stopped.'}),
-      h('div',{class:'panel'},[tile('👄','1 · Sounds','The six tones, then one vowel lesson with its spelling rule.'),tile('🃏','2 · Cards','Picture cards: hear a word, say what it means; see a picture, say the word.'),tile('💬','3 · Speaking','Hear a question like “Anh tên gì?” and answer out loud about your own life.'),tile('📖','4 · Story','A short story. Follow the gist; tap any word for its meaning.'),tile('🧑‍🍳','5 · Scene','A real situation, both sides: a café, a delivery call, a shop.')]),
-      h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=2; draw() }}));
-    else kids.push(h('h1',{text:'Three things that help'}),
-      h('div',{class:'panel'},[tile('🗣️','Say everything out loud','Reading silently will not get you speaking. Say it before you flip the card.'),tile('🐢','Slow it down','Every screen with sound has speed buttons. Slow is the default; Very slow is fine.'),tile('🎤','Turn the microphone on','On a computer in Chrome, the app can type back what it heard you say. It is on the Today page. Optional.'),tile('🙋','Make the answers yours','More → My answers: put in your name, country, work. Questions then use your real answers.')]),
-      h('button',{class:'btn primary wide',style:'min-height:56px;font-size:17px',text:'Start my first session',onclick:function(){ done(true) }}),h('button',{class:'btn wide',text:'Just look around first',onclick:function(){ done(false) }}));
+    else if(step===1){ var tm=h('div',{class:'z12times'}); [[10,'Ghé nhanh'],[30,'Ngắn'],[60,'Vừa'],[90,'Dài']].forEach(function(r){ tm.appendChild(h('button',{class:'z12time','aria-pressed':String((S.set.mins||60)===r[0]),onclick:function(){ S.set.mins=r[0]; save(); draw() }},[h('b',{text:r[0]+'′'}),h('span',{text:r[1]})])) });
+      kids.push(h('h1',{text:'How a day works'}),h('p',{class:'muted',text:'Tell it how long you have. It lays out the day and takes you through it, one stop at a time.'}),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'How long on a normal day? You can change it any day.'}),tm]),
+      h('div',{class:'panel'},[line(1,'Listen','Train your ear on tones and real sentences.'),line(2,'Copy','Say it after the voice and hear yourself next to it.'),line(3,'Speak','Answer everyday questions about your own life.'),line(4,'Use it','One small real-life mission a week, wherever you are.')]),
+      h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=2; draw() }})) }
+    else kids.push(h('h1',{text:'Three habits that make it work'}),
+      h('div',{class:'panel'},[line(1,'Say it out loud','Every time. Reading silently will not get you speaking.'),line(2,'Go slow','Every screen with sound has speed buttons. Slow is the normal setting.'),line(3,'Six days a week','Short days count. One day off is part of the plan.')]),
+      h('div',{class:'panel'},[h('b',{text:'Turn the microphone on'}),h('div',{class:'small muted',text:'The app can then show what it heard and let you hear yourself. You can do this later on the Today page.'}),h('button',{class:'btn wide',text:zMic()?'Microphone is on':'Turn it on now',onclick:function(e){ if(zMic()) return; micOn().then(function(){ try{ renderMic() }catch(x){} e.target.textContent='Microphone is on' },function(){ e.target.textContent='Not allowed here. Try again later.' }) }})]),
+      h('button',{class:'btn primary wide',style:'min-height:56px;font-size:17px',text:'Start my first day',onclick:function(){ done(true) }}),h('button',{class:'btn wide',text:'Look around first',onclick:function(){ done(false) }}));
     if(step>0) kids.push(h('button',{class:'chip',style:'align-self:center',text:'‹ Back',onclick:function(){ step--; draw() }}));
     zSwap(body,kids) }
   body.appendChild(zTop('Welcome',null,null)); draw(); if(!force){ S.set.ob7=1; try{ localStorage.setItem(LS,JSON.stringify(S)) }catch(e){} } }

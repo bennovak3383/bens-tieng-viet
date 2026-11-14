@@ -207,3 +207,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z13ms textarea,.panel textarea{width:100%;box-sizing:border-box;font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
 .z13can{gap:8px;padding:14px}
 .z13nudge{transform:none}
+.z13wel{border:1.5px solid var(--ink);border-radius:var(--r);overflow:hidden;background:#CFE3DE;line-height:0}
+.z13wel svg{display:block;width:100%;height:auto}
+.z13how{display:flex;gap:12px;align-items:flex-start}
+.z7dots i.on{background:var(--tile)!important}
