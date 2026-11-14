@@ -68,3 +68,8 @@ VERSION 14 (14 Nov 2026) - voice choice
 VERSION 14b (14 Nov 2026) - quiet sound on iPhone
 - Cause: the app kept the microphone stream open all the time. An iPhone then plays all sound in "call" mode (quiet, earpiece).
 - Fix: the stream is opened only for a recording and closed 0.2 s after it stops (z14Get, z14Free; MediaRecorder.start is wrapped to count live recordings). SPEECH.on still means "the learner wants the mic".
+
+VERSION 15 (14 Nov 2026) - first real voice
+- 108 lines recorded by a real Saigon speaker (75 everyday phrases, 21 short sayings, 12 tone words) are in audio/r00.mp3, flagged 2 in audio/index.json.
+- src/voice/build_voice.py REPO part1 part2 part3 cuts recordings at the pauses, evens the loudness and rebuilds r00.mp3. Run it again with new files to replace the voice. The original recordings are not kept in the repo.
+- S.set.vx: 'r' real voice first (default), 'f' computer woman, 'm' computer man, 'both' mix.
