@@ -104,3 +104,6 @@ VERSION 21 (14 Nov 2026) - the Ben character, red-star flags, no photos
 VERSION 22 (14 Nov 2026) - Thầy Tâm character
 - src/art/ben.py also draws tam(): the teacher (black side-swept hair, round face, striped shirt, pointing). He stands next to Ben in the header and in the welcome alley, and his round avatar (Z21TA, z21Av) sits on the teacher's note on Today.
 - The avatar is only put next to words the teacher actually wrote (his notes), not next to tips written for the app.
+
+VERSION 24 (14 Nov 2026) - photo of your page from a laptop
+- Writing, photo step: two new buttons (z24Extra). "Send it from my phone": the laptop makes a 10-character code, shows it as a QR code (lib/qrcode.js, Kazuhiko Arase, MIT) and polls GET /api/snap?t=CODE. The phone opens snap.html?t=CODE (or types the code at /snap.html), takes the photo and POSTs it. Stored in KV as sn:CODE for 15 minutes and deleted when collected. "Use this computer's camera": webcam preview and Snap.

@@ -127,6 +127,11 @@ export async function onRequest(context) {
       return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'private, max-age=3600' } });
     }
     if (path === 'words' && m === 'GET') { const w = await env.KV.get('cfg:words', 'json'); return J(w || { e: {}, d: {}, a: [] }); }
+    if (path === 'snap') {   // hand a photo from a phone to the laptop: the laptop makes a token, the phone posts to it, the laptop collects it once
+      const tk = clean(url.searchParams.get('t') || '', 16).toUpperCase().replace(/[^A-Z0-9]/g, ''); if (tk.length < 10) return J({ error: 'Bad code.' }, 400);
+      if (m === 'POST') { const d = await request.text(); if (d.length > 2_000_000 || !/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(d)) return J({ error: 'That photo could not be read. Try again.' }, 400); await env.KV.put('sn:' + tk, d, { expirationTtl: 900 }); return J({ ok: true }); }
+      if (m === 'GET') { const d = await env.KV.get('sn:' + tk); if (!d) return J({ photo: null }); await env.KV.delete('sn:' + tk); return J({ photo: d }); }
+    }
     if (path === 'suggest' && m === 'POST') {
       const b = await request.json().catch(() => ({})); const text = clean(b.text, 200).trim(); if (text.length < 3) return J({ error: 'Too short.' }, 400);
       const l = (await env.KV.get('cfg:suggest', 'json')) || []; l.unshift({ text, name: clean(b.name, 40), t: Date.now() }); await env.KV.put('cfg:suggest', JSON.stringify(l.slice(0, 300))); return J({ ok: true });
