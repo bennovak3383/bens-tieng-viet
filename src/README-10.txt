@@ -27,3 +27,12 @@ keep speaking Vietnamese (simpler Vietnamese before any English), light correcti
 a short English answer when the learner asks something in English. Applies to the 8 scenes too.
 "🇬🇧 Ask in English" chip: listens once in en-US (base fix in patch10.py: r.lang=SPEECH.lang||'vi-VN').
 Build for 11: python3 src/patch10.py <copy of src before the edit> src index.html OUT
+
+VERSION 12 (14 Nov 2026) - classic Saigon look, time-based day
+- All v12 code is the "12" block at the end of src/v7/v7.js and src/v7/v7.css.
+- Card drawings: src/art/draw.py makes art/cards.json (100 drawings, keyed by the card's Vietnamese word).
+  Run: python3 src/art/draw.py art/cards.json . The app fetches art/cards.json at start (z12Pic).
+- Emoji are stripped from the interface at run time (z12Clean). The old Library (#today) keeps its emoji: they are the pictures in those games.
+- Today: S.set.mins (10/30/60/90) picks the route (z12Stops). Practice seconds: S.d6[day].sec. Outside listening minutes: S.d6[day].out.
+- New sessions: z12Recall (English to Vietnamese sentences), z12Playlist (listen only).
+- Build: same as before (python3 src/patch10.py OLD_SRC src index.html OUT_DIR).
