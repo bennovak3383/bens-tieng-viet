@@ -20,4 +20,6 @@ if a>=0:
     a=s.find('<script type="text/plain" id="audio6">'); b=s.find('</script>',a)+9
     if s[b:b+1]=='\n': b+=1
     s=s[:a]+s[b:]
+# base fixes (idempotent)
+s=s.replace("r.lang='vi-VN'; r.interimResults","r.lang=SPEECH.lang||'vi-VN'; r.interimResults")  # 11: lets the chat listen in English once
 open(out+'/index.html','w',encoding='utf-8').write(s); print('ok',len(s.encode()))

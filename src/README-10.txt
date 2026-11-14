@@ -20,3 +20,10 @@ wv:ID:t (teacher voice, 180 days). Student remove also deletes these.
 
 Tests: tests/*.py with Playwright against site8/devserver.mjs (copy index.html, teacher.html, functions/, audio/ next to it).
 The app script is inside a closure; the tests add  window.__T=function(c){ return eval(c) };  to a TEST copy only.
+
+VERSION 11 (14 Nov 2026): AI conversation "Nói gì cũng được · Talk about anything" (first tile in Trò chuyện).
+Optional topic (typed or a chip). Server prompt now: follow the learner's topic (open mode, up to 18 words),
+keep speaking Vietnamese (simpler Vietnamese before any English), light corrections only, and a new "help" field:
+a short English answer when the learner asks something in English. Applies to the 8 scenes too.
+"🇬🇧 Ask in English" chip: listens once in en-US (base fix in patch10.py: r.lang=SPEECH.lang||'vi-VN').
+Build for 11: python3 src/patch10.py <copy of src before the edit> src index.html OUT

@@ -107,3 +107,5 @@
 .z10item{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:4px}.z10item:first-of-type{border-top:0}
 .z10q{justify-content:flex-start;text-align:left}
 .z10listen a.btn{text-decoration:none;color:inherit;display:flex;align-items:center;justify-content:center}
+/* 11 */
+.z11help{align-self:center;max-width:92%;border:1px dashed var(--line);border-radius:12px;padding:8px 12px;font-size:15px;display:flex;flex-direction:column;gap:2px}

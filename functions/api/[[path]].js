@@ -57,18 +57,23 @@ export async function onRequest(context) {
       const hist = (Array.isArray(b.history) ? b.history : []).slice(-16).map(t => ({ role: t.role === 'assistant' ? 'assistant' : 'user', content: clean(t.content, 400) })).filter(t => t.content);
       if (!hist.length || hist[0].role !== 'user') hist.unshift({ role: 'user', content: '(start the conversation)' });
       const you = clean(b.you, 12) || 'anh', them = clean(b.them, 12) || 'em', name = clean(b.name, 30) || 'the learner';
-      const mode = b.mode === 'hint' ? 'hint' : 'talk';
+      const mode = b.mode === 'hint' ? 'hint' : 'talk', open = !!b.open;
       const system = [
         'You are a friendly Vietnamese conversation partner for a beginner (level A1 to A2) who lives in Ho Chi Minh City.',
         'Scene: ' + (clean(b.scene, 400) || 'Free small talk about daily life.'),
         'Speak natural Southern (Saigon) Vietnamese: dạ, nha, hông/không, mắc, quẹo, coi, vô, trễ. Use only very common words.',
         'The learner is called ' + name + '. Call the learner "' + you + '" and call yourself "' + them + '".',
-        'Rules: reply with ONE or TWO short sentences, at most 12 words in total, and usually end with ONE simple question so the learner has something to answer. Never switch to English in "vi". Stay in the scene. If the learner is silent or says they do not understand, say the same thing again in simpler words.',
+        open
+          ? 'Rules: reply with ONE or TWO short sentences, at most 18 words in total. React to what the learner said, add a little about yourself, then ask ONE follow-up question so the conversation keeps going. Follow the learner\'s topic, whatever it is, and never end the conversation yourself.'
+          : 'Rules: reply with ONE or TWO short sentences, at most 12 words in total, and usually end with ONE simple question so the learner has something to answer. Stay in the scene.',
+        'Keep talking in Vietnamese. Do not give in to English: if the learner seems lost, first say it again in simpler Vietnamese. Never write English inside "vi".',
+        'If the learner writes in English, or asks what something means or how to say something: answer that briefly in English in "help" (at most 30 words, include the Vietnamese words they need), then carry on the conversation in Vietnamese in "vi". Otherwise leave "help" empty.',
+        'Correct lightly: fill "fix" only when a mistake changes or hides the meaning, or is a very common beginner error. Ignore small slips. Most turns "fix" should be empty. Never correct an English question.',
         'The learner\'s lines come from speech recognition, so ignore missing tone marks and small recognition errors; only correct real mistakes in grammar or word choice.',
         'Do not think out loud and do not explain. Output the JSON object only, no words before or after it. Keep "note" under 15 words.',
         mode === 'hint'
           ? 'TASK NOW: do not continue the conversation. Give the learner two short things THEY could say next, as a JSON object: {"hints":[{"vi":"...","en":"..."},{"vi":"...","en":"..."}]}'
-          : 'Reply ONLY with a JSON object and nothing else: {"vi":"your reply in Vietnamese","en":"English translation of your reply","fix":"the learner\'s last line rewritten correctly in Vietnamese, or an empty string if it was fine or there was no line","note":"one short tip in English about that fix, or an empty string"}'
+          : 'Reply ONLY with a JSON object and nothing else: {"vi":"your reply in Vietnamese","en":"English translation of your reply","fix":"the learner\'s last line rewritten correctly in Vietnamese, or an empty string","note":"one short tip in English about that fix, or an empty string","help":"a short English answer if the learner asked something in English, or an empty string"}'
       ].join('\n');
       let text = '';
       if (env.ANTHROPIC_API_KEY) {
@@ -88,14 +93,14 @@ export async function onRequest(context) {
       if (a >= 0 && z > a) { try { out = JSON.parse(text.slice(a, z + 1)); } catch (e) {} }
       if (!out && mode !== 'hint') {   // cut-off or untidy reply: pull the fields out by hand
         const pick = (k) => { const m = text.match(new RegExp('"' + k + '"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"')); if (!m) return ''; try { return JSON.parse('"' + m[1] + '"'); } catch (e) { return m[1]; } };
-        const vi = pick('vi'); if (vi) out = { vi, en: pick('en'), fix: pick('fix'), note: pick('note') };
+        const vi = pick('vi'); if (vi) out = { vi, en: pick('en'), fix: pick('fix'), note: pick('note'), help: pick('help') };
         else if (text && text.indexOf('{') < 0) out = { vi: clean(text, 200), en: '', fix: '', note: '' };
       }
       if (!out) { if (mode === 'hint') out = { hints: [] }; else return J({ error: 'The AI answer came back garbled. Tap Speak or press Enter to try again.', code: 'ai' }, 502); }
       if (mode !== 'hint' && !clean(out.vi, 240)) return J({ error: 'The AI answer came back empty. Try again.', code: 'ai' }, 502);
       context.waitUntil(env.KV.put(ck, String(used + 1), { expirationTtl: 60 * 60 * 48 }));
       if (mode === 'hint') return J({ hints: (Array.isArray(out.hints) ? out.hints : []).slice(0, 3).map(x => ({ vi: clean(x && x.vi, 120), en: clean(x && x.en, 120) })) });
-      return J({ vi: clean(out.vi, 240), en: clean(out.en, 240), fix: clean(out.fix, 200), note: clean(out.note, 200), left: cap - used - 1 });
+      return J({ vi: clean(out.vi, 240), en: clean(out.en, 240), fix: clean(out.fix, 200), note: clean(out.note, 200), help: clean(out.help, 300), left: cap - used - 1 });
     }
 
     // 10: writing practice. wi:ID = list of pieces (newest first), wp:ID:t = photo (data URL), wv:ID:t = teacher voice reply
