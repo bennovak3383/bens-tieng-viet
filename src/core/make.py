@@ -58,3 +58,14 @@ if len(sys.argv) > 2:
     fr = [N(l.split('\t')[2]).lower() for l in open(sys.argv[2], encoding='utf-8') if len(l.split('\t')) > 2]
     heads = set(seen)
     for n in (100, 300, 500, 1000): print('top %d: %d are core-course words' % (n, sum(1 for w in fr[:n] if w in heads)))
+    other = set()
+    try:
+        page = open(repo + '/index.html', encoding='utf-8').read()
+        C7 = json.loads(re.search(r'<script[^>]*id="content7"[^>]*>(.*?)</script>', page, re.S).group(1))
+        other.update(N(c['vi']).lower() for c in C7['cards'] if c['c'] not in ('p75', 'say', 'pat'))
+        for L in json.load(open(repo + '/data/words13.json', encoding='utf-8'))['levels']: other.update(N(c['vi']).lower() for c in L['cards'])
+    except Exception as e: print('no other cards', e)
+    top = [w for w in fr[:1000] if w in heads or w in other]
+    print('top 1000 words that are a card somewhere in the app:', len(top))
+    d = json.load(open(repo + '/data/core.json', encoding='utf-8')); d['top'] = top; d['topn'] = 1000
+    json.dump(d, open(repo + '/data/core.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))

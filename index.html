@@ -3933,6 +3933,7 @@ var z13Words27=z13Words; z13Words=function(){ z13Words27(); try{ z27Apply() }cat
 var z13Teach27=z13Teach; z13Teach=function(){ z13Teach27(); try{ if(Z27&&Z27.on){ FC.forEach(function(c){ delete c.xv0 }); Z27.rd=''; z27Rot() } }catch(e){} };
 try{ fetch('data/core.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.units) return; Z27=j; z27Apply(); try{ fcRender(); if($('#sheet').hidden) zRenderHome() }catch(e){}
   fetch('/api/core').then(function(r){ return r.ok?r.json():null }).then(function(o){ if(o&&o.u&&Object.keys(o.u).length){ Z27C=o; z27Apply() } }).catch(function(){}) }).catch(function(){}) }catch(e){}
+function z27Top(){ if(!Z27||!Z27.top) return null; var set={}, n=0; Z27.top.forEach(function(w){ set[w]=1 }); var got={}; FC.forEach(function(c){ var v=String(c.vi).toLowerCase(); if(set[v]&&!got[v]&&z13Started(c)){ got[v]=1; n++ } }); return {n:n,of:Z27.top.length,top:Z27.topn||1000} }
 function z27Snd(){ var z=S.set.z0; return !!z27St().snd||(z&&z.fin)||vanDoneCount()>=8 }
 function z27Gram(u,ui,next){ var body=zOpen(); body.appendChild(zTop('Nền tảng · core course · '+u.lv+' · unit '+(ui+1),0,null));
   var ex=h('div',{class:'panel z27exs'}); u.ex.forEach(function(e){ ex.appendChild(h('div',{class:'z27ex'},[h('div',{style:'flex:1;min-width:0'},[zVi(e[0],20),h('div',{class:'small muted',text:e[1]})]),zPlay(e[0])])) });
@@ -3975,7 +3976,7 @@ function z27Unit(ui){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:0,g:0,g
     body.appendChild(h('button',{class:'btn wide',text:'That is enough for today',onclick:function(){ closeSheet(); zRenderHome() }})) }
   z27Gram(u,ui,function(){ z26Learn(u.w.map(function(w){ return [w[0],w[1]] }),function(){ z27Order(ord,function(){ z27Gap(gaps,function(){ z27Say(say,fin,sc) },sc) },sc) },'Từ mới · the words for this unit') }) }
 function z27List(){ var body=zOpen(), k=z27St(), cur=z27Idx(); body.appendChild(zTop('Nền tảng · core course',0,null));
-  var kids=[h('h1',{text:'All units'}),h('p',{class:'small muted',text:'Each unit is one piece of grammar and the common words that go with it. Do them in order; tap any unit to open it or do it again.'})], lv='';
+  var tp=z27Top(); var kids=[h('h1',{text:'All units'}),tp?h('p',{class:'small',text:'Most common words: '+tp.n+' of '+tp.of+' started (top-'+tp.top+' list).'}):null,h('p',{class:'small muted',text:'Each unit is one piece of grammar and the common words that go with it. Do them in order; tap any unit to open it or do it again.'})], lv='';
   Z27.units.forEach(function(u,ui){ if(u.lv!==lv){ lv=u.lv; kids.push(h('span',{class:'lbl',text:'Level '+lv})) } var d=k.d[u.id];
     kids.push(h('button',{class:'panel z27row'+(d?' done':'')+(ui===cur?' cur':''),onclick:function(){ z27Unit(ui) }},[h('span',{class:'z13lvn',text:d?'✓':String(ui+1)}),h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:u.vi}),h('div',{class:'small muted',text:u.en+' · '+u.w.length+' words'})])])) });
   zSwap(body,kids) }
@@ -3987,7 +3988,8 @@ function z27Card(){ var n=Z27.units.length, i=z27Idx(), k=z27St(), box=h('div',{
     box.appendChild(h('button',{class:'x z25ov',text:'I already know the tones and vowel pairs · open the course',onclick:function(){ k.snd=1; save(); zRenderHome() }})); return box }
   if(i>=n){ box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course'})); box.appendChild(dots); box.appendChild(h('h2',{text:'All '+n+' units done'})); box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'More units are being added. Until then, redo any unit; the words keep coming back in your cards.'})); box.appendChild(h('button',{class:'btn wide',text:'All units',onclick:z27List})); return box }
   var u=Z27.units[i]; box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course · '+u.lv+' · unit '+(i+1)+' of '+n})); box.appendChild(dots); box.appendChild(h('h2',{text:u.vi}));
-  box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:u.en+'. One piece of grammar, '+u.w.length+' common words, three short drills. About 12 minutes.'}));
+  box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:u.en+'. One piece of grammar, '+u.w.length+' common words, three short drills. About '+Math.round(u.w.length*0.45+6)+' minutes.'}));
+  var tp=z27Top(); if(tp) box.appendChild(h('p',{class:'small muted z27top',text:'Most common words: you have started '+tp.n+' of the '+tp.of+' in the app that are on the top-'+tp.top+' list.'}));
   box.appendChild(h('button',{class:'btn primary wide',id:'z27-start',text:'Bắt đầu · start unit '+(i+1),onclick:function(){ z27Unit(i) }}));
   box.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
   box.appendChild(h('div',{class:'row between'},[h('button',{class:'x z25ov',text:'All units',onclick:z27List}),h('button',{class:'x z25ov',text:'I know this · skip the unit',onclick:function(){ k.d[u.id]={t:Date.now(),skip:1}; save(); Z27.rd=''; z27Rot(); zRenderHome() }})])); return box }

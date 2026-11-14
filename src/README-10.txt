@@ -135,3 +135,9 @@ VERSION 27 (15 Nov 2026) - core course: grammar units that roll out the most com
 - Recording: make_lines.py adds one part per unit (k01 …). They are added last so older line ids do not change, then moved up to sit after the beginner part.
 - Tests: src/tests/t27.py (learner) and t27b.py (teacher, recording page).
 - To rebuild index.html: python3 src/patch10.py OLD_SRC src OLD_INDEX OUT, where OLD_SRC and OLD_INDEX come from the last commit (git archive HEAD src index.html).
+
+VERSION 28 (15 Nov 2026) - core course grows to 45 units (A1 1-20, A2 21-45): 817 words, 1,089 sentences
+- New files src/core/a2a.txt (21-30), a2b.txt (31-40), a2c.txt (41-45). Files are read in name order.
+- make.py with the frequency file also writes "top" into data/core.json: the top-1,000 words that are a card somewhere in the app (730 now). z27Top counts how many of them the learner has started; shown on the core card and the unit list.
+- Of the top 1,000 on the frequency list: 633 are core-course words, 730 are a card somewhere. The rest are mostly film, news and northern words left out on purpose (list them with the script in the handoff doc if needed).
+- The "one new thing" check in make.py works on syllables, so a compound made of known syllables passes even if the compound itself is new.
