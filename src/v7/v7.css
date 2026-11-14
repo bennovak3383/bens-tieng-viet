@@ -305,3 +305,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z27tile.on{border-color:var(--accent)}
 .z27gap{font-size:24px;line-height:1.4}
 .z27row{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;cursor:pointer;color:inherit;font:inherit}.z27row.cur{border-color:var(--accent)}.z27row.done .z13lvn{background:var(--good);color:#fff}
+
+/* 29 · test practice */
+.z29txt{gap:8px}.z29txt h2{margin:0 0 4px}.z29txt .vi{line-height:1.5;font-weight:500}
+.z13opt .vi{font-weight:500;text-align:left}

@@ -141,3 +141,12 @@ VERSION 28 (15 Nov 2026) - core course grows to 45 units (A1 1-20, A2 21-45): 81
 - make.py with the frequency file also writes "top" into data/core.json: the top-1,000 words that are a card somewhere in the app (730 now). z27Top counts how many of them the learner has started; shown on the core card and the unit list.
 - Of the top 1,000 on the frequency list: 633 are core-course words, 730 are a card somewhere. The rest are mostly film, news and northern words left out on purpose (list them with the script in the handoff doc if needed).
 - The "one new thing" check in make.py works on syllables, so a compound made of known syllables passes even if the compound itself is new.
+
+VERSION 29 (15 Nov 2026) - a day plan at the learner's level, and test practice
+- Why: Ben said listening and speaking in the app were over his head. The old plan drew questions, stories and scenes from everything.
+- z12Stops is wrapped: while z29On() (core course loaded, S.set.k27.full not set, not on the beginner path, not an easy day) the day is: Sharp ears, the next core unit (or a sound lesson until the sounds are done), cards, then Nghe (z27Hear), Nói (z27SayDay), Dấu (z29Write) and at 90 minutes Trả lời (z29Speak). All four draw only on z27Known(): sentences from finished core units. Stops are ticked with zDay('ku'|'kl'|'ks'|'kw'|'kq').
+- The switch is a slip under the time buttons on Today (S.set.k27.full = 1 gives the old full plan back). z12Pool is also limited to started cards plus finished-unit sentences while at-my-level is on.
+- Test practice (Practice tab, Thi thử): src/exam/make.py builds data/exam.json (9 speaking topics with 41 questions and example answers, 6 reading texts with 24 questions; each has a "gate" = core units needed). Task types follow the first parts of the Vietnamese proficiency test for foreigners; all wording is our own, nothing copied from a test paper, and no school is named.
+  z29Hear1 (hear a question, pick the reply), z27Hear (hear a sentence, pick the meaning), z29Read, z29Write (pick the correctly tone-marked word; wrong options are made with z25Put), z29Speak (answer out loud; with the mic on the answer is recorded for the teacher as kind 'exam'). Scores: S.set.k27.ex[part] = {t,r,n}.
+- Recording list: parts x1 (questions and example answers) and x2 (reading texts).
+- Tests: src/tests/t29.py.

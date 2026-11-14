@@ -47,6 +47,14 @@ try:
         for w in u['w']: rows.append((w[0],w[1])); rows.append((w[2],w[3]))
         add('k'+u['id'][1:],'Nền tảng %d: %s'%(i+1,u['vi']),'Core %d: %s'%(i+1,u['en']),rows)
 except FileNotFoundError: pass
+try:
+    X=json.load(open(repo+'/data/exam.json'))   # 29: test practice (questions with example answers, then the reading texts)
+    rows=[]
+    for t in X['speak']:
+        for q in t['q']: rows.append((q[0],q[1])); rows.append((q[2],q[3]))
+    add('x1','Thi thử: hỏi và trả lời','Test practice: questions and answers',rows)
+    add('x2','Thi thử: bài đọc','Test practice: reading texts',[(x,'') for t in X['read'] for x in t['text']])
+except FileNotFoundError: pass
 core=[p for p in parts if p['id'][0]=='k' and p['id'][1:].isdigit()]; rest=[p for p in parts if p not in core]; at=next((n+1 for n,p in enumerate(rest) if p['id']=='z0'),0); parts=rest[:at]+core+rest[at:]
 NOTES={'Anh nói với cô bán hàng: “Chào chị. Tôi muốn mưa một cái áo.”':'Câu này cố ý sai: trong truyện, Jake nói nhầm “mua” thành “mưa” nên cô bán hàng mới cười. Bạn cứ đọc đúng như chữ, có chữ “mưa”. · This mistake is on purpose: it is the joke of the story. Read it exactly as written.'}
 for p in parts:

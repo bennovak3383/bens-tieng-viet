@@ -680,6 +680,10 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z27tile.on{border-color:var(--accent)}
 .z27gap{font-size:24px;line-height:1.4}
 .z27row{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;cursor:pointer;color:inherit;font:inherit}.z27row.cur{border-color:var(--accent)}.z27row.done .z13lvn{background:var(--good);color:#fff}
+
+/* 29 · test practice */
+.z29txt{gap:8px}.z29txt h2{margin:0 0 4px}.z29txt .vi{line-height:1.5;font-weight:500}
+.z13opt .vi{font-weight:500;text-align:left}
 </style>
 
 <div class="wrap" id="app">
@@ -3965,12 +3969,13 @@ function z27Gaps(u){ var out=[], keys=u.key.slice().sort(function(a,b){ return b
     for(var ki=0;ki<keys.length;ki++){ var kt=keys[ki].split(' '); for(var p=0;p+kt.length<=cl.length;p++){ var hit=true; for(var q=0;q<kt.length;q++) if(cl[p+q]!==kt[q]){ hit=false; break }
         if(hit&&cl.length>kt.length){ var last=ws[p+kt.length-1], tail=(last.match(/[.,!?…:;]+$/)||[''])[0]; out.push({s:s,k:keys[ki],t:ws.slice(0,p).concat(['____'+tail]).concat(ws.slice(p+kt.length)).join(' ')}); return } } } });
   return out }
-function z27Unit(ui){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:0,g:0,gn:0,s:0,sn:0}, all=u.ex.concat(u.w.map(function(w){ return [w[2],w[3]] })).filter(function(s){ return s[0]&&s[1] });
+function z27Unit(ui,onDone){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:0,g:0,gn:0,s:0,sn:0}, all=u.ex.concat(u.w.map(function(w){ return [w[2],w[3]] })).filter(function(s){ return s[0]&&s[1] });
   var ord=z7Shuffle(all.filter(function(s){ var n=s[0].split(/\s+/).length; return n>=3&&n<=7 })).slice(0,4), gaps=z7Shuffle(z27Gaps(u)).slice(0,5), say=z7Shuffle(u.ex.slice()).slice(0,4);
-  function fin(){ var k=z27St(); k.d[u.id]={t:Date.now(),o:sc.o,on:sc.on,g:sc.g,gn:sc.gn,s:sc.s,sn:sc.sn}; tick(); save(); Z27.rd=''; z27Rot(); Z13.lvT=0;
+  function fin(){ var k=z27St(); k.d[u.id]={t:Date.now(),o:sc.o,on:sc.on,g:sc.g,gn:sc.gn,s:sc.s,sn:sc.sn}; zDay('ku'); tick(); save(); Z27.rd=''; z27Rot(); Z13.lvT=0;
     var body=zOpen(), last=ui>=Z27.units.length-1; body.appendChild(zTop('Nền tảng · core course',1,null));
     body.appendChild(h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Unit '+(ui+1)+' of '+Z27.units.length+' done'}),h('h1',{text:'Xong! '+u.vi}),h('p',{class:'muted',text:'Order '+sc.o+'/'+sc.on+' · missing word '+sc.g+'/'+sc.gn+' · said '+sc.s+'/'+sc.sn+'. The '+u.w.length+' words are now in your cards and will come back in new sentences.'})]));
     body.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
+    if(onDone){ body.appendChild(h('button',{class:'btn primary wide',text:'Carry on with today',onclick:onDone})); return }
     body.appendChild(h('button',{class:'btn primary wide',text:'Review the new words now',onclick:function(){ fcSession(function(){ closeSheet(); zRenderHome() },20) }}));
     if(!last) body.appendChild(h('button',{class:'btn wide',text:'Go on to unit '+(ui+2),onclick:function(){ z27Unit(ui+1) }}));
     body.appendChild(h('button',{class:'btn wide',text:'That is enough for today',onclick:function(){ closeSheet(); zRenderHome() }})) }
@@ -3996,6 +4001,90 @@ function z27Card(){ var n=Z27.units.length, i=z27Idx(), k=z27St(), box=h('div',{
 var zRenderHome27=zRenderHome; zRenderHome=function(){ zRenderHome27(); try{ if(!Z27||!Z27.on||z26On()) return; var el=$('#z-home'); if(!el||el.querySelector('#z27')) return; z27Rot(); var at=el.querySelector('#z-plan'); el.insertBefore(z27Card(),at&&at.parentNode===el?at:el.firstChild) }catch(e){} };
 var z8RenderPrac27=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac27(); try{ if(!Z27||!Z27.on) return; var el=$('#z-prac'), g=el&&el.querySelector('.setgrid'); if(!g) return; var i=z27Idx(), n=Z27.units.length;
   g.insertBefore(h('button',{class:'settile gt1',onclick:z27List},[h('b',{text:'Nền tảng · Core course'}),h('span',{class:'small muted',text:i>=n?'All '+n+' units done':'Unit '+(i+1)+' of '+n+' · grammar and the most common words'})]),g.firstChild) }catch(e){} };
+
+
+/* ===== 29 · a day plan at the learner's level, and test practice (data/exam.json) ===== */
+var Z29=null; try{ fetch('data/exam.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(j&&j.speak) Z29=j }).catch(function(){}) }catch(e){}
+function z27Known(){ var open=Math.max(1,z27Idx()); return Z27.sent.filter(function(s){ return s[2]<open&&s[0]&&s[1] }) }
+function z29On(){ return !!(Z27&&Z27.on)&&!z27St().full&&!z26On()&&!z25Easy() }
+function z29Save(part,r,n){ var k=z27St(); if(!k.ex||typeof k.ex!=='object') k.ex={}; k.ex[part]={t:Date.now(),r:r,n:n}; tick(); save() }
+function z29End(body,title,r,n,onDone,note){ zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:title}),h('div',{class:'score',text:r+' / '+n}),h('p',{class:'muted',text:note||(r>=n*.7?'Good. This is at your level.':'Not there yet, and that is fine. These use only things from units you have done, so they will come.')}),h('button',{class:'btn primary wide',text:onDone?'Next':'Done',onclick:function(){ if(onDone) onDone(); else { closeSheet(); zRenderHome() } }})])]) }
+/* hear a sentence from the finished units, pick what it means */
+function z27Hear(onDone,n){ var body=zOpen(), tok=Z.tok, pool=z27Known(), q=z7Shuffle(pool.slice()).slice(0,n||8), i=0, right=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(zTop('Nghe · listen, only what you have learned',0,null));
+  function show(){ if(!alive()) return; if(i>=q.length){ zDay('kl'); z29Save('h2',right,q.length); return z29End(body,'Listening',right,q.length,onDone) } var c=q[i], opts=[c], tries=0, done=false, out=h('div',{class:'stack'}), list=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/q.length*100)+'%';
+    while(opts.length<3&&tries++<80){ var o=pool[Math.floor(Math.random()*pool.length)]; if(!opts.some(function(x){ return x[1]===o[1] })) opts.push(o) } z7Shuffle(opts);
+    opts.forEach(function(o){ var b=h('button',{class:'btn wide z13opt',text:o[1],onclick:function(){ if(done) return; done=true; var ok=o===c; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(list.children,function(x,k){ if(opts[k]===c) x.classList.add('good') });
+        out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c[0],22),zPlay(c[0])]),h('div',{class:'small muted',text:'Say it once yourself.'})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})) }}); list.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+q.length+' · what did you hear?'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear it again',html:PLAY_ICON,onclick:function(){ zSay(c[0]) }}),h('span',{class:'small muted',text:'Tap to hear it again, as often as you like'})]),list,out]); setTimeout(function(){ if(alive()) zSay(c[0]) },300) }
+  show() }
+function z27SayDay(onDone){ var sc={s:0,sn:0}; z27Say(z7Shuffle(z27Known().slice()).slice(0,6),function(){ zDay('ks'); z29Save('s2',sc.s,sc.sn); var body=zOpen(); body.appendChild(zTop('Nói · say it',1,null)); z29End(body,'Speaking',sc.s,sc.sn,onDone) },sc) }
+/* pick the correctly marked word (same task as the first writing part of the test) */
+function z29Vars(w){ var b=z25Strip(w), t=toneOf(w.toLowerCase()); if(!/^[\p{L}]+$/u.test(w)||!z25Where(b)||z25Put(b,t?MARKS[t]:'')!==w) return null; var v=[]; for(var k=0;k<6;k++){ var x=z25Put(b,k?MARKS[k]:''); if(x!==w&&v.indexOf(x)<0) v.push(x) } return v.length>=3?z7Shuffle(v).slice(0,3):null }
+function z29Write(onDone,n){ var body=zOpen(), tok=Z.tok, items=[], i=0, right=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  z7Shuffle(z27Known().slice()).forEach(function(sn){ if(items.length>=(n||8)) return; var ws=sn[0].split(/\s+/), idx=z7Shuffle(ws.map(function(w,k){ return k })); for(var j=0;j<idx.length;j++){ var raw=ws[idx[j]], w=raw.replace(/[.,!?…:;“”"]/g,''), tail=(raw.match(/[.,!?…:;]+$/)||[''])[0]; if(w.length<2||w!==w.toLowerCase()) continue; var v=z29Vars(w); if(v){ items.push({s:sn,w:w,o:z7Shuffle(v.concat([w])),t:ws.slice(0,idx[j]).concat(['____'+tail]).concat(ws.slice(idx[j]+1)).join(' ')}); break } } });
+  body.appendChild(zTop('Dấu · pick the right marks',0,null));
+  function show(){ if(!alive()) return; if(i>=items.length){ zDay('kw'); z29Save('w1',right,items.length); return z29End(body,'Marks',right,items.length,onDone) } var g=items[i], done=false, out=h('div',{class:'stack'}), grid=h('div',{class:'z25grid'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/items.length*100)+'%';
+    g.o.forEach(function(o){ var b=h('button',{class:'z25opt',onclick:function(){ if(done) return; done=true; var ok=o===g.w; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(grid.children,function(x,k){ if(g.o[k]===g.w) x.classList.add('good') });
+        out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(g.s[0],22),zPlay(g.s[0])])])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})); zSay(g.s[0]) }},[h('b',{text:o})]); grid.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+items.length+' · which spelling is right?'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('div',{class:'vi z27gap',text:g.t}),h('div',{class:'z26en',text:g.s[1]})]),grid,out]) }
+  if(!items.length){ if(onDone) onDone(); else closeSheet(); return } show() }
+function z29Topics(){ if(!Z29) return []; var done=Object.keys(z27St().d).length, t=Z29.speak.filter(function(x){ return x.gate<=done+1 }); return t.length?t:[Z29.speak[0]] }
+function z29Texts(){ if(!Z29) return []; var done=Object.keys(z27St().d).length, t=Z29.read.filter(function(x){ return x.gate<=done+1 }); return t.length?t:[Z29.read[0]] }
+/* hear a question, pick the reply (first listening part of the test) */
+function z29Hear1(onDone){ var body=zOpen(), tok=Z.tok, all=[], i=0, right=0; z29Topics().forEach(function(t){ t.q.forEach(function(x){ all.push(x) }) }); var q=z7Shuffle(all.slice()).slice(0,8); function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(zTop('Nghe câu hỏi · hear the question, pick the reply',0,null));
+  function show(){ if(!alive()) return; if(i>=q.length){ z29Save('h1',right,q.length); return z29End(body,'Questions by ear',right,q.length,onDone) } var c=q[i], opts=[c], tries=0, done=false, out=h('div',{class:'stack'}), list=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/q.length*100)+'%';
+    while(opts.length<3&&tries++<80){ var o=all[Math.floor(Math.random()*all.length)]; if(!opts.some(function(x){ return x[2]===o[2] })) opts.push(o) } z7Shuffle(opts);
+    opts.forEach(function(o){ var b=h('button',{class:'btn wide z13opt',onclick:function(){ if(done) return; done=true; var ok=o===c; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(list.children,function(x,k){ if(opts[k]===c) x.classList.add('good') });
+        out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:'The question was'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c[0],22),zPlay(c[0])]),h('div',{class:'small muted',text:c[1]})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})) }},[zVi(o[2],18,false)]); list.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+q.length+' · how would you answer?'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear it again',html:PLAY_ICON,onclick:function(){ zSay(c[0]) }}),h('span',{class:'small muted',text:'Tap to hear the question again'})]),list,out]); setTimeout(function(){ if(alive()) zSay(c[0]) },300) }
+  show() }
+/* read a short text, answer four questions */
+function z29Read(onDone){ var body=zOpen(), tok=Z.tok, ts=z29Texts(), k=z27St(), seen=(k.exr||0), T=ts[seen%ts.length], i=0, right=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(zTop('Đọc · read and answer',0,null)); var txt=h('div',{class:'panel z29txt'},[h('h2',{text:T.vi})]); T.text.forEach(function(x){ txt.appendChild(zVi(x,19)) });
+  function show(){ if(!alive()) return; if(i>=T.q.length){ k.exr=seen+1; z29Save('r1',right,T.q.length); return z29End(body,'Reading',right,T.q.length,onDone) } var c=T.q[i], done=false, out=h('div',{class:'stack'}), list=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/T.q.length*100)+'%';
+    c[1].forEach(function(o,oi){ var b=h('button',{class:'btn wide z13opt',text:o,onclick:function(){ if(done) return; done=true; var ok=oi===c[2]; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) list.children[c[2]].classList.add('good'); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})) }}); list.appendChild(b) });
+    zSwap(body,[txt,h('span',{class:'lbl',text:'Question '+(i+1)+' of '+T.q.length}),h('div',{class:'vi',style:'font-size:20px',text:c[0]}),list,out]); if(i>0) setTimeout(function(){ var l=$('#sheet-body .lbl:last-of-type'); if(list.scrollIntoView) list.scrollIntoView({block:'center'}) },50) }
+  show() }
+/* answer social questions out loud, one topic at a time (first speaking part of the test) */
+function z29Speak(onDone,ti){ var body=zOpen(), tok=Z.tok, ts=z29Topics(), k=z27St(), at=(ti!=null?ti:(k.exs||0))%ts.length, T=ts[at], i=0, right=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(zTop('Trả lời · answer about yourself · '+T.vi,0,null));
+  function show(){ if(!alive()) return; if(i>=T.q.length){ if(ti==null) k.exs=at+1; zDay('kq'); z29Save('s1',right,T.q.length); return z29End(body,T.vi+' · '+T.en,right,T.q.length,onDone,'Tell your teacher which questions you could not answer. These are the questions an examiner, a neighbour or a taxi driver asks first.') } var c=T.q[i], out=h('div',{class:'stack'}), qbox=h('div',{class:'stack'}), heard=h('p',{class:'small muted',text:''}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/T.q.length*100)+'%';
+    function reveal(){ ans.remove(); if(rec) rec.remove(); out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:'One way to answer · change it so it is true for you'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c[2],22),zPlay(c[2])]),h('div',{class:'small muted',text:c[3]})]));
+      out.appendChild(h('div',{class:'row'},[h('button',{class:'btn primary',style:'flex:1',text:'I could answer',onclick:function(){ right++; i++; show() }}),h('button',{class:'btn',style:'flex:1',text:'Not yet',onclick:function(){ i++; show() }})])) }
+    var showq=h('button',{class:'chip',text:'Show the question',onclick:function(){ showq.remove(); qbox.appendChild(zVi(c[0],22)); qbox.appendChild(h('div',{class:'small muted',text:c[1]})) }});
+    var ans=h('button',{class:'btn primary wide',text:'I answered out loud · show an example',onclick:reveal}), rec=null;
+    try{ if(zMic()) rec=h('button',{class:'btn wide',text:'Record my answer for my teacher',onclick:function(){ rec.disabled=true; rec.textContent='Listening… answer now'; zHear(9000,function(t){ heard.textContent='Heard: '+t }).then(function(res){ try{ if(res&&res.blob) zRecSave({kind:'exam',ref:'x'+at+'_'+i,lv:0,target:c[2],prompt:c[0],heard:(res.alts&&res.alts[0])||'',score:0,ok:true,ms:res.first||0},res.blob) }catch(e){} if(alive()) reveal() }) }}) }catch(e){}
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+T.q.length+' · listen, then answer out loud in a full sentence'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear the question again',html:PLAY_ICON,onclick:function(){ zSay(c[0]) }}),h('span',{class:'small muted',text:'Tap to hear the question again'}),showq,qbox]),rec,ans,heard,out]); setTimeout(function(){ if(alive()) zSay(c[0]) },300) }
+  show() }
+function z29Exam(){ var body=zOpen(), k=z27St(), ex=k.ex||{}, ts=z29Topics(); body.appendChild(zTop('Thi thử · test practice',0,null));
+  function row(key,vi,en,run){ var r=ex[key]; return h('button',{class:'panel z27row',onclick:run},[h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:vi}),h('div',{class:'small muted',text:en+(r?' · last time '+r.r+'/'+r.n:'')})])]) }
+  var kids=[h('h1',{text:'Test practice'}),h('p',{class:'small muted',text:'The same kinds of task as the first parts of the Vietnamese proficiency test for foreigners, made only from what you have studied so far. The later parts of the real test (discussion, letters, essays) are for higher levels and are not here yet.'}),
+    row('h1','Nghe 1 · hear the question, pick the reply','Listening',function(){ z29Hear1(z29Exam) }),row('h2','Nghe 2 · hear it, pick the meaning','Listening',function(){ z27Hear(z29Exam,10) }),
+    row('r1','Đọc · read a short text, answer 4 questions','Reading',function(){ z29Read(z29Exam) }),row('w1','Viết · pick the correctly marked word','Writing, part 1',function(){ z29Write(z29Exam,10) }),
+    h('span',{class:'lbl',text:'Nói · speaking, part 1: social questions'})];
+  ts.forEach(function(t,ti){ kids.push(h('button',{class:'panel z27row',onclick:function(){ z29Speak(z29Exam,ti) }},[h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:t.vi}),h('div',{class:'small muted',text:t.en+' · '+t.q.length+' questions'})])])) });
+  if(Z29&&ts.length<Z29.speak.length) kids.push(h('p',{class:'small muted',text:(Z29.speak.length-ts.length)+' more topics open as you finish more core units.'}));
+  zSwap(body,kids) }
+/* the day plan at the learner's level: sounds, the next core unit, cards, then listening, speaking and marks made only from finished units */
+(function(){ var st=z12Stops; z12Stops=function(){ if(!z29On()) return st(); var m=z12Mins(), td=zTodayDone(), i=z27Idx(), u=Z27.units[i], due=0, vn=null, snd=z27Snd(); try{ due=fcQueue(0).length; vn=vanNext() }catch(e){}
+  var A={ear:{t:'Nghe kỹ',en:'Sharp ears',min:3,sub:'Tones and vowels',done:!!td.ear,run:function(n){ zEar10(n) }},
+    van:{t:'Âm',en:'Sound lesson',min:5,sub:vn?vn.t:'',done:!!td.van,run:function(n){ vanOpen(vanNext(),n) }},
+    ku:u?{t:'Nền tảng',en:'Core unit '+(i+1),min:Math.round(u.w.length*.45+6),sub:u.vi+' · '+u.en,done:!!td.ku,run:function(n){ z27Unit(z27Idx(),n) }}:null,
+    fc:{t:'Thẻ',en:'Cards',min:6,sub:due?due+' ready':'None due right now',done:!!td.fc,run:function(n){ fcSession(n,m<=30?12:20) }},
+    kl:{t:'Nghe',en:'Listen · only what you have learned',min:4,sub:'Hear a sentence, pick the meaning',done:!!td.kl,run:function(n){ z27Hear(n,8) }},
+    ks:{t:'Nói',en:'Say it · only what you have learned',min:4,sub:'See the English, say the Vietnamese',done:!!td.ks,run:function(n){ z27SayDay(n) }},
+    kw:{t:'Dấu',en:'Pick the right marks',min:3,sub:'Which spelling is right?',done:!!td.kw,run:function(n){ z29Write(n,8) }},
+    kq:Z29?{t:'Trả lời',en:'Answer about yourself',min:5,sub:'The questions people ask first',done:!!td.kq,run:function(n){ z29Speak(n) }}:null};
+  var core=snd?'ku':'van', plan=({10:['ear',core],30:['ear',core,'fc','kl'],60:['ear',core,'fc','kl','ks','kw'],90:['ear',snd?'van':null,core,'fc','kl','ks','kw','kq']})[m]||['ear',core,'fc','kl'];
+  var none=!Object.keys(z27St().d).length;
+  return plan.filter(function(k,x){ return k&&A[k]&&plan.indexOf(k)===x&&!(none&&['kl','ks','kw','kq'].indexOf(k)>=0) }).map(function(k){ var x=A[k]; x.k=k; return x }) } })();
+var z12Pool29=z12Pool; z12Pool=function(){ var P=z12Pool29(); try{ if(!Z27||!Z27.on||z27St().full) return P; var extra=z27Known().map(function(s){ var hsh=0; for(var c=0;c<s[0].length;c++) hsh=(hsh*31+s[0].charCodeAt(c))|0; return {id:'ks'+(hsh>>>0).toString(36),vi:s[0],en:s[1],xv:s[0],xe:s[1]} }), seen=P.seen.concat(extra); return seen.length>=8?{seen:seen,rest:[]}:P }catch(e){ return P } };
+var zRenderHome29=zRenderHome; zRenderHome=function(){ zRenderHome29(); try{ if(!Z27||!Z27.on||z26On()) return; var el=$('#z-home'), sec=el&&el.querySelector('.z12sec'), k=z27St(); if(!sec||sec.querySelector('.z29lv')) return;
+  sec.appendChild(h('div',{class:'z12slip z29lv',style:'transform:none'},[h('span',{class:'z12lbl',text:k.full?'Full plan':'Đúng trình độ · at my level'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:k.full?'Today uses everything in the app: questions, stories, scenes. If it feels over your head, switch back.':'Today uses only the sounds, your next core unit, and listening and speaking made from units you have finished. Nothing you have not been taught.'}),h('button',{class:'chip',text:k.full?'Keep it at my level':'I am ready for more · use the full plan',onclick:function(){ k.full=k.full?0:1; save(); zRenderHome() }})])) }catch(e){} };
+var z8RenderPrac29=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac29(); try{ if(!Z27||!Z27.on) return; var el=$('#z-prac'), g=el&&el.querySelector('.setgrid'); if(!g) return;
+  g.insertBefore(h('button',{class:'settile gt3',onclick:z29Exam},[h('b',{text:'Thi thử · Test practice'}),h('span',{class:'small muted',text:'Listening, reading, marks and speaking, in the test\'s task types, at your level'})]),g.children[1]||null) }catch(e){} };
 
 go(location.hash.slice(1)||'home');
 renderAll();
