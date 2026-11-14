@@ -73,3 +73,7 @@ VERSION 15 (14 Nov 2026) - first real voice
 - 108 lines recorded by a real Saigon speaker (75 everyday phrases, 21 short sayings, 12 tone words) are in audio/r00.mp3, flagged 2 in audio/index.json.
 - src/voice/build_voice.py REPO part1 part2 part3 cuts recordings at the pauses, evens the loudness and rebuilds r00.mp3. Run it again with new files to replace the voice. The original recordings are not kept in the repo.
 - S.set.vx: 'r' real voice first (default), 'f' computer woman, 'm' computer man, 'both' mix.
+
+VERSION 16 (14 Nov 2026) - mission rehearsals and the first three minutes
+- z13Rehearse(missionIndex): the four phrases for that mission (Z13RH, all from recorded lines), copy them out loud (z13Shadow with a fixed list), then a mock run with a matching scene, then "go and do it".
+- z13First(): what a new learner does straight after the welcome: answer "Anh tên gì?" out loud, copy two phrases and see the tone line, take away one street sentence. Then the first day starts.
