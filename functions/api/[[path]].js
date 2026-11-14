@@ -12,6 +12,15 @@ async function teacher(env, request, url) {
   const k = clean(request.headers.get('X-Teacher') || url.searchParams.get('k') || '', 64);
   if (k.length < 16) return false; const t = await env.KV.get('cfg:teacher'); return !!t && t === k;
 }
+async function vIndex(env) {
+  // every speaker's recordings: { who: { lineId: [time, text] } }
+  const out = (await env.KV.get('vo:index', 'json')) || {};
+  const l = await env.KV.list({ prefix: 'vo:ix', limit: 1000 }); l.keys.sort((a, b) => (a.name.startsWith('vo:ixf:') ? 1 : 0) - (b.name.startsWith('vo:ixf:') ? 1 : 0));
+  const parts = await Promise.all(l.keys.map(k => env.KV.get(k.name, 'json')));
+  l.keys.forEach((k, n) => { const w = k.name.replace(/^vo:ixf?:/, ''); out[w] = Object.assign(out[w] || {}, parts[n] || {}); });
+  return out;
+}
+async function vWho(env) { return Object.assign({ voice1: { name: '', g: 'f' }, thay: { name: 'Thầy Tâm', g: 'm' } }, (await env.KV.get('vo:who', 'json')) || {}); }
 export async function onRequest(context) {
   const { request, env } = context; const url = new URL(request.url); const path = url.pathname.replace(/^\/api\/?/, '').replace(/\/$/, ''); const m = request.method;
   if (!env.KV) return J({ error: 'Storage is not connected yet.' }, 503);
@@ -136,32 +145,59 @@ export async function onRequest(context) {
       const b = await request.json().catch(() => ({})); const text = clean(b.text, 200).trim(); if (text.length < 3) return J({ error: 'Too short.' }, 400);
       const l = (await env.KV.get('cfg:suggest', 'json')) || []; l.unshift({ text, name: clean(b.name, 40), t: Date.now() }); await env.KV.put('cfg:suggest', JSON.stringify(l.slice(0, 300))); return J({ ok: true });
     }
-    if (path === 'voice/index' && m === 'GET') { const w = await env.KV.get('vo:index', 'json'); return J(w || {}); }
+    // Voice recording. Clips: vo:<who>:<id>. Index: legacy vo:index (all speakers) merged with vo:ix:<who> (one per speaker, so two people saving at once never overwrite each other)
+    // and vo:ixf:<who> (approved fixes, written only from the teacher page). Part claims: vo:cl:<part> (metadata, expire). Fixes: vo:fx:<who>:<id>. Approved new wording: vo:lf:<id>.
+    if (path === 'voice/index' && m === 'GET') return J(await vIndex(env));
+    if (path === 'voice/linefix' && m === 'GET') { const l = await env.KV.list({ prefix: 'vo:lf:', limit: 1000 }); const o = {}; l.keys.forEach(k => { if (k.metadata) o[k.name.slice(6)] = k.metadata; }); return J(o); }
     if (path === 'voice/clip' && m === 'GET') {
-      const w = clean(url.searchParams.get('w') || '', 12).replace(/[^a-z0-9]/g, ''), i = clean(url.searchParams.get('i') || '', 24).replace(/[^a-z0-9_]/g, '');
+      const w = clean(url.searchParams.get('w') || '', 12).replace(/[^a-z0-9]/g, ''), i = clean(url.searchParams.get('i') || '', 28).replace(/[^a-z0-9_]/g, '');
       const r = await env.KV.get('vo:' + w + ':' + i, 'arrayBuffer'); if (!r) return J({ error: 'Not found.' }, 404);
       return new Response(r, { headers: { 'Content-Type': 'audio/wav', 'Cache-Control': 'public, max-age=31536000, immutable' } });
     }
-    if (path === 'voice/rec' || path === 'voice/flag' || path === 'voice/mine') {
+    if (path.startsWith('voice/')) {
       const vk = clean(request.headers.get('X-Voice') || url.searchParams.get('v') || '', 64), real = await env.KV.get('cfg:voice');
       if (vk.length < 16 || !real || real !== vk) return J({ error: 'Recording link not recognised.' }, 401);
       const w = clean(url.searchParams.get('who') || '', 12).replace(/[^a-z0-9]/g, ''); if (!w) return J({ error: 'Missing name.' }, 400);
-      const idx = (await env.KV.get('vo:index', 'json')) || {};
-      if (path === 'voice/mine' && m === 'GET') return J({ done: idx[w] || {}, flags: ((await env.KV.get('vo:flags', 'json')) || []).filter(f => f.w === w) });
-      const i = clean(url.searchParams.get('id') || '', 24).replace(/[^a-z0-9_]/g, ''); if (!i) return J({ error: 'Missing line.' }, 400);
+      if (path === 'voice/mine' && m === 'GET') {
+        const [idx, cl, fx, lf, who] = await Promise.all([vIndex(env), env.KV.list({ prefix: 'vo:cl:', limit: 1000 }), env.KV.list({ prefix: 'vo:fx:' + w + ':', limit: 1000 }), env.KV.list({ prefix: 'vo:lf:', limit: 1000 }), vWho(env)]);
+        const claims = {}; cl.keys.forEach(k => { if (k.metadata && Date.now() - k.metadata.t < 50 * 60e3) claims[k.name.slice(6)] = k.metadata.w; });
+        const fixes = {}; fx.keys.forEach(k => { fixes[k.name.slice(('vo:fx:' + w + ':').length)] = k.metadata || {}; });
+        const lineFix = {}; lf.keys.forEach(k => { if (k.metadata) lineFix[k.name.slice(6)] = k.metadata.n; });
+        const g = {}; for (const x of Object.keys(who)) g[x] = who[x].g || '';
+        return J({ done: idx[w] || {}, all: idx, claims, fixes, lineFix, g, me: who[w] || {} });
+      }
+      const i = clean(url.searchParams.get('id') || '', 24).replace(/[^a-z0-9_]/g, '');
+      if (path === 'voice/claim' && m === 'POST') { const part = clean(url.searchParams.get('part') || '', 40).replace(/[^a-z0-9_]/g, ''); if (part) await env.KV.put('vo:cl:' + part, '1', { metadata: { w, t: Date.now() }, expirationTtl: 3600 }); return J({ ok: true }); }
+      if (!i) return J({ error: 'Missing line.' }, 400);
       let text = ''; try { text = clean(decodeURIComponent(request.headers.get('X-Text') || ''), 240).trim(); } catch (e) {}
       if (path === 'voice/flag' && m === 'POST') {
         const b = await request.json().catch(() => ({})); const fl = (await env.KV.get('vo:flags', 'json')) || [];
         fl.unshift({ w, i, text, note: clean(b.note, 300), t: Date.now() }); await env.KV.put('vo:flags', JSON.stringify(fl.slice(0, 500))); return J({ ok: true });
       }
+      if (path === 'voice/fix' && m === 'POST') {
+        // a speaker says the line is wrong: the right wording (typed) and, if they want, a recording of it
+        let n = ''; try { n = clean(decodeURIComponent(request.headers.get('X-Fix') || ''), 240).trim(); } catch (e) {}
+        let note = ''; try { note = clean(decodeURIComponent(request.headers.get('X-Note') || ''), 200).trim(); } catch (e) {}
+        if (!text || (!n && !note)) return J({ error: 'Type the right way to say it.' }, 400);
+        const isAudio = /^audio\//.test(request.headers.get('Content-Type') || ''); let buf = null;
+        if (isAudio) { buf = await request.arrayBuffer(); if (buf.byteLength < 2000 || buf.byteLength > 900_000) return J({ error: 'Recording is empty or too long.' }, 413); }
+        await env.KV.put('vo:fx:' + w + ':' + i, buf || '0', { metadata: { t: Date.now(), o: text.slice(0, 200), n: n.slice(0, 200), note: note.slice(0, 160), a: buf ? 1 : 0, s: 'new' } });
+        return J({ ok: true });
+      }
       if (path === 'voice/rec' && m === 'POST') {
         const buf = await request.arrayBuffer(); if (buf.byteLength < 2000 || buf.byteLength > 900_000) return J({ error: 'Recording is empty or too long.' }, 413);
         if (!text) return J({ error: 'Missing text.' }, 400);
         const t = Date.now(); await env.KV.put('vo:' + w + ':' + i, buf, { metadata: { t } });
-        const fresh = (await env.KV.get('vo:index', 'json')) || {}; fresh[w] = fresh[w] || {}; fresh[w][i] = [t, text]; await env.KV.put('vo:index', JSON.stringify(fresh));
+        const mine = (await env.KV.get('vo:ix:' + w, 'json')) || {}; mine[i] = [t, text]; await env.KV.put('vo:ix:' + w, JSON.stringify(mine));
+        const part = clean(url.searchParams.get('part') || '', 40).replace(/[^a-z0-9_]/g, ''); if (part) await env.KV.put('vo:cl:' + part, '1', { metadata: { w, t }, expirationTtl: 3600 });
         return J({ ok: true, t });
       }
-      if (path === 'voice/rec' && m === 'DELETE') { await env.KV.delete('vo:' + w + ':' + i); if (idx[w]) { delete idx[w][i]; await env.KV.put('vo:index', JSON.stringify(idx)); } return J({ ok: true }); }
+      if (path === 'voice/rec' && m === 'DELETE') {
+        await env.KV.delete('vo:' + w + ':' + i);
+        const mine = (await env.KV.get('vo:ix:' + w, 'json')) || {}; if (mine[i]) { delete mine[i]; await env.KV.put('vo:ix:' + w, JSON.stringify(mine)); }
+        const idx = (await env.KV.get('vo:index', 'json')) || {}; if (idx[w] && idx[w][i]) { delete idx[w][i]; await env.KV.put('vo:index', JSON.stringify(idx)); }
+        return J({ ok: true });
+      }
     }
     if (path === 'setup' && m === 'POST') {
       if (await env.KV.get('cfg:teacher')) return J({ error: 'Teacher access is already set up.' }, 409);
@@ -170,7 +206,39 @@ export async function onRequest(context) {
     if (path.startsWith('t/')) {
       if (!(await teacher(env, request, url))) return J({ error: 'Teacher link not recognised.' }, 401);
       if (path === 't/students') { const l = await env.KV.list({ prefix: 's:', limit: 1000 }); return J({ students: l.keys.map(k => ({ id: k.name.slice(2), ...(k.metadata || {}) })) }); }
-      if (path === 't/voice-key' && m === 'POST') { let k = await env.KV.get('cfg:voice'); if (!k) { k = rnd(24); await env.KV.put('cfg:voice', k); } const idx = (await env.KV.get('vo:index', 'json')) || {}; const counts = {}; for (const w of Object.keys(idx)) counts[w] = Object.keys(idx[w]).length; return J({ key: k, counts, flags: (await env.KV.get('vo:flags', 'json')) || [], suggest: (await env.KV.get('cfg:suggest', 'json')) || [] }); }
+      if (path === 't/voice-key' && m === 'POST') {
+        let k = await env.KV.get('cfg:voice'); if (!k) { k = rnd(24); await env.KV.put('cfg:voice', k); }
+        const [idx, who, cl, fx] = await Promise.all([vIndex(env), vWho(env), env.KV.list({ prefix: 'vo:cl:', limit: 1000 }), env.KV.list({ prefix: 'vo:fx:', limit: 1000 })]);
+        const counts = {}; for (const w of Object.keys(idx)) counts[w] = Object.keys(idx[w]).length;
+        const claims = {}; cl.keys.forEach(c => { if (c.metadata && Date.now() - c.metadata.t < 50 * 60e3) claims[c.name.slice(6)] = c.metadata.w; });
+        const fixes = fx.keys.map(c => ({ key: c.name, w: c.name.split(':')[2], id: c.name.split(':')[3], ...(c.metadata || {}) })).sort((x, y) => (y.t || 0) - (x.t || 0));
+        return J({ key: k, counts, index: idx, who, claims, fixes, flags: (await env.KV.get('vo:flags', 'json')) || [], suggest: (await env.KV.get('cfg:suggest', 'json')) || [] });
+      }
+      if (path === 't/voice-who' && m === 'POST') {
+        const b = await request.json().catch(() => ({})); const w = clean(b.w, 12).replace(/[^a-z0-9]/g, ''); if (!w) return J({ error: 'Missing name.' }, 400);
+        const who = await vWho(env); who[w] = { name: clean(b.name, 40).trim(), g: b.g === 'm' || b.g === 'f' ? b.g : '' }; await env.KV.put('vo:who', JSON.stringify(who)); return J({ ok: true, who });
+      }
+      if (path === 't/fix-audio' && m === 'GET') {
+        const key = clean(url.searchParams.get('key') || '', 60); if (!/^vo:fx:[a-z0-9]+:[a-z0-9_]+$/.test(key)) return J({ error: 'Bad key.' }, 400);
+        const r = await env.KV.get(key, 'arrayBuffer'); if (!r || r.byteLength < 100) return J({ error: 'No recording.' }, 404);
+        return new Response(r, { headers: { 'Content-Type': 'audio/wav', 'Cache-Control': 'no-store' } });
+      }
+      if (path === 't/fix' && m === 'POST') {
+        // approve or skip a speaker's fix. Approve: the new wording replaces the line on every recording link, and the recording is used in the app wherever that wording appears.
+        const b = await request.json().catch(() => ({})); const key = clean(b.key, 60); if (!/^vo:fx:[a-z0-9]+:[a-z0-9_]+$/.test(key)) return J({ error: 'Bad key.' }, 400);
+        const r = await env.KV.getWithMetadata(key, { type: 'arrayBuffer' }); if (!r || !r.metadata) return J({ error: 'Not found.' }, 404);
+        const [, , w, id] = key.split(':'); const md = Object.assign({}, r.metadata);
+        if (b.action === 'skip') { md.s = 'skip'; await env.KV.put(key, r.value || '0', { metadata: md }); return J({ ok: true }); }
+        const n = clean(b.text || md.n, 200).trim(); if (!n) return J({ error: 'No new wording.' }, 400);
+        md.s = 'ok'; md.n = n; await env.KV.put(key, r.value || '0', { metadata: md });
+        await env.KV.put('vo:lf:' + id, '1', { metadata: { o: md.o, n, t: Date.now() } });
+        if (md.a && r.value && r.value.byteLength > 2000) {
+          // her recording of the right wording becomes her recording of that line
+          const t = Date.now(); await env.KV.put('vo:' + w + ':' + id, r.value, { metadata: { t } });
+          const f = (await env.KV.get('vo:ixf:' + w, 'json')) || {}; f[id] = [t, n]; await env.KV.put('vo:ixf:' + w, JSON.stringify(f));
+        }
+        return J({ ok: true });
+      }
       if (path === 't/words' && m === 'POST') {
         const b = await request.json().catch(() => null); if (!b || typeof b !== 'object') return J({ error: 'Bad data.' }, 400);
         const row = r => [clean(r[0], 80).trim(), clean(r[1], 120).trim(), clean(r[2], 160).trim(), clean(r[3], 200).trim()];
