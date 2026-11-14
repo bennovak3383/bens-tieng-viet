@@ -100,3 +100,7 @@ VERSION 20 (14 Nov 2026) - Ben's own photos
 VERSION 21 (14 Nov 2026) - the Ben character, red-star flags, no photos
 - src/art/ben.py draws the cartoon of Ben, the red-star bunting, the scooter and the flag-alley welcome scene. It prints JSON with 'ov' (overlay added to the skyline header) and 'alley' (welcome scene); these are stored in v7.js as Z21OV and Z21AL.
 - The photos in img/ are no longer shown (z20Photos is switched off). The files are still in the repo.
+
+VERSION 22 (14 Nov 2026) - Thầy Tâm character
+- src/art/ben.py also draws tam(): the teacher (black side-swept hair, round face, striped shirt, pointing). He stands next to Ben in the header and in the welcome alley, and his round avatar (Z21TA, z21Av) sits on the teacher's note on Today.
+- The avatar is only put next to words the teacher actually wrote (his notes), not next to tips written for the app.
