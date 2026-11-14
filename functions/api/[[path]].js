@@ -126,6 +126,28 @@ export async function onRequest(context) {
         const notes = (await env.KV.get('n:' + sid, 'json')) || []; notes.unshift({ t: Date.now(), text, about: clean(b.about, 140) }); await env.KV.put('n:' + sid, JSON.stringify(notes.slice(0, 200)));
         return J({ ok: true, notes: notes.slice(0, 200) });
       }
+      if (path === 't/note-del' && m === 'POST') {
+        const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid) return J({ error: 'No such student.' }, 404);
+        let notes = (await env.KV.get('n:' + sid, 'json')) || []; notes = b.all ? [] : notes.filter(n => n.t !== b.t);
+        if (notes.length) await env.KV.put('n:' + sid, JSON.stringify(notes)); else await env.KV.delete('n:' + sid);
+        return J({ ok: true, notes });
+      }
+      if (path === 't/rec-del' && m === 'POST') {
+        const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid) return J({ error: 'No such student.' }, 404);
+        if (b.all) { const l = await env.KV.list({ prefix: 'r:' + sid + ':', limit: 200 }); await Promise.all(l.keys.map(k => env.KV.delete(k.name))); return J({ ok: true, more: !l.list_complete }); }
+        const key = clean(b.key, 60); if (!/^r:[A-Z0-9]+:\d+$/.test(key) || key.indexOf('r:' + sid + ':') !== 0) return J({ error: 'Bad key.' }, 400);
+        await env.KV.delete(key); return J({ ok: true });
+      }
+      if (path === 't/student-del' && m === 'POST') {
+        const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid) return J({ error: 'No such student.' }, 404);
+        const l = await env.KV.list({ prefix: 'r:' + sid + ':', limit: 200 }); await Promise.all(l.keys.map(k => env.KV.delete(k.name)));
+        if (!l.list_complete) return J({ ok: true, more: true });
+        const c = await env.KV.list({ prefix: 'c:' + sid + ':', limit: 100 }); await Promise.all(c.keys.map(k => env.KV.delete(k.name)));
+        const us = await env.KV.list({ prefix: 'u:', limit: 1000 });
+        for (const k of us.keys) { const u = await env.KV.get(k.name, 'json'); if (u && u.id === sid) await env.KV.delete(k.name); }
+        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid)]);
+        return J({ ok: true, more: false });
+      }
     }
     return J({ error: 'Not found.' }, 404);
   } catch (e) { return J({ error: 'Something went wrong on the server.' }, 500); }
