@@ -810,3 +810,13 @@ function z14Voice(){ var box=h('div',{class:'panel'},[h('span',{class:'lbl',text
   box.appendChild(h('button',{class:'chip','aria-pressed':String(S.set.vslow===1),text:'Slow the man\'s voice down fully too',onclick:function(e){ S.set.vslow=S.set.vslow===1?0:1; save(); e.target.setAttribute('aria-pressed',String(S.set.vslow===1)) }})); return box }
 var openSettings14=openSettings; openSettings=function(){ openSettings14(); try{ var b=$('#sheet-body'); if(b&&!b.querySelector('.z14v')){ var p=z14Voice(); p.classList.add('z14v'); b.insertBefore(p,b.children[1]||null) } }catch(e){} };
 (function(){ try{ var s=$('#z-settings'); if(s){ var n=s.cloneNode(true); s.parentNode.replaceChild(n,s); n.addEventListener('click',function(){ openSettings() }) } }catch(e){} })();
+
+/* ===== 14b · hold the microphone only while recording (an iPhone plays everything quietly while a page holds the mic) ===== */
+var Z14={rec:0,t:null};
+function z14Live(){ try{ return !!(SPEECH.stream&&SPEECH.stream.getAudioTracks().some(function(t){ return t.readyState==='live' })) }catch(e){ return false } }
+function z14Get(){ if(z14Live()) return Promise.resolve(); if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia) return Promise.reject(new Error('none')); return navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}}).then(function(st){ SPEECH.stream=st }) }
+function z14Free(){ if(Z14.rec>0) return; try{ if(SPEECH.stream) SPEECH.stream.getTracks().forEach(function(t){ t.stop() }) }catch(e){} SPEECH.stream=null }
+function z14Idle(ms){ clearTimeout(Z14.t); Z14.t=setTimeout(z14Free,ms||200) }
+(function(){ var MR=window.MediaRecorder; if(!MR||!MR.prototype) return; var st=MR.prototype.start; MR.prototype.start=function(){ Z14.rec++; clearTimeout(Z14.t); var done=false; function end(){ if(done) return; done=true; Z14.rec=Math.max(0,Z14.rec-1); z14Idle(200) } this.addEventListener('stop',end); this.addEventListener('error',end); try{ return st.apply(this,arguments) }catch(e){ end(); throw e } } })();
+var micOn14=micOn; micOn=function(){ return micOn14().then(function(r){ z14Idle(1500); return r }) };
+var listenFor14=listenFor; listenFor=function(ms,a,b){ if(!SPEECH.on||z14Live()) return listenFor14(ms,a,b); var go=function(){ listenFor14(ms,a,b) }; z14Get().then(go,go) };

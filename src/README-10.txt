@@ -64,3 +64,7 @@ VERSION 14 (14 Nov 2026) - voice choice
 - audio/index.json: every clip now has a 4th value, 1 = the man's voice (Đức Trí), 0 = the woman's (Kim Thanh). Worked out by measuring pitch (man about 70 to 130 Hz, woman 165 and up).
 - 1,034 of the 2,824 texts exist only in the man's voice. To fix his voice for good, those need making again.
 - S.set.vx: 'f' woman first (default), 'both', 'm'. The man's clips are not slowed below 0.9 unless S.set.vslow is 1. Settings has the switches.
+
+VERSION 14b (14 Nov 2026) - quiet sound on iPhone
+- Cause: the app kept the microphone stream open all the time. An iPhone then plays all sound in "call" mode (quiet, earpiece).
+- Fix: the stream is opened only for a recording and closed 0.2 s after it stops (z14Get, z14Free; MediaRecorder.start is wrapped to count live recordings). SPEECH.on still means "the learner wants the mic".
