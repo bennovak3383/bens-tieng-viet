@@ -270,3 +270,5 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 /* 22 · teacher avatar */
 .z21has{position:relative;padding-left:76px!important;min-height:76px}
 .z21av{position:absolute;left:12px;top:12px;width:52px;height:52px}.z21av svg{display:block;width:100%;height:100%}
+/* 23 · wide screens: the header scene fills the full width, no side bands */
+@media (min-width:900px){:root[data-skin="night"] .zhero .z12scene,:root[data-skin="dusk"] .zhero .z12scene{height:auto!important;aspect-ratio:390/150;background:#070A24!important}:root[data-skin="night"] .zhero .z12scene svg,:root[data-skin="dusk"] .zhero .z12scene svg{width:100%!important;height:100%!important;margin:0!important}}

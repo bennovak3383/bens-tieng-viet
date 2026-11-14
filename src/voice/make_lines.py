@@ -34,5 +34,9 @@ for Lv in json.load(open(repo+'/data/words13.json'))['levels']:
     rows=[]
     for c in Lv['cards']: rows.append((c['vi'],c['en'])); rows.append((c['xv'],c['xe']))
     add('w%d'%Lv['n'],'Từ mới: '+Lv['t'].split(' · ')[0],'New words: '+Lv['t'].split(' · ')[-1],rows)
+NOTES={'Anh nói với cô bán hàng: “Chào chị. Tôi muốn mưa một cái áo.”':'Câu này cố ý sai: trong truyện, Jake nói nhầm “mua” thành “mưa” nên cô bán hàng mới cười. Bạn cứ đọc đúng như chữ, có chữ “mưa”. · This mistake is on purpose: it is the joke of the story. Read it exactly as written.'}
+for p in parts:
+    for l in p['lines']:
+        if l['vi'] in NOTES: l['note']=NOTES[l['vi']]
 json.dump({'parts':parts},open(repo+'/data/voice-lines.json','w'),ensure_ascii=False,separators=(',',':'))
 print([(p['id'],len(p['lines'])) for p in parts],'total',sum(len(p['lines']) for p in parts))
