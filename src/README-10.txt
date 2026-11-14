@@ -90,3 +90,6 @@ VERSION 18 (14 Nov 2026) - ready-made situations, more lines to record, dusk sky
 - App: block 18. z18Card on Today, z18Open (lines + tip), z18Mock (they talk, you answer). Learner suggestions go to POST /api/suggest (KV cfg:suggest), shown on the teacher's recording screen.
 - Recording list is now 2,478 lines: adds the 8 situations (right after the 12 patterns) and the 667 new words with their sentences (at the end). Old line ids did not change.
 - Look: new header (dusk skyline with the old yellow building in front) and a Saigon-at-night dark theme.
+
+VERSION 19 (14 Nov 2026) - skins
+- S.set.skin: 'night' (default), 'dusk', 'classic'. Set on <html data-skin>. Colours are CSS variables in block 19 of v7.css. Settings has a Look switch (z19Panel). The night header is made from the dusk one by z19Night().
