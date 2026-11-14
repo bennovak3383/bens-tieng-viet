@@ -96,3 +96,7 @@ VERSION 19 (14 Nov 2026) - skins
 
 VERSION 20 (14 Nov 2026) - Ben's own photos
 - img/hero.jpg (sunrise skyline, Today header), img/alley.jpg (welcome screen), img/stall.jpg (situations card), img/river.jpg (outside listening card). Used in the night and dusk looks only; classic keeps the drawing. All four are Ben's own photos, cropped and shrunk to about 100 KB each.
+
+VERSION 21 (14 Nov 2026) - the Ben character, red-star flags, no photos
+- src/art/ben.py draws the cartoon of Ben, the red-star bunting, the scooter and the flag-alley welcome scene. It prints JSON with 'ov' (overlay added to the skyline header) and 'alley' (welcome scene); these are stored in v7.js as Z21OV and Z21AL.
+- The photos in img/ are no longer shown (z20Photos is switched off). The files are still in the repo.
