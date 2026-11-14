@@ -97,6 +97,30 @@ export async function onRequest(context) {
       if (mode === 'hint') return J({ hints: (Array.isArray(out.hints) ? out.hints : []).slice(0, 3).map(x => ({ vi: clean(x && x.vi, 120), en: clean(x && x.en, 120) })) });
       return J({ vi: clean(out.vi, 240), en: clean(out.en, 240), fix: clean(out.fix, 200), note: clean(out.note, 200), left: cap - used - 1 });
     }
+
+    // 10: writing practice. wi:ID = list of pieces (newest first), wp:ID:t = photo (data URL), wv:ID:t = teacher voice reply
+    if (path === 'w') {
+      const s = await student(env, request); if (!s) return J({ error: 'Sign in with your code first (Progress page).', code: 'signin' }, 401);
+      if (m === 'GET') return J({ items: (await env.KV.get('wi:' + s.id, 'json')) || [] });
+      if (m === 'POST') {
+        const text = await request.text(); if (text.length > 2_500_000) return J({ error: 'Too large. Try the photo again a little further away.' }, 413);
+        let b; try { b = JSON.parse(text); } catch (e) { return J({ error: 'Bad data.' }, 400); }
+        const t = Date.now(), lines = (Array.isArray(b.lines) ? b.lines : []).slice(0, 12).map(x => clean(x, 300).trim()).filter(Boolean);
+        const photo = (typeof b.photo === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(b.photo)) ? b.photo : '';
+        if (!lines.length && !photo) return J({ error: 'Nothing to send yet.' }, 400);
+        const item = { t, q: clean(b.q, 200), qEn: clean(b.qEn, 200), mode: b.mode === 'type' ? 'type' : 'hand', lines, photo: !!photo, recs: Math.min(10, Number(b.recs) || 0) };
+        if (photo) await env.KV.put('wp:' + s.id + ':' + t, photo, { expirationTtl: 60 * 60 * 24 * 180 });
+        const items = (await env.KV.get('wi:' + s.id, 'json')) || []; items.unshift(item);
+        await env.KV.put('wi:' + s.id, JSON.stringify(items.slice(0, 100)));
+        return J({ ok: true, t });
+      }
+    }
+    if (path === 'w-voice' && m === 'GET') {
+      const s = await student(env, request); if (!s) return J({ error: 'Sign in first.' }, 401);
+      const t = parseInt(url.searchParams.get('t') || '0', 10); const r = await env.KV.getWithMetadata('wv:' + s.id + ':' + t, 'arrayBuffer');
+      if (!r.value) return J({ error: 'Not found.' }, 404);
+      return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'private, max-age=3600' } });
+    }
     if (path === 'setup' && m === 'POST') {
       if (await env.KV.get('cfg:teacher')) return J({ error: 'Teacher access is already set up.' }, 409);
       const k = rnd(24); await env.KV.put('cfg:teacher', k); return J({ key: k });
@@ -106,9 +130,37 @@ export async function onRequest(context) {
       if (path === 't/students') { const l = await env.KV.list({ prefix: 's:', limit: 1000 }); return J({ students: l.keys.map(k => ({ id: k.name.slice(2), ...(k.metadata || {}) })) }); }
       const id = clean(url.searchParams.get('id') || '', 12).replace(/[^A-Z0-9]/g, '');
       if (path === 't/student') {
-        const [st, notes, recs, ai] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id)]);
+        const [st, notes, recs, ai, wi] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id), env.KV.get('wi:' + id, 'json')]);
         if (st == null) return J({ error: 'No such student.' }, 404);
-        return J({ id, state: st, notes: notes || [], ai: !!ai, aiReady: !!(env.ANTHROPIC_API_KEY || env.OPENAI_API_KEY), recs: recs.keys.map(k => ({ key: k.name, ...(k.metadata || {}) })) });
+        return J({ id, state: st, notes: notes || [], ai: !!ai, aiReady: !!(env.ANTHROPIC_API_KEY || env.OPENAI_API_KEY), recs: recs.keys.map(k => ({ key: k.name, ...(k.metadata || {}) })), writing: wi || [] });
+      }
+
+      if (path === 't/w-photo') {
+        const t = parseInt(url.searchParams.get('t') || '0', 10); const p = await env.KV.get('wp:' + id + ':' + t);
+        return p ? J({ photo: p }) : J({ error: 'Photo not found (photos are kept 180 days).' }, 404);
+      }
+      if (path === 't/w-voice' && m === 'GET') {
+        const t = parseInt(url.searchParams.get('t') || '0', 10); const r = await env.KV.getWithMetadata('wv:' + id + ':' + t, 'arrayBuffer');
+        if (!r.value) return J({ error: 'Not found.' }, 404);
+        return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'no-store' } });
+      }
+      if ((path === 't/w-reply' || path === 't/w-voice' || path === 't/w-del') && m === 'POST') {
+        const t = parseInt(url.searchParams.get('t') || '0', 10);
+        const items = (await env.KV.get('wi:' + id, 'json')) || []; const it = items.find(x => x.t === t); if (!it) return J({ error: 'That piece of writing was not found.' }, 404);
+        if (path === 't/w-del') {
+          const rest = items.filter(x => x.t !== t);
+          await Promise.all([rest.length ? env.KV.put('wi:' + id, JSON.stringify(rest)) : env.KV.delete('wi:' + id), env.KV.delete('wp:' + id + ':' + t), env.KV.delete('wv:' + id + ':' + t)]);
+          return J({ ok: true, writing: rest });
+        }
+        it.reply = it.reply || {};
+        if (path === 't/w-reply') { const b = await request.json().catch(() => ({})); it.reply.text = clean(b.text, 1500); it.reply.t = Date.now(); }
+        else {
+          const buf = await request.arrayBuffer(); if (!buf.byteLength || buf.byteLength > 1_500_000) return J({ error: 'Recording too large (keep it under about a minute).' }, 413);
+          await env.KV.put('wv:' + id + ':' + t, buf, { metadata: { ty: clean(request.headers.get('Content-Type') || 'audio/webm', 40) }, expirationTtl: 60 * 60 * 24 * 180 });
+          it.reply.voice = true; it.reply.t = Date.now();
+        }
+        it.seen = 0; await env.KV.put('wi:' + id, JSON.stringify(items));
+        return J({ ok: true, writing: items });
       }
       if (path === 't/audio') {
         const key = clean(url.searchParams.get('key') || '', 60); if (!/^r:[A-Z0-9]+:\d+$/.test(key)) return J({ error: 'Bad key.' }, 400);
@@ -145,7 +197,8 @@ export async function onRequest(context) {
         const c = await env.KV.list({ prefix: 'c:' + sid + ':', limit: 100 }); await Promise.all(c.keys.map(k => env.KV.delete(k.name)));
         const us = await env.KV.list({ prefix: 'u:', limit: 1000 });
         for (const k of us.keys) { const u = await env.KV.get(k.name, 'json'); if (u && u.id === sid) await env.KV.delete(k.name); }
-        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid)]);
+        for (const pre of ['wp:', 'wv:']) { const w = await env.KV.list({ prefix: pre + sid + ':', limit: 200 }); await Promise.all(w.keys.map(k => env.KV.delete(k.name))); }
+        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid), env.KV.delete('wi:' + sid)]);
         return J({ ok: true, more: false });
       }
     }
