@@ -1,0 +1,195 @@
+# 9|Sức khỏe|Health and emergencies
+bị bệnh|be sick|Tôi bị bệnh rồi.|I am sick.
+bị cảm|have a cold|Tôi bị cảm.|I have a cold.
+đau đầu|headache|Tôi bị đau đầu.|I have a headache.
+đau bụng|stomach ache|Tôi bị đau bụng.|I have a stomach ache.
+đau họng|sore throat|Tôi bị đau họng.|I have a sore throat.
+tiêu chảy|diarrhoea|Tôi bị tiêu chảy.|I have diarrhoea.
+ói|vomit|Tôi muốn ói.|I feel like vomiting.
+chóng mặt|dizzy|Tôi bị chóng mặt.|I feel dizzy.
+sổ mũi|runny nose|Tôi bị sổ mũi.|I have a runny nose.
+ngứa|itchy|Tay tôi bị ngứa.|My hand is itchy.
+sưng|swollen|Chân tôi bị sưng.|My foot is swollen.
+chảy máu|bleeding|Tay tôi chảy máu.|My hand is bleeding.
+té|fall down|Tôi bị té xe.|I fell off my bike.
+gãy|broken (bone)|Tay bị gãy.|The arm is broken.
+vết thương|wound|Vết thương này sâu.|This wound is deep.
+phòng khám|clinic|Gần đây có phòng khám không?|Is there a clinic near here?
+cấp cứu|emergency|Gọi cấp cứu!|Call an ambulance!
+xe cứu thương|ambulance|Gọi xe cứu thương giúp tôi.|Call an ambulance for me.
+khám bệnh|see a doctor|Tôi muốn khám bệnh.|I want to see a doctor.
+xét nghiệm|lab test|Tôi cần xét nghiệm máu.|I need a blood test.
+toa thuốc|prescription|Bác sĩ cho toa thuốc.|The doctor gave a prescription.
+viên|pill, tablet|Uống hai viên.|Take two pills.
+thuốc giảm đau|painkiller|Tôi cần thuốc giảm đau.|I need a painkiller.
+thuốc kháng sinh|antibiotics|Tôi có cần thuốc kháng sinh không?|Do I need antibiotics?
+băng cá nhân|sticking plaster|Cho tôi băng cá nhân.|Give me a plaster.
+khẩu trang|face mask|Tôi cần mua khẩu trang.|I need to buy a mask.
+kem chống nắng|sunscreen|Nhớ bôi kem chống nắng.|Remember to put on sunscreen.
+thuốc chống muỗi|mosquito repellent|Có thuốc chống muỗi không?|Do you have mosquito repellent?
+bảo hiểm|insurance|Tôi có bảo hiểm.|I have insurance.
+nha sĩ|dentist|Tôi cần đi nha sĩ.|I need to go to the dentist.
+đau răng|toothache|Tôi bị đau răng.|I have a toothache.
+tim|heart|Tim tôi đập nhanh.|My heart is beating fast.
+huyết áp|blood pressure|Huyết áp cao.|High blood pressure.
+da|skin|Da tôi bị đỏ.|My skin is red.
+vai|shoulder|Vai tôi bị đau.|My shoulder hurts.
+đầu gối|knee|Đầu gối tôi bị đau.|My knee hurts.
+cổ|neck|Cổ tôi bị cứng.|My neck is stiff.
+ngón tay|finger|Ngón tay bị đứt.|The finger is cut.
+nghỉ ngơi|rest|Anh cần nghỉ ngơi.|You need to rest.
+uống nhiều nước|drink lots of water|Nhớ uống nhiều nước.|Remember to drink lots of water.
+đỡ|better (feeling)|Hôm nay tôi đỡ rồi.|Today I feel better.
+nặng|serious; heavy|Bệnh có nặng không?|Is the illness serious?
+nhẹ|light, mild|Bệnh nhẹ thôi.|It is only mild.
+nguy hiểm|dangerous|Chỗ này nguy hiểm.|This place is dangerous.
+cẩn thận|be careful|Cẩn thận nha!|Be careful!
+cứu|help, save|Cứu tôi với!|Help me!
+ăn cắp|steal|Tôi bị ăn cắp điện thoại.|My phone was stolen.
+mất|lost, gone|Tôi bị mất bóp.|I lost my wallet.
+cảnh sát|police|Gọi cảnh sát giúp tôi.|Please call the police.
+tai nạn|accident|Có tai nạn ở đằng kia.|There is an accident over there.
+cháy|fire, burning|Cháy! Chạy đi!|Fire! Run!
+lạc đường|lost (the way)|Tôi bị lạc đường.|I am lost.
+đại sứ quán|embassy|Đại sứ quán Mỹ ở đâu?|Where is the US embassy?
+lãnh sự quán|consulate|Tôi cần tới lãnh sự quán.|I need to go to the consulate.
+ngủ không được|cannot sleep|Tối qua tôi ngủ không được.|Last night I could not sleep.
+căng thẳng|stressed|Dạo này tôi căng thẳng.|I have been stressed lately.
+lo|worried|Đừng lo.|Do not worry.
+sợ|afraid|Tôi sợ rắn.|I am afraid of snakes.
+bình thường|normal, fine|Tôi bình thường.|I am fine.
+khỏe hơn|healthier, stronger|Tôi muốn khỏe hơn.|I want to be healthier.
+giảm cân|lose weight|Tôi muốn giảm cân.|I want to lose weight.
+tăng cân|gain weight|Tôi tăng cân rồi.|I have gained weight.
+mập|fat|Tôi mập hơn năm ngoái.|I am fatter than last year.
+ốm|thin|Anh ấy ốm quá.|He is so thin.
+hút thuốc|smoke|Tôi không hút thuốc.|I do not smoke.
+có bầu|pregnant|Chị ấy có bầu.|She is pregnant.
+ngủ trưa|nap at noon|Người Việt hay ngủ trưa.|Vietnamese people often nap at noon.
+mát xa|massage|Tôi muốn đi mát xa.|I want to get a massage.
+# 10|Giấy tờ|Visa, bank and paperwork
+hộ chiếu|passport|Hộ chiếu của tôi đây.|Here is my passport.
+thị thực|visa|Thị thực của tôi sắp hết hạn.|My visa is about to expire.
+thẻ tạm trú|temporary residence card|Tôi có thẻ tạm trú.|I have a residence card.
+giấy phép lao động|work permit|Tôi cần giấy phép lao động.|I need a work permit.
+bằng lái|driving licence|Anh có bằng lái không?|Do you have a licence?
+giấy đăng ký xe|bike registration|Giấy đăng ký xe đâu?|Where is the bike registration?
+đơn|form, application|Điền đơn này.|Fill in this form.
+điền|fill in|Điền tên ở đây.|Fill in your name here.
+chữ ký|signature|Cần chữ ký của anh.|Your signature is needed.
+bản sao|copy|Tôi cần hai bản sao.|I need two copies.
+hình thẻ|ID photo|Cần hai tấm hình thẻ.|Two ID photos are needed.
+nộp|submit, hand in|Nộp ở quầy số ba.|Hand it in at counter three.
+quầy|counter|Quầy nào vậy?|Which counter?
+lệ phí|fee|Lệ phí bao nhiêu?|How much is the fee?
+phạt|fine|Tôi bị phạt.|I got fined.
+hạn|deadline, expiry|Hạn là ngày mấy?|What date is the deadline?
+ngày sinh|date of birth|Ngày sinh của anh?|Your date of birth?
+quốc tịch|nationality|Quốc tịch Mỹ.|American nationality.
+họ|family name|Họ của anh là gì?|What is your family name?
+tên|given name|Tên tôi là Ben.|My name is Ben.
+tuổi|age|Anh bao nhiêu tuổi?|How old are you?
+độc thân|single|Tôi độc thân.|I am single.
+có gia đình|married|Anh có gia đình chưa?|Are you married yet?
+nghề nghiệp|occupation|Nghề nghiệp của anh là gì?|What is your occupation?
+công ty|company|Tôi có công ty ở Mỹ.|I have a company in the US.
+mở tài khoản|open an account|Tôi muốn mở tài khoản.|I want to open an account.
+số tài khoản|account number|Cho tôi số tài khoản.|Give me the account number.
+lãi suất|interest rate|Lãi suất bao nhiêu?|What is the interest rate?
+tỷ giá|exchange rate|Tỷ giá hôm nay bao nhiêu?|What is today's exchange rate?
+đô la|dollar|Một trăm đô la.|One hundred dollars.
+đồng|dong (currency)|Năm chục ngàn đồng.|Fifty thousand dong.
+số dư|balance|Số dư còn bao nhiêu?|How much is the balance?
+phí|charge, fee|Có phí không?|Is there a charge?
+thuế|tax|Giá này có thuế chưa?|Does this price include tax?
+lương|salary|Lương tháng này.|This month's salary.
+trả góp|pay in instalments|Mua trả góp được không?|Can I pay in instalments?
+đặt cọc|put down a deposit|Tôi đặt cọc trước.|I will put down a deposit first.
+hoàn tiền|refund|Tôi muốn hoàn tiền.|I want a refund.
+biên nhận|receipt slip|Giữ biên nhận nha.|Keep the receipt.
+bưu kiện|package (post)|Tôi muốn gửi bưu kiện.|I want to send a package.
+tem|stamp|Một con tem.|One stamp.
+gửi đi Mỹ|send to the US|Gửi đi Mỹ mất bao lâu?|How long does it take to send to the US?
+luật|law|Luật ở đây khác.|The law here is different.
+luật sư|lawyer|Tôi cần hỏi luật sư.|I need to ask a lawyer.
+công chứng|notarise|Giấy này cần công chứng.|This paper needs to be notarised.
+dịch thuật|translation service|Tôi cần dịch thuật giấy tờ.|I need my papers translated.
+xác nhận|confirm|Anh xác nhận giúp tôi.|Please confirm for me.
+hủy|cancel|Tôi muốn hủy.|I want to cancel.
+thay đổi|change|Tôi muốn thay đổi ngày.|I want to change the date.
+lịch hẹn|appointment|Tôi có lịch hẹn lúc hai giờ.|I have an appointment at two.
+đúng giờ|on time|Nhớ tới đúng giờ.|Remember to come on time.
+chờ kết quả|wait for the result|Tôi đang chờ kết quả.|I am waiting for the result.
+được phép|allowed|Ở đây có được phép chụp hình không?|Is taking photos allowed here?
+cấm|forbidden|Cấm hút thuốc.|No smoking.
+bắt buộc|compulsory|Nón bảo hiểm là bắt buộc.|A helmet is compulsory.
+thủ tục|procedure, paperwork|Thủ tục hơi lâu.|The paperwork takes a while.
+văn phòng|office|Văn phòng ở lầu hai.|The office is on the second floor.
+ủy ban|local government office|Tôi phải ra ủy ban.|I have to go to the ward office.
+thông tin|information|Tôi cần thêm thông tin.|I need more information.
+câu hỏi|question|Tôi có một câu hỏi.|I have a question.
+vấn đề|problem|Có vấn đề gì không?|Is there any problem?
+giải quyết|solve, sort out|Mình giải quyết sao?|How do we sort it out?
+# 11|Xe cộ|Motorbike, Grab and traffic
+đặt xe|book a ride|Tôi đặt xe rồi.|I booked a ride already.
+xe ôm|motorbike taxi|Tôi đi xe ôm.|I go by motorbike taxi.
+tới nơi|arrive|Tôi tới nơi rồi.|I have arrived.
+đón|pick up|Anh đón tôi ở đâu?|Where will you pick me up?
+điểm đón|pick-up point|Điểm đón ở trước cổng.|The pick-up point is in front of the gate.
+ghé|stop by|Ghé cây xăng chút nha.|Stop by the petrol station a moment.
+quẹo|turn (southern)|Quẹo trái ở ngã tư.|Turn left at the crossroads.
+chạy chậm|go slowly|Anh chạy chậm lại nha.|Please slow down.
+dừng ở đây|stop here|Dừng ở đây được rồi.|Stopping here is fine.
+tới chưa|are we there yet|Mình tới chưa?|Are we there yet?
+còn xa không|is it still far|Còn xa không anh?|Is it still far?
+bùng binh|roundabout|Qua bùng binh rồi quẹo phải.|After the roundabout turn right.
+ngã ba|T-junction|Tới ngã ba thì dừng.|Stop at the T-junction.
+đường một chiều|one-way street|Đây là đường một chiều.|This is a one-way street.
+vỉa hè|pavement|Đậu xe trên vỉa hè.|Park on the pavement.
+đậu xe|park|Đậu xe ở đâu?|Where do I park?
+giữ xe|bike parking attendant|Giữ xe năm ngàn.|Parking is five thousand.
+vé xe|parking ticket|Đừng làm mất vé xe.|Do not lose the parking ticket.
+xăng|petrol|Đổ đầy xăng.|Fill it up with petrol.
+đầy bình|full tank|Đổ đầy bình nha.|A full tank please.
+bánh xe|wheel, tyre|Bánh xe bị xẹp.|The tyre is flat.
+bơm bánh xe|pump the tyre|Bơm bánh xe giúp tôi.|Please pump the tyre.
+vá|patch|Vá bánh xe bao nhiêu?|How much to patch the tyre?
+thay nhớt|change the oil|Tôi cần thay nhớt.|I need an oil change.
+thắng|brake|Thắng xe hơi yếu.|The brakes are a bit weak.
+đèn xe|headlight|Đèn xe bị hư.|The headlight is broken.
+kèn|horn|Đừng bóp kèn.|Do not honk.
+gương|mirror|Gương bị bể.|The mirror is broken.
+bể|broken, shattered|Ly bị bể rồi.|The glass is broken.
+rửa xe|wash the bike|Tôi đi rửa xe.|I am going to wash the bike.
+thuê xe|rent a bike|Tôi muốn thuê xe máy.|I want to rent a motorbike.
+chạy xe|ride, drive|Anh biết chạy xe máy không?|Do you know how to ride a motorbike?
+đội nón|wear a helmet|Nhớ đội nón bảo hiểm.|Remember to wear a helmet.
+áo khoác|jacket|Mặc áo khoác vô.|Put a jacket on.
+kẹt|stuck|Tôi bị kẹt xe.|I am stuck in traffic.
+giờ cao điểm|rush hour|Giờ cao điểm đông lắm.|Rush hour is very crowded.
+đường tắt|shortcut|Anh biết đường tắt không?|Do you know a shortcut?
+lối vô|entrance|Lối vô ở đâu?|Where is the entrance?
+lối ra|exit|Lối ra bên kia.|The exit is on that side.
+qua đường|cross the street|Qua đường cẩn thận nha.|Cross the street carefully.
+đi bộ|walk|Tôi đi bộ tới đó.|I walk there.
+bến xe|bus station|Bến xe Miền Tây.|The Western bus station.
+trạm|stop, station|Trạm xe buýt gần đây.|The bus stop is near here.
+chuyến|trip, run (bus, flight)|Chuyến mấy giờ?|What time is the run?
+ghế|seat|Ghế số mấy?|Which seat number?
+tài xế Grab|Grab driver|Tài xế Grab tới rồi.|The Grab driver has arrived.
+mưa lớn|heavy rain|Mưa lớn quá, chờ chút.|The rain is heavy, wait a bit.
+ướt|wet|Tôi bị ướt hết rồi.|I am soaked.
+trơn|slippery|Đường trơn lắm.|The road is very slippery.
+ổ gà|pothole|Coi chừng ổ gà.|Watch out for the pothole.
+coi chừng|watch out|Coi chừng xe!|Watch out for the bike!
+đụng|hit, bump|Tôi bị đụng xe.|I got hit by a bike.
+bồi thường|compensate|Anh phải bồi thường.|You have to pay for it.
+lỗi|fault|Không phải lỗi của tôi.|It is not my fault.
+biển số|number plate|Biển số xe là gì?|What is the plate number?
+chụp hình|take a photo|Tôi chụp hình biển số rồi.|I took a photo of the plate.
+tốc độ|speed|Chạy quá tốc độ.|Going over the speed limit.
+cao tốc|expressway|Xe máy không được lên cao tốc.|Motorbikes are not allowed on the expressway.
+hầm|tunnel|Qua hầm Thủ Thiêm.|Through the Thủ Thiêm tunnel.
+bến phà|ferry landing|Ra bến phà.|Go to the ferry landing.
+gần tới|almost there|Tôi gần tới rồi.|I am almost there.
+trễ giờ|running late|Tôi bị trễ giờ.|I am running late.

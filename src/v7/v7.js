@@ -753,3 +753,9 @@ var zRenderHome13=zRenderHome; zRenderHome=function(){ zRenderHome13(); var el=$
   if(z13CheckDue()) el.insertBefore(h('div',{class:'z12slip z13nudge'},[h('span',{class:'z12lbl',text:'Monthly check'}),h('p',{text:S.set.chk13.length?'It has been a month. Ten minutes to see what changed.':'Set your starting line. Ten minutes, once a month.'}),h('button',{class:'chip',text:'Do it now',onclick:z13Check})]),out) };
 var z8RenderPrac13b=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac13b(); var el=$('#z-prac'), g=el&&el.lastChild&&el.lastChild.querySelector('.setgrid'); if(!g) return;
   g.appendChild(h('button',{class:'settile gt1',onclick:function(){ z13Listen() }},[h('b',{text:'Nghe hiểu · Listen and understand'}),h('span',{class:'small muted',text:'Hear a sentence, pick what it means'})])) };
+
+/* ===== 13c · more words for foreigners living here: levels 6 and up, loaded from data/words13.json ===== */
+function z13Words(){ var j=Z13.wj; if(!j||!j.levels||!C7||!FC.length) return; j.levels.forEach(function(L){ if(Z13CL[L.c]) return; var t=L.t.split(' · '); C7.cats[L.c]=[t[0],t[1]||'','']; Z13LV.push({t:L.t,c:[L.c]}); Z13CL[L.c]=Z13LV.length;
+    L.cards.forEach(function(w){ if(FCBY[w.id]) return; var c={id:w.id,c:L.c,e:'',vi:w.vi,en:w.en,xv:w.xv,xe:w.xe}; FC.push(c); FCBY[c.id]=c }) }); Z13.lvT=0 }
+var z7init13c=z7init; z7init=function(){ z7init13c(); try{ z13Words() }catch(e){} };
+try{ fetch('data/words13.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; Z13.wj=j; z13Words(); try{ fcRender(); if($('#sheet').hidden) zRenderHome() }catch(e){} }).catch(function(){}) }catch(e){}

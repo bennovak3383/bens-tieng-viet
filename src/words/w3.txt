@@ -1,0 +1,273 @@
+# 12|Mua sắm · dịch vụ|Shopping and services
+thử|try (on)|Tôi thử được không?|Can I try it?
+vừa|fits|Áo này vừa.|This shirt fits.
+rộng quá|too loose|Quần này rộng quá.|These trousers are too loose.
+ngắn|short|Tay áo ngắn quá.|The sleeves are too short.
+dài|long|Tôi cần quần dài hơn.|I need longer trousers.
+số lớn hơn|a bigger size|Có số lớn hơn không?|Do you have a bigger size?
+số nhỏ hơn|a smaller size|Có số nhỏ hơn không?|Do you have a smaller size?
+màu khác|another colour|Có màu khác không?|Do you have another colour?
+kiểu|style|Tôi thích kiểu này.|I like this style.
+chất lượng|quality|Chất lượng tốt không?|Is the quality good?
+hàng thật|genuine goods|Đây là hàng thật hả?|Is this genuine?
+hàng giả|fake goods|Cái này là hàng giả.|This is a fake.
+bảo hành|warranty|Bảo hành bao lâu?|How long is the warranty?
+đổi trả|exchange or return|Có đổi trả được không?|Can I exchange or return it?
+giá|price|Giá bao nhiêu?|What is the price?
+mắc quá|too expensive|Mắc quá, bớt chút đi.|Too expensive, come down a bit.
+giá cuối|final price|Giá cuối là bao nhiêu?|What is the final price?
+khuyến mãi|promotion, sale|Hôm nay có khuyến mãi.|There is a promotion today.
+mua một tặng một|buy one get one free|Mua một tặng một.|Buy one get one free.
+tặng|give as a gift|Tôi mua để tặng bạn.|I am buying it as a gift for a friend.
+quà|gift|Quà cho má tôi.|A gift for my mum.
+gói quà|gift-wrap|Gói quà giúp tôi nha.|Please gift-wrap it.
+đặt hàng|place an order|Tôi đặt hàng trên mạng.|I order online.
+giao hàng|delivery|Giao hàng mất mấy ngày?|How many days does delivery take?
+phí giao hàng|delivery fee|Phí giao hàng bao nhiêu?|How much is the delivery fee?
+nhận hàng|receive the goods|Tôi nhận hàng rồi.|I received the goods.
+tiệm|shop|Tiệm này bán gì?|What does this shop sell?
+tiệm may|tailor's shop|Gần đây có tiệm may không?|Is there a tailor near here?
+may|sew, tailor|Tôi muốn may một cái áo.|I want a shirt made.
+đo|measure|Chị đo giúp tôi.|Please measure me.
+vải|fabric|Vải này mát.|This fabric is cool.
+da thật|real leather|Dép này da thật.|These sandals are real leather.
+sửa đồ|alter clothes|Sửa đồ ở đâu?|Where can I get clothes altered?
+lên lai|hem up|Lên lai quần giúp tôi.|Please hem these trousers.
+cắt tóc|haircut|Tôi muốn cắt tóc.|I want a haircut.
+cắt ngắn|cut short|Cắt ngắn hai bên.|Cut the sides short.
+cạo râu|shave|Cạo râu luôn nha.|A shave too please.
+gội đầu|hair wash|Gội đầu bao nhiêu?|How much is a hair wash?
+nhuộm|dye|Tôi không nhuộm tóc.|I do not dye my hair.
+như cũ|same as before|Cắt như cũ nha.|Cut it the same as before.
+giặt khô|dry cleaning|Áo này phải giặt khô.|This shirt must be dry-cleaned.
+ủi|iron|Ủi giúp tôi cái áo này.|Please iron this shirt.
+ký|kilo|Một ký bao nhiêu?|How much per kilo?
+lấy đồ|pick up items|Mấy giờ tôi lấy đồ được?|What time can I pick it up?
+sửa điện thoại|phone repair|Tiệm sửa điện thoại ở đâu?|Where is a phone repair shop?
+màn hình|screen|Màn hình bị bể.|The screen is cracked.
+dán|stick on|Dán màn hình giúp tôi.|Put a screen protector on for me.
+cục sạc|charger|Tôi cần mua cục sạc.|I need to buy a charger.
+dây sạc|charging cable|Dây sạc bị hư.|The cable is broken.
+tai nghe|headphones|Tai nghe này bao nhiêu?|How much are these headphones?
+pin|battery|Thay pin bao nhiêu?|How much to replace the battery?
+in|print|Tôi cần in giấy này.|I need to print this.
+chợ đêm|night market|Tối nay đi chợ đêm.|Tonight we go to the night market.
+trung tâm thương mại|shopping mall|Trung tâm thương mại mát.|The mall is cool.
+cửa hàng tiện lợi|convenience store|Cửa hàng tiện lợi mở 24 giờ.|The convenience store is open 24 hours.
+tiệm vàng|gold shop|Đổi tiền ở tiệm vàng.|Change money at the gold shop.
+tiệm thuốc tây|pharmacy|Tiệm thuốc tây ở góc đường.|The pharmacy is on the corner.
+góc đường|street corner|Tôi đứng ở góc đường.|I am standing at the corner.
+xài|use (southern)|Cái này xài sao?|How do you use this?
+xài được|usable, works|Thẻ này xài được không?|Does this card work?
+hư rồi|broken already|Cái này hư rồi.|This is broken.
+mới tinh|brand new|Xe này mới tinh.|This bike is brand new.
+đồ cũ|second-hand stuff|Tôi mua đồ cũ.|I buy second-hand.
+đủ|enough|Vậy đủ rồi.|That is enough.
+thiếu|short, lacking|Còn thiếu mười ngàn.|Ten thousand short.
+dư|extra, left over|Anh đưa dư rồi.|You gave too much.
+lựa|pick, choose (southern)|Anh lựa đi.|Go ahead and pick.
+so sánh|compare|Để tôi so sánh giá.|Let me compare prices.
+suy nghĩ|think it over|Để tôi suy nghĩ.|Let me think about it.
+lần sau|next time|Lần sau tôi quay lại.|I will come back next time.
+# 13|Bạn bè · cảm xúc|Friends, feelings and opinions
+làm quen|get to know|Rất vui được làm quen.|Very nice to meet you.
+giới thiệu|introduce|Để tôi giới thiệu.|Let me introduce.
+bạn thân|close friend|Anh ấy là bạn thân của tôi.|He is my close friend.
+bạn trai|boyfriend|Chị có bạn trai chưa?|Do you have a boyfriend yet?
+người yêu|sweetheart, partner|Người yêu tôi là người Việt.|My partner is Vietnamese.
+hẹn hò|date|Tối nay tôi có hẹn hò.|I have a date tonight.
+đám cưới|wedding|Tuần sau tôi đi đám cưới.|Next week I am going to a wedding.
+sinh nhật|birthday|Chúc mừng sinh nhật!|Happy birthday!
+tiệc|party|Tối mai có tiệc.|There is a party tomorrow night.
+mời|invite|Tôi mời anh đi ăn.|I invite you to eat.
+rủ|ask along|Bạn tôi rủ đi cà phê.|My friend asked me along for coffee.
+đi chơi|go out, hang out|Cuối tuần đi chơi không?|Going out this weekend?
+nhậu|drink and snack with friends|Tối nay đi nhậu không?|Going drinking tonight?
+tán gẫu|chat|Mình ngồi tán gẫu.|We sit and chat.
+kể|tell (a story)|Kể tôi nghe đi.|Tell me about it.
+chuyện|story, matter|Chuyện gì vậy?|What is the matter?
+tin|believe; news|Tôi không tin.|I do not believe it.
+thật hả|really?|Thật hả?|Really?
+giỡn|joke (southern)|Tôi giỡn thôi.|I am only joking.
+mắc cười|funny (southern)|Chuyện đó mắc cười quá.|That is so funny.
+vui tính|fun, good-humoured|Anh ấy vui tính.|He is good fun.
+hiền|gentle, kind|Chị ấy hiền lắm.|She is very kind.
+tốt bụng|kind-hearted|Hàng xóm tôi tốt bụng.|My neighbour is kind-hearted.
+lịch sự|polite|Anh ấy lịch sự.|He is polite.
+thân thiện|friendly|Người ở đây thân thiện.|People here are friendly.
+siêng|hard-working|Em ấy siêng lắm.|She is very hard-working.
+làm biếng|lazy (southern)|Hôm nay tôi làm biếng.|I am lazy today.
+mắc cỡ|shy, embarrassed|Tôi mắc cỡ khi nói tiếng Việt.|I am shy when I speak Vietnamese.
+tự tin|confident|Tôi muốn tự tin hơn.|I want to be more confident.
+hạnh phúc|happy|Tôi hạnh phúc ở đây.|I am happy here.
+giận|angry|Đừng giận nha.|Do not be angry.
+bực|annoyed|Tôi hơi bực.|I am a bit annoyed.
+chán|bored, fed up|Tôi chán quá.|I am so bored.
+nhớ nhà|homesick|Tôi nhớ nhà.|I am homesick.
+cô đơn|lonely|Đôi khi tôi cô đơn.|Sometimes I am lonely.
+ngạc nhiên|surprised|Tôi ngạc nhiên lắm.|I am very surprised.
+thoải mái|comfortable, relaxed|Ở đây thoải mái.|It is relaxed here.
+khó chịu|uncomfortable, unpleasant|Trời nóng khó chịu quá.|The heat is so unpleasant.
+tiếc|what a pity|Tiếc quá!|What a pity!
+may mắn|lucky|Tôi may mắn.|I am lucky.
+xui|unlucky|Hôm nay xui quá.|Today is so unlucky.
+thương|care for, love|Tôi thương gia đình tôi.|I love my family.
+yêu|love (romantic)|Anh yêu em.|I love you.
+ghét|hate|Tôi ghét kẹt xe.|I hate traffic jams.
+nghĩ|think|Anh nghĩ sao?|What do you think?
+theo tôi|in my opinion|Theo tôi thì được.|In my opinion it is fine.
+chắc|probably, sure|Chắc vậy.|Probably so.
+có lẽ|maybe|Có lẽ ngày mai.|Maybe tomorrow.
+chắc chắn|certainly|Chắc chắn rồi.|Certainly.
+tùy|up to, depends|Tùy anh.|Up to you.
+quan trọng|important|Cái này quan trọng.|This is important.
+thú vị|interesting|Chuyện đó thú vị.|That is interesting.
+tuyệt vời|wonderful|Tuyệt vời!|Wonderful!
+dễ sợ|awfully, terribly (southern)|Nóng dễ sợ.|Awfully hot.
+ghê|so, really (southern)|Ngon ghê!|So tasty!
+hả|question tag for surprise|Vậy hả?|Is that so?
+vậy|so, like that|Sao vậy?|Why is that?
+thôi|only; stop|Một chút thôi.|Only a little.
+mà|but; softener|Tôi biết mà.|I know, really.
+đi|softener: go on|Ăn đi!|Go on, eat!
+chúc mừng|congratulations|Chúc mừng anh!|Congratulations!
+chia buồn|condolences|Xin chia buồn.|My condolences.
+chúc ngủ ngon|good night|Chúc ngủ ngon nha.|Good night.
+giữ liên lạc|keep in touch|Mình giữ liên lạc nha.|Let us keep in touch.
+kết bạn|add as a friend|Kết bạn Zalo nha.|Add me on Zalo.
+làm phiền|bother|Xin lỗi làm phiền anh.|Sorry to bother you.
+cảm ơn nhiều|thanks a lot|Cảm ơn anh nhiều.|Thanks a lot.
+không có chi|you are welcome (southern)|Không có chi.|You are welcome.
+# 14|Công việc · tập luyện|Work and the gym
+cuộc họp|meeting|Tôi có cuộc họp lúc ba giờ.|I have a meeting at three.
+khách hàng|customer, client|Khách hàng này quan trọng.|This client is important.
+đối tác|business partner|Anh ấy là đối tác của tôi.|He is my business partner.
+dự án|project|Dự án mới.|A new project.
+kế hoạch|plan|Kế hoạch tuần này là gì?|What is the plan this week?
+mục tiêu|goal|Mục tiêu của tôi là nói tốt hơn.|My goal is to speak better.
+kinh doanh|do business|Tôi làm kinh doanh.|I am in business.
+mở tiệm|open a shop|Tôi muốn mở tiệm.|I want to open a shop.
+giá sỉ|wholesale price|Giá sỉ bao nhiêu?|What is the wholesale price?
+mẫu|sample|Cho tôi coi mẫu.|Let me see a sample.
+xưởng|workshop, factory|Xưởng ở Bình Dương.|The factory is in Bình Dương.
+sản xuất|produce, manufacture|Sản xuất mất bao lâu?|How long does production take?
+số lượng|quantity|Số lượng bao nhiêu?|What quantity?
+báo giá|price quote|Gửi tôi báo giá nha.|Send me a quote please.
+gửi email|send an email|Tôi sẽ gửi email.|I will send an email.
+trả lời tin nhắn|reply to a message|Anh trả lời tin nhắn giúp tôi.|Please reply to my message.
+làm thêm|work overtime, side job|Tối nay tôi làm thêm.|Tonight I work overtime.
+nghỉ|be off, rest|Mai tôi nghỉ.|I am off tomorrow.
+ngày nghỉ|day off|Chủ nhật là ngày nghỉ.|Sunday is the day off.
+đi công tác|go on a business trip|Tuần sau tôi đi công tác.|Next week I go on a business trip.
+kinh nghiệm|experience|Tôi có hai mươi năm kinh nghiệm.|I have twenty years of experience.
+thành công|success|Chúc anh thành công.|I wish you success.
+tập|train, practise|Tôi tập mỗi ngày.|I train every day.
+tập tạ|lift weights|Tôi thích tập tạ.|I like lifting weights.
+chạy bộ|go running|Sáng nào tôi cũng chạy bộ.|I go running every morning.
+khởi động|warm up|Khởi động trước nha.|Warm up first.
+giãn cơ|stretch|Nhớ giãn cơ sau khi tập.|Remember to stretch after training.
+cơ|muscle|Cơ chân bị đau.|My leg muscles are sore.
+mỏi|tired, aching|Tay tôi mỏi quá.|My arms are so tired.
+mồ hôi|sweat|Ra mồ hôi nhiều.|Sweating a lot.
+hít vô|breathe in|Hít vô.|Breathe in.
+thở ra|breathe out|Thở ra.|Breathe out.
+lên|up|Đẩy lên.|Push up.
+xuống|down|Xuống từ từ.|Down slowly.
+giữ|hold|Giữ mười giây.|Hold for ten seconds.
+lần|times, reps|Mười lần.|Ten reps.
+hiệp|set|Ba hiệp.|Three sets.
+nghỉ chút|rest a bit|Nghỉ chút đi.|Rest a bit.
+thêm một lần|one more|Thêm một lần nữa!|One more!
+cố lên|keep going, you can do it|Cố lên!|Keep going!
+tốt lắm|very good|Tốt lắm!|Very good!
+thẳng lưng|back straight|Thẳng lưng nha.|Back straight.
+tạ|weights|Tạ này nặng quá.|This weight is too heavy.
+máy chạy bộ|treadmill|Máy chạy bộ ở lầu hai.|The treadmill is on the second floor.
+thẻ tập|gym membership|Thẻ tập một tháng bao nhiêu?|How much is a month's membership?
+tủ đồ|locker|Tủ đồ ở đâu?|Where are the lockers?
+khăn|towel|Cho tôi mượn khăn.|Lend me a towel.
+mượn|borrow|Tôi mượn được không?|Can I borrow it?
+bóng rổ|basketball|Tôi chơi bóng rổ.|I play basketball.
+bóng đá|football|Tối nay có bóng đá.|There is football tonight.
+đội|team|Đội nào thắng?|Which team won?
+thắng|win|Đội tôi thắng.|My team won.
+thua|lose|Hôm qua mình thua.|Yesterday we lost.
+sân|court, pitch|Sân bóng rổ ở đâu?|Where is the basketball court?
+bơi lội|swimming|Hồ bơi mở mấy giờ?|What time does the pool open?
+hồ bơi|swimming pool|Chung cư có hồ bơi.|The building has a pool.
+yoga|yoga|Chị ấy tập yoga.|She does yoga.
+ăn kiêng|be on a diet|Tôi đang ăn kiêng.|I am on a diet.
+đạm|protein|Tôi cần ăn nhiều đạm.|I need to eat a lot of protein.
+ức gà|chicken breast|Cơm với ức gà.|Rice with chicken breast.
+# 15|Đi chơi · từ nối|Travel and linking words
+du lịch|travel|Tôi thích đi du lịch.|I like travelling.
+đặt phòng|book a room|Tôi đã đặt phòng.|I have booked a room.
+nhận phòng|check in|Mấy giờ nhận phòng?|What time is check-in?
+trả phòng|check out|Mười hai giờ trả phòng.|Check-out is at twelve.
+phòng đơn|single room|Một phòng đơn.|One single room.
+phòng đôi|double room|Một phòng đôi.|One double room.
+hành lý|luggage|Hành lý của tôi ở đâu?|Where is my luggage?
+vali|suitcase|Vali này nặng.|This suitcase is heavy.
+vé máy bay|plane ticket|Tôi mua vé máy bay rồi.|I bought the plane ticket.
+chuyến bay|flight|Chuyến bay bị trễ.|The flight is delayed.
+cất cánh|take off|Mấy giờ cất cánh?|What time is take-off?
+hạ cánh|land|Tôi hạ cánh lúc sáu giờ.|I land at six.
+xe khách|coach, long-distance bus|Tôi đi xe khách về miền Tây.|I take the coach to the Mekong Delta.
+miền Tây|the Mekong Delta|Bạn tôi quê ở miền Tây.|My friend is from the Mekong Delta.
+biển|sea|Tôi muốn đi biển.|I want to go to the sea.
+núi|mountain|Đà Lạt có núi.|Đà Lạt has mountains.
+đảo|island|Phú Quốc là một hòn đảo.|Phú Quốc is an island.
+thác|waterfall|Thác này đẹp.|This waterfall is beautiful.
+cảnh|scenery|Cảnh ở đây đẹp quá.|The scenery here is so beautiful.
+bảo tàng|museum|Bảo tàng mở mấy giờ?|What time does the museum open?
+vé vô cửa|entrance ticket|Vé vô cửa bao nhiêu?|How much is the entrance ticket?
+hướng dẫn viên|tour guide|Hướng dẫn viên nói tiếng Anh.|The guide speaks English.
+thuê thuyền|rent a boat|Mình thuê thuyền đi.|Let us rent a boat.
+đặc sản|local speciality|Đặc sản ở đây là gì?|What is the local speciality?
+kỷ niệm|souvenir, memory|Tôi mua quà kỷ niệm.|I buy a souvenir.
+Tết|Lunar New Year|Tết này anh đi đâu?|Where are you going this Tết?
+lì xì|lucky money|Lì xì cho em bé.|Lucky money for the kids.
+chúc mừng năm mới|happy new year|Chúc mừng năm mới!|Happy new year!
+và|and|Cà phê và trà.|Coffee and tea.
+hoặc|or|Hôm nay hoặc ngày mai.|Today or tomorrow.
+hay|or (in questions)|Trà hay cà phê?|Tea or coffee?
+nhưng|but|Ngon nhưng mắc.|Tasty but expensive.
+vì|because|Tôi trễ vì kẹt xe.|I am late because of traffic.
+nên|so, therefore|Trời mưa nên tôi ở nhà.|It is raining so I stay home.
+nếu|if|Nếu rảnh thì đi.|If free, let us go.
+thì|then|Nếu mưa thì tôi không đi.|If it rains then I will not go.
+khi|when|Khi nào anh về?|When do you go back?
+trước khi|before|Trước khi ăn.|Before eating.
+sau khi|after|Sau khi tập, tôi đi ăn.|After training, I go eat.
+trong khi|while|Trong khi chờ, tôi đọc sách.|While waiting, I read.
+để|in order to; let|Tôi học để nói chuyện.|I study in order to talk.
+với|with|Tôi đi với bạn.|I go with a friend.
+cho|for|Cái này cho anh.|This is for you.
+của|of, belonging to|Xe của tôi.|My bike.
+cũng|also|Tôi cũng vậy.|Me too.
+còn|as for; still|Còn anh?|And you?
+đã|already (past marker)|Tôi đã ăn rồi.|I have already eaten.
+đang|in the middle of|Tôi đang học.|I am studying.
+sẽ|will|Tôi sẽ gọi anh.|I will call you.
+vừa mới|just now|Tôi vừa mới tới.|I just arrived.
+sắp|about to|Tôi sắp tới rồi.|I am about to arrive.
+chưa|not yet|Tôi chưa ăn.|I have not eaten yet.
+rồi|already|Tôi ăn rồi.|I ate already.
+luôn|always; right away|Tôi luôn uống cà phê sáng.|I always drink coffee in the morning.
+thường|usually|Tôi thường dậy sớm.|I usually get up early.
+đôi khi|sometimes|Đôi khi tôi nấu ăn.|Sometimes I cook.
+ít khi|rarely|Tôi ít khi uống bia.|I rarely drink beer.
+không bao giờ|never|Tôi không bao giờ hút thuốc.|I never smoke.
+rất|very|Rất vui.|Very happy.
+quá|too, so|Nóng quá!|So hot!
+hơi|a bit|Hơi mắc.|A bit expensive.
+hơn|more than|Cái này tốt hơn.|This one is better.
+nhất|most|Món này ngon nhất.|This dish is the best.
+bằng|as … as; by|Tôi đi bằng xe máy.|I go by motorbike.
+giống|like, similar|Giống nhau.|The same as each other.
+khác|different|Khác nhau.|Different from each other.
+tất cả|all|Tất cả bao nhiêu?|How much for everything?
+mỗi|each|Mỗi người một ly.|One glass each.
+vài|a few|Vài ngày nữa.|In a few days.
+nửa|half|Nửa ký.|Half a kilo.
+một chút|a little|Cho tôi một chút.|Give me a little.

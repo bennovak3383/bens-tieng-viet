@@ -1,0 +1,219 @@
+# 6|Sống ở đây|Getting set up
+số điện thoại|phone number|Số điện thoại của anh là gì?|What is your phone number?
+sim|SIM card|Tôi muốn mua một cái sim.|I want to buy a SIM card.
+nạp tiền|top up (phone credit)|Nạp tiền điện thoại ở đâu?|Where do I top up my phone?
+mạng|internet, network|Mạng ở đây yếu quá.|The internet here is really weak.
+mật khẩu|password|Mật khẩu wifi là gì?|What is the wifi password?
+tin nhắn|text message|Tôi gửi tin nhắn cho anh rồi.|I sent you a message already.
+nhắn tin|to text|Nhắn tin cho tôi nha.|Text me, okay.
+gọi lại|call back|Lát nữa tôi gọi lại.|I will call back in a bit.
+hết pin|out of battery|Điện thoại tôi hết pin rồi.|My phone is out of battery.
+ứng dụng|app|Anh xài ứng dụng nào?|Which app do you use?
+tài khoản|account|Tôi chưa có tài khoản.|I do not have an account yet.
+đăng ký|register, sign up|Tôi muốn đăng ký.|I want to sign up.
+đăng nhập|log in|Tôi không đăng nhập được.|I cannot log in.
+địa chỉ|address|Địa chỉ của anh ở đâu?|What is your address?
+quận|district|Tôi ở Quận 4.|I live in District 4.
+phường|ward|Nhà tôi ở phường 13.|My place is in Ward 13.
+số nhà|house number|Số nhà là bao nhiêu?|What is the house number?
+tòa nhà|building|Tòa nhà này có thang máy.|This building has an elevator.
+lầu|floor, storey|Tôi ở lầu ba.|I am on the third floor.
+phòng|room|Phòng tôi số 305.|My room is number 305.
+tiền mặt|cash|Tôi trả tiền mặt.|I will pay cash.
+rút tiền|withdraw money|Tôi cần rút tiền.|I need to withdraw money.
+đổi tiền|change money|Đổi tiền ở đâu?|Where can I change money?
+quét mã|scan the code|Anh quét mã ở đây.|Scan the code here.
+hóa đơn|bill, receipt|Cho tôi xin hóa đơn.|Can I have the receipt?
+tiền lẻ|small change|Anh có tiền lẻ không?|Do you have small change?
+đắt|expensive (northern word you will hear)|Cái này đắt quá.|This is too expensive.
+miễn phí|free of charge|Gửi xe miễn phí.|Parking is free.
+giờ mở cửa|opening hours|Giờ mở cửa là mấy giờ?|What time do you open?
+đóng cửa|closed, to close|Quán đóng cửa rồi.|The place is closed already.
+xếp hàng|line up, queue|Mình phải xếp hàng.|We have to line up.
+lấy số|take a number|Anh lấy số ở kia.|Take a number over there.
+người Việt|Vietnamese person|Bạn tôi là người Việt.|My friend is Vietnamese.
+tiếng Anh|English language|Anh nói tiếng Anh được không?|Can you speak English?
+tiếng Việt|Vietnamese language|Tiếng Việt khó nhưng vui.|Vietnamese is hard but fun.
+dịch|translate|Anh dịch giúp tôi được không?|Can you translate for me?
+nghĩa là gì|what does it mean|Chữ này nghĩa là gì?|What does this word mean?
+đánh vần|spell|Anh đánh vần giúp tôi.|Please spell it for me.
+viết ra|write it down|Anh viết ra giúp tôi nha.|Please write it down for me.
+lặp lại|repeat|Anh lặp lại được không?|Can you repeat that?
+từ từ|slowly, take it easy|Anh nói từ từ thôi.|Speak slowly please.
+ý là|I mean, that is|Ý tôi là ngày mai.|I mean tomorrow.
+ví dụ|example, for example|Cho tôi một ví dụ.|Give me an example.
+giọng|accent, voice|Tôi thích giọng Sài Gòn.|I like the Saigon accent.
+người miền Nam|Southerner|Thầy tôi là người miền Nam.|My teacher is a Southerner.
+miền Bắc|the North|Chị ấy là người miền Bắc.|She is from the North.
+quê|hometown|Quê anh ở đâu?|Where is your hometown?
+nước Mỹ|the USA|Tôi đến từ nước Mỹ.|I come from the USA.
+sống|live|Tôi sống ở Sài Gòn hai năm rồi.|I have lived in Saigon for two years.
+ở lại|stay|Tôi ở lại ba tuần.|I am staying three weeks.
+quay về|go back|Tháng sau tôi quay về Mỹ.|Next month I go back to the US.
+lần đầu|first time|Đây là lần đầu tôi tới đây.|This is my first time here.
+quen|used to, familiar|Tôi quen rồi.|I am used to it now.
+lạ|strange, unfamiliar|Món này lạ quá.|This dish is really unusual.
+giấy|paper|Cho tôi một tờ giấy.|Give me a sheet of paper.
+bút|pen|Anh có bút không?|Do you have a pen?
+túi ni lông|plastic bag|Không cần túi ni lông.|No plastic bag needed.
+khăn giấy|tissue, napkin|Cho tôi xin khăn giấy.|Can I have a napkin?
+nước suối|bottled water|Cho tôi một chai nước suối.|One bottle of water please.
+chai|bottle|Hai chai bia.|Two bottles of beer.
+hộp|box|Cho tôi một cái hộp.|Give me a box.
+cái này|this one|Tôi lấy cái này.|I will take this one.
+cái kia|that one|Cái kia bao nhiêu?|How much is that one?
+ở đây|here|Tôi ở đây.|I am here.
+ở kia|over there|Nhà vệ sinh ở kia.|The toilet is over there.
+bên trái|on the left|Quán ở bên trái.|The shop is on the left.
+bên phải|on the right|Nhà tôi ở bên phải.|My place is on the right.
+đối diện|opposite|Đối diện ngân hàng.|Opposite the bank.
+kế bên|next to|Kế bên nhà thuốc.|Next to the pharmacy.
+phía trước|in front|Dừng ở phía trước.|Stop up ahead.
+phía sau|behind|Bãi xe ở phía sau.|The parking is behind.
+trên lầu|upstairs|Phòng gym ở trên lầu.|The gym is upstairs.
+dưới lầu|downstairs|Tôi chờ dưới lầu.|I will wait downstairs.
+# 7|Thuê nhà|Renting and fixing things
+thuê|rent|Tôi muốn thuê căn hộ.|I want to rent an apartment.
+tiền nhà|rent money|Tiền nhà một tháng bao nhiêu?|How much is the rent per month?
+tiền cọc|deposit|Tiền cọc hai tháng.|The deposit is two months.
+hợp đồng|contract|Tôi cần coi hợp đồng.|I need to see the contract.
+ký|sign|Ký ở đây.|Sign here.
+tiền điện|electricity bill|Tiền điện tháng này mắc quá.|The electricity bill is high this month.
+tiền nước|water bill|Tiền nước tính riêng.|Water is charged separately.
+phí quản lý|management fee|Phí quản lý bao nhiêu?|How much is the management fee?
+nội thất|furniture|Căn hộ có nội thất không?|Is the apartment furnished?
+phòng ngủ|bedroom|Hai phòng ngủ.|Two bedrooms.
+phòng khách|living room|Phòng khách rộng.|The living room is spacious.
+rộng|spacious, wide|Phòng này rộng.|This room is spacious.
+chật|cramped, tight|Phòng hơi chật.|The room is a bit cramped.
+sáng|bright|Phòng này sáng.|This room is bright.
+tối|dark|Phòng tắm hơi tối.|The bathroom is a bit dark.
+yên|quiet, calm|Khu này yên.|This area is quiet.
+an toàn|safe|Khu này an toàn không?|Is this area safe?
+khu|area, neighbourhood|Tôi thích khu này.|I like this area.
+dọn vô|move in|Khi nào tôi dọn vô được?|When can I move in?
+dọn đi|move out|Cuối tháng tôi dọn đi.|I move out at the end of the month.
+bị hư|broken|Máy lạnh bị hư rồi.|The air conditioner is broken.
+sửa|fix, repair|Anh sửa giúp tôi được không?|Can you fix it for me?
+thợ|repairman, tradesman|Tôi cần gọi thợ.|I need to call a repairman.
+bị rỉ nước|leaking|Máy lạnh bị rỉ nước.|The air conditioner is leaking.
+nghẹt|clogged|Bồn cầu bị nghẹt.|The toilet is clogged.
+bồn cầu|toilet bowl|Bồn cầu bị hư.|The toilet is broken.
+vòi nước|tap, faucet|Vòi nước không có nước.|No water is coming from the tap.
+nước nóng|hot water|Không có nước nóng.|There is no hot water.
+cúp điện|power cut|Hôm nay cúp điện.|There is a power cut today.
+cúp nước|water cut|Sáng nay cúp nước.|The water was cut this morning.
+bóng đèn|light bulb|Bóng đèn bị cháy.|The light bulb burned out.
+ổ cắm|power socket|Ổ cắm ở đâu?|Where is the socket?
+khóa|lock|Khóa cửa bị kẹt.|The door lock is stuck.
+thẻ từ|key card|Tôi làm mất thẻ từ.|I lost my key card.
+làm mất|lose (something)|Tôi làm mất chìa khóa.|I lost my key.
+đổ rác|take out the trash|Đổ rác ở đâu?|Where do I take the trash?
+dọn phòng|clean the room|Chị dọn phòng giúp tôi nha.|Please clean the room for me.
+giặt ủi|laundry service|Gần đây có tiệm giặt ủi không?|Is there a laundry near here?
+ồn ào|noisy|Hàng xóm ồn ào quá.|The neighbours are so noisy.
+mùi|smell|Có mùi lạ.|There is a strange smell.
+kiến|ant|Nhà bếp có kiến.|There are ants in the kitchen.
+mền|blanket|Cho tôi thêm một cái mền.|Give me one more blanket.
+gối|pillow|Tôi cần thêm gối.|I need another pillow.
+khăn tắm|bath towel|Cho tôi xin khăn tắm.|Can I have a bath towel?
+drap giường|bed sheet|Thay drap giường giúp tôi.|Please change the bed sheet.
+xà bông|soap|Hết xà bông rồi.|The soap has run out.
+dầu gội|shampoo|Tôi cần mua dầu gội.|I need to buy shampoo.
+kem đánh răng|toothpaste|Kem đánh răng ở đâu?|Where is the toothpaste?
+giấy vệ sinh|toilet paper|Hết giấy vệ sinh rồi.|The toilet paper is finished.
+nồi|pot|Tôi cần một cái nồi.|I need a pot.
+chảo|frying pan|Chảo này mới.|This pan is new.
+dao|knife|Dao này bén.|This knife is sharp.
+bếp|stove, kitchen|Bếp không lên lửa.|The stove will not light.
+lò vi sóng|microwave|Có lò vi sóng không?|Is there a microwave?
+bình nước|water jug|Đổi bình nước giúp tôi.|Please change the water jug.
+giao|deliver|Mấy giờ anh giao?|What time will you deliver?
+gói hàng|parcel|Tôi có một gói hàng.|I have a parcel.
+lễ tân|reception|Hỏi lễ tân nha.|Ask reception, okay.
+quản lý|manager|Tôi muốn gặp quản lý.|I want to see the manager.
+báo|report, tell|Tôi báo chủ nhà rồi.|I already told the landlord.
+gấp|urgent|Cái này gấp lắm.|This is very urgent.
+ngay|right away|Anh tới ngay được không?|Can you come right away?
+hết hạn|expired|Hợp đồng hết hạn tháng sau.|The contract ends next month.
+gia hạn|extend, renew|Tôi muốn gia hạn hợp đồng.|I want to renew the contract.
+tăng giá|raise the price|Chủ nhà tăng giá.|The landlord raised the price.
+đồng ý|agree|Tôi đồng ý.|I agree.
+từ chối|refuse|Tôi từ chối.|I decline.
+thương lượng|negotiate|Mình thương lượng được không?|Can we negotiate?
+bao gồm|included|Giá bao gồm wifi chưa?|Does the price include wifi?
+riêng|separate, private|Phòng tắm riêng.|A private bathroom.
+chung|shared|Nhà bếp chung.|A shared kitchen.
+# 8|Ăn ngoài|Eating out
+thực đơn|menu|Cho tôi coi thực đơn.|Let me see the menu.
+kêu món|order food|Mình kêu món chưa?|Have we ordered yet?
+món|dish|Món này ngon.|This dish is good.
+món chay|vegetarian dish|Có món chay không?|Do you have vegetarian dishes?
+thêm|more, add|Cho tôi thêm đá.|More ice please.
+không|without, no|Không đường nha.|No sugar, okay.
+ít đường|less sugar|Cà phê ít đường.|Coffee with less sugar.
+ít đá|less ice|Trà ít đá.|Tea with less ice.
+không cay|not spicy|Tôi ăn không cay.|I eat it not spicy.
+dị ứng|allergic|Tôi bị dị ứng đậu phộng.|I am allergic to peanuts.
+đậu phộng|peanuts|Không bỏ đậu phộng nha.|No peanuts please.
+hải sản|seafood|Tôi không ăn hải sản.|I do not eat seafood.
+nước mắm|fish sauce|Cho tôi thêm nước mắm.|More fish sauce please.
+nước tương|soy sauce|Có nước tương không?|Do you have soy sauce?
+tiêu|pepper|Cho tôi xin tiêu.|Pepper please.
+chanh|lime|Thêm chanh nha.|Add lime, okay.
+hành|onion, scallion|Không hành.|No onion.
+rau thơm|herbs|Thêm rau thơm.|More herbs.
+giá|bean sprouts|Tôi không ăn giá.|I do not eat bean sprouts.
+đậu hũ|tofu|Đậu hũ chiên.|Fried tofu.
+nấm|mushroom|Lẩu nấm.|Mushroom hotpot.
+bắp|corn|Bắp nướng.|Grilled corn.
+khoai tây|potato|Khoai tây chiên.|French fries.
+cà chua|tomato|Trứng chiên cà chua.|Eggs fried with tomato.
+dưa leo|cucumber|Thêm dưa leo.|More cucumber.
+thơm|pineapple|Nước ép thơm.|Pineapple juice.
+bơ|avocado; butter|Sinh tố bơ.|Avocado smoothie.
+sinh tố|smoothie|Một ly sinh tố xoài.|One mango smoothie.
+nước ép|juice|Nước ép cam.|Orange juice.
+trà sữa|milk tea|Em thích trà sữa.|I like milk tea.
+cà phê đen|black coffee|Một ly cà phê đen đá.|One iced black coffee.
+bạc xỉu|milky iced coffee|Cho tôi một ly bạc xỉu.|One bạc xỉu please.
+nước ngọt|soft drink|Có nước ngọt không?|Do you have soft drinks?
+rượu|alcohol, wine|Tôi không uống rượu.|I do not drink alcohol.
+dzô|cheers|Một, hai, ba, dzô!|One, two, three, cheers!
+chiên|fried|Cơm chiên.|Fried rice.
+nướng|grilled|Thịt nướng.|Grilled meat.
+luộc|boiled|Trứng luộc.|Boiled egg.
+xào|stir-fried|Rau xào tỏi.|Greens stir-fried with garlic.
+hấp|steamed|Cá hấp.|Steamed fish.
+kho|braised|Cá kho.|Braised fish.
+canh|soup (with a meal)|Canh chua.|Sour soup.
+bún bò|beef noodle soup, Huế style|Một tô bún bò.|One bowl of bún bò.
+bún thịt nướng|noodles with grilled pork|Tôi thích bún thịt nướng.|I like bún thịt nướng.
+bánh xèo|crispy pancake|Bánh xèo miền Nam.|Southern crispy pancake.
+bánh cuốn|steamed rice rolls|Sáng nay tôi ăn bánh cuốn.|This morning I ate bánh cuốn.
+cháo|rice porridge|Bệnh thì ăn cháo.|When sick, eat porridge.
+ốc|snails, shellfish|Tối nay đi ăn ốc.|Tonight we go eat snails.
+chè|sweet dessert soup|Một ly chè.|One glass of chè.
+tô|bowl (big)|Một tô phở.|One bowl of phở.
+phần|portion|Hai phần cơm.|Two portions of rice.
+ổ|loaf (for bánh mì)|Một ổ bánh mì.|One bánh mì.
+bàn|table (in a restaurant)|Cho tôi bàn hai người.|A table for two please.
+đặt bàn|book a table|Tôi muốn đặt bàn.|I want to book a table.
+chỗ ngồi|seat|Còn chỗ ngồi không?|Are there seats left?
+hết rồi|sold out, all gone|Món này hết rồi.|This dish is sold out.
+còn|still have|Còn phở không?|Is there still phở?
+đợi|wait|Đợi bao lâu?|How long is the wait?
+no rồi|full already|Tôi no rồi.|I am full.
+ngon lắm|very tasty|Món này ngon lắm.|This is very tasty.
+dở|bad (taste)|Quán đó dở.|That place is bad.
+nhạt|bland|Canh hơi nhạt.|The soup is a bit bland.
+béo|rich, fatty|Món này béo.|This dish is rich.
+giòn|crispy|Bánh giòn.|The cake is crispy.
+mềm|soft|Thịt mềm.|The meat is tender.
+dai|chewy|Thịt hơi dai.|The meat is a bit chewy.
+chín|cooked, ripe|Thịt chín chưa?|Is the meat cooked?
+tái|rare|Phở tái.|Phở with rare beef.
+gói lại|wrap it up|Gói lại giúp tôi.|Please wrap it up for me.
+bao tôi|my treat|Hôm nay tôi bao.|Today is my treat.
+chia đôi|split in two|Mình chia đôi nha.|Let us split it.
+tiền boa|tip|Có cần tiền boa không?|Is a tip needed?

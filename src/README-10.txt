@@ -48,3 +48,9 @@ VERSION 13b (14 Nov 2026) - levels, own words, sentence review, listening, weekl
   S.set.rc13 (sentence review), S.set.lc13 (listening), S.set.wm13 (weekly mission), S.set.chk13 (monthly checks), S.set.myc13 (own words), S.set.lvl (level opened by hand).
 - Levels: Z13LV lists the decks in each level. A level opens at 80% learned of the one before (z13Level). fcOn is wrapped; cards already started stay on.
 - New words to reach about 1,200 go in as levels 6 and up: add cards to content7 and a row to Z13LV.
+
+VERSION 13c (14 Nov 2026) - 667 more words for foreigners living in Saigon (1,115 total)
+- Source: src/words/w1.txt, w2.txt, w3.txt (one line per word: vi|en|sentence|sentence in English; "# n|vi|en" starts a level).
+- Built into data/words13.json (levels 6 to 15), fetched at start by z13Words. Words already in the app are dropped when building.
+- words.html is a plain page of the new words for the teacher to check.
+- These words were drafted by Claude and are NOT yet checked by a teacher. Most have no recording yet and use word clips or the phone voice.
