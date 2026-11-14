@@ -3240,7 +3240,7 @@ function z12Stops(){ var m=z12Mins(), td=zTodayDone(), nx=null, sc=null, vn=null
     sc:{t:'Tình huống',en:'Scene',min:6,sub:sc?(sc.t+' · '+sc.en):'',done:!!td.sc,run:function(n){ zOpenScene(zNextScene(),n) }},
     sp:{t:'Nói ngay',en:'Speak now',min:m===10?6:8,sub:'It asks, you answer, hands-free',done:!!td.sp,run:function(n){ z7Speak(m===10?8:12,n) }},
     wr:{t:'Viết',en:'Write it, say it',min:8,sub:'One question, built up, sent to your teacher',done:!!td.wr,run:function(){ z10Write() }},
-    out:{t:'Nghe ngoài phố',en:'Listening outside the app',min:30,sub:'Log it in the card below',done:(td.out||0)>=30,run:null}};
+    out:{t:'Nghe ngoài phố',en:'Listening outside the app',min:20,sub:'Log it in the card below',done:(td.out||0)>=20,run:null}};
   return ({10:['ear','sp'],30:['ear','fc','q','s'],60:['ear','van','fc','q','rc','s','sc','wr'],90:['ear','van','fc','q','rc','s','sc','sp','wr','out']})[m].map(function(k){ var x=A[k]; x.k=k; return x }) }
 zToday=function(){ var tried={}; function step(){ var st=z12Stops().filter(function(x){ return !x.done&&x.run&&!tried[x.k]&&!(x.k==='fc'&&!fcQueue(1).length) }); if(!st.length) return zDoneDay(); var x=st[0]; tried[x.k]=1; x.run(step) } step() };
 function z12Head(vi,en){ return h('div',{class:'z12h'},[h('h2',{text:vi}),h('span',{class:'z12en',text:en})]) }
@@ -3492,6 +3492,33 @@ function z13Teach(){ var w=Z13.tw; if(!w||!C7||!FC.length) return; var k, c;
   (w.a||[]).forEach(function(r){ if(FCBY[r.id]||(w.d||{})[r.id]) return; c={id:r.id,c:'tw',e:'',vi:r.vi,en:r.en,xv:r.xv||r.vi,xe:r.xe||r.en}; FC.push(c); FCBY[c.id]=c }) }
 var z7init13d=z7init; z7init=function(){ z7init13d(); try{ z13Teach() }catch(e){} };
 try{ fetch('/api/words').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; Z13.tw=j; z13Teach(); try{ fcRender() }catch(e){} }).catch(function(){}) }catch(e){}
+
+/* ===== 13f · Nghe truyện: a whole story chapter by ear, then questions ===== */
+function z13Story(onDone){ var body=zOpen(), tok=Z.tok, ss=zStories(), all=[], L=S.set.ls13||(S.set.ls13={});
+  ss.forEach(function(s){ s.ch.forEach(function(c,i){ if(c.lines&&c.lines.length>=5&&c.lines.every(function(l){ return l.en })) all.push({s:s,i:i,c:c,id:zChId(s,i)}) }) });
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  function fin(){ if(onDone) onDone(); else closeSheet() }
+  body.appendChild(zTop('Nghe truyện · story by ear',0,onDone?null:['Practice',function(){ closeSheet(); location.hash='prac' }]));
+  if(!all.length){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'No stories yet.'}),h('button',{class:'btn wide',text:'Done',onclick:fin})])]); return }
+  var read=all.filter(function(x){ return zRead(x.id) }), pool=read.length?read:all.slice(0,1); pool.sort(function(a,b){ return (L[a.id]||0)-(L[b.id]||0) }); var X=pool[0], lines=X.c.lines, li=0, paused=false, timer=null, heardAll=false;
+  var where=h('div',{class:'score',text:'1 / '+lines.length}), pb=h('button',{class:'btn primary',text:'Pause'}), go=h('button',{class:'btn wide',text:'Skip to the questions',onclick:function(){ quiz() }});
+  function play(){ if(!alive()||paused) return; if(li>=lines.length){ heardAll=true; where.textContent='The end'; pb.textContent='Play again'; paused=true; li=0; go.className='btn primary wide'; go.textContent='Now the questions'; return } where.textContent=(li+1)+' / '+lines.length; Z12.act=Date.now();
+    zSay(lines[li].vi,{onend:function(){ if(!alive()||paused) return; li++; timer=setTimeout(play,450) }}) }
+  pb.onclick=function(){ paused=!paused; pb.textContent=paused?'Play':'Pause'; clearTimeout(timer); if(paused){ ZS.tok++; try{ stopAudio() }catch(e){} } else play() };
+  function text(){ var box=h('div',{class:'panel'},[h('span',{class:'lbl',text:'The text'})]); lines.forEach(function(l){ box.appendChild(h('div',{class:'row',style:'flex-wrap:nowrap;align-items:flex-start'},[h('div',{style:'flex:1;min-width:0'},[zVi(l.vi,18),h('div',{class:'small muted',text:l.en})]),zPlay(l.vi)])) }); return box }
+  function quiz(){ clearTimeout(timer); paused=true; ZS.tok++; try{ stopAudio() }catch(e){} var qs=z7Shuffle(lines.slice()).slice(0,Math.min(4,lines.length)), qi=0, right=0;
+    function end(){ L[X.id]=(L[X.id]||0)+1; zDay('ls'); tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:X.s.t+' · '+X.c.t}),h('div',{class:'score',text:right+' / '+qs.length}),h('p',{class:'muted',text:'lines understood by ear. Read the text below, then listen once more another day.'}),h('button',{class:'btn primary wide',text:onDone?'Next part':'Done',onclick:fin}),h('button',{class:'btn wide',text:'Another chapter',onclick:function(){ z13Story(onDone) }})]),text()]) }
+    function show(){ if(!alive()) return; if(qi>=qs.length) return end(); var c=qs[qi], opts=[c], tries=0, answered=false, out=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round((qi+1)/(qs.length+1)*100)+'%';
+      while(opts.length<3&&tries++<60){ var o=lines[Math.floor(Math.random()*lines.length)]; if(!opts.some(function(x){ return x.en===o.en })) opts.push(o) } opts.sort(function(){ return Math.random()-.5 }); var at=Math.floor(Math.random()*opts.length), ci=opts.indexOf(c); opts[ci]=opts[at]; opts[at]=c;
+      var list=h('div',{class:'stack'}); opts.forEach(function(o){ var b=h('button',{class:'btn wide z13opt',text:o.en,onclick:function(){ if(answered) return; answered=true; var ok=o===c; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(list.children,function(x,k){ if(opts[k]===c) x.classList.add('good') });
+          out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c.vi,20),zPlay(c.vi)]),h('div',{class:'small muted',text:c.en})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ qi++; show() }})) }}); list.appendChild(b) });
+      zSwap(body,[h('span',{class:'lbl',text:'Question '+(qi+1)+' of '+qs.length+' · which line was this?'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Play it again',html:PLAY_ICON,onclick:function(){ zSay(c.vi) }}),h('span',{class:'small muted',text:'Tap to hear it again'})]),list,out]); setTimeout(function(){ if(alive()) zSay(c.vi) },300) }
+    show() }
+  zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:(read.length?'A chapter you have read':'Chapter one')+' · no text'}),h('h1',{text:X.s.t}),h('p',{class:'muted',text:X.c.t+' · '+X.c.en}),where,h('div',{class:'row',style:'justify-content:center'},[pb,h('button',{class:'btn',text:'From the start',onclick:function(){ clearTimeout(timer); ZS.tok++; try{ stopAudio() }catch(e){} li=0; paused=false; pb.textContent='Pause'; play() }})]),h('p',{class:'small muted',text:'Just follow the story. You will not catch every word, and that is fine. Listen twice if you like.'})]),go]);
+  setTimeout(play,400) }
+(function(){ var st=z12Stops; z12Stops=function(){ var a=st(), m=z12Mins(), td=zTodayDone(); if(m===90){ var at=a.length; a.forEach(function(s,i){ if(s.k==='s') at=i+1 }); a.splice(at,0,{k:'ls',t:'Nghe truyện',en:'Story by ear',min:5,sub:'A whole chapter, no text, then questions',done:!!td.ls,run:function(n){ z13Story(n) }}) } return a } })();
+var z8RenderPrac13f=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac13f(); var el=$('#z-prac'), g=el&&el.lastChild&&el.lastChild.querySelector('.setgrid'); if(!g) return;
+  g.appendChild(h('button',{class:'settile gt2',onclick:function(){ z13Story() }},[h('b',{text:'Nghe truyện · Story by ear'}),h('span',{class:'small muted',text:'A whole chapter with no text, then questions'})])) };
 
 go(location.hash.slice(1)||'home');
 renderAll();
