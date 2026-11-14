@@ -1,0 +1,95 @@
+# nhahang|Đi nhà hàng|At a restaurant|Call staff "em ơi" if they are younger than you, "anh ơi" or "chị ơi" if about your age or older. Nobody minds if you point at the menu while you say it.
+them|Anh đi mấy người?|How many people?
+me|Hai người.|Two people.
+them|Anh dùng gì ạ?|What would you like?
+me|Cho tôi coi thực đơn.|Let me see the menu.
+me|Ở đây món nào ngon nhất?|What is the best dish here?
+them|Cơm tấm sườn ở đây ngon lắm.|The broken rice with pork chop here is very good.
+me|Cho tôi một phần cơm tấm sườn.|One broken rice with pork chop, please.
+me|Đừng bỏ ớt nha, tôi không ăn cay được.|No chilli please, I cannot eat spicy food.
+them|Anh uống gì không?|Anything to drink?
+me|Cho tôi một ly trà đá.|One iced tea, please.
+me|Em ơi, tính tiền giúp anh.|Excuse me, the bill please.
+# thucung|Tiệm thú cưng|At the pet shop|Animals take "con": con chó, con mèo. Say how old and how heavy your pet is and the staff can help you much faster.
+me|Tôi cần mua đồ ăn cho chó.|I need to buy dog food.
+them|Chó của anh mấy tuổi rồi?|How old is your dog?
+me|Nó hai tuổi rồi.|It is two years old.
+them|Nó nặng bao nhiêu ký?|How many kilos does it weigh?
+me|Khoảng mười ký.|About ten kilos.
+me|Loại nào tốt?|Which kind is good?
+them|Loại này bán chạy nhất.|This kind sells the best.
+me|Bao này bao nhiêu tiền?|How much is this bag?
+me|Ở đây có tắm cho chó không?|Do you wash dogs here?
+them|Dạ có, tắm một lần hai trăm ngàn.|Yes, one wash is two hundred thousand.
+me|Vậy cho tôi đặt lịch ngày mai.|Then let me book for tomorrow.
+# ramat|Ra mắt gia đình bạn gái|Meeting your girlfriend's family|This is the one where the small words matter most. Call her parents "bác" (or "cô" and "chú" if they are younger than your own parents) and call yourself "con". Greet the oldest person first. Bring fruit or a small gift and hand it over with both hands.
+me|Con chào bác.|Hello, sir. / Hello, ma'am.
+them|Chào con. Vô nhà đi con.|Hello. Come in.
+me|Con có chút quà biếu hai bác.|I brought a small gift for you both.
+them|Con tên gì? Con là người nước nào?|What is your name? Where are you from?
+me|Dạ, con tên là Ben. Con là người Mỹ.|My name is Ben. I am American.
+them|Con ở Việt Nam bao lâu rồi?|How long have you been in Vietnam?
+me|Dạ, con ở Sài Gòn hai năm rồi.|I have been in Saigon for two years.
+them|Con làm nghề gì?|What work do you do?
+me|Dạ, con làm kinh doanh.|I run a business.
+them|Ăn cơm đi con, đừng ngại.|Eat up, do not be shy.
+me|Dạ, con mời hai bác ăn cơm.|Please, go ahead and eat. (said before you start)
+me|Món này ngon quá bác ơi.|This dish is so good.
+me|Con đang học tiếng Việt, con nói chưa giỏi.|I am learning Vietnamese. I do not speak it well yet.
+me|Dạ, con xin phép về. Cảm ơn hai bác nhiều.|I will head home now. Thank you both very much.
+# hangxom|Hỏi thăm hàng xóm|Chatting with the neighbours|Guess the age and pick the word: "anh" or "chị" for someone a bit older than you, "cô" or "chú" for your parents' age, "em" for younger. Asking about family is normal and friendly here, not nosy.
+me|Chào chị. Chị khỏe không?|Hello. How are you?
+them|Chị khỏe. Em đi làm về hả?|I am fine. Are you back from work?
+me|Dạ, em mới về.|Yes, I just got back.
+me|Chị ở đây lâu chưa?|Have you lived here long?
+them|Chị ở đây mười năm rồi.|I have lived here ten years.
+me|Gia đình chị có mấy người?|How many people are in your family?
+them|Nhà chị có bốn người, hai vợ chồng với hai đứa nhỏ.|Four of us: my husband and me and two kids.
+me|Mấy bé mấy tuổi rồi chị?|How old are the kids?
+them|Đứa lớn mười tuổi, đứa nhỏ sáu tuổi.|The older one is ten, the younger one is six.
+me|Dễ thương quá.|So cute.
+me|Có gì chị cần thì cứ nói em nha.|If you ever need anything, just tell me.
+# cattoc|Đi cắt tóc|Getting a haircut|Show a photo of the cut you want. It works better than any sentence. "Như cũ" means "same as before" once they know you.
+them|Anh cắt kiểu gì?|What style would you like?
+me|Cắt ngắn hai bên, ở trên để dài một chút.|Short on the sides, a little longer on top.
+me|Đừng cắt ngắn quá nha.|Do not cut it too short.
+them|Anh có gội đầu không?|Would you like a hair wash?
+me|Có, gội giúp tôi luôn.|Yes, wash it too please.
+them|Vậy được chưa anh?|Is that all right?
+me|Ngắn thêm một chút nữa.|A little shorter.
+me|Được rồi, đẹp lắm.|That is good, very nice.
+me|Hết bao nhiêu tiền?|How much is it altogether?
+them|Một trăm năm chục ngàn.|One hundred and fifty thousand.
+# nhathuoc|Ra nhà thuốc|At the pharmacy|Pharmacists here will often suggest medicine straight away. Say what hurts and for how many days. If it is serious, ask where the nearest clinic is.
+me|Tôi bị đau họng với ho hai ngày rồi.|I have had a sore throat and a cough for two days.
+them|Anh có sốt không?|Do you have a fever?
+me|Không, không sốt.|No, no fever.
+them|Anh có dị ứng thuốc gì không?|Are you allergic to any medicine?
+me|Tôi không bị dị ứng.|I have no allergies.
+them|Anh uống thuốc này, ngày hai lần, sau khi ăn.|Take this medicine twice a day, after eating.
+me|Uống mấy ngày?|For how many days?
+them|Uống ba ngày. Không đỡ thì đi khám.|Three days. If it is no better, see a doctor.
+me|Thuốc này uống có buồn ngủ không?|Does this medicine make you sleepy?
+me|Phòng khám gần đây nhất ở đâu?|Where is the nearest clinic?
+# suachua|Báo chủ nhà sửa đồ|Telling the landlord something is broken|Say what is broken, since when, and ask when someone can come. Send a photo on Zalo as well: it saves a lot of back and forth.
+me|Chị ơi, máy lạnh phòng em bị hư rồi.|Hi, the air conditioner in my room is broken.
+them|Nó bị sao vậy em?|What is wrong with it?
+me|Nó không lạnh, còn bị chảy nước nữa.|It is not cold, and it is dripping water too.
+them|Bị từ khi nào?|Since when?
+me|Từ tối hôm qua.|Since last night.
+them|Để chị kêu thợ qua coi.|Let me send a repairman over to look.
+me|Khi nào thợ tới được chị?|When can the repairman come?
+them|Chiều nay khoảng ba giờ được không?|This afternoon around three, is that all right?
+me|Dạ được. Ba giờ em có ở nhà.|Yes. I will be home at three.
+me|Em gửi hình qua Zalo cho chị nha.|I will send you a photo on Zalo.
+# phonggym|Ở phòng gym|At the gym|Gym talk is short and friendly. "Anh tập xong chưa?" (are you done?) and "cho em tập chung" (can I work in?) cover most of it.
+me|Anh tập máy này xong chưa?|Are you finished with this machine?
+them|Còn một hiệp nữa.|One more set.
+me|Cho tôi tập chung được không?|Can I work in with you?
+them|Được, anh tập đi.|Sure, go ahead.
+me|Anh đỡ giúp tôi được không?|Can you spot me?
+them|Anh tập mấy lần?|How many reps are you doing?
+me|Tám lần.|Eight reps.
+them|Anh tập ở đây lâu chưa?|Have you been training here long?
+me|Tôi mới tập ở đây một tháng.|I have only trained here for a month.
+me|Cảm ơn anh nhiều.|Thanks a lot.

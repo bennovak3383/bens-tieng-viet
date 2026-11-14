@@ -84,3 +84,9 @@ VERSION 17 (14 Nov 2026) - recording page
 - Server: cfg:voice = the recording key (made by POST /api/t/voice-key, teacher only). vo:<who>:<lineId> = the WAV. vo:index = {who:{lineId:[time,text]}}. vo:flags = lines a speaker marked as not natural. GET /api/voice/index and /api/voice/clip are open; POST /api/voice/rec and /flag need the key.
 - App: block 17 reads /api/voice/index at start and plays those recordings first (real voice). Nothing has to be rebuilt when someone records.
 - Teacher page: "Thu âm · recording links" shows the three links, the counts and the flagged lines.
+
+VERSION 18 (14 Nov 2026) - ready-made situations, more lines to record, dusk skyline look
+- Situations: src/situations/situations.txt (one block per situation: "# id|vi|en|tip", then "me|vi|en" or "them|vi|en" lines) -> data/situations.json. Written once, no AI cost at run time. To add one: add a block, rebuild the json (see the script in this commit), run src/voice/make_lines.py . so its lines join the recording list.
+- App: block 18. z18Card on Today, z18Open (lines + tip), z18Mock (they talk, you answer). Learner suggestions go to POST /api/suggest (KV cfg:suggest), shown on the teacher's recording screen.
+- Recording list is now 2,478 lines: adds the 8 situations (right after the 12 patterns) and the 667 new words with their sentences (at the end). Old line ids did not change.
+- Look: new header (dusk skyline with the old yellow building in front) and a Saigon-at-night dark theme.

@@ -16,6 +16,8 @@ add('a1','75 câu hằng ngày','75 everyday phrases',[(c['vi'],c['en']) for c i
 add('a2','Câu nói ngắn','Short sayings',[(c['vi'],c['en']) for c in by('say')])
 add('a3','Sáu thanh','The six tones',[(t,'') for t in ['ma','má','mà','mả','mã','mạ','ba','bá','bà','bả','bã','bạ']])
 add('b1','12 mẫu câu','12 sentence patterns',[(c['xv'],c['xe']) for c in by('pat') if c.get('xv')])
+for st in json.load(open(repo+'/data/situations.json'))['s']:
+    add('t_'+st['id'][:6],'Tình huống: '+st['vi'],'Situation: '+st['en'],[(t[1],t[2]) for t in st['turns']])
 L=[('c1','Ăn uống, nơi chốn, đi lại','Food, places, getting around',['food','place','move']),('c2','Động từ, tính từ','Doing and describing words',['verb','adj']),('c3','Nhà, đồ dùng, gia đình, thời gian','Home, things, family, time',['home','wear','ppl','time']),('c4','Tiền, cơ thể, nghề, màu, con vật','Money, body, jobs, colours, animals',['money','body','job','color','animal'])]
 for pid,vt,et,cs in L:
     rows=[]
@@ -28,5 +30,9 @@ n=1
 for st in C7['stories']+C6['stories']:
     rows=[(l['vi'],l.get('en','')) for ch in st['ch'] for l in ch['lines']]
     add('s%d'%n,'Truyện: '+st['t'],'Story: '+st.get('en',st['t']),rows); n+=1
+for Lv in json.load(open(repo+'/data/words13.json'))['levels']:
+    rows=[]
+    for c in Lv['cards']: rows.append((c['vi'],c['en'])); rows.append((c['xv'],c['xe']))
+    add('w%d'%Lv['n'],'Từ mới: '+Lv['t'].split(' · ')[0],'New words: '+Lv['t'].split(' · ')[-1],rows)
 json.dump({'parts':parts},open(repo+'/data/voice-lines.json','w'),ensure_ascii=False,separators=(',',':'))
 print([(p['id'],len(p['lines'])) for p in parts],'total',sum(len(p['lines']) for p in parts))

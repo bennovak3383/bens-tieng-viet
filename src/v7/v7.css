@@ -211,3 +211,14 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z13wel svg{display:block;width:100%;height:auto}
 .z13how{display:flex;gap:12px;align-items:flex-start}
 .z7dots i.on{background:var(--tile)!important}
+/* 18 · situations, dusk header, Saigon-at-night dark theme */
+.z18grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.z18tile{border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:2px;text-align:left;font:inherit;min-height:74px}
+.z18tile b{font-size:15.5px;line-height:1.25}
+.z18tile.done{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--surface))}
+.z18sit input[type=text]{flex:1;min-width:0}
+.zhero .z12scene{background:#2B2A6B!important}
+.z13wel{background:#2B2A6B!important}
+@media (min-width:900px){.zhero .z12scene{background:linear-gradient(#2B2A6B 0,#8A3F86 38%,#F0703C 67%,#F7B655 85.3%,#2B1D14 85.3% 86.4%,#2C2660 86.4%)!important}.z18grid{grid-template-columns:repeat(4,1fr)}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#12132B;--surface:#1B1D3E;--surface2:#262A55;--ink:#F4EEE2;--muted:#B7B5D3;--line:#3A3D6E;--accent:#F2A541;--accent-ink:#1A1433;--good:#5FD0A0;--warn:#F2A541;--bad:#FF8A80;--hot:#FF7A6B;--sunsoft:#3A2E5E;--tile:#FF7A6B}}
+:root[data-theme="dark"]{--bg:#12132B;--surface:#1B1D3E;--surface2:#262A55;--ink:#F4EEE2;--muted:#B7B5D3;--line:#3A3D6E;--accent:#F2A541;--accent-ink:#1A1433;--good:#5FD0A0;--warn:#F2A541;--bad:#FF8A80;--hot:#FF7A6B;--sunsoft:#3A2E5E;--tile:#FF7A6B}
