@@ -15,6 +15,14 @@ cards=C7['cards']; by=lambda c:[x for x in cards if x['c']==c]
 add('a1','75 câu hằng ngày','75 everyday phrases',[(c['vi'],c['en']) for c in by('p75')])
 add('a2','Câu nói ngắn','Short sayings',[(c['vi'],c['en']) for c in by('say')])
 add('a3','Sáu thanh','The six tones',[(t,'') for t in ['ma','má','mà','mả','mã','mạ','ba','bá','bà','bả','bã','bạ']])
+rows=[]   # 31: the sound lessons, so the word and its sentence are heard in the same real voice
+for g in C7['van']:
+    for st in g.get('sets',[]):
+        for it in st: rows.append((it[0],it[1]))
+    for st in g.get('sets',[]):
+        for it in st:
+            if len(it)>4 and it[3]: rows.append((it[3],it[4]))
+add('v0','Vần: từ và câu','Sound lessons: words and sentences',rows)
 B=json.load(open(repo+'/data/beginner.json')); rows=[]
 for st in B['steps']:
     for sp in st['stops']:

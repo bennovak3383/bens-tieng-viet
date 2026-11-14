@@ -159,3 +159,13 @@ VERSION 30 (15 Nov 2026) - pictures, the questions people ask you every day, a f
 - Day plan at my level: 30 = ear, unit, cards, everyday questions; 60 adds listen, say it, marks; 90 adds a sound lesson, a speaking topic and 20 minutes of listening outside the app.
 - "Test practice" is now "Kiểm tra · Can I do it?": the same checks, framed as "can you use what you learned". The course follows the research plan; the university test papers were only a reference for task types.
 - Tests: src/tests/t30.py.
+
+VERSION 31 — sound lessons: listening in the spelling step, word and sentence in one voice
+- Step 3 (spelling rules) now plays the word first, with a big replay button. The word is
+  worked out by filling the blank with the right answer (m_t + ắ = mắt). Yes/no rule
+  questions have no word, so no sound.
+- Recording list: new part v0 "Vần: từ và câu" right after the six tones (265 lines: every
+  sound-lesson word, then every example sentence). Once recorded, the word and its sentence
+  play in the same real voice. Until then the app may use the woman's computer voice for the
+  word and the man's for the sentence (e.g. "me" vs "Tôi thích nước me."), which is why they
+  sounded different. Recording list total: 4,385 lines.
