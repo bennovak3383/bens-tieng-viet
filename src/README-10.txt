@@ -112,3 +112,13 @@ VERSION 25 (14 Nov 2026) - easier day, hear it mark it, mouth guide
 - Easier day: S.set.easy = today's key. z12Stops then returns a review-only route and fcFresh returns no new cards. Button under the time chips on Today.
 - Hear it, mark it (z25Mark): one-syllable words that have a recording; six tone choices; shows where the mark goes and why (z25Where: on ơ in ươ; else on the vowel with a hat or hook; else one vowel; two vowels + final consonant = second; two vowels open = first; three = middle). Misses kept in S.set.mk13. On the Sounds page and in the 60 and 90 minute routes (key 'mk').
 - Mouth guide (z25Mouth, Z25M): lip shapes and a short note for each vowel, vowel pair, endings and tones. Written for the app, not yet checked by a teacher. Learner's own class notes in S.set.mn13. Each sound lesson shows the matching entries in a fold-out at the top.
+
+Version 26 · starting from zero (beginner path)
+- Welcome now asks "Have you studied Vietnamese before?" (S.set.lvl0 = zero | some | more). Existing users are untouched.
+- "zero" learners get a 14-step guided path on Today instead of the normal day (data/beginner.json, built by src/beginner/make.py).
+  Each step: 2 to 4 short stops, plus a "with your teacher" box. State in S.set.z0 = {s:step, d:{'step:stop':1}, fin}.
+- New mini-sessions: z26Explain (read first pages), z26Learn (meet words, then check), z26Quiz (review), z26Tone (which tone did you hear).
+  Other stops reuse existing drills (vowels, marks, mouth guide, shadowing, restaurant situation, scene, story, monthly check).
+- After step 14 the learner moves to the full app at 30 minutes. Settings has "My level" to switch either way.
+- Teacher page: "Người mới · beginner guide" (what to do in class for each step) and the student's current step on their page.
+- Recording page: new part z0 (29 beginner lines) after a3.

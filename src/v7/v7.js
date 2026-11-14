@@ -156,7 +156,8 @@ function z7Welcome(force){ if(!C7) return; if(S.set.ob7&&!force) return; if(!S.s
     function line(n,t,d){ return h('div',{class:'z13how'},[h('span',{class:'z13lvn',text:String(n)}),h('div',{},[h('b',{text:t}),h('div',{class:'small muted',text:d})])]) }
     if(step===0) kids.push(h('div',{class:'z13wel z21wel',html:Z21AL}),h('span',{class:'z12sg',style:'color:var(--tile);font-size:12px',text:'SÀI GÒN'}),h('h1',{text:'Xin chào.'}),h('p',{class:'muted',text:'Speak and understand Vietnamese the way Saigon says it. A little, out loud, most days.'}),
       h('div',{class:'panel'},[h('span',{class:'lbl',text:'Your first name'}),nm,h('span',{class:'lbl',text:'Where are you from?'}),sel,other]),
-      h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=1; draw() }}));
+      z26Ask(),
+      h('button',{class:'btn primary wide',text:'Next',onclick:function(e){ if(!S.set.lvl0&&!force){ var m=$('#z26need'); if(m) m.hidden=false; return } step=1; draw() }}));
     else if(step===1){ var tm=h('div',{class:'z12times'}); [[10,'Ghé nhanh'],[30,'Ngắn'],[60,'Vừa'],[90,'Dài']].forEach(function(r){ tm.appendChild(h('button',{class:'z12time','aria-pressed':String((S.set.mins||60)===r[0]),onclick:function(){ S.set.mins=r[0]; save(); draw() }},[h('b',{text:r[0]+'′'}),h('span',{text:r[1]})])) });
       kids.push(h('h1',{text:'How a day works'}),h('p',{class:'muted',text:'Tell it how long you have. It lays out the day and takes you through it, one stop at a time.'}),
       h('div',{class:'panel'},[h('span',{class:'lbl',text:'How long on a normal day? You can change it any day.'}),tm]),
@@ -1001,3 +1002,91 @@ var vanRender25=vanRender; vanRender=function(){ vanRender25(); var el=$('#z-van
   h('button',{class:'settile gt3',onclick:function(){ z25Mark() }},[h('b',{text:'Nghe rồi bỏ dấu · Hear it, mark it'}),h('span',{class:'small muted',text:'Hear a word, choose the tone mark, see where it goes'})]),
   h('button',{class:'settile gt0',onclick:function(){ z25Mouth() }},[h('b',{text:'Miệng · Mouth guide'}),h('span',{class:'small muted',text:'Lip shapes for every vowel and pair, plus your own notes'})])])]),el.firstChild) };
 (function(){ var st=z12Stops; z12Stops=function(){ var a=st(); if(z25Easy()) return a; var m=z12Mins(), td=zTodayDone(); if(m===60||m===90){ var at=1; a.forEach(function(s,i){ if(s.k==='van') at=i+1 }); a.splice(at,0,{k:'mk',t:'Bỏ dấu',en:'Hear it, mark it',min:3,sub:'Hear a word, choose its tone mark',done:!!td.mk,run:function(n){ z25Mark(n,10) }}) } return a } })();
+
+
+/* ===== 26 · starting from zero: a 14-step guided path with the teacher (data/beginner.json) ===== */
+var Z26=null;
+try{ fetch('data/beginner.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; Z26=j; try{ if($('#sheet').hidden) zRenderHome() }catch(e){} }).catch(function(){}) }catch(e){}
+function z26Ask(){ var r=h('div',{class:'stack'}), opts=[['zero','Never · I am starting from zero','A guided path: tones, sounds, first words, step by step with your teacher.'],['some','A little','The full app, set to short days and fewer new words.'],['more','A few months or more','The full app as it is.']];
+  opts.forEach(function(o){ r.appendChild(h('button',{class:'z26opt','aria-pressed':String(S.set.lvl0===o[0]),onclick:function(){ S.set.lvl0=o[0]; if(o[0]==='zero'){ var z=z26St(); z.fin=0 } if(o[0]==='some'){ if(!S.set.mins) S.set.mins=30; S.set.fcn=10 } save(); [].forEach.call(r.children,function(x,i){ x.setAttribute('aria-pressed',String(opts[i][0]===o[0])) }); var m=$('#z26need'); if(m) m.hidden=true; try{ if($('#sheet').hidden) zRenderHome() }catch(e){} }},[h('b',{text:o[1]}),h('span',{class:'small muted',text:o[2]})])) });
+  return h('div',{class:'panel'},[h('span',{class:'lbl',text:'Have you studied Vietnamese before?'}),r,h('p',{class:'z7status bad',id:'z26need',hidden:true,text:'Pick one so the app starts at the right place.'})]) }
+function z26St(){ var z=S.set.z0; if(!z||typeof z!=='object'||Array.isArray(z)) z=S.set.z0={s:0,d:{}}; if(!z.d) z.d={}; if(typeof z.s!=='number') z.s=0; return z }
+function z26On(){ return S.set.lvl0==='zero'&&!!Z26&&!z26St().fin }
+function z26Pool(upto){ var out=[], seen={}; for(var i=0;i<=upto&&i<Z26.steps.length;i++) Z26.steps[i].stops.forEach(function(sp){ (sp.items||[]).forEach(function(it){ if(!seen[it[0]]){ seen[it[0]]=1; out.push(it) } }) }); return out }
+function z26Done(si,ki){ var z=z26St(), sp=Z26.steps[si].stops[ki]; if(sp.type==='check') return (S.set.chk13||[]).length>0; return !!z.d[si+':'+ki] }
+function z26Quiz(items,n,onDone,label){ var body=zOpen(), tok=Z.tok, q=z7Shuffle(items.slice()).slice(0,n), i=0, right=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden } function fin(){ if(onDone) onDone(); else closeSheet() }
+  body.appendChild(zTop(label||'Ôn lại · quick review',0,null));
+  if(items.length<3){ fin(); return }
+  function end(){ tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Done'}),h('div',{class:'score',text:right+' / '+q.length}),h('p',{class:'muted',text:right>=q.length*.7?'You know these. On you go.':'Not there yet, and that is normal. They come back in the next review.'}),h('button',{class:'btn primary wide',text:'Next',onclick:fin})])]) }
+  function show(){ if(!alive()) return; if(i>=q.length) return end(); var c=q[i], opts=[c], tries=0, done=false, out=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/q.length*100)+'%';
+    while(opts.length<3&&tries++<60){ var o=items[Math.floor(Math.random()*items.length)]; if(!opts.some(function(x){ return x[1]===o[1] })) opts.push(o) } opts.sort(function(){ return Math.random()-.5 }); var at=Math.floor(Math.random()*opts.length), ci=opts.indexOf(c); opts[ci]=opts[at]; opts[at]=c;
+    var list=h('div',{class:'stack'}); opts.forEach(function(o){ var b=h('button',{class:'btn wide z13opt',text:o[1],onclick:function(){ if(done) return; done=true; var ok=o===c; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(list.children,function(x,k){ if(opts[k]===c) x.classList.add('good') }); out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c[0],24),zPlay(c[0])]),h('div',{class:'small muted',text:c[1]})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})) }}); list.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+q.length+' · what does it mean?'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear it again',html:PLAY_ICON,onclick:function(){ zSay(c[0]) }}),h('span',{class:'small muted',text:'Tap to hear it again'})]),list,out]); setTimeout(function(){ if(alive()) zSay(c[0]) },300) }
+  show() }
+function z26Learn(items,onDone,title){ var body=zOpen(), tok=Z.tok, i=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(zTop(title||'Từ mới · new words',0,null));
+  function show(){ if(!alive()) return; if(i>=items.length){ z26Quiz(items,Math.min(8,items.length),onDone,'Kiểm tra · check'); return } var c=items[i], bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/items.length*100)+'%';
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+items.length+' · listen, then say it out loud twice'}),h('div',{class:'panel fcard',style:'align-items:center;text-align:center'},[z12Pic(c[0],'sm'),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[fcViEl(c[0],c[0].length>14?26:40),zPlay(c[0])]),h('div',{class:'z26en',text:c[1]})]),
+      h('button',{class:'btn primary wide',text:'I said it · next',onclick:function(){ i++; show() }}),i>0?h('button',{class:'btn wide',text:'‹ Back',onclick:function(){ i--; show() }}):null]);
+    setTimeout(function(){ if(!alive()) return; zSay(c[0],{onend:function(){ setTimeout(function(){ if(alive()&&items[i]===c) zSay(c[0]) },900) }}) },300) }
+  show() }
+function z26Explain(id,onDone){ var body=zOpen(), tok=Z.tok, i=0, pages=[]; function fin(){ if(onDone) onDone(); else closeSheet() }
+  if(id==='how') pages=Z26.how.map(function(p){ return {h:p[0],t:p[1],w:p[2]||[]} });
+  else if(id==='tones') pages=[{h:'The six tones',t:'Tap each one. Listen to the shape of the voice, not the word. Then say it.',rows:Z26.tones},{h:'A note on Saigon',t:'In the south, hỏi and ngã sound the same. So your ear hears five shapes, but writing has six marks. That is normal, and the app will remind you.',w:[]}];
+  else if(id==='you') pages=[{h:'No single word for “you”',t:'You choose a family word by the other person’s age compared with yours. Getting this right is how you sound polite.',rows:Z26.you},{h:'It goes both ways',t:'If you call someone anh or chị, you can call yourself em. If you are older, they call you anh or chị and themselves em. When unsure, tôi for yourself is always fine.',w:[]}];
+  else pages=Z26.num.map(function(p){ return {h:p[0],t:p[1],w:[]} });
+  body.appendChild(zTop('Đọc trước · read this first',0,null));
+  function show(){ var p=pages[i], bar=$('.sess-top .bar i',body), kids=[h('span',{class:'lbl',text:(i+1)+' / '+pages.length}),h('h1',{text:p.h}),h('p',{class:'z26p',text:p.t})]; if(bar) bar.style.width=Math.round(i/pages.length*100)+'%';
+    if(p.w&&p.w.length){ var g=h('div',{class:'z25grid'}); p.w.forEach(function(w){ g.appendChild(h('button',{class:'z25opt',onclick:function(){ zSay(w[0]) }},[h('b',{text:w[0]}),h('span',{text:w[1]})])) }); kids.push(g) }
+    if(p.rows){ var l=h('div',{class:'panel'}); p.rows.forEach(function(r){ l.appendChild(h('div',{class:'z25m'},[h('div',{style:'flex:1;min-width:0'},[h('div',{class:'row',style:'flex-wrap:nowrap;gap:8px'},[h('b',{class:'z25k',text:r[0]}),zPlay(r[0]),h('span',{class:'small',text:r[1]})]),h('div',{class:'small muted',text:r[2]})])])) }); kids.push(l) }
+    kids.push(h('button',{class:'btn primary wide',text:i<pages.length-1?'Next':'Got it',onclick:function(){ if(i<pages.length-1){ i++; show() } else fin() }})); if(i>0) kids.push(h('button',{class:'btn wide',text:'‹ Back',onclick:function(){ i--; show() }}));
+    zSwap(body,kids) }
+  show() }
+function z26Run(si,ki){ var z=z26St(), st=Z26.steps[si], sp=st.stops[ki]; function done(){ z.d[si+':'+ki]=1; tick(); save(); z26Next(si) } function mark(){ z.d[si+':'+ki]=1; save() }
+  var learned=[]; st.stops.forEach(function(x){ (x.items||[]).forEach(function(it){ learned.push(it) }) });
+  try{
+    if(sp.type==='explain') z26Explain(sp.id,done);
+    else if(sp.type==='learn') z26Learn(sp.items,done,sp.t+' · '+sp.en);
+    else if(sp.type==='copy') z13Shadow(done,8,learned.slice(-8).map(function(it,k){ return {id:'z'+k,vi:it[0],en:it[1],xv:it[0],xe:it[1]} }));
+    else if(sp.type==='ear') zEar10(done);
+    else if(sp.type==='tone') z26Tone(done);
+    else if(sp.type==='van'){ var g=C7.van.filter(function(x){ return x.id===sp.id })[0]; if(g) vanOpen(g,done); else done() }
+    else if(sp.type==='mark') z25Mark(done,8);
+    else if(sp.type==='mouth'){ mark(); z25Mouth() }
+    else if(sp.type==='me'){ mark(); zOpenMe(['Back',function(){ closeSheet(); zRenderHome() }]) }
+    else if(sp.type==='sit'){ mark(); var s8=Z18.s.filter(function(x){ return x.id===sp.id })[0]; if(s8) z18Open(s8); else z26Next(si) }
+    else if(sp.type==='scene'){ var sc=C6.scenes.filter(function(x){ return x.id===sp.id })[0]; if(sc) zOpenScene(sc,done); else done() }
+    else if(sp.type==='story'){ var a=zNextChapter()||zOldChapter(); if(a) zOpenStory(a.s,a.i,done); else done() }
+    else if(sp.type==='check') z13Check();
+    else if(sp.type==='review') z26Quiz(z26Pool(si),8,done);
+    else done();
+  }catch(e){ done() } }
+function z26Next(si){ var st=Z26.steps[si], k=-1; for(var i=0;i<st.stops.length;i++) if(!z26Done(si,i)){ k=i; break } if(k>=0) return z26Run(si,k); z26StepDone(si) }
+function z26StepDone(si){ var z=z26St(), st=Z26.steps[si], last=si>=Z26.steps.length-1, body=zOpen(); body.appendChild(zTop('Bước đầu · starting from zero',1,null));
+  body.appendChild(h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Step '+(si+1)+' of '+Z26.steps.length+' done'}),h('h1',{text:last?'You are no longer starting from zero.':'Xong bước '+(si+1)+'. Giỏi lắm!'}),h('p',{class:'muted',text:last?'The full app is open now: pick how long you have each day, and it lays out the day. Start with 30 minutes.':'One step a day is the right pace. Come back tomorrow, or carry on if you still have energy.'})]));
+  body.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:st.teach})]));
+  body.appendChild(h('button',{class:'btn primary wide',text:last?'Open the full app':'Go on to step '+(si+2),onclick:function(){ if(last){ z.fin=1; S.set.lvl0='some'; if(!S.set.mins||S.set.mins>30) S.set.mins=30; save(); closeSheet(); zRenderHome() } else { z.s=si+1; save(); z26Next(z.s) } }}));
+  if(!last) body.appendChild(h('button',{class:'btn wide',text:'That is enough for today',onclick:function(){ z.s=si+1; save(); closeSheet(); zRenderHome() }})) }
+function z26Card(){ var z=z26St(), si=Math.min(z.s,Z26.steps.length-1), st=Z26.steps[si], list=h('ol',{class:'z12route'}), cur=false, left=0, dots=h('div',{class:'z26dots',role:'img','aria-label':'Step '+(si+1)+' of '+Z26.steps.length});
+  Z26.steps.forEach(function(x,k){ dots.appendChild(h('i',{class:k<si?'on':(k===si?'now':'')})) });
+  st.stops.forEach(function(sp,k){ var d=z26Done(si,k), isCur=!d&&!cur; if(isCur) cur=true; if(!d) left++; list.appendChild(h('li',{class:'z12stop'+(d?' done':'')+(isCur?' cur':'')},[h('span',{class:'z12dot','aria-hidden':'true',text:d?'✓':''}),h('button',{class:'z12stopb',onclick:function(){ z26Run(si,k) }},[h('span',{class:'z12st'},[h('b',{text:sp.t}),h('span',{class:'z12en',text:sp.en})])]),h('span',{class:'z12min',text:(sp.min||5)+'′'})])) });
+  var box=h('div',{class:'panel z12plan z26card',id:'z26'},[h('span',{class:'lbl',text:'Bước đầu · starting from zero · step '+(si+1)+' of '+Z26.steps.length}),dots,h('h2',{text:st.vi}),h('p',{class:'z12en',style:'font-size:15px',text:st.en+'. '+st.why}),list,
+    h('button',{class:'btn primary wide',id:'z26-start',text:left?(left<st.stops.length?'Tiếp tục · continue':'Bắt đầu · start'):'Xong bước này · finish this step',onclick:function(){ z26Next(si) }}),
+    h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:st.teach})]),
+    h('div',{class:'row between'},[si>0?h('button',{class:'x z25ov',text:'‹ Go back a step',onclick:function(){ z.s=si-1; save(); zRenderHome() }}):h('span'),h('button',{class:'x z25ov',text:'I know this · skip the step',onclick:function(){ if(si>=Z26.steps.length-1) return; z.s=si+1; save(); zRenderHome() }})])]);
+  return box }
+var zRenderHome26=zRenderHome; zRenderHome=function(){ zRenderHome26(); if(!z26On()) return; var el=$('#z-home'); if(!el) return; ['.z12sec','#z-plan','#z18-sit','#z13-ms','.z13nudge'].forEach(function(q){ [].forEach.call(el.querySelectorAll(q),function(x){ if(!x.closest('#z26')) x.style.display='none' }) });
+  el.insertBefore(z26Card(),el.firstChild); el.appendChild(h('button',{class:'x z25ov',text:'Not a beginner? Open the full app instead',onclick:function(){ S.set.lvl0='some'; save(); zRenderHome() }})) };
+var zToday26=zToday; zToday=function(){ if(z26On()){ var z=z26St(); return z26Next(Math.min(z.s,Z26.steps.length-1)) } zToday26() };
+var openSettings26=openSettings; openSettings=function(){ openSettings26(); try{ var b=$('#sheet-body'); if(b&&!b.querySelector('.z26set')){ var p=z26Ask(); p.classList.add('z26set'); p.firstChild.textContent='My level'; b.insertBefore(p,b.children[1]||null) } }catch(e){} };
+
+function z26Tone(onDone){ var body=zOpen(), tok=Z.tok, N=12, n=0, right=0, W=['ma','má','mà','mả','mã','mạ','ba','bá','bà','bả','bã','bạ','la','lá','là','lả','lã','lạ','ca','cá','cà','cả','cạ','ta','tá','tà','tả','tạ'], last='';
+  var O=[[0,'a','ngang · level'],[2,'á','sắc · rising'],[1,'à','huyền · falling'],[3,'ả / ã','hỏi, ngã · dipping'],[5,'ạ','nặng · low, short']];
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden } function fin(){ if(onDone) onDone(); else closeSheet() }
+  body.appendChild(zTop('Nghe thanh · which tone?',0,null));
+  function show(){ if(!alive()) return; if(n>=N){ tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Done'}),h('div',{class:'score',text:right+' / '+N}),h('p',{class:'muted',text:right>=9?'Your ear is tuning in. This drill comes back, and it gets easier.':'Normal for a first try. Tell your teacher which ones you mixed up; this is exactly what class is for.'}),h('button',{class:'btn primary wide',text:'Next',onclick:fin})])]); return }
+    var w; do{ w=W[Math.floor(Math.random()*W.length)] }while(w===last); last=w; var t=toneOf(w); if(t===4) t=3; var done=false, out=h('div',{class:'stack'}), g=h('div',{class:'z25grid'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(n/N*100)+'%';
+    O.forEach(function(o){ var b=h('button',{class:'z25opt',onclick:function(){ if(done) return; done=true; var ok=o[0]===t; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(g.children,function(x,k){ if(O[k][0]===t) x.classList.add('good') });
+        out.appendChild(h('div',{class:'panel rf-reveal',style:'align-items:center'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(w,32),zPlay(w)]),h('div',{class:'small muted',text:ok?'Yes. Say it once yourself.':'Listen again, then say it once yourself.'})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ n++; show() }})) }},[h('b',{text:o[1]}),h('span',{text:o[2]})]); g.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(n+1)+' / '+N+' · listen to the shape of the voice'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear it again',html:PLAY_ICON,onclick:function(){ zSay(w) }}),h('span',{class:'small muted',text:'Tap to hear it again'})]),g,out]); setTimeout(function(){ if(alive()) zSay(w) },300) }
+  show() }

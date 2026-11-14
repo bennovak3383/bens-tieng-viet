@@ -15,6 +15,12 @@ cards=C7['cards']; by=lambda c:[x for x in cards if x['c']==c]
 add('a1','75 câu hằng ngày','75 everyday phrases',[(c['vi'],c['en']) for c in by('p75')])
 add('a2','Câu nói ngắn','Short sayings',[(c['vi'],c['en']) for c in by('say')])
 add('a3','Sáu thanh','The six tones',[(t,'') for t in ['ma','má','mà','mả','mã','mạ','ba','bá','bà','bả','bã','bạ']])
+B=json.load(open(repo+'/data/beginner.json')); rows=[]
+for st in B['steps']:
+    for sp in st['stops']:
+        for it in sp.get('items',[]): rows.append((it[0],it[1]))
+rows+=[(x[0],x[1]) for x in B['you']]
+add('z0','Người mới bắt đầu','Beginner path',rows)
 add('b1','12 mẫu câu','12 sentence patterns',[(c['xv'],c['xe']) for c in by('pat') if c.get('xv')])
 for st in json.load(open(repo+'/data/situations.json'))['s']:
     add('t_'+st['id'][:6],'Tình huống: '+st['vi'],'Situation: '+st['en'],[(t[1],t[2]) for t in st['turns']])
