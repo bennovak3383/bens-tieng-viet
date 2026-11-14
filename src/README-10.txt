@@ -59,3 +59,8 @@ VERSION 13d (14 Nov 2026) - the teacher's side
 - Server: GET /api/words (open) and POST /api/t/words (teacher key). Stored in KV as cfg:words = {e:{cardId:[vi,en,sentence,sentenceEn]}, d:{cardId:1}, a:[{id:'tw…',vi,en,xv,xe}]}.
 - App: z13Teach applies edits, removals and the teacher's own words (deck 'tw', always open) to every learner.
 - teacher.html: "Từ vựng · word list" button (words13) edits any of the words; the student page has a new panel (x13) with level, weekly missions, own words and monthly checks.
+
+VERSION 14 (14 Nov 2026) - voice choice
+- audio/index.json: every clip now has a 4th value, 1 = the man's voice (Đức Trí), 0 = the woman's (Kim Thanh). Worked out by measuring pitch (man about 70 to 130 Hz, woman 165 and up).
+- 1,034 of the 2,824 texts exist only in the man's voice. To fix his voice for good, those need making again.
+- S.set.vx: 'f' woman first (default), 'both', 'm'. The man's clips are not slowed below 0.9 unless S.set.vslow is 1. Settings has the switches.
