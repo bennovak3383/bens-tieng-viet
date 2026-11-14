@@ -184,3 +184,12 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 @media (min-width:900px){.zhero .z12scene{height:200px;background:linear-gradient(#CFE3DE 0 85.3%,#2B1D14 85.3% 86.7%,#1F5A45 86.7%)}.zhero .z12scene svg{width:auto;margin:0 auto}}
 .tab b{white-space:nowrap}
 .gt0,.gt4{--tint:#3A8C8C}.gt1,.gt5{--tint:#E8B23A}.gt2{--tint:#1F5A45}.gt3{--tint:#B5432B}
+/* 13a shadow */
+.z13graph{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:6px}
+.z13graph svg{display:block;width:100%;height:auto}
+.z13key{display:flex;gap:16px;justify-content:center;font-size:13px}
+.z13k:before{content:"";display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.z13k.m:before{background:#1F5A45;height:6px}
+.z13k.y:before{background:#B5432B}
+:root[data-theme="dark"] .z13graph{background:#F3EADB;color:#2B1D14}
+:root[data-theme="dark"] .z13graph .muted{color:#6A5544}

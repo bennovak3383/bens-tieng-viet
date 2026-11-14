@@ -36,3 +36,8 @@ VERSION 12 (14 Nov 2026) - classic Saigon look, time-based day
 - Today: S.set.mins (10/30/60/90) picks the route (z12Stops). Practice seconds: S.d6[day].sec. Outside listening minutes: S.d6[day].out.
 - New sessions: z12Recall (English to Vietnamese sentences), z12Playlist (listen only).
 - Build: same as before (python3 src/patch10.py OLD_SRC src index.html OUT_DIR).
+
+VERSION 13a (14 Nov 2026) - shadowing with a tone picture
+- Block "13a" at the end of src/v7/v7.js. z13Shadow(onDone,n): plays the model clip, records you, plays both, draws both pitch lines.
+- z13Pitch: autocorrelation pitch track, shown in semitones around each speaker's own middle, so a low and a high voice can be compared.
+- In the 60 and 90 minute routes (key 'sh') and on the Practice tab.

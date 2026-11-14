@@ -590,3 +590,61 @@ var z8RenderPrac12=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac12(); var 
   el.appendChild(h('div',{class:'panel'},[z12Head('Thêm cách luyện','More ways to practise'),h('div',{class:'setgrid'},[
     h('button',{class:'settile gt2',onclick:function(){ z12Recall() }},[h('b',{text:'Nói lại · English to Vietnamese'}),h('span',{class:'small muted',text:'See the English, say the whole sentence'})]),
     h('button',{class:'settile gt0',onclick:function(){ z12Playlist() }},[h('b',{text:'Nghe thôi · Listen only'}),h('span',{class:'small muted',text:'A hands-free playlist of sentences you know'})])])])) };
+
+/* ===== 13a · Nhại lại: copy the voice, hear both, see your tone ===== */
+var Z13={ac:null};
+function z13Decode(ab){ return new Promise(function(res,rej){ try{ if(!Z13.ac){ var C=window.AudioContext||window.webkitAudioContext; Z13.ac=new C() } var p=Z13.ac.decodeAudioData(ab.slice(0),res,rej); if(p&&p.catch) p.catch(rej) }catch(e){ rej(e) } }) }
+/* pitch track: returns points [[time 0..1, semitones from the speaker's own middle]] */
+function z13Pitch(buf){ var src=buf.getChannelData(0), k=Math.max(1,Math.round(buf.sampleRate/12000)), sr=buf.sampleRate/k, n=Math.floor(src.length/k), x=new Float32Array(n), i, j, s;
+  for(i=0;i<n;i++){ s=0; for(j=0;j<k;j++) s+=src[i*k+j]; x[i]=s/k }
+  var W=Math.round(sr*0.04), hop=Math.round(sr*0.01), lo=Math.floor(sr/420), hi=Math.floor(sr/70), peak=0, f=[], cor=new Float32Array(hi+2);
+  for(i=0;i<n;i++){ var a=Math.abs(x[i]); if(a>peak) peak=a }
+  for(s=0;s+W+hi<n;s+=hop){ var r0=0; for(i=0;i<W;i++) r0+=x[s+i]*x[s+i]; if(Math.sqrt(r0/W)<Math.max(0.008,peak*0.07)){ f.push(0); continue }
+    var best=0, l; for(l=lo;l<=hi;l++){ var r=0, r1=0; for(i=0;i<W;i++){ r+=x[s+i]*x[s+i+l]; r1+=x[s+i+l]*x[s+i+l] } cor[l]=r/Math.sqrt(r0*r1+1e-12); if(cor[l]>best) best=cor[l] }
+    var bl=0; if(best>0.55) for(l=lo+1;l<hi;l++){ if(cor[l]>=0.9*best&&cor[l]>=cor[l-1]&&cor[l]>=cor[l+1]){ bl=l; break } }
+    f.push(bl?sr/bl:0) }
+  var v=f.filter(function(q){ return q>0 }).sort(function(a,b){ return a-b }); if(v.length<6) return [];
+  var med=v[Math.floor(v.length/2)], st=f.map(function(q){ return q>0?12*Math.log(q/med)/Math.LN2:null });
+  st=st.map(function(q){ return q!==null&&Math.abs(q)<=14?q:null });
+  var sm=st.map(function(q,i){ if(q===null) return null; var w=[]; for(var d=-2;d<=2;d++){ var z=st[i+d]; if(z!==null&&z!==undefined) w.push(z) } if(w.length<3) return null; w.sort(function(a,b){ return a-b }); return w[Math.floor(w.length/2)] });
+  var a0=-1, a1=-1; sm.forEach(function(q,i){ if(q!==null){ if(a0<0) a0=i; a1=i } }); if(a0<0||a1-a0<5) return [];
+  var out=[]; for(i=a0;i<=a1;i++) if(sm[i]!==null) out.push([(i-a0)/(a1-a0),sm[i]]); return out }
+function z13Path(p){ var d='', last=-1; p.forEach(function(q){ var X=10+q[0]*280, Y=60-Math.max(-9,Math.min(9,q[1]))*5.2; d+=(last<0||q[0]-last>0.09?'M':'L')+X.toFixed(1)+' '+Y.toFixed(1)+' '; last=q[0] }); return d }
+function z13At(p,t){ var b=null, bd=9; p.forEach(function(q){ var d=Math.abs(q[0]-t); if(d<bd){ bd=d; b=q[1] } }); return bd<0.12?b:null }
+function z13Diff(a,b){ var s=0, n=0; for(var i=0;i<=24;i++){ var x=z13At(a,i/24), y=z13At(b,i/24); if(x!==null&&y!==null){ s+=Math.abs(x-y); n++ } } return n>=8?s/n:null }
+function z13Graph(model,you){ var box=h('div',{class:'z13graph'}), d=model.length&&you.length?z13Diff(model,you):null;
+  box.innerHTML='<svg viewBox="0 0 300 120" role="img" aria-label="Pitch of the model voice and of your voice"><path d="M10 60 H290" stroke="currentColor" stroke-opacity=".25" stroke-dasharray="3 4"/>'+(model.length?'<path d="'+z13Path(model)+'" fill="none" stroke="#1F5A45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>':'')+(you.length?'<path d="'+z13Path(you)+'" fill="none" stroke="#B5432B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>':'')+'</svg>';
+  box.appendChild(h('div',{class:'z13key'},[h('span',{class:'z13k m',text:'Model voice'}),h('span',{class:'z13k y',text:'You'})]));
+  box.appendChild(h('p',{class:'small muted',text:!you.length?'I could not find your voice in the recording. Get closer to the microphone and try again.':(!model.length?'No model line for this one. Listen to both and compare by ear.':(d===null?'Compare the two lines by eye.':(d<1.8?'The shape is close. Listen to both to check.':(d<3.2?'Partly there. Look where your line leaves the green one.':'A different shape. Listen again and copy the rise and fall.'))))+' High is up, low is down. The line is a rough guide, your ear and your teacher decide.'}));
+  return box }
+function z13Clip(text){ var c=null; try{ c=clipFor(text) }catch(e){} return c }
+function z13Shadow(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||8, P=z12Pool(), src=P.seen.length>=N?P.seen:P.seen.concat(P.rest.slice(0,N)), q=z7Shuffle(src.slice()).slice(0,N), i=0, sent=!!S.set.shs, mine=null;
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  function fin(){ if(onDone) onDone(); else closeSheet() }
+  body.appendChild(zTop('Nhại lại · shadow',0,onDone?null:['Practice',function(){ closeSheet(); location.hash='prac' }]));
+  if(!zMic()){ zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('h1',{text:'Turn the microphone on'}),h('p',{class:'muted',text:'Shadowing records you so you can hear yourself next to the model voice.'}),h('button',{class:'btn primary wide',text:'Turn the microphone on',onclick:function(){ micOn().then(function(){ try{ renderMic() }catch(e){} z13Shadow(onDone,N) },function(){}) }}),h('button',{class:'btn wide',text:onDone?'Skip this part':'Close',onclick:fin})])]); return }
+  if(!q.length){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'Nothing to shadow yet. Do a round of cards first.'}),h('button',{class:'btn wide',text:'Done',onclick:fin})])]); return }
+  function end(){ zDay('sh'); tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Round done'}),h('div',{class:'score',text:String(q.length)}),h('p',{class:'muted',text:'copied out loud. This is the fastest way to fix tones: little and often.'}),h('button',{class:'btn primary wide',text:onDone?'Next part':'Done',onclick:fin}),h('button',{class:'btn wide',text:'Go again',onclick:function(){ z13Shadow(onDone,N) }})])]) }
+  function show(){ if(!alive()) return; if(i>=q.length) return end(); var c=q[i], text=sent?c.xv:c.vi, en=sent?c.xe:c.en, clip=z13Clip(text), model=[], you=[], url=null, status=h('p',{class:'z7status',text:'Listen first.'}), out=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/q.length*100)+'%';
+    if(mine){ try{ mine.pause() }catch(e){} mine=null }
+    var tones=tokens(text).filter(isWord).map(function(w){ return TONES[toneOf(w.toLowerCase())].k }).join(' · ');
+    if(clip) loadBundle(clip[0]).then(function(ab){ return z13Decode(ab.slice(clip[1],clip[1]+clip[2])) }).then(function(b){ model=z13Pitch(b) }).catch(function(){});
+    function playModel(cb){ function done(){ if(alive()&&cb) cb() } if(clip) playClip(clip,Math.max(.6,Math.min(1.5,SP())),done,function(){ zSay(text,{onend:done}) }); else zSay(text,{onend:done}) }
+    function playMine(cb){ if(!url){ if(cb) cb(); return } try{ mine=new Audio(url); mine.onended=function(){ if(cb) cb() }; mine.onerror=function(){ if(cb) cb() }; var p=mine.play(); if(p&&p.catch) p.catch(function(){ if(cb) cb() }) }catch(e){ if(cb) cb() } }
+    function both(){ status.textContent='Model…'; playModel(function(){ setTimeout(function(){ if(!alive()) return; status.textContent='You…'; playMine(function(){ if(alive()) status.textContent='Same shape? Try again or go on.' }) },350) }) }
+    var rec=h('button',{class:'btn primary wide',text:'Record · say it now',onclick:function(){ rec.disabled=true; stopAudio(); ZS.tok++; rec.textContent='Recording… say it'; status.textContent='Recording…'; status.className='z7status on';
+      zHear(sent?7000:4000,function(){}).then(function(res){ if(!alive()) return; rec.disabled=false; rec.textContent='Record again'; status.className='z7status'; out.innerHTML='';
+        if(!res.blob||!res.blob.size){ status.textContent='No recording came through. Check the microphone and try again.'; return }
+        try{ if(url) URL.revokeObjectURL(url) }catch(e){} url=URL.createObjectURL(res.blob);
+        try{ var j=zJudge(text,res,{},false); out.appendChild(h('p',{class:'small muted',style:'text-align:center',text:'It heard: '+(j.heard||'nothing clear')})) }catch(e){}
+        res.blob.arrayBuffer().then(z13Decode).then(function(b){ you=z13Pitch(b) }).catch(function(){ you=[] }).then(function(){ if(!alive()) return; out.appendChild(z13Graph(model,you));
+          out.appendChild(h('div',{class:'row z12two'},[h('button',{class:'btn',text:'Hear both again',onclick:both}),h('button',{class:'btn primary',text:'Next',onclick:function(){ i++; show() }})])); both() }) }) }});
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+q.length+' · listen, then copy it exactly'}),
+      h('div',{class:'row',style:'justify-content:center'},[h('button',{class:'chip','aria-pressed':String(!sent),text:'Words',onclick:function(){ sent=false; S.set.shs=0; save(); show() }}),h('button',{class:'chip','aria-pressed':String(sent),text:'Sentences',onclick:function(){ sent=true; S.set.shs=1; save(); show() }})]),
+      h('div',{class:'panel fcard z13card'},[sent?null:z12Pic(c.vi,'sm'),h('div',{class:'row',style:'justify-content:center;flex-wrap:nowrap'},[fcViEl(text,sent?24:38),h('button',{class:'play','aria-label':'Play the model',html:PLAY_ICON,onclick:function(){ playModel() }})]),h('div',{class:'muted',text:en}),h('div',{class:'small muted',text:'Tones: '+tones}),status]),
+      rec,out,h('button',{class:'btn wide',text:'Skip',onclick:function(){ i++; show() }})]);
+    setTimeout(function(){ if(alive()) playModel(function(){ status.textContent='Now press Record and copy it.' }) },350) }
+  show() }
+(function(){ var st=z12Stops; z12Stops=function(){ var a=st(), m=z12Mins(); if(m===60||m===90){ var td=zTodayDone(), x={k:'sh',t:'Nhại lại',en:'Shadow',min:5,sub:'Copy the voice, hear both, see your tone',done:!!td.sh,run:function(n){ z13Shadow(n,m===90?10:8) }}, at=1; a.forEach(function(s,i){ if(s.k==='van') at=i+1 }); a.splice(at,0,x) } return a } })();
+var z8RenderPrac13=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac13(); var el=$('#z-prac'), g=el&&el.lastChild&&el.lastChild.querySelector('.setgrid'); if(!g) return;
+  g.insertBefore(h('button',{class:'settile gt3',onclick:function(){ z13Shadow() }},[h('b',{text:'Nhại lại · Shadow'}),h('span',{class:'small muted',text:'Copy the voice, hear yourself next to it, see your tone'})]),g.firstChild) };
