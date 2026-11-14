@@ -254,3 +254,11 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 :root[data-skin="night"] .z13opt.good{background:rgba(87,217,163,.22)}:root[data-skin="night"] .z13opt.bad{background:rgba(255,122,138,.2)}
 :root[data-skin="night"] .z12pic svg{background:#F6F1E7;border-radius:16px}
 @media (min-width:900px){:root[data-skin="night"] .zhero .z12scene{height:210px;background:linear-gradient(#070A24 0,#1B1650 38%,#4A237A 67%,#B0407F 85.3%,#0b0b25 85.3% 86.4%,#101238 86.4%)!important}:root[data-skin="dusk"] .zhero .z12scene{height:210px}:root[data-skin="night"] .tabs{background:#0B0D29!important}}
+/* 20 · photos */
+.zhero .z12scene img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 58%}
+:root[data-skin="night"] .zhero .z12scene,:root[data-skin="dusk"] .zhero .z12scene{height:200px;position:relative}
+:root[data-skin="night"] .zhero .z12scene:after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(transparent,color-mix(in srgb,var(--surface) 96%,transparent));pointer-events:none}
+:root[data-skin="dusk"] .zhero .z12scene:after{content:"";position:absolute;left:0;right:0;bottom:0;height:60px;background:linear-gradient(transparent,#fff);pointer-events:none}
+.z13wel img{display:block;width:100%;height:210px;object-fit:cover;object-position:center 30%}
+.z20ban{display:block;width:calc(100% + 32px);max-width:none;margin:-16px -16px 2px;height:150px;object-fit:cover;border-radius:15px 15px 0 0}
+@media (min-width:900px){:root[data-skin="night"] .zhero .z12scene,:root[data-skin="dusk"] .zhero .z12scene{height:300px}.z20ban{width:calc(100% + 40px);margin:-20px -20px 2px;height:220px}}

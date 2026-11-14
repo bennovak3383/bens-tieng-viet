@@ -629,6 +629,14 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 :root[data-skin="night"] .z13opt.good{background:rgba(87,217,163,.22)}:root[data-skin="night"] .z13opt.bad{background:rgba(255,122,138,.2)}
 :root[data-skin="night"] .z12pic svg{background:#F6F1E7;border-radius:16px}
 @media (min-width:900px){:root[data-skin="night"] .zhero .z12scene{height:210px;background:linear-gradient(#070A24 0,#1B1650 38%,#4A237A 67%,#B0407F 85.3%,#0b0b25 85.3% 86.4%,#101238 86.4%)!important}:root[data-skin="dusk"] .zhero .z12scene{height:210px}:root[data-skin="night"] .tabs{background:#0B0D29!important}}
+/* 20 · photos */
+.zhero .z12scene img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 58%}
+:root[data-skin="night"] .zhero .z12scene,:root[data-skin="dusk"] .zhero .z12scene{height:200px;position:relative}
+:root[data-skin="night"] .zhero .z12scene:after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(transparent,color-mix(in srgb,var(--surface) 96%,transparent));pointer-events:none}
+:root[data-skin="dusk"] .zhero .z12scene:after{content:"";position:absolute;left:0;right:0;bottom:0;height:60px;background:linear-gradient(transparent,#fff);pointer-events:none}
+.z13wel img{display:block;width:100%;height:210px;object-fit:cover;object-position:center 30%}
+.z20ban{display:block;width:calc(100% + 32px);max-width:none;margin:-16px -16px 2px;height:150px;object-fit:cover;border-radius:15px 15px 0 0}
+@media (min-width:900px){:root[data-skin="night"] .zhero .z12scene,:root[data-skin="dusk"] .zhero .z12scene{height:300px}.z20ban{width:calc(100% + 40px);margin:-20px -20px 2px;height:220px}}
 </style>
 
 <div class="wrap" id="app">
@@ -2916,7 +2924,7 @@ function z7Welcome(force){ if(!C7) return; if(S.set.ob7&&!force) return; if(!S.s
   function tile(e,t,s){ return h('div',{class:'z7how'},[h('span',{class:'gpic sm','aria-hidden':'true',text:e}),h('div',{},[h('b',{text:t}),h('div',{class:'small muted',text:s})])]) }
   function draw(){ var kids=[dots()];
     function line(n,t,d){ return h('div',{class:'z13how'},[h('span',{class:'z13lvn',text:String(n)}),h('div',{},[h('b',{text:t}),h('div',{class:'small muted',text:d})])]) }
-    if(step===0) kids.push(h('div',{class:'z13wel',html:(typeof Z12HDR==='string'?Z12HDR:'')}),h('span',{class:'z12sg',style:'color:var(--tile);font-size:12px',text:'SÀI GÒN'}),h('h1',{text:'Xin chào.'}),h('p',{class:'muted',text:'Speak and understand Vietnamese the way Saigon says it. A little, out loud, most days.'}),
+    if(step===0) kids.push(h('div',{class:'z13wel',html:(z19Skin()==='classic'?Z12HDR:'<img src="img/alley.jpg" alt="A Saigon alley hung with flags">')}),h('span',{class:'z12sg',style:'color:var(--tile);font-size:12px',text:'SÀI GÒN'}),h('h1',{text:'Xin chào.'}),h('p',{class:'muted',text:'Speak and understand Vietnamese the way Saigon says it. A little, out loud, most days.'}),
       h('div',{class:'panel'},[h('span',{class:'lbl',text:'Your first name'}),nm,h('span',{class:'lbl',text:'Where are you from?'}),sel,other]),
       h('button',{class:'btn primary wide',text:'Next',onclick:function(){ step=1; draw() }}));
     else if(step===1){ var tm=h('div',{class:'z12times'}); [[10,'Ghé nhanh'],[30,'Ngắn'],[60,'Vừa'],[90,'Dài']].forEach(function(r){ tm.appendChild(h('button',{class:'z12time','aria-pressed':String((S.set.mins||60)===r[0]),onclick:function(){ S.set.mins=r[0]; save(); draw() }},[h('b',{text:r[0]+'′'}),h('span',{text:r[1]})])) });
@@ -3653,11 +3661,15 @@ function z19Night(){ return Z12HDR.replace('stop-color="#2B2A6B"','stop-color="#
   .replace(/fill="#3A2A6E"/,'fill="#241C5C"').replace(/fill="#1D1B4D"/,'fill="#0E0F33"')
   .replace('<path d="M316 8 V26" stroke="#FF6B6B" stroke-width="1.6"/>','<path d="M316 8 V26" stroke="#FF4D7E" stroke-width="2"/><rect x="216" y="74" width="24" height="54" fill="#E0263C"/><path d="M228 86 l2.6 7 h7 l-5.6 4.4 2 7 -6 -4.2 -6 4.2 2 -7 -5.6 -4.4 h7 Z" fill="#FFD23F"/><path d="M150 70 Q156 30 172 12" fill="none" stroke="#6FE3FF" stroke-width="1.2" opacity=".9"/><path d="M300 128 V74 h4 V56 h4 V40 h4 V26" fill="none" stroke="#FF4D7E" stroke-width="1" opacity=".8"/>')
   .replace('stop-color="#3B2F73"','stop-color="#1A1550"').replace('stop-color="#171A3F"','stop-color="#060820"').replace('stroke="#C86AA0" stroke-width="1.2"','stroke="#FF4D7E" stroke-width="1.4"').replace('M160 134 h22 M306 135 h18','M160 134 h22 M306 135 h18 M222 134 h14 M224 141 h10') }
-function z19Apply(){ var k=z19Skin(); try{ document.documentElement.setAttribute('data-skin',k); var sc=$('#v-home .zhero .z12scene'); if(sc&&sc.getAttribute('data-k')!==k){ sc.innerHTML=k==='night'?z19Night():Z12HDR; sc.setAttribute('data-k',k) } var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content',k==='night'?'#0E1030':(k==='dusk'?'#FFD9B8':'#F3EADB')) }catch(e){} }
+function z19Apply(){ var k=z19Skin(); try{ document.documentElement.setAttribute('data-skin',k); var sc=$('#v-home .zhero .z12scene'); if(sc&&sc.getAttribute('data-k')!==k){ sc.innerHTML=k==='classic'?Z12HDR:'<img src="img/hero.jpg" alt="Saigon at sunrise, looking down the canal to the city centre">'; sc.setAttribute('data-k',k) } z20Photos(); var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content',k==='night'?'#0E1030':(k==='dusk'?'#FFD9B8':'#F3EADB')) }catch(e){} }
 var zRenderHome19=zRenderHome; zRenderHome=function(){ zRenderHome19(); z19Apply() }; z19Apply();
 function z19Panel(){ var box=h('div',{class:'panel z19p'},[h('span',{class:'lbl',text:'Look'})]), r=h('div',{class:'row'});
   [['night','Sài Gòn đêm · Night'],['dusk','Hoàng hôn · Dusk'],['classic','Xưa · Classic']].forEach(function(o){ r.appendChild(h('button',{class:'chip','aria-pressed':String(z19Skin()===o[0]),text:o[1],onclick:function(){ S.set.skin=o[0]; save(); z19Apply(); [].forEach.call(r.children,function(x,i){ x.setAttribute('aria-pressed',String(['night','dusk','classic'][i]===o[0])) }) }})) }); box.appendChild(r); return box }
 var openSettings19=openSettings; openSettings=function(){ openSettings19(); try{ var b=$('#sheet-body'); if(b&&!b.querySelector('.z19p')) b.insertBefore(z19Panel(),b.children[1]||null) }catch(e){} };
+
+
+/* ===== 20 · Ben's own photos in the night and dusk looks ===== */
+function z20Photos(){ try{ var on=z19Skin()!=='classic'; [['#z18-sit','img/stall.jpg','A street food stall in Saigon'],['#z12-out','img/river.jpg','A boat on the canal at sunset']].forEach(function(r){ var box=$(r[0]); if(!box) return; var im=box.querySelector('.z20ban'); if(on&&!im){ im=document.createElement('img'); im.className='z20ban'; im.src=r[1]; im.alt=r[2]; im.loading='lazy'; box.insertBefore(im,box.firstChild) } else if(!on&&im) im.remove() }) }catch(e){} }
 
 go(location.hash.slice(1)||'home');
 renderAll();

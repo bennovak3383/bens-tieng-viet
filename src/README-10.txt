@@ -93,3 +93,6 @@ VERSION 18 (14 Nov 2026) - ready-made situations, more lines to record, dusk sky
 
 VERSION 19 (14 Nov 2026) - skins
 - S.set.skin: 'night' (default), 'dusk', 'classic'. Set on <html data-skin>. Colours are CSS variables in block 19 of v7.css. Settings has a Look switch (z19Panel). The night header is made from the dusk one by z19Night().
+
+VERSION 20 (14 Nov 2026) - Ben's own photos
+- img/hero.jpg (sunrise skyline, Today header), img/alley.jpg (welcome screen), img/stall.jpg (situations card), img/river.jpg (outside listening card). Used in the night and dusk looks only; classic keeps the drawing. All four are Ben's own photos, cropped and shrunk to about 100 KB each.
