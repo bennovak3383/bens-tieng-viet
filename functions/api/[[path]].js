@@ -136,6 +136,7 @@ export async function onRequest(context) {
       return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'private, max-age=3600' } });
     }
     if (path === 'words' && m === 'GET') { const w = await env.KV.get('cfg:words', 'json'); return J(w || { e: {}, d: {}, a: [] }); }
+    if (path === 'core' && m === 'GET') { const w = await env.KV.get('cfg:core', 'json'); return J(w || { u: {} }); }   // 27: the teacher's fixes to the core course
     if (path === 'snap') {   // hand a photo from a phone to the laptop: the laptop makes a token, the phone posts to it, the laptop collects it once
       const tk = clean(url.searchParams.get('t') || '', 16).toUpperCase().replace(/[^A-Z0-9]/g, ''); if (tk.length < 10) return J({ error: 'Bad code.' }, 400);
       if (m === 'POST') { const d = await request.text(); if (d.length > 2_000_000 || !/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(d)) return J({ error: 'That photo could not be read. Try again.' }, 400); await env.KV.put('sn:' + tk, d, { expirationTtl: 900 }); return J({ ok: true }); }
@@ -238,6 +239,19 @@ export async function onRequest(context) {
           const f = (await env.KV.get('vo:ixf:' + w, 'json')) || {}; f[id] = [t, n]; await env.KV.put('vo:ixf:' + w, JSON.stringify(f));
         }
         return J({ ok: true });
+      }
+      if (path === 't/core' && m === 'POST') {   // 27: teacher edits a core unit (explanation, examples, words, class notes); applies to every learner
+        const b = await request.json().catch(() => null); if (!b || typeof b !== 'object' || !b.u || typeof b.u !== 'object') return J({ error: 'Bad data.' }, 400);
+        const out = { u: {}, t: Date.now() }, S = (v, n) => clean(v, n).trim();
+        for (const k of Object.keys(b.u).slice(0, 200)) {
+          const r = b.u[k], id = clean(k, 12).replace(/[^a-z0-9]/gi, ''); if (!id || !r || typeof r !== 'object') continue; const o = {};
+          if (Array.isArray(r.how)) { const v = r.how.slice(0, 8).map(x => S(x, 500)).filter(Boolean); if (v.length) o.how = v; }
+          if (Array.isArray(r.ex)) { const v = r.ex.slice(0, 16).filter(x => Array.isArray(x)).map(x => [S(x[0], 200), S(x[1], 240)]).filter(x => x[0] && x[1]); if (v.length) o.ex = v; }
+          if (Array.isArray(r.w)) { const v = r.w.slice(0, 40).filter(x => Array.isArray(x)).map(x => [S(x[0], 80), S(x[1], 120), S(x[2], 200), S(x[3], 240)]); if (v.length && v.every(x => x[0] && x[1])) o.w = v; }
+          if (r.teach) o.teach = S(r.teach, 700); if (r.tg) o.tg = S(r.tg, 700); if (r.note) o.note = S(r.note, 700); if (r.ok) o.ok = 1;
+          if (Object.keys(o).length) out.u[id] = o;
+        }
+        await env.KV.put('cfg:core', JSON.stringify(out)); return J({ ok: true, core: out });
       }
       if (path === 't/words' && m === 'POST') {
         const b = await request.json().catch(() => null); if (!b || typeof b !== 'object') return J({ error: 'Bad data.' }, 400);

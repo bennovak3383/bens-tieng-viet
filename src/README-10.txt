@@ -122,3 +122,16 @@ Version 26 · starting from zero (beginner path)
 - After step 14 the learner moves to the full app at 30 minutes. Settings has "My level" to switch either way.
 - Teacher page: "Người mới · beginner guide" (what to do in class for each step) and the student's current step on their page.
 - Recording page: new part z0 (29 beginner lines) after a3.
+
+VERSION 27 (15 Nov 2026) - core course: grammar units that roll out the most common words in order
+- Why: a check against a Vietnamese frequency list showed only 26% of word cards were in the top 1,000 words, the commonest glue words (và, nhưng, vì, nếu, đã, sẽ, đang) sat in level 15, and half the word cards appeared in one sentence only.
+- Content: src/core/*.txt (format at the top of a1.txt). python3 src/core/make.py . [vn_word_frequencies.tsv] builds data/core.json and checks that every sentence uses only words taught up to that unit. Then run python3 src/voice/make_lines.py . so the recording list picks the lines up.
+- 20 units so far (level A1, 275 words, 397 sentences). Drafted by Claude, NOT checked by a Vietnamese speaker.
+- App: block "27" at the end of src/v7/v7.js. z27Apply turns each unit's words into cards (deck k01, k02 …; card id k01_1 …) and removes an older, not-yet-started card for the same word. z27Unit runs a unit: z27Gram (explanation + examples), z26Learn (words + quiz), z27Order (build the sentence), z27Gap (missing word), z27Say (say it, then check). State: S.set.k27 = {snd, d:{unitId:{t,o,on,g,gn,s,sn}|{skip}}}.
+- A unit's cards open when the unit is done (fcOn is wrapped) and come first among new cards (fcFresh is wrapped).
+- z27Rot: once a day each card's example sentence is picked from its own sentence plus up to 5 sentences from finished units that contain the word, so words come back in new sentences everywhere c.xv is used (cards, recall, listening, shadowing).
+- Sounds first: the course card on Today asks for the first 8 sound lessons (single vowels and the vowel pairs) unless the learner says they know them (S.set.k27.snd) or finished the beginner path.
+- Teacher: teacher.html button "Nền tảng · core course" (core27): edit the explanation, examples, words and class notes of any unit, leave a note, tick "checked". Stored in KV cfg:core via POST /api/t/core, read by the app from GET /api/core. The student page shows core progress and low drill scores.
+- Recording: make_lines.py adds one part per unit (k01 …). They are added last so older line ids do not change, then moved up to sit after the beginner part.
+- Tests: src/tests/t27.py (learner) and t27b.py (teacher, recording page).
+- To rebuild index.html: python3 src/patch10.py OLD_SRC src OLD_INDEX OUT, where OLD_SRC and OLD_INDEX come from the last commit (git archive HEAD src index.html).

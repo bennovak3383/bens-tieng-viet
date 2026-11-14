@@ -293,3 +293,15 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z26dots{display:flex;gap:5px;flex-wrap:wrap}.z26dots i{width:16px;height:6px;border-radius:3px;background:var(--line);display:block}.z26dots i.on{background:var(--accent)}.z26dots i.now{background:var(--tile,var(--hot))}
 .z26en{font-size:19px;color:var(--muted)}.z26p{font-size:18px;line-height:1.55}
 .z26card h2{margin:0}
+
+/* 27 · core course */
+.z27card h2{margin:2px 0 0}.z27pat{font-size:30px;line-height:1.2;margin:4px 0 0}
+.z27how p{font-size:17px;line-height:1.5;margin:0 0 10px}
+.z27exs{gap:0;padding-top:4px;padding-bottom:4px}.z27ex{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}.z27ex:first-child{border-top:0}
+.z27line{min-height:64px;border:2px dashed var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.z27line.good{border-style:solid;border-color:var(--good)}.z27line.bad{border-style:solid;border-color:var(--bad)}
+.z27tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:52px}
+.z27tile{min-height:46px;padding:8px 16px;border-radius:12px;border:1px solid var(--line);background:var(--panel,transparent);color:inherit;font:600 20px var(--font);cursor:pointer}
+.z27tile.on{border-color:var(--accent)}
+.z27gap{font-size:24px;line-height:1.4}
+.z27row{display:flex;flex-direction:row;align-items:center;gap:12px;width:100%;cursor:pointer;color:inherit;font:inherit}.z27row.cur{border-color:var(--accent)}.z27row.done .z13lvn{background:var(--good);color:#fff}

@@ -1090,3 +1090,94 @@ function z26Tone(onDone){ var body=zOpen(), tok=Z.tok, N=12, n=0, right=0, W=['m
         out.appendChild(h('div',{class:'panel rf-reveal',style:'align-items:center'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(w,32),zPlay(w)]),h('div',{class:'small muted',text:ok?'Yes. Say it once yourself.':'Listen again, then say it once yourself.'})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ n++; show() }})) }},[h('b',{text:o[1]}),h('span',{text:o[2]})]); g.appendChild(b) });
     zSwap(body,[h('span',{class:'lbl',text:(n+1)+' / '+N+' · listen to the shape of the voice'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Hear it again',html:PLAY_ICON,onclick:function(){ zSay(w) }}),h('span',{class:'small muted',text:'Tap to hear it again'})]),g,out]); setTimeout(function(){ if(alive()) zSay(w) },300) }
   show() }
+
+
+/* ===== 27 · core course: grammar units that roll out the most common words, in order (data/core.json) ===== */
+var Z27=null, Z27C=null;
+function z27St(){ var k=S.set.k27; if(!k||typeof k!=='object'||Array.isArray(k)) k=S.set.k27={d:{}}; if(!k.d||typeof k.d!=='object') k.d={}; return k }
+function z27Idx(){ var k=z27St(); for(var i=0;i<Z27.units.length;i++) if(!k.d[Z27.units[i].id]) return i; return Z27.units.length }
+function z27Cat(u){ return 'k'+u.id.slice(1) }
+function z27Clean(w){ return String(w).toLowerCase().replace(/[.,!?…:;“”"]/g,'') }
+function z27Apply(){ if(!Z27||!C7||!FC.length) return; var own={}; Z27.sent=[]; Z27.keys=[];
+  Z27.units.forEach(function(u,ui){ var cat=z27Cat(u), o=Z27C&&Z27C.u&&Z27C.u[u.id]; if(!u.o0) u.o0={how:u.how,ex:u.ex,w:u.w,teach:u.teach};
+    u.how=(o&&o.how)||u.o0.how; u.ex=(o&&o.ex)||u.o0.ex; u.teach=(o&&o.teach)||u.o0.teach; u.w=(o&&o.w&&o.w.length===u.o0.w.length)?o.w:u.o0.w;
+    C7.cats[cat]=['Nền tảng '+(ui+1),u.lv+' · '+u.en,''];
+    u.w.forEach(function(w,wi){ var id=cat+'_'+(wi+1), c=FCBY[id]; if(!c){ c={id:id,c:cat,e:'',k27:ui}; FC.push(c); FCBY[id]=c } c.vi=w[0]; c.en=w[1]; c.xv=w[2]||w[0]; c.xe=w[3]||w[1]; delete c.xv0; own[w[0].toLowerCase()]=1 });
+    u.ex.forEach(function(e){ Z27.sent.push([e[0],e[1],ui]) }); u.w.forEach(function(w){ if(w[2]) Z27.sent.push([w[2],w[3],ui]) });
+    u.key.forEach(function(k){ if(Z27.keys.indexOf(k)<0) Z27.keys.push(k) }) });
+  for(var i=FC.length-1;i>=0;i--){ var c=FC[i]; if(c.k27==null&&own[String(c.vi).toLowerCase()]&&['p75','say','pat','mine','tw'].indexOf(c.c)<0&&!z13Started(c)){ FC.splice(i,1); delete FCBY[c.id] } }
+  Z27.on=1; Z27.rd=''; Z13.lvT=0; z27Rot() }
+/* a card's example sentence changes from day to day, drawn from the units already finished, so common words keep coming back in new sentences */
+function z27Rot(){ if(!Z27||!Z27.on) return; var open=z27Idx(), day=Math.floor(Date.now()/864e5), tag=day+':'+open; if(Z27.rd===tag) return; Z27.rd=tag;
+  var pool=Z27.sent.filter(function(s){ return s[2]<open }), toks=pool.map(function(s){ return ' '+z27Clean(s[0]).replace(/\s+/g,' ').trim()+' ' });
+  FC.forEach(function(c,ci){ if(!c.xv||['p75','say','pat'].indexOf(c.c)>=0) return; if(c.xv0==null){ c.xv0=c.xv; c.xe0=c.xe } var w=' '+z27Clean(c.vi)+' ', alt=[[c.xv0,c.xe0]];
+    if(c.k27==null||c.k27<open) for(var i=0;i<pool.length&&alt.length<6;i++) if(toks[i].indexOf(w)>=0&&pool[i][0]!==c.xv0) alt.push(pool[i]);
+    var p=alt[(day+ci)%alt.length]; c.xv=p[0]; c.xe=p[1] }) }
+var fcOn27=fcOn; fcOn=function(c){ if(c.k27!=null&&Z27){ if(S.set.fcoff[c.c]) return false; var u=Z27.units[c.k27]; return !!(u&&z27St().d[u.id])||z13Started(c) } return fcOn27(c) };
+var fcFresh27=fcFresh; fcFresh=function(){ var a=fcFresh27(), k=[], r=[]; a.forEach(function(x){ var c=FCBY[x.split('|')[0]]; (c&&c.k27!=null?k:r).push(x) }); return k.concat(r) };
+var z7init27=z7init; z7init=function(){ z7init27(); try{ z27Apply() }catch(e){} };
+var z13Words27=z13Words; z13Words=function(){ z13Words27(); try{ z27Apply() }catch(e){} };
+var z13Teach27=z13Teach; z13Teach=function(){ z13Teach27(); try{ if(Z27&&Z27.on){ FC.forEach(function(c){ delete c.xv0 }); Z27.rd=''; z27Rot() } }catch(e){} };
+try{ fetch('data/core.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.units) return; Z27=j; z27Apply(); try{ fcRender(); if($('#sheet').hidden) zRenderHome() }catch(e){}
+  fetch('/api/core').then(function(r){ return r.ok?r.json():null }).then(function(o){ if(o&&o.u&&Object.keys(o.u).length){ Z27C=o; z27Apply() } }).catch(function(){}) }).catch(function(){}) }catch(e){}
+function z27Snd(){ var z=S.set.z0; return !!z27St().snd||(z&&z.fin)||vanDoneCount()>=8 }
+function z27Gram(u,ui,next){ var body=zOpen(); body.appendChild(zTop('Nền tảng · core course · '+u.lv+' · unit '+(ui+1),0,null));
+  var ex=h('div',{class:'panel z27exs'}); u.ex.forEach(function(e){ ex.appendChild(h('div',{class:'z27ex'},[h('div',{style:'flex:1;min-width:0'},[zVi(e[0],20),h('div',{class:'small muted',text:e[1]})]),zPlay(e[0])])) });
+  var how=h('div',{class:'z27how'}); u.how.forEach(function(t){ how.appendChild(h('p',{text:t})) });
+  zSwap(body,[h('span',{class:'lbl',text:'How it works'}),h('h1',{class:'z27pat',text:u.vi}),h('p',{class:'z12en',style:'font-size:16px',text:u.en}),how,h('span',{class:'lbl',text:'Listen, then say each one out loud'}),ex,h('button',{class:'btn primary wide',id:'z27-go',text:'Next · the '+u.w.length+' words',onclick:next})]) }
+function z27Order(list,next,score){ var body=zOpen(), tok=Z.tok, i=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden } body.appendChild(zTop('Xếp câu · put it in order',0,null));
+  function show(){ if(!alive()) return; if(i>=list.length) return next(); var s=list[i], raw=s[0].split(/\s+/).filter(function(w){ return z27Clean(w) }), want=raw.map(z27Clean), pool=z7Shuffle(raw.map(function(w,k){ return {w:want[k],t:w.replace(/[.,!?…:;“”"]/g,''),k:k} })), got=[], done=false, line=h('div',{class:'z27line'}), tray=h('div',{class:'z27tray'}), out=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/list.length*100)+'%';
+    if(want.length>1&&pool.map(function(p){ return p.w }).join(' ')===want.join(' ')) pool.reverse();
+    function draw(){ line.innerHTML=''; tray.innerHTML=''; got.forEach(function(p,gi){ line.appendChild(h('button',{class:'z27tile on',text:p.t,onclick:function(){ if(done) return; got.splice(gi,1); draw() }})) }); if(!got.length) line.appendChild(h('span',{class:'small muted',text:'Tap the words in the right order'}));
+      pool.forEach(function(p){ if(got.indexOf(p)>=0) return; tray.appendChild(h('button',{class:'z27tile',text:p.t,onclick:function(){ if(done) return; got.push(p); draw(); if(got.length===want.length) check() }})) }) }
+    function check(){ done=true; var ok=got.map(function(p){ return p.w }).join(' ')===want.join(' '); if(ok) score.o++; score.on++; line.classList.add(ok?'good':'bad');
+      out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:ok?'Right':'It goes like this'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(s[0],22),zPlay(s[0])])])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})); zSay(s[0]) }
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+list.length+' · build the sentence'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('div',{class:'z26en',text:s[1]})]),line,tray,out]); draw() }
+  show() }
+function z27Gap(list,next,score){ var body=zOpen(), tok=Z.tok, i=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden } body.appendChild(zTop('Điền từ · which word fits?',0,null));
+  function show(){ if(!alive()) return; if(i>=list.length) return next(); var g=list[i], done=false, out=h('div',{class:'stack'}), grid=h('div',{class:'z25grid'}), opts=[g.k], tries=0, bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/list.length*100)+'%';
+    while(opts.length<3&&tries++<80){ var o=Z27.keys[Math.floor(Math.random()*Z27.keys.length)]; if(opts.indexOf(o)<0&&(' '+z27Clean(g.s[0])+' ').indexOf(' '+o+' ')<0) opts.push(o) } z7Shuffle(opts);
+    opts.forEach(function(o){ var b=h('button',{class:'z25opt',onclick:function(){ if(done) return; done=true; var ok=o===g.k; if(ok) score.g++; score.gn++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(grid.children,function(x,k){ if(opts[k]===g.k) x.classList.add('good') });
+        out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(g.s[0],22),zPlay(g.s[0])]),h('div',{class:'small muted',text:g.s[1]})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})); zSay(g.s[0]) }},[h('b',{text:o})]); grid.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+list.length+' · pick the missing word'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('div',{class:'vi z27gap',text:g.t}),h('div',{class:'z26en',text:g.s[1]})]),grid,out]) }
+  show() }
+function z27Say(list,next,score){ var body=zOpen(), tok=Z.tok, i=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden } body.appendChild(zTop('Nói · say it in Vietnamese',0,null));
+  function show(){ if(!alive()) return; if(i>=list.length) return next(); var s=list[i], out=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body), btn=h('button',{class:'btn primary wide',text:'I said it · show me',onclick:function(){ btn.remove(); zSay(s[0]);
+      out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(s[0],22),zPlay(s[0])]),h('div',{class:'small muted',text:'Say it once more with the voice.'})]));
+      out.appendChild(h('div',{class:'row'},[h('button',{class:'btn primary',style:'flex:1',text:'I had it',onclick:function(){ score.s++; score.sn++; i++; show() }}),h('button',{class:'btn',style:'flex:1',text:'Not yet',onclick:function(){ score.sn++; i++; show() }})])) }}); if(bar) bar.style.width=Math.round(i/list.length*100)+'%';
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+list.length+' · say it out loud first'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('h1',{style:'font-size:24px',text:s[1]})]),btn,out]) }
+  show() }
+function z27Gaps(u){ var out=[], keys=u.key.slice().sort(function(a,b){ return b.length-a.length }); u.ex.concat(u.w.map(function(w){ return [w[2],w[3]] })).forEach(function(s){ if(!s[0]) return; var ws=s[0].split(/\s+/), cl=ws.map(z27Clean);
+    for(var ki=0;ki<keys.length;ki++){ var kt=keys[ki].split(' '); for(var p=0;p+kt.length<=cl.length;p++){ var hit=true; for(var q=0;q<kt.length;q++) if(cl[p+q]!==kt[q]){ hit=false; break }
+        if(hit&&cl.length>kt.length){ var last=ws[p+kt.length-1], tail=(last.match(/[.,!?…:;]+$/)||[''])[0]; out.push({s:s,k:keys[ki],t:ws.slice(0,p).concat(['____'+tail]).concat(ws.slice(p+kt.length)).join(' ')}); return } } } });
+  return out }
+function z27Unit(ui){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:0,g:0,gn:0,s:0,sn:0}, all=u.ex.concat(u.w.map(function(w){ return [w[2],w[3]] })).filter(function(s){ return s[0]&&s[1] });
+  var ord=z7Shuffle(all.filter(function(s){ var n=s[0].split(/\s+/).length; return n>=3&&n<=7 })).slice(0,4), gaps=z7Shuffle(z27Gaps(u)).slice(0,5), say=z7Shuffle(u.ex.slice()).slice(0,4);
+  function fin(){ var k=z27St(); k.d[u.id]={t:Date.now(),o:sc.o,on:sc.on,g:sc.g,gn:sc.gn,s:sc.s,sn:sc.sn}; tick(); save(); Z27.rd=''; z27Rot(); Z13.lvT=0;
+    var body=zOpen(), last=ui>=Z27.units.length-1; body.appendChild(zTop('Nền tảng · core course',1,null));
+    body.appendChild(h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Unit '+(ui+1)+' of '+Z27.units.length+' done'}),h('h1',{text:'Xong! '+u.vi}),h('p',{class:'muted',text:'Order '+sc.o+'/'+sc.on+' · missing word '+sc.g+'/'+sc.gn+' · said '+sc.s+'/'+sc.sn+'. The '+u.w.length+' words are now in your cards and will come back in new sentences.'})]));
+    body.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
+    body.appendChild(h('button',{class:'btn primary wide',text:'Review the new words now',onclick:function(){ fcSession(function(){ closeSheet(); zRenderHome() },20) }}));
+    if(!last) body.appendChild(h('button',{class:'btn wide',text:'Go on to unit '+(ui+2),onclick:function(){ z27Unit(ui+1) }}));
+    body.appendChild(h('button',{class:'btn wide',text:'That is enough for today',onclick:function(){ closeSheet(); zRenderHome() }})) }
+  z27Gram(u,ui,function(){ z26Learn(u.w.map(function(w){ return [w[0],w[1]] }),function(){ z27Order(ord,function(){ z27Gap(gaps,function(){ z27Say(say,fin,sc) },sc) },sc) },'Từ mới · the words for this unit') }) }
+function z27List(){ var body=zOpen(), k=z27St(), cur=z27Idx(); body.appendChild(zTop('Nền tảng · core course',0,null));
+  var kids=[h('h1',{text:'All units'}),h('p',{class:'small muted',text:'Each unit is one piece of grammar and the common words that go with it. Do them in order; tap any unit to open it or do it again.'})], lv='';
+  Z27.units.forEach(function(u,ui){ if(u.lv!==lv){ lv=u.lv; kids.push(h('span',{class:'lbl',text:'Level '+lv})) } var d=k.d[u.id];
+    kids.push(h('button',{class:'panel z27row'+(d?' done':'')+(ui===cur?' cur':''),onclick:function(){ z27Unit(ui) }},[h('span',{class:'z13lvn',text:d?'✓':String(ui+1)}),h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:u.vi}),h('div',{class:'small muted',text:u.en+' · '+u.w.length+' words'})])])) });
+  zSwap(body,kids) }
+function z27Card(){ var n=Z27.units.length, i=z27Idx(), k=z27St(), box=h('div',{class:'panel z12plan z27card',id:'z27'});
+  var dots=h('div',{class:'z26dots',role:'img','aria-label':'Unit '+Math.min(i+1,n)+' of '+n}); Z27.units.forEach(function(x,q){ dots.appendChild(h('i',{class:k.d[x.id]?'on':(q===i?'now':'')})) });
+  if(!z27Snd()){ var vn=vanNext(); box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course'})); box.appendChild(h('h2',{text:'Âm trước · sounds first'}));
+    box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'The tones and the vowel pairs come before grammar, so you can hear what is being said. '+vanDoneCount()+' of the first 8 sound lessons done.'}));
+    box.appendChild(h('button',{class:'btn primary wide',text:'Next sound lesson'+(vn?' · '+vn.t:''),onclick:function(){ if(vn) vanOpen(vn,function(){ closeSheet(); zRenderHome() }); else location.hash='van' }}));
+    box.appendChild(h('button',{class:'x z25ov',text:'I already know the tones and vowel pairs · open the course',onclick:function(){ k.snd=1; save(); zRenderHome() }})); return box }
+  if(i>=n){ box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course'})); box.appendChild(dots); box.appendChild(h('h2',{text:'All '+n+' units done'})); box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'More units are being added. Until then, redo any unit; the words keep coming back in your cards.'})); box.appendChild(h('button',{class:'btn wide',text:'All units',onclick:z27List})); return box }
+  var u=Z27.units[i]; box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course · '+u.lv+' · unit '+(i+1)+' of '+n})); box.appendChild(dots); box.appendChild(h('h2',{text:u.vi}));
+  box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:u.en+'. One piece of grammar, '+u.w.length+' common words, three short drills. About 12 minutes.'}));
+  box.appendChild(h('button',{class:'btn primary wide',id:'z27-start',text:'Bắt đầu · start unit '+(i+1),onclick:function(){ z27Unit(i) }}));
+  box.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
+  box.appendChild(h('div',{class:'row between'},[h('button',{class:'x z25ov',text:'All units',onclick:z27List}),h('button',{class:'x z25ov',text:'I know this · skip the unit',onclick:function(){ k.d[u.id]={t:Date.now(),skip:1}; save(); Z27.rd=''; z27Rot(); zRenderHome() }})])); return box }
+var zRenderHome27=zRenderHome; zRenderHome=function(){ zRenderHome27(); try{ if(!Z27||!Z27.on||z26On()) return; var el=$('#z-home'); if(!el||el.querySelector('#z27')) return; z27Rot(); var at=el.querySelector('#z-plan'); el.insertBefore(z27Card(),at&&at.parentNode===el?at:el.firstChild) }catch(e){} };
+var z8RenderPrac27=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac27(); try{ if(!Z27||!Z27.on) return; var el=$('#z-prac'), g=el&&el.querySelector('.setgrid'); if(!g) return; var i=z27Idx(), n=Z27.units.length;
+  g.insertBefore(h('button',{class:'settile gt1',onclick:z27List},[h('b',{text:'Nền tảng · Core course'}),h('span',{class:'small muted',text:i>=n?'All '+n+' units done':'Unit '+(i+1)+' of '+n+' · grammar and the most common words'})]),g.firstChild) }catch(e){} };
