@@ -568,6 +568,20 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z13k.y:before{background:#B5432B}
 :root[data-theme="dark"] .z13graph{background:#F3EADB;color:#2B1D14}
 :root[data-theme="dark"] .z13graph .muted{color:#6A5544}
+/* 13b */
+.z13lvrow{display:flex;gap:12px;align-items:flex-start}
+.z13lvrow.lock{opacity:.55}
+.z13lvn{flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font:700 15px var(--serif);background:var(--sun);color:#2B1D14}
+.z13lvrow.lock .z13lvn{background:var(--surface);color:var(--ink)}
+.z13bar{height:6px;border-radius:3px;background:var(--surface2);margin-top:6px;overflow:hidden}
+.z13bar i{display:block;height:100%;background:var(--accent)}
+.z13opt,.z13pick{justify-content:flex-start!important;text-align:left;font-weight:500;white-space:normal;height:auto;padding:12px 14px}
+.z13opt.good{background:color-mix(in srgb,var(--good) 22%,var(--surface));border-color:var(--good)}
+.z13opt.bad{background:color-mix(in srgb,var(--bad) 18%,var(--surface));border-color:var(--bad)}
+.z13big{width:84px!important;height:84px!important}
+.z13ms textarea,.panel textarea{width:100%;box-sizing:border-box;font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.z13can{gap:8px;padding:14px}
+.z13nudge{transform:none}
 </style>
 
 <div class="wrap" id="app">
@@ -3257,7 +3271,7 @@ zRenderHome=function(){ var el=$('#z-home'); if(!el) return; el.innerHTML=''; z1
 
 /* ---- Nói lại: see the English, say the Vietnamese sentence ---- */
 function z12Pool(){ var ids={}; Object.keys(S.fc||{}).forEach(function(k){ ids[k.split('|')[0]]=1 }); var seen=[], rest=[]; FC.forEach(function(c){ if(!c.xv||!c.xe) return; (ids[c.id]?seen:rest).push(c) }); return {seen:seen,rest:rest} }
-function z12Recall(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||8, P=z12Pool(), q=z7Shuffle(P.seen.slice()).slice(0,N); if(q.length<N) q=q.concat(P.rest.slice(0,N-q.length)); var i=0, got=0, total=q.length, redo={};
+function z12Recall(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||8, P=z12Pool(), q=z13RcPick(P,N); var i=0, got=0, total=q.length, redo={};
   function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
   function fin(){ if(onDone) onDone(); else closeSheet() }
   body.appendChild(zTop('Nói lại · English to Vietnamese',0,onDone?null:['Practice',function(){ closeSheet(); location.hash='prac' }]));
@@ -3267,7 +3281,7 @@ function z12Recall(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||8, P=z12Pool(), 
     var say=null, showb=null;
     function reveal(res){ if(say) say.remove(); if(showb) showb.remove(); out.innerHTML=''; if(res){ try{ var j=zJudge(c.xv,res,{},false); heard.textContent=j.heard||'(nothing heard)'; out.appendChild(zHeardView(c.xv,res,j)) }catch(e){} }
       out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:'The sentence'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c.xv,24),zPlay(c.xv)]),h('div',{class:'small muted',text:c.vi+' · '+c.en})]));
-      out.appendChild(h('div',{class:'row z12two'},[h('button',{class:'btn',text:'Not yet',onclick:function(){ if(!redo[c.id]){ redo[c.id]=1; q.push(c) } i++; show() }}),h('button',{class:'btn primary',text:'Got it',onclick:function(){ if(!redo[c.id]) got++; i++; show() }})]));
+      out.appendChild(h('div',{class:'row z12two'},[h('button',{class:'btn',text:'Not yet',onclick:function(){ if(!redo[c.id]){ redo[c.id]=1; q.push(c); z13RcGrade(c.id,false) } i++; show() }}),h('button',{class:'btn primary',text:'Got it',onclick:function(){ if(!redo[c.id]){ got++; z13RcGrade(c.id,true) } i++; show() }})]));
       zSay(c.xv) }
     if(zMic()) say=h('button',{class:'btn primary wide',text:'Say it now',onclick:function(){ say.disabled=true; say.textContent='Listening…'; zHear(7000,function(t){ heard.textContent=t }).then(function(res){ if(!alive()) return; reveal(res) }) }});
     showb=h('button',{class:'btn wide',text:zMic()?'Show the answer':'I said it · show the answer',onclick:function(){ try{ if(SPEECH.cur) SPEECH.cur.abort() }catch(e){} reveal(null) }});
@@ -3275,7 +3289,7 @@ function z12Recall(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||8, P=z12Pool(), 
   show() }
 
 /* ---- Nghe thôi: listen-only playlist of sentences from cards you have started ---- */
-function z12Playlist(){ var body=zOpen(), tok=Z.tok, P=z12Pool(), src=P.seen.length>=8?P.seen:P.seen.concat(P.rest.slice(0,20)), q=z7Shuffle(src.slice()).slice(0,30), i=0, paused=false, showT=false, timer=null, played=0;
+function z12Playlist(){ var body=zOpen(), tok=Z.tok, P=z12Pool(), src=P.seen.length>=8?P.seen:P.seen.concat(P.rest.slice(0,20)), q=z7Shuffle(src.slice()).sort(function(a,b){ var r=S.set.rc13||{}; return ((r[a.id]&&r[a.id].ivl)||0)-((r[b.id]&&r[b.id].ivl)||0) }).slice(0,30), i=0, paused=false, showT=false, timer=null, played=0;
   function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
   body.appendChild(zTop('Nghe thôi · listen only',null,['Practice',function(){ closeSheet(); location.hash='prac' }]));
   if(!q.length){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'No sentences yet. Do a round of cards first.'}),h('button',{class:'btn wide',text:'Done',onclick:closeSheet})])]); return }
@@ -3349,6 +3363,111 @@ function z13Shadow(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||8, P=z12Pool(), 
 (function(){ var st=z12Stops; z12Stops=function(){ var a=st(), m=z12Mins(); if(m===60||m===90){ var td=zTodayDone(), x={k:'sh',t:'Nhại lại',en:'Shadow',min:5,sub:'Copy the voice, hear both, see your tone',done:!!td.sh,run:function(n){ z13Shadow(n,m===90?10:8) }}, at=1; a.forEach(function(s,i){ if(s.k==='van') at=i+1 }); a.splice(at,0,x) } return a } })();
 var z8RenderPrac13=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac13(); var el=$('#z-prac'), g=el&&el.lastChild&&el.lastChild.querySelector('.setgrid'); if(!g) return;
   g.insertBefore(h('button',{class:'settile gt3',onclick:function(){ z13Shadow() }},[h('b',{text:'Nhại lại · Shadow'}),h('span',{class:'small muted',text:'Copy the voice, hear yourself next to it, see your tone'})]),g.firstChild) };
+
+
+/* ===== 13b · levels, own words, sentence review, listening, weekly mission, monthly check ===== */
+function z13Fix(){ ['rc13','lc13','wm13'].forEach(function(k){ if(!S.set[k]||typeof S.set[k]!=='object'||Array.isArray(S.set[k])) S.set[k]={} }); ['chk13','myc13'].forEach(function(k){ if(!Array.isArray(S.set[k])) S.set[k]=[] }) } z13Fix();
+/* ---- levels: words open as you learn ---- */
+var Z13LV=[{t:'Khởi đầu · Start',c:['p75','pat']},{t:'Ăn, đi, ở đâu · Eat, move, places',c:['food','place','move']},{t:'Làm gì, thế nào · Doing and describing',c:['verb','adj']},{t:'Nhà và người · Home and people',c:['home','wear','ppl','time']},{t:'Đời sống · Daily life',c:['money','say','body','job','color','animal']}];
+var Z13CL={}; Z13LV.forEach(function(L,i){ L.c.forEach(function(c){ Z13CL[c]=i+1 }) });
+function z13Started(c){ return !!(S.fc[c.id+'|l']||S.fc[c.id+'|p']) }
+function z13LvStat(n){ var cats=Z13LV[n-1].c, t=0, l=0, d=fcDirs(); FC.forEach(function(c){ if(cats.indexOf(c.c)<0||S.set.fcoff[c.c]) return; t++; var all=true; d.forEach(function(k){ var st=S.fc[c.id+'|'+k]; if(!(st&&st.ivl>=1)) all=false }); if(all) l++ }); return {total:t,learned:l} }
+function z13Level(){ var now=Date.now(); if(Z13.lvT&&now-Z13.lvT<1500) return Z13.lv; var lv=1; while(lv<Z13LV.length){ var st=z13LvStat(lv); if(st.total&&st.learned/st.total<0.8) break; lv++ } lv=Math.max(lv,Math.min(Z13LV.length,S.set.lvl||1)); Z13.lv=lv; Z13.lvT=now; return lv }
+var fcOn13=fcOn; fcOn=function(c){ if(!fcOn13(c)) return false; var n=Z13CL[c.c]; return !n||n<=z13Level()||z13Started(c) };
+function z13Mine(){ if(!C7||!FC.length) return; if(!C7.cats.mine) C7.cats.mine=['Từ của tôi','My own words','']; S.set.myc13.forEach(function(w){ if(!FCBY[w.id]){ var c={id:w.id,c:'mine',e:'',vi:w.vi,en:w.en,xv:w.xv||w.vi,xe:w.xe||w.en}; FC.push(c); FCBY[c.id]=c } }) }
+var z7init13=z7init; z7init=function(){ z13Fix(); z7init13(); try{ z13Mine() }catch(e){} };
+function z13AddWord(){ z13Mine(); var body=zOpen(), vi=h('input',{type:'text',placeholder:'Vietnamese word or phrase, with its marks',autocomplete:'off',autocapitalize:'off'}), en=h('input',{type:'text',placeholder:'English meaning',autocomplete:'off'}), xv=h('input',{type:'text',placeholder:'A sentence with it (optional)',autocomplete:'off',autocapitalize:'off'}), xe=h('input',{type:'text',placeholder:'That sentence in English (optional)',autocomplete:'off'}), msg=h('p',{class:'small muted',text:'Your word goes straight into your cards. It uses the phone voice until your teacher records it, and it is marked as yours so your teacher can check the spelling.'}), list=h('div',{class:'stack'});
+  body.appendChild(zTop('Từ của tôi · my own words',null,['Cards',function(){ closeSheet(); location.hash='fc' }]));
+  function draw(){ list.innerHTML=''; S.set.myc13.slice().reverse().forEach(function(w){ list.appendChild(h('div',{class:'panel fcrow'},[h('div',{style:'flex:1;min-width:0'},[fcViEl(w.vi,20),h('div',{class:'small muted',text:w.en})]),zPlay(w.vi),h('button',{class:'chip',text:'Remove',onclick:function(){ S.set.myc13=S.set.myc13.filter(function(x){ return x.id!==w.id }); var k=FC.indexOf(FCBY[w.id]); if(k>=0) FC.splice(k,1); delete FCBY[w.id]; delete S.fc[w.id+'|l']; delete S.fc[w.id+'|p']; save(); draw() }})])) }) }
+  zSwap(body,[h('div',{class:'panel'},[h('h1',{text:'Add a word you want'}),vi,en,xv,xe,h('button',{class:'btn primary wide',text:'Add to my cards',onclick:function(){ var v=vi.value.normalize('NFC').trim(), e=en.value.trim(); if(!v||!e){ msg.textContent='It needs the Vietnamese and the English.'; return } if(FC.some(function(c){ return c.vi.toLowerCase()===v.toLowerCase() })){ msg.textContent='That one is already in your cards.'; return }
+      S.set.myc13.push({id:'my'+Date.now().toString(36),vi:v,en:e,xv:xv.value.normalize('NFC').trim(),xe:xe.value.trim(),t:Date.now()}); z13Mine(); save(); vi.value=en.value=xv.value=xe.value=''; msg.textContent='Added. It will come up with your new cards.'; draw() }}),msg]),h('span',{class:'lbl',text:'Your words'}),list]); draw() }
+function z13LevelPanel(){ var lv=z13Level(), box=h('div',{class:'panel z13lv'},[z12Head('Cấp độ','Levels')]);
+  box.appendChild(h('p',{class:'small muted',text:'New words open level by level. The next level opens on its own when you have learned 80% of the one before.'}));
+  Z13LV.forEach(function(L,i){ var n=i+1, st=z13LvStat(n), open=n<=lv, pct=st.total?Math.round(st.learned/st.total*100):0;
+    box.appendChild(h('div',{class:'z13lvrow'+(open?'':' lock')},[h('span',{class:'z13lvn',text:String(n)}),h('div',{style:'flex:1;min-width:0'},[h('b',{text:L.t}),h('div',{class:'small muted',text:open?(st.learned+' of '+st.total+' learned'):'Locked · '+st.total+' words'}),h('div',{class:'z13bar'},[h('i',{style:'width:'+pct+'%'})])])])) });
+  if(lv<Z13LV.length) box.appendChild(h('button',{class:'btn wide',text:'Go faster · open level '+(lv+1)+' now',onclick:function(){ S.set.lvl=lv+1; Z13.lvT=0; save(); fcRender(); zRenderHome() }}));
+  var per=h('div',{class:'row'}); [5,10,15,25].forEach(function(n){ per.appendChild(h('button',{class:'chip','aria-pressed':String(S.set.fcn===n),text:n+' a day',onclick:function(){ S.set.fcn=n; save(); fcRender() }})) });
+  box.appendChild(h('div',{class:'row between'},[h('span',{class:'small',text:'New words'}),per]));
+  box.appendChild(h('button',{class:'btn wide',text:'Add my own word',onclick:z13AddWord}));
+  return box }
+var fcRender13=fcRender; fcRender=function(){ try{ z13Mine() }catch(e){} fcRender13(); var el=$('#z-fc'); if(el&&el.children.length) el.insertBefore(z13LevelPanel(),el.children[1]||null) };
+
+/* ---- sentence review on a schedule ---- */
+function z13RcPick(P,N){ var now=Date.now(), rc=S.set.rc13, due=[], fresh=[]; P.seen.forEach(function(c){ var s=rc[c.id]; if(!s) fresh.push(c); else if(s.due<=now) due.push(c) }); due.sort(function(a,b){ return rc[a.id].due-rc[b.id].due });
+  var q=due.slice(0,N); if(q.length<N) q=q.concat(z7Shuffle(fresh).slice(0,N-q.length));
+  if(q.length<N) q=q.concat(P.seen.filter(function(c){ return q.indexOf(c)<0 }).sort(function(a,b){ return rc[a.id].due-rc[b.id].due }).slice(0,N-q.length));
+  if(q.length<N) q=q.concat(P.rest.filter(fcOn).slice(0,N-q.length)); return q }
+function z13RcGrade(id,ok){ var s=S.set.rc13[id]||{ivl:0,n:0}; s.n++; if(ok){ s.ivl=s.ivl?Math.min(120,Math.round(s.ivl*24)/10):1; s.due=Date.now()+s.ivl*DAY } else { s.ivl=0; s.due=Date.now()+600000 } S.set.rc13[id]=s; save() }
+function z13RcDue(){ var now=Date.now(), n=0; for(var k in S.set.rc13) if(S.set.rc13[k].due<=now&&FCBY[k]) n++; return n }
+
+/* ---- Nghe hiểu: hear a sentence, pick what it means ---- */
+function z13Listen(onDone,n,cb){ var body=zOpen(), tok=Z.tok, N=n||10, P=z12Pool(), has=function(c){ return !AUD.idx||!AUD.idx.clips||S.set.src==='phone'||AUD.idx.clips[c.xv] }, all=P.seen.concat(P.rest.filter(fcOn)).filter(has), seenN=P.seen.filter(has).length;
+  var pool=(seenN>=N?all.slice(0,seenN):all.slice(0,Math.max(N*3,seenN))), q=z7Shuffle(pool.slice()).sort(function(a,b){ var x=S.set.lc13[a.id]||{}, y=S.set.lc13[b.id]||{}; return ((y.m||0)-(x.m||0))||((x.n||0)-(y.n||0)) }).slice(0,N), i=0, right=0;
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  function fin(){ if(cb) cb(right,q.length); else if(onDone) onDone(); else closeSheet() }
+  body.appendChild(zTop('Nghe hiểu · listen and understand',0,(onDone||cb)?null:['Practice',function(){ closeSheet(); location.hash='prac' }]));
+  if(q.length<3){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'Not enough sentences yet. Do a round of cards first.'}),h('button',{class:'btn wide',text:'Done',onclick:fin})])]); return }
+  function end(){ zDay('lc'); tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Round done'}),h('div',{class:'score',text:right+' / '+q.length}),h('p',{class:'muted',text:'understood by ear, no text. The ones you missed come back first next time.'}),h('button',{class:'btn primary wide',text:(onDone||cb)?'Next part':'Done',onclick:fin}),cb?null:h('button',{class:'btn wide',text:'Go again',onclick:function(){ z13Listen(onDone,N) }})])]) }
+  function show(){ if(!alive()) return; if(i>=q.length) return end(); var c=q[i], bar=$('.sess-top .bar i',body), out=h('div',{class:'stack'}), opts=[c], tries=0, answered=false; if(bar) bar.style.width=Math.round(i/q.length*100)+'%';
+    while(opts.length<3&&tries++<60){ var o=all[Math.floor(Math.random()*all.length)]; if(!opts.some(function(x){ return x.xe===o.xe })) opts.push(o) } opts.sort(function(){ return Math.random()-.5 }); var at=Math.floor(Math.random()*opts.length), ci=opts.indexOf(c); opts[ci]=opts[at]; opts[at]=c;
+    var list=h('div',{class:'stack'}); opts.forEach(function(o){ var b=h('button',{class:'btn wide z13opt',text:o.xe,onclick:function(){ if(answered) return; answered=true; var ok=o===c, s=S.set.lc13[c.id]||{n:0,m:0}; s.n++; s.m=ok?0:1; S.set.lc13[c.id]=s; if(ok) right++; b.classList.add(ok?'good':'bad'); if(!ok) [].forEach.call(list.children,function(x,k){ if(opts[k]===c) x.classList.add('good') });
+        out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:ok?'Right':'It said'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(c.xv,22),zPlay(c.xv)]),h('div',{class:'small muted',text:c.xe})])); out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})); save() }}); list.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+q.length+' · what did you hear?'}),h('div',{class:'panel',style:'align-items:center'},[h('button',{class:'play z13big','aria-label':'Play it again',html:PLAY_ICON,onclick:function(){ zSay(c.xv) }}),h('span',{class:'small muted',text:'Tap to hear it again'})]),list,out]);
+    setTimeout(function(){ if(alive()) zSay(c.xv) },300) }
+  show() }
+
+/* ---- weekly mission ---- */
+var Z13MS=[['Order a drink or a meal fully in Vietnamese and ask one follow-up question: how much, what is good, less sugar.','Order in Vietnamese at a Vietnamese restaurant or shop near you. None nearby? Do the whole order out loud on a call with your teacher or a friend.'],
+ ['Ask someone for directions and say back what they told you.','Send a 30-second voice message in Vietnamese to a friend or your teacher about your day.'],
+ ['Have a two-minute chat with a driver, a barista or a neighbour: where they are from, how long they have lived here.','A 10-minute call with a Vietnamese friend or tutor. No English for the first five minutes.'],
+ ['Buy something at a market, ask the price and say the number back.','Watch 10 minutes of a Saigon vlog, write down five words you caught, and say each one in a sentence out loud.'],
+ ['Introduce yourself to one new person.','Record a one-minute introduction of yourself and send it to your teacher.'],
+ ['Ask a local to teach you one new word, and use it the same day.','Teach a friend or family member five Vietnamese words, saying each one clearly.'],
+ ['Book or ask for something by phone or voice message: a haircut, a delivery, a table.','Leave a Vietnamese voice message for a friend making a plan for when you are back.'],
+ ['Tell someone what you did last weekend.','Record yourself telling what you did last weekend, then listen back once.'],
+ ['Say something nice about someone\'s food or shop and keep the chat going for three turns.','Shadow one minute of a Saigon video, three times through.']];
+function z13WeekKey(){ var d=new Date(), dow=(d.getDay()+6)%7; return dayKey(new Date(d.getTime()-dow*DAY)) }
+function z13Mission(){ var wk=z13WeekKey(), m=S.set.wm13[wk]||{}, any=S.set.msm==='any', w=Math.floor(new Date(wk).getTime()/(7*DAY)), box=h('div',{class:'panel z13ms',id:'z13-ms'},[z12Head('Nhiệm vụ tuần này','This week\'s mission')]);
+  if(m.done){ box.appendChild(h('p',{text:Z13MS[m.i][m.any?1:0]})); box.appendChild(h('p',{class:'z12wkn',text:'Done this week.'+(m.note?' Your note: '+m.note:'')})); return box }
+  box.appendChild(h('div',{class:'row'},[h('button',{class:'chip','aria-pressed':String(!any),text:'In Vietnam',onclick:function(){ S.set.msm='vn'; save(); zRenderHome() }}),h('button',{class:'chip','aria-pressed':String(any),text:'Anywhere',onclick:function(){ S.set.msm='any'; save(); zRenderHome() }})]));
+  if(typeof m.i==='number'){ var note=h('textarea',{rows:'2',placeholder:'How did it go? One line is enough.'}); box.appendChild(h('p',{text:Z13MS[m.i][any?1:0]}));
+    box.appendChild(note); box.appendChild(h('div',{class:'row z12two'},[h('button',{class:'btn',text:'Pick another',onclick:function(){ delete S.set.wm13[wk]; save(); zRenderHome() }}),h('button',{class:'btn primary',text:'I did it',onclick:function(){ S.set.wm13[wk]={i:m.i,any:any,done:Date.now(),note:note.value.trim().slice(0,300)}; tick(); save(); zRenderHome() }})])); return box }
+  box.appendChild(h('p',{class:'small muted',text:'One real-life task a week. Pick one of three.'}));
+  [0,1,2].forEach(function(k){ var idx=(w*3+k)%Z13MS.length; box.appendChild(h('button',{class:'btn wide z13pick',text:Z13MS[idx][any?1:0],onclick:function(){ S.set.wm13[wk]={i:idx}; save(); zRenderHome() }})) }); return box }
+
+/* ---- monthly check ---- */
+var Z13CAN=['Greet someone, say my name and where I am from','Order food and drink and ask the price','Understand prices and numbers at normal speed','Give a driver directions: left, right, stop here','Say what I did yesterday and what I will do tomorrow','Ask what, where, when, how much, and understand the answer','Hear the difference between the tones in single words','Chat for two minutes without switching to English','Get the gist when two locals talk slowly','Read a simple menu or sign out loud with the right tones'];
+function z13CheckDue(){ var last=S.set.chk13.length?S.set.chk13[S.set.chk13.length-1].t:0; return Date.now()-last>28*DAY }
+function z13Check(){ var body=zOpen(), tok=Z.tok, R={t:Date.now(),can:[],lis:null,rec:false};
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  function top(b,frac){ b.innerHTML=''; b.appendChild(zTop('Kiểm tra hằng tháng · monthly check',frac,null)) }
+  function finish(){ var d=fcDirs(), words=0, sent=0, mins=0, k; FC.forEach(function(c){ if(d.every(function(x){ var st=S.fc[c.id+'|'+x]; return st&&st.ivl>=1 })) words++ }); for(k in S.set.rc13) if(S.set.rc13[k].ivl>=1) sent++; for(k in S.d6) if(Date.now()-new Date(k).getTime()<30*DAY) mins+=Math.round((S.d6[k].sec||0)/60)+(S.d6[k].out||0);
+    R.words=words; R.sent=sent; R.mins=mins; var prev=S.set.chk13.length?S.set.chk13[S.set.chk13.length-1]:null; S.set.chk13.push(R); tick(); save(); var b=zOpen(); top(b,1);
+    function sum(x){ return x.can.reduce(function(a,v){ return a+v },0) } function row(l,now,was){ return h('div',{class:'row between'},[h('span',{text:l}),h('b',{text:now+(was!==null&&was!==undefined?'  (last time '+was+')':'')})]) }
+    b.appendChild(h('div',{class:'panel'},[h('span',{class:'lbl',text:'Saved'}),h('h1',{text:'Your check for '+new Date(R.t).toLocaleDateString()}),row('Can do',sum(R)+' / '+Z13CAN.length*2,prev?sum(prev)+' / '+Z13CAN.length*2:null),row('Understood by ear',R.lis?R.lis[0]+' / '+R.lis[1]:'skipped',prev&&prev.lis?prev.lis[0]+' / '+prev.lis[1]:null),row('Words learned',words,prev?prev.words:null),row('Sentences you can say',sent,prev?prev.sent:null),row('Time in the last 30 days',z12Time(mins),prev?z12Time(prev.mins||0):null),h('p',{class:'small muted',text:R.rec?'Your speaking sample is saved. Find it on the Progress tab and play it next to last month\'s.':'No speaking sample this time.'}),h('button',{class:'btn primary wide',text:'Done',onclick:function(){ closeSheet(); try{ z8RenderProg(); zRenderHome() }catch(e){} }})])) }
+  function speak(){ var b=zOpen(); tok=Z.tok; top(b,.7); var mr=null, chunks=[], t0=0, timer=null, clock=h('div',{class:'score',text:'0:00'}), btn=h('button',{class:'btn primary wide',text:'Start recording'}), msg=h('p',{class:'small muted',text:'Up to two minutes. Do not prepare. Stop whenever you run out.'});
+    function stop(){ clearInterval(timer); try{ if(mr&&mr.state!=='inactive') mr.stop() }catch(e){} }
+    btn.onclick=function(){ if(mr){ stop(); return } (SPEECH.stream?Promise.resolve():micOn().then(function(){ try{ renderMic() }catch(e){} })).then(function(){ chunks=[]; mr=new MediaRecorder(SPEECH.stream); mr.ondataavailable=function(e){ if(e.data&&e.data.size) chunks.push(e.data) };
+        mr.onstop=function(){ var blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); zRecSave({kind:'check',ref:'check',lv:0,target:'Monthly speaking sample',prompt:'Talk about yourself for up to two minutes',heard:'',score:0,ok:true,ms:0},blob).then(function(){ R.rec=!!blob.size; finish() }) };
+        mr.start(); t0=Date.now(); btn.textContent='Stop and save'; timer=setInterval(function(){ var s=Math.floor((Date.now()-t0)/1000); clock.textContent=Math.floor(s/60)+':'+('0'+s%60).slice(-2); Z12.act=Date.now(); if(s>=120||!alive()) stop() },500) },function(){ msg.textContent='The microphone is not allowed here. You can skip this part.' }) };
+    b.appendChild(h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Part 3 of 3 · speaking sample'}),h('h1',{text:'Talk about yourself'}),h('p',{class:'muted',text:'In Vietnamese: who you are, where you live, what you did this week, what you will do tomorrow. Anything you can say.'}),clock,btn,msg,h('button',{class:'btn wide',text:'Skip this part',onclick:function(){ stop(); mr=null; finish() }})])) }
+  function cando(){ top(body,.1); var vals=Z13CAN.map(function(){ return 0 }), list=h('div',{class:'stack'}); Z13CAN.forEach(function(t,k){ var r=h('div',{class:'row'}); ['Not yet','With effort','Easily'].forEach(function(l,v){ r.appendChild(h('button',{class:'chip','aria-pressed':String(v===0),text:l,onclick:function(){ vals[k]=v; [].forEach.call(r.children,function(x,j){ x.setAttribute('aria-pressed',String(j===v)) }) }})) }); list.appendChild(h('div',{class:'panel z13can'},[h('b',{text:t}),r])) });
+    body.appendChild(h('span',{class:'lbl',text:'Part 1 of 3 · what can you do today?'})); body.appendChild(h('p',{class:'muted',text:'Be honest. This is for you and your teacher, so you can see the change month to month.'})); body.appendChild(list);
+    body.appendChild(h('button',{class:'btn primary wide',text:'Next · listening',onclick:function(){ R.can=vals; z13Listen(null,10,function(r,t){ R.lis=[r,t]; speak() }) }})) }
+  top(body,0); body.appendChild(h('div',{class:'panel'},[h('h1',{text:'Monthly check'}),h('p',{class:'muted',text:'About ten minutes, once a month. Three parts: what you can do, ten sentences by ear, and a two-minute speaking sample. It saves the result so you can see real change.'}),h('button',{class:'btn primary wide',text:'Start',onclick:cando})])) }
+function z13CheckPanel(){ var box=h('div',{class:'panel'},[z12Head('Kiểm tra hằng tháng','Monthly check')]); function sum(x){ return x.can.reduce(function(a,v){ return a+v },0) }
+  if(!S.set.chk13.length) box.appendChild(h('p',{class:'small muted',text:'Do the first one now. It is your starting line.'}));
+  S.set.chk13.slice(-6).forEach(function(x){ box.appendChild(h('div',{class:'row between small'},[h('b',{text:new Date(x.t).toLocaleDateString()}),h('span',{text:'Can do '+sum(x)+'/'+Z13CAN.length*2+' · By ear '+(x.lis?x.lis[0]+'/'+x.lis[1]:'–')+' · '+x.words+' words · '+(x.sent||0)+' sentences'})])) });
+  var recs=h('div',{class:'stack'}); box.appendChild(recs); try{ zRecAll().then(function(all){ all.filter(function(r){ return r.kind==='check'&&r.blob }).slice(0,6).forEach(function(r){ var a=h('audio',{controls:'controls',preload:'none',style:'width:100%'}); try{ a.src=URL.createObjectURL(r.blob) }catch(e){} recs.appendChild(h('div',{},[h('div',{class:'small muted',text:'Speaking sample · '+new Date(r.t).toLocaleDateString()}),a])) }) }) }catch(e){}
+  box.appendChild(h('button',{class:'btn'+(z13CheckDue()?' primary':'')+' wide',text:S.set.chk13.length?'Do this month\'s check':'Do the first check',onclick:z13Check})); return box }
+var z8RenderProg13=z8RenderProg; z8RenderProg=function(){ z8RenderProg13(); var el=$('#z-prog'); if(el) el.insertBefore(z13CheckPanel(),el.firstChild) };
+
+/* ---- wire into Today, routes, Practice ---- */
+(function(){ var st=z12Stops; z12Stops=function(){ var a=st(), m=z12Mins(), td=zTodayDone(); a.forEach(function(s){ if(s.k==='rc'){ var d=z13RcDue(); s.sub=d?d+' due for review':'See the English, say the whole sentence' } }); if(m!==10) a.splice(1,0,{k:'lc',t:'Nghe hiểu',en:'Listen and understand',min:4,sub:'Hear a sentence, pick what it means',done:!!td.lc,run:function(n){ z13Listen(n,m===30?8:10) }}); return a } })();
+var zRenderHome13=zRenderHome; zRenderHome=function(){ zRenderHome13(); var el=$('#z-home'), out=$('#z12-out'); if(!el||!out) return; el.insertBefore(z13Mission(),out);
+  if(z13CheckDue()) el.insertBefore(h('div',{class:'z12slip z13nudge'},[h('span',{class:'z12lbl',text:'Monthly check'}),h('p',{text:S.set.chk13.length?'It has been a month. Ten minutes to see what changed.':'Set your starting line. Ten minutes, once a month.'}),h('button',{class:'chip',text:'Do it now',onclick:z13Check})]),out) };
+var z8RenderPrac13b=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac13b(); var el=$('#z-prac'), g=el&&el.lastChild&&el.lastChild.querySelector('.setgrid'); if(!g) return;
+  g.appendChild(h('button',{class:'settile gt1',onclick:function(){ z13Listen() }},[h('b',{text:'Nghe hiểu · Listen and understand'}),h('span',{class:'small muted',text:'Hear a sentence, pick what it means'})])) };
 
 go(location.hash.slice(1)||'home');
 renderAll();

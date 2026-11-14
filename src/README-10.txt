@@ -41,3 +41,10 @@ VERSION 13a (14 Nov 2026) - shadowing with a tone picture
 - Block "13a" at the end of src/v7/v7.js. z13Shadow(onDone,n): plays the model clip, records you, plays both, draws both pitch lines.
 - z13Pitch: autocorrelation pitch track, shown in semitones around each speaker's own middle, so a low and a high voice can be compared.
 - In the 60 and 90 minute routes (key 'sh') and on the Practice tab.
+
+VERSION 13b (14 Nov 2026) - levels, own words, sentence review, listening, weekly mission, monthly check
+- Block "13b" at the end of src/v7/v7.js.
+- IMPORTANT: the app only saves the top-level keys listed in merge(). New data therefore lives inside S.set:
+  S.set.rc13 (sentence review), S.set.lc13 (listening), S.set.wm13 (weekly mission), S.set.chk13 (monthly checks), S.set.myc13 (own words), S.set.lvl (level opened by hand).
+- Levels: Z13LV lists the decks in each level. A level opens at 80% learned of the one before (z13Level). fcOn is wrapped; cards already started stay on.
+- New words to reach about 1,200 go in as levels 6 and up: add cards to content7 and a row to Z13LV.
