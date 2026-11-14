@@ -928,3 +928,76 @@ function z24Extra(onPhoto){ var box=h('div',{class:'stack z24'}), area=h('div',{
   box.appendChild(h('button',{class:'btn wide',text:'Send it from my phone (scan a code)',onclick:phone}));
   if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia) box.appendChild(h('button',{class:'btn wide',text:'Use this computer\'s camera',onclick:cam}));
   box.appendChild(area); return box }
+
+
+/* ===== 25 · easier day, hear-it-mark-it tone drill, mouth guide ===== */
+/* ---- easier today: review only, nothing new ---- */
+function z25Easy(){ return S.set.easy===dayKey() }
+var fcFresh25=fcFresh; fcFresh=function(){ return z25Easy()?[]:fcFresh25() };
+(function(){ var st=z12Stops; z12Stops=function(){ if(!z25Easy()) return st(); var td=zTodayDone(), due=0; try{ due=fcQueue(0).length }catch(e){}
+  return [{k:'ear',t:'Nghe kỹ',en:'Sharp ears',min:3,sub:'Tones and vowels you have met',done:!!td.ear,run:function(n){ zEar10(n) }},
+    {k:'fc',t:'Thẻ',en:'Cards, review only',min:5,sub:due?due+' to review, nothing new':'Nothing due',done:!!td.fc,run:function(n){ fcSession(n,15) }},
+    {k:'sh',t:'Nhại lại',en:'Copy phrases you know',min:5,sub:'Everyday phrases in the real voice',done:!!td.sh,run:function(n){ var p=z7Shuffle(FC.filter(function(c){ return c.c==='p75' }).slice(0,24)).slice(0,8); z13Shadow(n,8,p.map(function(c){ return {id:c.id,vi:c.vi,en:c.en,xv:c.vi,xe:c.en} })) }},
+    {k:'s',t:'Truyện',en:'Reread a story',min:7,sub:'One you have read before',done:!!td.s,run:function(n){ var a=null; try{ a=zOldChapter()||zNextChapter() }catch(e){} if(!a){ if(n) n(); return } zOpenStory(a.s,a.i,n) }}] } })();
+var zRenderHome25=zRenderHome; zRenderHome=function(){ zRenderHome25(); var el=$('#z-home'), sec=el&&el.querySelector('.z12sec'); if(!sec) return;
+  if(z25Easy()) sec.appendChild(h('div',{class:'z12slip z25easy',style:'transform:none'},[h('span',{class:'z12lbl',text:'Easy day'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:'Review only today. Nothing new, about 20 minutes, and it counts toward your six days.'}),h('button',{class:'chip',text:'Back to a normal day',onclick:function(){ S.set.easy=''; save(); zRenderHome() }})]));
+  else sec.appendChild(h('button',{class:'x z25ov',text:'Thấy quá sức? · Feeling overwhelmed? Make today easier',onclick:function(){ S.set.easy=dayKey(); save(); zRenderHome() }})) };
+
+/* ---- where the tone mark goes ---- */
+var Z25V='aăâeêioôơuưy', Z25Q='ăâêôơ';
+function z25Strip(w){ return String(w).normalize('NFD').replace(/[̣́̀̉̃]/g,'').normalize('NFC') }
+function z25Where(b){ var s=b.toLowerCase(), i=0; if(s.slice(0,2)==='qu') i=2; else if(s.slice(0,2)==='gi'&&s.length>2&&Z25V.indexOf(s[2])>=0) i=2; while(i<s.length&&Z25V.indexOf(s[i])<0) i++; var a=i; while(i<s.length&&Z25V.indexOf(s[i])>=0) i++; var e=i, n=e-a, fin=e<s.length, k;
+  if(n<=0) return null; if(s.slice(a,e).indexOf('ươ')>=0) return {at:a+s.slice(a,e).indexOf('ươ')+1,why:'In ươ the mark goes on the ơ.'};
+  for(k=a;k<e;k++) if(Z25Q.indexOf(s[k])>=0) return {at:k,why:'The mark goes on the vowel that already has a hat or a hook ('+s[k]+').'};
+  if(n===1) return {at:a,why:'One vowel, so the mark sits on it.'};
+  if(n===2) return fin?{at:a+1,why:'Two vowels and then a closing consonant: the mark goes on the second vowel.'}:{at:a,why:'Two vowels at the end of the word: the mark goes on the first one.'};
+  return {at:a+1,why:'Three vowels: the mark goes on the middle one.'} }
+function z25Put(b,m){ var w=z25Where(b); if(!w) return b; return (b.slice(0,w.at+1)+m+b.slice(w.at+1)).normalize('NFC') }
+function z25Pool(){ var out=[], seen={}; FC.forEach(function(c){ var w=c.vi; if(!w||/\s/.test(w)||seen[w]) return; if(AUD.idx&&AUD.idx.clips&&!AUD.idx.clips[w]) return; var b=z25Strip(w), t=toneOf(w.toLowerCase()); if(!/^[\p{L}]+$/u.test(w)||!z25Where(b)) return; if(z25Put(b,t?MARKS[t]:'')!==w) return; seen[w]=1; out.push({w:w,b:b,t:t,en:c.en}) }); return out }
+function z25Mark(onDone,n){ var body=zOpen(), tok=Z.tok, N=n||12, M=S.set.mk13||(S.set.mk13={}), pool=z25Pool(), q=z7Shuffle(pool.slice()).sort(function(a,b){ return (M[b.w]||0)-(M[a.w]||0) }).slice(0,N), i=0, right=0, hoi=3, nga=4;
+  TONES.forEach(function(t,k){ if(t.k==='hỏi') hoi=k; if(t.k==='ngã') nga=k });
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden } function fin(){ if(onDone) onDone(); else closeSheet() }
+  body.appendChild(zTop('Nghe rồi bỏ dấu · hear it, mark it',0,onDone?null:['Sounds',function(){ closeSheet(); location.hash='van' }]));
+  if(q.length<4){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'Not enough words with sound yet.'}),h('button',{class:'btn wide',text:'Done',onclick:fin})])]); return }
+  function end(){ zDay('mk'); tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Round done'}),h('div',{class:'score',text:right+' / '+q.length}),h('p',{class:'muted',text:'marks you heard and placed. The ones you missed come back first.'}),h('button',{class:'btn primary wide',text:onDone?'Next part':'Done',onclick:fin}),h('button',{class:'btn wide',text:'Go again',onclick:function(){ z25Mark(onDone,N) }})])]) }
+  function show(){ if(!alive()) return; if(i>=q.length) return end(); var c=q[i], out=h('div',{class:'stack'}), grid=h('div',{class:'z25grid'}), done=false, bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/q.length*100)+'%';
+    TONES.forEach(function(t,k){ var b=h('button',{class:'z25opt',onclick:function(){ if(done) return; done=true; var ok=k===c.t, near=!ok&&((k===hoi&&c.t===nga)||(k===nga&&c.t===hoi)); if(ok||near) right++; M[c.w]=ok?0:(M[c.w]||0)+1; b.classList.add(ok?'good':(near?'near':'bad')); [].forEach.call(grid.children,function(x,j){ if(j===c.t) x.classList.add('good') });
+        var w=z25Where(c.b); out.appendChild(h('div',{class:'panel rf-reveal'},[h('span',{class:'lbl',text:ok?'Right':(near?'Same sound in Saigon, different spelling':'It was')}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[fcViEl(c.w,34),zPlay(c.w)]),h('div',{class:'muted',text:c.en+' · '+TONES[c.t].k}),near?h('p',{class:'small',text:'In Saigon hỏi and ngã sound alike, so your ear cannot tell you which one to write. This word is spelled with '+TONES[c.t].k+'. It has to be learned word by word.'}):null,c.t?h('p',{class:'small muted',text:w.why}):h('p',{class:'small muted',text:'Ngang: level, no mark.'})]));
+        out.appendChild(h('button',{class:'btn primary wide',text:'Next',onclick:function(){ i++; show() }})); save() }},[h('b',{text:z25Put(c.b,k?MARKS[k]:'')}),h('span',{text:t.k})]); grid.appendChild(b) });
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+q.length+' · which mark did you hear?'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('button',{class:'play z13big','aria-label':'Hear it again',html:PLAY_ICON,onclick:function(){ zSay(c.w) }}),h('div',{class:'z25base',text:c.b}),h('span',{class:'small muted',text:'The word with no tone mark. Tap to hear it again.'})]),grid,out]); setTimeout(function(){ if(alive()) zSay(c.w) },300) }
+  show() }
+
+/* ---- mouth guide (app notes, not yet checked by a teacher) ---- */
+var Z25L={open:[16,18],wide:[22,13],spread:[23,6],round:[8,8],roundopen:[12,15],relax:[15,9]};
+function z25Lips(a,b){ function one(k,x){ var d=Z25L[k]; return '<ellipse cx="'+x+'" cy="24" rx="'+(d[0]+4)+'" ry="'+(d[1]+4)+'" fill="#D9605C" stroke="#1B1230" stroke-width="1.6"/><ellipse cx="'+x+'" cy="24" rx="'+d[0]+'" ry="'+d[1]+'" fill="#3A1420"/>'+(d[1]>9?'<rect x="'+(x-d[0]*.6)+'" y="'+(24-d[1])+'" width="'+(d[0]*1.2)+'" height="4" rx="2" fill="#fff"/>':'') }
+  return h('div',{class:'z25lips','aria-hidden':'true',html:'<svg viewBox="0 0 '+(b?130:60)+' 48">'+one(a,30)+(b?'<path d="M62 24 h12 m-5 -5 l5 5 -5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'+one(b,100):'')+'</svg>'}) }
+var Z25M=[
+ {k:'a',ex:'cá',s:['open'],ids:['aaa'],t:'Jaw drops, mouth wide open, tongue low and flat. A long sound.'},
+ {k:'ă',ex:'ăn',s:['open'],ids:['aaa'],t:'The same mouth as a, but short and clipped. It always needs a letter after it.'},
+ {k:'â',ex:'sân',s:['relax'],ids:['aaa'],t:'A short, relaxed “uh”. Jaw only half open. Think of ơ said quickly.'},
+ {k:'e',ex:'xe',s:['wide'],ids:['eei'],t:'An open “eh”, like in “bed”. Jaw fairly low, lips pulled wide.'},
+ {k:'ê',ex:'tên',s:['spread'],ids:['eei'],t:'Tighter than e, like the start of “day”, but hold it still. Do not slide to “ee”.'},
+ {k:'i · y',ex:'đi',s:['spread'],ids:['eei'],t:'Lips wide in a smile, tongue high and forward: “ee”.'},
+ {k:'o',ex:'có',s:['roundopen'],ids:['ooo'],t:'An open “aw”, like in “law”. Lips round, jaw drops.'},
+ {k:'ô',ex:'cô',s:['round'],ids:['ooo'],t:'A closed “oh”. Lips round and pushed forward. Keep it still, no slide to “oo”.'},
+ {k:'ơ',ex:'phở',s:['relax'],ids:['ooo'],t:'“Uh” with relaxed lips, not rounded. It is ô with the lips let go.'},
+ {k:'u',ex:'bún',s:['round'],ids:['u','ua'],t:'“oo” with small, tight, round lips. Tongue pulled back.'},
+ {k:'ư',ex:'thư',s:['spread'],ids:['u','uo'],t:'Say “oo”, keep your tongue exactly where it is, and pull your lips into a smile. The sound stays at the back of the mouth; only the lips change.'},
+ {k:'iê · ia',ex:'bia',s:['spread','relax'],ids:['ie','uye'],t:'Start on a clear i with a smile, then let the mouth relax open toward “uh”. One smooth slide. Spelled ia at the end of a word, iê when a letter follows.'},
+ {k:'ươ · ưa',ex:'mưa',s:['spread','relax'],ids:['uo'],t:'Start on ư (smile, tongue back), then relax open toward ơ. Spelled ưa at the end of a word, ươ when a letter follows.'},
+ {k:'uô · ua',ex:'mua',s:['round','relax'],ids:['ua'],t:'Start on u with round lips, then relax them open toward “uh”. Spelled ua at the end of a word, uô when a letter follows.'},
+ {k:'ai · ay · ây',ex:'hai',s:['open','spread'],ids:['ai'],t:'ai: a long a, then slide up to i. ay: a short a and a quick slide. ây: start from “uh” and slide up quickly.'},
+ {k:'ao · au · âu',ex:'sao',s:['open','round'],ids:['ao'],t:'ao: a long a that closes to o, lips round at the end. au: a short a, quick. âu: start from “uh”, lips round quickly.'},
+ {k:'oi · ôi · ơi · ui · ưi',ex:'tôi',s:['round','spread'],ids:['oi'],t:'Say the first vowel fully, then slide the tongue up to i. Lips start round for oi, ôi, ui and unrounded for ơi, ưi.'},
+ {k:'Âm cuối · endings',ex:'học',s:['roundopen','round'],ids:['end'],t:'Final p, t, c are stopped, not released: close and hold, no puff of air. After o, ô, u, a final ng or c ends with the lips closed (ông, học). In Saigon a final n usually sounds like ng, and a final t like c.'},
+ {k:'Dấu · tones',ex:'mả',s:['relax'],ids:['tone'],t:'Ngang: level and fairly high. Sắc: rises. Huyền: low and falling, relaxed. Hỏi and ngã in Saigon: dip, then rise, the same sound. Nặng: low and short, it drops and stops.'}];
+function z25Entry(m){ return h('div',{class:'z25m'},[z25Lips(m.s[0],m.s[1]),h('div',{style:'flex:1;min-width:0'},[h('div',{class:'row',style:'flex-wrap:nowrap;gap:8px'},[h('b',{class:'z25k',text:m.k}),zPlay(m.ex),h('span',{class:'small muted',text:m.ex})]),h('div',{class:'small',text:m.t})])]) }
+function z25Notes(){ var ta=h('textarea',{rows:'3',placeholder:'What your teacher tells you about your mouth, tongue or lips. It saves as you type.'}); ta.value=S.set.mn13||''; var t=null; ta.addEventListener('input',function(){ clearTimeout(t); t=setTimeout(function(){ S.set.mn13=ta.value.slice(0,3000); save() },600) }); return h('div',{class:'panel'},[h('span',{class:'lbl',text:'Ghi chú của tôi · my notes from class'}),ta]) }
+function z25Mouth(){ var body=zOpen(); body.appendChild(zTop('Miệng · mouth guide',null,['Sounds',function(){ closeSheet(); location.hash='van' }]));
+  var list=h('div',{class:'panel'},[h('span',{class:'lbl',text:'Shape of the lips, front view'})]); Z25M.forEach(function(m){ list.appendChild(z25Entry(m)) });
+  zSwap(body,[h('h1',{text:'How to shape your mouth'}),h('p',{class:'muted',text:'Watch a Vietnamese speaker\'s lips whenever you can, and use a mirror or your phone camera on yourself. These notes were written for the app and are waiting for your teacher\'s check.'}),z25Notes(),list]) }
+var vanOpen25=vanOpen; vanOpen=function(g,onDone){ vanOpen25(g,onDone); try{ var top=$('#sheet-body').firstChild, es=Z25M.filter(function(m){ return m.ids.indexOf(g.id)>=0 }); if(top&&es.length){ var d=h('details',{class:'z25d'},[h('summary',{text:'Miệng · how to shape your mouth'})]); es.forEach(function(m){ d.appendChild(z25Entry(m)) }); if(S.set.mn13) d.appendChild(h('p',{class:'small muted',text:'My notes: '+S.set.mn13})); top.appendChild(d) } }catch(e){} };
+var vanRender25=vanRender; vanRender=function(){ vanRender25(); var el=$('#z-van'); if(!el) return; el.insertBefore(h('div',{class:'panel'},[z12Head('Luyện thêm','Drill it in'),h('div',{class:'setgrid'},[
+  h('button',{class:'settile gt3',onclick:function(){ z25Mark() }},[h('b',{text:'Nghe rồi bỏ dấu · Hear it, mark it'}),h('span',{class:'small muted',text:'Hear a word, choose the tone mark, see where it goes'})]),
+  h('button',{class:'settile gt0',onclick:function(){ z25Mouth() }},[h('b',{text:'Miệng · Mouth guide'}),h('span',{class:'small muted',text:'Lip shapes for every vowel and pair, plus your own notes'})])])]),el.firstChild) };
+(function(){ var st=z12Stops; z12Stops=function(){ var a=st(); if(z25Easy()) return a; var m=z12Mins(), td=zTodayDone(); if(m===60||m===90){ var at=1; a.forEach(function(s,i){ if(s.k==='van') at=i+1 }); a.splice(at,0,{k:'mk',t:'Bỏ dấu',en:'Hear it, mark it',min:3,sub:'Hear a word, choose its tone mark',done:!!td.mk,run:function(n){ z25Mark(n,10) }}) } return a } })();

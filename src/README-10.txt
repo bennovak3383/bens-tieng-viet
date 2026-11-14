@@ -107,3 +107,8 @@ VERSION 22 (14 Nov 2026) - Thầy Tâm character
 
 VERSION 24 (14 Nov 2026) - photo of your page from a laptop
 - Writing, photo step: two new buttons (z24Extra). "Send it from my phone": the laptop makes a 10-character code, shows it as a QR code (lib/qrcode.js, Kazuhiko Arase, MIT) and polls GET /api/snap?t=CODE. The phone opens snap.html?t=CODE (or types the code at /snap.html), takes the photo and POSTs it. Stored in KV as sn:CODE for 15 minutes and deleted when collected. "Use this computer's camera": webcam preview and Snap.
+
+VERSION 25 (14 Nov 2026) - easier day, hear it mark it, mouth guide
+- Easier day: S.set.easy = today's key. z12Stops then returns a review-only route and fcFresh returns no new cards. Button under the time chips on Today.
+- Hear it, mark it (z25Mark): one-syllable words that have a recording; six tone choices; shows where the mark goes and why (z25Where: on ơ in ươ; else on the vowel with a hat or hook; else one vowel; two vowels + final consonant = second; two vowels open = first; three = middle). Misses kept in S.set.mk13. On the Sounds page and in the 60 and 90 minute routes (key 'mk').
+- Mouth guide (z25Mouth, Z25M): lip shapes and a short note for each vowel, vowel pair, endings and tones. Written for the app, not yet checked by a teacher. Learner's own class notes in S.set.mn13. Each sound lesson shows the matching entries in a fold-out at the top.
