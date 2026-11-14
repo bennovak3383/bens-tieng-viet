@@ -54,3 +54,8 @@ VERSION 13c (14 Nov 2026) - 667 more words for foreigners living in Saigon (1,11
 - Built into data/words13.json (levels 6 to 15), fetched at start by z13Words. Words already in the app are dropped when building.
 - words.html is a plain page of the new words for the teacher to check.
 - These words were drafted by Claude and are NOT yet checked by a teacher. Most have no recording yet and use word clips or the phone voice.
+
+VERSION 13d (14 Nov 2026) - the teacher's side
+- Server: GET /api/words (open) and POST /api/t/words (teacher key). Stored in KV as cfg:words = {e:{cardId:[vi,en,sentence,sentenceEn]}, d:{cardId:1}, a:[{id:'tw…',vi,en,xv,xe}]}.
+- App: z13Teach applies edits, removals and the teacher's own words (deck 'tw', always open) to every learner.
+- teacher.html: "Từ vựng · word list" button (words13) edits any of the words; the student page has a new panel (x13) with level, weekly missions, own words and monthly checks.

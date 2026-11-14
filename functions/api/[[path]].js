@@ -126,6 +126,7 @@ export async function onRequest(context) {
       if (!r.value) return J({ error: 'Not found.' }, 404);
       return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'private, max-age=3600' } });
     }
+    if (path === 'words' && m === 'GET') { const w = await env.KV.get('cfg:words', 'json'); return J(w || { e: {}, d: {}, a: [] }); }
     if (path === 'setup' && m === 'POST') {
       if (await env.KV.get('cfg:teacher')) return J({ error: 'Teacher access is already set up.' }, 409);
       const k = rnd(24); await env.KV.put('cfg:teacher', k); return J({ key: k });
@@ -133,6 +134,15 @@ export async function onRequest(context) {
     if (path.startsWith('t/')) {
       if (!(await teacher(env, request, url))) return J({ error: 'Teacher link not recognised.' }, 401);
       if (path === 't/students') { const l = await env.KV.list({ prefix: 's:', limit: 1000 }); return J({ students: l.keys.map(k => ({ id: k.name.slice(2), ...(k.metadata || {}) })) }); }
+      if (path === 't/words' && m === 'POST') {
+        const b = await request.json().catch(() => null); if (!b || typeof b !== 'object') return J({ error: 'Bad data.' }, 400);
+        const row = r => [clean(r[0], 80).trim(), clean(r[1], 120).trim(), clean(r[2], 160).trim(), clean(r[3], 200).trim()];
+        const out = { e: {}, d: {}, a: [], t: Date.now() };
+        for (const k of Object.keys(b.e || {}).slice(0, 2000)) { const r = b.e[k]; if (Array.isArray(r) && r.length === 4) { const v = row(r); if (v[0] && v[1]) out.e[clean(k, 24)] = v; } }
+        for (const k of Object.keys(b.d || {}).slice(0, 2000)) if (b.d[k]) out.d[clean(k, 24)] = 1;
+        for (const r of (Array.isArray(b.a) ? b.a : []).slice(0, 600)) { if (!r || typeof r !== 'object') continue; const v = row([r.vi, r.en, r.xv, r.xe]); const id = clean(r.id, 24).replace(/[^a-z0-9_]/gi, ''); if (v[0] && v[1] && /^tw/.test(id)) out.a.push({ id, vi: v[0], en: v[1], xv: v[2], xe: v[3] }); }
+        await env.KV.put('cfg:words', JSON.stringify(out)); return J({ ok: true, words: out });
+      }
       const id = clean(url.searchParams.get('id') || '', 12).replace(/[^A-Z0-9]/g, '');
       if (path === 't/student') {
         const [st, notes, recs, ai, wi] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id), env.KV.get('wi:' + id, 'json')]);

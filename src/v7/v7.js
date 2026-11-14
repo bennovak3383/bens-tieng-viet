@@ -716,7 +716,7 @@ function z13Mission(){ var wk=z13WeekKey(), m=S.set.wm13[wk]||{}, any=S.set.msm=
   if(m.done){ box.appendChild(h('p',{text:Z13MS[m.i][m.any?1:0]})); box.appendChild(h('p',{class:'z12wkn',text:'Done this week.'+(m.note?' Your note: '+m.note:'')})); return box }
   box.appendChild(h('div',{class:'row'},[h('button',{class:'chip','aria-pressed':String(!any),text:'In Vietnam',onclick:function(){ S.set.msm='vn'; save(); zRenderHome() }}),h('button',{class:'chip','aria-pressed':String(any),text:'Anywhere',onclick:function(){ S.set.msm='any'; save(); zRenderHome() }})]));
   if(typeof m.i==='number'){ var note=h('textarea',{rows:'2',placeholder:'How did it go? One line is enough.'}); box.appendChild(h('p',{text:Z13MS[m.i][any?1:0]}));
-    box.appendChild(note); box.appendChild(h('div',{class:'row z12two'},[h('button',{class:'btn',text:'Pick another',onclick:function(){ delete S.set.wm13[wk]; save(); zRenderHome() }}),h('button',{class:'btn primary',text:'I did it',onclick:function(){ S.set.wm13[wk]={i:m.i,any:any,done:Date.now(),note:note.value.trim().slice(0,300)}; tick(); save(); zRenderHome() }})])); return box }
+    box.appendChild(note); box.appendChild(h('div',{class:'row z12two'},[h('button',{class:'btn',text:'Pick another',onclick:function(){ delete S.set.wm13[wk]; save(); zRenderHome() }}),h('button',{class:'btn primary',text:'I did it',onclick:function(){ S.set.wm13[wk]={i:m.i,any:any,done:Date.now(),note:note.value.trim().slice(0,300),txt:Z13MS[m.i][any?1:0]}; tick(); save(); zRenderHome() }})])); return box }
   box.appendChild(h('p',{class:'small muted',text:'One real-life task a week. Pick one of three.'}));
   [0,1,2].forEach(function(k){ var idx=(w*3+k)%Z13MS.length; box.appendChild(h('button',{class:'btn wide z13pick',text:Z13MS[idx][any?1:0],onclick:function(){ S.set.wm13[wk]={i:idx}; save(); zRenderHome() }})) }); return box }
 
@@ -758,4 +758,14 @@ var z8RenderPrac13b=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac13b(); va
 function z13Words(){ var j=Z13.wj; if(!j||!j.levels||!C7||!FC.length) return; j.levels.forEach(function(L){ if(Z13CL[L.c]) return; var t=L.t.split(' · '); C7.cats[L.c]=[t[0],t[1]||'','']; Z13LV.push({t:L.t,c:[L.c]}); Z13CL[L.c]=Z13LV.length;
     L.cards.forEach(function(w){ if(FCBY[w.id]) return; var c={id:w.id,c:L.c,e:'',vi:w.vi,en:w.en,xv:w.xv,xe:w.xe}; FC.push(c); FCBY[c.id]=c }) }); Z13.lvT=0 }
 var z7init13c=z7init; z7init=function(){ z7init13c(); try{ z13Words() }catch(e){} };
-try{ fetch('data/words13.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; Z13.wj=j; z13Words(); try{ fcRender(); if($('#sheet').hidden) zRenderHome() }catch(e){} }).catch(function(){}) }catch(e){}
+try{ fetch('data/words13.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; Z13.wj=j; z13Words(); try{ z13Teach() }catch(e){} try{ fcRender(); if($('#sheet').hidden) zRenderHome() }catch(e){} }).catch(function(){}) }catch(e){}
+
+
+/* ===== 13d · the teacher's word fixes and additions (saved on the website, apply to every learner) ===== */
+function z13Teach(){ var w=Z13.tw; if(!w||!C7||!FC.length) return; var k, c;
+  for(k in (w.e||{})){ c=FCBY[k]; var r=w.e[k]; if(c&&r&&r[0]&&r[1]){ c.vi=r[0]; c.en=r[1]; c.xv=r[2]||r[0]; c.xe=r[3]||r[1] } }
+  for(k in (w.d||{})){ c=FCBY[k]; if(c){ var i=FC.indexOf(c); if(i>=0) FC.splice(i,1); delete FCBY[k] } }
+  if((w.a||[]).length&&!C7.cats.tw) C7.cats.tw=['Từ của thầy','From your teacher',''];
+  (w.a||[]).forEach(function(r){ if(FCBY[r.id]||(w.d||{})[r.id]) return; c={id:r.id,c:'tw',e:'',vi:r.vi,en:r.en,xv:r.xv||r.vi,xe:r.xe||r.en}; FC.push(c); FCBY[c.id]=c }) }
+var z7init13d=z7init; z7init=function(){ z7init13d(); try{ z13Teach() }catch(e){} };
+try{ fetch('/api/words').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j) return; Z13.tw=j; z13Teach(); try{ fcRender() }catch(e){} }).catch(function(){}) }catch(e){}
