@@ -213,3 +213,11 @@ VERSION 36 — grammar units end with "your own sentences" for the teacher
 - Teacher page: the piece shows under Writing tagged "grammar", with ▶ Hear it under each recorded
   sentence and the usual written / voice reply. Recordings also have a "Grammar" filter.
 - Voice only for now; Ben said no video.
+
+VERSION 37 (15 Nov 2026) - audit fix 1: one spine on Home
+- Block "37" at the end of src/v7/v7.js. Only when the core course is on, not the beginner path, not the full plan (z37Spine).
+- Z37.gate = units finished before an extra shows: weekly mission 5, monthly-check nudge 3, hands-free Speak now 5, Practice: Stories 5 and Games 5, real-life situations 10, "More ways to practise" folded until 20.
+- Core card moved to the top of Home, under the code card. A line on it says what opens next.
+- Situations: pet shop, girlfriend's family and gym (Z37.personal) sit under "More situations".
+- More tab: the in-app "Thầy" tile (the student's own recordings view, #teach) renamed "Ghi âm · my recordings".
+- Home sound line now says the course opens after the first 8 sound lessons and the rest are extra.

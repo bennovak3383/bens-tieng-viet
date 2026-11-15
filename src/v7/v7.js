@@ -1176,7 +1176,7 @@ function z27List(){ var body=zOpen(), k=z27St(), cur=z27Idx(); body.appendChild(
 function z27Card(){ var n=z27N(), i=z27Idx(), k=z27St(), box=h('div',{class:'panel z12plan z27card',id:'z27'});
   var dots=h('div',{class:'z26dots',role:'img','aria-label':'Unit '+Math.min(i+1,n)+' of '+n}); Z27.units.slice(0,n).forEach(function(x,q){ dots.appendChild(h('i',{class:k.d[x.id]?'on':(q===i?'now':'')})) });
   if(!z27Snd()){ var vn=vanNext(); box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course'})); box.appendChild(h('h2',{text:'Âm trước · sounds first'}));
-    box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'The tones and the vowel pairs come before grammar, so you can hear what is being said. '+vanDoneCount()+' of the first 8 sound lessons done.'}));
+    box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'The tones and the vowel pairs come before grammar, so you can hear what is being said. '+vanDoneCount()+' of the first 8 sound lessons done. The course opens after those 8; the other '+Math.max(0,C7.van.length-8)+' are extra practice.'}));
     box.appendChild(h('button',{class:'btn primary wide',text:'Next sound lesson'+(vn?' · '+vn.t:''),onclick:function(){ if(vn) vanOpen(vn,function(){ closeSheet(); zRenderHome() }); else location.hash='van' }}));
     box.appendChild(h('button',{class:'x z25ov',text:'I already know the tones and vowel pairs · open the course',onclick:function(){ k.snd=1; save(); zRenderHome() }})); return box }
   if(i>=n&&n<Z27.units.length){ box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course · A1'})); box.appendChild(dots); box.appendChild(h('h2',{text:'A1 done · all '+n+' units'})); box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'Keep doing your cards and the day plan. Your teacher will open A2 when you are ready.'})); box.appendChild(h('button',{class:'btn wide',text:'All units',onclick:z27List})); return box }
@@ -1327,3 +1327,20 @@ function z36Send(u,ui,lines,blobs,st,next){ var t0=Date.now(), ref='g'+t0, n=0; 
   st.className='z7status'; st.textContent='Sending to your teacher…';
   fetch('/api/w',{method:'POST',headers:{'Content-Type':'application/json','X-Code':ACC.code},body:JSON.stringify({q:'Nền tảng '+(ui+1)+' · '+u.vi,qEn:u.en,mode:'type',lines:lines,recs:n,ref:ref,u:u.id})}).then(function(r){ return r.json().then(function(j){ if(!r.ok) throw j; return j }) })
     .then(function(){ done('✓ Sent to your teacher'+(n?' with '+n+' recording'+(n>1?'s':''):'')+'. The reply will show on your Progress page.',true) },function(j){ done(((j&&j.error)||'Could not send.')+' It is saved on this device.',false) }) }
+
+/* ===== 37 · audit fix 1: one spine. Home leads with the one next thing (sounds, then the next core unit). Extras appear as the learner gets to them. ===== */
+var Z37={gate:{sit:10,ms:5,chk:3,speak:5,games:5,story:5,more:20}, personal:['thucung','ramat','phonggym']};
+function z37Done(){ try{ return Z27&&Z27.on?Object.keys(z27St().d).length:99 }catch(e){ return 99 } }
+function z37Spine(){ try{ return !!(Z27&&Z27.on)&&!z26On()&&!z27St().full }catch(e){ return false } }
+var zRenderHome37=zRenderHome; zRenderHome=function(){ zRenderHome37(); try{ if(!z37Spine()) return; var el=$('#z-home'); if(!el) return; var n=z37Done(), G=Z37.gate;
+  function hide(q){ [].forEach.call(el.querySelectorAll(q),function(x){ x.style.display='none' }) }
+  if(n<G.sit) hide('#z18-sit'); if(n<G.ms) hide('#z13-ms'); if(n<G.chk) hide('.z13nudge');
+  if(n<G.speak) [].forEach.call(el.querySelectorAll('button'),function(b){ if(/speak now, hands-free/.test(b.textContent)) b.style.display='none' });
+  var core=el.querySelector('#z27'), acc=el.querySelector('#z31acc'); if(core){ el.insertBefore(core, acc?acc.nextSibling:el.firstChild) }
+  var sit=el.querySelector('#z18-sit .z18grid'); if(sit&&!sit.dataset.z37){ sit.dataset.z37=1; var more=h('div',{class:'z18grid'}), det=h('details',{class:'z37more'},[h('summary',{class:'small',text:'More situations'}),more]);
+    [].slice.call(sit.children).forEach(function(b,i){ var st=Z18.s[i]; if(st&&Z37.personal.indexOf(st.id)>=0) more.appendChild(b) }); if(more.children.length) sit.parentNode.insertBefore(det,sit.nextSibling) }
+  if(!el.querySelector('#z37next')&&core){ var nx=h('p',{class:'small muted',id:'z37next',text:n<G.ms?'More of the app opens as you finish units: weekly missions after unit '+G.ms+', stories and games after unit '+G.story+', real-life situations after unit '+G.sit+'.':''}); if(nx.textContent) core.appendChild(nx) } }catch(e){} };
+var z8RenderPrac37=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac37(); try{ if(!z37Spine()) return; var el=$('#z-prac'); if(!el) return; var n=z37Done(), G=Z37.gate;
+  [].forEach.call(el.querySelectorAll('.settile'),function(t){ var b=t.querySelector('b'), x=b?b.textContent:''; if((/^Trò chơi/.test(x)&&n<G.games)||(/^Truyện/.test(x)&&n<G.story)) t.style.display='none' });
+  [].forEach.call(el.querySelectorAll('.panel, section, div'),function(p){ if(p.dataset.z37||!p.querySelector) return; var hd=p.firstElementChild; if(hd&&/Thêm cách luyện/.test(hd.textContent)&&p.querySelector('.setgrid')&&n<G.more&&!p.closest('details')){ p.dataset.z37=1; var d=h('details',{class:'z37more'},[h('summary',{class:'small',text:'More ways to practise (open when you want extra)'})]); p.parentNode.insertBefore(d,p); d.appendChild(p) } }) }catch(e){} };
+var z7RenderMore37=z7RenderMore; z7RenderMore=function(){ z7RenderMore37(); try{ [].forEach.call(document.querySelectorAll('#z-more .settile'),function(t){ var b=t.querySelector('b'); if(b&&b.textContent==='Thầy'){ b.textContent='Ghi âm · my recordings'; var s=t.querySelector('.small'); if(s) s.textContent='Your recordings, slow answers and notes from your teacher' } }) }catch(e){} };
