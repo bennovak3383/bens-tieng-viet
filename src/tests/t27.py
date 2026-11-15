@@ -39,6 +39,7 @@ with sync_playwright() as p:
     while pg.locator("text=I said it · show me").count() and s<8:
         pg.click("text=I said it · show me"); pg.wait_for_timeout(120); pg.click("text=I had it"); pg.wait_for_timeout(250); s+=1
     print('2 say drill sentences:', s)
+    print('2 own-sentences step:', pg.locator("text=Now make your own").count()); pg.get_by_role('button',name='Skip for now',exact=True).click(); pg.wait_for_timeout(300)
     print('2 done screen:', pg.inner_text('#sheet-body')[:200].replace('\n',' / '))
     print('2 saved:', T("JSON.stringify(S.set.k27.d.u01)"))
     print('2 unit 1 cards now open:', T("FC.filter(function(c){return c.k27===0&&fcOn(c)}).length"), '| first new cards:', T("fcFresh().slice(0,4).join(' ')"))
