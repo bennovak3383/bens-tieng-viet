@@ -75,6 +75,20 @@ def cal(mark=None, arr=None):
     if arr: o += arr
     return o
 
+
+def days(hi, n=3, back=False, fwd=False):
+    """43: a strip of days with today marked by a pin. hi = the day this word means (0 = first box). Clearer than a calendar for hôm qua / hôm nay / mai."""
+    w = 120 // n; x0 = 80 - (w * n) // 2; o = SH(56, 138) + L("M14 112 H146", 3, ST)
+    for i in range(n):
+        x = x0 + i * w + 4; f = YE if i == hi else CR
+        o += R(x, 62, w - 8, 44, f, 5) + R(x, 62, w - 8, 10, RD if i == hi else ST, 4)
+    mid = x0 + (n // 2) * w + w // 2
+    o += P(f"M{mid} 40 q-9 0 -9 -9 q0 -9 9 -9 q9 0 9 9 q0 9 -9 9 Z M{mid} 40 L{mid} 58", RD) + D(mid, 31, 3.4, CR)
+    hx = x0 + hi * w + w // 2
+    if back: o += arrow(f"M{mid-12} 128 H{hx+6} M{hx+14} 120 L{hx+4} 128 L{hx+14} 136", RD, 3)
+    if fwd: o += arrow(f"M{mid+12} 128 H{hx-6} M{hx-14} 120 L{hx-4} 128 L{hx-14} 136", RD, 3)
+    return o
+
 def clockface(hh, mm, f=CR, x=80, y=84, r=46):
     import math
     o = C(x, y, r, f) + "".join(D(x + (r - 8) * math.sin(k * math.pi / 6), y - (r - 8) * math.cos(k * math.pi / 6), 2.2) for k in range(12))
@@ -123,7 +137,7 @@ B["khách"] = SH(30) + fig(72, shirt=YE, hair="long", pants=TE, ra=[(12, -68), (
 # ---------- actions
 bowl2 = E(0, 0, 14, 6, CR)
 B["ăn"] = SH(28) + fig(face="open", ra=[(12, -68), (24, -64), (10, -78)], la=[(-12, -68), (-22, -58), (-10, -60)], front=P("M-22 -64 Q-10 -48 2 -64 Z", CR) + L("M8 -80 L-4 -94 M12 -80 L0 -96", 2))
-B["uống"] = SH(28) + fig(face="flat", ra=[(12, -68), (24, -70), (12, -82)], front=P("M4 -94 L18 -96 L20 -74 L8 -72 Z", SKY))
+B["uống"] = SH(28) + fig(face="flat", ra=[(12, -68), (22, -76), (14, -88)]) + P("M14 -112 L34 -106 L30 -78 L12 -82 Z".replace("-", "-"), SKY).replace("M14 -112", "M94 30").replace(" L34 -106", " L114 36").replace(" L30 -78", " L110 64").replace(" L12 -82", " L92 60") + P("M95 44 L113 49 L110 64 L92 60 Z", "#7FB8D6")   # 43: glass at the mouth
 B["ngủ"] = R(16, 92, 128, 30, CR, 6) + R(20, 76, 36, 22, WH, 8) + P("M54 92 H144 V122 H54 Q44 108 54 92 Z", TE) + C(38, 80, 13, SK) + P("M26 78 Q28 66 40 66 Q50 68 50 76 Q40 72 26 78 Z", HAIR) + L("M32 82 q2 2 4 0 M42 82 q2 2 4 0", 1.6) + L("M20 122 V138 M140 122 V138", 4) + L("M98 52 h12 l-12 14 h12 M120 32 h9 l-9 10 h9", 2.6, NAVY)
 B["dậy"] = SH(30) + fig(face="big", la=[(-12, -68), (-24, -84), (-30, -104)], ra=[(12, -68), (24, -84), (30, -104)]) + C(130, 30, 12, YE) + L("M130 10 v6 M130 44 v6 M110 30 h6 M144 30 h6", 3, OR)
 B["đi"] = SH(30) + fig(70, ll=[(-6, -36), (-14, -18), (-20, 0)], rl=[(6, -36), (12, -18), (16, 0)], la=[(-12, -68), (-6, -50), (2, -36)], ra=[(12, -68), (14, -50), (8, -36)]) + arrow("M108 120 H146 M136 110 L148 120 L136 130", RD, 3)
@@ -212,11 +226,11 @@ B["tiền mặt"] = SH(56) + R(26, 66, 108, 56, "#8DB580", 4, rot(-10, 80, 94)) 
 B["giờ"] = clockface(10, 10)
 B["phút"] = clockface(12, 15, CR) + P("M80 84 L80 46 A38 38 0 0 1 116 72 Z", PK)
 B["lịch"] = cal((1, 2))
-B["tuần"] = cal() + R(36, 82, 88, 14, "none", 3).replace(f'stroke="{INK}"', f'stroke="{RD}"')
+B["tuần"] = days(-1, 7) + R(18, 56, 124, 56, "none", 6).replace(f'stroke="{INK}"', f'stroke="{RD}"')   # 43: seven days in a frame
 B["tháng"] = cal() + R(34, 64, 92, 66, "none", 4).replace(f'stroke="{INK}"', f'stroke="{RD}"')
-B["hôm nay"] = cal((1, 2)) + C(82, 89, 11, "none").replace(f'stroke="{INK}"', f'stroke="{RD}"')
-B["hôm qua"] = cal((1, 1)) + arrow("M96 34 H66 M74 26 L64 34 L74 42", YE, 3)
-B["mai"] = cal((1, 3)) + arrow("M64 34 H94 M86 26 L96 34 L86 42", YE, 3)
+B["hôm nay"] = days(1)   # 43
+B["hôm qua"] = days(0, back=True)   # 43
+B["mai"] = days(2, fwd=True)   # 43
 B["ngày"] = R(14, 14, 132, 132, SKY, 10) + C(80, 72, 26, YE) + L("M80 30 v-10 M80 114 v10 M38 72 h-10 M122 72 h10 M50 42 l-7 -7 M110 102 l7 7 M110 42 l7 -7 M50 102 l-7 7", 4, OR) + R(14, 118, 132, 28, LG, 0)
 B["sáng"] = R(14, 14, 132, 132, "#F6D6A8", 10) + C(80, 112, 30, YE) + R(14, 112, 132, 34, LG, 0) + L("M80 70 v-14 M44 84 l-10 -8 M116 84 l10 -8", 4, OR)
 B["trưa"] = R(14, 14, 132, 132, SKY, 10) + C(80, 44, 22, YE) + L("M80 14 v-4", 4, OR) + R(14, 120, 132, 26, LG, 0) + E(80, 122, 14, 3, GR)

@@ -692,6 +692,17 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z41st{gap:10px}
 .z41row{display:flex;align-items:center;gap:10px;padding-top:8px;border-top:1px solid color-mix(in srgb,currentColor 12%,transparent)}
 .z41note{opacity:.85;font-style:italic}
+
+/* 43 · teaching pictures */
+.z43g{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:16px;background:color-mix(in srgb,currentColor 5%,transparent);border:1px solid color-mix(in srgb,currentColor 12%,transparent)}
+.z43g svg{width:100%;height:auto;display:block;color:inherit}
+.z43famh,.z43famr{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;align-items:center}
+.z43famh{font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.65}
+.z43famr{padding:8px 0;border-top:1px solid color-mix(in srgb,currentColor 10%,transparent)}
+.z43me{text-align:right;color:var(--accent)}
+.z43age{display:inline-flex;gap:2px;vertical-align:middle}.z43age i{width:6px;height:6px;border-radius:50%;background:color-mix(in srgb,currentColor 20%,transparent)}.z43age i.on{background:var(--accent)}
+.z43mkr{display:flex;flex-direction:column;gap:2px;padding:6px 0;border-top:1px solid color-mix(in srgb,currentColor 10%,transparent)}
+.z43mkw{font-size:20px;font-weight:700}
 </style>
 
 <div class="wrap" id="app">
@@ -3817,7 +3828,7 @@ var Z25M=[
  {k:'ao · au · âu',ex:'sao',s:['open','round'],ids:['ao'],t:'ao: a long a that closes to o, lips round at the end. au: a short a, quick. âu: start from “uh”, lips round quickly.'},
  {k:'oi · ôi · ơi · ui · ưi',ex:'tôi',s:['round','spread'],ids:['oi'],t:'Say the first vowel fully, then slide the tongue up to i. Lips start round for oi, ôi, ui and unrounded for ơi, ưi.'},
  {k:'Âm cuối · endings',ex:'học',s:['roundopen','round'],ids:['end'],t:'Final p, t, c are stopped, not released: close and hold, no puff of air. After o, ô, u, a final ng or c ends with the lips closed (ông, học). In Saigon a final n usually sounds like ng, and a final t like c.'},
- {k:'Dấu · tones',ex:'mả',s:['relax'],ids:['tone'],t:'Ngang: level and fairly high. Sắc: rises. Huyền: low and falling, relaxed. Hỏi and ngã in Saigon: dip, then rise, the same sound. Nặng: low and short, it drops and stops.'}];
+ {k:'Dấu · tones',ex:'mả',s:['relax'],ids:['tone'],t:'Ngang: level and fairly high. Sắc: rises. Huyền: low and falling, relaxed. Hỏi and ngã in Saigon: dip, then rise, the same sound. Nặng: low and short; in Saigon it dips and lifts a little at the end, with no hard stop.'}];
 function z25Entry(m){ return h('div',{class:'z25m'},[z25Lips(m.s[0],m.s[1]),h('div',{style:'flex:1;min-width:0'},[h('div',{class:'row',style:'flex-wrap:nowrap;gap:8px'},[h('b',{class:'z25k',text:m.k}),zPlay(m.ex),h('span',{class:'small muted',text:m.ex})]),h('div',{class:'small',text:m.t})])]) }
 function z25Notes(){ var ta=h('textarea',{rows:'3',placeholder:'What your teacher tells you about your mouth, tongue or lips. It saves as you type.'}); ta.value=S.set.mn13||''; var t=null; ta.addEventListener('input',function(){ clearTimeout(t); t=setTimeout(function(){ S.set.mn13=ta.value.slice(0,3000); save() },600) }); return h('div',{class:'panel'},[h('span',{class:'lbl',text:'Ghi chú của tôi · my notes from class'}),ta]) }
 function z25Mouth(){ var body=zOpen(); body.appendChild(zTop('Miệng · mouth guide',null,['Sounds',function(){ closeSheet(); location.hash='van' }]));
@@ -3862,7 +3873,7 @@ function z26Explain(id,onDone){ var body=zOpen(), tok=Z.tok, i=0, pages=[]; func
   else if(id==='you') pages=[{h:'No single word for “you”',t:'You choose a family word by the other person’s age compared with yours. Getting this right is how you sound polite.',rows:Z26.you},{h:'It goes both ways',t:'If you call someone anh or chị, you can call yourself em. If you are older, they call you anh or chị and themselves em. When unsure, tôi for yourself is always fine.',w:[]}];
   else pages=Z26.num.map(function(p){ return {h:p[0],t:p[1],w:[]} });
   body.appendChild(zTop('Đọc trước · read this first',0,null));
-  function show(){ var p=pages[i], bar=$('.sess-top .bar i',body), kids=[h('span',{class:'lbl',text:(i+1)+' / '+pages.length}),h('h1',{text:p.h}),h('p',{class:'z26p',text:p.t})]; if(bar) bar.style.width=Math.round(i/pages.length*100)+'%';
+  function show(){ var p=pages[i], bar=$('.sess-top .bar i',body), kids=[h('span',{class:'lbl',text:(i+1)+' / '+pages.length}),h('h1',{text:p.h}),h('p',{class:'z26p',text:p.t})]; if(bar) bar.style.width=Math.round(i/pages.length*100)+'%'; try{ var g43=z43For(p.h); if(g43) kids.push(g43) }catch(e){}
     if(p.w&&p.w.length){ var g=h('div',{class:'z25grid'}); p.w.forEach(function(w){ g.appendChild(h('button',{class:'z25opt',onclick:function(){ zSay(w[0]) }},[h('b',{text:w[0]}),h('span',{text:w[1]})])) }); kids.push(g) }
     if(p.rows){ var l=h('div',{class:'panel'}); p.rows.forEach(function(r){ l.appendChild(h('div',{class:'z25m'},[h('div',{style:'flex:1;min-width:0'},[h('div',{class:'row',style:'flex-wrap:nowrap;gap:8px'},[h('b',{class:'z25k',text:r[0]}),zPlay(r[0]),h('span',{class:'small',text:r[1]})]),h('div',{class:'small muted',text:r[2]})])])) }); kids.push(l) }
     kids.push(h('button',{class:'btn primary wide',text:i<pages.length-1?'Next':'Got it',onclick:function(){ if(i<pages.length-1){ i++; show() } else fin() }})); if(i>0) kids.push(h('button',{class:'btn wide',text:'‹ Back',onclick:function(){ i--; show() }}));
@@ -4251,6 +4262,35 @@ var zRenderHome42=zRenderHome; zRenderHome=function(){ try{ z42Apply() }catch(e)
 var z26Ask42=z26Ask; z26Ask=function(){ var box=z26Ask42(), r=h('div',{class:'row',style:'gap:8px'}), opts=[['m','As a man','People call you anh'],['f','As a woman','People call you chị']];
   opts.forEach(function(o){ r.appendChild(h('button',{class:'z26opt',style:'flex:1','aria-pressed':String(S.set.g42===o[0]),onclick:function(){ S.set.g42=o[0]; save(); Z42.last=''; z42Apply(); [].forEach.call(r.children,function(x,i){ x.setAttribute('aria-pressed',String(opts[i][0]===o[0])) }) }},[h('b',{text:o[1]}),h('span',{class:'small muted',text:o[2]})])) });
   return h('div',{class:'stack'},[h('div',{class:'panel'},[h('span',{class:'lbl',text:'How should people address you?'}),r,h('p',{class:'small muted',text:'Vietnamese has no plain "you". The app asks you questions the way people in Saigon would.'})]),box]) };
+
+/* ===== 43 · audit fix 8: teaching pictures. Saigon tone chart, vowel chart, who-is-who ladder, time line, where the tone mark goes ===== */
+function z43Svg(w,hh,inner,label){ var d=h('div',{class:'z43g'}); d.innerHTML='<svg viewBox="0 0 '+w+' '+hh+'" role="img" aria-label="'+label+'">'+inner+'</svg>'; return d }
+function z43Tones(){ var X0=56, X1=330, Y=function(l){ return 176-(l-1)*36 }, o='', T=[['ngang','ma','#3A8C8C',[[0,3.3],[1,3.3]]],['huyền','mà','#7A6BB0',[[0,2.4],[1,1.2]]],['sắc','má','#B5432B',[[0,3],[.35,3.2],[1,5]]],['hỏi = ngã','mả · mã','#E8A33A',[[0,2.4],[.45,1.2],[1,3.8]]],['nặng','mạ','#5E7F3A',[[0,2.1],[.4,1.1],[.62,1.6]]]];
+  for(var l=1;l<=5;l++) o+='<line x1="'+X0+'" x2="'+X1+'" y1="'+Y(l)+'" y2="'+Y(l)+'" stroke="currentColor" stroke-opacity=".15"/><text x="'+(X0-10)+'" y="'+(Y(l)+4)+'" font-size="11" text-anchor="end" fill="currentColor" opacity=".6">'+(l===5?'5 high':l===1?'1 low':l)+'</text>';
+  T.forEach(function(t,i){ var pts=t[3].map(function(q){ return [X0+14+q[0]*(X1-X0-104),Y(q[1])] }), d='M'+pts[0][0]+' '+pts[0][1]; for(var k=1;k<pts.length;k++){ var a=pts[k-1], b=pts[k]; d+=' Q'+((a[0]+b[0])/2)+' '+(k===1&&pts.length>2?b[1]:a[1])+' '+b[0]+' '+b[1] }
+    var e=pts[pts.length-1]; o+='<path d="'+d+'" fill="none" stroke="'+t[2]+'" stroke-width="5" stroke-linecap="round"/><circle cx="'+e[0]+'" cy="'+e[1]+'" r="4" fill="'+t[2]+'"/>';
+    o+='<text x="'+(X1-62)+'" y="'+(30+i*30)+'" font-size="13" fill="'+t[2]+'" font-weight="700">'+t[1]+'</text><text x="'+(X1-62)+'" y="'+(44+i*30)+'" font-size="10.5" fill="currentColor" opacity=".75">'+t[0]+'</text>' });
+  var box=z43Svg(340,196,o,'Saigon tones drawn as pitch lines'); box.appendChild(h('p',{class:'small muted',text:'How the voice moves in Saigon speech: high is up, low is down. Hỏi and ngã sound the same here. Nặng is low and short and lifts a little at the end. A rough guide for your ear; your teacher has the last word.'})); return box }
+function z43Vowels(){ var o='<path d="M40 24 L290 24 L250 176 L110 176 Z" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>', V=[['i',52,30,0],['ư',172,30,0],['u',282,30,1],['ê',78,82,0],['ơ  â',170,82,0],['ô',266,82,1],['e',100,134,0],['o',254,134,1],['a  ă',176,170,0]];
+  V.forEach(function(v){ o+=(v[3]?'<circle cx="'+v[1]+'" cy="'+(v[2]-5)+'" r="15" fill="none" stroke="#B5432B" stroke-width="2" stroke-dasharray="3 3"/>':'')+'<text x="'+v[1]+'" y="'+v[2]+'" font-size="20" font-weight="700" text-anchor="middle" fill="currentColor">'+v[0]+'</text>' });
+  o+='<text x="40" y="196" font-size="10.5" fill="currentColor" opacity=".7">tongue forward</text><text x="290" y="196" font-size="10.5" text-anchor="end" fill="currentColor" opacity=".7">tongue back</text><text x="8" y="40" font-size="10.5" fill="currentColor" opacity=".7">closed</text><text x="8" y="176" font-size="10.5" fill="currentColor" opacity=".7">open</text>';
+  var box=z43Svg(320,204,o,'Vowel chart'); box.appendChild(h('p',{class:'small muted',text:'Where the tongue is for each vowel. Top: mouth nearly closed; bottom: open. Circled ones (u, ô, o) have round lips; ư and ơ are said with flat lips in the same place. â is a short ơ, ă is a short a.'})); return box }
+function z43Family(){ var rows=[['ông · bà','your grandparents’ age','cháu (or con)',3],['bác','older than your parents','cháu',2],['chú · cô','your parents’ age','cháu (or con)',2],['anh · chị','a bit older than you','em',1],['bạn','your age, a friend','mình · tôi',1],['em','younger than you','anh · chị',0]], box=h('div',{class:'z43g z43fam'},[h('div',{class:'z43famh'},[h('span',{text:'You call them'}),h('span',{text:'who'}),h('span',{text:'You call yourself'})])]);
+  rows.forEach(function(r){ var dots=h('span',{class:'z43age','aria-hidden':'true'}); for(var k=0;k<4;k++) dots.appendChild(h('i',{class:k<=r[3]?'on':''}));
+    box.appendChild(h('div',{class:'z43famr'},[h('b',{text:r[0]}),h('span',{class:'small muted'},[dots,' '+r[1]]),h('b',{class:'z43me',text:r[2]})])) });
+  box.appendChild(h('p',{class:'small muted',text:'Older people at the top. Not sure? Go one row up: it is polite. To staff and strangers about your age, anh / chị and em are safe.'})); return box }
+function z43Time(){ var o='<line x1="12" x2="322" y1="70" y2="70" stroke="currentColor" stroke-width="3" stroke-opacity=".5"/><path d="M314 62 L326 70 L314 78" fill="none" stroke="currentColor" stroke-width="3" stroke-opacity=".5"/><circle cx="170" cy="70" r="9" fill="#B5432B"/><text x="170" y="100" text-anchor="middle" font-size="12" fill="currentColor">now</text>';
+  [['đã',28,'#7A6BB0','past'],['rồi',72,'#7A6BB0','already'],['vừa',116,'#3A8C8C','just now'],['đang',170,'#B5432B','right now'],['sắp',222,'#E8A33A','about to'],['sẽ',282,'#5E7F3A','will']].forEach(function(t){ o+='<text x="'+t[1]+'" y="50" text-anchor="middle" font-size="16" font-weight="700" fill="'+t[2]+'">'+t[0]+'</text><text x="'+t[1]+'" y="'+(t[0]==='đang'?118:100)+'" text-anchor="middle" font-size="10.5" fill="currentColor" opacity=".75">'+(t[0]==='đang'?'':t[3])+'</text><line x1="'+t[1]+'" x2="'+t[1]+'" y1="58" y2="66" stroke="'+t[2]+'" stroke-width="3"/>' });
+  o+='<text x="12" y="140" font-size="12" fill="currentColor">vừa = mới = just · chưa = not yet: Ăn chưa? → Chưa. / Rồi.</text>';
+  var box=z43Svg(340,150,o,'Time line for đã, rồi, vừa, đang, sắp, sẽ'); box.appendChild(h('p',{class:'small muted',text:'Vietnamese verbs never change. These little words in front (or rồi at the end) tell you when. Often people leave them out when the time is clear.'})); return box }
+function z43Marks(){ var ex=[['má','one vowel: on it'],['ở · ấy · cũng','a vowel with a hat or horn (ă â ê ô ơ ư) takes it'],['tiền · muốn · người','a pair before a final consonant: on the second vowel'],['của · mía · hai','a pair at the end of the word: on the first vowel'],['hoà / hòa · thuỷ / thủy','oa, oe, uy: both spellings are seen in Saigon']], box=h('div',{class:'z43g z43mk'});
+  ex.forEach(function(e){ box.appendChild(h('div',{class:'z43mkr'},[h('div',{class:'z43mkw'},[colorize(e[0],true)]),h('span',{class:'small muted',text:e[1]})])) });
+  box.appendChild(h('p',{class:'small muted',text:'Where the tone mark sits. You hear the tone on the whole syllable; the mark just has a fixed home.'})); return box }
+function z43For(title){ if(title==='The six tones') return z43Tones(); if(title==='Two kinds of marks') return z43Marks(); if(/No single word for/.test(title)) return z43Family(); return null }
+var z27Gram43=z27Gram; z27Gram=function(u,ui,next){ z27Gram43(u,ui,next); try{ var ex=$('#sheet-body .z27exs'); if(!ex||$('#sheet-body .z43g')) return; var g=u.id==='u51'?z43Family():(['u08','u09','u10','u11','u24','u45'].indexOf(u.id)>=0?z43Time():null); if(g) ex.parentNode.insertBefore(g,ex) }catch(e){} };
+var renderTones43=renderTones; renderTones=function(){ renderTones43(); try{ var v=$('#v-tones'); if(v&&!v.querySelector('.z43g')){ var at=v.querySelector('h1,h2'); var wrap=h('div',{class:'stack'},[z43Tones(),z43Marks()]); if(at&&at.parentNode) at.parentNode.insertBefore(wrap,at.nextSibling); else v.insertBefore(wrap,v.firstChild) } }catch(e){} };
+var z25Mouth43=z25Mouth; z25Mouth=function(){ z25Mouth43(); setTimeout(function(){ try{ var b=$('#sheet-body'), h1=b&&b.querySelector('h1'); if(b&&h1&&!b.querySelector('.z43g')) h1.parentNode.insertBefore(z43Vowels(),h1.nextSibling.nextSibling) }catch(e){} },60) };
+var vanOpen43=vanOpen; vanOpen=function(g,onDone){ vanOpen43(g,onDone); try{ if(!g||!/^[aăâeêioôơuư ·]+$/.test(String(g.t||''))) return; var b=$('#sheet-body'); if(b&&!b.querySelector('.z43g')){ var top=b.querySelector('.sess-top'); var d=h('details',{class:'z43det'},[h('summary',{class:'small',text:'Vowel chart: where your tongue goes'}),z43Vowels()]); if(top&&top.nextSibling) b.insertBefore(d,top.nextSibling); else b.appendChild(d) } }catch(e){} };
 
 go(location.hash.slice(1)||'home');
 renderAll();

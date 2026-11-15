@@ -261,3 +261,14 @@ VERSION 43 (15 Nov 2026) - audit fix 7: who is who (xưng hô), and women learne
 - z42Q(text): for women, a question's "anh" that means "you" becomes "chị" (not anh ấy / anh trai / anh + name / tiếng Anh / người Anh / nước Anh), vợ -> chồng, bạn gái -> bạn trai. z42Apply runs on Home render and rewrites Z29 everyday questions and speaking topics, C6.pairs questions and the everyday-question cards (keeps originals in _o, so switching back works). The first-three-minutes question uses it too.
 - Recording list: new part x0c, the 28 everyday questions that change when asked to a woman. 4,954 lines.
 - The family-tree picture for this unit comes with fix 8.
+
+VERSION 44 (15 Nov 2026) - audit fix 8: teaching pictures
+- Block 43 in v7.js, drawn in code (SVG/HTML, light and dark themes via currentColor), styles .z43* in v7.css:
+  z43Tones (Saigon tone pitch lines, hỏi = ngã, nặng lifts at the end) on the beginner "The six tones" page and the Dấu page;
+  z43Marks (where the tone mark goes, with examples) on the beginner "Two kinds of marks" page and the Dấu page;
+  z43Family (who-is-who age ladder: you call them / you call yourself) on the beginner "you" page and unit u51;
+  z43Time (đã, rồi, vừa, đang, sắp, sẽ on a line; chưa) on units u08, u09, u10, u11, u24, u45;
+  z43Vowels (vowel chart: tongue forward/back, closed/open, round lips circled) in the mouth guide and folded inside the single-vowel sound lessons.
+  Hooks: z26Explain pages call z43For(title); z27Gram, renderTones, z25Mouth and vanOpen are wrapped.
+- Card drawings (src/art/draw2.py, art/cards.json): hôm qua, hôm nay, mai and tuần are now a strip of days with today pinned (days()), not near-identical calendars; uống has a glass of water at the mouth.
+- nặng description fixed for Saigon (src/beginner/make.py, rebuilt data/beginner.json; and the mouth note in v7.js): low and short, lifts a little, no hard stop.

@@ -317,3 +317,14 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z41st{gap:10px}
 .z41row{display:flex;align-items:center;gap:10px;padding-top:8px;border-top:1px solid color-mix(in srgb,currentColor 12%,transparent)}
 .z41note{opacity:.85;font-style:italic}
+
+/* 43 · teaching pictures */
+.z43g{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:16px;background:color-mix(in srgb,currentColor 5%,transparent);border:1px solid color-mix(in srgb,currentColor 12%,transparent)}
+.z43g svg{width:100%;height:auto;display:block;color:inherit}
+.z43famh,.z43famr{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;align-items:center}
+.z43famh{font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.65}
+.z43famr{padding:8px 0;border-top:1px solid color-mix(in srgb,currentColor 10%,transparent)}
+.z43me{text-align:right;color:var(--accent)}
+.z43age{display:inline-flex;gap:2px;vertical-align:middle}.z43age i{width:6px;height:6px;border-radius:50%;background:color-mix(in srgb,currentColor 20%,transparent)}.z43age i.on{background:var(--accent)}
+.z43mkr{display:flex;flex-direction:column;gap:2px;padding:6px 0;border-top:1px solid color-mix(in srgb,currentColor 10%,transparent)}
+.z43mkw{font-size:20px;font-weight:700}
