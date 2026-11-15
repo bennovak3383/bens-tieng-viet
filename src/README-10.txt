@@ -203,3 +203,13 @@ VERSION 35 — levels for everyone, teacher controls A2 (replaces the version 34
   copied into S.set.k27.t after each sync. Only works for learners with a code.
 - z27N() = number of units in reach; used by the course card, unit list, end-of-unit screen,
   practice tile and the day plan.
+
+VERSION 36 — grammar units end with "your own sentences" for the teacher
+- After the three drills, each core unit asks for 3 sentences of the learner's own with that
+  grammar, each with a Record button (record / stop / play back). "Send to my teacher" or
+  "Skip for now". The end-of-unit screen has "Write more sentences for my teacher".
+- Sends like Write it, say it: POST /api/w with ref 'g<time>' and u (unit id); each recording via
+  zRecSave kind 'unit' with the same ref. Without a code it is kept on the device only.
+- Teacher page: the piece shows under Writing tagged "grammar", with ▶ Hear it under each recorded
+  sentence and the usual written / voice reply. Recordings also have a "Grammar" filter.
+- Voice only for now; Ben said no video.

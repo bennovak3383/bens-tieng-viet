@@ -3981,9 +3981,10 @@ function z27Unit(ui,onDone){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:
     body.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
     if(onDone){ body.appendChild(h('button',{class:'btn primary wide',text:'Carry on with today',onclick:onDone})); return }
     body.appendChild(h('button',{class:'btn primary wide',text:'Review the new words now',onclick:function(){ fcSession(function(){ closeSheet(); zRenderHome() },20) }}));
+    body.appendChild(h('button',{class:'btn wide',text:'Write more sentences for my teacher',onclick:function(){ z27Mine(u,ui,function(){ closeSheet(); zRenderHome() }) }}));
     if(!last) body.appendChild(h('button',{class:'btn wide',text:'Go on to unit '+(ui+2),onclick:function(){ z27Unit(ui+1) }}));
     body.appendChild(h('button',{class:'btn wide',text:'That is enough for today',onclick:function(){ closeSheet(); zRenderHome() }})) }
-  z27Gram(u,ui,function(){ z26Learn(u.w.map(function(w){ return [w[0],w[1]] }),function(){ z27Order(ord,function(){ z27Gap(gaps,function(){ z27Say(say,fin,sc) },sc) },sc) },'Từ mới · the words for this unit') }) }
+  z27Gram(u,ui,function(){ z26Learn(u.w.map(function(w){ return [w[0],w[1]] }),function(){ z27Order(ord,function(){ z27Gap(gaps,function(){ z27Say(say,function(){ z27Mine(u,ui,fin) },sc) },sc) },sc) },'Từ mới · the words for this unit') }) }
 function z27List(){ var body=zOpen(), k=z27St(), cur=z27Idx(); body.appendChild(zTop('Nền tảng · core course',0,null));
   var tp=z27Top(); var kids=[h('h1',{text:'All units'}),tp?h('p',{class:'small',text:'Most common words: '+tp.n+' of '+tp.of+' started (top-'+tp.top+' list).'}):null,h('p',{class:'small muted',text:'Each unit is one piece of grammar and the common words that go with it. Do them in order; tap any unit to open it or do it again.'})], lv='';
   Z27.units.forEach(function(u,ui){ if(ui>=z27N()){ if(ui===z27N()) kids.push(h('p',{class:'small muted',text:'Level A2 · '+(Z27.units.length-ui)+' units · '+(z27St().t==='A1'?'your teacher will open it when you are ready':'opens when you finish the A1 units, or sooner if your teacher opens it')})); return } if(u.lv!==lv){ lv=u.lv; kids.push(h('span',{class:'lbl',text:'Level '+lv})) } var d=k.d[u.id];
@@ -4110,6 +4111,39 @@ function z31Card(){ var old=$('#z31acc'); if(old) old.remove(); var p=null;
 var zRenderHome31=zRenderHome; zRenderHome=function(){ zRenderHome31(); z31Card() };
 function z31Fresh(){ if(!confirm('Start over as a new learner? This clears everything on this device and signs you out. Your old code still works if you ever want that progress back.')) return; try{ localStorage.removeItem(LS); localStorage.removeItem('bensvn.account') }catch(e){} location.hash='home'; location.reload() }
 var z8RenderProg31=z8RenderProg; z8RenderProg=function(){ z8RenderProg31(); var el=$('#z-prog'); if(el&&!$('#z31fresh')) el.appendChild(h('div',{class:'panel',id:'z31fresh'},[h('span',{class:'lbl',text:'Start over'}),h('p',{class:'small muted',text:'Clear this device and begin again as a new learner with a new code.'}),h('button',{class:'btn wide',style:'color:var(--bad)',text:'Start over as a new learner',onclick:z31Fresh})])) };
+
+/* ===== 36 · grammar: write your own sentences, say each one, send them to the teacher (last step of every core unit) ===== */
+function z36Rec(onBlob){ var st=null, mr=null, ch=[], slot=h('span',{}), b=h('button',{class:'chip',text:'🎤 Record'});
+  function off(){ try{ if(st) st.getTracks().forEach(function(t){ t.stop() }) }catch(e){} st=null }
+  b.onclick=function(){ if(mr&&mr.state==='recording'){ mr.stop(); return }
+    if(!navigator.mediaDevices||!window.MediaRecorder){ slot.textContent=' Recording does not work in this browser.'; return }
+    navigator.mediaDevices.getUserMedia({audio:true}).then(function(s0){ st=s0; ch=[]; mr=new MediaRecorder(s0); mr.ondataavailable=function(e){ if(e.data&&e.data.size) ch.push(e.data) };
+      mr.onstop=function(){ off(); var bl=new Blob(ch,{type:mr.mimeType||'audio/webm'}); b.textContent='🎤 Record again'; b.classList.remove('on'); slot.innerHTML=''; if(bl.size<800){ slot.textContent=' Too short, try again.'; onBlob(null); return } var a=h('audio',{controls:'controls'}); a.src=URL.createObjectURL(bl); slot.appendChild(a); onBlob(bl) };
+      mr.start(); b.textContent='■ Stop'; b.classList.add('on'); slot.textContent=' Recording… say your sentence, then tap Stop.' }).catch(function(){ slot.textContent=' The microphone was not allowed.' }) };
+  return {el:h('div',{class:'row z36rec',style:'align-items:center;gap:8px;flex-wrap:wrap'},[b,slot]),stop:function(){ try{ if(mr&&mr.state==='recording'){ mr.onstop=null; mr.stop() } }catch(e){} off() }} }
+function z27Mine(u,ui,next){ var body=zOpen(), N=3, rows=[], recs=[];
+  body.appendChild(zTop('Của bạn · your own sentences',0,null));
+  var ex=(u.ex||[]).slice(0,2);
+  var kids=[h('span',{class:'lbl',text:'Last step · unit '+(ui+1)+' · '+u.lv}),h('h1',{text:'Now make your own'}),
+    h('p',{class:'muted',text:'Write '+N+' sentences of your own with '+u.vi+' ('+u.en+'). Use your life: your day, your work, people you know. Then record each one. They go to your teacher, who can reply in writing or by voice.'}),
+    ex.length?h('div',{class:'panel'},[h('span',{class:'lbl',text:'Like these'})].concat(ex.map(function(e){ return h('div',{},[zVi(e[0],18),h('div',{class:'small muted',text:e[1]})]) }))):null];
+  for(var i=0;i<N;i++)(function(i){ var ta=h('textarea',{rows:'2',lang:'vi',placeholder:'Sentence '+(i+1)+' in Vietnamese',autocomplete:'off',style:'width:100%'}), r=z36Rec(function(bl){ recs[i]=bl }); rows.push({ta:ta,r:r});
+    kids.push(h('div',{class:'panel'},[h('span',{class:'lbl',text:'Sentence '+(i+1)}),ta,r.el])) })(i);
+  var hint=h('p',{class:'small muted',hidden:!S.set.wtelex,text:TELEX10}), st=h('p',{class:'z7status'});
+  kids.push(h('button',{class:'chip',text:'Telex keys',onclick:function(){ S.set.wtelex=!S.set.wtelex; save(); hint.hidden=!S.set.wtelex }}),hint,st);
+  function stopAll(){ rows.forEach(function(r){ r.r.stop() }) }
+  kids.push(h('button',{class:'btn primary wide',id:'rf-next',text:'Send to my teacher',onclick:function(e){ var lines=[], blobs=[]; rows.forEach(function(r,i){ var v=r.ta.value.trim(); if(v){ lines.push(v); blobs.push(recs[i]||null) } });
+    if(!lines.length){ st.className='z7status bad'; st.textContent='Write at least one sentence first.'; return } stopAll(); e.target.disabled=true; z36Send(u,ui,lines,blobs,st,next) }}));
+  kids.push(h('button',{class:'btn wide',text:'Skip for now',onclick:function(){ stopAll(); next() }}));
+  body.appendChild(h('div',{class:'stack'},kids.filter(Boolean))) }
+function z36Send(u,ui,lines,blobs,st,next){ var t0=Date.now(), ref='g'+t0, n=0; var k=z27St(); if(!k.my) k.my={}; k.my[u.id]=(k.my[u.id]||0)+1;
+  if(!S.wlog) S.wlog=[]; S.wlog.unshift({t:t0,q:'Nền tảng '+(ui+1)+' · '+u.vi,lines:lines,mode:'type'}); S.wlog=S.wlog.slice(0,60); zDay('wr'); tick(); save();
+  blobs.forEach(function(b,i){ if(b){ n++; zRecSave({kind:'unit',ref:ref,target:lines[i],prompt:'Unit '+(ui+1)+' · '+u.vi,ok:true,score:0,heard:'',ms:0},b) } });
+  function done(msg,good){ st.className='z7status '+(good?'good':'bad'); st.textContent=msg; var b=$('#rf-next'); if(b) b.replaceWith(h('button',{class:'btn primary wide',text:'Carry on',onclick:next})) }
+  if(!ACC||!ACC.code) return done('Saved on this device. To send it to your teacher you need your code (Progress page).',false);
+  st.className='z7status'; st.textContent='Sending to your teacher…';
+  fetch('/api/w',{method:'POST',headers:{'Content-Type':'application/json','X-Code':ACC.code},body:JSON.stringify({q:'Nền tảng '+(ui+1)+' · '+u.vi,qEn:u.en,mode:'type',lines:lines,recs:n,ref:ref,u:u.id})}).then(function(r){ return r.json().then(function(j){ if(!r.ok) throw j; return j }) })
+    .then(function(){ done('✓ Sent to your teacher'+(n?' with '+n+' recording'+(n>1?'s':''):'')+'. The reply will show on your Progress page.',true) },function(j){ done(((j&&j.error)||'Could not send.')+' It is saved on this device.',false) }) }
 
 go(location.hash.slice(1)||'home');
 renderAll();

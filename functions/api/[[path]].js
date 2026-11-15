@@ -122,7 +122,7 @@ export async function onRequest(context) {
         const t = Date.now(), lines = (Array.isArray(b.lines) ? b.lines : []).slice(0, 12).map(x => clean(x, 300).trim()).filter(Boolean);
         const photo = (typeof b.photo === 'string' && /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(b.photo)) ? b.photo : '';
         if (!lines.length && !photo) return J({ error: 'Nothing to send yet.' }, 400);
-        const item = { t, q: clean(b.q, 200), qEn: clean(b.qEn, 200), mode: b.mode === 'type' ? 'type' : 'hand', lines, photo: !!photo, recs: Math.min(10, Number(b.recs) || 0) };
+        const item = { t, q: clean(b.q, 200), qEn: clean(b.qEn, 200), mode: b.mode === 'type' ? 'type' : 'hand', lines, photo: !!photo, recs: Math.min(10, Number(b.recs) || 0), ref: clean(b.ref, 40), u: clean(b.u, 12) };
         if (photo) await env.KV.put('wp:' + s.id + ':' + t, photo, { expirationTtl: 60 * 60 * 24 * 180 });
         const items = (await env.KV.get('wi:' + s.id, 'json')) || []; items.unshift(item);
         await env.KV.put('wi:' + s.id, JSON.stringify(items.slice(0, 100)));
