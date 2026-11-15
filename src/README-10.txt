@@ -254,3 +254,10 @@ VERSION 42 (15 Nov 2026) - audit fix 6: "Ngoài đường · on the street"
 - Teacher page core editor: new rows "Ngoài đường · on the street" (3 boxes + note, one empty row to add); saved as street in cfg:core; the server accepts it; z27Apply uses the teacher's version.
 - Recording list: street lines are inside each unit's part, with the English marked "(Saigon street talk: say it casually)" so speakers read them the casual way. 4,917 lines.
 - The unit's first button now says "Next · the N words" with the must-know count.
+
+VERSION 43 (15 Nov 2026) - audit fix 7: who is who (xưng hô), and women learners
+- New A1 unit u51 "anh · chị · em · chú · cô · bác · ông · bà" placed 7th (after u06). Words ông, chú, bác, cháu, ơi, tuổi; chú, bác, cháu, ơi, tuổi were removed from u36/u33 (A2) so they are not taught twice. A1 is now 21 units. Stories' "at" moved up by one. Street lines added for u51.
+- Block 42 in v7.js. Welcome (z26Ask wrapper) asks "How should people address you?": As a man (anh) / As a woman (chị) -> S.set.g42 = 'm' | 'f'.
+- z42Q(text): for women, a question's "anh" that means "you" becomes "chị" (not anh ấy / anh trai / anh + name / tiếng Anh / người Anh / nước Anh), vợ -> chồng, bạn gái -> bạn trai. z42Apply runs on Home render and rewrites Z29 everyday questions and speaking topics, C6.pairs questions and the everyday-question cards (keeps originals in _o, so switching back works). The first-three-minutes question uses it too.
+- Recording list: new part x0c, the 28 everyday questions that change when asked to a woman. 4,954 lines.
+- The family-tree picture for this unit comes with fix 8.

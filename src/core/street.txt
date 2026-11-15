@@ -27,6 +27,10 @@
 ~ Cái này của ai dạ?|Cái này của ai?|Whose is this?|
 ~ Ổng là sếp tui.|Anh ấy là sếp tôi.|He is my boss.|ổng = ông ấy, bả = bà ấy, ảnh = anh ấy, chỉ = chị ấy: Saigon joins them into one word.
 
+## u51
+~ Dạ, con chào cô.|Cháu chào cô.|Hello. (to a woman your mother's age)|In the south people often say con, not cháu, to someone their parents' age.
+~ Em ơi, tính tiền!|Em ơi, cho tôi trả tiền.|Excuse me, the bill please!|To staff, call em if they look younger than you.
+
 ## u07
 ~ Cà phê hay trà dạ anh?|Anh uống cà phê hay trà?|Coffee or tea?|Staff drop the verb and put anh or chị at the end.
 ~ Còn anh thì sao?|Còn anh?|And you?|

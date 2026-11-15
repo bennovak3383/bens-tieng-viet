@@ -165,6 +165,26 @@ C Move an object around and ask "… ở đâu?". Check the tone on ở and the 
 T Point at things in the room and say whose they are. Then talk about a friend using anh ấy or chị ấy.
 C Swap objects between people and ask "Cái này của ai?". Contrast chúng tôi and chúng ta with a real example.
 
+## u51|A1|anh · chị · em · chú · cô · bác · ông · bà|who is who: what to call people, and yourself|chú,bác,ông,cháu
+? Vietnamese has no plain "you". You pick a family word by the other person's age and sex, and you use the matching word for yourself.
+? A bit older than you: anh (man) or chị (woman), and you are em. Younger than you: em, and you are anh or chị.
+? Your parents' age: chú (man) or cô (woman), and you are cháu. Older than your parents: bác. Your grandparents' age: ông or bà, and you are cháu.
+? Not sure? Go one step older: it is polite. To call someone over, add ơi: Em ơi! Chị ơi!
+= Chào chú.|Hello. (to a man about your father's age)
+= Cháu tên là Ben.|My name is Ben. (to someone your parents' age or older)
+= Bà ơi, cái này bao nhiêu?|Excuse me, how much is this? (to an old woman)
+= Em ơi, cho anh một ly cà phê sữa đá.|Excuse me, an iced milk coffee for me. (to a young waiter)
+= Chú là người Sài Gòn hả?|Are you from Saigon? (to a man your father's age)
+= Ông ấy là ông của tôi.|He is my grandfather.
++ ông|grandfather; you (to an old man)|Ông ơi, ông khỏe không?|Hello sir, are you well?
++ chú|uncle; you (to a man your parents' age)|Chú ơi, chú tên gì?|Excuse me, what is your name?
++ bác|you (to someone older than your parents)|Bác ở đâu?|Where do you live? (to an elder)
++ cháu|grandchild; I (to someone much older)|Cháu là người Mỹ.|I am American. (to an elder)
++ ơi|hey, excuse me (to call someone)|Em ơi!|Excuse me! (to a young waiter)
++ tuổi|age, years old|Bác bao nhiêu tuổi?|How old are you? (to an elder)
+T Ask your teacher what to call five people: a young waiter, a fruit seller who looks about 50, an old man, a friend's father, a 20-year-old woman. Greet each one out loud, with the right word for yourself.
+C Show photos of people of different ages. The learner greets each one and says one line about themselves with the matching word for "I". Correct the pair every time: chú and cháu, anh and em, bà and cháu.
+
 ## u07|A1|và · với · hay · nhưng · còn|and, with, or, but|và,với,hay,nhưng,còn
 ? và = and. với = with. hay = or in a question; hoặc = or in a statement.
 ? nhưng = but; in speech often nhưng mà. còn = "and what about": Tôi khỏe. Còn anh?

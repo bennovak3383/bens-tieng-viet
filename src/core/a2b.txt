@@ -74,7 +74,6 @@ C Give a verb and have the learner add xong, hết, ra, thấy or mất, then ma
 + chứ|of course; surely; and not|Anh đi chứ?|You are going, aren't you?
 + nè|here, look (Saigon)|Coi nè.|Look at this.
 + luôn|too; right away; for good|Tôi mua luôn.|I will just buy it.
-+ ơi|hey (calling someone)|Chị ơi, cho tôi hỏi.|Excuse me, may I ask you something?
 + ạ|(polite ending)|Dạ, cảm ơn ạ.|Yes, thank you.
 + ừ|yeah (to friends, not to elders)|Ừ, được.|Yeah, okay.
 + ha|right? (soft, Saigon)|Hôm nay nóng ha.|Hot today, isn't it.
@@ -182,10 +181,6 @@ C Draw a simple map. Ask "… cách đây bao xa?" and "Đi … mất bao lâu?"
 + phụ nữ|woman, women|Phụ nữ ở đây rất giỏi.|The women here are very capable.
 + con trai|son; boy|Anh ấy có một con trai.|He has one son.
 + con gái|daughter; girl|Con gái chị mấy tuổi rồi?|How old is your daughter?
-+ tuổi|age; years old|Anh bao nhiêu tuổi?|How old are you?
-+ chú|uncle; a man about your father's age|Chú ấy là người quen của tôi.|That man is someone I know.
-+ bác|a man or woman older than your parents|Bác khỏe không ạ?|How are you? (to an elder)
-+ cháu|grandchild, niece, nephew; I (to an elder)|Cháu chào bác.|Hello. (to an elder)
 + ổng|he, him (Saigon, casual)|Ổng nói gì vậy?|What did he say?
 + bả|she, her (Saigon, casual)|Bả đi rồi.|She has gone.
 + khách|guest, customer|Hôm nay quán có nhiều khách.|The café has many customers today.

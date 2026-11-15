@@ -62,6 +62,19 @@ except FileNotFoundError: pass
 try:
     X=json.load(open(repo+'/data/exam.json'))   # 29: test practice (questions with example answers, then the reading texts)
     add('x0','Câu hỏi hằng ngày','What people ask you every day',[r for q in X['daily']['q'] for r in ((q[0],q[1]),(q[2],q[3]))])
+    # 42: the same questions asked to a woman (anh -> chị, vợ -> chồng), so women learners hear a real voice too
+    import re as _re
+    def _f(t):
+        w=_re.split(r'(\s+)',t)
+        for i in range(0,len(w)):
+            m=_re.match(r'^([“"(]*)(anh|Anh)([.,!?…”")]*)$',w[i])
+            if not m: continue
+            prev=(w[i-2] if i>=2 else '').lower(); nxt=(w[i+2] if i+2<len(w) else '')
+            if prev in ('tiếng','người','nước') or _re.match(r'^(ấy|trai|ta)\b',nxt,_re.I) or (_re.match(r'^[A-ZĐ]',nxt) and nxt not in ('Có','Là')): continue
+            w[i]=m.group(1)+('Chị' if m.group(2)=='Anh' else 'chị')+m.group(3)
+        t=''.join(w); t=_re.sub(r'(^|[\s“"(])vợ(?=[\s.,!?…”")]|$)',r'\1chồng',t); return t.replace('bạn gái','bạn trai')
+    fq=[(_f(q[0]),q[1]) for q in X['daily']['q'] if _f(q[0])!=q[0]]
+    add('x0c','Câu hỏi hằng ngày (hỏi chị)','Everyday questions, asked to a woman',fq)
     rows=[]
     for t in X['speak']:
         for q in t['q']: rows.append((q[0],q[1])); rows.append((q[2],q[3]))
@@ -71,7 +84,7 @@ except FileNotFoundError: pass
 ks=[p for p in parts if p['id'][0]=='k' and p['id'][1:].isdigit()]; gs={p['id']:p for p in parts if p['id'][0]=='g' and p['id'][1:].isdigit()}
 try: GAT=[(g['id'],g['at']) for g in json.load(open(repo+'/data/core.json')).get('st',[])]
 except FileNotFoundError: GAT=[]
-core=[p for p in parts if p['id']=='x0']
+core=[p for p in parts if p['id'] in ('x0','x0c')]
 for n,kp in enumerate(ks):
     core.append(kp); core+=[gs[g] for g,at in GAT if at==n+1 and g in gs]
 rest=[p for p in parts if p not in core]; at=next((n+1 for n,p in enumerate(rest) if p['id']=='z0'),0); parts=rest[:at]+core+rest[at:]

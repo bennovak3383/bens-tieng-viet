@@ -4,7 +4,7 @@
 #          = line|English
 #          ? question|answer|question in English
 
-## g1|5|Mike ở Sài Gòn|Mike in Saigon
+## g1|6|Mike ở Sài Gòn|Mike in Saigon
 = Đây là Mike.|This is Mike.
 = Mike là người Úc.|Mike is Australian.
 = Anh sống ở Sài Gòn.|He lives in Saigon.
@@ -22,7 +22,7 @@
 ? Nhà Mike ở đâu?|Nhà Mike ở Quận 4.|Where is Mike's house?
 ? Mike có đói không?|Có, Mike đói.|Is Mike hungry?
 
-## g2|10|Phở với chị Lan|Phở with Lan
+## g2|11|Phở với chị Lan|Phở with Lan
 = Hôm nay Mike không đi làm. Anh nghỉ.|Today Mike is not going to work. He has the day off.
 = Chị Lan gọi: “Mike ơi, anh đói không?”|Lan calls: “Mike, are you hungry?”
 = “Dạ, tôi đói.”|“Yes, I am hungry.”
@@ -40,7 +40,7 @@
 ? Chị Lan uống gì?|Chị Lan uống trà đá.|What does Lan drink?
 ? Mike học tiếng Việt bao lâu rồi?|Mike học ba tháng rồi.|How long has Mike been learning?
 
-## g3|15|Trời mưa|It is raining
+## g3|16|Trời mưa|It is raining
 + áo mưa|raincoat
 + sếp|boss
 = Hôm nay Mike phải đi làm sớm.|Today Mike has to go to work early.
@@ -59,7 +59,7 @@
 ? Mike gọi cho ai?|Mike gọi cho sếp.|Who does Mike call?
 ? Sếp nói gì?|Sếp nói không sao.|What does the boss say?
 
-## g4|20|Mike đi chợ|Mike goes to the market
+## g4|21|Mike đi chợ|Mike goes to the market
 + chợ|market
 + cá|fish
 + nấu|to cook
@@ -80,7 +80,7 @@
 ? Cô bán cá hỏi Mike gì?|Cô hỏi anh là người nước nào.|What does the fish seller ask?
 ? Cá có ngon không?|Cá không ngon lắm.|Is the fish good?
 
-## g5|26|Sinh nhật chị Lan|Lan's birthday
+## g5|27|Sinh nhật chị Lan|Lan's birthday
 + hoa|flower
 = Thứ hai, Nam gọi cho Mike.|On Monday, Nam calls Mike.
 = “Anh biết không? Thứ bảy này là sinh nhật chị Lan.”|“Did you know? This Saturday is Lan's birthday.”
@@ -99,7 +99,7 @@
 ? Thứ sáu Mike bị gì?|Mike bị mất điện thoại.|What happened to Mike on Friday?
 ? Chị Lan nói gì?|Chị ấy nói không sao.|What does Lan say?
 
-## g6|30|Mua áo ở chợ Bến Thành|Buying a shirt at Bến Thành market
+## g6|31|Mua áo ở chợ Bến Thành|Buying a shirt at Bến Thành market
 + Bến Thành|a big market in District 1
 = Mike muốn mua một cái áo mới để đi sinh nhật Nam.|Mike wants a new shirt for Nam's birthday.
 = Anh và Nam đi chợ Bến Thành.|He and Nam go to Bến Thành market.
@@ -118,7 +118,7 @@
 ? Lúc đầu cái áo giá bao nhiêu?|Năm trăm ngàn.|What was the first price?
 ? Mike trả bao nhiêu?|Bốn trăm ngàn.|How much does Mike pay?
 
-## g7|35|Về quê của Nam|Going to Nam's hometown
+## g7|36|Về quê của Nam|Going to Nam's hometown
 + miền Tây|the Mekong Delta
 + bà ngoại|grandmother (mother's side)
 + má|mum (Saigon)
@@ -139,7 +139,7 @@
 ? Mike gọi ba của Nam là gì?|Mike gọi là chú.|What does Mike call Nam's dad?
 ? Bà ngoại hỏi Mike gì?|Bà hỏi anh có vợ chưa.|What does grandma ask Mike?
 
-## g8|40|Nhà mới|A new home
+## g8|41|Nhà mới|A new home
 + căn hộ|apartment
 + cửa sổ|window
 = Mike muốn đổi nhà.|Mike wants to move house.
@@ -158,7 +158,7 @@
 ? Chủ nhà trông như thế nào?|Cô ấy ốm, tóc ngắn.|What does the landlady look like?
 ? Căn hộ giá bao nhiêu?|Bảy triệu một tháng.|How much is the apartment?
 
-## g9|45|Mike bị bệnh|Mike gets sick
+## g9|46|Mike bị bệnh|Mike gets sick
 + phòng khám|clinic
 + cháo|rice porridge
 = Sáng thứ hai, Mike thức dậy và thấy rất mệt.|On Monday morning, Mike wakes up and feels very tired.

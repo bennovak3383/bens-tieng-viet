@@ -839,7 +839,7 @@ function z13First(){ var name=(S.me&&S.me.name)||'', mine='Tôi tên là '+(name
     b.appendChild(h('div',{class:'panel'},[h('b',{text:'That is how this works.'}),h('div',{class:'small muted',text:'A Saigon voice, you speaking out loud, and something real to use. Every day is built from those three.'})]));
     b.appendChild(h('button',{class:'btn primary wide',style:'min-height:56px;font-size:17px',text:'Start my first day',onclick:function(){ S.set.first13=1; save(); zToday() }})); b.appendChild(h('button',{class:'btn wide',text:'Look around first',onclick:function(){ S.set.first13=1; save(); closeSheet() }})); setTimeout(function(){ zSay(t) },350) }
   function two(){ z13Shadow(three,2,z13Items([['cảm ơn','thank you'],['Chào anh.','Hello (to a man about your age)']])) }
-  var body=zOpen(), tok=Z.tok, q='Anh tên gì?', heard=h('p',{class:'heard'}), say=null; body.appendChild(zTop('Ba phút đầu · your first three minutes',.1,null));
+  var body=zOpen(), tok=Z.tok, q=z42Q('Anh tên gì?'), heard=h('p',{class:'heard'}), say=null; body.appendChild(zTop('Ba phút đầu · your first three minutes',.1,null));
   if(zMic()) say=h('button',{class:'btn primary wide',text:'Answer out loud now',onclick:function(){ say.disabled=true; say.textContent='Listening…'; stopAudio(); ZS.tok++; zHear(6000,function(t){ heard.textContent=t }).then(function(res){ if(tok!==Z.tok) return; var t=(res.alts&&res.alts[0])||''; heard.textContent=t?('It heard: '+t):'It did not catch that. No problem.'; say.disabled=false; say.textContent='Say it again' }) }});
   zSwap(body,[h('span',{class:'lbl',text:'1 of 3 · someone in Saigon asks you'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('button',{class:'play z13big','aria-label':'Play the question',html:PLAY_ICON,onclick:function(){ zSay(q) }}),zVi(q,26),h('div',{class:'muted',text:'What is your name?'})]),
     h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'You answer, out loud'}),h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(mine,24),zPlay(mine)]),h('div',{class:'small muted',text:'My name is '+(name||'…')+'.'}),heard]),
@@ -1410,3 +1410,19 @@ var zRenderHome40=zRenderHome; zRenderHome=function(){ zRenderHome40(); try{ var
 function z41Street(u){ if(!u||!u.street||!u.street.length) return null; var box=h('div',{class:'panel z41st'},[h('span',{class:'lbl',text:'Ngoài đường · on the street in Saigon'}),h('p',{class:'small muted',text:'What you will actually hear. Learn the course form first; understand these.'})]);
   u.street.forEach(function(s){ box.appendChild(h('div',{class:'z41row'},[h('div',{style:'flex:1;min-width:0'},[zVi(s[0],19),h('div',{class:'small muted',text:'Course: '+s[1]+' · '+s[2]}),s[3]?h('div',{class:'small z41note',text:s[3]}):null]),zPlay(s[0])])) }); return box }
 var z27Gram41=z27Gram; z27Gram=function(u,ui,next){ z27Gram41(u,ui,next); try{ var ex=$('#sheet-body .z27exs'), st=z41Street(u); if(ex&&st&&!$('#sheet-body .z41st')) ex.parentNode.insertBefore(st,ex.nextSibling) }catch(e){} };
+
+/* ===== 42 · audit fix 7: who is who. The welcome asks how people should address you; questions to a woman use chị (and chồng, bạn trai) ===== */
+var Z42={last:''};
+function z42F(){ return S.set.g42==='f' }
+function z42Q(t){ if(!z42F()||!t) return t; var w=String(t).split(/(\s+)/);
+  for(var i=0;i<w.length;i++){ var m=/^([“"(]*)(anh|Anh)([.,!?…”")]*)$/.exec(w[i]); if(!m) continue; var prev=(w[i-2]||'').toLowerCase(), next=(w[i+2]||'');
+    if(/^(tiếng|người|nước)$/.test(prev)||/^(ấy|trai|ta)\b/i.test(next)||(/^[A-ZĐ]/.test(next)&&!/^(Có|Là)$/.test(next))) continue; w[i]=m[1]+(m[2]==='Anh'?'Chị':'chị')+m[3] }
+  return w.join('').replace(/(^|[\s“"(])vợ(?=[\s.,!?…”")]|$)/g,'$1chồng').replace(/bạn gái/g,'bạn trai') }
+function z42Apply(){ var key=(S.set.g42||'')+'|'+(Z29?1:0)+'|'+(typeof C6!=='undefined'&&C6.pairs?1:0)+'|'+FC.length; if(key===Z42.last) return; Z42.last=key;
+  try{ if(Z29){ (Z29.daily&&Z29.daily.q||[]).forEach(function(q){ if(q._o==null) q._o=q[0]; q[0]=z42Q(q._o) }); (Z29.speak||[]).forEach(function(t){ (t.q||[]).forEach(function(q){ if(q._o==null) q._o=q[0]; q[0]=z42Q(q._o) }) }) } }catch(e){}
+  try{ (C6.pairs||[]).forEach(function(p){ if(p._o==null) p._o=p.q; p.q=z42Q(p._o) }) }catch(e){}
+  try{ FC.forEach(function(c){ if(c.c!=='dq') return; if(c._o==null) c._o=c.vi; c.vi=z42Q(c._o) }) }catch(e){} }
+var zRenderHome42=zRenderHome; zRenderHome=function(){ try{ z42Apply() }catch(e){} zRenderHome42() };
+var z26Ask42=z26Ask; z26Ask=function(){ var box=z26Ask42(), r=h('div',{class:'row',style:'gap:8px'}), opts=[['m','As a man','People call you anh'],['f','As a woman','People call you chị']];
+  opts.forEach(function(o){ r.appendChild(h('button',{class:'z26opt',style:'flex:1','aria-pressed':String(S.set.g42===o[0]),onclick:function(){ S.set.g42=o[0]; save(); Z42.last=''; z42Apply(); [].forEach.call(r.children,function(x,i){ x.setAttribute('aria-pressed',String(opts[i][0]===o[0])) }) }},[h('b',{text:o[1]}),h('span',{class:'small muted',text:o[2]})])) });
+  return h('div',{class:'stack'},[h('div',{class:'panel'},[h('span',{class:'lbl',text:'How should people address you?'}),r,h('p',{class:'small muted',text:'Vietnamese has no plain "you". The app asks you questions the way people in Saigon would.'})]),box]) };
