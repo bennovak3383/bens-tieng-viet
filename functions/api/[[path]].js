@@ -219,6 +219,15 @@ export async function onRequest(context) {
         const b = await request.json().catch(() => ({})); const w = clean(b.w, 12).replace(/[^a-z0-9]/g, ''); if (!w) return J({ error: 'Missing name.' }, 400);
         const who = await vWho(env); who[w] = { name: clean(b.name, 40).trim(), g: b.g === 'm' || b.g === 'f' ? b.g : '' }; await env.KV.put('vo:who', JSON.stringify(who)); return J({ ok: true, who });
       }
+      if (path === 't/voice-del' && m === 'POST') {
+        // teacher page: take one speaker's clip out (bad sound, wrong word); the line goes back on the list for anyone to record
+        const b = await request.json().catch(() => ({})); const w = clean(b.w, 12).replace(/[^a-z0-9]/g, ''), i = clean(b.i, 28).replace(/[^a-z0-9_]/g, '');
+        if (!w || !i) return J({ error: 'Missing clip.' }, 400);
+        await env.KV.delete('vo:' + w + ':' + i);
+        for (const k of ['vo:ix:' + w, 'vo:ixf:' + w]) { const o = await env.KV.get(k, 'json'); if (o && o[i]) { delete o[i]; await env.KV.put(k, JSON.stringify(o)); } }
+        const idx = (await env.KV.get('vo:index', 'json')) || {}; if (idx[w] && idx[w][i]) { delete idx[w][i]; await env.KV.put('vo:index', JSON.stringify(idx)); }
+        return J({ ok: true });
+      }
       if (path === 't/fix-audio' && m === 'GET') {
         const key = clean(url.searchParams.get('key') || '', 60); if (!/^vo:fx:[a-z0-9]+:[a-z0-9_]+$/.test(key)) return J({ error: 'Bad key.' }, 400);
         const r = await env.KV.get(key, 'arrayBuffer'); if (!r || r.byteLength < 100) return J({ error: 'No recording.' }, 404);

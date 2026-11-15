@@ -283,3 +283,10 @@ VERSION 46 (15 Nov 2026) - audit fix 10: the teacher's week, at a glance
 - Tests for versions 37 to 46 are in src/tests (t37a, t38, t38b, t39, t40, t44, t45). t40, t44, t45 and t27b each need a fresh dev server (the teacher key can only be made once per run).
 
 VERSION 46b (15 Nov 2026) - teacher page, recording links: a speaker's name and man/woman now save on their own (when you leave the box, press Enter or pick man/woman), not only with the Save button; the heading changes to the name straight away and says "Saved ✓".
+
+VERSION 47 — teacher page: listen to each speaker's recordings
+On Thu âm · recording links, each person with recordings has "▶ Nghe lại · listen to their recordings".
+It lists their clips newest first: Vietnamese line, English, which part, and a player. "Play all" plays them one after another.
+"Good" marks a clip as checked (saved in that browser only). "Redo" (tap twice) removes the clip from the server
+(new endpoint t/voice-del, teacher key only); the app stops using it right away and the line goes back on the recording list.
+Test: src/tests/t47.py.
