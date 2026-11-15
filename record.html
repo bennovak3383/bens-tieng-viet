@@ -17,7 +17,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .btn.rec.on{background:#fff;color:var(--red);border-color:var(--red)}
 .btn:disabled{opacity:.5}
 .part{display:flex;align-items:center;gap:12px;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px;width:100%}
-.part b{display:block}.part .n{margin-left:auto;font-weight:600;white-space:nowrap}
+#app .szc{border:1.5px solid var(--line);border-radius:999px;padding:7px 12px;background:var(--surface);font-size:14px;text-decoration:none}#app .szc[aria-pressed=true]{background:var(--ink,#222);color:var(--bg,#fff)}.part b{display:block}.part .n{margin-left:auto;font-weight:600;white-space:nowrap}
 .part.done{border-color:var(--green)}.part.done .n{color:var(--green)}
 .bar{height:6px;border-radius:3px;background:#E6D9BE;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}
 .line{font:700 30px/1.3 "Be Vietnam Pro",sans-serif;text-align:center;padding:10px 0}
@@ -50,7 +50,7 @@ function covered(l){ return speakers(l).length>0 }
 var PH=0; function PHASE(){ return PH||(PH=CH.some(function(c){ return c.lines.some(function(l){ return !covered(l) }) })?1:2) }
 function need(l){ if(mine(l)) return false; if(PHASE()===1) return !covered(l); if(!MYG) return true; return !speakers(l).some(function(w){ return (G[w]||(w==='voice1'?'f':''))===MYG }) }
 function left(c){ return c.lines.filter(need).length }
-function build(){ var ps=PARTS.slice().sort(function(a,b){ var x=ORDER.indexOf(a.id), y=ORDER.indexOf(b.id); return (x<0?999:x)-(y<0?999:y) }); CH=[];
+function build(){ var ps=PARTS.slice(); /* the line list is already in priority order (src/voice/make_lines.py) */ CH=[];
   ps.forEach(function(p){ if(p.lines.length<=30){ CH.push({id:p.id,vi:p.vi,en:p.en,lines:p.lines}); return } var n=Math.ceil(p.lines.length/25);
     for(var k=0;k<n;k++) CH.push({id:p.id+'_'+(k+1),vi:p.vi+' · phần '+(k+1)+'/'+n,en:p.en+' · part '+(k+1)+' of '+n,lines:p.lines.slice(k*25,(k+1)*25)}) }) }
 function other(c){ return CL[c.id]&&CL[c.id]!==WHO }
@@ -72,10 +72,17 @@ function home2(){ app.innerHTML=''; var total=0, cov=0, my=0, ph=PHASE();
     h('p',{class:'small muted',text:'Bạn đã thu '+my+' câu. · Whole app: '+cov+' of '+total+' lines have a real voice. You have recorded '+my+'.'}),
     h('p',{class:'small',text:ph===1?'Bây giờ: thu những câu chưa ai thu. Câu nào người khác đã thu thì được bỏ qua. · Now: only lines nobody has recorded yet.':'Mọi câu đã có giọng. Bây giờ: thu thêm một giọng '+(MYG==='m'?'nam':MYG==='f'?'nữ':'thứ hai')+' cho các câu. · Every line has a voice. Now: a second voice.'})]));
   var todo=CH.filter(function(c){ return left(c) }), next=todo.filter(function(c){ return !other(c) })[0]||todo[0];
-  if(next) app.appendChild(h('button',{class:'btn primary',text:'Thu tiếp · '+next.vi,onclick:function(){ part(next) }}));
+  function mins(n){ return Math.max(1,Math.round(n*20/60)) }
+  if(next) app.appendChild(h('button',{class:'btn primary',text:'Thu tiếp · '+next.vi+' ('+left(next)+' câu, ~'+mins(left(next))+' phút)',onclick:function(){ part(next) }}));
+  if(next) app.appendChild(h('p',{class:'small muted',text:'Phần quan trọng nhất ở trên. Bạn cũng có thể chọn bất kỳ phần nào bên dưới, ngắn hay dài tùy bạn. · The most important part is first, but you can pick any part below, short or long.'}));
   else app.appendChild(h('p',{class:'panel',text:'Xong hết rồi! Cảm ơn bạn rất nhiều. · All done, thank you!'}));
-  app.appendChild(h('h2',{text:'Các phần còn lại'}));
-  todo.forEach(function(c){ var l=left(c); app.appendChild(h('button',{class:'part',onclick:function(){ part(c) }},[h('div',{},[h('b',{text:c.vi}),h('span',{class:'small muted',text:c.en+(other(c)?' · người khác đang thu phần này · someone else is on this one':'')})]),h('span',{class:'n',text:'còn '+l})])) });
+  app.appendChild(h('h2',{text:'Chọn phần bạn muốn thu · pick a part'}));
+  var SZ=0, list=h('div',{}), chips=h('div',{class:'row',style:'gap:6px;flex-wrap:wrap;margin-bottom:8px'});
+  [['Tất cả · all',0],['Ngắn · short (≤10)',1],['Vừa · medium (11–20)',2],['Dài · long (21+)',3]].forEach(function(o){ chips.appendChild(h('button',{class:'x szc','aria-pressed':String(o[1]===0),text:o[0],onclick:function(e){ SZ=o[1]; Array.prototype.forEach.call(chips.children,function(b){ b.setAttribute('aria-pressed',String(b===e.target)) }); drawList() }})) });
+  app.appendChild(chips); app.appendChild(list);
+  function fits(n){ return !SZ||(SZ===1&&n<=10)||(SZ===2&&n>10&&n<=20)||(SZ===3&&n>20) }
+  function drawList(){ list.innerHTML=''; var shown=0; todo.forEach(function(c){ var l=left(c); if(!fits(l)) return; shown++; list.appendChild(h('button',{class:'part',onclick:function(){ part(c) }},[h('div',{},[h('b',{text:c.vi}),h('span',{class:'small muted',text:c.en+(other(c)?' · người khác đang thu phần này · someone else is on this one':'')})]),h('span',{class:'n',text:'còn '+l+' · ~'+mins(l)+' phút'})])) }); if(!shown) list.appendChild(h('p',{class:'small muted',text:'Không có phần nào cỡ này. · No parts this size left.'})) }
+  drawList();
   var dn=CH.filter(function(c){ return !left(c) });
   if(dn.length){ var box=h('div',{}); app.appendChild(h('button',{class:'x',text:'Xem '+dn.length+' phần đã xong · show finished parts',onclick:function(e){ e.target.remove(); dn.forEach(function(c){ box.appendChild(h('button',{class:'part done',onclick:function(){ part(c) }},[h('div',{},[h('b',{text:c.vi}),h('span',{class:'small muted',text:c.en})]),h('span',{class:'n',text:'Xong'})])) }) }})); app.appendChild(box) } }
 

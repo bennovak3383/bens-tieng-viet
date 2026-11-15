@@ -181,3 +181,10 @@ VERSION 32 — everyone gets their own account that follows them
   metadata c on s:<id>; older students show it after their next save).
 - Progress tab: "Start over as a new learner" clears this device and signs out; the old code
   still works online.
+
+VERSION 33 — recording page: pick any part, by size
+- Order now follows the line list itself (src/voice/make_lines.py): tones, sound lessons (v0),
+  everyday questions, core course, then the older parts. Before this, record.html had its own
+  ORDER list that pushed the new parts to the end.
+- "Pick a part" list with size buttons: all / short (≤10) / medium (11–20) / long (21+). Each
+  part shows lines left and rough minutes (about 20 seconds a line).
