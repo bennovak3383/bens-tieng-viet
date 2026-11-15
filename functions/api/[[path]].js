@@ -35,7 +35,7 @@ export async function onRequest(context) {
     }
     if (path === 'state') {
       const s = await student(env, request); if (!s) return J({ error: 'That code was not found.' }, 401);
-      if (m === 'GET') { const [st, notes] = await Promise.all([env.KV.get('s:' + s.id, 'json'), env.KV.get('n:' + s.id, 'json')]); return J({ id: s.id, name: s.name, state: st || {}, notes: notes || [] }); }
+      if (m === 'GET') { const [st, notes, lv] = await Promise.all([env.KV.get('s:' + s.id, 'json'), env.KV.get('n:' + s.id, 'json'), env.KV.get('lv:' + s.id)]); return J({ id: s.id, name: s.name, state: st || {}, notes: notes || [], lv: lv || '' }); }
       if (m === 'PUT') {
         const text = await request.text(); if (text.length > 3_000_000) return J({ error: 'Too large.' }, 413);
         let st; try { st = JSON.parse(text); } catch (e) { return J({ error: 'Bad data.' }, 400); }
@@ -264,9 +264,9 @@ export async function onRequest(context) {
       }
       const id = clean(url.searchParams.get('id') || '', 12).replace(/[^A-Z0-9]/g, '');
       if (path === 't/student') {
-        const [st, notes, recs, ai, wi] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id), env.KV.get('wi:' + id, 'json')]);
+        const [st, notes, recs, ai, wi, lv] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id), env.KV.get('wi:' + id, 'json'), env.KV.get('lv:' + id)]);
         if (st == null) return J({ error: 'No such student.' }, 404);
-        return J({ id, state: st, notes: notes || [], ai: !!ai, aiReady: !!(env.ANTHROPIC_API_KEY || env.OPENAI_API_KEY), recs: recs.keys.map(k => ({ key: k.name, ...(k.metadata || {}) })), writing: wi || [] });
+        return J({ id, state: st, notes: notes || [], lv: lv || '', ai: !!ai, aiReady: !!(env.ANTHROPIC_API_KEY || env.OPENAI_API_KEY), recs: recs.keys.map(k => ({ key: k.name, ...(k.metadata || {}) })), writing: wi || [] });
       }
 
       if (path === 't/w-photo') {
@@ -306,6 +306,11 @@ export async function onRequest(context) {
         if (b.on) await env.KV.put('a:' + sid, '1'); else await env.KV.delete('a:' + sid);
         return J({ ok: true, ai: !!b.on });
       }
+      if (path === 't/level' && m === 'POST') {   // 35: teacher opens or closes A2 for one student ('' = automatic: A2 opens after the 20 A1 units)
+        const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid || (await env.KV.get('s:' + sid)) == null) return J({ error: 'No such student.' }, 404);
+        const lv = b.lv === 'A1' || b.lv === 'A2' ? b.lv : ''; if (lv) await env.KV.put('lv:' + sid, lv); else await env.KV.delete('lv:' + sid);
+        return J({ ok: true, lv });
+      }
       if (path === 't/note' && m === 'POST') {
         const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); const text = clean(b.text, 600); if (!sid || !text) return J({ error: 'Nothing to save.' }, 400);
         if ((await env.KV.get('s:' + sid)) == null) return J({ error: 'No such student.' }, 404);
@@ -332,7 +337,7 @@ export async function onRequest(context) {
         const us = await env.KV.list({ prefix: 'u:', limit: 1000 });
         for (const k of us.keys) { const u = await env.KV.get(k.name, 'json'); if (u && u.id === sid) await env.KV.delete(k.name); }
         for (const pre of ['wp:', 'wv:']) { const w = await env.KV.list({ prefix: pre + sid + ':', limit: 200 }); await Promise.all(w.keys.map(k => env.KV.delete(k.name))); }
-        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid), env.KV.delete('wi:' + sid)]);
+        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid), env.KV.delete('wi:' + sid), env.KV.delete('lv:' + sid)]);
         return J({ ok: true, more: false });
       }
     }

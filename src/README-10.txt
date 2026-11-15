@@ -194,3 +194,12 @@ VERSION 34 — "A1 only" switch for the core course
   follows the learner's code. Default is A1 + A2.
 - With A1 only: the card counts "unit x of 20", the list hides the 25 A2 units, A2 words never
   become cards, the day plan has no unit stop once A1 is done, and the card offers "Open A2".
+
+VERSION 35 — levels for everyone, teacher controls A2 (replaces the version 34 learner switch)
+- Every learner sees A1 only (20 units). A2 opens by itself when all A1 units are done (done or
+  skipped with "I know this").
+- Teacher page → a student → "Cấp độ · course level": Automatic / Open A2 now / Keep at A1.
+  Stored as lv:<student id> (POST /api/t/level); sent to the app with GET /api/state as j.lv and
+  copied into S.set.k27.t after each sync. Only works for learners with a code.
+- z27N() = number of units in reach; used by the course card, unit list, end-of-unit screen,
+  practice tile and the day plan.
