@@ -221,3 +221,10 @@ VERSION 37 (15 Nov 2026) - audit fix 1: one spine on Home
 - Situations: pet shop, girlfriend's family and gym (Z37.personal) sit under "More situations".
 - More tab: the in-app "Thầy" tile (the student's own recordings view, #teach) renamed "Ghi âm · my recordings".
 - Home sound line now says the course opens after the first 8 sound lessons and the rest are extra.
+
+VERSION 38 (15 Nov 2026) - audit fix 2: A2 re-levelled, B1 preview, five plain A2 units
+- Units u26 (although), u27 (càng…càng), u31 (việc/cách/điều/sự), u39 (về/theo/đối với), u41 (do/nhờ/tại/khỏi) moved to src/core/b1.txt with level B1 ("B1 preview"). Their words that are now taught earlier (giá, mắc, rẻ, ký, vui tính) were dropped from them.
+- New A2 units: u46 days and dates (before u25 clock time), u48 shopping and bargaining (start of a2b), u47 describing people and places (in a2c before u42), u49 doctor and pharmacy, u50 phone, Grab and pickup (end of a2c). 50 units, 868 words, 1,170 sentences, 0 sentences with an untaught word.
+- tiền mặt and mặc dropped from u37 (now taught in u48). A few sentences reworded so no sentence uses a word from the B1 units.
+- z27N: A1 → A1+A2 → all. Teacher level can be A1, A2 or B1 (server accepts B1; teacher page button "Open B1 preview"). z27Lv(lv), z27LvDone(lv).
+- Recording list rebuilt: 4,474 lines; new parts k46 to k50 sit inside the A2 order, B1 parts after the A2 ones.

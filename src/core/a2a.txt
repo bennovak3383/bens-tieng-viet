@@ -128,6 +128,30 @@ C Give two short sentences and have the learner join them with mà. Then drill c
 T Ask your teacher five "Anh / Chị đã bao giờ … chưa?" questions. Tell them three things you once did and three you have never done.
 C Run "Have you ever" as a chain game. Contrast từng (life experience) with rồi (already, this time).
 
+## u46|A2|thứ mấy · ngày mấy · tuần sau|days of the week and dates|thứ,ngày,tuần
+? Days are numbered: thứ hai is Monday, thứ ba Tuesday, up to thứ bảy (Saturday). Sunday is chủ nhật. Ask: Hôm nay thứ mấy?
+? Dates go from small to big: ngày mười tháng mười một (the 10th of November). Ask: Hôm nay ngày mấy?
+? Before and after: tuần rồi (last week, Saigon), tuần sau (next week), năm ngoái (last year), hôm kia (the day before yesterday), mốt (the day after tomorrow, Saigon).
+= Hôm nay thứ mấy?|What day is it today?
+= Hôm nay thứ hai.|Today is Monday.
+= Hôm nay ngày mấy?|What is the date today?
+= Hôm nay ngày mười tháng mười một.|Today is the 10th of November.
+= Chủ nhật này anh rảnh không?|Are you free this Sunday?
+= Tuần sau tôi về Mỹ.|Next week I go back to America.
++ thứ hai|Monday|Thứ hai tôi đi học.|On Monday I go to class.
++ thứ bảy|Saturday|Thứ bảy anh làm gì?|What are you doing on Saturday?
++ chủ nhật|Sunday|Chủ nhật quán đóng cửa.|The place is closed on Sunday.
++ ngày mấy|what date|Sinh nhật anh ngày mấy?|What date is your birthday?
++ sinh nhật|birthday|Hôm nay là sinh nhật tôi.|Today is my birthday.
++ tuần sau|next week|Tuần sau gặp lại nha.|See you next week.
++ tuần rồi|last week (Saigon)|Tuần rồi tôi bị bệnh.|Last week I was sick.
++ năm ngoái|last year|Năm ngoái tôi ở Mỹ.|Last year I was in America.
++ năm sau|next year|Năm sau tôi sẽ nói giỏi hơn.|Next year I will speak better.
++ hôm kia|the day before yesterday|Hôm kia trời mưa lớn.|It rained hard the day before yesterday.
++ mốt|the day after tomorrow (Saigon)|Mai hay mốt cũng được.|Tomorrow or the day after is fine.
+T Tell your teacher what you do each day of a normal week, and the dates of three things coming up (a birthday, a trip, a holiday).
+C Point at a calendar and ask thứ mấy, ngày mấy fast. Make sure the date comes as ngày … tháng …, and that the learner hears mốt and tuần rồi as Saigon forms.
+
 ## u25|A2|lúc … giờ · buổi · từ … đến …|clock time and parts of the day|lúc,giờ,buổi,từ
 ? lúc + time = at: lúc bảy giờ = at seven o'clock. Half past is rưỡi: bảy giờ rưỡi.
 ? The day has buổi (parts): buổi sáng, buổi trưa, buổi chiều, buổi tối. The time word usually opens the sentence.
@@ -159,67 +183,6 @@ C Run "Have you ever" as a chain game. Contrast từng (life experience) with r�
 + kín|full, packed; closed tight|Hôm nay tôi kín lịch rồi.|I am fully booked today.
 T Tell your teacher your whole day by the clock, from getting up to going to sleep.
 C Show clock times and ask "Mấy giờ rồi?". Then ask "Anh … lúc mấy giờ?" about the learner's routine. Check rưỡi and the tone on giờ.
-
-## u26|A2|mặc dù … nhưng … · tuy nhiên|although, however|mặc dù,nhưng,tuy nhiên,thật ra
-? mặc dù (or tuy, or just dù) … nhưng … = although …, …. Unlike English, Vietnamese keeps nhưng in the second half.
-? tuy nhiên = however; it starts a new sentence and is a little formal. thật ra = actually.
-= Mặc dù trời mưa nhưng tôi vẫn đi.|Although it is raining, I am still going.
-= Tuy mệt nhưng tôi rất vui.|Although I am tired, I am very happy.
-= Dù bận, anh ấy vẫn giúp tôi.|Even though he is busy, he still helps me.
-= Tôi muốn đi. Tuy nhiên, tôi không có thời gian.|I want to go. However, I do not have time.
-= Thật ra tôi không thích lắm.|Actually, I do not like it much.
-= Tất nhiên là được.|Of course that's fine.
-+ mặc dù|although|Mặc dù khó nhưng tôi sẽ cố gắng.|Although it is hard, I will try my best.
-+ tuy|although|Tuy nhỏ nhưng nhà tôi rất đẹp.|Although it is small, my house is very nice.
-+ dù|even though; no matter|Dù sao cũng cảm ơn anh.|Thank you anyway.
-+ tuy nhiên|however|Tuy nhiên, vẫn còn một vấn đề.|However, there is still one problem.
-+ thật ra|actually|Thật ra tôi chưa hiểu.|Actually, I do not understand yet.
-+ thật sự|really, truly|Tôi thật sự rất thích chỗ này.|I really do like this place.
-+ tất nhiên|of course|Tất nhiên tôi sẽ giúp.|Of course I will help.
-+ hoàn toàn|completely|Tôi hoàn toàn đồng ý.|I completely agree.
-+ đặc biệt|special; especially|Tôi thích đồ ăn ở đây, đặc biệt là phở.|I like the food here, especially the phở.
-+ nói chung|in general|Nói chung mọi thứ đều ổn.|In general everything is fine.
-+ ví dụ|example; for example|Anh cho tôi một ví dụ được không?|Can you give me an example?
-+ ngoài ra|besides, also|Ngoài ra, tôi còn học tiếng Việt.|Besides that, I am also learning Vietnamese.
-+ hơn nữa|what is more|Chỗ này gần, hơn nữa đồ ăn ngon.|This place is close, and what is more the food is good.
-+ thậm chí|even|Thậm chí tôi không biết tên anh ấy.|I do not even know his name.
-+ ít nhất|at least|Tôi cần ít nhất hai ngày.|I need at least two days.
-+ mọi thứ|everything|Mọi thứ ở đây đều mới với tôi.|Everything here is new to me.
-+ dù sao|anyway|Dù sao tôi cũng phải đi.|I have to go anyway.
-T Make five "Mặc dù … nhưng …" sentences about living in Saigon. Then tell a short story with thật ra and tuy nhiên in it.
-C Give two facts that pull against each other and have the learner join them. Check that nhưng stays in.
-
-## u27|A2|càng … càng … · ngày càng · vừa … vừa …|more and more · both at once|càng,vừa,ngày càng
-? càng A càng B = the more A, the more B: Càng học càng thích.
-? ngày càng or càng ngày càng + describing word = more and more: Trời ngày càng nóng.
-? vừa A vừa B = both A and B at the same time: Quán này vừa ngon vừa rẻ.
-= Càng học càng thấy vui.|The more I study, the more fun it is.
-= Tiếng Việt của anh ngày càng tốt.|Your Vietnamese is getting better and better.
-= Quán này vừa ngon vừa rẻ.|This place is both tasty and cheap.
-= Tôi vừa làm việc vừa nghe nhạc.|I work and listen to music at the same time.
-= Càng sớm càng tốt.|The sooner the better.
-= Anh ấy không những giỏi mà còn vui tính.|He is not only good at it but also fun.
-+ càng|the more …|Càng nói nhiều càng nói giỏi.|The more you speak, the better you speak.
-+ ngày càng|more and more|Sài Gòn ngày càng lớn.|Saigon is getting bigger and bigger.
-+ không những|not only|Chị ấy không những đẹp mà còn giỏi.|She is not only pretty but also talented.
-+ mà còn|but also|Tôi không chỉ học mà còn làm việc.|I not only study but also work.
-+ rẻ|cheap|Ở đây đồ ăn rẻ hơn.|Food is cheaper here.
-+ mắc|expensive (Saigon)|Cái này mắc quá.|This is too expensive.
-+ nhạc|music|Anh thích nghe nhạc gì?|What music do you like listening to?
-+ vui tính|fun, good-humoured|Thầy tôi rất vui tính.|My teacher is very good-humoured.
-+ tăng|to go up, to increase|Giá nhà tăng nhanh quá.|House prices are going up so fast.
-+ giảm|to go down, to reduce|Tôi muốn giảm vài ký.|I want to lose a few kilos.
-+ ký|kilo|Tôi mua hai ký.|I am buying two kilos.
-+ giá|price|Giá bao nhiêu vậy?|What is the price?
-+ trở nên|to become (+ describing word)|Mọi thứ trở nên dễ hơn.|Everything has become easier.
-+ trở thành|to become (+ noun)|Anh ấy muốn trở thành thầy.|He wants to become a teacher.
-+ phát triển|to develop, to grow|Chỗ này phát triển rất nhanh.|This area is developing very fast.
-+ mạnh|strong|Anh ấy rất mạnh.|He is very strong.
-+ yếu|weak|Tiếng Việt của tôi còn yếu.|My Vietnamese is still weak.
-+ dần|gradually|Tôi quen dần rồi.|I am gradually getting used to it.
-+ đầy|full|Ly này đầy rồi.|This glass is full.
-T Say how five things in your life are changing, with ngày càng. Describe three places or people with vừa … vừa ….
-C Start "Càng … " and have the learner finish. Have them praise something with vừa … vừa …, then with không những … mà còn ….
 
 ## u28|A2|ai cũng · gì cũng · không … gì cả|everyone, anything, nothing at all|ai cũng,gì cũng,đâu cũng,không,cả
 ? Question word + cũng = every / any: ai cũng = everyone, gì cũng = anything, đâu cũng = everywhere, lúc nào cũng = always.
@@ -310,7 +273,7 @@ C Give instructions and have the learner report them to a third person: "Thầy 
 + giận|angry (at someone)|Em giận anh hả?|Are you angry with me?
 + hợp|to suit, to get on well|Chúng tôi rất hợp nhau.|We get on very well.
 + quan hệ|relationship, connection|Quan hệ của họ rất tốt.|Their relationship is very good.
-+ tình yêu|love|Đó là tình yêu thật sự.|That is true love.
++ tình yêu|love|Tình yêu không dễ đâu.|Love is not easy.
 + bạn bè|friends|Tôi có nhiều bạn bè ở đây.|I have a lot of friends here.
 + bạn gái|girlfriend|Bạn gái tôi là người Sài Gòn.|My girlfriend is from Saigon.
 T Talk about your family and friends: who helps whom, who gets on with whom, what you do together and what you do by yourself.

@@ -1,41 +1,28 @@
 # Core course, level A2: units 41 to 45. These carry the rest of the useful top-1,000 words. Drafted by Claude, NOT yet checked by a Vietnamese speaker. Format: see a1.txt.
 
-## u41|A2|do · nhờ · tại · khỏi|whose fault, thanks to, no need to|do,nhờ,tại,khỏi
-? Three ways to give a cause. nhờ = thanks to (a good result). tại = because of, the fault of (a bad result). do = due to (neutral, more formal).
-? khỏi + verb = no need to: Khỏi lo. After a verb, khỏi = out of, away from: ra khỏi nhà.
-? trừ = except. trừ khi = unless.
-= Nhờ anh mà tôi tới kịp.|Thanks to you I made it in time.
-= Tại tôi quên nên mới trễ.|It was because I forgot that we were late.
-= Tôi tới trễ do kẹt xe.|I was late due to traffic.
-= Khỏi lo, để tôi làm.|No need to worry; let me do it.
-= Tôi ra khỏi nhà lúc bảy giờ.|I leave the house at seven.
-= Ngày nào tôi cũng tập, trừ cuối tuần.|I work out every day except weekends.
-+ do|due to, because of|Tôi nghỉ do bị bệnh.|I am off because I am sick.
-+ bởi|by; because|Cái này làm bởi người Việt.|This was made by Vietnamese people.
-+ tại|because of (blame); at|Đâu phải tại tôi.|It is not my fault.
-+ khỏi|no need to; out of|Anh khỏi trả tiền.|You do not need to pay.
-+ trừ|except; to subtract|Ai cũng tới trừ anh ấy.|Everyone came except him.
-+ trừ khi|unless|Tôi sẽ đi, trừ khi trời mưa.|I will go unless it rains.
-+ liệu|whether, I wonder if|Liệu anh ấy có tới không?|I wonder if he will come.
-+ vô cùng|extremely|Tôi vô cùng cảm ơn anh.|I am extremely grateful to you.
-+ tuyệt|great, wonderful|Tuyệt quá!|That's great!
-+ tuyệt vời|wonderful|Đó là một ngày tuyệt vời.|That was a wonderful day.
-+ duy nhất|the only|Đây là cách duy nhất.|This is the only way.
-+ một vài|a few, some|Tôi có một vài câu hỏi.|I have a few questions.
-+ đầy đủ|complete, in full|Anh có đầy đủ thông tin chưa?|Do you have all the information yet?
-+ nhanh chóng|quickly|Mọi việc thay đổi nhanh chóng.|Everything changes quickly.
-+ dễ dàng|easily|Anh ấy làm việc đó rất dễ dàng.|He does that very easily.
-+ tiếp theo|next, following|Bước tiếp theo là gì?|What is the next step?
-+ trở lại|to come back, to return|Mai tôi sẽ trở lại.|I will come back tomorrow.
-+ xem|to watch, to look (also: coi)|Để tôi xem lại.|Let me look again.
-+ nơi|place|Đây là nơi tôi làm việc.|This is the place where I work.
-+ sang|to go over to, to cross to|Tuần sau tôi sang Mỹ.|Next week I go over to the US.
-+ chuyển|to move, to transfer|Tôi mới chuyển nhà.|I have just moved house.
-+ đem|to bring, to take along|Anh nhớ đem theo điện thoại.|Remember to bring your phone.
-+ dẫn|to lead, to take (someone)|Để tôi dẫn anh đi.|Let me take you there.
-+ thăm|to visit|Cuối tuần tôi về thăm gia đình.|At the weekend I go back to visit my family.
-T Explain three things that went well thanks to someone (nhờ) and three that went wrong and why (tại, do). Tell your teacher two things they need not do, with khỏi.
-C Give a result and ask "Nhờ ai?" or "Tại sao?". Have the learner pick nhờ, tại or do and say why.
+## u47|A2|cao · ốm · tóc dài|describing people and places|cao,ốm,mập,mắt
+? To describe, put the describing word straight after the person or thing, with no là: Anh ấy cao. Phòng này rộng.
+? For a part of the body: person + part + describing word: Chị ấy tóc dài. Ổng mắt xanh.
+? In Saigon ốm means thin (in Hanoi it means sick) and mập means chubby. People comment on weight and height openly; it is not meant to be rude.
+= Anh cao quá!|You are so tall!
+= Anh cao bao nhiêu?|How tall are you?
+= Tôi cao hai mét.|I am two metres tall.
+= Chị ấy tóc dài, mắt đẹp.|She has long hair and pretty eyes.
+= Bây giờ anh ốm hơn rồi.|You are thinner now.
+= Chỗ này yên tĩnh, không ồn.|This place is quiet, not noisy.
++ ốm|thin (Saigon); sick (Hanoi)|Anh ấy cao và ốm.|He is tall and thin.
++ mập|chubby, fat|Con chó này mập quá.|This dog is so fat.
++ mét|metre|Anh ấy cao một mét tám.|He is one metre eighty.
++ ký|kilo|Tôi nặng một trăm ký.|I weigh a hundred kilos.
++ mắt|eye|Mắt em đẹp quá.|Your eyes are so pretty.
++ đẹp trai|handsome|Anh ấy đẹp trai quá.|He is so handsome.
++ hiền|gentle, kind|Thầy tôi rất hiền.|My teacher is very kind.
++ vui tính|fun to be with|Chị Lan vui tính lắm.|Lan is a lot of fun.
++ cũ|old (things)|Xe tôi cũ rồi.|My bike is old now.
++ ồn|noisy|Đường này ồn quá.|This street is so noisy.
++ yên tĩnh|quiet, peaceful|Tôi thích chỗ yên tĩnh.|I like quiet places.
+T Describe three people you know and the place you live to your teacher. Then let the teacher describe someone and guess who it is.
+C Show photos of people and places; the learner describes each in two sentences. Check that no "là" slips in before the describing word.
 
 ## u42|A2|trông · có vẻ · màu|how things look|trông,có vẻ,màu
 ? trông + describing word = looks: Anh trông mệt. có vẻ = seems, appears: Có vẻ trời sắp mưa.
@@ -141,7 +128,7 @@ C Hide and place objects; ask "Trên bàn có gì?" and "Ở đây có … khôn
 + thi|to take an exam|Tuần sau tôi thi.|I have an exam next week.
 + nghề|trade, profession|Anh làm nghề gì?|What do you do for a living?
 + việc làm|job, employment|Ở đây dễ tìm việc làm không?|Is it easy to find a job here?
-+ giám đốc|director, manager|Tôi là giám đốc công ty.|I am the director of the company.
++ giám đốc|director, manager|Anh ấy là giám đốc ở đây.|He is the manager here.
 + họp|to have a meeting|Sáng mai tôi có họp.|I have a meeting tomorrow morning.
 + nhóm|group, team|Nhóm tôi có bốn người.|There are four people in my team.
 + cá nhân|individual, personal|Đây là chuyện cá nhân.|This is a personal matter.
@@ -195,3 +182,53 @@ C Give five jumbled actions and have the learner put them in order aloud with đ
 + kết hợp|to combine|Tôi kết hợp học và làm.|I combine study and work.
 T Tell your teacher three small stories from this week, each with "đang … thì …" or "vừa … thì …".
 C Give a background action and an interruption on cards; the learner joins them. Then ask "Lúc đó anh đang làm gì?" about real moments.
+
+## u49|A2|bị đau · bị sốt · uống thuốc|at the doctor and the pharmacy|đau,sốt,thuốc,đỡ
+? Say what hurts with bị đau + the body part: Tôi bị đau bụng. For illness: bị sốt, bị ho, bị cảm.
+? At a pharmacy, say what you have and the staff choose the medicine. Then ask how to take it: Uống sao? Mấy lần một ngày?
+? đỡ means "better, less bad": Tôi đỡ rồi. Use khỏe only when you are fully well again.
+= Tôi bị đau bụng.|I have a stomach ache.
+= Tôi bị sốt từ hôm qua.|I have had a fever since yesterday.
+= Chị có thuốc ho không?|Do you have cough medicine?
+= Uống mấy lần một ngày?|How many times a day do I take it?
+= Ngày uống hai lần, sau khi ăn.|Twice a day, after meals.
+= Tôi đỡ nhiều rồi, cảm ơn.|I am much better, thank you.
++ bụng|stomach, belly|Bụng tôi hơi đau.|My stomach hurts a bit.
++ họng|throat|Tôi bị đau họng.|I have a sore throat.
++ răng|tooth|Tôi bị đau răng.|I have a toothache.
++ sốt|fever; to have a fever|Em bị sốt cao.|I have a high fever.
++ ho|to cough|Tôi ho cả đêm.|I coughed all night.
++ cảm|a cold; to catch a cold|Tôi bị cảm rồi.|I have caught a cold.
++ bác sĩ|doctor|Anh nên đi bác sĩ.|You should see a doctor.
++ khám|to examine (a doctor)|Bác sĩ khám cho tôi rồi.|The doctor has examined me.
++ nhà thuốc|pharmacy|Gần đây có nhà thuốc không?|Is there a pharmacy near here?
++ bệnh viện|hospital|Anh ấy đang ở bệnh viện.|He is in hospital.
++ đỡ|better, less bad|Uống thuốc rồi, tôi đỡ rồi.|I took the medicine and I am better.
++ nghỉ ngơi|to rest|Anh nghỉ ngơi đi.|Get some rest.
+T Act out a pharmacy visit with your teacher: say what is wrong, answer two questions, and ask how to take the medicine.
+C Play the pharmacist and ask the real questions they ask (bị lâu chưa? có sốt không?). Check bị đau + body part and the word đỡ.
+
+## u50|A2|gọi · đặt xe · đón|phone calls, Grab and getting picked up|gọi,đặt,đón,chờ
+? On the phone, start with A lô and say who you are: A lô, tôi là Ben.
+? Grab drivers often call to find you. Have these ready: Tôi đứng ở cổng. Anh tới đâu rồi? Chờ tôi chút nha.
+? An address goes from small to big: số nhà, then hẻm (alley), then đường (street), then quận (district).
+= A lô, anh tới đâu rồi?|Hello, where are you now?
+= Tôi đứng ở cổng chung cư.|I am standing at the apartment gate.
+= Anh chờ tôi hai phút nha.|Wait two minutes for me, okay.
+= Tôi đặt xe rồi.|I have booked a ride.
+= Anh đón tôi ở đầu hẻm nha.|Pick me up at the mouth of the alley, okay.
+= Anh nhắn tin cho tôi nha.|Text me, okay.
++ a lô|hello (on the phone)|A lô, ai vậy?|Hello, who is this?
++ đón|to pick up|Mấy giờ anh đón tôi?|What time will you pick me up?
++ chờ|to wait (Saigon)|Chờ tôi một chút.|Wait for me a moment.
++ đặt xe|to book a ride|Anh đặt xe giùm tôi được không?|Can you book a ride for me?
++ tài xế|driver|Tài xế gọi tôi rồi.|The driver has called me.
++ hẻm|alley (Saigon)|Nhà tôi ở trong hẻm.|My house is down an alley.
++ đầu hẻm|the mouth of the alley|Tôi chờ ở đầu hẻm.|I will wait at the mouth of the alley.
++ cổng|gate|Anh tới cổng chưa?|Are you at the gate yet?
++ chung cư|apartment building|Tôi sống ở chung cư.|I live in an apartment building.
++ địa chỉ|address|Địa chỉ của anh là gì?|What is your address?
++ nhắn tin|to text|Tôi nhắn tin cho anh rồi.|I have texted you.
++ gọi lại|to call back|Lát nữa tôi gọi lại nha.|I will call back later, okay.
+T Phone your teacher (or pretend to) as a Grab driver who cannot find you. Give your address and where you are standing.
+C Play the driver on the phone, a bit fast and with noise if you can. Make the learner say the address small to big and use chờ, đón, đầu hẻm.

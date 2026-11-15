@@ -308,7 +308,7 @@ export async function onRequest(context) {
       }
       if (path === 't/level' && m === 'POST') {   // 35: teacher opens or closes A2 for one student ('' = automatic: A2 opens after the 20 A1 units)
         const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid || (await env.KV.get('s:' + sid)) == null) return J({ error: 'No such student.' }, 404);
-        const lv = b.lv === 'A1' || b.lv === 'A2' ? b.lv : ''; if (lv) await env.KV.put('lv:' + sid, lv); else await env.KV.delete('lv:' + sid);
+        const lv = b.lv === 'A1' || b.lv === 'A2' || b.lv === 'B1' ? b.lv : ''; if (lv) await env.KV.put('lv:' + sid, lv); else await env.KV.delete('lv:' + sid);
         return J({ ok: true, lv });
       }
       if (path === 't/note' && m === 'POST') {

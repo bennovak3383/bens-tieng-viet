@@ -1,38 +1,30 @@
 # Core course, level A2: units 31 to 40. Drafted by Claude, NOT yet checked by a Vietnamese speaker. Format: see a1.txt.
 
-## u31|A2|việc · cách · điều · sự|talking about ideas: the fact, the way, the thing|việc,cách,điều,sự
-? Vietnamese turns a verb into a "thing" by putting a small noun in front. việc + verb = the act of: việc học = studying.
-? cách + verb = the way to: cách nói = the way to say it. điều = a thing someone says, thinks or wants: điều quan trọng nhất.
-? sự + describing word or verb makes a formal noun: sự thật = the truth, sự giúp đỡ = help.
-= Việc học tiếng Việt cần thời gian.|Learning Vietnamese takes time.
-= Tôi thích cách anh ấy nói chuyện.|I like the way he talks.
-= Điều quan trọng nhất là nói mỗi ngày.|The most important thing is to speak every day.
-= Anh chỉ tôi cách làm được không?|Can you show me how to do it?
-= Đó là sự thật.|That is the truth.
-= Tôi có một ý kiến.|I have a suggestion.
-+ cách|way, method|Có cách nào nhanh hơn không?|Is there a faster way?
-+ điều|thing (said, thought, wanted)|Tôi muốn nói với anh một điều.|I want to tell you something.
-+ sự|(makes a noun)|Cảm ơn sự giúp đỡ của anh.|Thank you for your help.
-+ sự thật|the truth|Tôi muốn biết sự thật.|I want to know the truth.
-+ ý kiến|opinion, suggestion|Ý kiến của anh thế nào?|What is your opinion?
-+ ý nghĩa|meaning, significance|Chuyện này có ý nghĩa với tôi.|This means a lot to me.
-+ mục đích|purpose, goal|Mục đích của tôi là nói được tiếng Việt.|My goal is to be able to speak Vietnamese.
-+ kết quả|result|Kết quả thế nào?|How did it turn out?
-+ nguyên nhân|cause|Nguyên nhân là gì?|What is the cause?
-+ giải pháp|solution|Chúng ta cần một giải pháp.|We need a solution.
-+ cần thiết|necessary|Cái đó không cần thiết.|That is not necessary.
-+ đơn giản|simple|Cách này đơn giản hơn.|This way is simpler.
-+ phức tạp|complicated|Chuyện này hơi phức tạp.|This is a bit complicated.
-+ rõ|clear, clearly|Tôi nghe không rõ.|I cannot hear clearly.
-+ rõ ràng|clear, obvious|Anh giải thích rất rõ ràng.|You explain very clearly.
-+ chính xác|exact, accurate|Tôi không nhớ chính xác.|I do not remember exactly.
-+ cụ thể|specific, concrete|Anh nói cụ thể hơn được không?|Can you be more specific?
-+ thực tế|reality; in practice|Thực tế thì không dễ như vậy.|In reality it is not that easy.
-+ chỉ|to show, to point out|Anh chỉ đường giùm tôi.|Please show me the way.
-+ khả năng|ability; possibility|Anh ấy có khả năng làm việc này.|He is able to do this job.
-+ cơ hội|chance, opportunity|Đây là một cơ hội tốt.|This is a good opportunity.
-T Explain to your teacher how you study Vietnamese: the way you do it, the hardest thing, the most important thing, your goal.
-C Ask "Cách nào …?", "Điều gì …?" and "Việc gì …?" questions. Have the learner turn verbs into nouns with việc and cách.
+## u48|A2|bao nhiêu · mắc · bớt|buying things and asking for a lower price|mắc,rẻ,bớt,giá
+? Ask the price: Cái này bao nhiêu? People leave out "ngàn" and "đồng": hai chục = 20,000, năm chục = 50,000.
+? mắc = expensive (Saigon; in Hanoi đắt). rẻ = cheap. To bargain: Bớt chút đi chị. At markets this is normal; in shops with price tags it is not.
+? thử = try; mặc thử = try on clothes. If it fits, say vừa. If not: chật (too tight) or rộng (too loose).
+= Cái áo này bao nhiêu?|How much is this shirt?
+= Mắc quá, bớt chút đi chị.|Too expensive, take a little off.
+= Hai trăm năm chục.|Two hundred and fifty (thousand).
+= Tôi mặc thử được không?|Can I try it on?
+= Cái này hơi chật, có cỡ lớn hơn không?|This is a bit tight; is there a bigger size?
+= Tôi chuyển khoản nha.|I will pay by bank transfer, okay.
++ giá|price|Giá ở đây rẻ hơn.|Prices here are cheaper.
++ mắc|expensive (Saigon)|Ở đây mắc quá.|It is so expensive here.
++ rẻ|cheap|Cái này rẻ mà ngon.|This is cheap and good.
++ bớt|to take off (the price)|Chị bớt cho em một chút nha.|Take a little off for me, please.
++ chục|ten; tens of thousands of đồng|Ba chục một ly.|Thirty thousand a glass.
++ áo|shirt, top|Tôi muốn mua áo này.|I want to buy this shirt.
++ quần|trousers|Quần này hơi lớn.|These trousers are a bit big.
++ mặc|to wear, to put on|Hôm nay anh mặc áo đẹp quá.|You are wearing a nice shirt today.
++ cỡ|size|Anh mặc cỡ nào?|What size do you wear?
++ chật|too tight; cramped|Áo này hơi chật.|This shirt is a bit tight.
++ đổi|to change, to exchange|Tôi đổi cái khác được không?|Can I change it for another one?
++ tiền mặt|cash|Ở đây chỉ nhận tiền mặt.|They only take cash here.
++ chuyển khoản|to pay by bank transfer|Anh chuyển khoản được không?|Can you pay by transfer?
+T Role-play a market stall with your teacher: ask three prices, try something on, bargain once, and pay by transfer.
+C Play the seller. Give prices the Saigon way (hai chục, năm chục) and make the learner repeat them back. Bargain hard once so the learner hears a real "không bớt được".
 
 ## u32|A2|động từ + xong · hết · ra · thấy · mất|finishing words after the verb|xong,hết,ra,thấy,mất
 ? A second word after the verb says how it ended. xong = finished doing. hết = all used up. ra = out, worked it out: nghĩ ra, nhận ra.
@@ -50,13 +42,13 @@ C Ask "Cách nào …?", "Điều gì …?" and "Việc gì …?" questions. Hav
 + nhìn thấy|to see|Tôi không nhìn thấy gì.|I cannot see anything.
 + nghe thấy|to hear|Anh có nghe thấy không?|Can you hear it?
 + nhận ra|to recognise, to realise|Tôi mới nhận ra mình sai.|I just realised I was wrong.
-+ nghĩ ra|to think of, to come up with|Tôi nghĩ ra một cách.|I have thought of a way.
++ nghĩ ra|to think of, to come up with|Tôi nghĩ ra rồi!|I have got it!
 + kiếm|to look for; to earn (Saigon)|Tôi đang kiếm nhà.|I am looking for a place to live.
 + bỏ|to put; to drop, to give up|Tôi bỏ cà phê rồi.|I have given up coffee.
 + quên mất|to forget completely|Xin lỗi, tôi quên mất.|Sorry, I completely forgot.
 + hoàn thành|to complete|Tôi phải hoàn thành việc này hôm nay.|I have to complete this today.
 + kết thúc|to end|Buổi học kết thúc lúc năm giờ.|Class ends at five o'clock.
-+ đạt|to reach, to achieve|Tôi muốn đạt mục đích đó.|I want to reach that goal.
++ đạt|to reach, to achieve|Cuối cùng tôi đạt được rồi.|In the end I made it.
 + thành công|to succeed; success|Chúc anh thành công.|I wish you success.
 + thất bại|to fail; failure|Đừng sợ thất bại.|Do not be afraid of failing.
 + sửa|to fix, to correct|Anh sửa giùm tôi câu này.|Please correct this sentence for me.
@@ -218,14 +210,12 @@ C Show photos of people of different ages. For each, the learner chooses the wor
 + xài|to use, to spend (Saigon)|Tôi xài hết tiền rồi.|I have spent all my money.
 + sử dụng|to use (formal)|Anh biết sử dụng cái này không?|Do you know how to use this?
 + xe máy|motorbike|Tôi đi xe máy mỗi ngày.|I ride a motorbike every day.
-+ tiền mặt|cash|Tôi không mang tiền mặt.|I am not carrying cash.
 + đặt|to put; to book, to order|Tôi muốn đặt bàn cho hai người.|I want to book a table for two.
 + cầm|to hold, to carry in the hand|Anh cầm giùm tôi.|Please hold it for me.
 + kéo|to pull|Anh kéo cửa ra.|Pull the door open.
 + đẩy|to push|Đẩy cửa vô.|Push the door in.
 + cắt|to cut|Tôi muốn cắt tóc.|I want a haircut.
 + tóc|hair|Tóc chị đẹp quá.|Your hair is so pretty.
-+ mặc|to wear, to put on|Hôm nay anh mặc gì?|What are you wearing today?
 + rơi|to drop, to fall|Điện thoại tôi bị rơi.|My phone fell.
 + nằm|to lie down; to be located|Tôi muốn nằm nghỉ.|I want to lie down and rest.
 + quay|to turn round; to film|Anh quay lại đi.|Turn back.
@@ -256,7 +246,7 @@ C Hold up objects and ask "Cái này dùng để làm gì?". Ask "Anh đi … b�
 + đoán|to guess|Tôi đoán anh là người Mỹ.|I guess you are American.
 + mơ|to dream|Tôi mơ được sống gần biển.|I dream of living near the sea.
 + biển|sea, beach|Cuối tuần tôi muốn đi biển.|I want to go to the beach at the weekend.
-+ chấp nhận|to accept|Tôi chấp nhận điều đó.|I accept that.
++ chấp nhận|to accept|Tôi chấp nhận chuyện đó.|I accept that.
 + từ chối|to refuse, to turn down|Tôi không thể từ chối.|I cannot say no.
 + lựa chọn|choice; to choose|Tôi không có lựa chọn nào khác.|I have no other choice.
 + tham gia|to take part, to join|Anh có muốn tham gia không?|Do you want to join?
@@ -264,7 +254,7 @@ C Hold up objects and ask "Cái này dùng để làm gì?". Ask "Anh đi … b�
 + xảy ra|to happen|Chuyện gì xảy ra vậy?|What happened?
 + gây|to cause (trouble)|Xin lỗi vì đã gây khó khăn cho anh.|Sorry for causing you trouble.
 + khó khăn|difficulty; difficult|Lúc đầu tôi gặp nhiều khó khăn.|At first I had a lot of difficulties.
-+ tạo|to create, to make|Anh ấy tạo cơ hội cho tôi.|He creates opportunities for me.
++ tạo|to create, to make|Anh ấy tạo ra cái này.|He made this.
 + xây|to build|Họ đang xây nhà mới.|They are building a new house.
 + xuất hiện|to appear|Anh ấy xuất hiện lúc tôi không ngờ.|He turned up when I did not expect it.
 + ngờ|to expect, to suspect|Tôi không ngờ anh nói tiếng Việt giỏi vậy.|I did not expect you to speak Vietnamese this well.
@@ -274,45 +264,6 @@ C Hold up objects and ask "Cái này dùng để làm gì?". Ask "Anh đi … b�
 + gồm|to include, to consist of|Giá này gồm tất cả rồi.|This price includes everything.
 T Tell your teacher three things you thought were true about Vietnam and were wrong (tưởng), and three things you do not dare do yet.
 C Contrast nghĩ and tưởng with real mistakes the learner has made. Ask "Anh có dám … không?" and "Anh có chịu … không?".
-
-## u39|A2|về · theo · đối với|about, according to, as for|về,theo,đối với
-? về + topic = about: nói về công việc. theo + person = according to: theo tôi = in my view.
-? đối với + person = for, as far as … is concerned: Đối với tôi, cái này quan trọng.
-? These open a sentence and set up what you are going to say, which makes longer talk easier to follow.
-= Anh nghĩ gì về Sài Gòn?|What do you think about Saigon?
-= Theo tôi, cái này tốt hơn.|In my view, this one is better.
-= Đối với tôi, gia đình là quan trọng nhất.|For me, family matters most.
-= Tôi muốn hỏi về giá.|I want to ask about the price.
-= Theo thầy, tôi nên học gì?|In your view, teacher, what should I study?
-= Tôi làm trong ngành dịch vụ.|I work in the service industry.
-+ về|about|Anh kể về công việc của anh đi.|Tell me about your work.
-+ đối với|for, as for, towards|Đối với người nước ngoài, tiếng Việt khó.|For foreigners, Vietnamese is hard.
-+ công ty|company|Công ty tôi ở Quận Ba.|My company is in District 3.
-+ quận|district|Tôi sống ở Quận 4.|I live in District 4.
-+ ngành|industry, field|Anh làm trong ngành nào?|Which field do you work in?
-+ dịch vụ|service|Dịch vụ ở đây rất tốt.|The service here is very good.
-+ sản phẩm|product|Sản phẩm này bán rất chạy.|This product sells very well.
-+ bán|to sell|Ở đây có bán nước không?|Do you sell water here?
-+ thị trường|market (business)|Thị trường ở đây lớn lắm.|The market here is very big.
-+ kinh doanh|to do business|Tôi kinh doanh ở Mỹ.|I do business in the US.
-+ khách hàng|customer, client|Khách hàng của tôi rất dễ thương.|My clients are lovely.
-+ chương trình|programme, show|Tôi thích chương trình này.|I like this programme.
-+ kế hoạch|plan|Kế hoạch của anh là gì?|What is your plan?
-+ hợp đồng|contract|Tôi mới ký hợp đồng thuê nhà.|I just signed a rental contract.
-+ ký|to sign|Anh ký ở đây giùm tôi.|Please sign here.
-+ thuê|to rent, to hire|Tôi thuê nhà ở Quận 4.|I rent a place in District 4.
-+ giá trị|value|Cái này có giá trị lớn.|This is of great value.
-+ chi phí|cost, expenses|Chi phí sống ở đây thấp hơn.|The cost of living is lower here.
-+ đầu tư|to invest|Tôi muốn đầu tư ở Việt Nam.|I want to invest in Vietnam.
-+ nợ|to owe; debt|Tôi nợ anh một ly cà phê.|I owe you a coffee.
-+ trách nhiệm|responsibility|Đây là trách nhiệm của tôi.|This is my responsibility.
-+ quyền|right; authority|Anh có quyền từ chối.|You have the right to refuse.
-+ quy định|rule, regulation|Đó là quy định của công ty.|That is the company rule.
-+ điều kiện|condition|Tôi đồng ý với một điều kiện.|I agree on one condition.
-+ chất lượng|quality|Chất lượng rất tốt.|The quality is very good.
-+ hiệu quả|effective; result|Cách học này rất hiệu quả.|This way of studying is very effective.
-T Give your view on three things with "Theo tôi …" and "Đối với tôi …". Then tell your teacher about your work in six sentences.
-C Ask "Anh nghĩ gì về …?" on simple topics. Have the learner open every answer with theo tôi or đối với tôi.
 
 ## u40|A2|A thì …, còn B thì …|this one …, while that one …|thì,còn
 ? thì after a noun marks what you are talking about. A thì …, còn B thì … sets two things side by side: Tôi thì thích cà phê, còn chị ấy thì thích trà.

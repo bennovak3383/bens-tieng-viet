@@ -1,0 +1,168 @@
+# Core course, B1 preview: units moved out of A2 after the 15 Nov audit (they are normally taught at B1). Drafted by Claude, NOT yet checked by a Vietnamese speaker. Format: see a1.txt.
+# They open after the A2 units are done, or when the teacher opens them.
+
+## u26|B1|mặc dù … nhưng … · tuy nhiên|although, however|mặc dù,nhưng,tuy nhiên,thật ra
+? mặc dù (or tuy, or just dù) … nhưng … = although …, …. Unlike English, Vietnamese keeps nhưng in the second half.
+? tuy nhiên = however; it starts a new sentence and is a little formal. thật ra = actually.
+= Mặc dù trời mưa nhưng tôi vẫn đi.|Although it is raining, I am still going.
+= Tuy mệt nhưng tôi rất vui.|Although I am tired, I am very happy.
+= Dù bận, anh ấy vẫn giúp tôi.|Even though he is busy, he still helps me.
+= Tôi muốn đi. Tuy nhiên, tôi không có thời gian.|I want to go. However, I do not have time.
+= Thật ra tôi không thích lắm.|Actually, I do not like it much.
+= Tất nhiên là được.|Of course that's fine.
++ mặc dù|although|Mặc dù khó nhưng tôi sẽ cố gắng.|Although it is hard, I will try my best.
++ tuy|although|Tuy nhỏ nhưng nhà tôi rất đẹp.|Although it is small, my house is very nice.
++ dù|even though; no matter|Dù sao cũng cảm ơn anh.|Thank you anyway.
++ tuy nhiên|however|Tuy nhiên, vẫn còn một vấn đề.|However, there is still one problem.
++ thật ra|actually|Thật ra tôi chưa hiểu.|Actually, I do not understand yet.
++ thật sự|really, truly|Tôi thật sự rất thích chỗ này.|I really do like this place.
++ tất nhiên|of course|Tất nhiên tôi sẽ giúp.|Of course I will help.
++ hoàn toàn|completely|Tôi hoàn toàn đồng ý.|I completely agree.
++ đặc biệt|special; especially|Tôi thích đồ ăn ở đây, đặc biệt là phở.|I like the food here, especially the phở.
++ nói chung|in general|Nói chung mọi thứ đều ổn.|In general everything is fine.
++ ví dụ|example; for example|Anh cho tôi một ví dụ được không?|Can you give me an example?
++ ngoài ra|besides, also|Ngoài ra, tôi còn học tiếng Việt.|Besides that, I am also learning Vietnamese.
++ hơn nữa|what is more|Chỗ này gần, hơn nữa đồ ăn ngon.|This place is close, and what is more the food is good.
++ thậm chí|even|Thậm chí tôi không biết tên anh ấy.|I do not even know his name.
++ ít nhất|at least|Tôi cần ít nhất hai ngày.|I need at least two days.
++ mọi thứ|everything|Mọi thứ ở đây đều mới với tôi.|Everything here is new to me.
++ dù sao|anyway|Dù sao tôi cũng phải đi.|I have to go anyway.
+T Make five "Mặc dù … nhưng …" sentences about living in Saigon. Then tell a short story with thật ra and tuy nhiên in it.
+C Give two facts that pull against each other and have the learner join them. Check that nhưng stays in.
+
+## u27|B1|càng … càng … · ngày càng · vừa … vừa …|more and more · both at once|càng,vừa,ngày càng
+? càng A càng B = the more A, the more B: Càng học càng thích.
+? ngày càng or càng ngày càng + describing word = more and more: Trời ngày càng nóng.
+? vừa A vừa B = both A and B at the same time: Quán này vừa ngon vừa rẻ.
+= Càng học càng thấy vui.|The more I study, the more fun it is.
+= Tiếng Việt của anh ngày càng tốt.|Your Vietnamese is getting better and better.
+= Quán này vừa ngon vừa rẻ.|This place is both tasty and cheap.
+= Tôi vừa làm việc vừa nghe nhạc.|I work and listen to music at the same time.
+= Càng sớm càng tốt.|The sooner the better.
+= Anh ấy không những giỏi mà còn vui tính.|He is not only good at it but also fun.
++ càng|the more …|Càng nói nhiều càng nói giỏi.|The more you speak, the better you speak.
++ ngày càng|more and more|Sài Gòn ngày càng lớn.|Saigon is getting bigger and bigger.
++ không những|not only|Chị ấy không những đẹp mà còn giỏi.|She is not only pretty but also talented.
++ mà còn|but also|Tôi không chỉ học mà còn làm việc.|I not only study but also work.
++ nhạc|music|Anh thích nghe nhạc gì?|What music do you like listening to?
++ tăng|to go up, to increase|Giá nhà tăng nhanh quá.|House prices are going up so fast.
++ giảm|to go down, to reduce|Tôi muốn giảm vài ký.|I want to lose a few kilos.
++ trở nên|to become (+ describing word)|Mọi thứ trở nên dễ hơn.|Everything has become easier.
++ trở thành|to become (+ noun)|Anh ấy muốn trở thành thầy.|He wants to become a teacher.
++ phát triển|to develop, to grow|Chỗ này phát triển rất nhanh.|This area is developing very fast.
++ mạnh|strong|Anh ấy rất mạnh.|He is very strong.
++ yếu|weak|Tiếng Việt của tôi còn yếu.|My Vietnamese is still weak.
++ dần|gradually|Tôi quen dần rồi.|I am gradually getting used to it.
++ đầy|full|Ly này đầy rồi.|This glass is full.
+T Say how five things in your life are changing, with ngày càng. Describe three places or people with vừa … vừa ….
+C Start "Càng … " and have the learner finish. Have them praise something with vừa … vừa …, then with không những … mà còn ….
+
+## u31|B1|việc · cách · điều · sự|talking about ideas: the fact, the way, the thing|việc,cách,điều,sự
+? Vietnamese turns a verb into a "thing" by putting a small noun in front. việc + verb = the act of: việc học = studying.
+? cách + verb = the way to: cách nói = the way to say it. điều = a thing someone says, thinks or wants: điều quan trọng nhất.
+? sự + describing word or verb makes a formal noun: sự thật = the truth, sự giúp đỡ = help.
+= Việc học tiếng Việt cần thời gian.|Learning Vietnamese takes time.
+= Tôi thích cách anh ấy nói chuyện.|I like the way he talks.
+= Điều quan trọng nhất là nói mỗi ngày.|The most important thing is to speak every day.
+= Anh chỉ tôi cách làm được không?|Can you show me how to do it?
+= Đó là sự thật.|That is the truth.
+= Tôi có một ý kiến.|I have a suggestion.
++ cách|way, method|Có cách nào nhanh hơn không?|Is there a faster way?
++ điều|thing (said, thought, wanted)|Tôi muốn nói với anh một điều.|I want to tell you something.
++ sự|(makes a noun)|Cảm ơn sự giúp đỡ của anh.|Thank you for your help.
++ sự thật|the truth|Tôi muốn biết sự thật.|I want to know the truth.
++ ý kiến|opinion, suggestion|Ý kiến của anh thế nào?|What is your opinion?
++ ý nghĩa|meaning, significance|Chuyện này có ý nghĩa với tôi.|This means a lot to me.
++ mục đích|purpose, goal|Mục đích của tôi là nói được tiếng Việt.|My goal is to be able to speak Vietnamese.
++ kết quả|result|Kết quả thế nào?|How did it turn out?
++ nguyên nhân|cause|Nguyên nhân là gì?|What is the cause?
++ giải pháp|solution|Chúng ta cần một giải pháp.|We need a solution.
++ cần thiết|necessary|Cái đó không cần thiết.|That is not necessary.
++ đơn giản|simple|Cách này đơn giản hơn.|This way is simpler.
++ phức tạp|complicated|Chuyện này hơi phức tạp.|This is a bit complicated.
++ rõ|clear, clearly|Tôi nghe không rõ.|I cannot hear clearly.
++ rõ ràng|clear, obvious|Anh giải thích rất rõ ràng.|You explain very clearly.
++ chính xác|exact, accurate|Tôi không nhớ chính xác.|I do not remember exactly.
++ cụ thể|specific, concrete|Anh nói cụ thể hơn được không?|Can you be more specific?
++ thực tế|reality; in practice|Thực tế thì không dễ như vậy.|In reality it is not that easy.
++ chỉ|to show, to point out|Anh chỉ đường giùm tôi.|Please show me the way.
++ khả năng|ability; possibility|Anh ấy có khả năng làm việc này.|He is able to do this job.
++ cơ hội|chance, opportunity|Đây là một cơ hội tốt.|This is a good opportunity.
+T Explain to your teacher how you study Vietnamese: the way you do it, the hardest thing, the most important thing, your goal.
+C Ask "Cách nào …?", "Điều gì …?" and "Việc gì …?" questions. Have the learner turn verbs into nouns with việc and cách.
+
+## u39|B1|về · theo · đối với|about, according to, as for|về,theo,đối với
+? về + topic = about: nói về công việc. theo + person = according to: theo tôi = in my view.
+? đối với + person = for, as far as … is concerned: Đối với tôi, cái này quan trọng.
+? These open a sentence and set up what you are going to say, which makes longer talk easier to follow.
+= Anh nghĩ gì về Sài Gòn?|What do you think about Saigon?
+= Theo tôi, cái này tốt hơn.|In my view, this one is better.
+= Đối với tôi, gia đình là quan trọng nhất.|For me, family matters most.
+= Tôi muốn hỏi về giá.|I want to ask about the price.
+= Theo thầy, tôi nên học gì?|In your view, teacher, what should I study?
+= Tôi làm trong ngành dịch vụ.|I work in the service industry.
++ về|about|Anh kể về công việc của anh đi.|Tell me about your work.
++ đối với|for, as for, towards|Đối với người nước ngoài, tiếng Việt khó.|For foreigners, Vietnamese is hard.
++ công ty|company|Công ty tôi ở Quận Ba.|My company is in District 3.
++ quận|district|Tôi sống ở Quận 4.|I live in District 4.
++ ngành|industry, field|Anh làm trong ngành nào?|Which field do you work in?
++ dịch vụ|service|Dịch vụ ở đây rất tốt.|The service here is very good.
++ sản phẩm|product|Sản phẩm này bán rất chạy.|This product sells very well.
++ bán|to sell|Ở đây có bán nước không?|Do you sell water here?
++ thị trường|market (business)|Thị trường ở đây lớn lắm.|The market here is very big.
++ kinh doanh|to do business|Tôi kinh doanh ở Mỹ.|I do business in the US.
++ khách hàng|customer, client|Khách hàng của tôi rất dễ thương.|My clients are lovely.
++ chương trình|programme, show|Tôi thích chương trình này.|I like this programme.
++ kế hoạch|plan|Kế hoạch của anh là gì?|What is your plan?
++ hợp đồng|contract|Tôi mới ký hợp đồng thuê nhà.|I just signed a rental contract.
++ thuê|to rent, to hire|Tôi thuê nhà ở Quận 4.|I rent a place in District 4.
++ giá trị|value|Cái này có giá trị lớn.|This is of great value.
++ chi phí|cost, expenses|Chi phí sống ở đây thấp hơn.|The cost of living is lower here.
++ đầu tư|to invest|Tôi muốn đầu tư ở Việt Nam.|I want to invest in Vietnam.
++ nợ|to owe; debt|Tôi nợ anh một ly cà phê.|I owe you a coffee.
++ trách nhiệm|responsibility|Đây là trách nhiệm của tôi.|This is my responsibility.
++ quyền|right; authority|Anh có quyền từ chối.|You have the right to refuse.
++ quy định|rule, regulation|Đó là quy định của công ty.|That is the company rule.
++ điều kiện|condition|Tôi đồng ý với một điều kiện.|I agree on one condition.
++ chất lượng|quality|Chất lượng rất tốt.|The quality is very good.
++ hiệu quả|effective; result|Cách học này rất hiệu quả.|This way of studying is very effective.
+T Give your view on three things with "Theo tôi …" and "Đối với tôi …". Then tell your teacher about your work in six sentences.
+C Ask "Anh nghĩ gì về …?" on simple topics. Have the learner open every answer with theo tôi or đối với tôi.
+
+## u41|B1|do · nhờ · tại · khỏi|whose fault, thanks to, no need to|do,nhờ,tại,khỏi
+? Three ways to give a cause. nhờ = thanks to (a good result). tại = because of, the fault of (a bad result). do = due to (neutral, more formal).
+? khỏi + verb = no need to: Khỏi lo. After a verb, khỏi = out of, away from: ra khỏi nhà.
+? trừ = except. trừ khi = unless.
+= Nhờ anh mà tôi tới kịp.|Thanks to you I made it in time.
+= Tại tôi quên nên mới trễ.|It was because I forgot that we were late.
+= Tôi tới trễ do kẹt xe.|I was late due to traffic.
+= Khỏi lo, để tôi làm.|No need to worry; let me do it.
+= Tôi ra khỏi nhà lúc bảy giờ.|I leave the house at seven.
+= Ngày nào tôi cũng tập, trừ cuối tuần.|I work out every day except weekends.
++ do|due to, because of|Tôi nghỉ do bị bệnh.|I am off because I am sick.
++ bởi|by; because|Cái này làm bởi người Việt.|This was made by Vietnamese people.
++ tại|because of (blame); at|Đâu phải tại tôi.|It is not my fault.
++ khỏi|no need to; out of|Anh khỏi trả tiền.|You do not need to pay.
++ trừ|except; to subtract|Ai cũng tới trừ anh ấy.|Everyone came except him.
++ trừ khi|unless|Tôi sẽ đi, trừ khi trời mưa.|I will go unless it rains.
++ liệu|whether, I wonder if|Liệu anh ấy có tới không?|I wonder if he will come.
++ vô cùng|extremely|Tôi vô cùng cảm ơn anh.|I am extremely grateful to you.
++ tuyệt|great, wonderful|Tuyệt quá!|That's great!
++ tuyệt vời|wonderful|Đó là một ngày tuyệt vời.|That was a wonderful day.
++ duy nhất|the only|Đây là cách duy nhất.|This is the only way.
++ một vài|a few, some|Tôi có một vài câu hỏi.|I have a few questions.
++ đầy đủ|complete, in full|Anh có đầy đủ thông tin chưa?|Do you have all the information yet?
++ nhanh chóng|quickly|Mọi việc thay đổi nhanh chóng.|Everything changes quickly.
++ dễ dàng|easily|Anh ấy làm việc đó rất dễ dàng.|He does that very easily.
++ tiếp theo|next, following|Bước tiếp theo là gì?|What is the next step?
++ trở lại|to come back, to return|Mai tôi sẽ trở lại.|I will come back tomorrow.
++ xem|to watch, to look (also: coi)|Để tôi xem lại.|Let me look again.
++ nơi|place|Đây là nơi tôi làm việc.|This is the place where I work.
++ sang|to go over to, to cross to|Tuần sau tôi sang Mỹ.|Next week I go over to the US.
++ chuyển|to move, to transfer|Tôi mới chuyển nhà.|I have just moved house.
++ đem|to bring, to take along|Anh nhớ đem theo điện thoại.|Remember to bring your phone.
++ dẫn|to lead, to take (someone)|Để tôi dẫn anh đi.|Let me take you there.
++ thăm|to visit|Cuối tuần tôi về thăm gia đình.|At the weekend I go back to visit my family.
+T Explain three things that went well thanks to someone (nhờ) and three that went wrong and why (tại, do). Tell your teacher two things they need not do, with khỏi.
+C Give a result and ask "Nhờ ai?" or "Tại sao?". Have the learner pick nhờ, tại or do and say why.
+
