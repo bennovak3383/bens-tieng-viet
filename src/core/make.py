@@ -7,6 +7,7 @@ repo = sys.argv[1]
 N = lambda s: unicodedata.normalize('NFC', s.strip())
 units = []
 for f in sorted(glob.glob(repo + '/src/core/*.txt')):
+    if f.endswith('stories.txt') or f.endswith('extra.txt'): continue
     u = None
     for ln, raw in enumerate(open(f, encoding='utf-8'), 1):
         line = N(raw)
@@ -24,6 +25,17 @@ for f in sorted(glob.glob(repo + '/src/core/*.txt')):
         elif tag == 'C': u['tg'] = rest
         else: raise SystemExit('bad line %s:%d %s' % (f, ln, line))
 ids = [u['id'] for u in units]; assert len(ids) == len(set(ids)), 'duplicate unit id'
+# 38: extra review sentences per unit (src/core/extra.txt: "## uid" then "& vi|en"), so the common words come back more often
+byid = {u['id']: u for u in units}
+for u in units: u['xs'] = []
+xf = repo + '/src/core/extra.txt'
+if os.path.exists(xf):
+    cu = None
+    for ln, raw in enumerate(open(xf, encoding='utf-8'), 1):
+        line = N(raw)
+        if not line or (line.startswith('#') and not line.startswith('##')): continue
+        if line.startswith('## '): cu = byid[line[3:].strip()]; continue
+        assert line.startswith('&'), (xf, ln); p = [x.strip() for x in line[1:].split('|')]; assert len(p) == 2, (xf, ln); cu['xs'].append(p)
 seen = {}
 for u in units:
     assert u['how'] and len(u['ex']) >= 4 and len(u['w']) >= 6 and u['teach'] and u['tg'], u['id']
@@ -33,12 +45,12 @@ for u in units:
         seen.setdefault(k, u['id'])
 os.makedirs(repo + '/data', exist_ok=True)
 json.dump({'v': 1, 'units': units}, open(repo + '/data/core.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-nw = sum(len(u['w']) for u in units); ns = sum(len(u['ex']) + len(u['w']) for u in units)
+nw = sum(len(u['w']) for u in units); ns = sum(len(u['ex']) + len(u['w']) + len(u['xs']) for u in units)
 print('units', len(units), '| words', nw, '| sentences', ns)
 
 # ---- one new thing at a time ----
 def syl(s): return [x for x in re.sub(r'[“”"…·,.!?;:()/–—-]', ' ', N(s).lower()).split() if x]
-base = set('ben lan nam mai tâm việt mỹ anh sài gòn huế hà nội một hai ba bốn năm sáu bảy tám chín mười'.split())
+base = set('ben lan nam mai tâm việt mỹ anh sài gòn huế hà nội một hai ba bốn năm sáu bảy tám chín mười mike úc'.split())
 try:
     B = json.load(open(repo + '/data/beginner.json', encoding='utf-8'))
     for st in B['steps']:
@@ -48,10 +60,37 @@ except Exception as e: print('no beginner list', e)
 known = set(base); bad = 0
 for u in units:
     for w in u['w']: known.update(syl(w[0]))
-    for vi, en in u['ex'] + [[w[2], w[3]] for w in u['w']]:
+    for vi, en in u['ex'] + [[w[2], w[3]] for w in u['w']] + u['xs']:
         miss = [x for x in syl(vi) if x not in known]
         if miss: bad += 1; print('  NEW-WORD CHECK', u['id'], '|', vi, '| not yet taught:', ', '.join(sorted(set(miss))))
 print('sentences with a word not yet taught:', bad, 'of', ns)
+
+# ---- 38: graded stories, one after every few units; only words taught so far, plus a few new words listed with "+" ----
+known_at = []; k2 = set(base)
+for u in units:
+    for w in u['w']: k2.update(syl(w[0]))
+    known_at.append(set(k2))
+stories = []; sb = 0
+sf = repo + '/src/core/stories.txt'
+if os.path.exists(sf):
+    st = None
+    for ln, raw in enumerate(open(sf, encoding='utf-8'), 1):
+        line = N(raw)
+        if not line or (line.startswith('#') and not line.startswith('##')): continue
+        tag, rest = line[:2].strip(), line[2:].strip(); p = [x.strip() for x in rest.split('|')]
+        if tag == '##':
+            assert len(p) == 4, (sf, ln); st = {'id': p[0], 'at': int(p[1]), 't': p[2], 'en': p[3], 'new': [], 'lines': [], 'qs': []}; stories.append(st); kn = set(known_at[st['at'] - 1])
+        elif tag == '+': st['new'].append([p[0], p[1]]); kn.update(syl(p[0]))
+        elif tag == '=': st['lines'].append({'vi': p[0], 'en': p[1]})
+        elif tag == '?': st['qs'].append({'q': p[0], 'a': p[1], 'en': p[2]})
+        else: raise SystemExit('bad story line %d' % ln)
+        if tag in '=?':
+            for vi in ([p[0]] if tag == '=' else [p[0], p[1]]):
+                miss = [x for x in syl(vi) if x not in kn]
+                if miss: sb += 1; print('  STORY CHECK', st['id'], '|', vi, '| not yet taught:', ', '.join(sorted(set(miss))))
+    d = json.load(open(repo + '/data/core.json', encoding='utf-8')); d['st'] = stories
+    json.dump(d, open(repo + '/data/core.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    print('stories', len(stories), '| lines', sum(len(x['lines']) for x in stories), '| story lines with a word not yet taught:', sb)
 
 # ---- coverage of the most common words ----
 if len(sys.argv) > 2:

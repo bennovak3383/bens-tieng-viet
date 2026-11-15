@@ -1,0 +1,178 @@
+# Graded stories for the core course: one after every 5 units, built only from words taught up to that point.
+# Drafted by Claude, NOT yet checked by a Vietnamese speaker.
+# Format:  ## id|after unit number (position in the course)|title in Vietnamese|title in English
+#          = line|English
+#          ? question|answer|question in English
+
+## g1|5|Mike ở Sài Gòn|Mike in Saigon
+= Đây là Mike.|This is Mike.
+= Mike là người Úc.|Mike is Australian.
+= Anh sống ở Sài Gòn.|He lives in Saigon.
+= Nhà anh ở Quận 4.|His house is in District 4.
+= Bên nhà anh là nhà chị Lan.|Next to his house is Lan's house.
+= Chị Lan là người Việt.|Lan is Vietnamese.
+= Chị Lan hỏi: “Anh tên gì?”|Lan asks: “What is your name?”
+= “Tôi tên là Mike.”|“My name is Mike.”
+= “Anh là người Mỹ hả?”|“Are you American?”
+= “Không phải. Tôi là người Úc.”|“No. I am Australian.”
+= “Anh có khỏe không?”|“How are you?”
+= “Tôi khỏe, cảm ơn. Tôi đói.”|“I am well, thanks. I am hungry.”
+= Chị Lan nói: “Ở gần đây có phở.”|Lan says: “There is phở near here.”
+? Mike là người gì?|Mike là người Úc.|Where is Mike from?
+? Nhà Mike ở đâu?|Nhà Mike ở Quận 4.|Where is Mike's house?
+? Mike có đói không?|Có, Mike đói.|Is Mike hungry?
+
+## g2|10|Phở với chị Lan|Phở with Lan
+= Hôm nay Mike không đi làm. Anh nghỉ.|Today Mike is not going to work. He has the day off.
+= Chị Lan gọi: “Mike ơi, anh đói không?”|Lan calls: “Mike, are you hungry?”
+= “Dạ, tôi đói.”|“Yes, I am hungry.”
+= Hai người cùng đi ăn phở.|The two of them go and eat phở together.
+= Mike ăn phở và uống một ly cà phê sữa đá.|Mike eats phở and drinks an iced milk coffee.
+= Chị Lan uống trà đá thôi.|Lan just drinks iced tea.
+= “Anh học tiếng Việt bao lâu rồi?”|“How long have you been learning Vietnamese?”
+= “Tôi mới học ba tháng.”|“I have only been learning for three months.”
+= “Anh nói được nha!”|“You can really speak!”
+= “Dạ, tôi nói tiếng Việt một chút thôi.”|“Well, I only speak a little Vietnamese.”
+= “Mai anh có đi làm không?”|“Are you going to work tomorrow?”
+= “Có. Mai tôi sẽ đi làm.”|“Yes. Tomorrow I will go to work.”
+= “Vậy hôm nay mình đi chơi nha!”|“Then let's go out today!”
+? Hôm nay Mike có đi làm không?|Không, hôm nay Mike nghỉ.|Is Mike working today?
+? Chị Lan uống gì?|Chị Lan uống trà đá.|What does Lan drink?
+? Mike học tiếng Việt bao lâu rồi?|Mike học ba tháng rồi.|How long has Mike been learning?
+
+## g3|15|Trời mưa|It is raining
++ áo mưa|raincoat
++ sếp|boss
+= Hôm nay Mike phải đi làm sớm.|Today Mike has to go to work early.
+= Nhưng trời mưa lớn quá.|But it is raining really hard.
+= Anh không có áo mưa.|He has no raincoat.
+= Chị Lan nói: “Anh đợi một chút đi. Mưa sắp hết rồi.”|Lan says: “Wait a bit. The rain is almost over.”
+= Mike đợi một lúc, nhưng trời vẫn mưa.|Mike waits a while, but it is still raining.
+= Vì trời mưa nên anh không đi được.|Because of the rain he cannot go.
+= Mike sợ sẽ bị trễ.|Mike is afraid he will be late.
+= Anh gọi cho sếp.|He calls his boss.
+= “Xin lỗi anh, trời mưa lớn quá nên tôi tới trễ một chút.”|“Sorry, it is raining so hard that I will be a bit late.”
+= Sếp nói: “Không sao. Anh đi chậm thôi nha.”|The boss says: “No problem. Go slowly, okay.”
+= Mike vui hơn. Anh uống một ly cà phê với chị Lan.|Mike feels better. He has a coffee with Lan.
+= Một lúc sau, trời hết mưa.|A while later, the rain stops.
+? Tại sao Mike tới trễ?|Vì trời mưa lớn.|Why is Mike late?
+? Mike gọi cho ai?|Mike gọi cho sếp.|Who does Mike call?
+? Sếp nói gì?|Sếp nói không sao.|What does the boss say?
+
+## g4|20|Mike đi chợ|Mike goes to the market
++ chợ|market
++ cá|fish
++ nấu|to cook
++ bán|to sell
+= Hôm nay Mike muốn nấu cơm cho chị Lan.|Today Mike wants to cook for Lan.
+= Anh đi bộ ra chợ gần nhà.|He walks to the market near his house.
+= Ở chợ có rất nhiều người.|There are lots of people at the market.
+= Mike mua một con cá.|Mike buys a fish.
+= Cô bán cá hỏi: “Anh là người nước nào?”|The fish seller asks: “What country are you from?”
+= “Tôi là người Úc. Tôi sống ở đây một năm rồi.”|“I am Australian. I have lived here for a year.”
+= “Anh nói tiếng Việt giỏi quá!”|“You speak Vietnamese so well!”
+= Mike nghĩ là cô ấy chỉ nói vậy thôi, nhưng anh vẫn vui.|Mike thinks she is just saying that, but he is still happy.
+= Về nhà, anh nấu cơm, nhưng cá không ngon lắm.|Back home he cooks, but the fish is not very good.
+= Chị Lan ăn thử rồi nói: “Ngon mà!”|Lan tries it and says: “It is good!”
+= Mike biết là cá không ngon.|Mike knows the fish is not good.
+= Nhưng chị Lan nói vậy để anh vui.|But Lan says so to make him happy.
+? Mike đi chợ để làm gì?|Để mua cá nấu cơm cho chị Lan.|Why does Mike go to the market?
+? Cô bán cá hỏi Mike gì?|Cô hỏi anh là người nước nào.|What does the fish seller ask?
+? Cá có ngon không?|Cá không ngon lắm.|Is the fish good?
+
+## g5|26|Sinh nhật chị Lan|Lan's birthday
++ hoa|flower
+= Thứ hai, Nam gọi cho Mike.|On Monday, Nam calls Mike.
+= “Anh biết không? Thứ bảy này là sinh nhật chị Lan.”|“Did you know? This Saturday is Lan's birthday.”
+= Mike chưa bao giờ đi sinh nhật ở Việt Nam.|Mike has never been to a birthday party in Vietnam.
+= “Tôi nên tặng chị ấy cái gì?”|“What should I give her?”
+= “Chị Lan thích hoa.”|“Lan likes flowers.”
+= Tuần đó Mike rất bận. Anh làm việc từ sáng tới tối.|That week Mike is very busy. He works from morning to night.
+= Thứ sáu, anh bị mất điện thoại.|On Friday, he loses his phone.
+= Thứ bảy, anh quên mất sinh nhật chị Lan.|On Saturday, he completely forgets Lan's birthday.
+= Chủ nhật, Nam tới nhà Mike.|On Sunday, Nam comes to Mike's house.
+= “Hôm qua anh đi đâu? Mọi người đợi anh lâu lắm!”|“Where were you yesterday? Everyone waited a long time for you!”
+= Mike thấy rất có lỗi. Anh chạy qua nhà chị Lan.|Mike feels terrible. He runs over to Lan's house.
+= “Xin lỗi chị. Tôi tới trễ một ngày.”|“I am sorry. I am one day late.”
+= Chị Lan cười: “Không sao. Hoa vẫn đẹp mà!”|Lan laughs: “That is fine. The flowers are still pretty!”
+? Sinh nhật chị Lan ngày nào?|Thứ bảy.|When is Lan's birthday?
+? Thứ sáu Mike bị gì?|Mike bị mất điện thoại.|What happened to Mike on Friday?
+? Chị Lan nói gì?|Chị ấy nói không sao.|What does Lan say?
+
+## g6|30|Mua áo ở chợ Bến Thành|Buying a shirt at Bến Thành market
++ Bến Thành|a big market in District 1
+= Mike muốn mua một cái áo mới để đi sinh nhật Nam.|Mike wants a new shirt for Nam's birthday.
+= Anh và Nam đi chợ Bến Thành.|He and Nam go to Bến Thành market.
+= Ở đó có rất nhiều áo đẹp, nhưng giá hơi mắc.|There are lots of nice shirts there, but the prices are a bit high.
+= “Cái áo này bao nhiêu chị?”|“How much is this shirt?”
+= “Năm trăm ngàn.”|“Five hundred thousand.”
+= Nam nói nhỏ: “Mắc quá. Anh bớt đi.”|Nam says quietly: “Too expensive. Ask her to take some off.”
+= “Chị bớt cho em một chút nha. Ba trăm được không?”|“Can you take a bit off? Is three hundred okay?”
+= “Ba trăm không được. Bốn trăm nha.”|“Not three hundred. Four hundred, okay.”
+= Mike mặc thử. Cái áo hơi chật.|Mike tries it on. The shirt is a bit tight.
+= “Chị có cỡ lớn hơn không?”|“Do you have a bigger size?”
+= “Có. Cỡ này vừa với anh.”|“Yes. This size fits you.”
+= Mike trả bốn trăm ngàn bằng chuyển khoản.|Mike pays four hundred thousand by transfer.
+= Nam nói: “Lần sau anh tự trả giá nha!”|Nam says: “Next time you bargain yourself!”
+? Mike mua áo để làm gì?|Để đi sinh nhật Nam.|Why does Mike buy a shirt?
+? Lúc đầu cái áo giá bao nhiêu?|Năm trăm ngàn.|What was the first price?
+? Mike trả bao nhiêu?|Bốn trăm ngàn.|How much does Mike pay?
+
+## g7|35|Về quê của Nam|Going to Nam's hometown
++ miền Tây|the Mekong Delta
++ bà ngoại|grandmother (mother's side)
++ má|mum (Saigon)
++ dô|cheers! (Saigon)
+= Cuối tuần, Nam mời Mike về quê với gia đình anh.|At the weekend, Nam invites Mike to his hometown with his family.
+= Quê của Nam ở miền Tây, cách Sài Gòn khoảng ba giờ.|Nam's hometown is in the Mekong Delta, about three hours from Saigon.
+= Ở đó có ba má của Nam, bà ngoại và mấy đứa cháu.|Nam's parents, his grandmother and a few nieces and nephews are there.
+= Mike không biết phải gọi mọi người là gì.|Mike does not know what to call everyone.
+= Nam nói: “Ba tôi thì anh gọi là chú. Má tôi thì gọi là cô.”|Nam says: “Call my dad chú. Call my mum cô.”
+= “Còn bà ngoại thì gọi là bà. Mấy đứa nhỏ thì gọi là em.”|“Call my grandmother bà. Call the kids em.”
+= Bà ngoại rất già nhưng vẫn khỏe.|Grandma is very old but still strong.
+= Bả hỏi: “Con có vợ chưa?”|She asks: “Are you married yet?”
+= Mike cười: “Dạ, con chưa có, bà.”|Mike laughs: “Not yet, grandma.”
+= Ba của Nam mời Mike uống bia.|Nam's dad offers Mike a beer.
+= “Uống đi con! Một, hai, ba, dô!”|“Drink up! One, two, three, cheers!”
+= Tối đó Mike ngủ rất ngon.|That night Mike sleeps very well.
+? Quê của Nam ở đâu?|Ở miền Tây.|Where is Nam's hometown?
+? Mike gọi ba của Nam là gì?|Mike gọi là chú.|What does Mike call Nam's dad?
+? Bà ngoại hỏi Mike gì?|Bà hỏi anh có vợ chưa.|What does grandma ask Mike?
+
+## g8|40|Nhà mới|A new home
++ căn hộ|apartment
++ cửa sổ|window
+= Mike muốn đổi nhà.|Mike wants to move house.
+= Nhà cũ của anh rất ồn vì ở gần đường lớn.|His old place is very noisy because it is near a big road.
+= Anh đi coi một căn hộ ở Quận Ba.|He goes to see an apartment in District 3.
+= Chủ nhà là một cô khoảng năm mươi tuổi.|The landlady is a woman of about fifty.
+= Cô ấy ốm, tóc ngắn và rất vui tính.|She is thin, has short hair and is a lot of fun.
+= Căn hộ không lớn lắm, nhưng sạch và yên tĩnh.|The apartment is not very big, but it is clean and quiet.
+= Phòng ngủ có một cái cửa sổ lớn.|The bedroom has a big window.
+= “Giá một tháng bao nhiêu cô?”|“How much is it a month?”
+= “Bảy triệu. Có điện và nước rồi.”|“Seven million. Electricity and water are included.”
+= Mike thấy hơi mắc, nhưng anh rất thích.|Mike thinks it is a bit expensive, but he really likes it.
+= Cô chủ nhà nói: “Con cao quá! Coi chừng cái cửa nha.”|The landlady says: “You are so tall! Mind the door.”
+= Mike cười. Ở Việt Nam, ai cũng nói anh cao.|Mike laughs. In Vietnam, everyone says he is tall.
+? Tại sao Mike muốn đổi nhà?|Vì nhà cũ rất ồn.|Why does Mike want to move?
+? Chủ nhà trông như thế nào?|Cô ấy ốm, tóc ngắn.|What does the landlady look like?
+? Căn hộ giá bao nhiêu?|Bảy triệu một tháng.|How much is the apartment?
+
+## g9|45|Mike bị bệnh|Mike gets sick
++ phòng khám|clinic
++ cháo|rice porridge
+= Sáng thứ hai, Mike thức dậy và thấy rất mệt.|On Monday morning, Mike wakes up and feels very tired.
+= Anh bị sốt và đau họng.|He has a fever and a sore throat.
+= Anh nhắn tin cho sếp: “Hôm nay tôi bị bệnh, xin nghỉ một ngày.”|He texts his boss: “I am sick today, may I take the day off?”
+= Chị Lan nói: “Anh nên đi bác sĩ.”|Lan says: “You should see a doctor.”
+= Mike đặt xe đi phòng khám.|Mike books a ride to the clinic.
+= Tài xế gọi: “A lô, anh ở đâu vậy?”|The driver calls: “Hello, where are you?”
+= “Tôi đứng ở đầu hẻm, cạnh quán cà phê.”|“I am standing at the mouth of the alley, next to the café.”
+= Bác sĩ khám rồi nói: “Anh bị cảm thôi. Không sao đâu.”|The doctor examines him and says: “You just have a cold. It is nothing serious.”
+= “Anh uống thuốc ngày ba lần, sau khi ăn, và nghỉ ngơi nhiều.”|“Take the medicine three times a day, after meals, and rest a lot.”
+= Mike ghé nhà thuốc mua thuốc rồi về nhà ngủ.|Mike stops at the pharmacy for the medicine and goes home to sleep.
+= Tối đó chị Lan mang cháo qua cho anh.|That evening Lan brings him some rice porridge.
+= Hai ngày sau, Mike đỡ nhiều rồi.|Two days later, Mike is much better.
+? Mike bị gì?|Mike bị sốt và đau họng.|What is wrong with Mike?
+? Bác sĩ nói gì?|Anh bị cảm thôi.|What does the doctor say?
+? Mike uống thuốc mấy lần một ngày?|Ba lần một ngày.|How many times a day does Mike take the medicine?

@@ -29,6 +29,7 @@
 + em|you / I (someone younger)|Em tên gì?|What is your name? (to someone younger)
 + thầy|teacher (a man)|Thầy Tâm là người Sài Gòn.|Teacher Tâm is from Saigon.
 + cô|teacher (a woman); Miss|Đây là cô Mai.|This is Miss Mai.
++ bà|grandmother; you (to an older woman)|Bà tôi là người Huế.|My grandmother is from Huế.
 T Introduce yourself and two people in the room with "Tôi là …" and "Đây là …". Ask your teacher which word for "you" fits each person.
 C Drill "Đây là …" with photos or people. Correct any "là" before a describing word. Fix who is anh, chị, em for this learner.
 
@@ -81,6 +82,7 @@ C Fire quick statements; the learner turns each into the negative. Watch for "kh
 + mệt|tired|Tôi không mệt.|I am not tired.
 + đói|hungry|Em có đói không?|Are you hungry?
 + vui|happy; fun|Tôi cũng vui.|I'm happy too.
++ cười|to laugh, to smile|Chị Lan cười vui quá.|Lan laughs so happily.
 T Ask your teacher ten yes / no questions about their day. Answer theirs with Dạ có, Dạ không or Dạ phải, never just a nod.
 C Model the falling "không?" at the end. Make the learner answer with the verb, not with "yes". Introduce hả and à as you use them.
 
@@ -133,6 +135,8 @@ C Give an answer and have the learner make the question for it. This is the both
 + ở đây|here|Ở đây có phở không?|Is there phở here?
 + đằng kia|over there|Nhà anh Nam ở đằng kia.|Nam's house is over there.
 + bàn|table|Cái bàn ở đâu?|Where is the table?
++ phòng|room|Phòng tôi ở đây.|My room is here.
++ chợ|market|Nhà tôi ở gần chợ.|My house is near the market.
 T Describe where five things are in the room. Then say where you live and what is near it.
 C Move an object around and ask "… ở đâu?". Check the tone on ở and the difference between trong and trên.
 

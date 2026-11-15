@@ -149,6 +149,8 @@ C Run "Have you ever" as a chain game. Contrast từng (life experience) with r�
 + năm sau|next year|Năm sau tôi sẽ nói giỏi hơn.|Next year I will speak better.
 + hôm kia|the day before yesterday|Hôm kia trời mưa lớn.|It rained hard the day before yesterday.
 + mốt|the day after tomorrow (Saigon)|Mai hay mốt cũng được.|Tomorrow or the day after is fine.
++ mươi|tens: hai mươi = 20, ba mươi = 30|Hôm nay ngày hai mươi.|Today is the 20th.
++ lăm|five, after mười or mươi: mười lăm = 15|Ngày mười lăm tôi về Mỹ.|On the 15th I go back to America.
 T Tell your teacher what you do each day of a normal week, and the dates of three things coming up (a birthday, a trip, a holiday).
 C Point at a calendar and ask thứ mấy, ngày mấy fast. Make sure the date comes as ngày … tháng …, and that the learner hears mốt and tuần rồi as Saigon forms.
 
@@ -276,5 +278,7 @@ C Give instructions and have the learner report them to a third person: "Thầy 
 + tình yêu|love|Tình yêu không dễ đâu.|Love is not easy.
 + bạn bè|friends|Tôi có nhiều bạn bè ở đây.|I have a lot of friends here.
 + bạn gái|girlfriend|Bạn gái tôi là người Sài Gòn.|My girlfriend is from Saigon.
++ vợ|wife|Vợ anh là người Việt hả?|Is your wife Vietnamese?
++ chồng|husband|Chồng chị làm nghề gì?|What does your husband do?
 T Talk about your family and friends: who helps whom, who gets on with whom, what you do together and what you do by yourself.
 C Ask "Hai người … nhau không?" questions about the learner's friends. Drill tự + verb with daily tasks (cook, fix, study).

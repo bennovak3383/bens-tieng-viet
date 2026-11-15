@@ -4164,6 +4164,16 @@ var z8RenderPrac37=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac37(); try{
   [].forEach.call(el.querySelectorAll('.panel, section, div'),function(p){ if(p.dataset.z37||!p.querySelector) return; var hd=p.firstElementChild; if(hd&&/Thêm cách luyện/.test(hd.textContent)&&p.querySelector('.setgrid')&&n<G.more&&!p.closest('details')){ p.dataset.z37=1; var d=h('details',{class:'z37more'},[h('summary',{class:'small',text:'More ways to practise (open when you want extra)'})]); p.parentNode.insertBefore(d,p); d.appendChild(p) } }) }catch(e){} };
 var z7RenderMore37=z7RenderMore; z7RenderMore=function(){ z7RenderMore37(); try{ [].forEach.call(document.querySelectorAll('#z-more .settile'),function(t){ var b=t.querySelector('b'); if(b&&b.textContent==='Thầy'){ b.textContent='Ghi âm · my recordings'; var s=t.querySelector('.small'); if(s) s.textContent='Your recordings, slow answers and notes from your teacher' } }) }catch(e){} };
 
+/* ===== 38 · audit fix 3: extra review sentences per unit feed the rotation; a graded story opens after every few units ===== */
+var z27Apply38=z27Apply; z27Apply=function(){ z27Apply38(); try{ if(!Z27||!Z27.units) return; Z27.units.forEach(function(u,ui){ (u.xs||[]).forEach(function(x){ Z27.sent.push([x[0],x[1],ui]) }) });
+  if(typeof C6!=='undefined'&&C6.gloss){ Z27.units.forEach(function(u){ u.w.forEach(function(w){ var k=w[0].toLowerCase(); if(!C6.gloss[k]) C6.gloss[k]=w[1] }) }); (Z27.st||[]).forEach(function(g){ g.new.forEach(function(n){ var k=n[0].toLowerCase(); if(!C6.gloss[k]) C6.gloss[k]=n[1] }) }) } }catch(e){} };
+function z38Story(g){ if(!g._s) g._s={id:g.id,t:g.t,en:g.en+' · after unit '+g.at,pic:'',lv:0,core:1,ch:[{t:g.t,en:g.en,pic:'',new:g.new.map(function(n){ return n[0] }),lines:g.lines.map(function(l){ return {vi:l.vi,en:l.en,p:0} }),qs:g.qs}]}; return g._s }
+function z38Open(g){ try{ return Z27&&Z27.on&&Z27.units.slice(0,g.at).every(function(u){ return !!z27St().d[u.id] }) }catch(e){ return false } }
+function z38Unread(){ if(!Z27||!Z27.st) return null; for(var i=0;i<Z27.st.length;i++){ var g=Z27.st[i]; if(z38Open(g)&&!zRead(zChId(z38Story(g),0))) return g } return null }
+var zStories38=zStories; zStories=function(){ var a=zStories38(); try{ if(!Z27||!Z27.st) return a; var g=Z27.st.filter(z38Open).map(z38Story); return g.concat(a.filter(function(s){ return !s.core })) }catch(e){ return a } };
+var zRenderHome38=zRenderHome; zRenderHome=function(){ zRenderHome38(); try{ var core=$('#z27'), g=z38Unread(); if(!core||!g||core.querySelector('.z38st')) return;
+  core.appendChild(h('div',{class:'z12slip z38st',style:'transform:none'},[h('span',{class:'z12lbl',text:'Truyện mới · new story'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:g.t+' · '+g.en+'. Made only from the words you have learned so far.'}),h('button',{class:'btn primary wide',text:'Read it',onclick:function(){ zOpenStory(z38Story(g),0,function(){ closeSheet(); zRenderHome() }) }})])) }catch(e){} };
+
 go(location.hash.slice(1)||'home');
 renderAll();
 connectStore();

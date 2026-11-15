@@ -1,0 +1,262 @@
+# Extra review sentences (version 38): they bring a unit's most common words back in new sentences.
+# Each line uses only words taught up to that unit. They feed the card sentences that rotate each day,
+# the "at my level" listening and speaking drills, and the recording list.
+# Drafted by Claude, NOT yet checked by a Vietnamese speaker.
+
+## u21
+& Làm ơn đợi tôi một chút.|Please wait for me a moment.
+& Anh làm ơn nói lại được không?|Could you please say that again?
+& Tôi tránh đi giờ đó vì có nhiều người.|I avoid going at that hour because there are so many people.
+& Hãy cẩn thận khi đi qua đường.|Be careful when you cross the road.
+& Đừng tránh tôi nha.|Don't avoid me, okay.
+
+## u22
+& Có vấn đề gì thì gọi tôi nha.|If there is any problem, call me.
+& Anh ấy bị tai nạn nhưng không sao.|He had an accident but he is okay.
+& Tôi chịu không nổi trời nóng này.|I cannot stand this hot weather.
+& Không có vấn đề gì đâu.|There is no problem at all.
+& Đi chậm thôi, tránh bị tai nạn.|Go slowly so you don't have an accident.
+& Mệt quá, tôi chịu không nổi.|I am so tired, I cannot take it.
+
+## u23
+& Loại này ngon hơn loại kia.|This kind is better than that kind.
+& Chiếc xe đó là của tôi.|That bike is mine.
+& Hàng ở quán này tốt lắm.|The goods at this shop are very good.
+& Anh muốn loại nào, loại lớn hay loại nhỏ?|Which kind do you want, the big one or the small one?
+& Tôi mua hai chiếc xe.|I bought two bikes.
+
+## u24
+& Anh từng sống ở Hà Nội chưa?|Have you ever lived in Hà Nội?
+& Hồi nhỏ tôi sống ở Úc.|When I was little I lived in Australia.
+& Hiện tại tôi đang học tiếng Việt.|At the moment I am learning Vietnamese.
+& Trong tương lai, tôi muốn sống ở đây.|In the future, I want to live here.
+& Tôi làm việc suốt ngày, mệt quá.|I worked all day, I am so tired.
+& Anh có kinh nghiệm làm việc ở Việt Nam không?|Do you have experience working in Vietnam?
+& Tôi chưa từng có kinh nghiệm như vậy.|I have never had an experience like that.
+& Hồi đó tôi chưa biết nói tiếng Việt.|Back then I could not speak Vietnamese.
+
+## u46
+& Năm ngoái tôi chưa biết tiếng Việt.|Last year I did not know Vietnamese.
+& Mai hay mốt anh rảnh?|Are you free tomorrow or the day after?
+& Mốt tôi về Mỹ.|The day after tomorrow I go back to America.
+& Tuần rồi anh làm gì?|What did you do last week?
+& Tuần rồi tôi đi làm mỗi ngày.|Last week I went to work every day.
+& Năm sau anh còn ở đây không?|Will you still be here next year?
+& Anh về Mỹ ngày mấy?|What date do you go back to America?
+& Năm ngoái sinh nhật tôi ở Úc.|Last year my birthday was in Australia.
+
+## u25
+& Ở đây đêm nào cũng mưa.|It rains here every night.
+& Chiều nay tôi rảnh.|I am free this afternoon.
+& Mùa mưa ở Sài Gòn bắt đầu tháng năm.|The rainy season in Saigon starts in May.
+& Mùa này trời hay mưa vào buổi chiều.|In this season it often rains in the afternoon.
+& Tối qua tôi ngủ lúc nửa đêm.|Last night I went to sleep at midnight.
+& Chiều mai mình gặp nha.|Let's meet tomorrow afternoon.
+
+## u28
+& Tôi chẳng hiểu gì cả.|I don't understand anything at all.
+& Bất cứ lúc nào anh cũng có thể gọi tôi.|You can call me at any time.
+& Tôi muốn có phòng riêng.|I want my own room.
+& Anh muốn ăn bất kỳ cái gì cũng được.|You can eat anything you like.
+& Toàn bộ tiền ở trong đó.|All the money is in there.
+& Chắc nó ở đâu đó trong nhà.|It must be somewhere in the house.
+& Chị ấy chẳng nói gì cả.|She didn't say anything at all.
+
+## u29
+& Trời nóng khiến tôi mệt.|The heat makes me tired.
+& Thầy yêu cầu mỗi người nói một câu.|The teacher asks each person to say one sentence.
+& Cô Mai dạy tiếng Việt ở đây.|Mai teaches Vietnamese here.
+& Anh hứa sẽ tới đúng giờ nha.|Promise you will come on time, okay.
+& Tôi đề nghị mình đi ăn phở.|I suggest we go and eat phở.
+& Anh giải thích lại giùm tôi được không?|Could you explain it again for me?
+& Thầy bắt tôi viết lại.|The teacher makes me write it again.
+& Chuyện đó khiến tôi buồn.|That made me sad.
+
+## u30
+& Cha tôi là người Úc.|My father is Australian.
+& Mẹ tôi rất quan tâm tới tôi.|My mother really cares about me.
+& Vợ chồng anh ấy sống ở Quận Bảy.|He and his wife live in District 7.
+& Chồng chị ấy làm việc ở xa.|Her husband works far away.
+& Hai người có quan hệ gì?|How are the two of them related?
+& Anh có quan tâm tới chuyện đó không?|Are you interested in that?
+& Cha mẹ tôi sống ở Úc.|My parents live in Australia.
+
+## u48
+& Quần này mắc quá, bớt chút đi.|These trousers are too expensive, take a bit off.
+& Anh có tiền mặt không?|Do you have cash?
+& Tôi không có tiền mặt, chuyển khoản được không?|I have no cash, can I pay by transfer?
+& Quần này cỡ lớn quá.|These trousers are too big a size.
+& Chợ này bán quần áo rẻ lắm.|This market sells clothes very cheaply.
+
+## u32
+& Tôi nhìn mãi mà không thấy.|I looked and looked but could not see it.
+& Anh bỏ cái này ở đâu?|Where did you put this?
+& Anh giữ cái này giùm tôi nha.|Please keep this for me.
+& Cuối cùng tôi đạt được rồi.|In the end I did it.
+& Anh kiểm tra lại giùm tôi.|Please check it again for me.
+& Tôi phải chuẩn bị cho ngày mai.|I have to get ready for tomorrow.
+& Chúc anh thành công!|I wish you success!
+& Buổi học kết thúc lúc mười giờ.|The lesson finishes at ten.
+& Tôi đang kiếm việc làm.|I am looking for work.
+& Đừng bỏ tôi một mình nha.|Don't leave me alone, okay.
+
+## u33
+& Ừ, được rồi.|Yeah, okay.
+& Ôi, đẹp quá!|Oh, how beautiful!
+& Tạm biệt, hẹn gặp lại nha.|Goodbye, see you again.
+& Mình hẹn nhau lúc bảy giờ nha.|Let's meet at seven, okay.
+& Anh ăn chưa? Ăn đi chứ!|Have you eaten? Go on, eat!
+& Dạ, em cảm ơn chị ạ.|Thank you very much.
+& Kìa, anh Nam tới rồi!|Look, Nam is here!
+& Nè, anh coi cái này đi.|Hey, look at this.
+
+## u34
+& Mức này vừa phải.|This level is about right.
+& Bàn này thấp quá.|This table is too low.
+& Cái bàn này nặng quá.|This table is so heavy.
+& Phòng này rộng hơn phòng kia.|This room is bigger than that one.
+& Cái này nhẹ hơn cái kia.|This one is lighter than that one.
+& Số lượng có hạn, mua nhanh đi.|Stock is limited, buy quickly.
+
+## u35
+& Tôi muốn đi khắp thế giới.|I want to travel all over the world.
+& Nhà tôi ở cạnh chợ.|My house is next to the market.
+& Trung tâm thành phố cách đây bao xa?|How far is the city centre from here?
+& Khu vực này có nhiều quán ngon.|This area has lots of good places to eat.
+& Đi hướng nào?|Which way do I go?
+& Quê tôi ở miền Nam.|My hometown is in the South.
+
+## u36
+& Em bé này dễ thương quá.|This baby is so cute.
+& Phụ nữ ở đây làm việc nhiều lắm.|Women here work a lot.
+& Người ta nói phở ở đây ngon nhất.|People say the phở here is the best.
+& Quán này lúc nào cũng có khách.|This place always has customers.
+& Anh còn trẻ lắm.|You are still very young.
+& Người ta bán gì ở đó vậy?|What do they sell there?
+
+## u37
+& Anh biết sử dụng cái này không?|Do you know how to use this?
+& Quay lại đây!|Come back here!
+& Ông ấy đánh bóng mỗi sáng.|He plays ball every morning.
+& Tôi nằm ở nhà cả ngày.|I lay around at home all day.
+& Máy bay bay qua nhà tôi.|Planes fly over my house.
+& Anh hát hay quá!|You sing so well!
+& Tôi thích hát nhưng hát không hay.|I like singing but I do not sing well.
+
+## u38
+& Tụi mình tổ chức sinh nhật cho chị Lan nha.|Let's throw a birthday party for Lan.
+& Anh có muốn tham gia không?|Do you want to join?
+& Mưa lớn gây kẹt xe.|Heavy rain causes traffic jams.
+& Chuyện này không liên quan tới anh.|This has nothing to do with you.
+& Anh có lựa chọn nào khác không?|Do you have any other choice?
+& Cái xe này thuộc về ai?|Who does this bike belong to?
+& Anh ấy tạo ra nhiều việc làm.|He creates a lot of jobs.
+
+## u40
+& Cuộc sống ở Sài Gòn rất vui.|Life in Saigon is a lot of fun.
+& Tôi đọc tin tức để lấy thông tin.|I read the news to get information.
+& Công nghệ thay đổi cuộc sống.|Technology changes life.
+& Giáo dục rất quan trọng.|Education is very important.
+& Đời người ngắn lắm.|Life is short.
+& Xã hội thay đổi nhanh quá.|Society changes so fast.
+
+## u47
+& Anh ấy cao một mét chín.|He is one metre ninety.
+& Chị ấy hiền và vui tính.|She is kind and fun.
+& Con chó nhà tôi mập quá.|Our dog is so fat.
+& Anh ấy đẹp trai, mắt đẹp.|He is handsome, with nice eyes.
+& Xe cũ nhưng vẫn chạy tốt.|The bike is old but still runs well.
+& Ai cũng nói anh đẹp trai.|Everyone says you are handsome.
+
+## u42
+& Tôi thích màu xanh.|I like blue.
+& Áo màu vàng này đẹp quá.|This yellow shirt is so nice.
+& Áo trắng dễ bị dơ.|White shirts get dirty easily.
+& Màu đỏ hợp với chị.|Red suits you.
+& Chỗ này phù hợp cho gia đình.|This place is suitable for families.
+& Đừng nói người ta xấu.|Don't call people ugly.
+
+## u43
+& Đất ở đây rất mắc.|Land here is very expensive.
+& Tôi nhận được thư của mẹ.|I got a letter from my mother.
+& Ở đó có rừng và biển.|There are forests and sea there.
+& Đi một vòng rồi về.|Go round once and come back.
+
+## u44
+& Tuần sau tôi thi.|I have an exam next week.
+& Lớp tôi có mười học sinh.|My class has ten students.
+& Tôi học đại học ở Úc.|I went to university in Australia.
+& Nhóm mình họp lúc chín giờ.|Our group meets at nine.
+& Con người ai cũng cần bạn bè.|Every human being needs friends.
+& Hôm nay là ngày lễ, ai cũng nghỉ.|Today is a holiday, everyone has the day off.
+& Anh ấy bị mất nhiều máu.|He lost a lot of blood.
+
+## u45
+& Anh hỗ trợ tôi một chút được không?|Could you help me a bit?
+& Quán này cung cấp đồ ăn cho văn phòng.|This place supplies food to offices.
+& Tôi không tập trung được vì ồn quá.|I cannot focus because it is too noisy.
+& Anh ấy xử lý chuyện đó rất nhanh.|He dealt with that very quickly.
+& Tôi phát hiện ra một quán phở ngon.|I found a good phở place.
+& Con chó biến đâu mất rồi.|The dog has disappeared.
+& Anh ấy nâng được một trăm ký.|He can lift a hundred kilos.
+
+## u49
+& Tôi bị đau răng, phải đi bác sĩ.|I have a toothache and have to see a dentist.
+& Bệnh viện ở gần đây không?|Is there a hospital near here?
+& Ăn nhiều quá nên tôi đau bụng.|I ate too much so my stomach hurts.
+& Anh bị ho lâu chưa?|How long have you had a cough?
+& Anh nghỉ ngơi cho khỏe nha.|Rest up and get well.
+
+## u50
+& Mấy giờ anh tới đón tôi?|What time are you coming to pick me up?
+& Anh gửi địa chỉ cho tôi nha.|Send me the address, okay.
+& Tài xế đang đợi ở cổng.|The driver is waiting at the gate.
+& Chung cư tôi có hai cổng.|My apartment building has two gates.
+& Địa chỉ nhà anh là số mấy?|What number is your house?
+
+## u45
+& Hiện tại tôi đang tập trung học tiếng Việt.|At the moment I am focusing on learning Vietnamese.
+& Trong tương lai tôi muốn làm việc ở đây suốt đời.|In the future I want to work here for the rest of my life.
+& Bất cứ ai cũng có thể tham gia.|Anyone can join.
+& Thầy dạy rất hay và giải thích dễ hiểu.|The teacher teaches very well and explains things simply.
+& Anh hứa là sẽ giữ bí mật nha.|Promise you will keep it a secret.
+& Tôi đã chuẩn bị xong, kiểm tra lại rồi.|I am ready and I have checked it again.
+& Chúc anh thi tốt và thành công!|Good luck with the exam and success!
+& Ừ, tạm biệt nha. Ôi, tôi quên điện thoại!|Yeah, bye. Oh, I forgot my phone!
+& Cái áo đỏ rộng quá, cái áo vàng thì nhẹ và phù hợp hơn.|The red shirt is too loose; the yellow one is lighter and suits better.
+& Phụ nữ và em bé được ngồi trước.|Women and babies sit at the front.
+& Tôi bước ra cửa rồi quay lại.|I stepped out the door and then turned back.
+& Máy bay bay qua, con chó nằm im.|A plane flies over and the dog lies still.
+& Nhóm tôi tổ chức một buổi học cho học sinh đại học.|My group organises a lesson for university students.
+& Kẹt xe gây khó khăn cho nhiều người.|Traffic jams cause problems for many people.
+& Chuyện này liên quan tới xã hội và giáo dục.|This is about society and education.
+& Công nghệ giúp con người sống tốt hơn.|Technology helps people live better.
+& Anh có lựa chọn nào tốt hơn không?|Do you have a better choice?
+& Con chó này mập nhưng rất hiền.|This dog is chubby but very gentle.
+& Chiếc xe màu xấu quá, nhưng to và chạy tốt.|The bike's colour is ugly, but it is big and runs well.
+& Anh ấy vượt qua khó khăn rồi.|He has got through the hard times.
+& Tôi thoát được kẹt xe rồi.|I have got out of the traffic jam.
+& Họ hỗ trợ và cung cấp nước cho mọi người.|They help and give water to everyone.
+& Anh ấy phát hiện ra vấn đề và xử lý rất nhanh.|He found the problem and dealt with it very fast.
+& Tôi nâng cái bàn lên một mình.|I lifted the table by myself.
+& Nó biến mất trong rừng.|It disappeared into the forest.
+& Đi một vòng thế giới chắc vui lắm.|Going round the world must be a lot of fun.
+& Ở mức này thì hơi khó.|At this level it is a bit hard.
+& Tôi đề nghị mình kiếm chỗ khác.|I suggest we look for another place.
+& Mỗi năm có nhiều ngày lễ.|There are many holidays every year.
+& Lớp tôi thi tuần sau.|My class has an exam next week.
+& Đời sống ở đây thay đổi nhiều.|Life here has changed a lot.
+& Anh có biết sử dụng máy này không?|Do you know how to use this machine?
+& Thầy yêu cầu chúng tôi đánh số trang.|The teacher asked us to number the pages.
+& Tôi kết thúc công việc lúc sáu giờ.|I finish work at six.
+& Toàn bộ chuyện đó không thuộc về tôi.|None of that is my business.
+& Chắc cái điện thoại ở đâu đó trong phòng.|The phone must be somewhere in the room.
+& Bất kỳ lúc nào cũng được.|Any time is fine.
+& Hai người có quan hệ tốt.|The two of them get on well.
+& Anh tạo ra cái này hả?|Did you make this?
+& Tôi đạt được chuyện đó rồi.|I have managed that.
+& Con người ai cũng cần ngủ.|Every person needs sleep.
+
+## u49
+& Tôi bị đau răng nên phải vào bệnh viện.|I have a toothache so I have to go to the hospital.
+& Bệnh viện này có bác sĩ nói tiếng Anh.|This hospital has doctors who speak English.

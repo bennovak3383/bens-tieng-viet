@@ -228,3 +228,11 @@ VERSION 38 (15 Nov 2026) - audit fix 2: A2 re-levelled, B1 preview, five plain A
 - tiền mặt and mặc dropped from u37 (now taught in u48). A few sentences reworded so no sentence uses a word from the B1 units.
 - z27N: A1 → A1+A2 → all. Teacher level can be A1, A2 or B1 (server accepts B1; teacher page button "Open B1 preview"). z27Lv(lv), z27LvDone(lv).
 - Recording list rebuilt: 4,474 lines; new parts k46 to k50 sit inside the A2 order, B1 parts after the A2 ones.
+
+VERSION 39 (15 Nov 2026) - audit fix 3: words come back more; graded stories
+- src/core/extra.txt: extra review sentences per unit ("## uid" then "& vi|en"), 213 lines. make.py puts them in unit.xs and checks them for untaught words.
+- src/core/stories.txt: 9 graded stories (g1 to g9) about Mike, one after units 5, 10, 15, 20, 26, 30, 35, 40, 45 (field "at" = position in the course). "+ word|English" lines are the few new words a story may add. make.py writes them to core.json "st" and checks every line.
+- Words added to units so stories and sentences can use them: bà (u01), cười (u03), phòng and chợ (u05), vợ and chồng (u30), mươi and lăm (u46), bán (u48). Added at the END of each unit's word list so card ids do not move.
+- A2 words seen 3+ times in the course text: 155 -> 304 of 497. Of the 10 most common words in each A2 unit: most now 3+.
+- Block 38 in v7.js: z27Apply also feeds unit.xs into Z27.sent (card sentence rotation, at-my-level drills). z38Story turns a graded story into the normal story reader format; z38Open (all units up to "at" done); zStories lists unlocked graded stories first and hides locked ones; the core card on Home shows "Truyện mới · new story" when one is unlocked and unread. Core words are added to the tap-a-word glossary.
+- Recording list: 4,840 lines. Each story is part g1..g9, placed right after the unit it follows; extra sentences are inside each unit's part.
