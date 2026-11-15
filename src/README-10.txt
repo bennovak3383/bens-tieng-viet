@@ -242,3 +242,8 @@ VERSION 40 (15 Nov 2026) - audit fix 4: must-know words, each learned inside its
 - Block 39 in v7.js. z39Learn replaces the word step of a core unit: one must-know word per screen with its picture, meaning and its example sentence with the word highlighted (both play), then the 8-question check on must-know words, then an "Also in this unit · optional" screen with the other words (tap to hear), "Add these to my cards" (S.set.k27.opt[unitId]) and "Always add the extra words" (S.set.k27.optall).
 - fcOn: an optional word only becomes a card if added (or already started). z39IsOpt(card). The unit card says "N must-know words (and M optional)" and a longer, more honest time.
 - z26Learn is wrapped: when called by z27Unit (Z39.u set by the z27Unit wrapper) it hands over to z39Learn; the beginner path still uses the old screen.
+
+VERSION 41 (15 Nov 2026) - audit fix 5: the Say step is recorded, compared and sent
+- Block 40 in v7.js replaces z27Say. For the first 3 lines (Z40.rec) of a unit's Say step: after "I said it · show me" the learner records the line (z36Rec), sees their pitch line next to the model (z13Pitch, z13Graph), and the clip is saved with kind 'unit' and prompt "Unit N · say it: …" so it uploads to the teacher like the own sentences. The 4th line is not recorded. Score buttons unchanged.
+- Teacher page: every recording with a text now has "Tone off:" chips (ngang, huyền, sắc, hỏi/ngã, nặng). A tap saves a note "Tone to fix: <tone>" about that line (existing t/note endpoint; toneTag in teacher.html).
+- Student app: notes that start "Tone to fix:" show on Today as "Thầy cô · tones to fix" with a "Fix them now" button that runs shadowing on those lines (z13Shadow with items). Done lines are remembered in S.set.tf40 (note time).

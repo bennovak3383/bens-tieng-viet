@@ -4201,6 +4201,32 @@ function z39Learn(u,onDone){ var body=zOpen(), tok=Z.tok, must=z39Must(u).map(fu
   show() }
 var z26Learn39=z26Learn; z26Learn=function(items,onDone,title){ if(title==='Từ mới · the words for this unit'&&Z39.u&&Z39.u.w&&Z39.u.w.length===items.length){ var u=Z39.u; Z39.u=null; return z39Learn(u,onDone) } return z26Learn39(items,onDone,title) };
 
+/* ===== 40 · audit fix 5: the Say step records 3 lines, shows your pitch line next to the model, and sends them to the teacher; the teacher's tone marks come back as practice ===== */
+var Z40={rec:3};
+z27Say=function(list,next,score){ var body=zOpen(), tok=Z.tok, i=0, ui=-1, ref='s'+Date.now(), sent=0; function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  try{ ui=Z27.units.indexOf(Z39.last||null) }catch(e){}
+  body.appendChild(zTop('Nói · say it in Vietnamese',0,null));
+  function show(){ if(!alive()) return; if(i>=list.length) return next(); var s=list[i], out=h('div',{class:'stack'}), bar=$('.sess-top .bar i',body), rec=i<Z40.rec, model=[];
+    var clip=z13Clip(s[0]); if(clip&&rec) loadBundle(clip[0]).then(function(ab){ return z13Decode(ab.slice(clip[1],clip[1]+clip[2])) }).then(function(b){ model=z13Pitch(b) }).catch(function(){});
+    var btn=h('button',{class:'btn primary wide',text:'I said it · show me',onclick:function(){ btn.remove(); zSay(s[0]);
+      out.appendChild(h('div',{class:'panel rf-reveal'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[zVi(s[0],22),zPlay(s[0])]),h('div',{class:'small muted',text:rec?'Now record it, copying the voice. It goes to your teacher.':'Say it once more with the voice.'})]));
+      var graph=h('div',{}), mark=h('div',{class:'row'},[h('button',{class:'btn primary',style:'flex:1',text:'I had it',onclick:function(){ score.s++; score.sn++; i++; show() }}),h('button',{class:'btn',style:'flex:1',text:'Not yet',onclick:function(){ score.sn++; i++; show() }})]);
+      if(rec){ var r=z36Rec(function(bl){ graph.innerHTML=''; if(!bl) return; sent++;
+          try{ zRecSave({kind:'unit',ref:ref,target:s[0],prompt:(ui>=0?'Unit '+(ui+1)+' · ':'')+'say it: '+s[1],ok:true,score:0,heard:'',ms:0},bl) }catch(e){}
+          bl.arrayBuffer().then(z13Decode).then(function(b){ graph.appendChild(z13Graph(model,z13Pitch(b))) }).catch(function(){ graph.appendChild(h('p',{class:'small muted',text:'Could not draw the pitch line for this recording.'})) }) });
+        out.appendChild(h('div',{class:'panel'},[h('span',{class:'lbl',text:'Record · '+(i+1)+' of '+Math.min(Z40.rec,list.length)+' for your teacher'}),r.el,graph])); }
+      out.appendChild(mark) }}); if(bar) bar.style.width=Math.round(i/list.length*100)+'%';
+    zSwap(body,[h('span',{class:'lbl',text:(i+1)+' / '+list.length+' · say it out loud first'}),h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('h1',{style:'font-size:24px',text:s[1]})]),btn,out]) }
+  show() };
+var z27Unit40=z27Unit; z27Unit=function(ui,onDone){ Z39.last=Z27&&Z27.units[ui]; return z27Unit40(ui,onDone) };
+/* teacher tone marks: a note that starts "Tone to fix:" comes back as a shadowing round on Today */
+function z40Fixes(){ var seen={}, out=[]; try{ (ACCN||[]).forEach(function(n){ if(!/^Tone to fix:/.test(n.text||'')||!n.about) return; var k=n.about; if(seen[k]) return; seen[k]=1; if((S.set.tf40||{})[n.t]) return; out.push(n) }) }catch(e){} return out.slice(0,8) }
+var zRenderHome40=zRenderHome; zRenderHome=function(){ zRenderHome40(); try{ var el=$('#z-home'), fx=z40Fixes(); if(!el||!fx.length||el.querySelector('#z40fix')) return; var at=el.querySelector('#z27');
+  var box=h('div',{class:'z12slip',id:'z40fix',style:'transform:none'},[h('span',{class:'z12lbl',text:'Thầy cô · tones to fix'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:'Your teacher marked '+fx.length+' line'+(fx.length>1?'s':'')+' where a tone was off. Copy each one and watch your pitch line.'}),
+    h('div',{class:'small muted',text:fx.map(function(n){ return n.text.replace(/^Tone to fix:\s*/,'')+' → '+n.about }).join(' · ')}),
+    h('button',{class:'btn primary wide',text:'Fix them now',onclick:function(){ z13Shadow(function(){ if(!S.set.tf40) S.set.tf40={}; fx.forEach(function(n){ S.set.tf40[n.t]=1 }); save(); closeSheet(); zRenderHome() },fx.length,fx.map(function(n){ return {vi:n.about,en:'',xv:n.about,xe:n.text.replace(/^Tone to fix:\s*/,'Tone to fix: ')} })) }})]);
+  if(at&&at.parentNode===el) el.insertBefore(box,at.nextSibling); else el.insertBefore(box,el.firstChild) }catch(e){} };
+
 go(location.hash.slice(1)||'home');
 renderAll();
 connectStore();
