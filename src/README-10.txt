@@ -188,3 +188,9 @@ VERSION 33 — recording page: pick any part, by size
   ORDER list that pushed the new parts to the end.
 - "Pick a part" list with size buttons: all / short (≤10) / medium (11–20) / long (21+). Each
   part shows lines left and rough minutes (about 20 seconds a line).
+
+VERSION 34 — "A1 only" switch for the core course
+- Core course → All units → Show levels: "A1 only" / "A1 + A2". Saved in S.set.k27.max, so it
+  follows the learner's code. Default is A1 + A2.
+- With A1 only: the card counts "unit x of 20", the list hides the 25 A2 units, A2 words never
+  become cards, the day plan has no unit stop once A1 is done, and the card offers "Open A2".

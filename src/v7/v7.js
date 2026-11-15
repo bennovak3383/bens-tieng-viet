@@ -1096,6 +1096,7 @@ function z26Tone(onDone){ var body=zOpen(), tok=Z.tok, N=12, n=0, right=0, W=['m
 /* ===== 27 · core course: grammar units that roll out the most common words, in order (data/core.json) ===== */
 var Z27=null, Z27C=null;
 function z27St(){ var k=S.set.k27; if(!k||typeof k!=='object'||Array.isArray(k)) k=S.set.k27={d:{}}; if(!k.d||typeof k.d!=='object') k.d={}; return k }
+function z27N(){ var k=z27St(); if(k.max!=='A1') return Z27.units.length; var n=0; Z27.units.forEach(function(u){ if(u.lv==='A1') n++ }); return n }
 function z27Idx(){ var k=z27St(); for(var i=0;i<Z27.units.length;i++) if(!k.d[Z27.units[i].id]) return i; return Z27.units.length }
 function z27Cat(u){ return 'k'+u.id.slice(1) }
 function z27Clean(w){ return String(w).toLowerCase().replace(/[.,!?…:;“”"]/g,'') }
@@ -1156,8 +1157,8 @@ function z27Gaps(u){ var out=[], keys=u.key.slice().sort(function(a,b){ return b
 function z27Unit(ui,onDone){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:0,g:0,gn:0,s:0,sn:0}, all=u.ex.concat(u.w.map(function(w){ return [w[2],w[3]] })).filter(function(s){ return s[0]&&s[1] });
   var ord=z7Shuffle(all.filter(function(s){ var n=s[0].split(/\s+/).length; return n>=3&&n<=7 })).slice(0,4), gaps=z7Shuffle(z27Gaps(u)).slice(0,5), say=z7Shuffle(u.ex.slice()).slice(0,4);
   function fin(){ var k=z27St(); k.d[u.id]={t:Date.now(),o:sc.o,on:sc.on,g:sc.g,gn:sc.gn,s:sc.s,sn:sc.sn}; zDay('ku'); tick(); save(); Z27.rd=''; z27Rot(); Z13.lvT=0;
-    var body=zOpen(), last=ui>=Z27.units.length-1; body.appendChild(zTop('Nền tảng · core course',1,null));
-    body.appendChild(h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Unit '+(ui+1)+' of '+Z27.units.length+' done'}),h('h1',{text:'Xong! '+u.vi}),h('p',{class:'muted',text:'Order '+sc.o+'/'+sc.on+' · missing word '+sc.g+'/'+sc.gn+' · said '+sc.s+'/'+sc.sn+'. The '+u.w.length+' words are now in your cards and will come back in new sentences.'})]));
+    var body=zOpen(), last=ui>=z27N()-1; body.appendChild(zTop('Nền tảng · core course',1,null));
+    body.appendChild(h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Unit '+(ui+1)+' of '+z27N()+' done'}),h('h1',{text:'Xong! '+u.vi}),h('p',{class:'muted',text:'Order '+sc.o+'/'+sc.on+' · missing word '+sc.g+'/'+sc.gn+' · said '+sc.s+'/'+sc.sn+'. The '+u.w.length+' words are now in your cards and will come back in new sentences.'})]));
     body.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
     if(onDone){ body.appendChild(h('button',{class:'btn primary wide',text:'Carry on with today',onclick:onDone})); return }
     body.appendChild(h('button',{class:'btn primary wide',text:'Review the new words now',onclick:function(){ fcSession(function(){ closeSheet(); zRenderHome() },20) }}));
@@ -1166,15 +1167,18 @@ function z27Unit(ui,onDone){ var u=Z27.units[ui]; if(!u) return; var sc={o:0,on:
   z27Gram(u,ui,function(){ z26Learn(u.w.map(function(w){ return [w[0],w[1]] }),function(){ z27Order(ord,function(){ z27Gap(gaps,function(){ z27Say(say,fin,sc) },sc) },sc) },'Từ mới · the words for this unit') }) }
 function z27List(){ var body=zOpen(), k=z27St(), cur=z27Idx(); body.appendChild(zTop('Nền tảng · core course',0,null));
   var tp=z27Top(); var kids=[h('h1',{text:'All units'}),tp?h('p',{class:'small',text:'Most common words: '+tp.n+' of '+tp.of+' started (top-'+tp.top+' list).'}):null,h('p',{class:'small muted',text:'Each unit is one piece of grammar and the common words that go with it. Do them in order; tap any unit to open it or do it again.'})], lv='';
-  Z27.units.forEach(function(u,ui){ if(u.lv!==lv){ lv=u.lv; kids.push(h('span',{class:'lbl',text:'Level '+lv})) } var d=k.d[u.id];
+  var mx=k.max||'A2', sw=h('div',{class:'row',style:'gap:6px'},[['A1','A1 only'],['A2','A1 + A2']].map(function(o){ return h('button',{class:'chip','aria-pressed':String(mx===o[0]),text:o[1],onclick:function(){ k.max=o[0]; save(); z27List(); try{ zRenderHome() }catch(e){} }}) }));
+  kids.push(h('div',{class:'panel'},[h('span',{class:'lbl',text:'Show levels'}),sw,h('p',{class:'small muted',text:'A1 only keeps the course, its words and its cards to A1 until you open A2.'})]));
+  Z27.units.forEach(function(u,ui){ if(ui>=z27N()){ if(ui===z27N()) kids.push(h('p',{class:'small muted',text:'Level A2 · '+(Z27.units.length-ui)+' units · hidden for now'})); return } if(u.lv!==lv){ lv=u.lv; kids.push(h('span',{class:'lbl',text:'Level '+lv})) } var d=k.d[u.id];
     kids.push(h('button',{class:'panel z27row'+(d?' done':'')+(ui===cur?' cur':''),onclick:function(){ z27Unit(ui) }},[h('span',{class:'z13lvn',text:d?'✓':String(ui+1)}),h('div',{style:'flex:1;min-width:0;text-align:left'},[h('b',{text:u.vi}),h('div',{class:'small muted',text:u.en+' · '+u.w.length+' words'})])])) });
   zSwap(body,kids) }
-function z27Card(){ var n=Z27.units.length, i=z27Idx(), k=z27St(), box=h('div',{class:'panel z12plan z27card',id:'z27'});
-  var dots=h('div',{class:'z26dots',role:'img','aria-label':'Unit '+Math.min(i+1,n)+' of '+n}); Z27.units.forEach(function(x,q){ dots.appendChild(h('i',{class:k.d[x.id]?'on':(q===i?'now':'')})) });
+function z27Card(){ var n=z27N(), i=z27Idx(), k=z27St(), box=h('div',{class:'panel z12plan z27card',id:'z27'});
+  var dots=h('div',{class:'z26dots',role:'img','aria-label':'Unit '+Math.min(i+1,n)+' of '+n}); Z27.units.slice(0,n).forEach(function(x,q){ dots.appendChild(h('i',{class:k.d[x.id]?'on':(q===i?'now':'')})) });
   if(!z27Snd()){ var vn=vanNext(); box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course'})); box.appendChild(h('h2',{text:'Âm trước · sounds first'}));
     box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'The tones and the vowel pairs come before grammar, so you can hear what is being said. '+vanDoneCount()+' of the first 8 sound lessons done.'}));
     box.appendChild(h('button',{class:'btn primary wide',text:'Next sound lesson'+(vn?' · '+vn.t:''),onclick:function(){ if(vn) vanOpen(vn,function(){ closeSheet(); zRenderHome() }); else location.hash='van' }}));
     box.appendChild(h('button',{class:'x z25ov',text:'I already know the tones and vowel pairs · open the course',onclick:function(){ k.snd=1; save(); zRenderHome() }})); return box }
+  if(i>=n&&n<Z27.units.length){ box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course · A1'})); box.appendChild(dots); box.appendChild(h('h2',{text:'A1 done · all '+n+' units'})); box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'Keep doing your cards and the day plan. When the A1 words feel easy, open A2.'})); box.appendChild(h('button',{class:'btn primary wide',text:'Open A2',onclick:function(){ z27St().max='A2'; save(); zRenderHome() }})); box.appendChild(h('button',{class:'btn wide',text:'All units',onclick:z27List})); return box }
   if(i>=n){ box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course'})); box.appendChild(dots); box.appendChild(h('h2',{text:'All '+n+' units done'})); box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:'More units are being added. Until then, redo any unit; the words keep coming back in your cards.'})); box.appendChild(h('button',{class:'btn wide',text:'All units',onclick:z27List})); return box }
   var u=Z27.units[i]; box.appendChild(h('span',{class:'lbl',text:'Nền tảng · core course · '+u.lv+' · unit '+(i+1)+' of '+n})); box.appendChild(dots); box.appendChild(h('h2',{text:u.vi}));
   box.appendChild(h('p',{class:'z12en',style:'font-size:15px',text:u.en+'. One piece of grammar, '+u.w.length+' common words, three short drills. About '+Math.round(u.w.length*0.45+6)+' minutes.'}));
@@ -1183,7 +1187,7 @@ function z27Card(){ var n=Z27.units.length, i=z27Idx(), k=z27St(), box=h('div',{
   box.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'Với thầy cô · with your teacher'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:u.teach})]));
   box.appendChild(h('div',{class:'row between'},[h('button',{class:'x z25ov',text:'All units',onclick:z27List}),h('button',{class:'x z25ov',text:'I know this · skip the unit',onclick:function(){ k.d[u.id]={t:Date.now(),skip:1}; save(); Z27.rd=''; z27Rot(); zRenderHome() }})])); return box }
 var zRenderHome27=zRenderHome; zRenderHome=function(){ zRenderHome27(); try{ if(!Z27||!Z27.on||z26On()) return; var el=$('#z-home'); if(!el||el.querySelector('#z27')) return; z27Rot(); var at=el.querySelector('#z-plan'); el.insertBefore(z27Card(),at&&at.parentNode===el?at:el.firstChild) }catch(e){} };
-var z8RenderPrac27=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac27(); try{ if(!Z27||!Z27.on) return; var el=$('#z-prac'), g=el&&el.querySelector('.setgrid'); if(!g) return; var i=z27Idx(), n=Z27.units.length;
+var z8RenderPrac27=z8RenderPrac; z8RenderPrac=function(){ z8RenderPrac27(); try{ if(!Z27||!Z27.on) return; var el=$('#z-prac'), g=el&&el.querySelector('.setgrid'); if(!g) return; var i=z27Idx(), n=z27N();
   g.insertBefore(h('button',{class:'settile gt1',onclick:z27List},[h('b',{text:'Nền tảng · Core course'}),h('span',{class:'small muted',text:i>=n?'All '+n+' units done':'Unit '+(i+1)+' of '+n+' · grammar and the most common words'})]),g.firstChild) }catch(e){} };
 
 
@@ -1255,7 +1259,7 @@ function z29Exam(){ var body=zOpen(), k=z27St(), ex=k.ex||{}, ts=z29Topics(); bo
   if(Z29&&ts.length<Z29.speak.length) kids.push(h('p',{class:'small muted',text:(Z29.speak.length-ts.length)+' more topics open as you finish more core units.'}));
   zSwap(body,kids) }
 /* the day plan at the learner's level: sounds, the next core unit, cards, then listening, speaking and marks made only from finished units */
-(function(){ var st=z12Stops; z12Stops=function(){ if(!z29On()) return st(); var m=z12Mins(), td=zTodayDone(), i=z27Idx(), u=Z27.units[i], due=0, vn=null, snd=z27Snd(); try{ due=fcQueue(0).length; vn=vanNext() }catch(e){}
+(function(){ var st=z12Stops; z12Stops=function(){ if(!z29On()) return st(); var m=z12Mins(), td=zTodayDone(), i=z27Idx(), u=i<z27N()?Z27.units[i]:null, due=0, vn=null, snd=z27Snd(); try{ due=fcQueue(0).length; vn=vanNext() }catch(e){}
   var A={ear:{t:'Nghe kỹ',en:'Sharp ears',min:3,sub:'Tones and vowels',done:!!td.ear,run:function(n){ zEar10(n) }},
     van:{t:'Âm',en:'Sound lesson',min:5,sub:vn?vn.t:'',done:!!td.van,run:function(n){ vanOpen(vanNext(),n) }},
     ku:u?{t:'Nền tảng',en:'Core unit '+(i+1),min:Math.round(u.w.length*.45+6),sub:u.vi+' · '+u.en,done:!!td.ku,run:function(n){ z27Unit(z27Idx(),n) }}:null,
