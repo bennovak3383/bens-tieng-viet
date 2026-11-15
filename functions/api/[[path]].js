@@ -30,7 +30,7 @@ export async function onRequest(context) {
       const b = await request.json().catch(() => ({})); const name = clean(b.name, 40) || 'Student';
       const id = rnd(10), code = rnd(8);
       await env.KV.put('u:' + code, JSON.stringify({ id, name, created: Date.now() }));
-      await env.KV.put('s:' + id, '{}', { metadata: { n: name, last: Date.now(), sum: {} } });
+      await env.KV.put('s:' + id, '{}', { metadata: { n: name, c: code, last: Date.now(), sum: {} } });
       return J({ id, code, name });
     }
     if (path === 'state') {
@@ -42,7 +42,7 @@ export async function onRequest(context) {
         let sum = {}; try { sum = JSON.parse(decodeURIComponent(request.headers.get('X-Sum') || '%7B%7D')); } catch (e) {}
         const name = clean((st.me && st.me.name) || s.name, 40);
         const safe = {}; for (const k of ['d', 'fc', 'q', 'van', 'st', 'sp', 'day']) if (typeof sum[k] === 'number') safe[k] = sum[k];
-        await env.KV.put('s:' + s.id, text, { metadata: { n: name, last: Date.now(), sum: safe } });
+        await env.KV.put('s:' + s.id, text, { metadata: { n: name, c: s.code, last: Date.now(), sum: safe } });
         return J({ ok: true });
       }
     }

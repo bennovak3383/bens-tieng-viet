@@ -169,3 +169,15 @@ VERSION 31 — sound lessons: listening in the spelling step, word and sentence 
   play in the same real voice. Until then the app may use the woman's computer voice for the
   word and the man's for the sentence (e.g. "me" vs "Tôi thích nước me."), which is why they
   sounded different. Recording list total: 4,385 lines.
+
+VERSION 32 — everyone gets their own account that follows them
+- At the end of the welcome screen the app makes a code for the new person automatically
+  (POST /api/join). The home page shows it ("Your code · keep it") with Copy and Got it.
+- The welcome screen has "Already using the app on another phone or computer? Sign in with
+  your code". Signing in loads that person's progress and skips the welcome.
+- Devices that were used before this (no code yet) show a "Save your progress online" card
+  on the home page with Get my code / sign in.
+- Lost code: the teacher page now shows each student's code next to their name (stored as
+  metadata c on s:<id>; older students show it after their next save).
+- Progress tab: "Start over as a new learner" clears this device and signs out; the old code
+  still works online.
