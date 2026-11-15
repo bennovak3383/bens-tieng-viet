@@ -24,7 +24,7 @@ with sync_playwright() as p:
     while pg.locator('text=I answered out loud').count() and n<14: pg.click('text=I answered out loud'); pg.wait_for_timeout(80); pg.get_by_role('button',name='Not yet',exact=True).click(); pg.wait_for_timeout(150); n+=1
     print('6 from the page: questions', n); T("closeSheet()")
     # a core unit shows pictures while learning words
-    T("z27Unit(0)"); pg.wait_for_timeout(300); pg.click('#z27-go'); pg.wait_for_timeout(400); print('7 picture on the first word card:', pg.locator('.z12pic:not(.nopic) svg').count()>0); pg.screenshot(path='/home/claude/out/t30-word.png'); T("closeSheet()")
-    T("location.hash='fc'"); pg.wait_for_timeout(500); T("fcSession(null,5)"); pg.wait_for_timeout(500); pg.screenshot(path='/home/claude/out/t30-card.png'); T("closeSheet()")
+    T("z27Unit(0)"); pg.wait_for_timeout(300); pg.click('#z27-go'); pg.wait_for_timeout(400); print('7 picture on the first word card:', pg.locator('.z12pic:not(.nopic) svg').count()>0); pg.screenshot(path='/tmp/t30-word.png'); T("closeSheet()")
+    T("location.hash='fc'"); pg.wait_for_timeout(500); T("fcSession(null,5)"); pg.wait_for_timeout(500); pg.screenshot(path='/tmp/t30-card.png'); T("closeSheet()")
     br.close()
 print('ERRORS:', errs or 'none')
