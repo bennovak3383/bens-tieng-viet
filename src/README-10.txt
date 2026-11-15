@@ -236,3 +236,9 @@ VERSION 39 (15 Nov 2026) - audit fix 3: words come back more; graded stories
 - A2 words seen 3+ times in the course text: 155 -> 304 of 497. Of the 10 most common words in each A2 unit: most now 3+.
 - Block 38 in v7.js: z27Apply also feeds unit.xs into Z27.sent (card sentence rotation, at-my-level drills). z38Story turns a graded story into the normal story reader format; z38Open (all units up to "at" done); zStories lists unlocked graded stories first and hides locked ones; the core card on Home shows "Truyện mới · new story" when one is unlocked and unread. Core words are added to the tap-a-word glossary.
 - Recording list: 4,840 lines. Each story is part g1..g9, placed right after the unit it follows; extra sentences are inside each unit's part.
+
+VERSION 40 (15 Nov 2026) - audit fix 4: must-know words, each learned inside its sentence
+- make.py writes unit.m = indices of the must-know words. A1 units: every word. A2 and B1 units: up to 12, picked in this order: the unit's key grammar words, words its example sentences use, a short ESSENTIAL list (make.py), then the most common words. 638 must-know, 239 optional.
+- Block 39 in v7.js. z39Learn replaces the word step of a core unit: one must-know word per screen with its picture, meaning and its example sentence with the word highlighted (both play), then the 8-question check on must-know words, then an "Also in this unit · optional" screen with the other words (tap to hear), "Add these to my cards" (S.set.k27.opt[unitId]) and "Always add the extra words" (S.set.k27.optall).
+- fcOn: an optional word only becomes a card if added (or already started). z39IsOpt(card). The unit card says "N must-know words (and M optional)" and a longer, more honest time.
+- z26Learn is wrapped: when called by z27Unit (Z39.u set by the z27Unit wrapper) it hands over to z39Learn; the beginner path still uses the old screen.

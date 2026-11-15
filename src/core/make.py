@@ -92,6 +92,28 @@ if os.path.exists(sf):
     json.dump(d, open(repo + '/data/core.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     print('stories', len(stories), '| lines', sum(len(x['lines']) for x in stories), '| story lines with a word not yet taught:', sb)
 
+# ---- 39: must-know words: about 10 per unit (the unit's key grammar words, then the most common); the rest are optional ----
+MUST = 12   # A2 units only; A1 units are short (12 to 16 words) and every word is must-know
+ESSENTIAL = set('trưa|chiều|rưỡi|tuần rồi|năm sau|mươi|hoa|điện|học sinh|việc làm|bánh|thịt|câu chuyện|họp|lễ|bán|tiền mặt|chồng|vợ|cha|mẹ|đồ ăn|chụp|quan trọng|đêm|đúng giờ|giải thích|tai nạn'.split('|'))
+rank = {}
+if len(sys.argv) > 2:
+    for i, l in enumerate(open(sys.argv[2], encoding='utf-8')):
+        p = l.split('\t')
+        if len(p) > 2: rank.setdefault(N(p[2]).lower(), i)
+d = json.load(open(repo + '/data/core.json', encoding='utf-8'))
+for u in d['units']:
+    keys = set(k.lower() for k in u['key'])
+    idx = list(range(len(u['w'])))
+    exs = ' '.join(' ' + ' '.join(syl(e[0])) + ' ' for e in u['ex'])
+    first = [i for i in idx if u['w'][i][0].lower() in keys]
+    first += [i for i in idx if i not in first and ' ' + ' '.join(syl(u['w'][i][0])) + ' ' in exs]   # words the examples use
+    first += [i for i in idx if i not in first and u['w'][i][0].lower() in ESSENTIAL]
+    first = first[:MUST]
+    rest = sorted([i for i in idx if i not in first], key=lambda i: rank.get(u['w'][i][0].lower(), 10 ** 6))
+    rest = [i for i in rest if i not in first]
+    u['m'] = idx if u['lv'] == 'A1' or len(u['w']) <= MUST else sorted((first + rest)[:MUST])
+if rank: json.dump(d, open(repo + '/data/core.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+print('must-know words:', sum(len(u['m']) for u in d['units']), '| optional:', sum(len(u['w']) - len(u['m']) for u in d['units']))
 # ---- coverage of the most common words ----
 if len(sys.argv) > 2:
     fr = [N(l.split('\t')[2]).lower() for l in open(sys.argv[2], encoding='utf-8') if len(l.split('\t')) > 2]

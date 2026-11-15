@@ -309,3 +309,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 /* 29 · test practice */
 .z29txt{gap:8px}.z29txt h2{margin:0 0 4px}.z29txt .vi{line-height:1.5;font-weight:500}
 .z13opt .vi{font-weight:500;text-align:left}
+
+/* 39 · word inside its sentence */
+.z39ctx{gap:6px}
+.z39sent .z39hl{color:var(--accent,#ff8a3d);font-weight:700;text-decoration:underline;text-underline-offset:3px}
