@@ -313,3 +313,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 /* 39 · word inside its sentence */
 .z39ctx{gap:6px}
 .z39sent .z39hl{color:var(--accent,#ff8a3d);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* 41 · on the street */
+.z41st{gap:10px}
+.z41row{display:flex;align-items:center;gap:10px;padding-top:8px;border-top:1px solid color-mix(in srgb,currentColor 12%,transparent)}
+.z41note{opacity:.85;font-style:italic}

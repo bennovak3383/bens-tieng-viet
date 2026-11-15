@@ -1,0 +1,182 @@
+# "Ngoài đường · on the street": how people in Saigon actually say a unit's sentences in everyday talk.
+# Format:  ## uid   then   ~ street form|the course's form|English|short note
+# Drafted by Claude, NOT yet checked by a Vietnamese speaker. Thầy Tâm should check every line.
+
+## u01
+~ Tui là Ben.|Tôi là Ben.|I am Ben.|Saigon people often say tui for tôi with friends. Use tôi with people you do not know.
+~ Anh tên gì dạ?|Anh tên gì?|What is your name?|dạ (or dzạ) at the end makes a question softer and friendlier.
+
+## u02
+~ Tui hông biết.|Tôi không biết.|I don't know.|In fast Saigon speech không often sounds like hông or hổng.
+~ Hổng phải đâu.|Không phải.|No, that's not it.|hổng phải đâu = a soft, friendly "no".
+
+## u03
+~ Anh khỏe hông?|Anh có khỏe không?|How are you?|People drop có and say hông at the end.
+~ Thiệt hả?|Thật hả?|Really?|In the south thật often sounds like thiệt.
+
+## u04
+~ Anh đi đâu dạ?|Anh đi đâu vậy?|Where are you off to?|vậy is said dzậy or dạ in Saigon. People ask this as a greeting, not to pry.
+~ Cái này bao nhiêu dạ?|Cái này bao nhiêu tiền?|How much is this?|tiền is usually left out.
+~ Sao dạ?|Thế nào?|How is it? / What's up?|Saigon says sao where the north says thế nào.
+
+## u05
+~ Nhà anh ở đâu dạ?|Nhà anh ở đâu?|Where do you live?|
+~ Ở đằng kia đó.|Ở đằng kia.|It's over there.|đó at the end points: right there.
+
+## u06
+~ Cái này của ai dạ?|Cái này của ai?|Whose is this?|
+~ Ổng là sếp tui.|Anh ấy là sếp tôi.|He is my boss.|ổng = ông ấy, bả = bà ấy, ảnh = anh ấy, chỉ = chị ấy: Saigon joins them into one word.
+
+## u07
+~ Cà phê hay trà dạ anh?|Anh uống cà phê hay trà?|Coffee or tea?|Staff drop the verb and put anh or chị at the end.
+~ Còn anh thì sao?|Còn anh?|And you?|
+
+## u08
+~ Đang làm gì dạ?|Anh đang làm gì?|What are you doing?|With friends people drop anh.
+~ Đang ăn cơm nè.|Tôi đang ăn cơm.|I'm eating.|nè = right now, look.
+
+## u09
+~ Ăn cơm chưa?|Anh ăn cơm chưa?|Have you eaten?|A greeting, like "how are you". Answer: Ăn rồi.
+~ Mới ăn xong hà.|Tôi vừa ăn xong.|I just ate.|hà at the end = only, just (Saigon).
+
+## u10
+~ Chút nữa tui gọi nha.|Lát nữa tôi sẽ gọi.|I'll call in a bit.|chút nữa and lát nữa both mean in a little while; sẽ is often dropped.
+~ Mai gặp nha.|Ngày mai chúng ta sẽ gặp nhau.|See you tomorrow.|
+
+## u11
+~ Chưa nữa.|Chưa.|Not yet.|nữa adds "still not".
+~ Xong chưa dạ?|Anh làm xong chưa?|Done yet?|
+
+## u12
+~ Phải đi rồi.|Tôi phải đi bây giờ.|I have to go now.|
+~ Hay là mình đi ăn đi.|Chúng ta nên đi ăn.|How about we go and eat.|hay là = how about.
+
+## u13
+~ Được hông?|Có được không?|Is that okay?|
+~ Hổng được đâu.|Không được.|No, that won't do.|
+
+## u14
+~ Ngon dữ!|Ngon quá!|So good!|dữ = really, so (Saigon).
+~ Mắc quá trời!|Mắc quá!|So expensive!|quá trời = way too much.
+
+## u15
+~ Tại kẹt xe nên tới trễ.|Vì kẹt xe nên tôi tới trễ.|I'm late because of traffic.|tại is the everyday word for vì.
+
+## u16
+~ Mưa thì thôi, ở nhà.|Nếu trời mưa thì chúng ta ở nhà.|If it rains, forget it, we stay home.|nếu is often dropped; thì does the job.
+
+## u17
+~ Cho em ly cà phê sữa đá.|Cho tôi một ly cà phê sữa đá.|An iced milk coffee, please.|một is dropped. Say em to staff your age or older if you want to sound friendly.
+~ Lấy giùm em cái đó.|Anh lấy giùm tôi cái đó.|Pass me that, please.|
+
+## u18
+~ Vô đi!|Mời anh vào.|Come in!|Saigon says vô, the north says vào.
+~ Quẹo trái nha anh.|Rẽ trái.|Turn left, please.|quẹo is the Saigon word for rẽ.
+
+## u19
+~ Nhiều quá trời luôn.|Rất nhiều.|So, so many.|
+
+## u20
+~ Tui thấy được đó.|Tôi nghĩ là được.|I think it's fine.|thấy is used for "I think" more than nghĩ in everyday talk.
+
+## u21
+~ Ăn đi, đừng ngại.|Anh ăn đi.|Go on, eat, don't be shy.|
+~ Từ từ thôi.|Bình tĩnh.|Take it easy.|từ từ = slowly, take your time: you hear it all day.
+
+## u22
+~ Xe hư rồi.|Xe tôi bị hư.|The bike's broken down.|
+~ Xui dữ!|Tôi xui quá.|What bad luck!|
+
+## u23
+~ Cái quán hôm bữa đó.|Quán mà chúng ta đi hôm trước.|That place from the other day.|hôm bữa = the other day (Saigon).
+
+## u24
+~ Ăn sầu riêng bao giờ chưa?|Anh đã bao giờ ăn sầu riêng chưa?|Ever had durian?|đã and anh are dropped with friends.
+
+## u46
+~ Bữa nay thứ mấy?|Hôm nay thứ mấy?|What day is it today?|bữa nay = hôm nay in Saigon.
+~ Mốt đi nha.|Ngày kia đi nhé.|Let's go the day after tomorrow.|mốt in the south, ngày kia in the north.
+
+## u25
+~ Mấy giờ rồi dạ?|Bây giờ là mấy giờ?|What time is it?|
+~ Bảy giờ rưỡi đó.|Bây giờ là bảy giờ ba mươi.|It's half past seven.|
+
+## u28
+~ Ai cũng biết mà.|Mọi người đều biết.|Everyone knows that.|mà at the end = obviously.
+~ Hổng có gì đâu.|Không có gì.|It's nothing. / You're welcome.|
+
+## u29
+~ Ổng kêu tui chờ.|Anh ấy bảo tôi đợi.|He told me to wait.|kêu = tell, call (Saigon); chờ = đợi.
+
+## u30
+~ Tụi nó quen nhau lâu rồi.|Họ đã biết nhau lâu rồi.|They've known each other a long time.|tụi nó = they (casual).
+
+## u48
+~ Bớt chút đi chị, mua nhiều mà.|Chị bớt cho tôi một chút.|Take a bit off, I'm buying a lot.|
+~ Hai chục nha em.|Hai mươi nghìn đồng.|Twenty thousand, okay.|chục = ten thousand when talking money.
+
+## u32
+~ Kiếm hoài hổng thấy.|Tôi tìm mãi mà không thấy.|I looked and looked but can't find it.|kiếm = tìm; hoài = mãi.
+
+## u33
+~ Dạ, được ạ.|Vâng, được.|Yes, sure.|dạ is the Saigon "yes"; vâng sounds northern.
+~ Thôi, về nha.|Tạm biệt.|Right, I'm off.|Friends rarely say tạm biệt.
+
+## u34
+~ Mắc gấp đôi luôn.|Đắt gấp đôi.|Twice as expensive.|mắc = đắt.
+
+## u35
+~ Xa hông?|Có xa không?|Is it far?|
+~ Chạy chừng mười phút hà.|Đi xe máy mất khoảng mười phút.|About ten minutes by bike.|chạy = ride, drive; chừng = khoảng.
+
+## u36
+~ Mấy đứa nhỏ đâu rồi?|Các cháu đâu rồi?|Where are the kids?|
+~ Bả dễ thương lắm.|Bà ấy rất dễ thương.|She's really lovely.|
+
+## u37
+~ Xài cái này nè.|Anh dùng cái này đi.|Use this one.|xài = dùng.
+
+## u38
+~ Tưởng anh về rồi chớ.|Tôi tưởng anh đã về rồi.|I thought you'd gone home.|chớ = chứ, said the Saigon way.
+
+## u40
+~ Bên Mỹ thì lạnh, còn bên đây thì nóng.|Ở Mỹ thì lạnh, còn ở đây thì nóng.|It's cold in America and hot here.|bên = over in (a place).
+
+## u47
+~ Anh cao dữ dạ!|Anh cao quá!|Wow, you're tall!|You will hear this a lot.
+~ Dạo này ốm quá dạ.|Dạo này anh gầy quá.|You've got so thin lately.|ốm = gầy in Saigon.
+
+## u42
+~ Nhìn ngon ghê.|Trông ngon quá.|Looks really good.|ghê = really (Saigon); nhìn often replaces trông.
+
+## u43
+~ Ở đây có máy lạnh hông?|Ở đây có điều hòa không?|Is there air-con here?|máy lạnh in the south, điều hòa in the north.
+
+## u44
+~ Ăn xong rồi mới đi.|Sau khi ăn xong chúng ta mới đi.|We'll go after we eat.|
+
+## u45
+~ Đang ngủ thì ổng gọi.|Tôi đang ngủ thì anh ấy gọi.|I was asleep when he called.|
+
+## u49
+~ Bị cảm rồi, mệt quá trời.|Tôi bị cảm, rất mệt.|I've caught a cold, I'm so tired.|
+~ Uống thuốc chưa?|Anh đã uống thuốc chưa?|Have you taken your medicine?|
+
+## u50
+~ A lô, anh tới đâu rồi dạ?|A lô, anh đang ở đâu?|Hello, where are you now?|
+~ Chờ em xíu nha.|Đợi tôi một chút.|Wait a sec for me.|xíu = a tiny bit.
+
+## u26
+~ Mệt mà vẫn vui.|Mặc dù mệt nhưng tôi vẫn vui.|Tired but still happy.|In talk, mặc dù is often dropped.
+
+## u27
+~ Càng ngày càng nóng.|Ngày càng nóng hơn.|It's getting hotter and hotter.|
+
+## u31
+~ Chuyện đó dễ mà.|Việc đó dễ.|That's easy.|chuyện is the everyday word; việc and điều sound more formal.
+
+## u39
+~ Theo tui thì được.|Theo ý kiến của tôi thì được.|In my view, it's fine.|
+
+## u41
+~ Tại ổng hết.|Đó là lỗi của anh ấy.|It's all his fault.|tại = because of, someone's fault.

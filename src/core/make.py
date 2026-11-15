@@ -7,7 +7,7 @@ repo = sys.argv[1]
 N = lambda s: unicodedata.normalize('NFC', s.strip())
 units = []
 for f in sorted(glob.glob(repo + '/src/core/*.txt')):
-    if f.endswith('stories.txt') or f.endswith('extra.txt'): continue
+    if f.endswith('stories.txt') or f.endswith('extra.txt') or f.endswith('street.txt'): continue
     u = None
     for ln, raw in enumerate(open(f, encoding='utf-8'), 1):
         line = N(raw)
@@ -28,6 +28,17 @@ ids = [u['id'] for u in units]; assert len(ids) == len(set(ids)), 'duplicate uni
 # 38: extra review sentences per unit (src/core/extra.txt: "## uid" then "& vi|en"), so the common words come back more often
 byid = {u['id']: u for u in units}
 for u in units: u['xs'] = []
+# 41: "on the street" lines (src/core/street.txt: "## uid" then "~ street|course form|English|note"); not checked for untaught words on purpose
+for u in units: u['street'] = []
+sf2 = repo + '/src/core/street.txt'
+if os.path.exists(sf2):
+    cu = None
+    for ln, raw in enumerate(open(sf2, encoding='utf-8'), 1):
+        line = N(raw)
+        if not line or (line.startswith('#') and not line.startswith('##')): continue
+        if line.startswith('## '): cu = byid[line[3:].strip()]; continue
+        assert line.startswith('~'), (sf2, ln); p = [x.strip() for x in line[1:].split('|')]; assert len(p) == 4, (sf2, ln, line); cu['street'].append(p)
+print('street lines:', sum(len(u['street']) for u in units), '| units without one:', [u['id'] for u in units if not u['street']])
 xf = repo + '/src/core/extra.txt'
 if os.path.exists(xf):
     cu = None

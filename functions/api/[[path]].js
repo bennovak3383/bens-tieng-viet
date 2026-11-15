@@ -248,6 +248,7 @@ export async function onRequest(context) {
           if (Array.isArray(r.how)) { const v = r.how.slice(0, 8).map(x => S(x, 500)).filter(Boolean); if (v.length) o.how = v; }
           if (Array.isArray(r.ex)) { const v = r.ex.slice(0, 16).filter(x => Array.isArray(x)).map(x => [S(x[0], 200), S(x[1], 240)]).filter(x => x[0] && x[1]); if (v.length) o.ex = v; }
           if (Array.isArray(r.w)) { const v = r.w.slice(0, 40).filter(x => Array.isArray(x)).map(x => [S(x[0], 80), S(x[1], 120), S(x[2], 200), S(x[3], 240)]); if (v.length && v.every(x => x[0] && x[1])) o.w = v; }
+          if (Array.isArray(r.street)) { const v = r.street.slice(0, 8).filter(x => Array.isArray(x)).map(x => [S(x[0], 200), S(x[1], 200), S(x[2], 240), S(x[3], 300)]).filter(x => x[0]); if (v.length) o.street = v; }   // 41
           if (r.teach) o.teach = S(r.teach, 700); if (r.tg) o.tg = S(r.tg, 700); if (r.note) o.note = S(r.note, 700); if (r.ok) o.ok = 1;
           if (Object.keys(o).length) out.u[id] = o;
         }

@@ -54,6 +54,7 @@ try:
         rows=[(e[0],e[1]) for e in u['ex']]
         for w in u['w']: rows.append((w[0],w[1])); rows.append((w[2],w[3]))
         rows+= [(x[0],x[1]) for x in u.get('xs',[])]   # 38: extra review sentences
+        rows+= [(x[0],x[2]+' (Saigon street talk: say it casually)') for x in u.get('street',[])]   # 41: on-the-street lines
         add('k'+u['id'][1:],'Nền tảng %d: %s'%(i+1,u['vi']),'Core %d: %s'%(i+1,u['en']),rows)
     for g in json.load(open(repo+'/data/core.json')).get('st',[]):   # 38: graded stories, one after every few units
         add(g['id'],'Truyện ngắn: '+g['t'],'Short story: '+g['en'],[(l['vi'],l['en']) for l in g['lines']]+[r for q in g['qs'] for r in ((q['q'],q['en']),(q['a'],''))])

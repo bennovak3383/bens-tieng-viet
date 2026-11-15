@@ -247,3 +247,10 @@ VERSION 41 (15 Nov 2026) - audit fix 5: the Say step is recorded, compared and s
 - Block 40 in v7.js replaces z27Say. For the first 3 lines (Z40.rec) of a unit's Say step: after "I said it · show me" the learner records the line (z36Rec), sees their pitch line next to the model (z13Pitch, z13Graph), and the clip is saved with kind 'unit' and prompt "Unit N · say it: …" so it uploads to the teacher like the own sentences. The 4th line is not recorded. Score buttons unchanged.
 - Teacher page: every recording with a text now has "Tone off:" chips (ngang, huyền, sắc, hỏi/ngã, nặng). A tap saves a note "Tone to fix: <tone>" about that line (existing t/note endpoint; toneTag in teacher.html).
 - Student app: notes that start "Tone to fix:" show on Today as "Thầy cô · tones to fix" with a "Fix them now" button that runs shadowing on those lines (z13Shadow with items). Done lines are remembered in S.set.tf40 (note time).
+
+VERSION 42 (15 Nov 2026) - audit fix 6: "Ngoài đường · on the street"
+- src/core/street.txt: 79 lines, at least one per unit: "~ street form|course form|English|note" (tui, hông, dạ/dzậy, bữa nay, ổng/bả, kêu, xài, quẹo, mắc, ghê, dữ, chục, xíu…). make.py puts them in unit.street (not checked for untaught words on purpose: they are for understanding).
+- Block 41 in v7.js: z41Street draws a panel under the examples on each unit's How-it-works screen, each line with a play button, the course form, English and a note.
+- Teacher page core editor: new rows "Ngoài đường · on the street" (3 boxes + note, one empty row to add); saved as street in cfg:core; the server accepts it; z27Apply uses the teacher's version.
+- Recording list: street lines are inside each unit's part, with the English marked "(Saigon street talk: say it casually)" so speakers read them the casual way. 4,917 lines.
+- The unit's first button now says "Next · the N words" with the must-know count.
