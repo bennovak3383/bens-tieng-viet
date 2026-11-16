@@ -4,7 +4,7 @@ B='http://localhost:8890'; errs=[]
 with sync_playwright() as p:
     br=p.chromium.launch(executable_path='/opt/pw-browsers/chromium-1243/chrome-linux64/chrome',args=['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']); pg=br.new_page(viewport={'width':390,'height':844}); pg.on('pageerror',lambda e: errs.append(str(e))); T=lambda c: pg.evaluate('(c)=>__T(c)',c)
     pg.goto(B+'/#home'); pg.wait_for_timeout(1500)
-    T("S.set.ob7=1; S.set.lvl0='some'; S.me.name='Ben'; var d={}; Z27.units.slice(0,3).forEach(u=>d[u.id]={t:1}); S.set.k27={snd:1,d:d}; S.set.in48={t:Date.now(),path:'here',goal:'chat',mins:60,days:6,r:[{t:Date.now(),ear:2,spk:2}],sit:['grab'],hard:['shy'],tried:[],mine:'x'}; save(); try{closeSheet()}catch(e){}; zRenderHome()")
+    T("S.set.pace52='push'; S.set.ob7=1; S.set.lvl0='some'; S.me.name='Ben'; var d={}; Z27.units.slice(0,3).forEach(u=>d[u.id]={t:1}); S.set.k27={snd:1,d:d}; S.set.in48={t:Date.now(),path:'here',goal:'chat',mins:60,days:6,r:[{t:Date.now(),ear:2,spk:2}],sit:['grab'],hard:['shy'],tried:[],mine:'x'}; save(); try{closeSheet()}catch(e){}; zRenderHome()")
     pg.wait_for_timeout(500)
     order=[ (e.get_attribute('id') or e.get_attribute('class') or '')[:14] for e in pg.locator('#z-home > *').all() if e.is_visible()]; print('home order:',order)
     print('plan card:',pg.locator('#z48').inner_text().replace('\n',' | ')[:300])

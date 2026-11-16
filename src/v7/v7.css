@@ -348,3 +348,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z51bar.late .z51t i{background:#C9822B}.z51bar.ok .z51t i{background:var(--green,#1F5A45)}
 .z51life{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}.z51life summary{cursor:pointer;font-weight:600}
 .z51goal summary{cursor:pointer;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+/* 52 · reps, ladder */
+.z52cue{font-weight:600;color:var(--muted);margin:4px 0}.z52cue.on{color:var(--accent)}
+.z52dots{display:flex;gap:6px;justify-content:center}.z52dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--line)}.z52dots i.on{background:var(--green,#1F5A45);border-color:var(--green,#1F5A45)}.z52dots i.now{border-color:var(--accent);background:var(--accent)}
+.z52lad{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border:1.5px dashed var(--accent);border-radius:10px}

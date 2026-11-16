@@ -334,3 +334,13 @@ VERSION 51 — speak without freezing (from the speaking flow audit)
 - Home tidy: plan card moved under today's route; its goal list folds; the month grid is gone (the week panel
   already tracks days and minutes).
 Test: src/tests/t51.py.
+
+VERSION 52 — slow first, speed later (Ben: "hear things slow, get reps, then speed up")
+Pace follows the level (S.set.pace52: 'slow' | 'auto' | 'push', in Settings). Auto: units 1–10 no clocks at all;
+rest of A1 gentle clocks (start-talking 6 s, say-it 8 s); A2 on 3 s / 5 s. Time-to-start is still logged quietly.
+"Reps" (Lặp lại): known sentences, each played slow three times (stage 1) or slow, slow, normal (stage 2+), with a
+pause after each to say it; hands-free, no marking. In the day route after cards during A1, and on Practice.
+Say-it prompts: when the microphone works, "🎤 Say it" listens first and then shows the answer; "Show me without
+speaking" is still there. Brave ladder (7 weekly real-world steps) on the plan card for learners who said speaking
+makes them nervous or who live here (S.set.brave52). Test: src/tests/t52.py (t51 now runs with pace 'push').
+The mic version of say-it was not tested (no speech recognition in the test browser).
