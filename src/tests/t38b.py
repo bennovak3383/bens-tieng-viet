@@ -9,9 +9,9 @@ with sync_playwright() as p:
     print('stories in data:',T("Z27.st.length"),'| sentences pool:',T("Z27.sent.length"))
     print('unread at 0 units:',T("!!z38Unread()"),'| graded in zStories:',T("zStories().filter(function(s){return s.core}).length"))
     T("Z27.units.slice(0,6).forEach(function(u){ z27St().d[u.id]={t:1} }); save(); zRenderHome()"); pg.wait_for_timeout(300)
-    print('after 6 units, unread:',T("z38Unread().id"),'| button on home:',pg.locator('#z27 .z38st').count(),'| in story list:',T("zStories().filter(function(s){return s.core}).map(function(s){return s.id}).join(',')"))
+    print('after 6 units, unread:',T("z38Unread().id"),'| button on home:',pg.locator('#z27 .z49c').count(),'| in story list:',T("zStories().filter(function(s){return s.core}).map(function(s){return s.id}).join(',')"))
     pg.screenshot(path='/tmp/s38-home.png')
-    pg.locator('#z27 .z38st button').click(); pg.wait_for_timeout(800)
+    pg.locator('#z27 .z49c button.primary').click(); pg.wait_for_timeout(800)
     print('story opens:',pg.inner_text('#sheet-body')[:300].replace('\n',' / '))
     pg.screenshot(path='/tmp/s38-story.png')
     # tap through reader
