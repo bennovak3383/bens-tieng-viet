@@ -290,3 +290,16 @@ It lists their clips newest first: Vietnamese line, English, which part, and a p
 "Good" marks a clip as checked (saved in that browser only). "Redo" (tap twice) removes the clip from the server
 (new endpoint t/voice-del, teacher key only); the app stops using it right away and the line goes back on the recording list.
 Test: src/tests/t47.py.
+
+VERSION 48 — welcome questions, a personal plan, and why that much study
+Home card "Kế hoạch · your plan" → 14 one-tap questions (why, level, address, 3-month goal, 1–5 ratings for understanding
+and speaking, hears Vietnamese daily?, weekly situations, hardest thing, time of day, minutes + days, classes a week,
+practice partner, tried before, a date to work toward, their why in their own words). Saved in S.set.in48.
+Plan screen: path (Sounds first / Living here / Family / Steady), 3-month can-do goal (5 lines), daily minutes and
+new cards (10→5, 30→10, 60→15, 90→20), how to split the day, "why this much" (adds lines for what they said is hard),
+rough time to A1 (~150 h) and A2 (~420 h), and what is realistic by their date. Applies S.set.mins and S.set.fcn,
+puts their situations first in "I am about to…", and keeps "meeting the family" visible for the family path.
+The unit order does NOT change: each unit only uses words already taught.
+Home card after: goal ticks, this month's days, their own "why" when they missed 2 of the last 3 days,
+a 2-tap re-rating every 4 weeks. Teacher page: "Kế hoạch · their plan" panel at the top of each student.
+Test: src/tests/t48.py.

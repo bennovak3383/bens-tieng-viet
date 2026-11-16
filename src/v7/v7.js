@@ -1481,3 +1481,102 @@ function z44Open(lv,onDone){ var body=zOpen(), tok=Z.tok, pool=z7Shuffle(z44Pool
 function z44Due(){ try{ if(!Z27||!Z27.on||z26On()) return null; var st=z44St(); if(z27LvDone('A1')&&!st.A1) return 'A1'; if(z27LvDone('A2')&&!st.A2) return 'A2' }catch(e){} return null }
 var zRenderHome44=zRenderHome; zRenderHome=function(){ zRenderHome44(); try{ var core=$('#z27'), lv=z44Due(); if(!core||!lv||core.querySelector('.z44c')) return;
   core.insertBefore(h('div',{class:'z12slip z44c',style:'transform:none'},[h('span',{class:'z12lbl',text:'Kiểm tra '+lv+' · level check'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:'You have finished the '+lv+' units. Take the '+lv+' check (about 15 minutes): 20 listening items and 8 questions to answer out loud for your teacher.'}),h('button',{class:'btn primary wide',text:'Take the '+lv+' check',onclick:function(){ z44Open(lv) }})]),core.firstChild.nextSibling) }catch(e){} };
+
+/* ===== 48 · welcome questions → a personal path, a daily dose and why; Home plan card; 4-week re-check; shown to the teacher ===== */
+var Z48={
+  why:[['live','I live or work in Vietnam','Daily life here'],['family','My partner or their family','To really talk with them'],['work','For work','Colleagues, clients, meetings'],['travel','Travel','Trips around Vietnam'],['me','Just for me','I love the language or the place']],
+  goal:[['around','Get around on my own','Order, Grab, shop, ask the way'],['chat','Small talk with locals','Neighbours, drivers, people at the café'],['family','Talk with my partner’s family','Greetings, meals, the questions they ask'],['work','Talk at work','Introduce myself, meetings, small talk']],
+  can:{around:['Order food and drinks and ask the price','Tell a Grab driver where to go and where to stop','Buy at the market: how much, cheaper, I’ll take it','Ask where something is and understand the answer','Say you don’t understand and ask them to say it again slowly'],
+    chat:['Say who you are, where you’re from, what you do, where you live','Answer the everyday questions people ask you','Ask the same questions back','Talk about your day: what you did, what you’ll do','Keep a 3-minute chat going with a neighbour or driver'],
+    family:['Greet each family member with the right word (ông, bà, cô, chú, anh, chị, em)','Introduce yourself and your work to the family','Answer questions about your family and your plans','Praise the food and say thank you properly','Follow slow family chat about food, home and plans'],
+    work:['Introduce yourself and your role','Talk about times, days and dates for meetings','Ask simple questions and check you understood','Explain a simple problem and ask for help','Small talk with colleagues at lunch']},
+  around:[['yes','Yes, every day','I live here or with Vietnamese speakers'],['some','Sometimes','A few times a week'],['no','Not really','Only in class and in the app']],
+  sit:[['nhahang','Café, restaurant'],['grab','Grab, taxi'],['market','Market, shops'],['suachua','Landlord, repairs'],['nhathuoc','Pharmacy, doctor'],['ramat','Partner’s family'],['hangxom','Neighbours'],['office','Office, colleagues'],['phonggym','Gym'],['cattoc','Haircut']],
+  hard:[['tones','Tones','Hearing them or saying them'],['fast','Fast speech','I can’t catch what people say'],['remember','Remembering words','They don’t stick'],['shy','Nervous to speak','I freeze or switch to English']],
+  when:[['am','Morning'],['commute','Commute'],['lunch','Lunch break'],['pm','Evening']],
+  buddy:[['partner','My partner'],['friends','Friends'],['work','Colleagues'],['none','No one yet']],
+  tried:[['apps','Apps (Duolingo, etc.)'],['class','A class or school'],['tutor','A private tutor'],['video','YouTube, podcasts'],['none','Nothing yet']],
+  mins:[[10,'10 min','Busy days'],[30,'30 min','Steady'],[60,'60 min','Recommended'],[90,'90 min','Fast track']],
+  days:[3,4,5,6,7], cls:[[0,'None'],[1,'1'],[2,'2'],[3,'3 or more']],
+  fcn:{10:5,30:10,60:15,90:20}, A1:150, A2:420 };
+function z48St(){ var s=S.set.in48; if(!s||typeof s!=='object'||Array.isArray(s)) s=S.set.in48={}; ['sit','hard','tried','r'].forEach(function(k){ if(!Array.isArray(s[k])) s[k]=[] }); return s }
+function z48Done(){ return !!(S.set.in48&&S.set.in48.t) }
+function z48Lb(list,v){ for(var i=0;i<list.length;i++) if(list[i][0]===v) return list[i][1]; return '' }
+function z48Path(s){ s=s||z48St(); if(S.set.lvl0==='zero'&&!(z26St().fin)) return 'sounds'; if(s.why==='family'||s.goal==='family') return 'family'; if(s.around==='yes'&&(s.why==='live'||s.goal==='around'||s.goal==='chat')) return 'here'; return 'steady' }
+var Z48P={sounds:['Sounds first','You start from zero, so the first 2–3 weeks are the sounds: tones, vowels and your first words, step by step with your teacher. Then the course opens.'],
+  here:['Living here','You hear Vietnamese every day, so the street is your classroom. Each week you take one thing from the app and try it outside, and the real-life situations you picked come first.'],
+  family:['Family','You want to talk with people you love. Family words and how to address each person come early, then everyday chat and short stories you can retell at dinner.'],
+  steady:['Steady','The course in order, a little every day. Cards for words, lessons for grammar, speaking every day, and your teacher each week.']};
+function z48Hours(s){ var m=s.mins||60, d=s.days||6, c=s.cls||0; return Math.max(0.5,m/60*d+c*1.5) }
+function z48Months(h,hrs){ var w=h/hrs; return w<9?Math.max(1,Math.round(w))+' weeks':Math.round(w/4.33)+' months' }
+function z48Dose(s){ var m=s.mins||60, n=Z48.fcn[m]||15, cards=m<=10?m:Math.round(m*(m>=90?0.25:m>=60?0.35:0.5)/5)*5, sp=s.when;
+  var split=m<=10?'All 10 minutes on cards. Add listening in dead time: the commute, the gym, washing up.':m<=30?'About '+cards+' minutes of cards, then '+(m-cards)+' minutes of lesson and speaking.':(sp==='am'||sp==='commute'?'Morning: cards (about '+cards+' min). Evening: lesson and speaking (about '+(m-cards)+' min).':'Two short sittings beat one long one: cards first (about '+cards+' min), the lesson and speaking later (about '+(m-cards)+' min).');
+  return {n:n,split:split} }
+function z48Why(s){ var m=s.mins||60, out=['Short and daily beats long and rare. Memory holds when practice is spread out, and the cards are built around coming back each day. Six days a week, one day off.','Each new card turns into about 8–10 reviews over the next month, so new cards set your daily load, not minutes. '+Z48.fcn[m]+' new cards a day fits '+m+' minutes and keeps the pile from growing.'];
+  if(m<=10) out.push('10 minutes is the floor: less than that and reviews pile up faster than you clear them.'); if(m>=90) out.push('Past about 20 new cards a day, more cards bring burnout, not progress. Your extra time goes to listening and stories instead.');
+  if(s.hard.indexOf('shy')>=0) out.push('You said speaking makes you nervous, so every day has a little speaking, alone with the app first, then with your teacher. Small and often is how the nerves go.');
+  if(s.hard.indexOf('fast')>=0) out.push('You said fast speech is hard, so use the hands-free listening on the commute or at the gym. Ears need hours, not effort.');
+  if(s.hard.indexOf('tones')>=0) out.push('You said tones are hard: do the say-it step out loud every time and look at your pitch line. Your teacher hears your recordings each week.');
+  if(s.hard.indexOf('remember')>=0) out.push('You said words don’t stick: never skip a day of cards, even 5 minutes. Missing days is what makes words fall out.');
+  return out }
+function z48Est(s){ var hrs=z48Hours(s), pre=S.set.lvl0==='more'?60:S.set.lvl0==='some'?20:0, a1=Math.max(10,Z48.A1-pre), a2=Math.max(20,Z48.A2-pre), r={hrs:hrs,a1:z48Months(a1,hrs),a2:z48Months(a2,hrs)};
+  if(s.ev&&s.evd){ var wk=(new Date(s.evd).getTime()-Date.now())/(7*DAY); if(wk>0){ var got=wk*hrs+pre; r.ev='By '+s.ev+' ('+new Date(s.evd).toLocaleDateString()+'), at this pace you’ll have about '+Math.round(wk*hrs)+' hours in. '+(got>=Z48.A2?'That’s A2: you can handle most everyday talk.':got>=Z48.A1?'That’s past A1: the basics, everyday questions and simple chat.':got>=Z48.A1*0.5?'That’s halfway to A1: greetings, introducing yourself, ordering, the most common questions.':'That’s the start: sounds, greetings and a few key phrases. More minutes a day would get you further.') } }
+  return r }
+function z48Apply(){ var s=z48St(); if(!s.t) return; try{ if(s.mins) S.set.mins=s.mins; if(s.mins&&Z48.fcn[s.mins]) S.set.fcn=Z48.fcn[s.mins] }catch(e){} try{ z48Sit() }catch(e){} }
+function z48Sit(){ var s=z48St(); if(!Z18||!Z18.s||!Z18.s.length) return; var pick=s.sit||[]; if(z48Path(s)==='family'||pick.indexOf('ramat')>=0){ var i=Z37.personal.indexOf('ramat'); if(i>=0) Z37.personal.splice(i,1) }
+  Z18.s.sort(function(a,b){ var x=pick.indexOf(a.id), y=pick.indexOf(b.id); return (x<0?99:x)-(y<0?99:y) }) }
+function z48Open(){ var s=z48St(), body=zOpen(), step=0, tmp=JSON.parse(JSON.stringify(s)); delete tmp.t;
+  body.appendChild(zTop('Kế hoạch · your plan',0,null));
+  function one(list,key,sub){ var r=h('div',{class:'stack'}); list.forEach(function(o){ r.appendChild(h('button',{class:'z26opt','aria-pressed':String(tmp[key]===o[0]),onclick:function(){ tmp[key]=o[0]; draw() }},[h('b',{text:o[1]}),o[2]?h('span',{class:'small muted',text:o[2]}):null])) }); return r }
+  function many(list,key){ var r=h('div',{class:'z48chips'}); list.forEach(function(o){ var on=tmp[key].indexOf(o[0])>=0; r.appendChild(h('button',{class:'z48chip','aria-pressed':String(on),onclick:function(){ var a=tmp[key], i=a.indexOf(o[0]); if(i>=0) a.splice(i,1); else { if(o[0]==='none') a.length=0; else { var j=a.indexOf('none'); if(j>=0) a.splice(j,1) } a.push(o[0]) } draw() }},[h('b',{text:o[1]}),o[2]?h('span',{class:'small muted',text:' · '+o[2]}):null])) }); return r }
+  function rate(key,label){ var r=h('div',{class:'z48rate'}); [1,2,3,4,5].forEach(function(n){ r.appendChild(h('button',{class:'z48chip','aria-pressed':String(tmp[key]===n),text:String(n),onclick:function(){ tmp[key]=n; draw() }})) }); return h('div',{class:'stack',style:'gap:6px'},[h('b',{text:label}),r]) }
+  if(!tmp.why) tmp.why=''; ['sit','hard','tried'].forEach(function(k){ if(!Array.isArray(tmp[k])) tmp[k]=[] });
+  var Q=[
+    {q:'Why are you learning Vietnamese?',ok:function(){ return !!tmp.why },el:function(){ return one(Z48.why,'why') }},
+    {q:'Have you studied Vietnamese before?',ok:function(){ return !!S.set.lvl0 },el:function(){ return z26Ask() }},
+    {q:'In 3 months, what do you most want to be able to do?',sub:'This becomes your main goal. You can change it any time.',ok:function(){ return !!tmp.goal },el:function(){ return one(Z48.goal,'goal') }},
+    {q:'Where are you now? 1 = not at all, 5 = easily.',ok:function(){ return tmp.ear&&tmp.spk },el:function(){ return h('div',{class:'stack'},[rate('ear','Understanding people when they talk to you'),rate('spk','Saying what you want to say')]) }},
+    {q:'Do you hear Vietnamese around you every day?',ok:function(){ return !!tmp.around },el:function(){ return one(Z48.around,'around') }},
+    {q:'Which of these do you face most weeks?',sub:'Pick as many as you like. These come first in the real-life situations.',ok:function(){ return true },el:function(){ return many(Z48.sit,'sit') }},
+    {q:'What’s hardest for you so far?',sub:'Pick any. Your plan and your teacher will focus there.',ok:function(){ return true },el:function(){ return many(Z48.hard,'hard') }},
+    {q:'When do you usually have time?',ok:function(){ return !!tmp.when },el:function(){ return one(Z48.when,'when') }},
+    {q:'Honestly, how long on a normal day?',sub:'Pick what you will really do, not what you hope to do. A plan you keep beats a big plan you drop.',ok:function(){ return !!tmp.mins&&!!tmp.days },el:function(){ var d=h('div',{class:'z48chips'}); Z48.days.forEach(function(n){ d.appendChild(h('button',{class:'z48chip','aria-pressed':String(tmp.days===n),text:n+' days',onclick:function(){ tmp.days=n; draw() }})) });
+      var r=h('div',{class:'stack'}); Z48.mins.forEach(function(o){ r.appendChild(h('button',{class:'z26opt','aria-pressed':String(tmp.mins===o[0]),onclick:function(){ tmp.mins=o[0]; draw() }},[h('b',{text:o[1]}),h('span',{class:'small muted',text:o[2]})])) }); return h('div',{class:'stack'},[r,h('b',{text:'Days a week'}),d]) }},
+    {q:'Classes with a teacher each week?',ok:function(){ return typeof tmp.cls==='number' },el:function(){ var r=h('div',{class:'z48chips'}); Z48.cls.forEach(function(o){ r.appendChild(h('button',{class:'z48chip','aria-pressed':String(tmp.cls===o[0]),text:o[1],onclick:function(){ tmp.cls=o[0]; draw() }})) }); return r }},
+    {q:'Who can you practise with?',ok:function(){ return !!tmp.buddy },el:function(){ return one(Z48.buddy,'buddy') }},
+    {q:'What have you tried before?',sub:'For your teacher, so they know where you’re coming from.',ok:function(){ return true },el:function(){ return many(Z48.tried,'tried') }},
+    {q:'Anything you’re working toward?',sub:'Optional. Tết with the family, a move, a trip, a meeting. It helps set the pace.',ok:function(){ return true },el:function(){ var t=h('input',{type:'text',placeholder:'e.g. Tết with Linh’s family',value:tmp.ev||'',oninput:function(){ tmp.ev=t.value.trim() }}), d=h('input',{type:'date',value:tmp.evd||'',onchange:function(){ tmp.evd=d.value }}); return h('div',{class:'stack'},[t,d]) }},
+    {q:'Why does this matter to you? In your own words.',sub:'Optional. We’ll show it to you on the days it’s hard to start.',ok:function(){ return true },el:function(){ var t=h('textarea',{rows:'3',placeholder:'e.g. I want to joke with my girlfriend’s mum without her translating.',oninput:function(){ tmp.mine=t.value.trim() }}); t.value=tmp.mine||''; return t }}
+  ];
+  function draw(){ if(step>=Q.length) return plan(); var q=Q[step], bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(step/Q.length*100)+'%'; var need=h('p',{class:'z7status bad',hidden:true,text:'Pick one to go on.'});
+    zSwap(body,[h('span',{class:'lbl',text:(step+1)+' / '+Q.length}),h('h2',{text:q.q}),q.sub?h('p',{class:'small muted',text:q.sub}):null,q.el(),need,
+      h('div',{class:'row'},[step?h('button',{class:'btn',text:'‹ Back',onclick:function(){ step--; draw() }}):null,h('button',{class:'btn primary',style:'flex:1',text:step===Q.length-1?'See my plan':'Next',onclick:function(){ if(!q.ok()){ need.hidden=false; return } step++; draw() }})])]) }
+  function plan(){ var bar=$('.sess-top .bar i',body); if(bar) bar.style.width='100%'; tmp.r=Array.isArray(s.r)?s.r.slice():[]; if(!tmp.r.length||!s.t) tmp.r=[{t:Date.now(),ear:tmp.ear,spk:tmp.spk}];
+    var p=z48Path(tmp), d=z48Dose(tmp), e=z48Est(tmp), why=z48Why(tmp);
+    zSwap(body,[h('span',{class:'lbl',text:'Your plan'}),h('h1',{text:Z48P[p][0]}),h('p',{class:'muted',text:Z48P[p][1]}),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'Your goal for the next 3 months'}),h('ol',{},(Z48.can[tmp.goal]||[]).map(function(c){ return h('li',{text:c}) }))]),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'Each day'}),h('p',{},[h('b',{text:tmp.mins+' minutes, '+tmp.days+' days a week · '+d.n+' new cards a day'})]),h('p',{class:'small',text:d.split}),tmp.buddy&&tmp.buddy!=='none'?h('p',{class:'small',text:'Once a week, use one thing from the app with '+({partner:'your partner',friends:'your friends',work:'your colleagues'}[tmp.buddy]||'someone')+'. Say it, don’t explain it.'}):null,tmp.around==='yes'?h('p',{class:'small',text:'Once a week, try one line from the app out in the street. The Home page gives you the mission.'}):null]),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'Why this much'}),h('ul',{},why.map(function(w){ return h('li',{class:'small',text:w}) }))]),
+      h('div',{class:'panel'},[h('span',{class:'lbl',text:'How long it takes, roughly'}),h('p',{class:'small',text:'About '+(Math.round(e.hrs*10)/10)+' hours a week with your classes. At that pace: A1 in about '+e.a1+', A2 in about '+e.a2+'.'}),e.ev?h('p',{class:'small',text:e.ev}):null,h('p',{class:'small muted',text:'These are planning estimates, not promises. Vietnamese takes English speakers longer than most European languages. Showing up most days matters more than any single day.'})]),
+      h('button',{class:'btn primary wide',text:s.t?'Save my plan':'Start my plan',onclick:function(){ tmp.t=Date.now(); tmp.path=p; S.set.in48=tmp; z48Apply(); save(); try{ accPush&&accPush(true) }catch(e){} closeSheet(); try{ zRenderHome() }catch(e){} }}),
+      h('button',{class:'btn wide',text:'‹ Change my answers',onclick:function(){ step=0; draw() }})]) }
+  draw() }
+function z48Recheck(){ var s=z48St(), last=s.r.length?s.r[s.r.length-1].t:s.t; return s.t&&Date.now()-last>28*DAY }
+function z48Missed(){ var n=0; for(var i=1;i<=3;i++){ if(!S.days[dayKey(new Date(Date.now()-i*DAY))]) n++ } return n>=2&&!S.days[dayKey()] }
+function z48Month(){ var now=new Date(), y=now.getFullYear(), m=now.getMonth(), n=new Date(y,m+1,0).getDate(), first=(new Date(y,m,1).getDay()+6)%7, g=h('div',{class:'z48cal'}), hit=0;
+  ['M','T','W','T','F','S','S'].forEach(function(d){ g.appendChild(h('b',{text:d})) }); for(var i=0;i<first;i++) g.appendChild(h('span',{}));
+  for(var d=1;d<=n;d++){ var k=dayKey(new Date(y,m,d)), on=!!S.days[k]; if(on) hit++; g.appendChild(h('i',{class:(on?'on':'')+(d===now.getDate()?' td':''),title:k})) } return {g:g,n:hit} }
+function z48Card(){ var s=z48St(), box=h('div',{class:'panel z48card',id:'z48'});
+  if(!s.t){ box.appendChild(z12Head('Kế hoạch của bạn','Your plan')); box.appendChild(h('p',{class:'small',text:'Answer a few quick questions (about 2 minutes). You get a path that fits why you’re learning, how much to study each day and why, and your teacher sees it before class.'})); box.appendChild(h('button',{class:'btn primary wide',text:'Set up my plan',onclick:z48Open})); return box }
+  var p=s.path||z48Path(s), mo=z48Month(); box.appendChild(z12Head('Kế hoạch · '+Z48P[p][0],'Your plan'));
+  if(s.mine&&z48Missed()) box.appendChild(h('p',{class:'z48why',text:'“'+s.mine+'”'}));
+  var ticks=s.can||{}, gl=h('div',{class:'stack',style:'gap:4px'}); (Z48.can[s.goal]||[]).forEach(function(c,i){ gl.appendChild(h('label',{class:'z48can'},[h('input',{type:'checkbox',checked:ticks[i]?'checked':null,onchange:function(e){ s.can=s.can||{}; if(e.target.checked) s.can[i]=Date.now(); else delete s.can[i]; save() }}),h('span',{class:'small',text:c})])) });
+  box.appendChild(h('span',{class:'lbl',text:'Goal: '+z48Lb(Z48.goal,s.goal)+' · tick what you can do'})); box.appendChild(gl);
+  box.appendChild(h('span',{class:'lbl',text:'This month · '+mo.n+' days'})); box.appendChild(mo.g);
+  box.appendChild(h('p',{class:'small muted',text:s.mins+' min a day, '+s.days+' days a week · '+(Z48.fcn[s.mins]||15)+' new cards a day'}));
+  if(z48Recheck()){ var t={}; function rr(k,l){ var r=h('div',{class:'z48rate'}); [1,2,3,4,5].forEach(function(n){ r.appendChild(h('button',{class:'z48chip',text:String(n),'aria-pressed':'false',onclick:function(){ t[k]=n; [].forEach.call(r.children,function(b,j){ b.setAttribute('aria-pressed',String(j===n-1)) }); if(t.ear&&t.spk){ s.r.push({t:Date.now(),ear:t.ear,spk:t.spk}); save(); try{ accPush&&accPush(true) }catch(e){} zRenderHome() } }})) }); return h('div',{class:'stack',style:'gap:4px'},[h('span',{class:'small',text:l}),r]) }
+    var f=s.r[0]||{}; box.appendChild(h('div',{class:'z12slip',style:'transform:none'},[h('span',{class:'z12lbl',text:'4-week check · 2 taps'}),h('p',{class:'small',text:'Same two questions as when you started (you said '+(f.ear||'?')+' and '+(f.spk||'?')+'). Your teacher sees the change.'}),rr('ear','Understanding people'),rr('spk','Saying what you want')])) }
+  else if(s.r.length>1){ var a=s.r[0], b=s.r[s.r.length-1]; box.appendChild(h('p',{class:'small',text:'Since you started: understanding '+a.ear+' → '+b.ear+', speaking '+a.spk+' → '+b.spk+'.'})) }
+  box.appendChild(h('button',{class:'btn wide',text:'See my plan or change it',onclick:z48Open})); return box }
+var zRenderHome48=zRenderHome; zRenderHome=function(){ try{ z48Sit() }catch(e){} zRenderHome48(); try{ var el=$('#z-home'); if(!el||el.querySelector('#z48')) return; var core=el.querySelector('#z27'), c=z48Card(); if(core&&core.parentNode===el) el.insertBefore(c,core.nextSibling); else el.insertBefore(c,el.firstChild) }catch(e){} };
+try{ z48Apply() }catch(e){}
