@@ -37,7 +37,7 @@ with sync_playwright() as p:
     print('mins/fcn/g42/path:',T("[S.set.mins,S.set.fcn,S.set.g42,S.set.in48.path]"))
     print('HOME CARD:',pg.locator('#z48').inner_text()[:400].replace('\n',' | '))
     print('situations first:',T("Z18.s.slice(0,3).map(x=>x.id).join(',')"), ' ramat hidden?', T("Z37.personal.indexOf('ramat')"))
-    pg.locator('#z48 input[type=checkbox]').first.check(); pg.wait_for_timeout(200)
+    T("document.querySelector('#z48 details') && (document.querySelector('#z48 details').open=true)"); pg.locator('#z48 input[type=checkbox]').first.check(); pg.wait_for_timeout(200)
     T("S.set.in48.r[0].t=Date.now()-30*DAY; S.days={}; S.days[dayKey()]=0; delete S.days[dayKey()]; save(); zRenderHome()"); pg.wait_for_timeout(300)
     print('recheck shown:',pg.locator('#z48 .z12slip').count(),' why shown:',pg.locator('#z48 .z48why').count())
     pg.locator('#z48 .z12slip .z48rate').nth(0).locator('button').nth(3).click(); pg.locator('#z48 .z12slip .z48rate').nth(1).locator('button').nth(2).click(); pg.wait_for_timeout(400)

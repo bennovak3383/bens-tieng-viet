@@ -320,3 +320,17 @@ so it reaches the student through the normal notes pull. Home shows "your teache
 (S.set.seen50). Voice note of the week (once A1 is done or the teacher opened A2): 14 rotating topics, record about a
 minute, sent as kind 'vnote' (S.set.vn50[week]). Teacher recordings: "Voice notes" filter; retells and voice notes no
 longer show "not understood". The 14 topic questions need a check by a Saigon speaker. Test: src/tests/t50.py.
+
+VERSION 51 — speak without freezing (from the speaking flow audit)
+- Start-talking bar: zHear is wrapped, so wherever the app listens (questions, speak now, recall, scenes, story
+  questions) a 3-second bar shows under "Your turn"; it turns green with "started in X s" when speech begins, and
+  after 3 s says "say anything: a word, ừm…, a lifeline". Time to first speech is logged per day in S.set.lat51
+  ({day:[sum ms, count]}), shown on the Home week panel (this week vs last, goal under 2 s) and the teacher's page.
+  Only where the browser's speech recognition works (Chrome); not checked on iPhone.
+- Soft 5-second clock on every "I said it · show me" prompt (English shown, say it in Vietnamese). Never fails you.
+- Lifelines: 10 "when you're stuck" lines (Dạ?, Nói lại giùm được không?, Nói chậm chậm được không?, Ừm… để tôi
+  nghĩ chút, Cái này tiếng Việt kêu là gì?, …). One-time Home slip after unit 2, a drill (uses z27Say), a Practice
+  tile, and a "Stuck? Lifelines" fold on retell, voice note and speak-now screens. Need a Saigon speaker check.
+- Home tidy: plan card moved under today's route; its goal list folds; the month grid is gone (the week panel
+  already tracks days and minutes).
+Test: src/tests/t51.py.

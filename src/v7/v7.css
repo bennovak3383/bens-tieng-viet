@@ -343,3 +343,8 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z49clock{font:700 44px/1 "Playfair Display",Georgia,serif;text-align:center;color:var(--muted)}.z49clock.on{color:var(--accent)}
 /* 50 */
 .z27ex .z50q{min-width:34px;padding:4px 10px;font-weight:700}.zgloss .z50q{margin-left:8px}
+/* 51 · speaking clock, lifelines */
+.z51bar{display:flex;flex-direction:column;gap:4px;margin:6px 0}.z51t{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.z51t i{display:block;height:100%;width:100%;background:var(--accent)}
+.z51bar.late .z51t i{background:#C9822B}.z51bar.ok .z51t i{background:var(--green,#1F5A45)}
+.z51life{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}.z51life summary{cursor:pointer;font-weight:600}
+.z51goal summary{cursor:pointer;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
