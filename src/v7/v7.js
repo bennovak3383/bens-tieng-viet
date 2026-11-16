@@ -21,7 +21,7 @@ function z7OpenStory(s,ci,onDone){ var body=zOpen(), tok=Z.tok, ch=s.ch[ci], cid
   var MODES=[['Listen','Words blurred. Follow the story by ear first.'],['Listen and read','Follow the words while the voice reads.'],['Read alone','No voice. Read it out loud yourself.']];
   var tip=h('p',{class:'small muted',text:MODES[mode][1]});
   MODES.forEach(function(m,mi){ modes.appendChild(h('button',{class:'chip','aria-pressed':String(mi===mode),text:(mi+1)+' · '+m[0],onclick:function(){ mode=mi; stop(); $$('.chip',modes).forEach(function(c,k){ c.setAttribute('aria-pressed',String(k===mi)) }); story.classList.toggle('zblind',mode===0); tip.textContent=m[1]; if(mode<2) playAll(0) }})) });
-  function tap(sp,key,phrase,l){ var g=C6.gloss[key]; S.tap[key]=(S.tap[key]||0)+1; if(g&&l){ var w=S.w[key]||(S.w[key]={n:0,reps:0,due:Date.now()}); w.n++; w.vi=l.vi; w.en=l.en||''; w.cid=cid; w.t=s.t } save();
+  function tap(sp,key,phrase,l){ var g=C6.gloss[key], full=!S.w[key]&&z49Focus(cid).length>=Z49.cap; S.tap[key]=(S.tap[key]||0)+1; if(g&&l&&!full){ var w=S.w[key]||(S.w[key]={n:0,reps:0,due:Date.now()}); w.n++; w.vi=l.vi; w.en=l.en||''; w.cid=cid; w.t=s.t } save(); if(full) setTimeout(function(){ glossBar.appendChild(h('div',{class:'small muted',text:'You have your '+Z49.cap+' words for this chapter. That’s enough: use them in your retell.'})) },0);
     $$('.zw.now',story).forEach(function(x){ x.classList.remove('now') }); sp.classList.add('now'); glossBar.hidden=false; glossBar.innerHTML=''; glossBar.appendChild(h('b',{text:phrase})); glossBar.appendChild(document.createTextNode(g?' · '+g:' · no note for this word yet')); stop(); zSay(phrase.toLowerCase()) }
   z7Paras(ch).forEach(function(idx,pi){ var p=h('p',{class:'z7para'});
     idx.forEach(function(li){ var l=ch.lines[li], sp=h('span',{class:'z7sent'},[zGlossSpans(l.vi,function(a,b,c){ tap(a,b,c,l) })]); sent[li]=sp; p.appendChild(sp); p.appendChild(document.createTextNode(' ')) });
@@ -39,7 +39,7 @@ function z7OpenStory(s,ci,onDone){ var body=zOpen(), tok=Z.tok, ch=s.ch[ci], cid
   body.appendChild(h('div',{class:'row'},[pb,h('button',{class:'chip','aria-pressed':'false',text:'English',onclick:function(e){ showEn=!showEn; enEls.forEach(function(x){ x.hidden=!showEn }); e.target.setAttribute('aria-pressed',String(showEn)) }}),z7ColChip(function(){ z7col(story) }),h('button',{class:'chip',text:'Line by line',title:'The older one-line-at-a-time view',onclick:function(){ stop(); zOpenStoryLines(s,ci,onDone) }})]));
   body.appendChild(gmSpeedRow()); body.appendChild(story); body.appendChild(glossBar);
   if(ch.new&&ch.new.length){ var nw=h('details',{},[h('summary',{class:'small muted',text:'New words in this chapter ('+ch.new.length+')'})]); nw.appendChild(h('div',{class:'row',style:'margin-top:8px'},ch.new.map(function(w){ return h('button',{class:'chip',text:w+' · '+(C6.gloss[w]||''),onclick:function(){ stop(); zSay(w.replace(/\s*\.\.\.\s*/,' ')) }}) }))); body.appendChild(nw) }
-  body.appendChild(h('p',{class:'note',text:'You do not need every word. Get the gist and keep going. Tap a word only when it bothers you; tapped words come back later as review cards.'}));
+  body.appendChild(h('p',{class:'note',text:'You do not need every word. Get the gist and keep going. Tap any word to see it. The first 4 you tap become your words for this chapter: they come back as cards, and you use them when you retell the story.'}));
   body.appendChild(after);
   function fin(){ stop(); var r=S.st[cid]||(S.st[cid]={n:0}); r.n++; r.last=Date.now(); zDay('s'); tick(); save(); if(onDone) onDone(); else { var nx=ci+1<s.ch.length?ci+1:-1; zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Chapter read'}),h('h1',{text:r.n===1?'Xong rồi!':'Read '+r.n+' times'}),nx>=0?h('button',{class:'btn primary wide',text:'Next chapter: '+s.ch[nx].t,onclick:function(){ zOpenStory(s,nx) }}):h('p',{class:'muted',text:'That was the last chapter of this story.'}),h('button',{class:'btn wide',text:'Back to stories',onclick:function(){ closeSheet(); location.hash='story' }})])]) } }
   function questions(){ stop(); var qi=0; (function ask(){ if(tok!==Z.tok) return; after.innerHTML=''; if(qi>=ch.qs.length){ fin(); return } var q=ch.qs[qi], out=h('div',{class:'stack'}), hd=h('p',{class:'heard'});
@@ -1580,3 +1580,37 @@ function z48Card(){ var s=z48St(), box=h('div',{class:'panel z48card',id:'z48'})
   box.appendChild(h('button',{class:'btn wide',text:'See my plan or change it',onclick:z48Open})); return box }
 var zRenderHome48=zRenderHome; zRenderHome=function(){ try{ z48Sit() }catch(e){} zRenderHome48(); try{ var el=$('#z-home'); if(!el||el.querySelector('#z48')) return; var core=el.querySelector('#z27'), c=z48Card(); if(core&&core.parentNode===el) el.insertBefore(c,core.nextSibling); else el.insertBefore(c,el.firstChild) }catch(e){} };
 try{ z48Apply() }catch(e){}
+
+/* ===== 49 · story loop: day 1 listen (no text) → day 2 read and listen → day 3 retell out loud, using your 3–4 words; retell goes to the teacher ===== */
+var Z49={cap:4};
+function z49Focus(cid){ return Object.keys(S.w||{}).filter(function(k){ return S.w[k]&&S.w[k].cid===cid }) }
+function z49St(cid){ var a=S.set.sl49; if(!a||typeof a!=='object'||Array.isArray(a)) a=S.set.sl49={}; return a[cid]||(a[cid]={}) }
+function z49Step(cid){ var st=z49St(cid); return st.r?3:st.d2?2:(st.d1||zRead(cid))?1:0 }
+function z49Cur(){ try{ if(!Z27||!Z27.st) return null; for(var i=0;i<Z27.st.length;i++){ var g=Z27.st[i]; if(!z38Open(g)) continue; var cid=zChId(z38Story(g),0); if(z49Step(cid)<3) return g } }catch(e){} return null }
+function z49Today(cid){ var st=z49St(cid), k=dayKey(); return st.d1===k||st.d2===k||st.rd===k }
+function z49Go(g,force){ var s=z38Story(g), cid=zChId(s,0), st=z49St(cid), n=z49Step(cid);
+  function back(){ closeSheet(); zRenderHome() }
+  if(n===0) zOpenStory(s,0,function(){ st.d1=dayKey(); save(); back() });
+  else if(n===1) zOpenStory(s,0,function(){ st.d2=dayKey(); save(); back() });
+  else z49Retell(s,0,back) }
+function z49Retell(s,ci,onDone){ var body=zOpen(), tok=Z.tok, ch=s.ch[ci], cid=zChId(s,ci), st=z49St(cid), fw=z49Focus(cid), blob=null, round=st.r?2:1, timer=null;
+  if(fw.length<3) (ch.new||[]).forEach(function(w){ if(fw.length<4&&fw.indexOf(w)<0) fw.push(w) });
+  body.appendChild(zTop('Kể lại · retell',null,null));
+  var secs=round===1?60:45, clock=h('div',{class:'z49clock',text:String(secs)}), hint=h('div',{class:'stack',hidden:true}), sendB=h('button',{class:'btn primary wide',disabled:'disabled',text:'Send to Thầy'}), msg=h('p',{class:'small muted'});
+  (ch.lines||[]).filter(function(l,i){ return i===0||l.p===1||i%3===0 }).slice(0,4).forEach(function(l){ hint.appendChild(h('p',{class:'small muted',text:'… '+l.vi.split(' ').slice(0,3).join(' ')+' …'})) });
+  var rec=z36Rec(function(b){ blob=b; if(timer){ clearInterval(timer); timer=null } if(b){ sendB.disabled=false; msg.textContent='Listen back once. Then send it, even if it’s messy. Messy is how it starts.' } });
+  rec.el.querySelector('button').addEventListener('click',function(){ if(timer) return; var left=secs; clock.textContent=String(left); clock.classList.add('on'); timer=setInterval(function(){ if(tok!==Z.tok){ clearInterval(timer); return } left--; clock.textContent=left>0?String(left):'Time · finish your sentence'; if(left<=0){ clearInterval(timer); timer=null } },1000) });
+  sendB.onclick=function(){ if(!blob) return; sendB.disabled=true; msg.textContent='Sending…'; zRecSave({kind:'retell',ref:cid,prompt:'Retell'+(round===2?' (second time, faster)':'')+': '+(ch.t||s.t),target:fw.join(', ')},blob).then(function(){ st.r=st.r||Date.now(); st.rd=dayKey(); if(round===2) st.r2=Date.now(); tick(); save(); zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Sent to Thầy'}),h('h1',{text:'Giỏi lắm!'}),h('p',{class:'muted',text:round===1?'That was the hard part: making it come out of your mouth. One more thing that builds speed: tell it again, in 45 seconds this time. Same story, less time, fewer pauses.':'Second time is always smoother. That smoothness is what you’re training.'}),round===1?h('button',{class:'btn primary wide',text:'Tell it again · 45 seconds',onclick:function(){ z49Retell(s,ci,onDone) }}):null,h('button',{class:'btn wide',text:'Done',onclick:function(){ if(onDone) onDone(); else closeSheet() }})])]) }).catch(function(e){ sendB.disabled=false; msg.textContent='Not sent: '+(e&&e.message||'check your connection') }) };
+  zSwap(body,[h('span',{class:'lbl',text:round===1?'Day 3 · say it':'Again, faster'}),h('h1',{text:ch.t||s.t}),
+    h('p',{class:'muted',text:round===1?'Tell the story out loud in your own words. 3 to 6 sentences. Broken Vietnamese is fine. The only rule: don’t stop. If a word won’t come, say it another way, or skip it and keep going.':'Same story, 45 seconds. Don’t fix mistakes, just keep going.'}),
+    fw.length?h('div',{class:'panel'},[h('span',{class:'lbl',text:'Try to use your words'}),h('div',{class:'row'},fw.map(function(w){ return h('button',{class:'chip',text:w+(C6.gloss[w]?' · '+C6.gloss[w]:''),onclick:function(){ zSay(w) }}) }))]):null,
+    clock,rec.el,msg,sendB,
+    h('button',{class:'btn wide',text:'Stuck? Peek at how it starts',onclick:function(e){ hint.hidden=!hint.hidden }}),hint,
+    h('button',{class:'btn wide',text:'Hear the story once more first',onclick:function(){ rec.stop(); zOpenStory(s,ci,function(){ z49Retell(s,ci,onDone) }) }})]) }
+function z49Card(g){ var s=z38Story(g), cid=zChId(s,0), n=z49Step(cid), td=z49Today(cid), st=z49St(cid), L=[['Listen','No text. Just follow it.'],['Read and listen','Words on, voice on.'],['Retell','Say it out loud, to Thầy.']];
+  var steps=h('div',{class:'z49steps'}); L.forEach(function(x,i){ steps.appendChild(h('div',{class:'z49s'+(i<n?' done':i===n?' now':'')},[h('b',{text:(i<n?'✓ ':(i+1)+' · ')+x[0]}),h('span',{class:'small muted',text:x[1]})])) });
+  var kids=[h('span',{class:'z12lbl',text:(n?'Truyện tuần này':'Truyện mới')+' · story of the week'}),h('p',{style:'font-size:16px;font-family:var(--font)',text:g.t+' · '+g.en+'. Made only from words you know.'}),steps];
+  if(td&&n>0){ kids.push(h('p',{class:'small muted',text:'Done for today. Step '+(n+1)+' tomorrow: sleeping on it is part of how it sticks.'})); kids.push(h('button',{class:'btn wide',text:'Do step '+(n+1)+' now anyway',onclick:function(){ z49Go(g,true) }})) }
+  else kids.push(h('button',{class:'btn primary wide',text:'Day '+(n+1)+' · '+L[n][0],onclick:function(){ z49Go(g) }}));
+  return h('div',{class:'z12slip z49c',style:'transform:none'},kids) }
+var zRenderHome49=zRenderHome; zRenderHome=function(){ zRenderHome49(); try{ var core=$('#z27'); if(!core) return; var old=core.querySelector('.z38st'); if(old) old.remove(); var g=z49Cur(); if(!g||core.querySelector('.z49c')) return; core.appendChild(z49Card(g)) }catch(e){} };

@@ -303,3 +303,11 @@ The unit order does NOT change: each unit only uses words already taught.
 Home card after: goal ticks, this month's days, their own "why" when they missed 2 of the last 3 days,
 a 2-tap re-rating every 4 weeks. Teacher page: "Kế hoạch · their plan" panel at the top of each student.
 Test: src/tests/t48.py.
+
+VERSION 49 — story loop: listen → read → retell
+Home "story of the week" card for the graded stories (g1–g9): day 1 listen with the text blurred, day 2 read and listen,
+day 3 retell out loud (60-second clock, "don't stop" rule, the learner's focus words shown, a "peek at how it starts"
+hint), sent to the teacher as kind 'retell'. Then an optional second retell in 45 seconds (the 4/3/2 fluency idea:
+same content, less time). One step a day by default, with "do it now anyway". The next graded story card shows only
+after the retell. In any story, only the first 4 tapped words become cards (S.w with cid); more taps still show the
+meaning. State: S.set.sl49[cid] = {d1, d2, r, rd, r2}. Teacher recordings have a "Retells" filter. Test: src/tests/t49.py.

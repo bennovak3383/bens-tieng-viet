@@ -337,3 +337,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z48cal i{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:block}.z48cal i.on{background:var(--green,#1F5A45);border-color:var(--green,#1F5A45)}.z48cal i.td{box-shadow:0 0 0 2px var(--accent)}
 .z48why{font-family:"Playfair Display",Georgia,serif;font-size:18px;margin:0;padding:10px 12px;border-left:3px solid var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
 .z48card textarea,#sheet-body textarea{font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:10px;width:100%;box-sizing:border-box}
+/* 49 · story loop */
+.z49steps{display:flex;flex-direction:column;gap:6px}.z49s{display:flex;flex-direction:column;padding:8px 10px;border-radius:10px;border:1.5px solid var(--line);opacity:.65}
+.z49s.done{opacity:.55}.z49s.now{opacity:1;border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.z49clock{font:700 44px/1 "Playfair Display",Georgia,serif;text-align:center;color:var(--muted)}.z49clock.on{color:var(--accent)}
