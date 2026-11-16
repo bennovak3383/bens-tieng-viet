@@ -1,0 +1,40 @@
+# 50: ask Thầy why (unit example + story word) -> teacher answers -> student sees it; weekly voice note
+import json, urllib.request
+from playwright.sync_api import sync_playwright
+B='http://localhost:8890'; errs=[]
+def call(path,method='GET',body=None):
+    r=urllib.request.Request(B+path,method=method,data=json.dumps(body).encode() if body is not None else None,headers={'Content-Type':'application/json'})
+    with urllib.request.urlopen(r) as f: return json.loads(f.read())
+key=call('/api/setup','POST',{}).get('key')
+with sync_playwright() as p:
+    br=p.chromium.launch(executable_path='/opt/pw-browsers/chromium-1243/chrome-linux64/chrome',args=['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']); ctx=br.new_context(viewport={'width':390,'height':844})
+    pg=ctx.new_page(); pg.on('pageerror',lambda e: errs.append('APP '+str(e))); T=lambda c: pg.evaluate('(c)=>__T(c)',c)
+    pg.goto(B+'/#home'); pg.wait_for_timeout(1500)
+    T("S.set.ob7=1; S.set.lvl0='some'; S.me.name='Ben'; var d={}; Z27.units.forEach(u=>{ if(u.lv==='A1') d[u.id]={t:1} }); S.set.k27={snd:1,d:d}; S.set.in48={t:1,goal:'chat',mins:60,days:6,r:[{t:Date.now()}],sit:[],hard:[],tried:[]}; save(); try{closeSheet()}catch(e){}; zRenderHome()")
+    T("fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'Ben'})}).then(r=>r.json()).then(j=>{ accSet({code:j.code,id:j.id,name:j.name}); accPush(true) })"); pg.wait_for_timeout(1500)
+    print('voice note card:',pg.locator('.z50vn').inner_text().replace('\n',' | '))
+    pg.click('.z50vn button'); pg.wait_for_timeout(400)
+    rb=pg.locator('#sheet-body .z36rec button'); rb.click(); pg.wait_for_timeout(2200); print('clock',pg.locator('.z49clock').inner_text()); rb.click(); pg.wait_for_timeout(1200)
+    pg.click('#sheet-body button:has-text("Send to Thầy")'); pg.wait_for_timeout(2000); print('vn sent:',pg.locator('#sheet-body h1').inner_text())
+    pg.click('#sheet-body button:has-text("Done")'); pg.wait_for_timeout(400); print('vn card gone:',pg.locator('.z50vn').count()==0)
+    T("z27Gram(Z27.units[2],2,function(){})"); pg.wait_for_timeout(300)
+    print('? buttons on examples:',pg.locator('#sheet-body .z27ex .z50q').count())
+    pg.locator('#sheet-body .z27ex .z50q').first.click(); pg.wait_for_timeout(300)
+    pg.click('#sheet-body .z48chip:has-text("Why this word order?")'); pg.fill('#sheet-body textarea','is it always like this?'); pg.click('#sheet-body button:has-text("Send to Thầy")'); pg.wait_for_timeout(300)
+    print('sent screen:',pg.locator('#sheet-body h1').inner_text())
+    T("zOpenStory(z38Story(Z27.st[0]),0)"); pg.wait_for_timeout(500); pg.locator('#sheet-body .z7story .zw').nth(2).click(); pg.wait_for_timeout(200)
+    print('story ask btn:',pg.locator('#sheet-body .zgloss .z50q').count()); pg.click('#sheet-body .zgloss .z50q'); pg.wait_for_timeout(300); pg.click('#sheet-body .z48chip:has-text("When do I use this?")'); pg.click('#sheet-body button:has-text("Send to Thầy")'); pg.wait_for_timeout(300)
+    T("closeSheet(); accPush(true)"); pg.wait_for_timeout(2000)
+    tp=ctx.new_page(); tp.on('pageerror',lambda e: errs.append('TEACHER '+str(e))); tp.goto(B+'/teacher.html?k='+key); tp.wait_for_timeout(1200)
+    tp.locator('.stu').first.click(); tp.wait_for_timeout(1500)
+    t=tp.inner_text('#app'); i=t.find('Câu hỏi'); print('TEACHER Q:',t[i:i+500].replace('\n',' | '))
+    tp.locator('textarea[placeholder="Your answer"]').first.fill('Yes: the describing word comes after the noun.'); tp.click('button:has-text("Send answer")'); tp.wait_for_timeout(1200)
+    print('answered shows:',tp.locator('text=Your answer:').count())
+    tp.click('button:text-is("Voice notes")'); tp.wait_for_timeout(300); t=tp.inner_text('#app'); i=t.find('Voice note:'); print('TEACHER VN:',t[i:i+120].replace('\n',' | '))
+    T("accPull(false).then(()=>{ zRenderHome() })"); pg.wait_for_timeout(2500)
+    print('answer slip:',pg.locator('.z50ans').inner_text().replace('\n',' | ') if pg.locator('.z50ans').count() else 'none')
+    if pg.locator('.z50ans').count():
+        pg.click('.z50ans button'); pg.wait_for_timeout(400); print('LIST:',pg.inner_text('#sheet-body')[-400:].replace('\n',' | '))
+        T("closeSheet(); zRenderHome()"); pg.wait_for_timeout(300); print('slip gone after reading:',pg.locator('.z50ans').count()==0)
+    br.close()
+print('ERR',errs or 'none')

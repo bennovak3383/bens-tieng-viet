@@ -311,3 +311,12 @@ hint), sent to the teacher as kind 'retell'. Then an optional second retell in 4
 same content, less time). One step a day by default, with "do it now anyway". The next graded story card shows only
 after the retell. In any story, only the first 4 tapped words become cards (S.w with cid); more taps still show the
 meaning. State: S.set.sl49[cid] = {d1, d2, r, rd, r2}. Teacher recordings have a "Retells" filter. Test: src/tests/t49.py.
+
+VERSION 50 — "Ask Thầy why" and the weekly voice note
+"?" next to every unit example and "? Ask Thầy" after tapping a word in any story: pick a ready question (word order,
+why this word, when to use it, do Saigon people say it, another way to say it) and/or type one. Saved in S.set.ask50.
+Teacher page: "Câu hỏi · their questions" panel with an answer box; the answer is a teacher note with about='ask:<t>',
+so it reaches the student through the normal notes pull. Home shows "your teacher answered" until they read it
+(S.set.seen50). Voice note of the week (once A1 is done or the teacher opened A2): 14 rotating topics, record about a
+minute, sent as kind 'vnote' (S.set.vn50[week]). Teacher recordings: "Voice notes" filter; retells and voice notes no
+longer show "not understood". The 14 topic questions need a check by a Saigon speaker. Test: src/tests/t50.py.
