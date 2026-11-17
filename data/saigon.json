@@ -1,0 +1,526 @@
+{
+"v": 1,
+"note": "Saigon in real life: signs, menu words, places and the Saigon way of saying things. Written by Claude from general knowledge, with a few facts checked on the web (18 Nov 2026). Not checked by a speaker yet.",
+"boards": [
+{
+"id": "sign",
+"t": "Biển báo",
+"en": "Signs you see",
+"c": "#2F7BF6",
+"p": "stop-sign",
+"intro": "Read these on doors, walls and streets. Tap one to hear it.",
+"items": [
+[
+"Lối vào",
+"Entrance",
+"",
+"Lối vào ở đâu?",
+"Where is the entrance?",
+"ok"
+],
+[
+"Lối ra",
+"Exit",
+"",
+"Lối ra ở đâu?",
+"Where is the exit?",
+"ok"
+],
+[
+"Nhà vệ sinh",
+"Toilet",
+"Often just “WC”.",
+"Nhà vệ sinh ở đâu?",
+"Where is the toilet?",
+"info"
+],
+[
+"Giữ xe",
+"Bike parking",
+"Someone looks after your motorbike for a small fee and gives you a ticket.",
+"Giữ xe ở đâu?",
+"Where is the bike parking?",
+"info"
+],
+[
+"Cấm đậu xe",
+"No parking",
+"“Đậu xe” is the Saigon way. Official road signs say “Cấm đỗ xe”.",
+"Ở đây cấm đậu xe.",
+"No parking here.",
+"no"
+],
+[
+"Cấm hút thuốc",
+"No smoking",
+"",
+"Ở đây cấm hút thuốc.",
+"No smoking here.",
+"no"
+],
+[
+"Đẩy",
+"Push",
+"On doors. The other side says “Kéo”.",
+"Đẩy cửa.",
+"Push the door.",
+"info"
+],
+[
+"Kéo",
+"Pull",
+"On doors.",
+"Kéo cửa.",
+"Pull the door.",
+"info"
+],
+[
+"Mở cửa",
+"Open",
+"",
+"Quán mở cửa lúc mấy giờ?",
+"What time does the place open?",
+"ok"
+],
+[
+"Đóng cửa",
+"Closed",
+"",
+"Quán đóng cửa rồi.",
+"The place is closed already.",
+"no"
+],
+[
+"Cho thuê",
+"For rent",
+"On houses, rooms and motorbikes.",
+"Phòng cho thuê.",
+"Room for rent.",
+"info"
+],
+[
+"Giảm giá",
+"Sale, discount",
+"",
+"Hôm nay giảm giá.",
+"There is a discount today.",
+"ok"
+],
+[
+"Nguy hiểm",
+"Danger",
+"",
+"Chỗ này nguy hiểm.",
+"This place is dangerous.",
+"no"
+],
+[
+"Coi chừng",
+"Watch out",
+"A Saigon word. In the north people say “cẩn thận”.",
+"Coi chừng xe!",
+"Watch out for the traffic!",
+"warn"
+],
+[
+"Hẻm",
+"Alley",
+"Addresses like 123/4 mean alley 123, house 4.",
+"Nhà tôi ở trong hẻm.",
+"My place is in an alley.",
+"info"
+],
+[
+"Đường một chiều",
+"One-way street",
+"",
+"Đây là đường một chiều.",
+"This is a one-way street.",
+"warn"
+]
+]
+},
+{
+"id": "menu",
+"t": "Thực đơn",
+"en": "On the menu",
+"c": "#FF8A1F",
+"p": "steaming-bowl",
+"intro": "What you will see on a Saigon menu, and how to ask for it.",
+"items": [
+[
+"cà phê sữa đá",
+"iced coffee with condensed milk",
+"The Saigon classic.",
+"Cho tôi một ly cà phê sữa đá.",
+"A glass of iced milk coffee, please.",
+"hot-beverage"
+],
+[
+"cà phê đen đá",
+"iced black coffee",
+"",
+"Cho tôi một ly cà phê đen đá, ít đường.",
+"An iced black coffee with less sugar, please.",
+"hot-beverage"
+],
+[
+"bạc xỉu",
+"milky iced coffee",
+"More milk than coffee.",
+"Cho tôi một ly bạc xỉu.",
+"A bạc xỉu, please.",
+"glass-of-milk"
+],
+[
+"trà đá",
+"iced tea",
+"Often free, or very cheap, with a meal.",
+"Cho tôi xin một ly trà đá.",
+"May I have a glass of iced tea?",
+"cup-with-straw"
+],
+[
+"nước mía",
+"sugar-cane juice",
+"Sold from carts on the street.",
+"Một ly nước mía, mang về.",
+"One sugar-cane juice, to take away.",
+"tropical-drink"
+],
+[
+"sinh tố",
+"fruit smoothie",
+"",
+"Cho tôi một ly sinh tố bơ.",
+"An avocado smoothie, please.",
+"tropical-drink"
+],
+[
+"cơm tấm",
+"broken rice with grilled pork",
+"A Saigon breakfast and lunch.",
+"Cho tôi một dĩa cơm tấm sườn.",
+"A plate of broken rice with a pork chop, please.",
+"curry-rice"
+],
+[
+"hủ tiếu",
+"hủ tiếu noodle soup",
+"A southern noodle soup, lighter than phở.",
+"Cho tôi một tô hủ tiếu.",
+"A bowl of hủ tiếu, please.",
+"steaming-bowl"
+],
+[
+"bánh mì thịt",
+"bánh mì with pork",
+"",
+"Cho tôi một ổ bánh mì thịt, không cay.",
+"One pork bánh mì, not spicy, please.",
+"baguette-bread"
+],
+[
+"gỏi cuốn",
+"fresh spring rolls",
+"",
+"Cho tôi hai cuốn gỏi cuốn.",
+"Two fresh spring rolls, please.",
+"burrito"
+],
+[
+"bún thịt nướng",
+"noodles with grilled pork",
+"Eaten dry, not as a soup.",
+"Cho tôi một tô bún thịt nướng.",
+"A bowl of noodles with grilled pork, please.",
+"spaghetti"
+],
+[
+"chè",
+"sweet dessert soup",
+"",
+"Cho tôi một ly chè.",
+"A glass of chè, please.",
+"shaved-ice"
+],
+[
+"ít đường",
+"less sugar",
+"Say it when you order drinks.",
+"Ít đường nha.",
+"Less sugar, okay?",
+"candy"
+],
+[
+"ít đá",
+"less ice",
+"",
+"Ít đá nha.",
+"Less ice, okay?",
+"ice"
+],
+[
+"mang về",
+"to take away",
+"",
+"Mang về nha.",
+"To take away, please.",
+"takeout-box"
+],
+[
+"tính tiền",
+"the bill, please",
+"The Saigon way to ask for the bill.",
+"Em ơi, tính tiền.",
+"Excuse me, the bill please.",
+"receipt"
+]
+]
+},
+{
+"id": "place",
+"t": "Địa danh",
+"en": "Places in the city",
+"c": "#12A26E",
+"p": "cityscape",
+"intro": "Places everyone knows. Use them with a driver or when you ask the way.",
+"items": [
+[
+"Chợ Bến Thành",
+"Bến Thành Market",
+"The big old market in the centre of the city.",
+"Cho tôi tới Chợ Bến Thành.",
+"Take me to Bến Thành Market, please.",
+"shopping-bags"
+],
+[
+"Nhà thờ Đức Bà",
+"Notre-Dame Cathedral",
+"The red-brick cathedral in the centre.",
+"Nhà thờ Đức Bà ở đâu?",
+"Where is Notre-Dame Cathedral?",
+"church"
+],
+[
+"Bưu điện Thành phố",
+"the Central Post Office",
+"Next to the cathedral. Built from 1886 to 1891.",
+"Bưu điện Thành phố ở kế bên Nhà thờ Đức Bà.",
+"The Central Post Office is next to the cathedral.",
+"japanese-post-office"
+],
+[
+"Dinh Độc Lập",
+"Independence Palace",
+"Also called Dinh Thống Nhất, Reunification Palace.",
+"Tôi muốn đi Dinh Độc Lập.",
+"I want to go to Independence Palace.",
+"classical-building"
+],
+[
+"Landmark 81",
+"Landmark 81",
+"The tallest building in Vietnam, 461 metres.",
+"Landmark 81 cao lắm.",
+"Landmark 81 is very tall.",
+"office-building"
+],
+[
+"Phố đi bộ Nguyễn Huệ",
+"Nguyễn Huệ walking street",
+"A wide walking street in the centre.",
+"Tối nay mình đi phố đi bộ Nguyễn Huệ nha.",
+"Let's go to Nguyễn Huệ walking street tonight.",
+"footprints"
+],
+[
+"Nhà hát Thành phố",
+"the Opera House",
+"",
+"Nhà hát Thành phố ở gần đây.",
+"The Opera House is near here.",
+"performing-arts"
+],
+[
+"Nhà thờ Tân Định",
+"Tân Định Church",
+"The pink church.",
+"Nhà thờ Tân Định màu hồng.",
+"Tân Định Church is pink.",
+"church"
+],
+[
+"Chợ Lớn",
+"Chợ Lớn (Chinatown)",
+"The old Chinese quarter.",
+"Chợ Lớn ở xa không?",
+"Is Chợ Lớn far?",
+"red-paper-lantern"
+],
+[
+"sông Sài Gòn",
+"the Saigon River",
+"",
+"Sông Sài Gòn đẹp lắm.",
+"The Saigon River is beautiful.",
+"water-wave"
+],
+[
+"Bùi Viện",
+"Bùi Viện street",
+"The loud backpacker street with bars.",
+"Bùi Viện ồn ào lắm.",
+"Bùi Viện is very noisy.",
+"clinking-beer-mugs"
+],
+[
+"sân bay Tân Sơn Nhất",
+"Tân Sơn Nhất airport",
+"",
+"Cho tôi ra sân bay Tân Sơn Nhất.",
+"Take me to Tân Sơn Nhất airport, please.",
+"airplane"
+]
+]
+},
+{
+"id": "way",
+"t": "Nói kiểu Sài Gòn",
+"en": "The Saigon way",
+"c": "#7C5CFC",
+"p": "speaking-head",
+"intro": "Same meaning, different word. Learn the Saigon word, and know the northern one when you hear it. In Saigon the letters d and gi sound like an English “y”.",
+"items": [
+[
+"bắp",
+"corn",
+"In the north: ngô.",
+"Cho tôi một trái bắp.",
+"One corn cob, please.",
+"ear-of-corn"
+],
+[
+"heo",
+"pig, pork",
+"In the north: lợn.",
+"Tôi thích thịt heo.",
+"I like pork.",
+"pig"
+],
+[
+"trái cây",
+"fruit",
+"In the north: hoa quả.",
+"Tôi mua trái cây.",
+"I am buying fruit.",
+"grapes"
+],
+[
+"mắc",
+"expensive",
+"In the north: đắt.",
+"Mắc quá!",
+"Too expensive!",
+"money-with-wings"
+],
+[
+"ngàn",
+"thousand",
+"In the north: nghìn.",
+"Năm chục ngàn.",
+"Fifty thousand.",
+"coin"
+],
+[
+"nón",
+"hat, helmet",
+"In the north: mũ.",
+"Nón của tôi đâu?",
+"Where is my helmet?",
+"billed-cap"
+],
+[
+"ly",
+"glass",
+"In the north: cốc.",
+"Cho tôi một ly nước.",
+"A glass of water, please.",
+"tumbler-glass"
+],
+[
+"dù",
+"umbrella",
+"In the north: ô.",
+"Tôi quên dù rồi.",
+"I forgot my umbrella.",
+"umbrella"
+],
+[
+"xe hơi",
+"car",
+"In the north: ô tô.",
+"Anh ấy có xe hơi.",
+"He has a car.",
+"automobile"
+],
+[
+"má",
+"mom",
+"Common in the south. Everywhere: mẹ.",
+"Má tôi ở Mỹ.",
+"My mom is in the US.",
+"red-heart"
+],
+[
+"kêu",
+"to call, to order",
+"In the north: gọi.",
+"Tôi kêu món rồi.",
+"I have ordered already.",
+"bellhop-bell"
+],
+[
+"vô",
+"to go in",
+"In the north: vào.",
+"Mời anh vô nhà.",
+"Please come in.",
+"door"
+],
+[
+"bự",
+"big",
+"In the north: to.",
+"Trái này bự quá.",
+"This fruit is so big.",
+"elephant"
+],
+[
+"hông",
+"no, not (spoken)",
+"The relaxed Saigon way to say không.",
+"Hông sao.",
+"No problem.",
+"cross-mark"
+],
+[
+"dạ",
+"yes (polite)",
+"Start an answer with it to sound polite.",
+"Dạ, cảm ơn.",
+"Yes, thank you.",
+"slightly-smiling-face"
+],
+[
+"nha",
+"okay? (soft ending)",
+"Makes a sentence friendly.",
+"Tôi đi nha.",
+"I'm off, okay?",
+"waving-hand"
+]
+]
+}
+]
+}

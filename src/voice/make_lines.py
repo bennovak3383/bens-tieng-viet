@@ -121,6 +121,11 @@ try:
     rows+=[('Anh ấy %s tuổi.'%x[0],'He is %s years old.'%x[1]) for x in BD.get('ages',[])]
     if BD.get('times'): add('sc_zc','Mẫu câu: chặng 4 và 5','Sentence builder: stages 4 and 5',rows)
     if BD.get('zoo'): add('sc_ani','Cảnh: con vật','Scenes: animals',[('Đây là con gì?','What animal is this?')]+[r for x in BD['zoo'] for r in (('con %s'%x[0],x[1]),('Đây là con %s.'%x[0],'This is %s.'%x[1]))])
+    # 74: Saigon in real life (signs, menu, places, the Saigon way)
+    try:
+        SG=json.load(open(repo+'/data/saigon.json'))
+        add('sc_sg','Sài Gòn ngoài đời','Saigon in real life',[r for b in SG['boards'] for it in b['items'] for r in ((it[0],it[1]),(it[3],it[4])) if r[0]])
+    except Exception as e: print('saigon lines skipped:',e)
 except FileNotFoundError: pass
 ks=[p for p in parts if p['id'][0]=='k' and p['id'][1:].isdigit()]; gs={p['id']:p for p in parts if p['id'][0]=='g' and p['id'][1:].isdigit()}
 try: GAT=[(g['id'],g['at']) for g in json.load(open(repo+'/data/core.json')).get('st',[])]

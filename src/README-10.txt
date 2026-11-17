@@ -639,3 +639,42 @@ Recording list: two new parts, sc_zc (103 lines) and sc_ani (24 lines); 5,383 li
 Tests: src/tests/t73.py (new).
 All new Vietnamese here is Claude's and unchecked. NOT done: Google sign-in. Not checked: a real iPhone, sound.
 Known: "bàn" (table) shows a computer-desk picture because the picture set has no table.
+
+VERSION 74 — thinking over tapping, more review, Saigon in real life, a cleaner way in (Ben, 18 Nov, after a video he sent:
+"Language Apps Reviewed by a Linguist — What Actually Works" by Saniiat. Her points: single words out of context do not stick; you
+remember what you had to think about, find yourself and say; apps rarely bring old words back in new sentences; collect your own
+words; an app is the extra tool, the teacher is the main thing.)
+Ben's answers: (1) the picture hint is a switch you can flip both ways; (2) goes with 1; (3) own sentence: built as OPTIONAL, it
+never blocks; (4) save words everywhere; (5) "more quizzes and reviews back of what we learned"; (6) more Saigon material now,
+teacher talks later; (8) keep it clean and simple without taking things away, and never make people dig. Also: "make sure there
+are ways to add vocab of the learner … words added by students" can go to the teacher.
+What was built (block 74 in src/v7/v7.js):
+  Games: "Gợi ý · what the answers show" on the games menu: pictures + English (as before) / English only / pictures only.
+    S.set.help74. z60Has and z60Shell are wrapped; pictures-only is a CSS class (z74pic) on the game sheet.
+  Save to my cards: z74Save / z74SaveBtn / z74SaveList. In every scene (a fold-out list under the picture), the animals board, the
+    builder ("+ Save this sentence"), the end of a game (words of that set that are not cards yet) and each Saigon item. They go
+    into S.set.myc13, the same list as "Từ của tôi · my own words", so they become spaced cards at once.
+  Own sentence: z74Own(from, hint, skip) → S.set.own74 [{t, vi, from}]. Under scenes (not on the Check tab), in the builder, at the
+    end of the review (with "skip") and on each Saigon board. "Câu của tôi" in Find anything lists them.
+  Review: z74Review(). 12 questions from everything learned so far (finished units, scenes opened, animals, own words, Saigon words
+    heard), older and missed words first. Four kinds: hear → meaning, English or picture → Vietnamese, the missing word in an old
+    sentence, put an old sentence in order. S.set.rv74 {n, best, last, t, miss}. Home marks it "due" after 6 days.
+  Saigon: z74Saigon(). data/saigon.json: four boards (signs, on the menu, places in the city, the Saigon way), 60 items, each with
+    a note, a sentence, a save button. Signs are drawn as sign plates. Each board is also a word set in Games (ids Gsign, Gmenu,
+    Gplace, Gway). S.set.sg74.seen. Facts checked on the web on 18 Nov 2026: the post office dates (1886-1891), Landmark 81 (461 m,
+    tallest in Vietnam), Dinh Độc Lập / Dinh Thống Nhất, official signs say "Cấm đỗ xe" while Saigon says "đậu xe", bắp / ngô.
+    Everything else is general knowledge. None of it is checked by a speaker.
+  Home: the three small buttons under the lesson are now one row of five: Ôn tập (review), Sài Gòn, Thẻ (cards), + Từ (add my own
+    word, opens the existing z13AddWord), Tất cả (find anything).
+  Find anything: z74Find(). Every part of the app in five groups with a search box (it ignores tone marks). Older tools are in a
+    closed fold at the end. The More page has the same search box on top; its old tiles are still there. Nothing was removed.
+Teacher page: new panel x74 on each student: review rounds and last score, words they keep missing, their own sentences, the words
+they added themselves, Saigon words heard.
+Recording list: new part sc_sg (71 lines); 5,454 lines in all. No old part changed.
+Tests: src/tests/t74.py (new).
+IDEAS, not built (Ben: "add to ideas"):
+  - Teacher talks: short real clips of Thầy Tâm speaking naturally, with a tap-a-word transcript.
+  - Real menus, signs and photos from Saigon (needs photos Ben or Thầy Tâm take; not from books or sites).
+  - Count real progress: things said out loud and checked by the teacher, instead of taps and stars.
+  - Record the own sentence as audio and send it with the text.
+NOT done: Google sign-in. Not checked: a real iPhone, sound.
