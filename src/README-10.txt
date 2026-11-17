@@ -420,3 +420,24 @@ build.sh  = builds index.html from src (uses the last commit as OLD), checks the
 chkst.py, recyc.py = story word check and word-recycling counts used when the stories were written.
 Tests: python3 src/tests/tNN.py (Playwright, Chromium at /opt/pw-browsers/chromium-1243/chrome-linux64/chrome).
 The frequency list for src/core/make.py is vn_word_frequencies.tsv from github.com/tabidots/vn-freqs.
+
+VERSION 59 — new look and a Home hub (Ben: "too much, overwhelming; bigger boxes, colour, simple; a cartoon of the teacher saying welcome to your lesson")
+Look: "Sáng · Bright" is the default (S.set.look59 = 'bright' | 'old'). It rides on the dusk skin (z19Skin returns 'dusk') and adds
+data-look="bright" on <html>; all its CSS is under :root[data-look="bright"] at the end of v7.css. Font: Nunito (link added by JS).
+Settings → Look still offers Night, Dusk and Classic (picking one sets look59='old').
+Hub: new view 'hub' (#v-hub in sections.html, drawn by z59Hub). It is the landing page when the link has no #, and the first tab
+(Trang chủ · Home). The Practice tab is hidden (the page is still at #prac and behind "Tất cả · All practice").
+Order: Thầy Tâm's welcome (the cartoon from Z21TA, full body) → six tiles (Z59.tiles; a later block sets the action with
+Z59.act[key]=fn; a tile with no action shows "Soon") → "Bài hôm nay · today's lesson" (z59Today): a ring with the level's percent,
+bars for this lesson / the level / the week, Thầy's note for the student (rel.hw or lesson.note) when there is one, the 10/30/60/90
+picker (S.set.mins) and Start (opens Today and presses its start button).
+Today (#home) is unchanged except that, in the bright look, the mission, situations, outside listening and week panels fold under
+one button (S.set.more59=1 keeps them open).
+
+VERSION 60 — games on one clean screen (Wordwall idea: one set of words, many games)
+z60Menu: pick a set (each open lesson = its units' words and sentences, plus "Tất cả · everything so far"), then a game.
+Games: Match up (z60Match), Flash cards (z60Flash), Unjumble (z60Unj), Find the match (z60Find), Listen and choose (z60Listen).
+Every game ends on the same screen: stars, score, time, play again, the same words in another game. Best scores: S.set.g60.
+Other blocks add sets with Z60.extra.push(function(){ return [ {id,t,en,words:[{vi,en,ex,exen}],sents:[{vi,en}]} ] }).
+z60Ears = the Nghe tile: the listening game for this lesson and for everything, story by ear, reps, listen-and-understand, playlist.
+Test: src/tests/t60.py (hub + every game played to the end). Not tested: sound, a real phone.

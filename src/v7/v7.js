@@ -1901,3 +1901,222 @@ var z38Open58=z38Open; z38Open=function(g){ try{ if(z58All()) return !!(Z27&&Z27
 var z37Done58=z37Done; z37Done=function(){ return z58All()?99:z37Done58() };
 var z50VnOn58=z50VnOn; z50VnOn=function(){ try{ if(z58All()) return !!(Z27&&Z27.on) }catch(e){} return z50VnOn58() };
 var zRenderHome58=zRenderHome; zRenderHome=function(){ zRenderHome58(); try{ var c=$('#z53'); if(c&&z58All()&&!c.querySelector('.z58n')){ var b=c.querySelector('button.btn.wide:last-of-type'); c.insertBefore(h('p',{class:'small muted z58n',text:'Everything is open on this account: every lesson, story and tool, in any order. Your teacher set this.'}),c.lastChild) } }catch(e){} };
+
+
+/* ===== 59 · bright look (the default) and the Home hub: Thầy Tâm welcomes you, one "continue" button, six big tiles =====
+   Look: S.set.look59 = 'bright' (default) | 'old' (then S.set.skin night/dusk/classic applies as before).
+   Hub: view 'hub' (#v-hub). It is the landing page when the link has no #; "Hôm nay · Today" keeps the full day plan. */
+function z59Bright(){ return S.set.look59!=='old' }
+var z19Skin59=z19Skin; z19Skin=function(){ return z59Bright()?'dusk':z19Skin59() };
+var z19Apply59=z19Apply; z19Apply=function(){ z19Apply59(); try{ var r=document.documentElement; if(z59Bright()){ r.setAttribute('data-look','bright'); var m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content','#F3F6FB') } else r.removeAttribute('data-look') }catch(e){} };
+(function(){ try{ if(!document.getElementById('z59font')){ var l=document.createElement('link'); l.id='z59font'; l.rel='stylesheet'; l.href='https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap'; document.head.appendChild(l) } }catch(e){} })();
+z19Panel=function(){ var box=h('div',{class:'panel z19p'},[h('span',{class:'lbl',text:'Look'})]), r=h('div',{class:'row'}), O=[['bright','Sáng · Bright'],['night','Sài Gòn đêm · Night'],['dusk','Hoàng hôn · Dusk'],['classic','Xưa · Classic']];
+  function cur(){ return z59Bright()?'bright':z19Skin59() }
+  O.forEach(function(o){ r.appendChild(h('button',{class:'chip','aria-pressed':String(cur()===o[0]),text:o[1],onclick:function(){ if(o[0]==='bright') S.set.look59='bright'; else { S.set.look59='old'; S.set.skin=o[0] } save(); z19Apply(); [].forEach.call(r.children,function(x,i){ x.setAttribute('aria-pressed',String(O[i][0]===o[0])) }) }})) }); box.appendChild(r); return box };
+z19Apply();
+
+var Z59IC={
+  snd:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 36 L14 12 L22 36 M9 28 h10"/><path d="M30 20 q6 4 0 12 M36 14 q11 10 0 24"/></svg>',
+  scn:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22 L24 7 L43 22 M10 19 V41 H38 V19"/><circle cx="19" cy="27" r="3.4"/><circle cx="30" cy="27" r="3.4"/><path d="M13 41 q0 -8 6 -8 q6 0 6 8 M24 41 q0 -8 6 -8 q6 0 6 8"/></svg>',
+  bld:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="27" width="17" height="14" rx="3"/><rect x="26" y="27" width="17" height="14" rx="3"/><rect x="15" y="9" width="18" height="14" rx="3"/><path d="M24 23 v4"/></svg>',
+  gam:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="15" height="15" rx="4"/><rect x="27" y="6" width="15" height="15" rx="4"/><rect x="6" y="27" width="15" height="15" rx="4"/><path d="M29 35 l4 4 l8 -9"/></svg>',
+  sto:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 12 q-8 -5 -18 -3 V37 q10 -2 18 3 q8 -5 18 -3 V9 q-10 -2 -18 3 Z M24 12 V40"/><path d="M11 17 h7 M11 24 h7 M30 17 h7 M30 24 h7"/></svg>',
+  lis:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 28 V24 a16 16 0 0 1 32 0 v4"/><rect x="5" y="27" width="9" height="14" rx="4"/><rect x="34" y="27" width="9" height="14" rx="4"/></svg>',
+  go:'<svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="17" fill="rgba(255,255,255,.25)"/><path d="M13 10 L24 17 L13 24 Z" fill="#fff"/></svg>' };
+function z59Tam(){ var inner=''; try{ var a=Z21TA.indexOf('<g transform='), b=Z21TA.lastIndexOf('</g></g>'); if(a>=0&&b>a) inner=Z21TA.slice(a,b)+'</g>' }catch(e){} return h('div',{class:'z59tam','aria-hidden':'true',html:'<svg viewBox="-32 -146 64 152">'+inner+'</svg>'}) }
+/* the tiles: [key, colour, shadow, Vietnamese, English, icon, action, badge] — later blocks replace an action by setting Z59.act[key] */
+var Z59={act:{}, tiles:[
+  ['snd','#2F7BF6','#1E5BC6','Âm','Letters and sounds','snd',function(){ location.hash='van' }],
+  ['scn','#12A26E','#0B7A52','Cảnh','Tap around a scene','scn',null],
+  ['bld','#7C5CFC','#5A3FD0','Mẫu câu','Build sentences','bld',null],
+  ['gam','#FF8A1F','#D96A06','Trò chơi','Games','gam',function(){ try{ z10Games() }catch(e){ location.hash='prac' } }],
+  ['sto','#F0527A','#C93A5F','Truyện','Stories','sto',function(){ location.hash='story' }],
+  ['lis','#0FA8A1','#0A807B','Nghe','Listening','lis',null] ]};
+function z59Ring(pct,lab){ var r=34, c=2*Math.PI*r, off=c*(1-Math.max(0,Math.min(100,pct))/100);
+  return h('div',{class:'z59ring',html:'<svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="'+r+'" fill="none" stroke="#E3EAF5" stroke-width="9"/><circle class="arc" cx="42" cy="42" r="'+r+'" fill="none" stroke="#12A26E" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+c.toFixed(1)+'" stroke-dashoffset="'+c.toFixed(1)+'" data-off="'+off.toFixed(1)+'" transform="rotate(-90 42 42)"/></svg><b>'+pct+'%</b><span>'+lab+'</span>'}) }
+function z59Bar(lab,n,of,col){ return h('div',{class:'z59bar'},[h('div',{class:'t'},[h('span',{text:lab}),h('b',{text:n+' / '+of})]),h('div',{class:'tr'},[h('i',{style:'width:'+(of?Math.round(n/of*100):0)+'%;background:'+(col||'#2F7BF6')})])]) }
+function z59Today(){ /* the part under the tiles: where you are, what Thầy set, how long today, start */
+  var p=h('div',{class:'panel z59day'}), cur=null, lv='', lvN='', done=0, tot=0, ld=0, lt=0, bn=0;
+  try{ if(z53On()){ cur=z53Cur(); if(cur){ lv=cur.l.lv; lvN=z53Nm(lv); ld=z53UDone(cur); lt=cur.to-cur.from+1; z53Ls().filter(function(x){ return x.l.lv===lv }).forEach(function(x,k){ if(x.l.id===cur.l.id) bn=k+1 }) } } }catch(e){}
+  try{ var k=z27St().d; if(!lv){ var nu=Z27.units[Math.min(Z27.units.length-1,Object.keys(k).length)]; lv=nu?nu.lv:'A1'; lvN=lv } Z27.units.forEach(function(u){ if(u.lv===lv){ tot++; if(k[u.id]) done++ } }) }catch(e){}
+  var pct=tot?Math.round(done/tot*100):0, wk={n:0}; try{ wk=z12Week() }catch(e){}
+  var beg=false; try{ beg=z26On() }catch(e){}
+  p.appendChild(h('div',{class:'z59dh'},[z59Ring(pct,lvN||'course'),h('div',{class:'z59dt'},[h('span',{class:'lbl',text:'Bài hôm nay · today’s lesson'}),h('h2',{text:beg?'Bắt đầu từ đầu · first steps':(cur?('Bài '+bn+' · '+cur.l.t):'Your plan for today')}),h('p',{class:'muted',text:beg?'Sounds, tones and your first words, one step at a time.':(cur?(cur.l.en||''):'The next unit, your cards and some listening.')})])]));
+  if(!beg){ if(cur) p.appendChild(z59Bar('This lesson · units done',ld,lt,'#2F7BF6')); p.appendChild(z59Bar((lvN||'Course')+' · units done',done,tot,'#12A26E')) }
+  var dots=h('div',{class:'z59wk'}); (wk.days||[]).forEach(function(d){ dots.appendChild(h('span',{class:(d.on?'on ':'')+(d.today?'td':'')},[h('i'),document.createTextNode(d.l)])) });
+  p.appendChild(h('div',{class:'z59bar'},[h('div',{class:'t'},[h('span',{text:'This week · goal 6 days'}),h('b',{text:(wk.n||0)+' / 6'})]),dots]));
+  try{ var r=z53Rel(), note=(r&&r.hw)||(cur&&cur.l.note)||''; if(note) p.appendChild(h('div',{class:'z59note'},[z21Av(),h('div',{},[h('b',{text:'Thầy Tâm'}),h('p',{text:note})])])) }catch(e){}
+  if(!beg){ var mins=60; try{ mins=z12Mins() }catch(e){} var row=h('div',{class:'z59mins'}), go=h('button',{class:'btn primary wide'});
+    function lab(){ go.textContent='Bắt đầu · start today ('+mins+' min)' }
+    [[10,'Quick'],[30,'Short'],[60,'Medium'],[90,'Long']].forEach(function(o){ row.appendChild(h('button',{'aria-pressed':String(o[0]===mins),onclick:function(){ mins=o[0]; S.set.mins=mins; save(); [].forEach.call(row.children,function(x,i){ x.setAttribute('aria-pressed',String([10,30,60,90][i]===mins)) }); lab() }},[h('b',{text:o[0]+'′'}),h('small',{text:o[1]})])) });
+    p.appendChild(h('span',{class:'lbl',text:'How long today?'})); p.appendChild(row); lab();
+    go.onclick=function(){ location.hash='home'; setTimeout(function(){ try{ zRenderHome(); var b=$('#z-plan .btn.primary'); if(b) b.click() }catch(e){} },80) }; p.appendChild(go) }
+  p.appendChild(h('button',{class:'btn wide',text:beg?'Open my first steps':'See the whole lesson',onclick:function(){ location.hash='home' }}));
+  setTimeout(function(){ try{ var a=p.querySelector('.z59ring .arc'); if(a) a.setAttribute('stroke-dashoffset',a.getAttribute('data-off')) }catch(e){} },60);
+  return p }
+function z59Hub(){ var box=$('#z-hub'); if(!box) return; box.innerHTML='';
+  var nm=(S.me&&S.me.name)||'';
+  box.appendChild(h('div',{class:'z59hero'},[ h('div',{class:'z59t0'},[ h('span',{class:'z59hi',text:'Thầy Tâm'}), h('h1',{text:nm?('Chào '+nm+'!'):'Xin chào!'}), h('div',{class:'z59bub',text:'Welcome to your lesson.'}) ]), z59Tam() ]));
+  var g=h('div',{class:'z59grid'});
+  Z59.tiles.forEach(function(t){ var act=Z59.act[t[0]]||t[6]; var b=h('button',{class:'z59t z59-'+t[0],style:'--c:'+t[1]+';--sh:'+t[2],onclick:function(){ if(act) act(); }},[ h('div',{class:'ic',html:Z59IC[t[5]]}), h('div',{},[h('b',{text:t[3]}),h('span',{text:t[4]})]) ]);
+    if(!act){ b.appendChild(h('em',{text:'Soon'})); b.style.opacity='.72' } g.appendChild(b) });
+  box.appendChild(g);
+  box.appendChild(z59Today());
+  var more=h('div',{class:'z59more'});
+  [['Thẻ','Cards',function(){ location.hash='fc' }],['Nói','Speak',function(){ location.hash='quest' }],['Tất cả','All practice',function(){ location.hash='prac' }]].forEach(function(m){ more.appendChild(h('button',{onclick:m[2]},[document.createTextNode(m[0]),h('small',{text:m[1]})])) });
+  box.appendChild(more) }
+VIEWS.push('hub');
+var go59=go; go=function(v){ if((v==='home'||!v)&&!location.hash) v='hub'; go59(v); if(v==='hub'){ try{ z59Hub() }catch(e){} } };
+var renderAll59=renderAll; renderAll=function(){ renderAll59(); try{ var s=$('#v-hub'); if(s&&!s.hidden) z59Hub() }catch(e){} };
+(function(){ try{ var nav=$('#tabs'); if(!nav||nav.querySelector('[data-go="hub"]')) return;
+  var b=h('button',{class:'tab','data-go':'hub',html:'<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="4" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="13" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="7" height="7" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><b>Trang chủ</b>Home'});
+  b.addEventListener('click',function(){ if(location.hash!=='#hub') location.hash='hub'; else go('hub') }); nav.insertBefore(b,nav.firstChild);
+  var p=nav.querySelector('[data-go="prac"]'); if(p) p.style.display='none' }catch(e){} })();
+/* Today page, simpler: the lesson, the core unit and today's route stay; the extras fold under one button (S.set.more59=1 keeps them open) */
+var zRenderHome59=zRenderHome; zRenderHome=function(){ zRenderHome59(); try{ var zh=$('#z-home'); if(!zh||!z59Bright()) { if(zh) zh.classList.remove('z59less'); return }
+  var old=zh.querySelector('.z59fold'); if(old) old.remove(); var plan=$('#z-plan'); if(!plan||plan.parentNode!==zh) return;
+  var open=!!S.set.more59; zh.classList.toggle('z59less',!open);
+  var b=h('button',{class:'btn wide z59fold',text:open?'Show less':'More for today · missions, situations, your week',onclick:function(){ S.set.more59=open?0:1; save(); zRenderHome() }});
+  zh.insertBefore(b,plan.nextSibling) }catch(e){} };
+
+
+/* ===== 60 · Games, one clean screen: pick a set of words (a lesson, or everything so far), then pick a game. Same content, many games.
+   Games: Match up, Flash cards, Unjumble, Find the match, Listen and choose. Sets come from the open lessons (core units);
+   other blocks can add sets with Z60.extra.push(function(){ return [set,…] }).  set = {id,t,en,words:[{vi,en,ex,exen}],sents:[{vi,en}]}
+   Best scores: S.set.g60[setId+':'+game] = {best (percent), n (times played), t}. ===== */
+var Z60={extra:[],sel:null,byK:{}};
+function z60Has(vi){ try{ return !!Z12.art[String(vi||'').normalize('NFC')] }catch(e){ return false } }
+function z60En(en){ en=String(en||'').split(';')[0].trim(); return en.length>34?en.slice(0,32)+'…':en }
+function z60FromUnits(us){ var W=[], seen={}, X=[], ss={};
+  function add(vi,en){ if(!vi||ss[vi]) return; var n=vi.trim().split(/\s+/).length; if(n<3||n>8) return; ss[vi]=1; X.push({vi:vi,en:en||''}) }
+  us.forEach(function(u){ (u.w||[]).forEach(function(w){ var k=String(w[0]).toLowerCase(); if(seen[k]) return; seen[k]=1; W.push({vi:w[0],en:w[1],ex:w[2]||'',exen:w[3]||''}) });
+    (u.ex||[]).forEach(function(e){ add(e[0],e[1]) }); (u.w||[]).forEach(function(w){ if(w[2]) add(w[2],w[3]) }) });
+  return {words:W,sents:X} }
+function z60Sets(){ var out=[], n=0; try{ n=z27N() }catch(e){} if(!Z27||!Z27.units) return out; n=Math.max(n,1);
+  try{ if(z53On()){ var cnt={}; z53Ls().forEach(function(L){ cnt[L.l.lv]=(cnt[L.l.lv]||0)+1; if(L.from>=n) return; var d=z60FromUnits(Z27.units.slice(L.from,Math.min(L.to+1,n))); if(d.words.length<4) return;
+      out.push({id:'L'+L.l.id,t:'Bài '+cnt[L.l.lv],en:z53Nm(L.l.lv)+' · '+(L.l.en||L.l.t),lesson:L.l.id,words:d.words,sents:d.sents}) }) } }catch(e){ out=[] }
+  if(!out.length){ for(var i=0;i<n;i+=3){ var d=z60FromUnits(Z27.units.slice(i,Math.min(i+3,n))); if(d.words.length>=4) out.push({id:'U'+i,t:'Units '+(i+1)+'–'+Math.min(i+3,n),en:'',words:d.words,sents:d.sents}) } }
+  if(out.length>1){ var all=z60FromUnits(Z27.units.slice(0,n)); out.push({id:'all',t:'Tất cả',en:'Everything so far',words:all.words,sents:all.sents}) }
+  Z60.extra.forEach(function(f){ try{ (f()||[]).forEach(function(s){ out.push(s) }) }catch(e){} });
+  return out }
+function z60Default(sets){ try{ var c=z53Cur(); if(c) for(var i=0;i<sets.length;i++) if(sets[i].lesson===c.l.id) return sets[i] }catch(e){} return sets[0] }
+function z60Best(set,g){ var o=(S.set.g60||{})[set.id+':'+g.k]; return o&&o.n?o:null }
+var Z60G=[
+  {k:'match',t:'Match up',vi:'Nối cặp',d:'Tap a word, then its meaning.',c:'#2F7BF6',need:'words',ic:'<path d="M6 12 h12 M6 24 h12 M6 36 h12 M30 12 h12 M30 24 h12 M30 36 h12"/><path d="M18 12 C24 12 24 36 30 36 M18 36 C24 36 24 24 30 24 M18 24 C24 24 24 12 30 12" stroke-width="2"/>'},
+  {k:'flash',t:'Flash cards',vi:'Thẻ',d:'See it, say it, turn it over.',c:'#F0527A',need:'words',ic:'<rect x="6" y="12" width="26" height="20" rx="4"/><path d="M14 38 h24 a4 4 0 0 0 4 -4 V18"/><path d="M13 22 h12"/>'},
+  {k:'unj',t:'Unjumble',vi:'Xếp câu',d:'Put the words back in order.',c:'#7C5CFC',need:'sents',ic:'<rect x="4" y="18" width="11" height="12" rx="3"/><rect x="18.500" y="18" width="11" height="12" rx="3"/><rect x="33" y="18" width="11" height="12" rx="3"/><path d="M12 10 q12 -8 24 0 M36 10 l-1 -5 M36 10 l-5 1"/>'},
+  {k:'find',t:'Find the match',vi:'Tìm từ',d:'Tap the right word until none are left.',c:'#12A26E',need:'words',ic:'<circle cx="21" cy="21" r="12"/><path d="M30 30 L42 42"/><path d="M16 21 l4 4 l7 -8"/>'},
+  {k:'listen',t:'Listen and choose',vi:'Nghe và chọn',d:'No text. Hear it, pick what it means.',c:'#0FA8A1',need:'words',ic:'<path d="M8 28 V24 a16 16 0 0 1 32 0 v4"/><rect x="5" y="27" width="9" height="14" rx="4"/><rect x="34" y="27" width="9" height="14" rx="4"/>'} ];
+Z60G.forEach(function(g){ Z60.byK[g.k]=g });
+function z60Icon(g){ return '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+g.ic+'</svg>' }
+function z60Menu(setId){ var body=zOpen(), sets=z60Sets();
+  body.appendChild(zTop('Trò chơi · games',null,null)); body.classList.add('z60b');
+  if(!sets.length){ body.appendChild(h('div',{class:'panel'},[h('p',{text:'Finish your first unit and the games open with its words.'}),h('button',{class:'btn primary wide',text:'OK',onclick:closeSheet})])); return }
+  var cur=sets.filter(function(s){ return s.id===(setId||Z60.sel) })[0]||z60Default(sets); Z60.sel=cur.id;
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Pick a game'}),h('p',{class:'muted',text:'Same words, different games. Choose the words first, then how to play.'})]));
+  var chips=h('div',{class:'z60sets'}); sets.forEach(function(s){ chips.appendChild(h('button',{class:'z60set','aria-pressed':String(s===cur),onclick:function(){ z60Menu(s.id) }},[h('b',{text:s.t}),h('span',{text:s.en||''}),h('small',{text:s.words.length+' words'+(s.sents.length?' · '+s.sents.length+' sentences':'')})])) });
+  body.appendChild(chips); setTimeout(function(){ try{ var on=chips.querySelector('[aria-pressed="true"]'); if(on) chips.scrollLeft=Math.max(0,on.offsetLeft-16) }catch(e){} },0);
+  var grid=h('div',{class:'z60grid'});
+  Z60G.forEach(function(g){ var ok=(g.need==='sents'?cur.sents.length>=3:cur.words.length>=4), b=z60Best(cur,g);
+    var el=h('button',{class:'z60g',disabled:!ok,onclick:function(){ z60Play(g.k,cur) }},[h('div',{class:'ic',style:'background:'+g.c,html:z60Icon(g)}),h('div',{class:'tx'},[h('b',{text:g.t}),h('i',{text:g.vi}),h('span',{text:ok?g.d:'Not enough sentences in this set yet.'})])]);
+    if(b) el.appendChild(h('em',{text:'Best '+b.best+'%'})); grid.appendChild(el) });
+  body.appendChild(grid) }
+function z60Play(k,set){ var g=Z60.byK[k]; ({match:z60Match,flash:z60Flash,unj:z60Unj,find:z60Find,listen:z60Listen})[k](g,set) }
+function z60Shell(g,set,total){ var body=zOpen(), tok=Z.tok, t0=Date.now(), st={ok:0,miss:0,done:0,total:total}; body.classList.add('z60b');
+  var bar=h('i',{style:'width:0%'}), clock=h('span',{class:'z60clk',text:'0:00'});
+  body.appendChild(h('div',{class:'sess-top'},[h('button',{class:'x',text:'‹ Games',onclick:function(){ z60Menu(set.id) }}),h('div',{class:'bar'},[bar]),clock,h('button',{class:'x',text:'Close',onclick:closeSheet})]));
+  body.appendChild(h('div',{class:'z60hd'},[h('span',{class:'z60pill',style:'background:'+g.c,text:g.t}),h('span',{class:'lbl',text:set.t+(set.en?' · '+set.en:'')})]));
+  var stage=h('div',{class:'z60stage'}); body.appendChild(stage);
+  function alive(){ return tok===Z.tok&&document.body.contains(stage)&&!$('#sheet').hidden }
+  var iv=setInterval(function(){ if(!alive()){ clearInterval(iv); return } var s=Math.floor((Date.now()-t0)/1000); clock.textContent=Math.floor(s/60)+':'+('0'+s%60).slice(-2) },500);
+  return {body:body,stage:stage,st:st,alive:alive,prog:function(){ bar.style.width=Math.round(st.done/Math.max(1,st.total)*100)+'%' },finish:function(){ clearInterval(iv); z60End(g,set,st,Math.floor((Date.now()-t0)/1000)) }} }
+function z60End(g,set,st,secs){ var body=zOpen(); body.classList.add('z60b'); var pct=st.total?Math.round(st.ok/st.total*100):0, stars=pct>=90?3:(pct>=65?2:1);
+  var G=S.set.g60||(S.set.g60={}), k=set.id+':'+g.k, o=G[k]||{}, was=o.best; o.n=(o.n||0)+1; if(!(o.best>=pct)) o.best=pct; o.t=Date.now(); G[k]=o; save();
+  body.appendChild(zTop(g.t,1,null));
+  var sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.15)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
+  body.appendChild(h('div',{class:'z60end'},[h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:st.ok+' / '+st.total}),h('p',{class:'muted',text:(pct>=90?'Xuất sắc! Excellent.':(pct>=65?'Tốt lắm! Well done.':'Keep going. Play it again and it sticks.'))+'  ·  '+Math.floor(secs/60)+':'+('0'+secs%60).slice(-2)}),
+    (was!=null&&pct>was)?h('p',{class:'z60new',text:'New best: '+pct+'% (was '+was+'%)'}):null]));
+  body.appendChild(h('button',{class:'btn primary wide',text:'Chơi lại · play again',onclick:function(){ z60Play(g.k,set) }}));
+  body.appendChild(h('p',{class:'lbl',style:'margin:10px 2px 0',text:'Same words, another game'}));
+  var row=h('div',{class:'z60sw'}); Z60G.forEach(function(x){ if(x===g) return; var ok=(x.need==='sents'?set.sents.length>=3:set.words.length>=4); if(!ok) return; row.appendChild(h('button',{class:'z60swb',onclick:function(){ z60Play(x.k,set) }},[h('div',{class:'ic',style:'background:'+x.c,html:z60Icon(x)}),h('span',{text:x.t})])) }); body.appendChild(row);
+  body.appendChild(h('button',{class:'btn wide',text:'All games',onclick:function(){ z60Menu(set.id) }})) }
+function z60Shake(el){ el.classList.add('no'); setTimeout(function(){ el.classList.remove('no') },450) }
+
+/* Match up: 6 pairs a round, up to 3 rounds. Left = Vietnamese (plays), right = meaning (with its picture when there is one). */
+function z60Match(g,set){ var pool=shuffle(set.words).slice(0,18), rounds=[]; while(pool.length>=4&&rounds.length<3) rounds.push(pool.splice(0,6));
+  var total=0; rounds.forEach(function(r){ total+=r.length }); var sh=z60Shell(g,set,total), st=sh.st, ri=0;
+  function round(){ var R=rounds[ri], selL=null, selR=null, left=R.length, missed={}; sh.stage.innerHTML='';
+    sh.stage.appendChild(h('p',{class:'z60tip',text:'Tap a word, then its meaning.'+(rounds.length>1?'  Round '+(ri+1)+' of '+rounds.length:'')}));
+    var L=h('div',{class:'z60col'}), Rc=h('div',{class:'z60col'});
+    function check(){ if(!selL||!selR) return; var a=selL, b=selR; selL=selR=null; a.el.classList.remove('sel'); b.el.classList.remove('sel');
+      if(a.w===b.w){ [a.el,b.el].forEach(function(e){ e.classList.add('ok'); e.disabled=true }); if(!missed[a.w.vi]) st.ok++; st.done++; sh.prog(); left--;
+        if(!left) setTimeout(function(){ if(!sh.alive()) return; ri++; if(ri<rounds.length) round(); else sh.finish() },750) }
+      else { missed[a.w.vi]=1; missed[b.w.vi]=1; st.miss++; z60Shake(a.el); z60Shake(b.el) } }
+    shuffle(R).forEach(function(w){ var b=h('button',{class:'z60tile l'},[h('b',{text:w.vi})]); b.onclick=function(){ zSay(w.vi); if(selL) selL.el.classList.remove('sel'); selL={w:w,el:b}; b.classList.add('sel'); check() }; L.appendChild(b) });
+    shuffle(R).forEach(function(w){ var b=h('button',{class:'z60tile r'}); if(z60Has(w.vi)) b.appendChild(z12Pic(w.vi,'xs')); b.appendChild(h('span',{text:z60En(w.en)})); b.onclick=function(){ if(selR) selR.el.classList.remove('sel'); selR={w:w,el:b}; b.classList.add('sel'); check() }; Rc.appendChild(b) });
+    sh.stage.appendChild(h('div',{class:'z60cols'},[L,Rc])) }
+  round() }
+
+/* Flash cards: picture and word, hear it, turn it over for the meaning and the word in a sentence. "Again" brings a card back once. */
+function z60Flash(g,set){ var q=shuffle(set.words).slice(0,12), sh=z60Shell(g,set,q.length), st=sh.st, again={};
+  function show(){ if(!q.length){ sh.finish(); return } var w=q[0], flipped=false; sh.stage.innerHTML='';
+    var front=h('div',{class:'z60face f'},[z60Has(w.vi)?z12Pic(w.vi,'sm'):null,h('div',{class:'z60vi',text:w.vi}),h('small',{text:'Say it out loud, then tap to turn over'})]);
+    var back=h('div',{class:'z60face b'},[h('div',{class:'z60en',text:w.en}),w.ex?h('div',{class:'z60ex'},[h('b',{text:w.ex}),h('span',{text:w.exen||''})]):null]);
+    var card=h('button',{class:'z60card',onclick:function(){ flipped=!flipped; card.classList.toggle('flip',flipped); btns.hidden=!flipped; if(flipped&&w.ex) zSay(w.ex); else zSay(w.vi) }},[front,back]);
+    var hear=h('button',{class:'z60hear',html:PLAY_ICON+'<span>Nghe · hear it</span>',onclick:function(){ zSay(flipped&&w.ex?w.ex:w.vi) }});
+    var btns=h('div',{class:'z60yn',hidden:true},[h('button',{class:'z60n',text:'Again',onclick:function(){ if(!again[w.vi]){ again[w.vi]=1; q.push(q.shift()) } else { st.done++; q.shift() } sh.prog(); show() }}),h('button',{class:'z60y',text:'Got it',onclick:function(){ if(!again[w.vi]) st.ok++; st.done++; q.shift(); sh.prog(); show() }})]);
+    sh.stage.appendChild(card); sh.stage.appendChild(hear); sh.stage.appendChild(btns); zSay(w.vi) }
+  show() }
+
+/* Unjumble: the English is the clue, the tiles are the Vietnamese words. Tap to place, tap again to take back. */
+function z60Unj(g,set){ var q=shuffle(set.sents).slice(0,8), sh=z60Shell(g,set,q.length), st=sh.st, i=0;
+  function show(){ if(i>=q.length){ sh.finish(); return } var s=q[i], m=s.vi.trim().match(/^(.*?)([.?!…]*)$/), words=m[1].split(/\s+/), end=m[2]||'', missed=0, solved=false; sh.stage.innerHTML='';
+    var ord=words.map(function(_,k){ return k }), tries=0; do{ ord=shuffle(ord); tries++ }while(tries<8&&words.length>1&&ord.every(function(v,k){ return v===k }));
+    var line=h('div',{class:'z60line'}), tray=h('div',{class:'z60tray'}), endEl=h('span',{class:'z60endp',text:end});
+    var chk=h('button',{class:'btn primary wide',text:'Kiểm tra · check',disabled:true}), msg=h('p',{class:'z60msg'});
+    function upd(){ chk.disabled=solved||tray.children.length>0 }
+    ord.forEach(function(k){ var t=h('button',{class:'z60w',text:words[k]}); t.onclick=function(){ if(solved) return; if(t.parentNode===tray) line.insertBefore(t,endEl); else tray.appendChild(t); msg.textContent=''; upd() }; tray.appendChild(t) });
+    line.appendChild(endEl);
+    function win(shown){ solved=true; line.classList.add('ok'); if(!missed&&!shown) st.ok++; st.done++; sh.prog(); zSay(s.vi); chk.textContent=i+1<q.length?'Tiếp · next':'Xong · finish'; chk.disabled=false; chk.onclick=function(){ i++; show() }; msg.textContent=shown?'This is the order. Say it out loud.':'Đúng rồi! Say it out loud.' }
+    chk.onclick=function(){ var got=[].map.call(line.querySelectorAll('.z60w'),function(x){ return x.textContent }); if(got.join(' ').toLowerCase()===words.join(' ').toLowerCase()){ win(false); return }
+      missed++; st.miss++; [].forEach.call(line.querySelectorAll('.z60w'),function(x,k){ if(x.textContent.toLowerCase()!==words[k].toLowerCase()) z60Shake(x) }); msg.textContent='Not yet. The red ones are in the wrong place.';
+      if(missed>=2&&!sh.stage.querySelector('.z60show')) sh.stage.appendChild(h('button',{class:'btn wide z60show',text:'Show me the answer',onclick:function(){ [].slice.call(sh.stage.querySelectorAll('.z60w')).forEach(function(x){ x.remove() }); words.forEach(function(w){ line.insertBefore(h('button',{class:'z60w',text:w}),endEl) }); var b=sh.stage.querySelector('.z60show'); if(b) b.remove(); win(true) }})) };
+    sh.stage.appendChild(h('div',{class:'z60clue'},[h('div',{},[h('span',{class:'lbl',text:'Say this in Vietnamese'}),h('b',{text:s.en||'Put the words in order'})]),h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(s.vi) }})]));
+    sh.stage.appendChild(line); sh.stage.appendChild(tray); sh.stage.appendChild(msg); sh.stage.appendChild(chk) }
+  show() }
+
+/* Find the match: eight words on the table. The meaning shows on top; tap its word and it leaves. */
+function z60Find(g,set){ var W=shuffle(set.words).slice(0,8), q=shuffle(W), sh=z60Shell(g,set,W.length), st=sh.st, missed=false, busy=false;
+  var clue=h('div',{class:'z60find'}), grid=h('div',{class:'z60fg'});
+  function ask(){ if(!q.length){ sh.finish(); return } var w=q[0]; missed=false; busy=false; clue.innerHTML=''; if(z60Has(w.vi)) clue.appendChild(z12Pic(w.vi,'xs')); clue.appendChild(h('div',{},[h('span',{class:'lbl',text:'Find the word for'}),h('b',{text:z60En(w.en)})])) }
+  W.forEach(function(w){ var b=h('button',{class:'z60tile f'},[h('b',{text:w.vi})]); b.onclick=function(){ if(busy||b.classList.contains('gone')) return; if(w===q[0]){ busy=true; b.classList.add('ok'); zSay(w.vi); if(!missed) st.ok++; st.done++; sh.prog(); q.shift(); setTimeout(function(){ if(!sh.alive()) return; b.classList.add('gone'); ask() },650) } else { missed=true; st.miss++; z60Shake(b) } }; grid.appendChild(b) });
+  sh.stage.appendChild(clue); sh.stage.appendChild(grid); ask() }
+
+/* Listen and choose: no text. Words first, then whole sentences. */
+function z60Listen(g,set){ var ws=shuffle(set.words).slice(0,set.sents.length>=4?6:10).map(function(w){ return {vi:w.vi,en:z60En(w.en),k:'w'} }), ss=set.sents.length>=4?shuffle(set.sents.filter(function(s){ return s.en })).slice(0,4).map(function(s){ return {vi:s.vi,en:s.en,k:'s'} }):[];
+  var q=ws.concat(ss), sh=z60Shell(g,set,q.length), st=sh.st, i=0;
+  function show(){ if(i>=q.length){ sh.finish(); return } var it=q[i], pool=(it.k==='w'?set.words.map(function(w){ return {vi:w.vi,en:z60En(w.en)} }):set.sents.filter(function(s){ return s.en })).filter(function(x){ return x.vi!==it.vi&&x.en!==it.en });
+    var opts=shuffle([it].concat(shuffle(pool).slice(0,it.k==='w'?3:2))), done=false; sh.stage.innerHTML=''; sh.stage.setAttribute('data-a',it.en);
+    var big=h('button',{class:'z60spk','aria-label':'Play',html:'<svg viewBox="0 0 48 48" width="54" height="54"><path d="M8 18 h8 l11 -9 v30 l-11 -9 h-8 Z" fill="#fff"/><path d="M33 17 q6 7 0 14 M38 11 q11 13 0 26" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>',onclick:function(){ zSay(it.vi) }});
+    var reveal=h('div',{class:'z60rev'}), nextB=h('button',{class:'btn primary wide',text:i+1<q.length?'Tiếp · next':'Xong · finish',hidden:true,onclick:function(){ i++; show() }});
+    var ol=h('div',{class:'z60opts'+(it.k==='w'?' two':'')});
+    opts.forEach(function(o){ var b=h('button',{class:'z60opt'}); if(it.k==='w'&&z60Has(o.vi)) b.appendChild(z12Pic(o.vi,'xs')); b.appendChild(h('span',{text:o.en})); b.onclick=function(){ if(done) return; done=true; var ok=o===it; b.classList.add(ok?'ok':'bad'); if(ok) st.ok++; else { st.miss++; [].forEach.call(ol.children,function(c,k){ if(opts[k]===it) c.classList.add('ok') }) }
+        st.done++; sh.prog(); reveal.appendChild(h('b',{text:it.vi})); reveal.appendChild(h('span',{text:it.en})); nextB.hidden=false; if(!ok) zSay(it.vi) }; ol.appendChild(b) });
+    sh.stage.appendChild(h('div',{class:'z60lis'},[big,h('span',{class:'lbl',text:it.k==='w'?'Nghe · which word is it?':'Nghe · what does it mean?'})])); sh.stage.appendChild(ol); sh.stage.appendChild(reveal); sh.stage.appendChild(nextB);
+    setTimeout(function(){ if(sh.alive()&&!done) zSay(it.vi) },250) }
+  show() }
+Z59.act.gam=function(){ z60Menu() };
+
+/* Listening corner (the Nghe tile): everything that is ears only, in one place */
+function z60Ears(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Nghe · listening',null,null));
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Just listen'}),h('p',{class:'muted',text:'Ears first. The more you hear, the easier everything else gets.'})]));
+  var grid=h('div',{class:'z60grid'}), sets=z60Sets(), cur=sets.length?z60Default(sets):null, all=sets.filter(function(s){ return s.id==='all' })[0];
+  function card(c,t,vi,d,ic,fn){ grid.appendChild(h('button',{class:'z60g',onclick:fn},[h('div',{class:'ic',style:'background:'+c,html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+ic+'</svg>'}),h('div',{class:'tx'},[h('b',{text:t}),h('i',{text:vi}),h('span',{text:d})])])) }
+  if(cur) card('#0FA8A1','Listen and choose','Nghe và chọn','This lesson: hear it, pick the meaning.',Z60.byK.listen.ic,function(){ z60Play('listen',cur) });
+  if(all) card('#2F7BF6','Everything so far','Nghe lại hết','The same game with all the words you have met.',Z60.byK.listen.ic,function(){ z60Play('listen',all) });
+  card('#F0527A','Story by ear','Nghe truyện','A whole story with no text, then questions.','<path d="M24 12 q-8 -5 -18 -3 V37 q10 -2 18 3 q8 -5 18 -3 V9 q-10 -2 -18 3 Z M24 12 V40"/>',function(){ z13Story() });
+  card('#7C5CFC','Slow, slow, normal','Lặp lại','Hear a sentence three times and say it back.','<path d="M10 24 a14 14 0 1 1 5 10.500 M10 36 v-9 h9"/>',function(){ z52Reps() });
+  card('#FF8A1F','Hear it, pick the meaning','Nghe hiểu','Whole sentences from units you have finished.','<path d="M6 14 h36 M6 24 h24 M6 34 h30"/>',function(){ z13Listen() });
+  card('#18203A','Hands-free playlist','Nghe thôi','Sentences in a row. For walking or the gym.','<path d="M16 10 L38 24 L16 38 Z"/>',function(){ z12Playlist() });
+  body.appendChild(grid) }
+Z59.act.lis=function(){ z60Ears() };
