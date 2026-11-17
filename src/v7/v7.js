@@ -2896,10 +2896,11 @@ function z74Saigon(bid){ z74SgLoad(function(){ var body=zOpen(), D=Z74.sg.boards
   body.appendChild(h('p',{class:'muted',text:B.intro||''})); var list=h('div',{class:'z74sgl'});
   B.items.forEach(function(it){ var more=h('div',{class:'z74sgx',hidden:true}), pic=z74SgPic(it), row=h('div',{class:'z74sgi'+(st.seen[it[0]]?' seen':''),'data-k':it[0]});
     var head=h('button',{class:'z74sgh',onclick:function(){ var was=more.hidden; [].forEach.call(list.querySelectorAll('.z74sgx'),function(x){ x.hidden=true }); more.hidden=!was; if(!st.seen[it[0]]){ st.seen[it[0]]=1; save(); row.classList.add('seen') } zSay(it[0]) }},[pic?h('span',{class:'pi',html:pic}):h('span',{class:'z74plate '+it[5],text:it[0]}),h('div',{},[pic?h('b',{text:it[0]}):null,h('span',{text:it[1]})]),h('span',{class:'pl',html:PLAY_ICON})]);
+    try{ var ph=z75Photo(it[6]); if(ph){ more.appendChild(ph); row.classList.add('hasph'); head.appendChild(h('span',{class:'z75cam',title:'Real photo',html:z70Slug('camera')})) } }catch(e){}
     if(it[2]) more.appendChild(h('p',{class:'small',text:it[2]}));
     if(it[3]) more.appendChild(h('button',{class:'z73ln',onclick:function(){ zSay(it[3]) }},[h('span',{class:'pl',html:PLAY_ICON}),h('div',{},[h('b',{text:it[3]}),h('small',{text:it[4]||''})])]));
     more.appendChild(z74SaveBtn(it[0],it[1],it[3],it[4])); row.appendChild(head); row.appendChild(more); list.appendChild(row) });
-  body.appendChild(list);
+  body.appendChild(list); try{ var cr=z75Credits(B); if(cr) body.appendChild(cr) }catch(e){}
   body.appendChild(h('button',{class:'btn primary wide',text:'Chơi với các từ này · play games with these words',onclick:function(){ z60Menu('G'+B.id) }}));
   body.appendChild(z74Own('Saigon: '+B.t,'Where did you see or hear one of these today? Write one sentence. Thầy Tâm will see it.')) }) }
 try{ Z60.extra.push(function(){ return ((Z74.sg||{}).boards||[]).map(function(b){ return {id:'G'+b.id,t:b.t,en:'Sài Gòn · '+b.en,words:b.items.map(function(it){ return {vi:it[0],en:it[1],ex:it[3]||'',exen:it[4]||'',pic:z74SgPic(it)||undefined} }),sents:b.items.filter(function(it){ return it[3]&&it[3].split(/\s+/).length>=3 }).map(function(it){ return {vi:it[3],en:it[4]} })} }) }) }catch(e){}
@@ -2949,3 +2950,13 @@ function z74Find(){ var body=zOpen(); body.classList.add('z60b'); body.appendChi
 var z59Hub74=z59Hub; z59Hub=function(){ z59Hub74(); try{ var m=document.querySelector('#z-hub .z59more'); if(!m) return; m.innerHTML=''; m.classList.add('z74strip'); var rv=S.set.rv74||{}, due=!rv.t||(Date.now()-rv.t)>6*864e5;
     [['rev','Ôn tập',due?'Review · due':'Review quiz',function(){ z74Review() },'clipboard'],['sg','Sài Gòn','Real life',function(){ z74Saigon() },'cityscape'],['fc','Thẻ','Cards',function(){ location.hash='fc' },'card-index'],['add','+ Từ','Add my word',function(){ z13AddWord() },'pencil'],['all','Tất cả','Find anything',function(){ z74Find() },'magnifying-glass-tilted-left']].forEach(function(x){ m.appendChild(h('button',{class:'z74b z74-'+x[0]+(x[0]==='rev'&&due?' due':''),onclick:x[3]},[h('span',{class:'pi',html:z70Slug(x[4])}),h('b',{text:x[1]}),h('small',{text:x[2]})])) }) }catch(e){} };
 var z7RenderMore74=z7RenderMore; z7RenderMore=function(){ z7RenderMore74(); try{ var el=$('#z-more'); if(!el||el.querySelector('.z74q')) return; var box=h('div',{class:'z74mf'}); z74FindInto(box,false); box.appendChild(h('button',{class:'chip',text:'Xem tất cả · see everything in one list',onclick:function(){ z74Find() }})); el.insertBefore(box,el.firstChild) }catch(e){} };
+
+/* ===== 75 · real photos on the Saigon boards =====
+   An item in data/saigon.json may carry a 7th field {f: file name on Wikimedia Commons, by: author, lic: licence}. The photo is
+   loaded from Commons (not copied into the app), with the author, the licence and a link to its page under it. If it does not load,
+   the photo block removes itself and the item looks as before. */
+function z75Url(f,w){ return 'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(f)+'?width='+(w||960) }
+function z75Page(f){ return 'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(String(f).replace(/ /g,'_')) }
+function z75Photo(p){ if(!p||!p.f) return null; var fig=h('figure',{class:'z75fig'}), img=h('img',{src:z75Url(p.f,960),alt:'',loading:'lazy',referrerpolicy:'no-referrer'}); img.onerror=function(){ try{ fig.remove() }catch(e){} }; fig.appendChild(img);
+  fig.appendChild(h('figcaption',{},[h('a',{href:z75Page(p.f),target:'_blank',rel:'noopener',text:'Ảnh thật · real photo: '+p.by+' · '+p.lic+' · Wikimedia Commons'})])); return fig }
+function z75Credits(B){ var L=B.items.filter(function(it){ return it[6]&&it[6].f }); if(!L.length) return null; var d=h('details',{class:'z74list'},[h('summary',{text:'Ảnh · photo credits ('+L.length+')'})]); L.forEach(function(it){ d.appendChild(h('div',{class:'z74row'},[h('div',{},[h('b',{text:it[0]}),h('span',{text:it[6].by+' · '+it[6].lic+' · Wikimedia Commons'})]),h('a',{class:'chip',href:z75Page(it[6].f),target:'_blank',rel:'noopener',text:'Source'})])) }); return d }

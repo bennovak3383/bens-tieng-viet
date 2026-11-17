@@ -678,3 +678,19 @@ IDEAS, not built (Ben: "add to ideas"):
   - Count real progress: things said out loud and checked by the teacher, instead of taps and stars.
   - Record the own sentence as audio and send it with the text.
 NOT done: Google sign-in. Not checked: a real iPhone, sound.
+
+VERSION 75 — real photos on the Saigon boards, first three (Ben, 18 Nov: "Go ahead with the real Saigon signs and photos if you can")
+What is built: any item in data/saigon.json can carry a 7th field {f, by, lic}: a photo's file name on Wikimedia Commons, its author
+and its licence. z75Photo shows it when the item is opened, with "real photo: author · licence · Wikimedia Commons" under it as a
+link to the photo's page; z75Credits lists them at the bottom of the board; rows with a photo carry a small camera.
+The photo is LOADED FROM Wikimedia Commons (Special:FilePath/<name>?width=960), not copied into the app. Reason: the build machine
+cannot reach photo sites, so the files could not be downloaded and checked here. If a photo does not load, its block removes itself.
+Photos so far (licences read on each photo's Commons page, 18 Nov 2026):
+  Chợ Bến Thành      ← "Ben Thanh Market (36350099003).jpg", Terrazzo, CC BY 2.0
+  Nhà thờ Đức Bà     ← "Saigon Notre-Dame Cathedral (14056336858).jpg", son do (DoSon Photography), CC BY 2.0
+  Bưu điện Thành phố ← "Saigon Central Post Office.JPG", Prenn, CC BY-SA 3.0 (the inside of the building)
+To add one: find a photo on commons.wikimedia.org with a CC BY, CC BY-SA or public-domain licence, and add {f, by, lic} to the item.
+NOT done: photos of real signs and menus. Free photo libraries have few good ones; the best are photos Ben or Thầy Tâm take on the
+street. Those would be copied into the app (img/sg/) and need no credit line.
+Tests: src/tests/t75.py (new). It checks the address, the credit and the fallback. It cannot check that the photos display, because
+the lab has no route to Wikimedia: that needs a look on a real phone.

@@ -1,5 +1,5 @@
 {
-"v": 1,
+"v": 2,
 "note": "Saigon in real life: signs, menu words, places and the Saigon way of saying things. Written by Claude from general knowledge, with a few facts checked on the web (18 Nov 2026). Not checked by a speaker yet.",
 "boards": [
 {
@@ -292,7 +292,12 @@
 "The big old market in the centre of the city.",
 "Cho tôi tới Chợ Bến Thành.",
 "Take me to Bến Thành Market, please.",
-"shopping-bags"
+"shopping-bags",
+{
+"f": "Ben Thanh Market (36350099003).jpg",
+"by": "Terrazzo",
+"lic": "CC BY 2.0"
+}
 ],
 [
 "Nhà thờ Đức Bà",
@@ -300,7 +305,12 @@
 "The red-brick cathedral in the centre.",
 "Nhà thờ Đức Bà ở đâu?",
 "Where is Notre-Dame Cathedral?",
-"church"
+"church",
+{
+"f": "Saigon Notre-Dame Cathedral (14056336858).jpg",
+"by": "son do (DoSon Photography)",
+"lic": "CC BY 2.0"
+}
 ],
 [
 "Bưu điện Thành phố",
@@ -308,7 +318,12 @@
 "Next to the cathedral. Built from 1886 to 1891.",
 "Bưu điện Thành phố ở kế bên Nhà thờ Đức Bà.",
 "The Central Post Office is next to the cathedral.",
-"japanese-post-office"
+"japanese-post-office",
+{
+"f": "Saigon Central Post Office.JPG",
+"by": "Prenn",
+"lic": "CC BY-SA 3.0"
+}
 ],
 [
 "Dinh Độc Lập",
@@ -522,5 +537,6 @@
 ]
 ]
 }
-]
+],
+"photos": "Real photos are loaded from Wikimedia Commons (free licences). Each one shows its author and licence and links to its page."
 }
