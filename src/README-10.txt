@@ -532,3 +532,21 @@ line icons (Z59IC) are still there underneath if a drawing fails.
 Tests: src/tests/t68.py (new). t60 and t61 still pass (t61's "English" click now finds the chip by name, because "hide text" is
 the first chip). Looked at by eye in the lab browser at phone size: hub, all nine scenes, the three check questions, four games,
 the story hidden and shown. Not checked: a real iPhone, sound. The guide pictures (img/guide) are older than this look.
+
+VERSION 69 — art lift, pass 1 (Ben, 17 Nov: "go through the whole app and take the level of the graphics and pictures up a
+whole 2-3 levels. Feels cheap. Look at the Viet app I showed you.")
+The reference is the kids' Vietnamese alphabet app he linked in the "new look" chat. It could not be opened this time (the page
+needed an approval and Ben was away), so this pass is from general knowledge of that glossy, shaded cartoon style.
+People (z63Person, same "look" data, same size and anchors): light from the top left and shade on the right: bigger eyes with
+whites, iris and two glints; eyelids and fuller brows; a smile with teeth for everyone except the grandparents; cheeks, ear and
+jaw shade; a shadow under the fringe and under the chin; shine and shade on hair, hats, coats, ties and aprons; a neckline with
+trim. No SVG gradients on purpose (they depend on ids, and an id inside a hidden page stops working in some browsers).
+Because every screen uses z63Person, this changes Home tiles, scenes, scene games and the sentence builder at once.
+Home tiles: light-to-shade colour, a gloss on the top half, a soft coloured shadow underneath, drawings 112 px wide.
+Page: a soft blue glow at the top instead of flat grey; deeper shadows on panels, the scene picture, answer buttons and game
+picture tiles. All in the bright look only.
+NOT done in this pass (still the older style): Thầy Tâm on the Home welcome (outlined, a different hand), the ~100 word-card
+drawings used in lesson games and cards (Z12.art), scene furniture and rooms, the line icons, the guide pictures.
+Honest limit: code-drawn pictures can go up about one level per pass. The level of that app (painted artwork) needs real
+illustration files: generated or bought, then placed in img/. That is a decision for Ben.
+Tests: t68, t60, t61 pass. Looked at by eye at phone size. Not checked: a real iPhone.

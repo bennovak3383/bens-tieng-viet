@@ -786,3 +786,20 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z68px svg{width:100%;height:100%;display:block}.z68px{padding:3px;box-sizing:border-box;overflow:hidden}
 .z59t .ic.art{width:84px;background:transparent;margin:-6px 0 -8px -6px;align-items:flex-end}.z59t .ic.art svg{width:84px;height:58px}
 @media (prefers-reduced-motion:reduce){ .z63b.ask .z63bi{animation:none;transform:scale(1.4)} }
+
+/* 69 · art lift, pass 1 (bright look): Home tiles with light, shade and a gloss; softer page; fuller cards */
+:root[data-look="bright"] body{background:radial-gradient(1200px 520px at 50% -140px,#DCE9FF 0,rgba(220,233,255,0) 70%),linear-gradient(180deg,#F1F5FC 0,#F6F2FB 100%)!important;background-attachment:fixed!important}
+:root[data-look="bright"] #sheet{background:linear-gradient(180deg,#F1F5FC 0,#F6F2FB 100%)}
+:root[data-look="bright"] .panel{border-color:#E3E9F4;box-shadow:0 1px 0 #fff inset,0 10px 28px rgba(40,60,120,.09),0 2px 4px rgba(40,60,120,.05)}
+.z59t{min-height:172px;border-radius:28px;background:linear-gradient(150deg,rgba(255,255,255,.34) 0,rgba(255,255,255,0) 46%,rgba(0,0,30,.16) 100%),var(--c);box-shadow:0 7px 0 var(--sh),0 16px 26px -8px var(--sh);text-shadow:0 1px 2px rgba(0,0,30,.16)}
+.z59t:active{transform:translateY(5px);box-shadow:0 2px 0 var(--sh),0 6px 12px -6px var(--sh)}
+.z59t:before{content:"";position:absolute;left:0;right:0;top:0;height:54%;border-radius:28px 28px 60% 60%/28px 28px 22% 22%;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));pointer-events:none}
+.z59t:after{right:-30px;bottom:-40px;width:120px;height:120px;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.26),rgba(255,255,255,.08) 70%)}
+.z59t .ic.art{position:relative;width:112px;height:78px;margin:-4px 0 -6px -4px;filter:drop-shadow(0 4px 5px rgba(0,0,30,.22))}.z59t .ic.art svg{width:112px;height:78px}
+.z59t b{font-size:21px;letter-spacing:-.01em}.z59t>div:last-child{position:relative}
+.z59hero{background:linear-gradient(160deg,#BBD6FF 0,#DCEBFF 48%,#F8FBFF 100%);box-shadow:0 1px 0 #fff inset,0 14px 30px -10px rgba(47,123,246,.35)}
+.z59hero:before{background:radial-gradient(circle at 40% 40%,#FFF0B8 0,#FFD866 62%,#FFC83D 100%);opacity:.8}
+.z59bub{box-shadow:0 6px 16px rgba(24,32,58,.14),0 1px 0 #fff inset}
+.z63pic{box-shadow:0 1px 0 #fff inset,0 16px 34px -12px rgba(40,60,120,.32)}
+.z63a,.z63o{box-shadow:0 5px 0 var(--line),0 12px 20px -10px rgba(40,60,120,.22)}
+.z60pf{box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 3px 8px rgba(40,60,120,.12)}
