@@ -1,180 +1,209 @@
 {
-"v": 1,
+"v": 2,
 "note": "Sound names (bờ, cờ, …) and example words were chosen for the app and wait for Thầy Tâm's check.",
 "letters": [
 {
 "k": "a",
 "s": "a",
-"w": "áo",
-"en": "shirt"
+"w": "lá",
+"en": "leaf",
+"v": 1
 },
 {
 "k": "ă",
 "s": "ă",
 "w": "ăn",
-"en": "to eat"
+"en": "to eat",
+"v": 1
 },
 {
 "k": "â",
 "s": "â",
-"w": "cây",
-"en": "tree"
+"w": "chân",
+"en": "foot, leg",
+"v": 1
 },
 {
 "k": "b",
 "s": "bờ",
 "w": "bánh mì",
-"en": "bread"
+"en": "bread",
+"v": 0
 },
 {
 "k": "c",
 "s": "cờ",
 "w": "cá",
-"en": "fish"
+"en": "fish",
+"v": 0
 },
 {
 "k": "d",
 "s": "dờ",
 "w": "dép",
-"en": "sandals"
+"en": "sandals",
+"v": 0
 },
 {
 "k": "đ",
 "s": "đờ",
 "w": "đèn",
-"en": "lamp"
+"en": "lamp",
+"v": 0
 },
 {
 "k": "e",
 "s": "e",
-"w": "em",
-"en": "younger brother or sister"
+"w": "xe",
+"en": "vehicle",
+"v": 1
 },
 {
 "k": "ê",
 "s": "ê",
 "w": "ghế",
-"en": "chair"
+"en": "chair",
+"v": 1
 },
 {
 "k": "g",
 "s": "gờ",
-"w": "gió",
-"en": "wind"
+"w": "gà",
+"en": "chicken",
+"v": 0
 },
 {
 "k": "h",
 "s": "hờ",
 "w": "hoa",
-"en": "flower"
+"en": "flower",
+"v": 0
 },
 {
 "k": "i",
 "s": "i",
-"w": "bia",
-"en": "beer"
+"w": "đi",
+"en": "to go",
+"v": 1
 },
 {
 "k": "k",
 "s": "ca",
 "w": "kem",
-"en": "ice cream"
+"en": "ice cream",
+"v": 0
 },
 {
 "k": "l",
 "s": "lờ",
-"w": "lá",
-"en": "leaf"
+"w": "lửa",
+"en": "fire",
+"v": 0
 },
 {
 "k": "m",
 "s": "mờ",
 "w": "mẹ",
-"en": "mother"
+"en": "mother",
+"v": 0
 },
 {
 "k": "n",
 "s": "nờ",
 "w": "nón",
-"en": "hat"
+"en": "hat",
+"v": 0
 },
 {
 "k": "o",
 "s": "o",
 "w": "chó",
-"en": "dog"
+"en": "dog",
+"v": 1
 },
 {
 "k": "ô",
 "s": "ô",
 "w": "cô",
-"en": "aunt; Miss"
+"en": "aunt; Miss",
+"v": 1
 },
 {
 "k": "ơ",
 "s": "ơ",
 "w": "phở",
-"en": "phở"
+"en": "phở",
+"v": 1
 },
 {
 "k": "p",
 "s": "pờ",
 "w": "pin",
-"en": "battery"
+"en": "battery",
+"v": 0
 },
 {
 "k": "q",
 "s": "quờ",
 "w": "quả",
-"en": "fruit"
+"en": "fruit",
+"v": 0
 },
 {
 "k": "r",
 "s": "rờ",
 "w": "rau",
-"en": "vegetables"
+"en": "vegetables",
+"v": 0
 },
 {
 "k": "s",
 "s": "sờ",
 "w": "sách",
-"en": "book"
+"en": "book",
+"v": 0
 },
 {
 "k": "t",
 "s": "tờ",
 "w": "tay",
-"en": "hand"
+"en": "hand",
+"v": 0
 },
 {
 "k": "u",
 "s": "u",
-"w": "mua",
-"en": "to buy"
+"w": "thu",
+"en": "autumn",
+"v": 1
 },
 {
 "k": "ư",
 "s": "ư",
 "w": "thư",
-"en": "letter"
+"en": "letter",
+"v": 1
 },
 {
 "k": "v",
 "s": "vờ",
 "w": "vui",
-"en": "happy"
+"en": "happy",
+"v": 0
 },
 {
 "k": "x",
 "s": "xờ",
-"w": "xe",
-"en": "vehicle"
+"w": "xoài",
+"en": "mango",
+"v": 0
 },
 {
 "k": "y",
 "s": "y",
-"w": "yêu",
-"en": "to love"
+"w": "ly",
+"en": "glass, cup",
+"v": 1
 }
 ],
 "pairs": [

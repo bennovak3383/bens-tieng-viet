@@ -24,8 +24,10 @@ with sync_playwright() as p:
     pg.locator('.z62tabs button').nth(2).click(); pg.wait_for_timeout(300)
     for i in range(10):
         a=pg.locator('.z60stage').get_attribute('data-a')
+        if pg.locator('.z60end').count(): break
         if i==0: pg.locator('.z62t:not([data-k="%s"])'%a).first.click()
-        pg.locator('.z62t[data-k="%s"]'%a).click(); pg.wait_for_timeout(950)
+        pg.locator('.z62t[data-k="%s"]'%a).click(); pg.wait_for_timeout(1800)      # v70: the answer card stays up a moment before the next question
+    pg.wait_for_selector('.z60end',timeout=6000)
     print('test result:',pg.locator('.z60big').inner_text(),'| best:',T("S.set.s62.abc.best")); T("closeSheet()")
     pg.locator('.z59-snd').click(); pg.wait_for_timeout(300)
     for i in range(1,7): 

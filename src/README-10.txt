@@ -550,3 +550,36 @@ drawings used in lesson games and cards (Z12.art), scene furniture and rooms, th
 Honest limit: code-drawn pictures can go up about one level per pass. The level of that app (painted artwork) needs real
 illustration files: generated or bought, then placed in img/. That is a decision for Ben.
 Tests: t68, t60, t61 pass. Looked at by eye at phone size. Not checked: a real iPhone.
+
+VERSION 70 — one picture set through the whole app, the sound test fixed, the teacher page follows (Ben, 18 Nov: "I would like
+everything reworked so it all goes. The alphabet section when you go to the test section is wrong. The teacher app should carry
+through with the student app. Under the sounds section some have pictures and some don't. The photos all still need to be
+updated to better higher level graphics." and "if you can find photos online go ahead and create your own new ones")
+Pictures: the word pictures are now Microsoft's Fluent Emoji, 3D style (open licence, MIT: img/p/LICENSE.txt). They are real
+illustration files, which is what version 69's notes said the next level needed.
+  src/art/pics_map.txt   one line per word:  Vietnamese word | picture name.  Lines starting with "=" are menu-box titles.
+  src/art/pics.py        python3 src/art/pics.py <checkout of github.com/microsoft/fluentui-emoji> .
+                         writes img/p/<name>.webp (160 px, 579 files, 2.6 MB) and data/pics.json {map, emo, tile}.
+                         map = word → picture, emo = emoji → picture (older decks mark cards with an emoji), tile = menu title → picture.
+  block 70 in v7.js      z70Img(vi) gives the picture; z12Pic and z60Has are wrapped, so cards, units, games, sounds, scenes and
+                         the builder all changed at once. People words (anh, chị, mẹ, bác sĩ … 43 of them, Z70L) are drawn with our
+                         own cartoon people (z63Person) so they match the scenes. A word with no new picture keeps its old drawing.
+                         z70Deco puts a picture on every menu box (.gpic / .settile): by emoji, by title, or by a pictured word in
+                         the title; "Nền tảng N" boxes use a word from that unit. It runs after any page change (MutationObserver).
+Coverage, measured: core course words 707 of 878 (1 old drawing, 170 none: grammar words with nothing to draw);
+flashcard decks 1,040 of 1,739; every word on the sound boards; every menu box on Practice, Cards, Questions, Sound lessons, More.
+Sounds: data/sounds.json v2. Each letter's example word now shows that letter clearly (a→lá, â→chân, e→xe, ê→ghế, g→gà, i→đi,
+l→lửa, u→thu, x→xoài, y→ly) and letters carry v:1 for vowels. THE TEST WAS WRONG: it played the example word and offered letters
+that were all inside that word, so several answers were right. Now the question says what to listen for ("Which letter does this
+word start with?", "Which vowel is in this word?", "Which letters does this word start with?", "Which tone?", "Which sound is in
+this word?"), wrong choices are never in the word (checked with the tone marks stripped), and the right answer shows the word,
+its picture and its meaning before the next question. The first question plays inside the tap, for iPhone.
+Recording list (data/voice-lines.json): rebuilt. Same 5,196 lines, same ids, same order; only the English hint on nine letter
+lines changed ("as in lá"). Nothing already recorded is affected.
+Teacher page (teacher.html): same bright look and font as the student app, and a new panel "Luyện tập · practice on their Home
+page" (x70) on each student: games played and best scores, letters heard and sound-test scores, scenes checked, sentences built.
+It reads what the student app already saves (S.set.g60, s62, s63, b64). Nothing new is stored on the server.
+Tests: src/tests/t70.py (new). t61's sound test waits longer because the answer card stays up.
+NOT done: Thầy Tâm on the Home welcome is still the older outlined drawing; scene rooms and furniture are still code-drawn;
+the old Today header (skyline) is unchanged; guide pictures (img/guide) are older than this look; about 170 core words and 700
+flashcard words have no picture. Not checked: a real iPhone, sound. New Vietnamese (the five test questions) is unchecked.

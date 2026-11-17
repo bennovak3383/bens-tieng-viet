@@ -27,7 +27,32 @@ audio{width:100%;height:36px}.tag{font:600 11px ui-monospace,Menlo,monospace;bor
 .btn.del{min-height:34px;padding:4px 12px;font-size:13px;color:var(--bad)}.btn.del.arm{background:var(--bad);color:#fff;border-color:var(--bad)}
 .note{border-left:3px solid var(--accent);padding:2px 0 2px 12px}.err{color:var(--bad)}
 .filters .btn{min-height:34px;padding:4px 12px;font-size:13px}.filters .btn[aria-pressed=true]{background:var(--ink);color:var(--bg)}
-</style></head><body><main id="app"></main>
+
+/* 70: the same bright look as the student app */
+:root{--bg:#F3F6FB;--surface:#FFFFFF;--ink:#18203A;--muted:#5B6584;--line:#DFE6F1;--accent:#2F7BF6;--accent-ink:#FFFFFF;--good:#12A26E;--bad:#E2434B;--warn:#C97A00;color-scheme:light}
+body{font-family:'Nunito','Be Vietnam Pro',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,#DDEBFF 0,#F3F6FB 260px) no-repeat #F3F6FB;min-height:100vh}
+h1,h2{font-weight:800;letter-spacing:-.01em}
+.lbl{font:800 11px/1.2 'Nunito',system-ui,sans-serif;letter-spacing:.08em}
+.panel{border-radius:20px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(24,32,58,.06)}
+.btn{font-weight:800;border-width:1.5px;border-radius:16px}
+.btn.primary{box-shadow:0 4px 0 #1E5BC6}.btn.primary:active{transform:translateY(3px);box-shadow:0 1px 0 #1E5BC6}
+.stu{border-radius:18px;border-width:1.5px;box-shadow:0 4px 0 var(--line)}
+.stat{background:#F7FAFF;border-radius:16px}.stat strong{font-weight:900}
+.dots i.on{background:#12A26E}
+.tag{font:800 11px 'Nunito',system-ui,sans-serif}
+.note{border-left-color:#FFC83D}
+.filters .btn[aria-pressed=true]{background:#2F7BF6;color:#fff;border-color:#2F7BF6}
+.t70{display:flex;align-items:center;gap:12px;max-width:980px;margin:0 auto;padding:16px 16px 0}
+.t70 i{flex:none;width:44px;height:44px;border-radius:14px;background:#2F7BF6;box-shadow:0 4px 0 #1E5BC6;display:flex;align-items:center;justify-content:center;color:#fff;font:900 20px 'Nunito',sans-serif;font-style:normal}
+.t70 b{display:block;font-size:17px;font-weight:900;line-height:1.1}.t70 span{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
+.x70g{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.x70c{border:1.5px solid var(--line);border-radius:16px;padding:10px 12px;background:#fff}
+.x70c b{display:block;font-weight:900}.x70c span{display:block;font-size:13px;color:var(--muted);font-weight:700}
+.x70bar{height:8px;border-radius:99px;background:#EDF2FA;overflow:hidden;margin-top:6px}.x70bar i{display:block;height:100%;border-radius:99px;background:#12A26E}
+.x70bar i.mid{background:#FFB800}.x70bar i.low{background:#E2434B}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap">
+</head><body><header class="t70"><i>T</i><div><b>Ben’s Tiếng Việt</b><span>Trang của thầy cô · teacher page</span></div></header><main id="app"></main>
 <script>
 (function(){
 var app=document.getElementById('app'), KEY='', LSK='bensvn.teacherkey';
@@ -222,6 +247,22 @@ function x50(S,id,notes){ var a=((S.set||{}).ask50)||[]; if(!a.length) return nu
     if(an) row.appendChild(h('p',{class:'small'},[h('b',{text:'Your answer: '}),document.createTextNode(an.text)]));
     else { var ta=h('textarea',{rows:'2',placeholder:'Your answer',style:'font:inherit;padding:8px;border:1.5px solid #CDBFA6;border-radius:8px'}), st=h('span',{class:'small muted'}); row.appendChild(ta); row.appendChild(h('div',{class:'row'},[h('button',{class:'btn primary',style:'min-height:36px',text:'Send answer',onclick:function(e){ var t=ta.value.trim(); if(!t) return; e.target.disabled=true; st.textContent='Sending…'; post('t/note',{id:id,text:t,about:'ask:'+q.t}).then(function(r){ notes.splice(0,notes.length); (r.notes||[]).forEach(function(n){ notes.push(n) }); row.removeChild(ta); e.target.parentNode.remove(); row.appendChild(h('p',{class:'small'},[h('b',{text:'Your answer: '}),document.createTextNode(t)])) }).catch(function(er){ e.target.disabled=false; st.textContent=er.message }) }}),st])) }
     box.appendChild(row) }); return box }
+function x70(S){ /* 70: what the student did in the six Home tiles (games, sounds, scenes, sentence builder), so the teacher page follows the student app */
+  var st=S.set||{}, G=st.g60||{}, snd=st.s62||{}, scn=st.s63||{}, B=st.b64||{}, box=h('div',{class:'panel'},[h('h2',{text:'Luyện tập · practice on their Home page'}),h('p',{class:'small muted',text:'Games, sounds, scenes and sentence building: the six big tiles the student sees first. Low scores are worth a few minutes in class.'})]);
+  var GN={match:'Match up',flash:'Flash cards',unj:'Unjumble',find:'Find the match',gap:'Fill the gap',listen:'Listen and choose'}, SN={fam:'Gia đình · family',hos:'Bệnh viện · hospital',sch:'Trường học · school',com:'Công ty · company',res:'Nhà hàng · restaurant',tax:'Giao thông · transport',sto:'Cửa hàng · store',par:'Công viên · park',hot:'Khách sạn · hotel'}, BN={abc:'Bảng chữ cái · alphabet',cc:'Phụ âm ghép · letter pairs',tone:'Sáu thanh · six tones',v0:'Nguyên âm đôi · two-part vowels',v1:'Vần có i / y',v2:'Vần có o / u',v3:'Vần có âm đệm'};
+  function setName(id){ if(id==='all') return 'Everything so far'; if(id.charAt(0)==='S') return 'Scene: '+(SN[id.slice(1)]||id.slice(1)); var m=String(id).match(/^Le(\d)l(\d+)$/); return m?('E'+m[1]+' · Bài '+m[2]):id }
+  function bar(p){ return h('div',{class:'x70bar'},[h('i',{class:p>=90?'':(p>=65?'mid':'low'),style:'width:'+Math.max(4,p)+'%'})]) }
+  var gk=Object.keys(G), plays=0, sum=0; gk.forEach(function(k){ plays+=G[k].n||0; sum+=G[k].best||0 });
+  var heard=0; Object.keys(snd).forEach(function(k){ heard+=Object.keys(snd[k].seen||{}).length });
+  var checked=Object.keys(scn).filter(function(k){ return scn[k].best!=null }).length;
+  box.appendChild(h('div',{class:'stats'},[h('div',{class:'stat'},[h('strong',{text:String(plays)}),h('span',{class:'small muted',text:'games played'})]),h('div',{class:'stat'},[h('strong',{text:gk.length?Math.round(sum/gk.length)+'%':'–'}),h('span',{class:'small muted',text:'average best score'})]),h('div',{class:'stat'},[h('strong',{text:String(heard)}),h('span',{class:'small muted',text:'letters and sounds heard'})]),h('div',{class:'stat'},[h('strong',{text:checked+' / 9'}),h('span',{class:'small muted',text:'scenes checked'})]),h('div',{class:'stat'},[h('strong',{text:String(B.n||0)}),h('span',{class:'small muted',text:'sentences built'})])]));
+  if(!gk.length&&!heard&&!checked&&!(B.n>0)){ box.appendChild(h('p',{class:'small muted',text:'Nothing yet. These fill in as soon as they play a game or open a sound board.'})); return box }
+  if(gk.length){ box.appendChild(h('span',{class:'lbl',text:'Trò chơi · games (best score, times played)'})); var g=h('div',{class:'x70g'}); gk.sort(function(a,b){ return (G[b].t||0)-(G[a].t||0) }).slice(0,12).forEach(function(k){ var i=k.lastIndexOf(':'), o=G[k]; g.appendChild(h('div',{class:'x70c'},[h('b',{text:(GN[k.slice(i+1)]||k.slice(i+1))+' · '+(o.best||0)+'%'}),h('span',{text:setName(k.slice(0,i))+' · '+(o.n||1)+'× · '+(o.t?ago(o.t):'')}),bar(o.best||0)])) }); box.appendChild(g) }
+  var sk=Object.keys(snd).filter(function(k){ return Object.keys(snd[k].seen||{}).length||snd[k].best!=null });
+  if(sk.length){ box.appendChild(h('span',{class:'lbl',text:'Âm · letters and sounds'})); var g2=h('div',{class:'x70g'}); sk.forEach(function(k){ var o=snd[k]; g2.appendChild(h('div',{class:'x70c'},[h('b',{text:BN[k]||k}),h('span',{text:Object.keys(o.seen||{}).length+' heard'+(o.best!=null?' · test '+o.best+'% ('+(o.n||1)+'×)':' · test not tried')}),o.best!=null?bar(o.best):null])) }); box.appendChild(g2) }
+  var ck=Object.keys(scn); if(ck.length){ box.appendChild(h('span',{class:'lbl',text:'Cảnh · scenes'})); var g3=h('div',{class:'x70g'}); ck.forEach(function(k){ var o=scn[k]; g3.appendChild(h('div',{class:'x70c'},[h('b',{text:SN[k]||k}),h('span',{text:Object.keys(o.seen||{}).length+' people tapped'+(o.best!=null?' · check '+o.best+'%':' · check not tried')}),o.best!=null?bar(o.best):null])) }); box.appendChild(g3) }
+  if(B.n>0){ var sg=B.st||{}; box.appendChild(h('span',{class:'lbl',text:'Mẫu câu · sentence builder'})); box.appendChild(h('p',{class:'small',text:(B.n)+' different sentences made. Stage 1 (who, where, doing what): '+(sg[1]||0)+' · Stage 2 (things, animals, transport): '+(sg[2]||0)+' · Stage 3 (jobs, countries, why you go): '+(sg[3]||0)+'.'})) }
+  return box }
 function x48(S){ var st=S.set||{}, s=st.in48; if(!s||!s.t) return h('div',{class:'panel'},[h('h2',{text:'Kế hoạch · their plan'}),h('p',{class:'small muted',text:'They haven’t answered the welcome questions yet. The app shows them a “Set up my plan” card on Home.'})]);
   var L={why:{live:'Lives or works in Vietnam',family:'Partner or their family',work:'For work',travel:'Travel',me:'Just for them'},goal:{around:'Get around on their own',chat:'Small talk with locals',family:'Talk with their partner’s family',work:'Talk at work'},around:{yes:'Hears Vietnamese every day',some:'Hears it sometimes',no:'Only in class and the app'},
     sit:{nhahang:'café, restaurant',grab:'Grab, taxi',market:'market, shops',suachua:'landlord, repairs',nhathuoc:'pharmacy, doctor',ramat:'partner’s family',hangxom:'neighbours',office:'office',phonggym:'gym',cattoc:'haircut'},hard:{tones:'tones',fast:'fast speech',remember:'remembering words',shy:'nervous to speak'},
@@ -295,7 +336,7 @@ function words13(){ app.innerHTML=''; app.appendChild(h('p',{class:'muted',text:
     draw() }).catch(function(e){ app.innerHTML=''; app.appendChild(h('p',{class:'err',text:'Could not load the word list: '+e.message})); app.appendChild(h('button',{class:'btn',text:'Back',onclick:list})) }) }
 function student(id,name){ app.innerHTML=''; app.appendChild(h('p',{class:'muted',text:'Loading…'}));
   api('t/student?id='+encodeURIComponent(id)).then(function(j){ app.innerHTML=''; var S=j.state||{}, recs=j.recs||[], notes=j.notes||[], filter='all';
-    app.appendChild(h('div',{class:'row between'},[h('div',{},[h('button',{class:'btn',style:'min-height:34px;padding:4px 12px',text:'‹ All students',onclick:list}),h('h1',{style:'margin-top:8px',text:(S.me&&S.me.name)||name||'Student'}),h('div',{class:'small muted',text:[S.me&&S.me.country?'From '+S.me.country:'',S.updatedAt?'last saved '+ago(S.updatedAt):''].filter(Boolean).join(' · ')})]),h('button',{class:'btn',text:'Refresh',onclick:function(){ student(id,name) }})])); try{ var p53=x53(S,id,j); if(p53) app.appendChild(p53) }catch(e){} try{ app.appendChild(x48(S)) }catch(e){} try{ var q50=x50(S,id,notes); if(q50) app.appendChild(q50) }catch(e){} try{ app.appendChild(x45(S,recs,notes)) }catch(e){} try{ app.appendChild(x13(S)) }catch(e){}
+    app.appendChild(h('div',{class:'row between'},[h('div',{},[h('button',{class:'btn',style:'min-height:34px;padding:4px 12px',text:'‹ All students',onclick:list}),h('h1',{style:'margin-top:8px',text:(S.me&&S.me.name)||name||'Student'}),h('div',{class:'small muted',text:[S.me&&S.me.country?'From '+S.me.country:'',S.updatedAt?'last saved '+ago(S.updatedAt):''].filter(Boolean).join(' · ')})]),h('button',{class:'btn',text:'Refresh',onclick:function(){ student(id,name) }})])); try{ var p53=x53(S,id,j); if(p53) app.appendChild(p53) }catch(e){} try{ app.appendChild(x48(S)) }catch(e){} try{ app.appendChild(x70(S)) }catch(e){} try{ var q50=x50(S,id,notes); if(q50) app.appendChild(q50) }catch(e){} try{ app.appendChild(x45(S,recs,notes)) }catch(e){} try{ app.appendChild(x13(S)) }catch(e){}
     var dots=h('div',{class:'dots'}), days=0; for(var i=13;i>=0;i--){ var d=S.d6&&S.d6[dayKey(Date.now()-i*86400000)], on=!!(d&&(d.q||d.s||d.sc||d.w||d.fc||d.van||d.sp||d.ear||d.wr)); if(on&&i<7) days++; dots.appendChild(h('i',{class:on?'on':''})) }
     var van=S.set&&S.set.van||{}, vanDone=Object.keys(van).filter(function(k){ return van[k]&&van[k].h!=null }).length, fc=S.fc||{}, fcl=Object.keys(fc).filter(function(k){ return fc[k]&&fc[k].ivl>=1 }).length, q=S.q||{}, qn=Object.keys(q).length, st=S.st||{}, stn=Object.keys(st).filter(function(k){ return st[k]&&st[k].n }).length;
     var okc=recs.filter(function(r){ return r.ok }).length;

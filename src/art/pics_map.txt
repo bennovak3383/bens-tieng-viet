@@ -1,0 +1,943 @@
+# Word → picture.  One line:  Vietnamese word | name of the picture in Microsoft's Fluent Emoji set (3D style, MIT licence)
+# Built by src/art/pics.py into img/p/*.webp and data/pics.json.  A word not listed here keeps its older drawing (art/cards.json) or none.
+# Several words may share one picture. Abstract grammar words get a plain sign (a tick, an arrow) so every card has something to look at.
+
+# --- people, pronouns, family
+tôi|Index pointing at the viewer
+mình|Index pointing at the viewer
+là|Heavy equals sign
+con người|People hugging
+tên|Name badge
+bạn|Handshake
+bạn bè|People hugging
+gia đình|People hugging
+trẻ em|Children crossing
+họ|Busts in silhouette
+chúng tôi|People hugging
+chúng ta|People hugging
+mọi người|Busts in silhouette
+tụi mình|People hugging
+nó|Backhand index pointing right
+ai|Person shrugging
+ai đó|Bust in silhouette
+không ai|Prohibited
+người ta|Busts in silhouette
+người quen|Waving hand
+khách hàng|Shopping bags
+chủ|Crown
+đồng nghiệp|Handshake
+bệnh nhân|Face with thermometer
+hành khách|Seat
+nhân viên phục vụ|Person tipping hand
+người tập thể dục|Running shoe
+nhóm|People hugging
+cá nhân|Bust in silhouette
+tuổi|Birthday cake
+sinh nhật|Birthday cake
+
+# --- question words and little words
+gì|Red question mark
+cái gì|Red question mark
+nào|White question mark
+sao|Thinking face
+tại sao|Thinking face
+ở đâu|Round pushpin
+đâu|Round pushpin
+bao nhiêu|Input numbers
+mấy|Input numbers
+khi nào|Alarm clock
+chừng nào|Alarm clock
+bao giờ|Alarm clock
+thế nào|Thinking face
+bao xa|Straight ruler
+bao lâu|Hourglass not done
+hả|Exclamation question mark
+à|Face with open mouth
+ôi|Astonished face
+trời ơi|Face screaming in fear
+ơi|Raising hands
+nè|Backhand index pointing down
+kìa|Backhand index pointing right
+ừ|Thumbs up
+ạ|Person bowing
+nha|Ok hand
+ha|Winking face
+chứ|Hundred points
+không|Cross mark
+không phải|Prohibited
+chưa|Hourglass not done
+chẳng|Cross mark
+đừng|No entry
+có|Check mark button
+đúng|Check mark button
+phải|Check mark button
+đúng rồi|Check mark button
+sai|Cross mark button
+được|Ok hand
+được rồi|Ok hand
+ổn|Ok hand
+không sao|Ok hand
+và|Plus
+với|Link
+cùng|Link
+cùng nhau|People hugging
+với nhau|People hugging
+nhau|Handshake
+hay|Left-right arrow
+hoặc|Left-right arrow
+hay là|Left-right arrow
+nhưng|Shuffle tracks button
+nhưng mà|Shuffle tracks button
+tuy nhiên|Shuffle tracks button
+cũng|Plus
+còn|Right arrow curving down
+nữa|Plus
+thêm|Plus
+thôi|Stop sign
+chỉ|Index pointing up
+của|Label
+này|Backhand index pointing down
+cái này|Backhand index pointing down
+đây|Backhand index pointing down
+ở đây|Round pushpin
+kia|Backhand index pointing right
+đó|Backhand index pointing right
+cái đó|Backhand index pointing right
+ấy|Backhand index pointing right
+đằng kia|Backhand index pointing right
+vì|Light bulb
+tại vì|Light bulb
+bởi vì|Light bulb
+lý do|Light bulb
+cho nên|Right arrow
+vì vậy|Right arrow
+vậy thì|Right arrow
+nếu|Railway track
+thì|Right arrow
+khi|Timer clock
+lúc|Timer clock
+rất|Fire
+lắm|Fire
+quá|Exploding head
+hơi|Pinching hand
+khá|Thumbs up
+một chút|Pinching hand
+chút|Pinching hand
+tí|Pinching hand
+hơn|Chart increasing
+nhất|1st place medal
+bằng|Heavy equals sign
+giống|Heavy equals sign
+khác|Left-right arrow
+nhiều|Money bag
+ít|Pinching hand
+đủ|Check mark button
+nửa|Last quarter moon
+một nửa|Last quarter moon
+tất cả|Hundred points
+mọi|Hundred points
+mọi thứ|Package
+cả|Hundred points
+đều|Hundred points
+vài|Keycap 3
+một vài|Keycap 3
+một số|Keycap 3
+khoảng|Triangular ruler
+cái|Package
+thứ|Package
+đồ|Package
+điều|Speech balloon
+việc|Clipboard
+loại|Label
+kiểu|Label
+
+# --- time
+bây giờ|Alarm clock
+hôm nay|Calendar
+hôm qua|Fast reverse button
+mai|Sunrise
+ngày mai|Sunrise
+mốt|Fast-forward button
+hôm kia|Fast reverse button
+đang|Play button
+đã|Fast reverse button
+rồi|Check mark
+sẽ|Fast-forward button
+sắp|Hourglass not done
+vừa|Hourglass done
+mới|Sparkles
+xong|Chequered flag
+hết|Chequered flag
+trước|Left arrow
+trước khi|Left arrow
+trước đây|Left arrow
+sau|Right arrow
+sau khi|Right arrow
+sau đó|Right arrow
+lát nữa|Hourglass not done
+lúc nãy|Hourglass done
+tuần|Spiral calendar
+tuần sau|Spiral calendar
+tuần rồi|Spiral calendar
+tháng|Tear-off calendar
+năm|Calendar
+năm sau|Calendar
+năm ngoái|Calendar
+ngày|Sun
+hôm|Sun
+giờ|One oclock
+phút|Stopwatch
+rưỡi|One-thirty
+buổi|Sun behind cloud
+sáng|Sunrise over mountains
+trưa|Sun
+chiều|Sunset
+tối|Night with stars
+đêm|Crescent moon
+khuya|Crescent moon
+cuối tuần|Beach with umbrella
+cuối|Chequered flag
+cuối cùng|Chequered flag
+đầu tiên|1st place medal
+lần đầu|1st place medal
+trước tiên|1st place medal
+lần|Repeat button
+lại|Repeat button
+luôn|Infinity
+mãi|Infinity
+lúc nào cũng|Infinity
+thường|Repeat button
+thường xuyên|Repeat button
+đôi khi|Game die
+không bao giờ|Prohibited
+chưa bao giờ|Prohibited
+sớm|Rooster
+trễ|Snail
+lâu|Hourglass not done
+nhanh|Rabbit
+nhanh chóng|Rabbit
+mau|Rabbit
+chậm|Turtle
+dần|Chart increasing
+thời gian|Mantelpiece clock
+lịch|Calendar
+thứ hai|Spiral calendar
+thứ bảy|Spiral calendar
+chủ nhật|Spiral calendar
+mùa|Fallen leaf
+thu|Maple leaf
+bữa|Fork and knife with plate
+đúng giờ|Alarm clock
+hiện tại|Play button
+tương lai|Crystal ball
+kỷ niệm|Framed picture
+lễ|Party popper
+
+# --- doing
+làm|Hammer and wrench
+làm việc|Laptop
+công việc|Briefcase
+việc làm|Briefcase
+nghề|Briefcase
+học|Books
+đọc|Open book
+đọc sách|Open book
+viết|Pencil
+ghi|Memo
+làm bài|Memo
+nói|Speaking head
+nói chuyện|Speech balloon
+kể|Speech balloon
+hỏi|Person raising hand
+trả lời|Left speech bubble
+nghe|Ear
+nghe thấy|Ear
+coi|Eyes
+xem|Eyes
+xem tv|Television
+nhìn|Eyes
+nhìn thấy|Eyes
+thấy|Eye
+trông|Eyes
+đợi|Hourglass not done
+chờ|Hourglass not done
+khoan|Raised hand
+nghỉ|Person in lotus position
+nghỉ ngơi|Person in lotus position
+nằm nghỉ|Person in bed
+chơi|Video game
+đùa|Clown face
+gặp|Handshake
+gặp bạn|Handshake
+mua|Shopping cart
+mua hàng|Shopping cart
+mua đồ ăn|Shopping cart
+bán|Label
+bán hàng|Convenience store
+gọi|Telephone receiver
+gọi điện|Telephone receiver
+gọi lại|Telephone receiver
+a lô|Telephone receiver
+nhắn tin|Mobile phone with arrow
+về|House with garden
+tới|Round pushpin
+đến|Round pushpin
+đi|Footprints
+đi bộ|Footprints
+đi dạo|Footprints
+chạy|Running shoe
+bay|Airplane departure
+đi du lịch|Luggage
+ra|Outbox tray
+vào|Inbox tray
+vô|Inbox tray
+lên|Up arrow
+lên xe|Up arrow
+xuống|Down arrow
+xuống xe|Down arrow
+qua|Bridge at night
+sang|Right arrow
+theo|Footprints
+rời|Door
+ghé|Door
+quẹo|Right arrow curving up
+quay|Counterclockwise arrows button
+trở lại|Right arrow curving left
+thử|Test tube
+cố|Flexed biceps
+cố gắng|Flexed biceps
+giúp|Handshake
+giúp đỡ|Handshake
+hỗ trợ|Handshake
+quên|Dotted line face
+quên mất|Dotted line face
+nhớ|Thought balloon
+nhớ lại|Thought balloon
+bắt đầu|Play button
+tiếp tục|Play or pause button
+kết thúc|Stop button
+ngừng|Stop sign
+ngủ|Sleeping face
+dậy|Alarm clock
+tập|Person lifting weights
+tập thể dục|Person lifting weights
+sợ|Fearful face
+chọn|Ballot box with ballot
+lựa chọn|Ballot box with ballot
+quyết định|Balance scale
+ăn|Fork and knife with plate
+ăn tối|Fork and knife with plate
+uống|Cup with straw
+nấu ăn|Cooking
+chuẩn bị|Kitchen knife
+phục vụ|Bellhop bell
+bưng đồ|Bento box
+cho|Wrapped gift
+tặng|Wrapped gift
+đưa|Palm up hand
+gửi|Envelope with arrow
+gửi thư|Envelope with arrow
+lấy|Palm down hand
+nhận|Inbox tray
+mượn|Palms up together
+trả|Money with wings
+trả tiền|Money with wings
+thu tiền|Money bag
+rút tiền|ATM sign
+tính tiền|Receipt
+mang|Backpack
+đem|Backpack
+cầm|Raised fist
+giữ|Raised fist
+nắm|Raised fist
+mở|Open file folder
+đóng|Locked
+dùng|Hammer and wrench
+xài|Hammer and wrench
+sử dụng|Hammer and wrench
+đặt|Round pushpin
+bỏ|Wastebasket
+kéo|Left arrow
+đẩy|Right arrow
+cắt|Scissors
+cắt tóc|Barber pole
+rơi|Down arrow
+té|Collision
+nằm|Bed
+ngồi|Chair
+đứng|Person standing
+nhảy|Kangaroo
+hát|Microphone
+đánh|Boxing glove
+tìm|Magnifying glass tilted left
+kiếm|Magnifying glass tilted left
+tìm thấy|Magnifying glass tilted right
+tìm hiểu|Magnifying glass tilted right
+kiểm tra|Clipboard
+sửa|Wrench
+thay|Counterclockwise arrows button
+thay đổi|Counterclockwise arrows button
+đổi|Counterclockwise arrows button
+chuyển|Right arrow
+chụp|Camera with flash
+rửa|Soap
+mặc|Coat
+hút|Cigarette
+thở|Wind face
+đổ|Droplet
+xây|Building construction
+tạo|Artist palette
+phá|Collision
+thi|Memo
+họp|Busts in silhouette
+dạy|Man teacher
+khám|Stethoscope
+khám bệnh|Stethoscope
+uống thuốc|Pill
+viết đơn thuốc|Memo
+đón|Oncoming automobile
+chở|Motor scooter
+chở hành khách|Taxi
+đặt xe|Mobile phone
+thuê|Key
+cưới|Wedding
+nuôi|Dog face
+thăm|House with garden
+mời|Envelope
+chúc|Clinking glasses
+hứa|Pinched fingers
+khen|Clapping hands
+phạt|Police car light
+bảo|Speaking head
+kêu|Megaphone
+nhắc|Bell
+giải thích|Memo
+hướng dẫn|Compass
+cho phép|Check mark button
+đồng ý|Thumbs up
+từ chối|Thumbs down
+chấp nhận|Thumbs up
+tham gia|Raising hands
+tổ chức|Party popper
+chia|Pizza
+chia sẻ|Pizza
+chăm sóc|Heart hands
+quan tâm|Heart hands
+tin|Folded hands
+hy vọng|Shooting star
+mong|Shooting star
+mơ|Thought balloon
+đoán|Crystal ball
+nghĩ|Thought balloon
+nghĩ ra|Light bulb
+tưởng|Thought balloon
+cảm thấy|Beating heart
+lo|Worried face
+lo lắng|Worried face
+tránh|No entry
+trốn|See-no-evil monkey
+thoát|Door
+im|Shushing face
+đầu tư|Chart increasing
+tăng|Chart increasing
+giảm|Chart decreasing
+phát triển|Seedling
+nợ|Money with wings
+kinh doanh|Briefcase
+sạc|Electric plug
+làm thủ tục|Clipboard
+đặt phòng|Calendar
+nhận phòng|Key
+trả phòng|Luggage
+sắp xếp hàng|Package
+tham quan|Camera
+mua vé|Ticket
+mua thuốc|Pill
+
+# --- feelings and describing
+biết|Light bulb
+hiểu|Brain
+thích|Red heart
+yêu|Heart with arrow
+thương|Smiling face with hearts
+tình yêu|Two hearts
+ghét|Pouting face
+giận|Angry face
+muốn|Star-struck
+cần|Red exclamation mark
+cần thiết|Red exclamation mark
+quan trọng|Star
+thật|Hundred points
+thật sự|Hundred points
+chắc|Flexed biceps
+chắc chắn|Locked with key
+có lẽ|Thinking face
+hình như|Thinking face
+khỏe|Flexed biceps
+sức khỏe|Flexed biceps
+mạnh|Flexed biceps
+yếu|Wilted flower
+mệt|Tired face
+đói|Drooling face
+vui|Grinning face with smiling eyes
+vui vẻ|Grinning face with smiling eyes
+vui tính|Rolling on the floor laughing
+cười|Grinning squinting face
+buồn|Crying face
+bận|Person juggling
+rảnh|Beach with umbrella
+bệnh|Face with thermometer
+đau|Face with head-bandage
+sốt|Thermometer
+ho|Sneezing face
+cảm|Sneezing face
+đỡ|Slightly smiling face
+sẵn sàng|Rocket
+giỏi|Trophy
+dễ|Thumbs up
+dễ dàng|Thumbs up
+khó|Mountain
+khó khăn|Mountain
+đơn giản|Thumbs up
+phức tạp|Puzzle piece
+tốt|Thumbs up
+tệ|Thumbs down
+xấu|Thumbs down
+đẹp|Sparkles
+đẹp trai|Smiling face with sunglasses
+dễ thương|Smiling face with hearts
+hiền|Smiling face with halo
+thông minh|Nerd face
+nổi tiếng|Glowing star
+thú vị|Star-struck
+tuyệt|Party popper
+tuyệt vời|Party popper
+đặc biệt|Glowing star
+ngon|Face savoring food
+cay|Hot pepper
+nóng|Hot face
+lớn|Elephant
+to|Elephant
+nhỏ|Mouse face
+cao|Giraffe
+thấp|Down arrow
+dài|Straight ruler
+ngắn|Pinching hand
+nặng|Person lifting weights
+nhẹ|Feather
+rộng|Left-right arrow
+sâu|Diving mask
+ốm|Bone
+mập|Hippopotamus
+mới|Sparkles
+cũ|Scroll
+sạch|Sparkles
+dơ|Pile of poo
+ồn|Loudspeaker
+yên tĩnh|Shushing face
+lạ|Alien
+giả|Performing arts
+hiện đại|Rocket
+mắc|Money with wings
+rẻ|Coin
+giá|Label
+đầy|Battery
+kín|Locked
+gần|Round pushpin
+xa|Globe showing Asia-Australia
+may|Four leaf clover
+xui|Black cat
+cẩn thận|Warning
+chú ý|Warning
+bình tĩnh|Person in lotus position
+tự do|Dove
+bất ngờ|Astonished face
+bí mật|Shushing face
+nói dối|Lying face
+kẹt|Construction
+kẹt xe|Oncoming automobile
+hư|Hammer
+lạc|Compass
+mất|Magnifying glass tilted left
+tai nạn|Collision
+vấn đề|Warning
+xong|Chequered flag
+thành công|Trophy
+thất bại|Thumbs down
+hoàn thành|Chequered flag
+kết quả|Bar chart
+mục đích|Bullseye
+kế hoạch|Clipboard
+cơ hội|Shooting star
+ý|Light bulb
+ý kiến|Speech balloon
+ví dụ|Memo
+sự thật|Hundred points
+
+# --- places
+nhà|House
+phòng|Door
+chợ|Shopping bags
+chỗ|Round pushpin
+nơi|Round pushpin
+trong|Inbox tray
+ngoài|Outbox tray
+trên|Up arrow
+dưới|Down arrow
+giữa|Record button
+bên|Right arrow
+cạnh|Right arrow
+quanh|Clockwise vertical arrows
+phía trước|Up arrow
+phía sau|Down arrow
+trái|Left arrow
+thẳng|Up arrow
+đường|Motorway
+hẻm|Houses
+đầu hẻm|Houses
+cổng|Door
+chung cư|Office building
+địa chỉ|Round pushpin
+quận|World map
+thành phố|Cityscape
+trung tâm|Bullseye
+khu vực|World map
+quê|House with garden
+nước ngoài|Globe showing Americas
+đất nước|Globe showing Asia-Australia
+thế giới|Globe showing Europe-Africa
+miền|World map
+biển|Water wave
+bãi biển|Beach with umbrella
+rừng|Evergreen tree
+đất|Mountain
+trời|Sun behind cloud
+mưa|Cloud with rain
+lửa|Fire
+quán|Hot beverage
+quán cà phê|Hot beverage
+quán ăn|Steaming bowl
+nhà hàng|Fork and knife with plate
+bệnh viện|Hospital
+nhà thuốc|Pill
+trường|School
+trường học|School
+đại học|Graduation cap
+lớp|School
+công ty|Office building
+siêu thị|Shopping cart
+cửa hàng|Convenience store
+khách sạn|Hotel
+sân bay|Airplane
+công viên|National park
+ngân hàng|Bank
+bưu điện|Japanese post office
+nhà ga|Station
+bảo tàng|Classical building
+tiệm cắt tóc|Barber pole
+lầu|Office building
+chùa|Shinto shrine
+nhà thờ|Church
+cầu|Bridge at night
+sông|Water wave
+phòng gym|Person lifting weights
+căn hộ|Office building
+
+# --- things
+bàn|Desktop computer
+ghế|Chair
+cửa|Door
+cửa sổ|Window
+giường|Bed
+tủ lạnh|Ice
+quạt|Wind face
+đèn|Light bulb
+điện thoại|Mobile phone
+pin|Battery
+điện|High voltage
+máy|Gear
+máy lạnh|Snowflake
+dây|Thread
+khóa|Locked
+chìa khóa|Key
+bảng|Clipboard
+tường|Brick
+sách|Books
+cuốn|Notebook
+thư|Envelope
+trang|Page facing up
+chữ|Input latin letters
+câu|Speech balloon
+lời|Speech balloon
+bài|Notebook
+tranh|Framed picture
+ảnh|Camera
+hình|Framed picture
+hình ảnh|Framed picture
+phim|Clapper board
+nhạc|Musical notes
+tin tức|Newspaper
+thông tin|Information
+danh sách|Clipboard
+trò chơi|Video game
+bóng|Soccer ball
+chơi bóng|Soccer ball
+xe|Motor scooter
+xe máy|Motor scooter
+xe hơi|Automobile
+taxi|Taxi
+xe buýt|Bus
+xe đạp|Bicycle
+máy bay|Airplane
+tàu|Ship
+tàu lửa|Locomotive
+phà|Ferry
+áo|T-shirt
+quần|Jeans
+nón|Womans hat
+túi|Handbag
+ly|Tumbler glass
+đồng hồ|Watch
+dép|Thong sandal
+tiền|Money bag
+tiền mặt|Dollar banknote
+chuyển khoản|Mobile phone with arrow
+số|Input numbers
+hàng|Package
+đôi|Socks
+bộ|Package
+quả|Red apple
+hoa|Hibiscus
+lá|Leaf fluttering in wind
+cây|Deciduous tree
+thuốc|Pill
+dầu|Oil drum
+máu|Drop of blood
+thịt|Cut of meat
+bánh|Bread
+bánh mì|Baguette bread
+thức ăn|Bento box
+đồ ăn|Bento box
+món|Steaming bowl
+phở|Steaming bowl
+cơm|Cooked rice
+cá|Fish
+tôm|Shrimp
+cua|Crab
+rau|Leafy green
+trứng|Egg
+chuối|Banana
+xoài|Mango
+dừa|Coconut
+cam|Tangerine
+dưa hấu|Watermelon
+trái cây|Grapes
+ớt|Hot pepper
+tỏi|Garlic
+muối|Salt
+đá|Ice
+nước|Droplet
+bia|Beer mug
+rượu|Wine glass
+sữa|Glass of milk
+kem|Soft ice cream
+trà|Teacup without handle
+cà phê|Hot beverage
+bơ|Avocado
+tô|Bowl with spoon
+chén|Bowl with spoon
+đũa|Chopsticks
+muỗng|Spoon
+dĩa|Fork and knife with plate
+gió|Wind face
+
+# --- body
+đầu|Brain
+mặt|Slightly smiling face
+mắt|Eye
+tai|Ear
+tay|Raised hand
+bụng|Pregnant woman
+họng|Sneezing face
+răng|Tooth
+tóc|Person getting haircut
+cơ thể|Person standing
+sức|Flexed biceps
+chân|Foot
+
+# --- colours
+màu|Artist palette
+đỏ|Red circle
+xanh|Blue circle
+vàng|Yellow circle
+trắng|White circle
+đen|Black circle
+
+# --- animals
+chó|Dog face
+mèo|Cat face
+gà|Chicken
+heo|Pig face
+bò|Cow face
+chim|Bird
+rắn|Snake
+voi|Elephant
+khỉ|Monkey face
+con chó|Dog face
+con mèo|Cat face
+con gà|Chicken
+con heo|Pig face
+con bò|Cow face
+con chim|Bird
+con cá|Fish
+con rắn|Snake
+
+# --- numbers
+hai|Keycap 2
+chục|Keycap 10
+mươi|Keycap 10
+lăm|Keycap 5
+mét|Straight ruler
+ký|Balance scale
+cây số|Motorway
+cỡ|Straight ruler
+
+# --- study words
+tiếng|Speaking head
+nghĩa|Open book
+chuyện|Speech balloon
+câu chuyện|Open book
+bí mật|Shushing face
+văn hóa|Performing arts
+lịch sử|Scroll
+giáo dục|Graduation cap
+công nghệ|Robot
+môi trường|Seedling
+tự nhiên|National park
+xã hội|Busts in silhouette
+cuộc sống|Sunrise over mountains
+đời|Sunrise over mountains
+kinh nghiệm|Graduation cap
+hợp đồng|Memo
+chương trình|Television
+dịch vụ|Bellhop bell
+sản phẩm|Package
+thị trường|Chart increasing
+chất lượng|Glowing star
+giá trị|Gem stone
+chi phí|Money with wings
+trách nhiệm|Balance scale
+quy định|Scroll
+giải pháp|Key
+nguyên nhân|Magnifying glass tilted left
+tạm biệt|Waving hand
+hẹn|Calendar
+xin|Folded hands
+làm ơn|Folded hands
+sống|House with garden
+ở|Round pushpin
+
+# --- sounds boards and builder extras
+tô|Bowl with spoon
+ba (số)|Keycap 3
+mũ|Billed cap
+ma|Ghost
+mả|Headstone
+mã|Horse
+mạ|Seedling
+mà|Shuffle tracks button
+thuê|Key
+khuya|Crescent moon
+nhiều|Money bag
+hưu|Older person
+quý|Gem stone
+xoăn|Person curly hair
+chịu|Flexed biceps
+
+# --- menu tiles.  A line starting with "=" is a tile title (not a word): the picture shown on that menu box.
+=nói ngay|Microphone
+=trò chuyện|Robot
+=về tôi|Waving hand
+=giao hàng|Package
+=khi không hiểu|Thinking face
+=ăn uống|Steaming bowl
+=đi lại|Motor scooter
+=mua sắm|Shopping bags
+=lớp|School
+=shipper gọi|Mobile phone
+=gửi ở bảo vệ|Police officer
+=đi grab|Taxi
+=gọi cà phê|Hot beverage
+=gặp người mới|Handshake
+=tính tiền|Receipt
+=75 câu hằng ngày|Left speech bubble
+=12 mẫu câu|Puzzle piece
+=nơi chốn|Cityscape
+=trong nhà|House
+=đồ dùng|Toolbox
+=cơ thể|Flexed biceps
+=gia đình|House with garden
+=nghề nghiệp|Briefcase
+=động từ|Person running
+=tính từ|Sparkles
+=thời gian|Alarm clock
+=màu sắc|Artist palette
+=con vật|Dog face
+=mua bán|Money bag
+=câu nói hằng ngày|Megaphone
+=từ của tôi|Star
+=sống ở đây|Cityscape at dusk
+=thuê nhà|Key
+=ăn ngoài|Fork and knife with plate
+=sức khỏe|Stethoscope
+=giấy tờ|Page facing up
+=xe cộ|Automobile
+=bạn bè|People hugging
+=công việc|Laptop
+=đi chơi|Ferris wheel
+=câu hỏi hằng ngày|White question mark
+=hướng dẫn|Compass
+=ghi âm|Studio microphone
+=dấu|Musical notes
+=câu trả lời của tôi|Memo
+=thư viện|Card file box
+=thêm truyện|Books
+=cài đặt|Gear
+=âm|Speaker high volume
+=thẻ|Card index
+=nói|Microphone
+=truyện|Open book
+=viết|Pencil
+=trò chơi|Video game
+=nghe kỹ|Ear
+=âm cuối|Stop sign
+=cùng vần, khác dấu|Musical score
+=con chó đi xe buýt|Dog face
+=chiếc chìa khóa thứ ba|Key
+=quán cà phê lúc nửa đêm|Crescent moon
+=áo mưa màu vàng|Umbrella with rain drops
+=tô phở đi lạc|Steaming bowl
+=con mèo ở quán cà phê|Cat face
+=chiếc xe máy màu đỏ|Motor scooter
+=thầy|Man teacher
+=nền tảng|Books
+=kiểm tra|Clipboard
+=a · ă · â|Leaf fluttering in wind
+=o · ô · ơ|Cow
+=e · ê · i|Automobile
+=iê · ia|Beer mug
+=ươ · ưa|Cloud with rain
+=uô · ua|Crab
+=ư hay u|Envelope
+=iê hay uyê|Sailboat
+=ai · ay · ây|Deciduous tree
+=oi · ôi · ơi · ui · ưi|Mountain
+=ao · au · âu|Leafy green
+=eo · êu · iu · ưu · ươu|Cat face
+=iêu · ươi · uôi · oai|Banana
+=oa · oe · uê · uy · uâ|Hibiscus
+=c · k · q — g · gh — ng · ngh|Fish
+=miệng|Mouth
+=nhại lại|Parrot
+=nghe thôi|Headphone
+=nghe hiểu|Light bulb

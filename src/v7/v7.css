@@ -803,3 +803,30 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z63pic{box-shadow:0 1px 0 #fff inset,0 16px 34px -12px rgba(40,60,120,.32)}
 .z63a,.z63o{box-shadow:0 5px 0 var(--line),0 12px 20px -10px rgba(40,60,120,.22)}
 .z60pf{box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 3px 8px rgba(40,60,120,.12)}
+
+
+/* ===== 70 · picture set ===== */
+.z12pic.z70p{display:flex;align-items:center;justify-content:center}
+.z70i{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 5px rgba(24,32,58,.16));-webkit-user-drag:none;user-select:none}
+.z12pic.z70p .z70i{width:86%;height:86%}
+.z12pic.z70p svg{background:transparent!important;border-radius:0!important}
+:root[data-look="bright"] .z12pic.z70p:not(.z60pf){background:#F1F5FC;border-radius:22%}
+.z63a .ic .z70i,.z64o .ic .z70i{width:100%;height:100%}
+.z63a .ic{width:58px;height:58px}
+.z64pic.p3{border-radius:26px;background:#F1F5FC;padding:8px}
+.z62q{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:12px 14px}
+.z62q b{display:block;font-size:21px;font-weight:900;line-height:1.2}.z62q span{display:block;color:var(--muted);font-weight:700;font-size:14px}
+.z62q small{flex:none;font-weight:900;color:var(--muted);background:var(--surface2);border-radius:999px;padding:4px 10px}
+.z62rev{min-height:74px;display:flex;justify-content:center}
+.z62rev .z62wd{flex:none;min-width:70%;border:2px solid #12A26E;background:#DFF6EC;animation:z60pop .3s}
+.z62t.wrong{opacity:.35;pointer-events:none}
+.z62wd .z12pic{flex:none}
+
+/* 70 · menu boxes carry a picture */
+.gpic.z70g{display:inline-flex!important;align-items:center;justify-content:center;width:58px;height:58px;font-size:0;line-height:0;flex:none;background:none;border:0;box-shadow:none;padding:0}
+.gpic.z70g .z70i{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 5px rgba(20,30,60,.22))}
+.gpic.sm.z70g{width:40px;height:40px}
+.gpic.z70none{display:none!important}
+.settile .gpic.z70g{margin-bottom:6px;transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
+.settile:active .gpic.z70g{transform:scale(1.12) rotate(-4deg)}
+@media (prefers-reduced-motion:reduce){ .settile .gpic.z70g{transition:none} }
