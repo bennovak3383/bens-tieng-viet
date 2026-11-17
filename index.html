@@ -737,6 +737,9 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 
 /* 54 */
 .z54pass{font-size:19px;line-height:1.7}.z54s{cursor:pointer;border-bottom:1px dotted var(--line)}
+
+/* 55 · tap to record on cards */
+.z55rec.on{background:#B4472E;border-color:#B4472E;color:#fff;animation:z55p 1.2s ease-in-out infinite}@keyframes z55p{50%{opacity:.75}}
 </style>
 
 <div class="wrap" id="app">
@@ -2943,20 +2946,33 @@ function fcSession(onDone,max){ var body=zOpen(), tok=Z.tok, queue=fcQueue(max||
     zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Cards done for now'}),h('div',{class:'score',text:right+' / '+done}),h('p',{class:'muted',text:'Right first time. '+c.learned+' of '+c.total+' cards learned. About '+tomorrow+' due by tomorrow.'}),h('button',{class:'btn primary wide',id:'rf-next',text:onDone?'Next part':'Done',onclick:function(){ if(onDone) onDone(); else { closeSheet(); location.hash='fc' } }})])]) }
   if(!queue.length){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'Nothing due and no new cards left for today. Come back tomorrow, or raise “new cards a day” on the Cards page.'}),h('button',{class:'btn primary wide',text:onDone?'Next part':'Done',onclick:function(){ if(onDone) onDone(); else closeSheet() }})])]); return }
   function next(){ if(tok!==Z.tok) return; if(i>=queue.length) return end(); var bar=$('.sess-top .bar i',body); if(bar) bar.style.width=Math.round(i/queue.length*100)+'%';
-    var key=queue[i], cid=key.split('|')[0], dir=key.split('|')[1], c=FCBY[cid], st=S.fc[key], isNew=!st, shown=false, out=h('div',{class:'stack'}), ctl=h('div',{class:'stack'});
+    var key=queue[i], cid=key.split('|')[0], dir=key.split('|')[1], c=FCBY[cid], st=S.fc[key], isNew=!st, shown=false, fcr=null, out=h('div',{class:'stack'}), ctl=h('div',{class:'stack'});
     var front=h('div',{class:'panel fcard'});
     if(dir==='l'){ var hid=h('div',{class:'fchide',hidden:true},[fcViEl(c.vi)]);
       front.appendChild(h('span',{class:'lbl',text:(isNew?'New · ':'')+'Listen · what does it mean?'})); front.appendChild(h('button',{class:'fcbig',html:PLAY_ICON,'aria-label':'Play again',onclick:function(){ zSay(c.vi) }})); front.appendChild(hid);
       front.appendChild(h('button',{class:'chip',text:'Show the word',onclick:function(e){ hid.hidden=false; e.target.remove() }})) }
     else { front.appendChild(h('span',{class:'lbl',text:(isNew?'New · ':'')+'Say it in Vietnamese, out loud'})); front.appendChild(z12Pic(c.vi,'')); front.appendChild(h('div',{class:'muted',text:c.en}));
-      if(zMic()){ var hd=h('p',{class:'heard'}); front.appendChild(hd); setTimeout(function(){ if(tok!==Z.tok||shown) return; hd.textContent='Listening…'; zHear(5000,function(t){ hd.textContent=t }).then(function(res){ if(tok!==Z.tok) return; var j=zJudge(c.vi,res,null,false); hd.textContent=''; front.appendChild(zHeardView(c.vi,res,j)); zRecSave({kind:'card',ref:cid,target:c.vi,heard:j.heard,score:Math.round(j.score*100)/100,ok:j.ok},res.blob) }) },300) } }
-    function reveal(){ if(shown) return; shown=true; ctl.innerHTML='';
+      /* 55: tap to record, tap to stop, record again as often as you like; the last try is what goes to the teacher */
+      if(zMic()){ var hd=h('p',{class:'heard'}), view=h('div',{style:'width:100%'}), rb=h('button',{class:'btn primary wide z55rec',text:'🎤 Tap to record'}); fcr={on:false,last:null};
+        fcr.stop=function(){ if(!fcr.on) return; fcr.on=false; SPEECH.fast=0; try{ if(SPEECH.cur) SPEECH.cur.abort() }catch(e){} try{ if(fcr.mr){ fcr.mr.onstop=null; fcr.mr.stop(); fcr.mr=null } }catch(e){} rb.classList.remove('on'); rb.textContent=fcr.last?'↻ Record again':'🎤 Tap to record'; hd.textContent='' };
+        rb.onclick=function(){ if(tok!==Z.tok) return; if(fcr.on){ fcr.user=true; var tries=0; (function end(){ if(!fcr.on) return; if(fcr.mr){ try{ fcr.mr.stop() }catch(e){} } else if(SPEECH.cur) SPEECH.cur.stop(); else if(tries++<10) setTimeout(end,150) })(); return }
+          var my=fcr; my.on=true; my.user=false; try{ stopAudio() }catch(e){} view.innerHTML='';
+          function shut(){ my.on=false; my.mr=null; rb.classList.remove('on'); rb.classList.remove('primary'); rb.textContent='↻ Record again'; hd.textContent='' }
+          /* if speech recognition gives up by itself (no connection, some phones), keep recording the sound until the learner taps stop */
+          function plain(){ try{ if(!SPEECH.stream||!window.MediaRecorder) return false; var ch=[], mr=new MediaRecorder(SPEECH.stream); mr.ondataavailable=function(e){ if(e.data&&e.data.size) ch.push(e.data) };
+            mr.onstop=function(){ if(tok!==Z.tok||!rb.isConnected) return; var bl=new Blob(ch,{type:mr.mimeType||'audio/webm'}), au=h('audio',{controls:'controls',style:'width:100%'}); try{ au.src=URL.createObjectURL(bl) }catch(e){} shut();
+              view.innerHTML=''; view.appendChild(h('div',{class:'panel zheard'},[h('span',{class:'lbl',text:'Your recording'}),au,h('p',{class:'small muted',text:'Listen to yourself, then show the answer and compare.'})])); my.last={res:{blob:bl,alts:[]},j:{heard:'',score:0,ok:false}} };
+            mr.start(); my.mr=mr; setTimeout(function(){ try{ if(my.mr===mr&&mr.state!=='inactive') mr.stop() }catch(e){} },20000); return true }catch(e){ return false } } hd.textContent='Recording… say it, then tap to stop'; rb.textContent='■ Tap to stop'; rb.classList.add('on'); SPEECH.fast=60000;
+          zHear(20000,function(t){ if(my.on&&t) hd.textContent=t }).then(function(res){ SPEECH.fast=0; if(!my.on||tok!==Z.tok||!rb.isConnected) return; if(!my.user&&!(res.alts||[]).length&&res.total<15000&&plain()) return; shut();
+            var j=zJudge(c.vi,res,null,false); view.innerHTML=''; view.appendChild(zHeardView(c.vi,res,j)); my.last={res:res,j:j} }) };
+        front.appendChild(rb); front.appendChild(hd); front.appendChild(view) } }
+    function reveal(){ if(shown) return; shown=true; ctl.innerHTML=''; if(fcr) fcr.stop();
       out.appendChild(h('div',{class:'panel fcback rf-reveal'},[z12Pic(c.vi,'sm'),h('div',{class:'row',style:'justify-content:center;flex-wrap:nowrap'},[fcViEl(c.vi),zPlay(c.vi)]),h('div',{class:'fcen',text:c.en}),
         c.xv?h('div',{class:'fcex'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[fcViEl(c.xv,19),zPlay(c.xv)]),h('div',{class:'small muted',text:c.xe})]):null]));
       var gr=h('div',{class:'fcgrade'}); [['Again',0,'1'],['Hard',1,'2'],['Good',2,'3'],['Easy',3,'4']].forEach(function(b){ var n=nextIvl(st?{ivl:st.ivl,ease:st.ease,reps:st.reps,lapses:st.lapses}:null,b[1]);
         gr.appendChild(h('button',{class:'btn fcg'+b[1],onclick:function(){ grade(b[1]) }},[h('b',{text:b[0]}),h('small',{text:(n.ivl===0?'<10 min':ivlLabel(n.ivl))+' · '+b[2]})])) });
       out.appendChild(gr); zSay(c.vi); try{ out.scrollIntoView({block:'nearest',behavior:'smooth'}) }catch(e){} }
-    function grade(g){ var n=nextIvl(st?{ivl:st.ivl,ease:st.ease,reps:st.reps,lapses:st.lapses}:null,g); n.due=n.ivl===0?Date.now()+10*60000:fcStartOfDay()+n.ivl*DAY+4*3600000; n.first=(st&&st.first)||Date.now(); S.fc[key]=n;
+    function grade(g){ if(fcr){ fcr.stop(); var lr=fcr.last; if(lr&&lr.res&&lr.res.blob){ try{ zRecSave({kind:'card',ref:cid,target:c.vi,heard:lr.j.heard,score:Math.round(lr.j.score*100)/100,ok:lr.j.ok},lr.res.blob) }catch(e){} } } var n=nextIvl(st?{ivl:st.ivl,ease:st.ease,reps:st.reps,lapses:st.lapses}:null,g); n.due=n.ivl===0?Date.now()+10*60000:fcStartOfDay()+n.ivl*DAY+4*3600000; n.first=(st&&st.first)||Date.now(); S.fc[key]=n;
       if(isNew){ var d=dayKey(); S.fcn[d]=(S.fcn[d]||0)+1 } if(!first[key]){ first[key]=1; done++; if(g>=2) right++ } if(g===0) queue.splice(Math.min(queue.length,i+4),0,key);
       save(); i++; next() }
     ctl.appendChild(h('button',{class:'btn primary wide',id:'rf-next',text:'Show the answer (space)',onclick:reveal}));

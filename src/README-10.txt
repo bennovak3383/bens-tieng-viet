@@ -368,3 +368,12 @@ points and exercise types, in sentences written for the app. Ben confirmed (17 N
 sample lesson himself, so his own dialogues and sentences can go into the plan as they are. The samples use the
 computer voice until recorded, and need his check. acts are edited in data/plan.json for now (the teacher page
 keeps them on save and edits dialogues). Test: src/tests/t54.py.
+
+VERSION 55 — cards: tap to record, tap to stop, record again
+On the "say it" side of a card the microphone no longer starts by itself (it used to listen for 5 seconds as soon as
+the card appeared). Now: "🎤 Tap to record" → "■ Tap to stop" → the result, and "↻ Record again" as often as wanted,
+also after the answer is shown. No auto-stop on a pause (SPEECH.fast=60000 while recording; 20 s hard cap). Only the
+last try is saved for the teacher, when the card is graded. If speech recognition gives up by itself, the card keeps
+recording the sound until the learner taps stop and shows a player instead of "it heard".
+Tests: src/tests/t55.py (no recognition) and t55b.py (recognition that fails at once). Not tested with real speech
+recognition or on a phone.

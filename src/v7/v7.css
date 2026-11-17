@@ -362,3 +362,6 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 
 /* 54 */
 .z54pass{font-size:19px;line-height:1.7}.z54s{cursor:pointer;border-bottom:1px dotted var(--line)}
+
+/* 55 · tap to record on cards */
+.z55rec.on{background:#B4472E;border-color:#B4472E;color:#fff;animation:z55p 1.2s ease-in-out infinite}@keyframes z55p{50%{opacity:.75}}
