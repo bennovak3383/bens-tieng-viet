@@ -605,3 +605,19 @@ mentions the practice panel.
 Tests: src/tests/t71.py (new).
 NOT done: Google sign-in. More scenes (café, apartment, post office, daily services), an animals board, builder stages 4-5. A real
 iPhone and sound are still unchecked. Thầy Tâm has not checked the Vietnamese written since version 59.
+
+VERSION 72 — five more scenes (Ben, 18 Nov: "Keep going on the scenes")
+New scenes, 14 in all now: Quán cà phê (caf), Chung cư (apt), Bưu điện (pos), Tiệm cắt tóc (sal), Chợ (mkt). Three people each, five or
+six actions, the same Explore / Check / Sentences tabs and the same game word sets as the first nine.
+Data: data/scenes.json (v 2). Words are Claude's, in Saigon usage where there is a choice (kêu món, tính tiền, trái cây); NOT from
+Thầy Tâm's sheets and not checked by a speaker.
+Drawing: block 72 in src/v7/v7.js. Z72.bg.<room>() and Z72.fg.<room>.mid/top(); z63Bg and z63Fg are wrapped to use them. The rooms are
+drawn in the shaded style and the things in them (cups, parcels, fruit, fish, scissors, scooter) are pictures from the picture set
+(z72P → img/p). Those pictures ignore taps (pointer-events none) so a tap on a parcel reaches the person holding it.
+New line signs for the action bubbles are added to Z63IC (chat, door, wave, broom, mail, stamp, truck, scis, mirror, wash, razor,
+brush, fruit, tag, scale, basket, pour). Action words and room things are listed in src/art/pics_map.txt ("version 72"; the "=prop"
+lines are room things, not words).
+Recording list: five new parts (sc_caf, sc_apt, sc_pos, sc_sal, sc_mkt), 60 lines; 5,256 lines in all. No old part changed.
+Teacher page: knows the five new scene names; "scenes checked" counts out of 14.
+Tests: src/tests/t72.py (new).
+NOT done: an animals board, builder stages 4-5, Google sign-in. Not checked: a real iPhone, sound.

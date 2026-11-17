@@ -1649,3 +1649,47 @@ anh dạy tiếng anh hả?|Teacher
 anh có khỏe không?|Flexed biceps
 tôi là người mỹ.|Statue of liberty
 dù|Sun behind rain cloud
+
+# --- version 72: five more scenes (café, apartment, post office, hair salon, market): action words, then the things drawn in the rooms
+pha cà phê|Pouring liquid
+uống cà phê|Hot beverage
+mở cửa|Door
+đưa chìa khóa|Key
+ký hợp đồng|Fountain pen
+dọn dẹp|Broom
+chào hỏi|Waving hand
+gửi bưu kiện|Package
+nhận bưu kiện|Open mailbox with raised flag
+dán tem|Label
+ký tên|Fountain pen
+soi gương|Mirror
+nhuộm tóc|Paintbrush
+bán trái cây|Watermelon
+mua trái cây|Shopping bags
+trả giá|Coin
+cân cá|Fish
+xách giỏ|Basket
+=prop croissant|Croissant
+=prop shortcake|Shortcake
+=prop teacup|Teacup without handle
+=prop potted plant|Potted plant
+=prop postbox|Postbox
+=prop scale|Balance scale
+=prop envelope|Envelope
+=prop barber pole|Barber pole
+=prop lotion|Lotion bottle
+=prop scissors|Scissors
+=prop banana|Banana
+=prop pineapple|Pineapple
+=prop tangerine|Tangerine
+=prop grapes|Grapes
+=prop apple|Red apple
+=prop greens|Leafy green
+=prop carrot|Carrot
+=prop crab|Crab
+=prop shrimp|Shrimp
+=prop bubble tea|Bubble tea
+=prop tropical drink|Tropical drink
+=prop world map|World map
+=prop coconut|Coconut
+=prop peach|Peach

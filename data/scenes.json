@@ -1,5 +1,5 @@
 {
-"v": 1,
+"v": 2,
 "note": "Words and patterns from Thầy Tâm's \"Ai? – Who?\" and \"Đây là đâu?\" sheets (used with permission). Drawings are our own.",
 "scenes": [
 {
@@ -924,6 +924,561 @@
 [
 "Anh ấy đang làm thủ tục nhận phòng.",
 "He is doing the check-in."
+]
+]
+},
+{
+"id": "caf",
+"vi": "Quán cà phê",
+"en": "Café",
+"bg": "cafe",
+"c": "#A8642E",
+"place": [
+"quán cà phê",
+"café"
+],
+"people": [
+{
+"k": "nhân viên pha chế",
+"en": "barista",
+"subj": "Nhân viên",
+"ens": "The barista",
+"look": {
+"hair": "pony",
+"shirt": "#5B3A24",
+"apron": 1
+},
+"x": 62,
+"y": 124,
+"s": 1.0,
+"act": "pha cà phê",
+"back": 1
+},
+{
+"k": "khách",
+"en": "customer",
+"subj": "Khách",
+"ens": "The customer",
+"look": {
+"hair": "short",
+"shirt": "#2F7BF6"
+},
+"x": 196,
+"y": 134,
+"s": 1.08,
+"act": "kêu món"
+},
+{
+"k": "bạn",
+"en": "friend",
+"subj": "Bạn tôi",
+"ens": "My friend",
+"look": {
+"hair": "long",
+"shirt": "#F0527A"
+},
+"x": 302,
+"y": 160,
+"s": 0.95,
+"act": "uống cà phê",
+"back": 1
+}
+],
+"actions": [
+{
+"k": "pha cà phê",
+"en": "make coffee",
+"ing": "making coffee",
+"ic": "pour"
+},
+{
+"k": "kêu món",
+"en": "order (Saigon)",
+"ing": "ordering",
+"ic": "bellh"
+},
+{
+"k": "uống cà phê",
+"en": "drink coffee",
+"ing": "drinking coffee",
+"ic": "cup"
+},
+{
+"k": "nói chuyện",
+"en": "chat, talk",
+"ing": "chatting",
+"ic": "chat"
+},
+{
+"k": "tính tiền",
+"en": "pay the bill",
+"ing": "paying the bill",
+"ic": "money"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là bạn tôi.",
+"This is my friend."
+],
+[
+"Bạn tôi đang làm gì?",
+"What is my friend doing?"
+],
+[
+"Bạn tôi đang uống cà phê.",
+"My friend is drinking coffee."
+]
+]
+},
+{
+"id": "apt",
+"vi": "Chung cư",
+"en": "Apartment building",
+"bg": "apt",
+"c": "#0FA8A1",
+"place": [
+"chung cư",
+"apartment building"
+],
+"people": [
+{
+"k": "bảo vệ",
+"en": "security guard",
+"subj": "Bảo vệ",
+"ens": "The guard",
+"look": {
+"hair": "short",
+"shirt": "#8DBDF5",
+"hat": "cap",
+"hatc": "#27336B",
+"tie": "#27336B"
+},
+"x": 64,
+"y": 138,
+"s": 1.05,
+"act": "mở cửa"
+},
+{
+"k": "chủ nhà",
+"en": "landlord / landlady",
+"subj": "Chủ nhà",
+"ens": "The landlady",
+"look": {
+"hair": "long",
+"shirt": "#7C5CFC"
+},
+"x": 182,
+"y": 136,
+"s": 1.08,
+"act": "đưa chìa khóa"
+},
+{
+"k": "người thuê nhà",
+"en": "tenant",
+"subj": "Người thuê nhà",
+"ens": "The tenant",
+"look": {
+"hair": "short2",
+"shirt": "#FF8A2B"
+},
+"x": 292,
+"y": 140,
+"s": 1.02,
+"act": "ký hợp đồng"
+}
+],
+"actions": [
+{
+"k": "mở cửa",
+"en": "open the door",
+"ing": "opening the door",
+"ic": "door"
+},
+{
+"k": "đưa chìa khóa",
+"en": "hand over the key",
+"ing": "handing over the key",
+"ic": "key"
+},
+{
+"k": "ký hợp đồng",
+"en": "sign the contract",
+"ing": "signing the contract",
+"ic": "paper"
+},
+{
+"k": "dọn dẹp",
+"en": "tidy up, clean",
+"ing": "tidying up",
+"ic": "broom"
+},
+{
+"k": "chào hỏi",
+"en": "say hello",
+"ing": "saying hello",
+"ic": "wave"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là chủ nhà.",
+"This is the landlady."
+],
+[
+"Bảo vệ đang làm gì?",
+"What is the guard doing?"
+],
+[
+"Bảo vệ đang mở cửa.",
+"The guard is opening the door."
+]
+]
+},
+{
+"id": "pos",
+"vi": "Bưu điện",
+"en": "Post office",
+"bg": "post",
+"c": "#E2434B",
+"place": [
+"bưu điện",
+"post office"
+],
+"people": [
+{
+"k": "nhân viên bưu điện",
+"en": "post office clerk",
+"subj": "Nhân viên",
+"ens": "The clerk",
+"look": {
+"hair": "pony",
+"shirt": "#E2434B"
+},
+"x": 86,
+"y": 128,
+"s": 1.02,
+"act": "dán tem",
+"back": 1
+},
+{
+"k": "khách",
+"en": "customer",
+"subj": "Khách",
+"ens": "The customer",
+"look": {
+"hair": "short",
+"shirt": "#2F7BF6"
+},
+"x": 206,
+"y": 136,
+"s": 1.06,
+"act": "gửi bưu kiện"
+},
+{
+"k": "người giao hàng",
+"en": "delivery man",
+"subj": "Người giao hàng",
+"ens": "The delivery man",
+"look": {
+"hair": "short2",
+"shirt": "#FF8A2B",
+"hat": "cap",
+"hatc": "#FF8A2B"
+},
+"x": 306,
+"y": 140,
+"s": 1.02,
+"act": "giao hàng",
+"alt": "shipper (nói thường ngày · everyday word)"
+}
+],
+"actions": [
+{
+"k": "dán tem",
+"en": "stick on a stamp",
+"ing": "sticking on a stamp",
+"ic": "stamp"
+},
+{
+"k": "gửi bưu kiện",
+"en": "send a parcel",
+"ing": "sending a parcel",
+"ic": "box"
+},
+{
+"k": "giao hàng",
+"en": "deliver",
+"ing": "delivering",
+"ic": "truck"
+},
+{
+"k": "gửi thư",
+"en": "send a letter",
+"ing": "sending a letter",
+"ic": "mail"
+},
+{
+"k": "nhận bưu kiện",
+"en": "receive a parcel",
+"ing": "receiving a parcel",
+"ic": "box"
+},
+{
+"k": "ký tên",
+"en": "sign your name",
+"ing": "signing",
+"ic": "pencil"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là nhân viên.",
+"This is the clerk."
+],
+[
+"Khách đang làm gì?",
+"What is the customer doing?"
+],
+[
+"Khách đang gửi bưu kiện.",
+"The customer is sending a parcel."
+]
+]
+},
+{
+"id": "sal",
+"vi": "Tiệm cắt tóc",
+"en": "Hair salon",
+"bg": "salon",
+"c": "#F0527A",
+"place": [
+"tiệm cắt tóc",
+"hair salon"
+],
+"people": [
+{
+"k": "khách",
+"en": "customer",
+"subj": "Khách",
+"ens": "The customer",
+"look": {
+"hair": "short",
+"shirt": "#F4F7FC"
+},
+"x": 120,
+"y": 146,
+"s": 1.0,
+"act": "soi gương",
+"back": 1
+},
+{
+"k": "thợ cắt tóc",
+"en": "hairdresser",
+"subj": "Thợ cắt tóc",
+"ens": "The hairdresser",
+"look": {
+"hair": "pony",
+"shirt": "#F0527A",
+"apron": 1
+},
+"x": 212,
+"y": 134,
+"s": 1.1,
+"act": "cắt tóc"
+},
+{
+"k": "chủ tiệm",
+"en": "shop owner",
+"subj": "Chủ tiệm",
+"ens": "The owner",
+"look": {
+"hair": "short2",
+"shirt": "#0FA8A1",
+"glasses": 1
+},
+"x": 318,
+"y": 138,
+"s": 1.0,
+"act": "thu tiền",
+"back": 1
+}
+],
+"actions": [
+{
+"k": "cắt tóc",
+"en": "cut hair",
+"ing": "cutting hair",
+"ic": "scis"
+},
+{
+"k": "soi gương",
+"en": "look in the mirror",
+"ing": "looking in the mirror",
+"ic": "mirror"
+},
+{
+"k": "thu tiền",
+"en": "take the money",
+"ing": "taking the money",
+"ic": "money"
+},
+{
+"k": "gội đầu",
+"en": "wash hair",
+"ing": "washing hair",
+"ic": "wash"
+},
+{
+"k": "cạo râu",
+"en": "shave",
+"ing": "shaving",
+"ic": "razor"
+},
+{
+"k": "nhuộm tóc",
+"en": "dye hair",
+"ing": "dyeing hair",
+"ic": "brush"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là thợ cắt tóc.",
+"This is the hairdresser."
+],
+[
+"Thợ cắt tóc đang làm gì?",
+"What is the hairdresser doing?"
+],
+[
+"Thợ cắt tóc đang cắt tóc.",
+"The hairdresser is cutting hair."
+]
+]
+},
+{
+"id": "mkt",
+"vi": "Chợ",
+"en": "Market",
+"bg": "market",
+"c": "#12A26E",
+"place": [
+"chợ",
+"market"
+],
+"people": [
+{
+"k": "người bán",
+"en": "seller",
+"subj": "Người bán",
+"ens": "The seller",
+"look": {
+"hair": "pony",
+"shirt": "#F0527A",
+"hat": "sun"
+},
+"x": 84,
+"y": 122,
+"s": 1.0,
+"act": "bán trái cây",
+"back": 1
+},
+{
+"k": "người mua",
+"en": "buyer",
+"subj": "Người mua",
+"ens": "The buyer",
+"look": {
+"hair": "long",
+"shirt": "#12A26E"
+},
+"x": 196,
+"y": 140,
+"s": 1.05,
+"act": "trả giá"
+},
+{
+"k": "người bán cá",
+"en": "fish seller",
+"subj": "Người bán cá",
+"ens": "The fish seller",
+"look": {
+"hair": "short",
+"shirt": "#2F7BF6",
+"apron": 1
+},
+"x": 304,
+"y": 124,
+"s": 1.0,
+"act": "cân cá",
+"back": 1
+}
+],
+"actions": [
+{
+"k": "bán trái cây",
+"en": "sell fruit",
+"ing": "selling fruit",
+"ic": "fruit"
+},
+{
+"k": "trả giá",
+"en": "bargain",
+"ing": "bargaining",
+"ic": "tag"
+},
+{
+"k": "cân cá",
+"en": "weigh the fish",
+"ing": "weighing the fish",
+"ic": "scale"
+},
+{
+"k": "mua trái cây",
+"en": "buy fruit",
+"ing": "buying fruit",
+"ic": "cart"
+},
+{
+"k": "xách giỏ",
+"en": "carry a basket",
+"ing": "carrying a basket",
+"ic": "basket"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là người bán.",
+"This is the seller."
+],
+[
+"Người mua đang làm gì?",
+"What is the buyer doing?"
+],
+[
+"Người mua đang trả giá.",
+"The buyer is bargaining."
 ]
 ]
 }
