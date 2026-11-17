@@ -1693,3 +1693,78 @@ xách giỏ|Basket
 =prop world map|World map
 =prop coconut|Coconut
 =prop peach|Peach
+
+# --- version 73: sentence builder stages 4 and 5 (time, dates, days, prices, dishes, age) and the animals board
+sáu giờ sáng|Six oclock
+bảy giờ rưỡi sáng|Seven-thirty
+chín giờ sáng|Nine oclock
+mười hai giờ trưa|Twelve oclock
+một giờ chiều|One oclock
+ba giờ rưỡi chiều|Three-thirty
+năm giờ chiều|Five oclock
+bảy giờ tối|Seven oclock
+tám giờ rưỡi tối|Eight-thirty
+mười giờ tối|Ten oclock
+ngày mười|Tear-off calendar
+ngày mười hai|Tear-off calendar
+ngày mười lăm|Tear-off calendar
+ngày mười tám|Tear-off calendar
+ngày hai mươi|Tear-off calendar
+ngày hai mươi mốt|Tear-off calendar
+ngày hai mươi lăm|Tear-off calendar
+ngày ba mươi|Tear-off calendar
+tháng một|Calendar
+tháng hai|Calendar
+tháng ba|Calendar
+tháng tư|Calendar
+tháng năm|Calendar
+tháng sáu|Calendar
+tháng bảy|Calendar
+tháng tám|Calendar
+tháng chín|Calendar
+tháng mười|Calendar
+tháng mười một|Calendar
+tháng mười hai|Calendar
+hai chục ngàn|Coin
+năm chục ngàn|Coin
+một trăm ngàn|Dollar banknote
+hai trăm ngàn|Dollar banknote
+năm trăm ngàn|Dollar banknote
+một triệu|Money bag
+hai triệu|Money bag
+năm triệu|Money bag
+cơm tấm|Curry rice
+hủ tiếu|Steaming bowl
+gỏi cuốn|Burrito
+tuổi hai mươi|Birthday cake
+vịt|Duck
+con vịt|Duck
+trâu|Water buffalo
+con trâu|Water buffalo
+ngựa|Horse
+con ngựa|Horse
+dê|Goat
+con dê|Goat
+thỏ|Rabbit
+con thỏ|Rabbit
+cọp|Tiger
+con cọp|Tiger
+con khỉ|Monkey
+con voi|Elephant
+con rắn|Snake
+con gà|Rooster
+con heo|Pig
+con bò|Cow
+con chim|Bird
+con mèo|Cat
+=prop dog|Dog
+=prop cat|Cat
+=prop rooster|Rooster
+=prop pig|Pig
+=prop cow|Cow
+=prop bird|Bird
+=prop fish|Fish
+=prop monkey|Monkey
+=prop elephant|Elephant
+=prop snake|Snake
+=prop cake|Birthday cake

@@ -621,3 +621,21 @@ Recording list: five new parts (sc_caf, sc_apt, sc_pos, sc_sal, sc_mkt), 60 line
 Teacher page: knows the five new scene names; "scenes checked" counts out of 14.
 Tests: src/tests/t72.py (new).
 NOT done: an animals board, builder stages 4-5, Google sign-in. Not checked: a real iPhone, sound.
+
+VERSION 73 — the sentence builder finished, and the animals board (Ben, 18 Nov: "Keep going update everything just not Google login")
+Sentence builder: stages 4 and 5 are built, so there are 15 patterns in 5 stages (Ben's target: 2-3 at first, 10-15 by the end of
+level one).
+  Stage 4 · Bây giờ là mấy giờ? · Hôm nay là ngày mấy? · Hôm nay là thứ mấy?   (time, dates, days)
+  Stage 5 · Cái này bao nhiêu tiền? · Món này tên là gì? · Anh bao nhiêu tuổi?  (prices, dishes, age)
+Each has the same three forms (answer, question, "… phải không?"). Stage 4 opens after 10 sentences in stage 3, stage 5 after 10 in
+stage 4 (z64Open, unchanged), or with "Open it now". Prices are said the Saigon way (hai chục ngàn, một trăm ngàn).
+Code: z64Data and z64Structs are wrapped in block 73; z64Build was edited in place (built up to 5, the stage labels, the unlock hint).
+Data: data/scenes.json (v 3) → build.times, dayn, months, wdays, whens, prices, dishes, ages.
+Animals: Cảnh menu → "Con vật" (last tile). z73Zoo(): a farm picture with 16 animals from the picture set. Explore: tap an animal →
+the word (con chó), "Đây là con gì?", "Đây là con chó.". Check: ten questions of two kinds (see the animal and choose the word; hear
+the word and tap the animal). Saved as S.set.s63.ani {seen, best, n}, so the teacher page lists it with the scenes ("Con vật ·
+animals"). The same 16 words are a word set in Games (id Sani). Data: build.zoo. "cọp" is taught, with "hổ" shown as northern.
+Recording list: two new parts, sc_zc (103 lines) and sc_ani (24 lines); 5,383 lines in all. No old part changed.
+Tests: src/tests/t73.py (new).
+All new Vietnamese here is Claude's and unchecked. NOT done: Google sign-in. Not checked: a real iPhone, sound.
+Known: "bàn" (table) shows a computer-desk picture because the picture set has no table.

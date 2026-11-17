@@ -107,6 +107,20 @@ try:
     rows+=[r for x in BD.get('goes',[]) for r in (('Em đến %s để làm gì?'%x[0],'What do you go to %s for?'%x[1]),('Em đến %s để %s.'%(x[0],x[2]),'I go to %s to %s.'%(x[1],x[3])))]
     add('sc_zb','Mẫu câu: chặng 2 và 3','Sentence builder: stages 2 and 3',rows)
     add('sc_pl','Cảnh: nơi chốn','Scenes: places',[('Đây là đâu?','Where is this?')]+[r for q in SC['places'] for r in ((q[0],q[1]),('Đây là %s.'%q[0],'This is the %s.'%q[1]))])
+    # 73: sentence builder stages 4 and 5, and the animals board
+    cap=lambda t:t[0].upper()+t[1:]
+    rows=[('Bây giờ là mấy giờ?','What time is it now?'),('Hôm nay là ngày mấy?','What is the date today?'),('Hôm nay là thứ mấy?','What day is it today?'),('Ngày mai là thứ mấy?','What day is tomorrow?'),('Hôm qua là thứ mấy?','What day was yesterday?')]
+    rows+=[r for x in BD.get('times',[]) for r in ((x[0],x[1]),('Bây giờ là %s.'%x[0],'It is %s now.'%x[1]))]
+    rows+=[('ngày %s'%x[0],'the %s'%x[1]) for x in BD.get('dayn',[])]+[(x[0],x[1]) for x in BD.get('months',[])]
+    rows+=[('Hôm nay là ngày %s %s.'%(x[0],m[0]),'Today is the %s of %s.'%(x[1],m[1])) for x,m in zip(BD.get('dayn',[]),BD.get('months',[]))]
+    rows+=[r for x in BD.get('wdays',[]) for r in ((x[0],x[1]),('Hôm nay là %s.'%x[0],'Today is %s.'%x[1]))]
+    rows+=[('Cái này bao nhiêu tiền?','How much is this?'),('Món này tên là gì?','What is this dish called?'),('Anh bao nhiêu tuổi?','How old are you?')]
+    rows+=[(x[0],x[1]) for x in BD.get('prices',[])]
+    rows+=[r for t,pr in zip(BD.get('things',[]),BD.get('prices',[])) for r in (('%s %s này bao nhiêu tiền?'%(cap(t[2]),t[0]),'How much is this %s?'%t[1].split(' ',1)[1]),('%s %s này %s.'%(cap(t[2]),t[0],pr[0]),'This %s is %s.'%(t[1].split(' ',1)[1],pr[1])))]
+    rows+=[r for x in BD.get('dishes',[]) for r in ((x[0],x[1]),('Món này tên là %s.'%x[0],'This dish is called %s.'%x[0]))]
+    rows+=[('Anh ấy %s tuổi.'%x[0],'He is %s years old.'%x[1]) for x in BD.get('ages',[])]
+    if BD.get('times'): add('sc_zc','Mẫu câu: chặng 4 và 5','Sentence builder: stages 4 and 5',rows)
+    if BD.get('zoo'): add('sc_ani','Cảnh: con vật','Scenes: animals',[('Đây là con gì?','What animal is this?')]+[r for x in BD['zoo'] for r in (('con %s'%x[0],x[1]),('Đây là con %s.'%x[0],'This is %s.'%x[1]))])
 except FileNotFoundError: pass
 ks=[p for p in parts if p['id'][0]=='k' and p['id'][1:].isdigit()]; gs={p['id']:p for p in parts if p['id'][0]=='g' and p['id'][1:].isdigit()}
 try: GAT=[(g['id'],g['at']) for g in json.load(open(repo+'/data/core.json')).get('st',[])]

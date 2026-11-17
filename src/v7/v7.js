@@ -2366,6 +2366,7 @@ function z63Menu(){ z63Load(function(){ var body=zOpen(); body.classList.add('z6
   body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Who is this?'}),h('p',{class:'muted',text:'Tap the people in the picture. Hear who they are and what they are doing.'})]));
   var g=h('div',{class:'z63menu'}); Z63.d.scenes.forEach(function(sc){ var st=(S.set.s63||{})[sc.id];
     g.appendChild(h('button',{class:'z63m',onclick:function(){ z63Scene(sc.id) }},[h('div',{class:'z63th',html:z63Svg(sc,true)}),h('div',{class:'z63mt'},[h('b',{text:sc.vi}),h('span',{text:sc.en+' · '+sc.people.length+' people · '+sc.actions.length+' actions'}),st&&st.best!=null?h('em',{text:'Check '+st.best+'%'}):null])])) });
+  try{ g.appendChild(z73Tile()) }catch(e){}
   body.appendChild(g); body.appendChild(h('p',{class:'z60tip',text:'Tip: tap everyone first (Khám phá · Explore), then take the check (Kiểm tra).'})) }) }
 function z63Scene(id,mode){ var sc=Z63.d.scenes.filter(function(x){ return x.id===id })[0]; if(!sc){ z63Menu(); return } var body=zOpen(), tok=Z.tok; body.classList.add('z60b'); mode=mode||'see';
   function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
@@ -2458,13 +2459,13 @@ function z64Build(si,stage){ z63Load(function(){ var body=zOpen(); body.classLis
   if(stage==null) stage=B.cur||1; if(!z64Open(stage,B)) stage=1; var ST=ALL.filter(function(x){ return x.stage===stage }); si=Math.min(si||0,ST.length-1); var X=ST[si], val={}, form=X.forms[0][0], active=X.slots[0];
   X.slots.forEach(function(k){ val[k]=X.opts[k][0] }); if(X.link) X.slots.forEach(function(k){ X.link(val,k,val[k]) }); if(B.cur!==stage){ B.cur=stage; save() }
   body.appendChild(zTop('Mẫu câu · build sentences',null,null));
-  var road=h('div',{class:'z64stages'}), note=h('div',{class:'z64note',hidden:true}); [1,2,3,4,5].forEach(function(n){ var built=n<=3, open=built&&z64Open(n,B), cnt=(B.st[n]||0);
+  var road=h('div',{class:'z64stages'}), note=h('div',{class:'z64note',hidden:true}); [1,2,3,4,5].forEach(function(n){ var built=n<=5, open=built&&z64Open(n,B), cnt=(B.st[n]||0);
     road.appendChild(h('button',{class:(n===stage?'on ':'')+(open?'':'lock'),onclick:function(){ if(!built){ note.hidden=false; note.innerHTML=''; note.appendChild(h('span',{text:'Stage '+n+' is not built yet.'})); return } if(z64Open(n,B)){ z64Build(0,n); return } note.hidden=false; note.innerHTML=''; note.appendChild(h('span',{text:'Stage '+n+' opens after 10 sentences in stage '+(n-1)+'.'})); note.appendChild(h('button',{class:'chip',text:'Open it now',onclick:function(){ B.open=n; save(); z64Build(0,n) }})) }},[h('b',{text:String(n)}),h('small',{text:built?(open?(cnt+' made'):'10 to open'):'soon'})])) });
-  body.appendChild(h('div',{class:'z64road'},[h('b',{text:'Chặng '+stage+' / 5'}),h('span',{text:['','Who, where, doing what','Things, animals, transport','Jobs, countries, why you go'][stage]||''}),h('em',{text:(B.n||0)+' sentences made'})])); body.appendChild(road); body.appendChild(note);
+  body.appendChild(h('div',{class:'z64road'},[h('b',{text:'Chặng '+stage+' / 5'}),h('span',{text:['','Who, where, doing what','Things, animals, transport','Jobs, countries, why you go','Time, dates, days','Prices, food, age'][stage]||''}),h('em',{text:(B.n||0)+' sentences made'})])); body.appendChild(road); body.appendChild(note);
   var tabs=h('div',{class:'z64st'}); ST.forEach(function(s,i){ tabs.appendChild(h('button',{'aria-pressed':String(i===si),style:'--c:'+s.c,onclick:function(){ z64Build(i,stage) }},[h('b',{text:s.t}),h('small',{text:s.en})])) }); body.appendChild(tabs);
   var card=h('div',{class:'z64card',style:'--c:'+X.c}), forms=h('div',{class:'z64forms n'+X.forms.length}), grid=h('div',{class:'z64grid'}), gl=h('span',{class:'lbl'});
   function made(){ var m=X.mk(val,form), vi=m.p.map(function(x){ return typeof x==='string'?x:X.txt(x.s,val[x.s]) }).join(''); return {m:m,vi:vi,en:m.en} }
-  function say(){ var t=made(); if(!B.seen[t.vi]){ B.seen[t.vi]=1; B.n=(B.n||0)+1; B.st[stage]=(B.st[stage]||0)+1; save(); var em=body.querySelector('.z64road em'); if(em) em.textContent=B.n+' sentences made'; var sb=road.children[stage-1]; if(sb) sb.querySelector('small').textContent=B.st[stage]+' made'; var nb=road.children[stage]; if(nb&&stage<3&&z64Open(stage+1,B)&&nb.classList.contains('lock')){ nb.classList.remove('lock'); nb.classList.add('new'); nb.querySelector('small').textContent='open!' } } zSay(t.vi) }
+  function say(){ var t=made(); if(!B.seen[t.vi]){ B.seen[t.vi]=1; B.n=(B.n||0)+1; B.st[stage]=(B.st[stage]||0)+1; save(); var em=body.querySelector('.z64road em'); if(em) em.textContent=B.n+' sentences made'; var sb=road.children[stage-1]; if(sb) sb.querySelector('small').textContent=B.st[stage]+' made'; var nb=road.children[stage]; if(nb&&stage<5&&z64Open(stage+1,B)&&nb.classList.contains('lock')){ nb.classList.remove('lock'); nb.classList.add('new'); nb.querySelector('small').textContent='open!' } } zSay(t.vi) }
   function draw(){ var t=made(), s=h('div',{class:'z64s'}), pic=h('div',{class:'z64pic'}), pv=X.pic(val), has={};
     if(typeof pv==='string') pic.innerHTML=pv; else if(pv.pl&&z70Img(pv.pl)){ pic.classList.add('p3'); pic.innerHTML=z70Img(pv.pl) } else if(pv.pl){ pic.classList.add('pl'); pic.innerHTML='<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round">'+(Z64PL[pv.pl]||Z64PL['nhà'])+'</svg>' } else if(pv.flag){ pic.classList.add('fl'); pic.innerHTML=z64Flag(pv.flag) }
     t.m.p.forEach(function(x){ if(typeof x==='string') s.appendChild(h('span',{text:x})); else { has[x.s]=1; s.appendChild(h('button',{class:'z64slot'+(x.s===active?' on':''),text:X.txt(x.s,val[x.s]),onclick:function(){ active=x.s; draw() }})) } });
@@ -2476,7 +2477,7 @@ function z64Build(si,stage){ z63Load(function(){ var body=zOpen(); body.classLis
       grid.appendChild(h('button',{class:'z64o'+(on?' on':''),onclick:function(){ val[active]=o; if(X.link) X.link(val,active,o); draw(); say() }},[ic,h('b',{text:X.txt(active,o)}),h('small',{text:o.en})])) }) }
   X.forms.forEach(function(f){ forms.appendChild(h('button',{onclick:function(){ form=f[0]; draw(); say() }},[h('b',{text:f[1]}),h('small',{text:f[2]})])) });
   body.appendChild(card); body.appendChild(forms); body.appendChild(gl); body.appendChild(grid);
-  body.appendChild(h('details',{class:'z64next'},[h('summary',{text:'What comes next · stages 4 and 5'}),h('ul',{},[h('li',{text:'4 · Bây giờ là mấy giờ? · Hôm nay là ngày mấy? · … là thứ mấy?  (time, dates, days)'}),h('li',{text:'5 · Cái này bao nhiêu tiền? · Món này tên là gì? · Anh bao nhiêu tuổi?  (shopping, food, age)'})])]));
+  body.appendChild(h('p',{class:'z60tip',text:'15 patterns in 5 stages. Change one word at a time and say each new sentence out loud.'}));
   draw() }) }
 Z59.act.bld=function(){ z64Build() };
 z63Load(function(){});
@@ -2724,3 +2725,85 @@ Z72.fg.market={mid:function(){ var o='<rect x="0" y="166" width="170" height="84
   top:function(){ return z72P('leafy-green',226,180,28)+z72P('carrot',246,184,22)+z72P('basket',218,194,46,1) }};
 var z63Bg72=z63Bg; z63Bg=function(k){ try{ if(Z72.bg[k]) return Z72.bg[k]() }catch(e){} return z63Bg72(k) };
 var z63Fg72=z63Fg; z63Fg=function(k,when){ try{ if(Z72.fg[k]) return Z72.fg[k][when]?Z72.fg[k][when]():'' }catch(e){} return z63Fg72(k,when) };
+
+/* ===== 73 · sentence builder stages 4 and 5 (time, dates, days · prices, dishes, age) and the animals board =====
+   Data: data/scenes.json → build.times, dayn, months, wdays, whens, prices, dishes, ages, zoo.
+   Builder: z64Data and z64Structs are wrapped; six new patterns bring the builder to 15 patterns in 5 stages.
+   Animals: z73Zoo() — a farm picture to tap (word, "Đây là con …"), and a check with two kinds of question
+   (see the animal, choose the word · hear the word, tap the animal). Saved in S.set.s63.ani like a scene. ===== */
+var z64Data73=z64Data; z64Data=function(){ var D=z64Data73(), BD=(Z63.d&&Z63.d.build)||{};
+  function L(k,f){ return (BD[k]||[]).map(f) }
+  D.times=L('times',function(x){ return {k:x[0],en:x[1],art:x[0]} });
+  D.dayn=L('dayn',function(x){ return {k:x[0],en:x[1],art:'ngày '+x[0]} });
+  D.months=L('months',function(x){ return {k:x[0],en:x[1],art:x[0]} });
+  D.wdays=L('wdays',function(x){ return {k:x[0],en:x[1],art:x[0]} });
+  D.whens=L('whens',function(x){ return {k:x[0],en:x[1],be:x[2],art:x[0].toLowerCase()} });
+  D.prices=L('prices',function(x){ return {k:x[0],en:x[1],art:x[0]} });
+  D.dishes=L('dishes',function(x){ return {k:x[0],en:x[1],art:x[0]} });
+  D.ages=L('ages',function(x){ return {k:x[0],en:x[1],art:'tuổi hai mươi'} });
+  return D };
+var z64Structs73=z64Structs; z64Structs=function(D){ var A=z64Structs73(D);
+  function tail(f){ return f==='p'?', phải không?':'.' } function tEn(en,f){ return en+(f==='p'?', right?':'.') } function cap(t){ return t.charAt(0).toUpperCase()+t.slice(1) } function txt(k,o){ return o.k }
+  if(!D.times||!D.times.length) return A;
+  A.push({id:'gio',stage:4,t:'Bây giờ là mấy giờ?',en:'What time is it now?',c:'#2F7BF6',slots:['time'],forms:Z64F3,opts:{time:D.times},lab:{time:['Chọn giờ','pick a time']},txt:txt,pic:function(v){ return z64Art(v.time.art) },
+    mk:function(v,f){ return f==='q'?{p:['Bây giờ là mấy giờ?'],en:'What time is it now?'}:{p:['Bây giờ là ',{s:'time'},tail(f)],en:tEn('It is '+v.time.en+' now',f)} }});
+  A.push({id:'ngay',stage:4,t:'Hôm nay là ngày mấy?',en:'What is the date today?',c:'#F0527A',slots:['dayn','month'],forms:Z64F3,opts:{dayn:D.dayn,month:D.months},lab:{dayn:['Chọn ngày','pick the day'],month:['Chọn tháng','pick the month']},txt:function(k,o){ return k==='dayn'?'ngày '+o.k:o.k },pic:function(v){ return z64Art(v.dayn.art) },
+    mk:function(v,f){ return f==='q'?{p:['Hôm nay là ngày mấy?'],en:'What is the date today?'}:{p:['Hôm nay là ',{s:'dayn'},' ',{s:'month'},tail(f)],en:tEn('Today is the '+v.dayn.en+' of '+v.month.en,f)} }});
+  A.push({id:'thu',stage:4,t:'Hôm nay là thứ mấy?',en:'What day is it today?',c:'#12A26E',slots:['when','wday'],forms:Z64F3,opts:{when:D.whens,wday:D.wdays},lab:{when:['Chọn ngày','pick which day'],wday:['Chọn thứ','pick the weekday']},txt:txt,pic:function(v){ return z64Art(v.wday.art) },
+    mk:function(v,f){ return f==='q'?{p:[{s:'when'},' là thứ mấy?'],en:'What day '+v.when.be+' '+(v.when.en==='today'?'it today':v.when.en)+'?'}:{p:[{s:'when'},' là ',{s:'wday'},tail(f)],en:tEn(cap(v.when.en)+' '+v.when.be+' '+v.wday.en,f)} }});
+  A.push({id:'tien',stage:5,t:'Cái này bao nhiêu tiền?',en:'How much is this?',c:'#FF8A1F',slots:['thing','price'],forms:Z64F3,opts:{thing:D.things,price:D.prices},lab:{thing:['Chọn đồ vật','pick a thing'],price:['Chọn giá','pick a price']},txt:function(k,o){ return k==='thing'?cap(o.cl)+' '+o.k:o.k },pic:function(v){ return z64Art(v.thing.art) },
+    mk:function(v,f){ var n=v.thing.en.replace(/^an? /,''); return f==='q'?{p:[{s:'thing'},' này bao nhiêu tiền?'],en:'How much is this '+n+'?'}:{p:[{s:'thing'},' này ',{s:'price'},tail(f)],en:tEn('This '+n+' is '+v.price.en,f)} }});
+  A.push({id:'mon',stage:5,t:'Món này tên là gì?',en:'What is this dish called?',c:'#E2434B',slots:['dish'],forms:Z64F3,opts:{dish:D.dishes},lab:{dish:['Chọn món','pick a dish']},txt:txt,pic:function(v){ return z64Art(v.dish.art) },
+    mk:function(v,f){ return f==='q'?{p:['Món này tên là gì?'],en:'What is this dish called?'}:{p:['Món này tên là ',{s:'dish'},tail(f)],en:tEn('This dish is called '+v.dish.k+' ('+v.dish.en+')',f)} }});
+  A.push({id:'tuoi',stage:5,t:'Anh bao nhiêu tuổi?',en:'How old are you?',c:'#7C5CFC',slots:['pron','age'],forms:Z64F3,opts:{pron:D.pron,age:D.ages},lab:{pron:['Chọn người','pick who'],age:['Chọn tuổi','pick an age']},txt:txt,pic:function(v){ return z64Art(v.age.art) },
+    mk:function(v,f){ var S=v.pron.en.replace(/ \(.*\)/,''), be=v.pron.be, lc=S==='You'||S==='They'||S==='He'||S==='She'?S.toLowerCase():S; return f==='q'?{p:[{s:'pron'},' bao nhiêu tuổi?'],en:'How old '+be+' '+lc+'?'}:{p:[{s:'pron'},' ',{s:'age'},' tuổi'+tail(f)],en:tEn(S+' '+be+' '+v.age.en+' years old',f)} }});
+  return A };
+/* ---- animals ---- */
+var Z73POS={'chim':[296,46,34],'khỉ':[254,80,40],'voi':[288,124,64],'cọp':[224,150,52],'rắn':[316,200,38],'bò':[118,104,56],'trâu':[178,92,56],'ngựa':[56,124,54],'dê':[4,152,46],'heo':[146,172,48],'gà':[96,178,42],'chó':[192,208,48],'mèo':[250,224,42],'thỏ':[302,248,38],'vịt':[66,232,38],'cá':[124,254,34]};
+function z73St(){ var a=S.set.s63||(S.set.s63={}); return a.ani||(a.ani={seen:{}}) }
+function z73List(){ return (((Z63.d||{}).build||{}).zoo||[]).map(function(x){ return {k:x[0],vi:'con '+x[0],en:x[1],p:x[2],alt:x[3]||''} }) }
+function z73Img(a){ return '<img class="z70i" src="img/p/'+a.p+'.webp" alt="" draggable="false">' }
+function z73Svg(mini){ var o='<svg viewBox="0 0 360 300" class="z73svg">', L=z73List(), i;
+  o+='<rect width="360" height="300" fill="#C9E9FF"/><circle cx="52" cy="40" r="20" fill="#FFD23F"/><circle cx="52" cy="40" r="30" fill="#FFE27A" opacity=".4"/>'+z63Cloud(120,14,1.1,12)+z63Cloud(210,34,.8,9);
+  o+='<path d="M0 132 Q70 92 150 120 Q240 86 360 124 V300 H0 Z" fill="#A5DE8F"/><path d="M0 132 Q70 92 150 120 Q240 86 360 124" fill="none" stroke="#fff" stroke-width="4" opacity=".35"/><path d="M0 196 Q120 168 230 190 Q300 204 360 186 V300 H0 Z" fill="#84D07A"/><path d="M0 262 Q110 244 220 262 Q300 274 360 258 V300 H0 Z" fill="#6CC267"/>';
+  /* barn */
+  o+='<rect x="16" y="78" width="78" height="58" fill="#E2574B"/><rect x="72" y="78" width="22" height="58" fill="rgba(90,0,0,.16)"/><path d="M8 82 L55 46 L102 82 Z" fill="#B5343B"/><path d="M55 46 L102 82 H84 Z" fill="rgba(60,0,0,.2)"/><path d="M12 80 L55 48" stroke="#fff" stroke-width="2.500" opacity=".4"/><rect x="42" y="100" width="26" height="36" rx="2" fill="#7A2A26"/><path d="M42 100 L68 136 M68 100 L42 136" stroke="#fff" stroke-width="2.500"/><rect x="46" y="60" width="18" height="14" rx="2" fill="#FFF3D6" stroke="#fff" stroke-width="2"/>';
+  /* fence, tree, pond */
+  for(i=0;i<7;i++) o+='<rect x="'+(108+i*22)+'" y="150" width="5" height="22" rx="2" fill="#C98F4E"/>'; o+='<rect x="104" y="154" width="142" height="4" rx="2" fill="#E2AE6E"/><rect x="104" y="164" width="142" height="4" rx="2" fill="#E2AE6E"/>';
+  o+='<rect x="304" y="96" width="12" height="96" rx="4" fill="#9A6A45"/><rect x="311" y="96" width="5" height="96" fill="rgba(0,0,0,.15)"/><path d="M308 118 Q286 112 270 118" fill="none" stroke="#9A6A45" stroke-width="7" stroke-linecap="round"/><circle cx="310" cy="66" r="42" fill="#2FB36F"/><circle cx="276" cy="86" r="24" fill="#2FB36F"/><circle cx="340" cy="90" r="26" fill="#27A062"/><path d="M324 28 Q352 46 346 84 Q360 78 356 100 Q336 108 326 94 Q344 70 324 28 Z" fill="rgba(0,60,30,.2)"/><path d="M284 46 Q296 30 316 30" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="4" stroke-linecap="round"/>';
+  o+='<ellipse cx="110" cy="266" rx="92" ry="26" fill="#5DB7EE"/><ellipse cx="110" cy="262" rx="92" ry="24" fill="#8FD3F7"/><path d="M50 258 q10 -5 20 0 M130 270 q10 -5 20 0 M90 250 q8 -4 16 0" fill="none" stroke="#fff" stroke-width="2.200" stroke-linecap="round" opacity=".8"/>';
+  [[30,214,'#F0527A'],[20,236,'#FFC83D'],[226,280,'#fff'],[282,286,'#F0527A'],[344,226,'#FFC83D'],[190,268,'#7C5CFC']].forEach(function(f){ o+='<circle cx="'+f[0]+'" cy="'+f[1]+'" r="3.400" fill="'+f[2]+'"/><circle cx="'+f[0]+'" cy="'+f[1]+'" r="1.300" fill="#FFE27A"/>' });
+  L.forEach(function(a,i){ var q=Z73POS[a.k]; if(!q) return; o+='<g class="z73a" data-i="'+i+'" data-k="'+a.k+'"><ellipse cx="'+(q[0]+q[2]/2)+'" cy="'+(q[1]+q[2]*.93)+'" rx="'+(q[2]*.36)+'" ry="'+(q[2]*.08)+'" fill="#000" opacity=".16"/><image href="img/p/'+a.p+'.webp" x="'+q[0]+'" y="'+q[1]+'" width="'+q[2]+'" height="'+q[2]+'"'+(mini?' pointer-events="none"':'')+'/></g>' });
+  return o+'</svg>' }
+function z73Tile(){ var st=z73St(), n=z73List().length; return h('button',{class:'z63m z73m',onclick:function(){ z73Zoo() }},[h('div',{class:'z63th',html:z73Svg(true)}),h('div',{class:'z63mt'},[h('b',{text:'Con vật'}),h('span',{text:'Animals · '+n+' animals · Đây là con gì?'}),st.best!=null?h('em',{text:'Check '+st.best+'%'}):null])]) }
+function z73Zoo(mode){ z63Load(function(){ var L=z73List(), body=zOpen(), tok=Z.tok, st=z73St(); body.classList.add('z60b'); mode=mode||'see';
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(h('div',{class:'sess-top'},[h('button',{class:'x',text:'‹ Scenes',onclick:function(){ z63Menu() }}),h('span',{class:'lbl',text:'Con vật · Animals'}),h('span',{style:'flex:1'}),h('button',{class:'x',text:'Close',onclick:closeSheet})]));
+  var tabs=h('div',{class:'z62tabs'}); [['see','Khám phá','Explore'],['test','Kiểm tra','Check']].forEach(function(m){ tabs.appendChild(h('button',{'aria-pressed':String(m[0]===mode),onclick:function(){ z73Zoo(m[0]) }},[h('b',{text:m[1]}),h('small',{text:m[2]})])) }); body.appendChild(tabs);
+  var stage=h('div',{class:'z60stage'}); body.appendChild(stage);
+  if(mode==='see'){ var pic=h('div',{class:'z63pic z73pic',html:z73Svg(false)}), card=h('div',{class:'z73card'}), cnt=h('p',{class:'z60tip',style:'text-align:center'});
+    function count(){ cnt.textContent=Object.keys(st.seen).length+' of '+L.length+' animals heard' }
+    function pick(i){ var a=L[i]; [].forEach.call(pic.querySelectorAll('.z73a'),function(g){ g.classList.toggle('on',+g.getAttribute('data-i')===i) }); if(!st.seen[a.k]){ st.seen[a.k]=1; save() } count();
+      card.innerHTML=''; card.appendChild(h('div',{class:'z73who'},[h('span',{class:'z73big',html:z73Img(a)}),h('div',{},[h('b',{text:a.vi}),h('span',{text:a.en+(a.alt?' · also: '+a.alt:'')})]),h('button',{class:'z73pl','aria-label':'Play',html:PLAY_ICON,onclick:function(){ zSay(a.vi) }})]));
+      [['Đây là con gì?','What animal is this?'],['Đây là '+a.vi+'.','This is '+a.en+'.']].forEach(function(l){ card.appendChild(h('button',{class:'z73ln',onclick:function(){ zSay(l[0]) }},[h('span',{class:'pl',html:PLAY_ICON}),h('div',{},[h('b',{text:l[0]}),h('small',{text:l[1]})])])) });
+      zSay(a.vi,{onend:function(){ if(alive()) setTimeout(function(){ if(alive()&&pic.querySelector('.z73a.on')&&+pic.querySelector('.z73a.on').getAttribute('data-i')===i) zSay('Đây là '+a.vi+'.') },250) }}) }
+    card.appendChild(h('p',{class:'z62hint',style:'color:var(--muted);text-align:center;margin:0',text:'Tap an animal in the picture'}));
+    pic.addEventListener('click',function(e){ var g=e.target.closest?e.target.closest('.z73a'):null; if(g) pick(+g.getAttribute('data-i')) });
+    stage.appendChild(pic); stage.appendChild(card); stage.appendChild(cnt); count() }
+  else { var q=shuffle(L.slice()).slice(0,10), qi=0, ok=0;
+    function ask(){ if(qi>=q.length){ fin(); return } var a=q[qi], kind=qi%2?'pic':'word', done=false, miss=false, opts=shuffle([a].concat(shuffle(L.filter(function(x){ return x!==a })).slice(0,3)));
+      stage.innerHTML=''; stage.setAttribute('data-a',a.k); stage.setAttribute('data-t',kind);
+      stage.appendChild(h('div',{class:'z62q'},[h('div',{},kind==='word'?[h('b',{text:'Đây là con gì?'}),h('span',{text:'What animal is this?'})]:[h('b',{text:'Con nào?'}),h('span',{text:'Listen, then tap the animal you hear'})]),h('small',{text:(qi+1)+' / '+q.length})]));
+      if(kind==='word') stage.appendChild(h('div',{class:'z73show',html:z73Img(a)}));
+      else stage.appendChild(h('button',{class:'z60hear',style:'align-self:center',html:PLAY_ICON+'<span>Nghe lại · hear it again</span>',onclick:function(){ zSay(a.vi) }}));
+      var g=h('div',{class:'z73opts '+kind}), rev=h('div',{class:'z62rev'});
+      opts.forEach(function(o){ var b=h('button',{class:'z73o','data-k':o.k,html:kind==='pic'?z73Img(o):''}); if(kind==='word') b.appendChild(h('b',{text:o.vi}));
+        b.onclick=function(){ if(done||b.classList.contains('wrong')) return; if(o===a){ done=true; b.classList.add('right'); ok+=miss?0:1; qi++; try{ z60Fx('ok') }catch(e){}
+            rev.appendChild(h('div',{class:'z62wd'},[h('div',{class:'fcpic z12pic xs z70p',html:z73Img(a)}),h('div',{},[h('b',{text:'Đây là '+a.vi+'.'}),h('span',{text:'This is '+a.en+'.'})])])); zSay('Đây là '+a.vi+'.'); setTimeout(function(){ if(alive()) ask() },1900) }
+          else { miss=true; try{ z60Fx('no') }catch(e){} try{ z60Shake(b) }catch(e){} b.classList.add('wrong') } }; g.appendChild(b) });
+      stage.appendChild(g); stage.appendChild(rev); if(kind==='pic') zSay(a.vi) }
+    function fin(){ var pct=Math.round(ok/q.length*100); st.n=(st.n||0)+1; if(!(st.best>=pct)) st.best=pct; save(); stage.innerHTML=''; stage.removeAttribute('data-a'); var stars=pct>=90?3:(pct>=65?2:1), sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.15)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
+      stage.appendChild(h('div',{class:'z60end'},[h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:ok+' / '+q.length}),h('p',{class:'muted',text:pct>=90?'Giỏi lắm! You know your animals.':'Go back to Explore, tap them again, then try once more.'})]));
+      if(stars===3) try{ stage.appendChild(z60Conf()) }catch(e){} stage.appendChild(h('button',{class:'btn primary wide',text:'Làm lại · again',onclick:function(){ z73Zoo('test') }})); stage.appendChild(h('button',{class:'btn wide',text:'All scenes',onclick:function(){ z63Menu() }})) }
+    ask() } }) }
+try{ Z60.extra.push(function(){ var L=z73List(); if(!L.length) return []; return [{id:'Sani',t:'Con vật',en:'Scene · Animals',words:L.map(function(a){ return {vi:a.vi,en:a.en,ex:'Đây là '+a.vi+'.',exen:'This is '+a.en+'.',pic:z73Img(a)} }),sents:L.map(function(a){ return {vi:'Đây là '+a.vi+'.',en:'This is '+a.en+'.'} })}] }) }catch(e){}

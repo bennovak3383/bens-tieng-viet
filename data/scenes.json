@@ -1,5 +1,5 @@
 {
-"v": 2,
+"v": 3,
 "note": "Words and patterns from Thầy Tâm's \"Ai? – Who?\" and \"Đây là đâu?\" sheets (used with permission). Drawings are our own.",
 "scenes": [
 {
@@ -1780,6 +1780,374 @@
 "the hair salon",
 "cắt tóc",
 "get a haircut"
+]
+],
+"times": [
+[
+"sáu giờ sáng",
+"6 in the morning",
+"six-oclock"
+],
+[
+"bảy giờ rưỡi sáng",
+"7:30 in the morning",
+"seven-thirty"
+],
+[
+"chín giờ sáng",
+"9 in the morning",
+"nine-oclock"
+],
+[
+"mười hai giờ trưa",
+"12 noon",
+"twelve-oclock"
+],
+[
+"một giờ chiều",
+"1 in the afternoon",
+"one-oclock"
+],
+[
+"ba giờ rưỡi chiều",
+"3:30 in the afternoon",
+"three-thirty"
+],
+[
+"năm giờ chiều",
+"5 in the afternoon",
+"five-oclock"
+],
+[
+"bảy giờ tối",
+"7 in the evening",
+"seven-oclock"
+],
+[
+"tám giờ rưỡi tối",
+"8:30 in the evening",
+"eight-thirty"
+],
+[
+"mười giờ tối",
+"10 at night",
+"ten-oclock"
+]
+],
+"dayn": [
+[
+"mười",
+"10th"
+],
+[
+"mười hai",
+"12th"
+],
+[
+"mười lăm",
+"15th"
+],
+[
+"mười tám",
+"18th"
+],
+[
+"hai mươi",
+"20th"
+],
+[
+"hai mươi mốt",
+"21st"
+],
+[
+"hai mươi lăm",
+"25th"
+],
+[
+"ba mươi",
+"30th"
+]
+],
+"months": [
+[
+"tháng một",
+"January"
+],
+[
+"tháng hai",
+"February"
+],
+[
+"tháng ba",
+"March"
+],
+[
+"tháng tư",
+"April"
+],
+[
+"tháng năm",
+"May"
+],
+[
+"tháng sáu",
+"June"
+],
+[
+"tháng bảy",
+"July"
+],
+[
+"tháng tám",
+"August"
+],
+[
+"tháng chín",
+"September"
+],
+[
+"tháng mười",
+"October"
+],
+[
+"tháng mười một",
+"November"
+],
+[
+"tháng mười hai",
+"December"
+]
+],
+"wdays": [
+[
+"thứ hai",
+"Monday"
+],
+[
+"thứ ba",
+"Tuesday"
+],
+[
+"thứ tư",
+"Wednesday"
+],
+[
+"thứ năm",
+"Thursday"
+],
+[
+"thứ sáu",
+"Friday"
+],
+[
+"thứ bảy",
+"Saturday"
+],
+[
+"chủ nhật",
+"Sunday"
+]
+],
+"whens": [
+[
+"Hôm nay",
+"today",
+"is"
+],
+[
+"Ngày mai",
+"tomorrow",
+"is"
+],
+[
+"Hôm qua",
+"yesterday",
+"was"
+]
+],
+"prices": [
+[
+"hai chục ngàn",
+"20,000 dong"
+],
+[
+"năm chục ngàn",
+"50,000 dong"
+],
+[
+"một trăm ngàn",
+"100,000 dong"
+],
+[
+"hai trăm ngàn",
+"200,000 dong"
+],
+[
+"năm trăm ngàn",
+"500,000 dong"
+],
+[
+"một triệu",
+"1 million dong"
+],
+[
+"hai triệu",
+"2 million dong"
+],
+[
+"năm triệu",
+"5 million dong"
+]
+],
+"dishes": [
+[
+"phở",
+"phở noodle soup"
+],
+[
+"cơm tấm",
+"broken rice with grilled pork"
+],
+[
+"bánh mì",
+"a bánh mì sandwich"
+],
+[
+"hủ tiếu",
+"hủ tiếu noodle soup"
+],
+[
+"bún bò",
+"Huế beef noodle soup"
+],
+[
+"gỏi cuốn",
+"fresh spring rolls"
+],
+[
+"bánh xèo",
+"a crispy pancake"
+],
+[
+"chè",
+"sweet dessert soup"
+]
+],
+"ages": [
+[
+"hai mươi",
+"20"
+],
+[
+"hai mươi lăm",
+"25"
+],
+[
+"ba mươi",
+"30"
+],
+[
+"ba mươi lăm",
+"35"
+],
+[
+"bốn mươi",
+"40"
+],
+[
+"năm mươi",
+"50"
+],
+[
+"sáu mươi",
+"60"
+],
+[
+"bảy mươi",
+"70"
+]
+],
+"zoo": [
+[
+"chó",
+"a dog",
+"dog"
+],
+[
+"mèo",
+"a cat",
+"cat"
+],
+[
+"gà",
+"a chicken",
+"rooster"
+],
+[
+"vịt",
+"a duck",
+"duck"
+],
+[
+"heo",
+"a pig",
+"pig"
+],
+[
+"bò",
+"a cow",
+"cow"
+],
+[
+"trâu",
+"a water buffalo",
+"water-buffalo"
+],
+[
+"ngựa",
+"a horse",
+"horse"
+],
+[
+"dê",
+"a goat",
+"goat"
+],
+[
+"thỏ",
+"a rabbit",
+"rabbit"
+],
+[
+"chim",
+"a bird",
+"bird"
+],
+[
+"cá",
+"a fish",
+"fish"
+],
+[
+"khỉ",
+"a monkey",
+"monkey"
+],
+[
+"voi",
+"an elephant",
+"elephant"
+],
+[
+"cọp",
+"a tiger",
+"tiger",
+"hổ (miền Bắc · northern)"
+],
+[
+"rắn",
+"a snake",
+"snake"
 ]
 ]
 }

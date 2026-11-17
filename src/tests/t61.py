@@ -65,8 +65,8 @@ with sync_playwright() as p:
     pg.locator('.z64st button').nth(2).click(); pg.wait_for_timeout(200); pg.locator('.z64o',has_text='nhà thuốc').click(); print(' why you go:',rd()); pg.locator('.z64slot').nth(1).click(); pg.locator('.z64o',has_text='gặp bạn').click(); print('  swap the reason:',rd()); pg.locator('.z64forms button').nth(1).click(); print('  question:',rd())
     T("closeSheet()")
     pg.locator('.z59-scn').click(); pg.wait_for_timeout(400)
-    for i in range(pg.locator('.z63m').count()):
-        pg.locator('.z63m').nth(i).click(); pg.wait_for_timeout(200); n=pg.locator('.z63p').count(); pg.locator('.z63p').first.click(force=True); pg.wait_for_timeout(120); print('  scene',pg.locator('#sheet-body .lbl').first.inner_text(),'| people',n,'|',pg.locator('.z63ln').last.inner_text().replace('\n',' = ')); pg.locator('.sess-top .x').first.click(); pg.wait_for_timeout(200)
+    for i in range(pg.locator('.z63m:not(.z73m)').count()):      # v73: the animals tile is not a people scene
+        pg.locator('.z63m:not(.z73m)').nth(i).click(); pg.wait_for_timeout(200); n=pg.locator('.z63p').count(); pg.locator('.z63p').first.click(force=True); pg.wait_for_timeout(120); print('  scene',pg.locator('#sheet-body .lbl').first.inner_text(),'| people',n,'|',pg.locator('.z63ln').last.inner_text().replace('\n',' = ')); pg.locator('.sess-top .x').first.click(); pg.wait_for_timeout(200)
     T("closeSheet()")
     T("accPush&&0"); pg.reload(); pg.wait_for_timeout(1500); print('after reload: scores kept:',T("JSON.stringify([S.set.s62.abc.best,S.set.s63.fam.best,S.set.b64.n])"))
     print('teacher waves:',pg.locator('.z59tam animateTransform').count(),'| blinking eyes in a scene thumbnail:',T("z63Svg(Z63.d.scenes[0],true).split('z63eye').length-1"))
