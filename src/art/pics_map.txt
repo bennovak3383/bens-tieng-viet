@@ -941,3 +941,711 @@ chịu|Flexed biceps
 =nhại lại|Parrot
 =nghe thôi|Headphone
 =nghe hiểu|Light bulb
+
+# --- version 71: the words that had no picture. Grammar and idea words get a sign that hints at the meaning.
+vậy|Ok hand
+con|Paw prints
+định|Thought balloon
+tính|Abacus
+vẫn|Hourglass not done
+kịp|Stopwatch
+quen|Handshake
+nên|Thumbs up
+có thể|Check mark button
+không thể|Cross mark button
+tự|Flexed biceps
+một mình|Bust in silhouette
+như|Heavy equals sign
+bị|Adhesive bandage
+trong khi|Hourglass not done
+mỗi khi|Repeat button
+nếu không|Prohibited
+giùm|Folded hands
+để|Inbox tray
+lại đây|Waving hand
+từ|Round pushpin
+những|Busts in silhouette
+các|Busts in silhouette
+mỗi|Repeat single button
+rằng|Speech balloon
+hãy|Megaphone
+cứ|Fast-forward button
+nổi|Flexed biceps
+chiếc|Label
+phần|Pie
+điểm|Hundred points
+từng|Hourglass done
+hồi|Hourglass done
+hồi đó|Scroll
+dạo này|Spiral calendar
+gần đây|Tear-off calendar
+suốt|Infinity
+ngày mấy|Calendar
+nay|Sun
+ai cũng|People hugging
+gì cũng|Infinity
+đâu cũng|Globe showing asia-australia
+không có gì|Slightly smiling face
+bất cứ|Game die
+bất kỳ|Game die
+toàn|Hundred points
+toàn bộ|Package
+khắp|World map
+khắp nơi|World map
+riêng|Locked
+chung|Linked paperclips
+đâu đó|Magnifying glass tilted left
+gì đó|Red question mark
+nhờ|Folded hands
+làm cho|Magic wand
+khiến|High voltage
+yêu cầu|Clipboard
+đề nghị|Light bulb
+bắt|Hook
+khuyên|Speaking head
+bản thân|Mirror
+chính|Bullseye
+hợp|Puzzle piece
+quan hệ|Link
+bớt|Minus
+chật|Clamp
+nhận ra|Eyes
+đạt|Trophy
+để lại|Outbox tray
+thì ra|Face with open mouth
+vậy đó|Person shrugging
+so với|Balance scale
+so|Balance scale
+gấp đôi|Multiply
+gấp|Multiply
+mức|Level slider
+vừa phải|Ok hand
+số lượng|Input numbers
+có hạn|Low battery
+phần lớn|Bar chart
+đa số|Bar chart
+cách|Straight ruler
+phía|Right arrow
+hướng|Compass
+tụi|Busts in silhouette
+đứa|Child
+bước|Footprints
+dám|Lion
+xảy ra|Collision
+gây|Fire
+xuất hiện|Sparkles
+ngờ|Face with monocle
+liên quan|Link
+ảnh hưởng|Water wave
+thuộc|Brain
+gồm|Bento box
+truyền thống|Red paper lantern
+cảm giác|Two hearts
+tinh thần|Fire
+có vẻ|Face with raised eyebrow
+vẻ|Mirror
+hấp dẫn|Star-struck
+phù hợp|Puzzle piece
+ấn tượng|Glowing star
+vòng|Counterclockwise arrows button
+chi tiết|Magnifying glass tilted right
+thông báo|Loudspeaker
+đoạn|Bookmark tabs
+rồi mới|Soon arrow
+thả|Parachute
+tập trung|Bullseye
+biến|Magic wand
+chứa|Jar
+dựa|Crutch
+rút|Atm sign
+tiến|Fast-forward button
+vượt|Racing car
+nâng|Up arrow
+phát hiện|Telescope
+xử lý|Hammer and wrench
+đảm bảo|Shield
+cung cấp|Delivery truck
+áp dụng|Wrench
+kết hợp|Plus
+mặc dù|Sun behind rain cloud
+tuy|Sun behind rain cloud
+thật ra|Index pointing up
+tất nhiên|Thumbs up
+hoàn toàn|Hundred points
+nói chung|Globe with meridians
+ngoài ra|Plus
+hơn nữa|Plus
+thậm chí|Double exclamation mark
+ít nhất|Minus
+dù sao|Person shrugging
+càng|Chart increasing
+ngày càng|Chart increasing
+không những|Plus
+mà còn|Plus
+trở nên|Butterfly
+trở thành|Butterfly
+sự|Label
+ý nghĩa|Light bulb
+rõ|Glasses
+rõ ràng|Glasses
+chính xác|Bullseye
+cụ thể|Round pushpin
+thực tế|Globe showing asia-australia
+khả năng|Flexed biceps
+đối với|Right arrow
+ngành|Factory
+quyền|Crown
+điều kiện|Clipboard
+hiệu quả|Chart increasing
+do|Right arrow curving left
+bởi|Right arrow curving left
+tại|Round pushpin
+khỏi|Door
+trừ|Minus
+trừ khi|Prohibited
+liệu|Thinking face
+vô cùng|Infinity
+duy nhất|1st place medal
+đầy đủ|Check box with check
+tiếp theo|Next track button
+dẫn|Guide dog
+# getting set up
+số điện thoại|Telephone receiver
+sim|Mobile phone
+nạp tiền|Mobile phone with arrow
+mạng|Wireless
+mật khẩu|Locked with key
+tin nhắn|Speech balloon
+hết pin|Low battery
+ứng dụng|Mobile phone
+tài khoản|Identification card
+đăng ký|Memo
+đăng nhập|Unlocked
+phường|Houses
+số nhà|House
+tòa nhà|Office building
+đổi tiền|Currency exchange
+quét mã|Mobile phone
+hóa đơn|Receipt
+tiền lẻ|Coin
+đắt|Gem stone
+miễn phí|Free button
+giờ mở cửa|Nine oclock
+đóng cửa|Locked
+xếp hàng|Busts in silhouette
+lấy số|Ticket
+người việt|Lotus
+tiếng anh|Input latin letters
+tiếng việt|Lotus
+dịch|Globe with meridians
+nghĩa là gì|Red question mark
+đánh vần|Input latin lowercase
+viết ra|Writing hand
+lặp lại|Repeat button
+ý là|Thought balloon
+giọng|Speaking head
+người miền nam|Sun
+miền bắc|Compass
+nước mỹ|Statue of liberty
+ở lại|House
+quay về|Back arrow
+giấy|Page facing up
+bút|Pen
+túi ni lông|Shopping bags
+khăn giấy|Roll of paper
+nước suối|Droplet
+chai|Bottle with popping cork
+hộp|Package
+cái kia|Backhand index pointing right
+ở kia|Backhand index pointing right
+bên trái|Left arrow
+bên phải|Right arrow
+đối diện|Left-right arrow
+kế bên|Houses
+trên lầu|Up arrow
+dưới lầu|Down arrow
+# renting
+tiền nhà|Money bag
+tiền cọc|Coin
+tiền điện|High voltage
+tiền nước|Potable water
+phí quản lý|Receipt
+nội thất|Couch and lamp
+phòng ngủ|Bed
+phòng khách|Couch and lamp
+yên|Shushing face
+an toàn|Shield
+khu|Houses
+dọn vô|Delivery truck
+dọn đi|Pickup truck
+bị hư|Hammer and wrench
+thợ|Mechanic
+bị rỉ nước|Sweat droplets
+nghẹt|Plunger
+bồn cầu|Toilet
+vòi nước|Potable water
+nước nóng|Hot springs
+cúp điện|Candle
+cúp nước|Non-potable water
+bóng đèn|Light bulb
+ổ cắm|Electric plug
+thẻ từ|Credit card
+làm mất|Magnifying glass tilted left
+đổ rác|Wastebasket
+dọn phòng|Broom
+giặt ủi|Basket
+ồn ào|Loudspeaker
+mùi|Nose
+kiến|Ant
+mền|Bed
+gối|Zzz
+khăn tắm|Bathtub
+drap giường|Bed
+xà bông|Soap
+dầu gội|Lotion bottle
+kem đánh răng|Toothbrush
+giấy vệ sinh|Roll of paper
+nồi|Pot of food
+chảo|Cooking
+dao|Kitchen knife
+bếp|Fire
+lò vi sóng|Popcorn
+bình nước|Jar
+giao|Delivery truck
+gói hàng|Package
+quản lý|Office worker
+báo|Megaphone
+ngay|High voltage
+hết hạn|Hourglass done
+gia hạn|Spiral calendar
+tăng giá|Chart increasing
+thương lượng|Handshake
+bao gồm|Check box with check
+# eating out
+thực đơn|Clipboard
+kêu món|Bellhop bell
+món chay|Green salad
+ít đường|Candy
+ít đá|Ice
+không cay|Hot pepper
+dị ứng|Sneezing face
+đậu phộng|Peanuts
+hải sản|Shrimp
+nước mắm|Fish
+nước tương|Beans
+tiêu|Salt
+chanh|Lime
+hành|Onion
+rau thơm|Herb
+đậu hũ|Butter
+nấm|Mushroom
+bắp|Ear of corn
+khoai tây|Potato
+cà chua|Tomato
+dưa leo|Cucumber
+thơm|Pineapple
+sinh tố|Tropical drink
+nước ép|Beverage box
+trà sữa|Bubble tea
+cà phê đen|Hot beverage
+bạc xỉu|Glass of milk
+nước ngọt|Cup with straw
+dzô|Clinking beer mugs
+chiên|Fried shrimp
+nướng|Cut of meat
+luộc|Egg
+xào|Shallow pan of food
+hấp|Dumpling
+kho|Pot of food
+canh|Bowl with spoon
+bún bò|Steaming bowl
+bún thịt nướng|Spaghetti
+bánh xèo|Pancakes
+bánh cuốn|Burrito
+cháo|Bowl with spoon
+ốc|Spiral shell
+chè|Shaved ice
+ổ|Baguette bread
+đặt bàn|Fork and knife with plate
+chỗ ngồi|Chair
+hết rồi|Cross mark button
+no rồi|Relieved face
+ngon lắm|Face savoring food
+dở|Confounded face
+nhạt|Neutral face
+béo|Bacon
+giòn|French fries
+mềm|Bread
+dai|Squid
+chín|Red apple
+tái|Cut of meat
+gói lại|Takeout box
+bao tôi|Credit card
+chia đôi|Divide
+tiền boa|Dollar banknote
+# health
+bị bệnh|Face with thermometer
+bị cảm|Sneezing face
+đau đầu|Face with head-bandage
+đau bụng|Nauseated face
+đau họng|Mouth
+tiêu chảy|Roll of paper
+ói|Face vomiting
+chóng mặt|Face with spiral eyes
+sổ mũi|Nose
+ngứa|Mosquito
+sưng|Balloon
+chảy máu|Drop of blood
+gãy|Bone
+vết thương|Adhesive bandage
+phòng khám|Hospital
+cấp cứu|Police car light
+xe cứu thương|Ambulance
+xét nghiệm|Test tube
+toa thuốc|Page with curl
+viên|Pill
+thuốc giảm đau|Pill
+thuốc kháng sinh|Microbe
+băng cá nhân|Adhesive bandage
+khẩu trang|Face with medical mask
+kem chống nắng|Sun with face
+thuốc chống muỗi|Mosquito
+bảo hiểm|Shield
+nha sĩ|Tooth
+đau răng|Tooth
+tim|Anatomical heart
+huyết áp|Stethoscope
+da|Hand with fingers splayed
+vai|Person shrugging
+đầu gối|Leg
+cổ|Scarf
+ngón tay|Index pointing up
+uống nhiều nước|Potable water
+nguy hiểm|Warning
+cứu|Ring buoy
+ăn cắp|Ninja
+cảnh sát|Police car
+cháy|Fire
+lạc đường|Compass
+đại sứ quán|Classical building
+lãnh sự quán|Classical building
+ngủ không được|Yawning face
+căng thẳng|Anxious face with sweat
+bình thường|Slightly smiling face
+khỏe hơn|Flexed biceps
+giảm cân|Chart decreasing
+tăng cân|Chart increasing
+hút thuốc|Cigarette
+có bầu|Pregnant woman
+ngủ trưa|Sleeping face
+mát xa|Person getting massage
+# paperwork
+hộ chiếu|Passport control
+thị thực|Customs
+thẻ tạm trú|Identification card
+giấy phép lao động|Page with curl
+bằng lái|Identification card
+giấy đăng ký xe|Page facing up
+đơn|Clipboard
+điền|Pen
+chữ ký|Fountain pen
+bản sao|Printer
+hình thẻ|Camera
+nộp|Inbox tray
+quầy|Bellhop bell
+lệ phí|Coin
+hạn|Hourglass not done
+ngày sinh|Birthday cake
+quốc tịch|Globe showing asia-australia
+độc thân|Bust in silhouette
+có gia đình|Ring
+nghề nghiệp|Briefcase
+mở tài khoản|Bank
+số tài khoản|Input numbers
+lãi suất|Chart increasing
+tỷ giá|Currency exchange
+đô la|Dollar banknote
+đồng|Coin
+số dư|Money bag
+phí|Coin
+thuế|Heavy dollar sign
+lương|Money bag
+trả góp|Credit card
+đặt cọc|Dollar banknote
+hoàn tiền|Money with wings
+biên nhận|Receipt
+bưu kiện|Package
+tem|Envelope
+gửi đi mỹ|Airplane departure
+luật|Balance scale
+luật sư|Judge
+công chứng|Locked with pen
+dịch thuật|Globe with meridians
+xác nhận|Check mark button
+hủy|Cross mark
+lịch hẹn|Calendar
+chờ kết quả|Hourglass not done
+được phép|Check mark
+cấm|Prohibited
+bắt buộc|Red exclamation mark
+thủ tục|File folder
+văn phòng|Office building
+ủy ban|Classical building
+câu hỏi|Red question mark
+giải quyết|Puzzle piece
+# getting around
+xe ôm|Motorcycle
+tới nơi|Round pushpin
+điểm đón|Bus stop
+chạy chậm|Snail
+dừng ở đây|Stop sign
+tới chưa|White question mark
+còn xa không|Motorway
+bùng binh|Counterclockwise arrows button
+ngã ba|Left-right arrow
+đường một chiều|No entry
+vỉa hè|Footprints
+đậu xe|P button
+giữ xe|Guard
+vé xe|Ticket
+xăng|Fuel pump
+đầy bình|Fuel pump
+bánh xe|Wheel
+bơm bánh xe|Wheel
+vá|Sewing needle
+thay nhớt|Oil drum
+thắng|Stop sign
+đèn xe|Flashlight
+kèn|Postal horn
+gương|Mirror
+bể|Collision
+rửa xe|Bubbles
+thuê xe|Key
+chạy xe|Motor scooter
+đội nón|Rescue workers helmet
+áo khoác|Coat
+giờ cao điểm|Horizontal traffic light
+đường tắt|Dashing away
+lối vô|Door
+lối ra|Door
+qua đường|Children crossing
+bến xe|Station
+trạm|Bus stop
+chuyến|Bus
+tài xế grab|Taxi
+mưa lớn|Cloud with lightning and rain
+ướt|Umbrella with rain drops
+trơn|Ice
+ổ gà|Hole
+coi chừng|Warning
+đụng|Collision
+bồi thường|Money with wings
+lỗi|Cross mark
+biển số|Input numbers
+chụp hình|Camera with flash
+tốc độ|Racing car
+cao tốc|Motorway
+hầm|Metro
+bến phà|Ferry
+gần tới|Soon arrow
+trễ giờ|Alarm clock
+# shopping and services
+rộng quá|T-shirt
+số lớn hơn|Plus
+số nhỏ hơn|Minus
+màu khác|Artist palette
+hàng thật|Check mark button
+hàng giả|Cross mark button
+bảo hành|Shield
+đổi trả|Counterclockwise arrows button
+mắc quá|Money with wings
+giá cuối|Label
+khuyến mãi|Confetti ball
+mua một tặng một|Wrapped gift
+quà|Wrapped gift
+gói quà|Ribbon
+đặt hàng|Shopping cart
+giao hàng|Delivery truck
+phí giao hàng|Coin
+nhận hàng|Package
+tiệm|Convenience store
+tiệm may|Sewing needle
+đo|Straight ruler
+vải|Yarn
+da thật|Clutch bag
+sửa đồ|Safety pin
+lên lai|Jeans
+cắt ngắn|Scissors
+cạo râu|Razor
+gội đầu|Shower
+nhuộm|Paintbrush
+như cũ|Repeat button
+giặt khô|Dress
+ủi|Necktie
+lấy đồ|Shopping bags
+sửa điện thoại|Mobile phone off
+màn hình|Desktop computer
+dán|Pushpin
+cục sạc|Electric plug
+dây sạc|Battery
+tai nghe|Headphone
+in|Printer
+chợ đêm|Night with stars
+trung tâm thương mại|Department store
+cửa hàng tiện lợi|Convenience store
+tiệm vàng|Ring
+tiệm thuốc tây|Pill
+góc đường|Vertical traffic light
+xài được|Thumbs up
+hư rồi|Broken chain
+mới tinh|Sparkles
+đồ cũ|Recycling symbol
+thiếu|Minus
+dư|Plus
+lựa|Backhand index pointing down
+so sánh|Balance scale
+suy nghĩ|Thinking face
+lần sau|Next track button
+# friends and feelings
+làm quen|Handshake
+giới thiệu|Waving hand
+bạn thân|People hugging
+người yêu|Two hearts
+hẹn hò|Clinking glasses
+đám cưới|Wedding
+tiệc|Party popper
+rủ|Call me hand
+đi chơi|Ferris wheel
+nhậu|Clinking beer mugs
+tán gẫu|Left speech bubble
+thật hả|Astonished face
+giỡn|Winking face with tongue
+mắc cười|Face with tears of joy
+tốt bụng|Smiling face with halo
+lịch sự|Top hat
+thân thiện|Hugging face
+siêng|Honeybee
+làm biếng|Sloth
+mắc cỡ|Flushed face
+tự tin|Smiling face with sunglasses
+hạnh phúc|Beaming face with smiling eyes
+bực|Face with steam from nose
+chán|Unamused face
+nhớ nhà|House with garden
+cô đơn|Pensive face
+ngạc nhiên|Face with open mouth
+thoải mái|Relieved face
+khó chịu|Confounded face
+tiếc|Disappointed face
+may mắn|Four leaf clover
+theo tôi|Thought balloon
+tùy|Person shrugging
+dễ sợ|Face screaming in fear
+ghê|Exploding head
+chúc mừng|Partying face
+chia buồn|Wilted flower
+chúc ngủ ngon|Full moon
+giữ liên lạc|Mobile phone
+kết bạn|Handshake
+làm phiền|Bell
+cảm ơn nhiều|Bouquet
+không có chi|Slightly smiling face
+# work and gym
+cuộc họp|Busts in silhouette
+đối tác|Handshake
+dự án|Building construction
+mục tiêu|Bullseye
+mở tiệm|Convenience store
+giá sỉ|Label
+mẫu|Label
+xưởng|Factory
+sản xuất|Gear
+báo giá|Receipt
+gửi email|E-mail
+trả lời tin nhắn|Speech balloon
+làm thêm|Briefcase
+ngày nghỉ|Beach with umbrella
+đi công tác|Luggage
+tập tạ|Person lifting weights
+chạy bộ|Running shoe
+khởi động|Fire
+giãn cơ|Person cartwheeling
+cơ|Flexed biceps
+mỏi|Tired face
+mồ hôi|Sweat droplets
+hít vô|Lungs
+thở ra|Wind face
+hiệp|Input numbers
+nghỉ chút|Chair
+thêm một lần|Repeat single button
+cố lên|Raising hands
+tốt lắm|Clapping hands
+thẳng lưng|Straight ruler
+tạ|Person lifting weights
+máy chạy bộ|Person running
+thẻ tập|Identification card
+tủ đồ|File cabinet
+khăn|Scarf
+bóng rổ|Basketball
+bóng đá|Soccer ball
+đội|Running shirt
+thua|Crying face
+sân|Stadium
+bơi lội|Person swimming
+hồ bơi|Diving mask
+yoga|Person in lotus position
+ăn kiêng|Green salad
+đạm|Cut of meat
+ức gà|Poultry leg
+# travel
+du lịch|Airplane
+phòng đơn|Bed
+phòng đôi|Hotel
+hành lý|Luggage
+vali|Luggage
+vé máy bay|Admission tickets
+chuyến bay|Airplane
+cất cánh|Airplane departure
+hạ cánh|Airplane arrival
+xe khách|Minibus
+miền tây|Sheaf of rice
+núi|Mountain
+đảo|Desert island
+thác|National park
+cảnh|Sunrise over mountains
+vé vô cửa|Admission tickets
+hướng dẫn viên|Triangular flag
+thuê thuyền|Canoe
+đặc sản|Rosette
+tết|Firecracker
+lì xì|Red envelope
+chúc mừng năm mới|Fireworks
+vừa mới|Sparkles
+ít khi|Comet
+# everyday questions people ask
+anh từ đâu tới?|Globe showing americas
+anh cao bao nhiêu vậy?|Straight ruler
+trời ơi, anh cao quá! anh có chơi bóng rổ không?|Basketball
+anh mang giày số mấy?|Running shoe
+anh bao nhiêu tuổi?|Birthday cake
+anh có vợ chưa?|Ring
+anh có bạn gái chưa?|Two hearts
+anh có con chưa?|Baby
+anh đi du lịch hay sống ở đây?|Luggage
+anh có thích việt nam không?|Lotus
+anh thấy sài gòn thế nào?|Cityscape
+anh biết nói tiếng việt hả?|Speaking head
+anh học tiếng việt ở đâu?|School
+tiếng việt khó không?|Thinking face
+anh đi đâu đó?|Footprints
+anh thích ăn món gì?|Steaming bowl
+anh ăn cay được không?|Hot pepper
+gia đình anh ở đâu?|House with garden
+khi nào anh về mỹ?|Airplane
+ở mỹ anh sống ở đâu?|Statue of liberty
+anh chạy xe máy được không?|Motor scooter
+anh có chụp hình với em được không?|Camera with flash
+anh dạy tiếng anh hả?|Teacher
+anh có khỏe không?|Flexed biceps
+tôi là người mỹ.|Statue of liberty
+dù|Sun behind rain cloud

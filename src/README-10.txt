@@ -583,3 +583,25 @@ Tests: src/tests/t70.py (new). t61's sound test waits longer because the answer 
 NOT done: Thầy Tâm on the Home welcome is still the older outlined drawing; scene rooms and furniture are still code-drawn;
 the old Today header (skyline) is unchanged; guide pictures (img/guide) are older than this look; about 170 core words and 700
 flashcard words have no picture. Not checked: a real iPhone, sound. New Vietnamese (the five test questions) is unchecked.
+
+VERSION 71 — the rest of the list (Ben, 18 Nov: "Do every update beside the Google sign in")
+This closes the "NOT done" list of version 70. Google sign-in is still not built (Ben's call, and it needs a client ID only he can make).
+Thầy Tâm: the older outlined drawing is gone. z71Tam(wave) builds him from z63Person (look Z71T: short hair, navy shirt) plus a collar
+and buttons (z71Shirt) and a waving arm (z71Arm). z59Tam (Home welcome, game mascot) and Z21TA (the round avatar on teacher notes)
+both use it now.
+Today header: in the bright look the old night skyline is replaced by z71Hdr: a daytime Saigon street in the same shaded style
+(lotus-bud tower, tall stepped tower, the old yellow hall with its clock, trees, bunting, a scooter that drives past, Thầy Tâm waving).
+z19Apply is wrapped; the picture carries data-k="bright71". The old looks (night, dusk, classic) keep their own headers.
+Scene rooms and furniture: z63Bg and z63Fg are wrapped. Each of the nine rooms gets wall light, a skirting board, the wall's shadow and
+boards on the floor (z71Room), window glare, lamps with a glow, plants, curtains, wall panels; furniture gets a shine on the top edge,
+the top's shadow on its front, grain and an end in shade (z71Top), cushions, steam, ground shadows. The old drawing is still underneath,
+so positions and tap areas are unchanged. Translucent shapes only, no gradients (same reason as version 69).
+Word pictures: src/art/pics_map.txt now covers every core word (869) and every flashcard (1,739). Grammar and idea words get a sign that
+hints at the meaning (vẫn → hourglass, nên → thumbs up, so với → scales). These hints are Claude's choices, not checked by a speaker.
+722 picture files, 3.3 MB. ổng, bả and bạn trai are drawn as our own people.
+Guide: all 14 pictures retaken in the new look by src/tests/guide_shots.py, plus a new one (s-hub.jpg). data/guide.json: new section
+"Home: the six big boxes"; the lesson page is now called the Today page everywhere (it used to be called Home); the teacher guide
+mentions the practice panel.
+Tests: src/tests/t71.py (new).
+NOT done: Google sign-in. More scenes (café, apartment, post office, daily services), an animals board, builder stages 4-5. A real
+iPhone and sound are still unchecked. Thầy Tâm has not checked the Vietnamese written since version 59.

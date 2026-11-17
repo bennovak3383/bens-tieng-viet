@@ -830,3 +830,9 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .settile .gpic.z70g{margin-bottom:6px;transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
 .settile:active .gpic.z70g{transform:scale(1.12) rotate(-4deg)}
 @media (prefers-reduced-motion:reduce){ .settile .gpic.z70g{transition:none} }
+
+/* 71 · Thầy Tâm and the Today header in the shaded style */
+:root[data-look="bright"] .zhero .z12scene[data-k="bright71"]{background:#BDE2FF!important;height:200px;border-bottom:0}
+:root[data-look="bright"] .zhero .z12scene[data-k="bright71"]:after{display:none}
+@media (min-width:900px){ :root[data-look="bright"] .zhero .z12scene[data-k="bright71"]{height:230px;background:linear-gradient(#BDE2FF 0 85%,#E9EEF7 85%)!important} }
+@media (prefers-reduced-motion:reduce){ .z12scene[data-k="bright71"] animateTransform{display:none} }

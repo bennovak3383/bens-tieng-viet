@@ -26,8 +26,8 @@
       "ol": [
        "Open the app and type your name.",
        "Answer the welcome questions (about 2 minutes). You get your plan: how long to study each day, how many new words, and why.",
-       "On Home, tap “Get my code”. Your code keeps your progress safe, lets you use the app on your phone and computer, and lets your teacher see your work. Write it down.",
-       "Turn the microphone on: at the bottom of Home, next to “Microphone off”, tap “Turn on”, and allow it when the browser asks. You need it to record yourself. It works best in Chrome."
+       "On the Today page, tap “Get my code”. Your code keeps your progress safe, lets you use the app on your phone and computer, and lets your teacher see your work. Write it down.",
+       "Turn the microphone on: at the bottom of the Today page, next to “Microphone off”, tap “Turn on”, and allow it when the browser asks. You need it to record yourself. It works best in Chrome."
       ]
      },
      {
@@ -37,10 +37,32 @@
     ]
    },
    {
-    "t": "Home: what to do today",
-    "vi": "Trang chính",
+    "t": "Home: the six big boxes",
+    "vi": "Trang chủ",
     "b": [
-     "Home always shows the lesson your teacher has opened for you, called Bài 1, Bài 2 and so on. Work through its parts from top to bottom. You don’t have to finish them all in one day.",
+     "Home is the first page you see. Thầy Tâm says hello at the top, and six big boxes take you straight to practice.",
+     {
+      "ul": [
+       "Âm · Letters and sounds: tap a letter to hear it, then test your ears.",
+       "Cảnh · Scenes: tap the people in a picture to hear who they are and what they are doing, then take the check.",
+       "Mẫu câu · Build sentences: start with a short sentence and make it longer, one piece at a time.",
+       "Trò chơi · Games: match up, flash cards, unjumble and more, with the words from your lesson.",
+       "Truyện · Stories: read and listen. Tap any word for its sound and its meaning.",
+       "Nghe · Listening: extra listening practice."
+      ]
+     },
+     "Scroll down, under the boxes, for today’s lesson from your teacher, how far you are as a percentage, and how long you want to study today.",
+     {
+      "img": "s-hub.jpg",
+      "cap": "Home. The boxes are for practice any time. Today’s lesson is under them."
+     }
+    ]
+   },
+   {
+    "t": "Today: your lesson",
+    "vi": "Hôm nay",
+    "b": [
+     "The Today page always shows the lesson your teacher has opened for you, called Bài 1, Bài 2 and so on. Work through its parts from top to bottom. You don’t have to finish them all in one day.",
      {
       "ul": [
        "A note from your teacher (homework, what to prepare) shows at the top of the lesson.",
@@ -51,7 +73,7 @@
      },
      {
       "img": "s-home.jpg",
-      "cap": "A lesson on Home. Each row is one part. Tap the button on the right to start it."
+      "cap": "A lesson on the Today page. Each row is one part. Tap the button on the right to start it."
      }
     ]
    },
@@ -185,7 +207,7 @@
      "The retell is where words you understand turn into words you can say. Broken sentences are fine. The only rule: don’t stop.",
      {
       "img": "s-story.jpg",
-      "cap": "The story card on Home shows which day you’re on."
+      "cap": "The story card on the Today page shows which day you’re on."
      }
     ]
    },
@@ -196,13 +218,13 @@
      {
       "ul": [
        "See a “?” next to an example, or “? Ask Thầy” after tapping a word in a story? Tap it to ask why. Pick a ready question or type your own, in English if you like.",
-       "Your teacher answers before class. Home shows “your teacher answered” until you’ve read it.",
-       "After the first level, Home gives you one voice note topic a week: talk for about a minute, no script, and send it."
+       "Your teacher answers before class. The Today page shows “your teacher answered” until you’ve read it.",
+       "After the first level, the Today page gives you one voice note topic a week: talk for about a minute, no script, and send it."
       ]
      },
      {
       "img": "s-ask.jpg",
-      "cap": "Asking about a sentence. The answer comes back to your Home page."
+      "cap": "Asking about a sentence. The answer comes back to your Today page."
      }
     ]
    },
@@ -230,7 +252,7 @@
     "b": [
      {
       "ul": [
-       "The plan card on Home shows your 3-month goal as five “I can…” lines. Tick them as they become true.",
+       "The plan card on the Today page shows your 3-month goal as five “I can…” lines. Tick them as they become true.",
        "Every four weeks the app asks two quick questions: how well you understand, and how well you speak. You and your teacher see the change.",
        "At the end of each level there’s a check: 20 listening questions and 8 recorded answers. Your teacher listens and decides when you move up.",
        "Changed your mind about time or goals? Tap “See my plan or change it”."
@@ -250,7 +272,7 @@
        ],
        [
         "Recording doesn’t work",
-        "At the bottom of Home, tap “Turn on” next to “Microphone off”, and allow it when the browser asks. Chrome works best."
+        "At the bottom of the Today page, tap “Turn on” next to “Microphone off”, and allow it when the browser asks. Chrome works best."
        ],
        [
         "The app looks old or a new feature is missing",
@@ -356,7 +378,7 @@
        ]
       ]
      },
-     "Your homework note shows at the top of the student’s lesson on Home. Students can always do extra practice (cards, reps, stories, speaking), but only with words from lessons you’ve opened.",
+     "Your homework note shows at the top of the student’s lesson, on Home and on the Today page. Students can always do extra practice (cards, reps, stories, speaking), but only with words from lessons you’ve opened.",
      {
       "img": "t-lessons.jpg",
       "cap": "One student’s lessons: what they’ve done, and what you’ve opened for them."
@@ -380,7 +402,8 @@
      {
       "img": "t-week.jpg",
       "cap": "The top of a student’s page: their plan and their questions, with a box to answer."
-     }
+     },
+     "On each student’s page, the panel “Luyện tập · practice” shows what they did on their Home page: games played and best scores, letters heard and sound-test scores, scenes checked, and sentences built."
     ]
    },
    {
@@ -414,7 +437,7 @@
      },
      {
       "ul": [
-       "Hear a wrong tone? Tap that tone next to “Tone off:” under the recording. The student gets the line back on Home as something to fix, with the model to copy. “Write a note about this” sends them a comment on that recording.",
+       "Hear a wrong tone? Tap that tone next to “Tone off:” under the recording. The student gets the line back on the Today page as something to fix, with the model to copy. “Write a note about this” sends them a comment on that recording.",
        "For retells and voice notes, listen for whether they keep going. Fix one or two things in class, not everything."
       ]
      },
