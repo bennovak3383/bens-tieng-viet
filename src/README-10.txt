@@ -411,3 +411,12 @@ rel.all=true in KV rl:<id>. In the app (z58All): z27N() = all units (B1 preview 
 story open, the hidden tiles (Stories, Games, more ways to practise) shown, the weekly voice note on. Nothing is
 marked as done and no progress changes. "Follow the class again" turns it off. Level checks still wait for a
 finished level. Test: src/tests/t58.py.
+
+TOOLS FOR THE NEXT CHAT (17 Nov) — src/tools/
+build.sh  = builds index.html from src (uses the last commit as OLD), checks the script syntax, copies the site to
+            /home/claude/site with the test hook (window.__T) and restarts the local test server on port 8890.
+            It expects the repo at /home/claude/bens-tieng-viet; change R= at the top if it is somewhere else.
+            Run it before every test in src/tests (each run gives a fresh server, so /api/setup works again).
+chkst.py, recyc.py = story word check and word-recycling counts used when the stories were written.
+Tests: python3 src/tests/tNN.py (Playwright, Chromium at /opt/pw-browsers/chromium-1243/chrome-linux64/chrome).
+The frequency list for src/core/make.py is vn_word_frequencies.tsv from github.com/tabidots/vn-freqs.
