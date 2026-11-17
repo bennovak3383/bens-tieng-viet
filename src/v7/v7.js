@@ -2001,110 +2001,155 @@ function z60Sets(){ var out=[], n=0; try{ n=z27N() }catch(e){} if(!Z27||!Z27.uni
   return out }
 function z60Default(sets){ try{ var c=z53Cur(); if(c) for(var i=0;i<sets.length;i++) if(sets[i].lesson===c.l.id) return sets[i] }catch(e){} return sets[0] }
 function z60Best(set,g){ var o=(S.set.g60||{})[set.id+':'+g.k]; return o&&o.n?o:null }
+var Z60P=['#E4EEFF','#FFE6EC','#E0F5EC','#FFF0D9','#EEE8FF','#DBF4F1'], Z60D=['#2F7BF6','#F0527A','#12A26E','#FF8A1F','#7C5CFC','#0FA8A1'];
+function z60Hash(t){ var n=0; t=String(t); for(var i=0;i<t.length;i++) n=(n*31+t.charCodeAt(i))%997; return n }
+function z60Pic(vi,cls){ var el=z12Pic(vi,cls||'xs'); el.classList.add('z60pf'); el.style.background=Z60P[z60Hash(vi)%6]; return el }
+/* prefer words that have a picture (about two in three), so the games look alive, without dropping the picture-less words */
+function z60Take(words,n){ var w=shuffle(words), pic=w.filter(function(x){ return z60Has(x.vi) }), no=w.filter(function(x){ return !z60Has(x.vi) }), np=Math.min(pic.length,Math.ceil(n*.67)), out=pic.slice(0,np).concat(no.slice(0,n-np)); if(out.length<n) out=out.concat(pic.slice(np,np+n-out.length)); return shuffle(out) }
+/* split a sentence into the pieces a learner moves: known two- and three-syllable words stay in one piece (cà phê, Sài Gòn) */
+function z60Chunks(vi){ try{ z61Gloss() }catch(e){} var m=String(vi).trim().match(/^(.*?)([.?!…]*)$/), ws=m[1].split(/\s+/), out=[], i=0, G=C6.gloss||{};
+  function key(a){ return a.join(' ').toLowerCase().replace(/[,;:“”"()]/g,'').normalize('NFC') }
+  while(i<ws.length){ var n=1; for(var len=3;len>=2;len--){ if(i+len<=ws.length&&G[key(ws.slice(i,i+len))]&&!/[,;:]$/.test(ws.slice(i,i+len-1).join(' '))){ n=len; break } } out.push(ws.slice(i,i+n).join(' ')); i+=n }
+  return {parts:out,end:m[2]||''} }
+/* small sounds: right, wrong, finished. S.set.fx60===0 turns them off (the bell in the game bar) */
+var Z60A=null;
+function z60Fx(k){ if(S.set.fx60===0) return; try{ var C=window.AudioContext||window.webkitAudioContext; if(!C) return; Z60A=Z60A||new C(); if(Z60A.state==='suspended') Z60A.resume();
+    var t=Z60A.currentTime+.01, seq={ok:[[660,0,.09],[990,.08,.16]],no:[[196,0,.18]],win:[[523,0,.12],[659,.11,.12],[784,.22,.12],[1047,.33,.3]],flip:[[420,0,.05]]}[k]||[];
+    seq.forEach(function(n){ var o=Z60A.createOscillator(), g=Z60A.createGain(); o.type=k==='no'?'triangle':'sine'; o.frequency.value=n[0]; g.gain.setValueAtTime(.0001,t+n[1]); g.gain.linearRampToValueAtTime(.1,t+n[1]+.012); g.gain.exponentialRampToValueAtTime(.0001,t+n[1]+n[2]); o.connect(g); g.connect(Z60A.destination); o.start(t+n[1]); o.stop(t+n[1]+n[2]+.03) });
+    if(k==='no'&&navigator.vibrate) navigator.vibrate(60) }catch(e){} }
 var Z60G=[
-  {k:'match',t:'Match up',vi:'Nối cặp',d:'Tap a word, then its meaning.',c:'#2F7BF6',need:'words',ic:'<path d="M6 12 h12 M6 24 h12 M6 36 h12 M30 12 h12 M30 24 h12 M30 36 h12"/><path d="M18 12 C24 12 24 36 30 36 M18 36 C24 36 24 24 30 24 M18 24 C24 24 24 12 30 12" stroke-width="2"/>'},
-  {k:'flash',t:'Flash cards',vi:'Thẻ',d:'See it, say it, turn it over.',c:'#F0527A',need:'words',ic:'<rect x="6" y="12" width="26" height="20" rx="4"/><path d="M14 38 h24 a4 4 0 0 0 4 -4 V18"/><path d="M13 22 h12"/>'},
-  {k:'unj',t:'Unjumble',vi:'Xếp câu',d:'Put the words back in order.',c:'#7C5CFC',need:'sents',ic:'<rect x="4" y="18" width="11" height="12" rx="3"/><rect x="18.500" y="18" width="11" height="12" rx="3"/><rect x="33" y="18" width="11" height="12" rx="3"/><path d="M12 10 q12 -8 24 0 M36 10 l-1 -5 M36 10 l-5 1"/>'},
-  {k:'find',t:'Find the match',vi:'Tìm từ',d:'Tap the right word until none are left.',c:'#12A26E',need:'words',ic:'<circle cx="21" cy="21" r="12"/><path d="M30 30 L42 42"/><path d="M16 21 l4 4 l7 -8"/>'},
-  {k:'listen',t:'Listen and choose',vi:'Nghe và chọn',d:'No text. Hear it, pick what it means.',c:'#0FA8A1',need:'words',ic:'<path d="M8 28 V24 a16 16 0 0 1 32 0 v4"/><rect x="5" y="27" width="9" height="14" rx="4"/><rect x="34" y="27" width="9" height="14" rx="4"/>'} ];
+  {k:'match',t:'Match up',vi:'Nối cặp',d:'Tap a word, then its meaning.',c:'#2F7BF6',need:'words',ic:'<path d="M6 12 h12 M6 24 h12 M6 36 h12 M30 12 h12 M30 24 h12 M30 36 h12"/><path d="M18 12 C24 12 24 36 30 36 M18 36 C24 36 24 24 30 24 M18 24 C24 24 24 12 30 12" stroke-width="2"/>',
+    pv:'<rect x="12" y="10" width="34" height="14" rx="5" fill="#fff"/><rect x="12" y="29" width="34" height="14" rx="5" fill="#fff" opacity=".75"/><rect x="12" y="48" width="34" height="14" rx="5" fill="#fff" opacity=".55"/><rect x="74" y="10" width="34" height="14" rx="5" fill="#fff" opacity=".55"/><rect x="74" y="29" width="34" height="14" rx="5" fill="#fff" opacity=".75"/><rect x="74" y="48" width="34" height="14" rx="5" fill="#FFD23F"/><path d="M46 17 C62 17 58 55 74 55" fill="none" stroke="#FFD23F" stroke-width="3.500" stroke-linecap="round"/>'},
+  {k:'flash',t:'Flash cards',vi:'Thẻ',d:'See it, say it, turn it over.',c:'#F0527A',need:'words',ic:'<rect x="6" y="12" width="26" height="20" rx="4"/><path d="M14 38 h24 a4 4 0 0 0 4 -4 V18"/><path d="M13 22 h12"/>',
+    pv:'<g transform="rotate(-10 60 36)"><rect x="34" y="12" width="46" height="48" rx="8" fill="#fff" opacity=".55"/></g><g transform="rotate(7 60 36)"><rect x="40" y="10" width="46" height="50" rx="8" fill="#fff"/><text x="63" y="43" text-anchor="middle" font-size="22" font-weight="900" fill="#F0527A" font-family="Nunito,sans-serif">Aa</text></g>'},
+  {k:'unj',t:'Unjumble',vi:'Xếp câu',d:'Put the words back in order.',c:'#7C5CFC',need:'sents',ic:'<rect x="4" y="18" width="11" height="12" rx="3"/><rect x="18.500" y="18" width="11" height="12" rx="3"/><rect x="33" y="18" width="11" height="12" rx="3"/><path d="M12 10 q12 -8 24 0 M36 10 l-1 -5 M36 10 l-5 1"/>',
+    pv:'<g transform="rotate(-8 28 30)"><rect x="12" y="20" width="30" height="18" rx="6" fill="#fff"/></g><g transform="rotate(6 62 44)"><rect x="46" y="34" width="32" height="18" rx="6" fill="#FFD23F"/></g><g transform="rotate(-4 94 26)"><rect x="80" y="16" width="28" height="18" rx="6" fill="#fff" opacity=".75"/></g><path d="M22 58 h76" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7" opacity=".8"/>'},
+  {k:'find',t:'Find the match',vi:'Tìm từ',d:'Tap the right word until none are left.',c:'#12A26E',need:'words',ic:'<circle cx="21" cy="21" r="12"/><path d="M30 30 L42 42"/><path d="M16 21 l4 4 l7 -8"/>',
+    pv:'<rect x="12" y="10" width="28" height="16" rx="5" fill="#fff" opacity=".6"/><rect x="46" y="10" width="28" height="16" rx="5" fill="#fff"/><rect x="80" y="10" width="28" height="16" rx="5" fill="#fff" opacity=".6"/><rect x="12" y="32" width="28" height="16" rx="5" fill="#fff"/><rect x="46" y="32" width="28" height="16" rx="5" fill="#FFD23F"/><rect x="80" y="32" width="28" height="16" rx="5" fill="#fff" opacity=".6"/><circle cx="66" cy="46" r="13" fill="none" stroke="#fff" stroke-width="4"/><path d="M75 56 l10 10" stroke="#fff" stroke-width="5" stroke-linecap="round"/>'},
+  {k:'gap',t:'Fill the gap',vi:'Điền từ',d:'One word is missing. Pick it.',c:'#FF8A1F',need:'sents',ic:'<path d="M5 16 h14 M29 16 h14 M5 30 h8 M35 30 h8"/><rect x="17" y="24" width="14" height="12" rx="3"/>',
+    pv:'<rect x="10" y="14" width="26" height="12" rx="4" fill="#fff"/><rect x="42" y="12" width="34" height="16" rx="5" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="5 4"/><rect x="82" y="14" width="26" height="12" rx="4" fill="#fff"/><rect x="18" y="42" width="24" height="16" rx="6" fill="#fff" opacity=".7"/><rect x="48" y="42" width="24" height="16" rx="6" fill="#FFD23F"/><rect x="78" y="42" width="24" height="16" rx="6" fill="#fff" opacity=".7"/>'},
+  {k:'listen',t:'Listen and choose',vi:'Nghe và chọn',d:'No text. Hear it, pick what it means.',c:'#0FA8A1',need:'words',ic:'<path d="M8 28 V24 a16 16 0 0 1 32 0 v4"/><rect x="5" y="27" width="9" height="14" rx="4"/><rect x="34" y="27" width="9" height="14" rx="4"/>',
+    pv:'<path d="M22 28 h9 l12 -10 v36 l-12 -10 h-9 Z" fill="#fff"/><path d="M50 26 q8 10 0 20 M58 18 q14 18 0 36" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><rect x="78" y="16" width="30" height="14" rx="5" fill="#fff" opacity=".7"/><rect x="78" y="40" width="30" height="14" rx="5" fill="#FFD23F"/>'} ];
 Z60G.forEach(function(g){ Z60.byK[g.k]=g });
 function z60Icon(g){ return '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+g.ic+'</svg>' }
+function z60Ok(g,set){ return g.need==='sents'?set.sents.length>=3:set.words.length>=4 }
 function z60Menu(setId){ var body=zOpen(), sets=z60Sets();
   body.appendChild(zTop('Trò chơi · games',null,null)); body.classList.add('z60b');
   if(!sets.length){ body.appendChild(h('div',{class:'panel'},[h('p',{text:'Finish your first unit and the games open with its words.'}),h('button',{class:'btn primary wide',text:'OK',onclick:closeSheet})])); return }
   var cur=sets.filter(function(s){ return s.id===(setId||Z60.sel) })[0]||z60Default(sets); Z60.sel=cur.id;
-  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Pick a game'}),h('p',{class:'muted',text:'Same words, different games. Choose the words first, then how to play.'})]));
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Pick a game'}),h('p',{class:'muted',text:'Same words, different games. Choose the words, then how to play.'})]));
   var chips=h('div',{class:'z60sets'}); sets.forEach(function(s){ chips.appendChild(h('button',{class:'z60set','aria-pressed':String(s===cur),onclick:function(){ z60Menu(s.id) }},[h('b',{text:s.t}),h('span',{text:s.en||''}),h('small',{text:s.words.length+' words'+(s.sents.length?' · '+s.sents.length+' sentences':'')})])) });
   body.appendChild(chips); setTimeout(function(){ try{ var on=chips.querySelector('[aria-pressed="true"]'); if(on) chips.scrollLeft=Math.max(0,on.offsetLeft-16) }catch(e){} },0);
   var grid=h('div',{class:'z60grid'});
-  Z60G.forEach(function(g){ var ok=(g.need==='sents'?cur.sents.length>=3:cur.words.length>=4), b=z60Best(cur,g);
-    var el=h('button',{class:'z60g',disabled:!ok,onclick:function(){ z60Play(g.k,cur) }},[h('div',{class:'ic',style:'background:'+g.c,html:z60Icon(g)}),h('div',{class:'tx'},[h('b',{text:g.t}),h('i',{text:g.vi}),h('span',{text:ok?g.d:'Not enough sentences in this set yet.'})])]);
-    if(b) el.appendChild(h('em',{text:'Best '+b.best+'%'})); grid.appendChild(el) });
+  Z60G.forEach(function(g,i){ var ok=z60Ok(g,cur), b=z60Best(cur,g);
+    var el=h('button',{class:'z60g',disabled:!ok,style:'--c:'+g.c+';animation-delay:'+(i*.05)+'s',onclick:function(){ z60Play(g.k,cur) }},[h('div',{class:'pv',html:'<svg viewBox="0 0 120 70">'+g.pv+'</svg>'}),h('div',{class:'tx'},[h('b',{text:g.t}),h('i',{text:g.vi}),h('span',{text:ok?g.d:'Not enough sentences in this set yet.'})])]);
+    if(b){ var st=b.best>=90?3:(b.best>=65?2:1), sv=''; for(var k=0;k<3;k++) sv+='<svg viewBox="0 0 48 48" class="'+(k<st?'on':'')+'"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>'; el.appendChild(h('em',{html:sv})) } grid.appendChild(el) });
   body.appendChild(grid) }
-function z60Play(k,set){ var g=Z60.byK[k]; ({match:z60Match,flash:z60Flash,unj:z60Unj,find:z60Find,listen:z60Listen})[k](g,set) }
-function z60Shell(g,set,total){ var body=zOpen(), tok=Z.tok, t0=Date.now(), st={ok:0,miss:0,done:0,total:total}; body.classList.add('z60b');
-  var bar=h('i',{style:'width:0%'}), clock=h('span',{class:'z60clk',text:'0:00'});
+function z60Play(k,set){ var g=Z60.byK[k]; ({match:z60Match,flash:z60Flash,unj:z60Unj,find:z60Find,gap:z60Gap,listen:z60Listen})[k](g,set) }
+function z60Shell(g,set,total){ var body=zOpen(), tok=Z.tok, t0=Date.now(), st={ok:0,miss:0,done:0,total:total}; body.classList.add('z60b'); body.classList.add('z60play');
+  var bar=h('i',{style:'width:0%;background:'+g.c}), clock=h('span',{class:'z60clk',text:'0:00'}), okc=h('b',{text:'0'}), noc=h('b',{text:'0'});
+  var fx=h('button',{class:'z60fx','aria-label':'Game sounds','aria-pressed':String(S.set.fx60!==0),html:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9 h4 l5 -4 v14 l-5 -4 h-4 Z"/><path class="w" d="M16.500 9 q2.500 3 0 6"/></svg>',onclick:function(){ S.set.fx60=(S.set.fx60===0?1:0); save(); fx.setAttribute('aria-pressed',String(S.set.fx60!==0)); z60Fx('ok') }});
   body.appendChild(h('div',{class:'sess-top'},[h('button',{class:'x',text:'‹ Games',onclick:function(){ z60Menu(set.id) }}),h('div',{class:'bar'},[bar]),clock,h('button',{class:'x',text:'Close',onclick:closeSheet})]));
-  body.appendChild(h('div',{class:'z60hd'},[h('span',{class:'z60pill',style:'background:'+g.c,text:g.t}),h('span',{class:'lbl',text:set.t+(set.en?' · '+set.en:'')})]));
+  body.appendChild(h('div',{class:'z60hd',style:'--c:'+g.c},[h('span',{class:'z60gi',html:z60Icon(g)}),h('div',{class:'z60ht'},[h('b',{text:g.t}),h('span',{text:set.t+(set.en?' · '+set.en:'')})]),h('span',{class:'z60sc ok'},[okc]),h('span',{class:'z60sc no'},[noc]),fx]));
   var stage=h('div',{class:'z60stage'}); body.appendChild(stage);
   function alive(){ return tok===Z.tok&&document.body.contains(stage)&&!$('#sheet').hidden }
   var iv=setInterval(function(){ if(!alive()){ clearInterval(iv); return } var s=Math.floor((Date.now()-t0)/1000); clock.textContent=Math.floor(s/60)+':'+('0'+s%60).slice(-2) },500);
-  return {body:body,stage:stage,st:st,alive:alive,prog:function(){ bar.style.width=Math.round(st.done/Math.max(1,st.total)*100)+'%' },finish:function(){ clearInterval(iv); z60End(g,set,st,Math.floor((Date.now()-t0)/1000)) }} }
+  return {body:body,stage:stage,st:st,alive:alive,prog:function(){ bar.style.width=Math.round(st.done/Math.max(1,st.total)*100)+'%'; okc.textContent=st.ok; noc.textContent=st.miss },
+    right:function(el){ z60Fx('ok'); if(el){ el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop') } },wrong:function(el){ z60Fx('no'); if(el) z60Shake(el) },
+    finish:function(){ clearInterval(iv); z60End(g,set,st,Math.floor((Date.now()-t0)/1000)) }} }
+function z60Mascot(text){ var m=h('div',{class:'z60mas'}); try{ m.appendChild(z59Tam()) }catch(e){} m.appendChild(h('div',{class:'z59bub',text:text})); return m }
 function z60End(g,set,st,secs){ var body=zOpen(); body.classList.add('z60b'); var pct=st.total?Math.round(st.ok/st.total*100):0, stars=pct>=90?3:(pct>=65?2:1);
   var G=S.set.g60||(S.set.g60={}), k=set.id+':'+g.k, o=G[k]||{}, was=o.best; o.n=(o.n||0)+1; if(!(o.best>=pct)) o.best=pct; o.t=Date.now(); G[k]=o; save();
-  body.appendChild(zTop(g.t,1,null));
-  var sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.15)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
-  body.appendChild(h('div',{class:'z60end'},[h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:st.ok+' / '+st.total}),h('p',{class:'muted',text:(pct>=90?'Xuất sắc! Excellent.':(pct>=65?'Tốt lắm! Well done.':'Keep going. Play it again and it sticks.'))+'  ·  '+Math.floor(secs/60)+':'+('0'+secs%60).slice(-2)}),
+  body.appendChild(zTop(g.t,1,null)); setTimeout(function(){ z60Fx('win') },250);
+  var sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.18)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
+  body.appendChild(h('div',{class:'z60end',style:'--c:'+g.c},[z60Mascot(pct>=90?'Xuất sắc!':(pct>=65?'Tốt lắm!':'Cố lên!')),h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:st.ok+' / '+st.total}),h('p',{class:'muted',text:pct>=90?'Excellent. First try on nearly all of them.':(pct>=65?'Well done. One more round and it sticks.':'Keep going. Play it again and it sticks.')}),h('span',{class:'z60time',text:'⏱ '+Math.floor(secs/60)+':'+('0'+secs%60).slice(-2)+'   ·   ✗ '+st.miss}),
     (was!=null&&pct>was)?h('p',{class:'z60new',text:'New best: '+pct+'% (was '+was+'%)'}):null]));
   if(stars===3) body.appendChild(z60Conf());
   body.appendChild(h('button',{class:'btn primary wide',text:'Chơi lại · play again',onclick:function(){ z60Play(g.k,set) }}));
   body.appendChild(h('p',{class:'lbl',style:'margin:10px 2px 0',text:'Same words, another game'}));
-  var row=h('div',{class:'z60sw'}); Z60G.forEach(function(x){ if(x===g) return; var ok=(x.need==='sents'?set.sents.length>=3:set.words.length>=4); if(!ok) return; row.appendChild(h('button',{class:'z60swb',onclick:function(){ z60Play(x.k,set) }},[h('div',{class:'ic',style:'background:'+x.c,html:z60Icon(x)}),h('span',{text:x.t})])) }); body.appendChild(row);
+  var row=h('div',{class:'z60sw'}); Z60G.forEach(function(x){ if(x===g||!z60Ok(x,set)) return; row.appendChild(h('button',{class:'z60swb',onclick:function(){ z60Play(x.k,set) }},[h('div',{class:'ic',style:'background:'+x.c,html:z60Icon(x)}),h('span',{text:x.t})])) }); body.appendChild(row);
   body.appendChild(h('button',{class:'btn wide',text:'All games',onclick:function(){ z60Menu(set.id) }})) }
 function z60Conf(){ var box=h('div',{class:'z60conf','aria-hidden':'true'}), C=['#2F7BF6','#F0527A','#12A26E','#FF8A1F','#7C5CFC','#FFC83D']; for(var i=0;i<26;i++) box.appendChild(h('i',{style:'left:'+(4+Math.random()*92)+'%;background:'+C[i%6]+';animation-delay:'+(Math.random()*.5).toFixed(2)+'s;animation-duration:'+(1.6+Math.random()*1.2).toFixed(2)+'s;transform:rotate('+Math.round(Math.random()*360)+'deg)'})); return box }
-function z60Shake(el){ el.classList.add('no'); setTimeout(function(){ el.classList.remove('no') },450) }
+function z60Shake(el){ el.classList.remove('no'); void el.offsetWidth; el.classList.add('no'); setTimeout(function(){ el.classList.remove('no') },450) }
 
-/* Match up: 6 pairs a round, up to 3 rounds. Left = Vietnamese (plays), right = meaning (with its picture when there is one). */
-function z60Match(g,set){ var pool=shuffle(set.words).slice(0,18), rounds=[]; while(pool.length>=4&&rounds.length<3) rounds.push(pool.splice(0,6));
+/* Match up: 6 pairs a round, up to 3 rounds. Each row is a word and a meaning (not its own); a matched pair takes one colour. */
+function z60Match(g,set){ var pool=z60Take(set.words,18), rounds=[]; while(pool.length>=4&&rounds.length<3) rounds.push(pool.splice(0,6));
   var total=0; rounds.forEach(function(r){ total+=r.length }); var sh=z60Shell(g,set,total), st=sh.st, ri=0;
-  function round(){ var R=rounds[ri], selL=null, selR=null, left=R.length, missed={}; sh.stage.innerHTML='';
+  function round(){ var R=rounds[ri], selL=null, selR=null, left=R.length, missed={}, nm=0; sh.stage.innerHTML='';
     sh.stage.appendChild(h('p',{class:'z60tip',text:'Tap a word, then its meaning.'+(rounds.length>1?'  Round '+(ri+1)+' of '+rounds.length:'')}));
-    var L=h('div',{class:'z60col'}), Rc=h('div',{class:'z60col'});
+    var grid=h('div',{class:'z60cols'}), Ls=shuffle(R), Rs=shuffle(R);
     function check(){ if(!selL||!selR) return; var a=selL, b=selR; selL=selR=null; a.el.classList.remove('sel'); b.el.classList.remove('sel');
-      if(a.w===b.w){ [a.el,b.el].forEach(function(e){ e.classList.add('ok'); e.disabled=true }); if(!missed[a.w.vi]) st.ok++; st.done++; sh.prog(); left--;
-        if(!left) setTimeout(function(){ if(!sh.alive()) return; ri++; if(ri<rounds.length) round(); else sh.finish() },750) }
-      else { missed[a.w.vi]=1; missed[b.w.vi]=1; st.miss++; z60Shake(a.el); z60Shake(b.el) } }
-    shuffle(R).forEach(function(w){ var b=h('button',{class:'z60tile l'},[h('b',{text:w.vi})]); b.onclick=function(){ zSay(w.vi); if(selL) selL.el.classList.remove('sel'); selL={w:w,el:b}; b.classList.add('sel'); check() }; L.appendChild(b) });
-    shuffle(R).forEach(function(w){ var b=h('button',{class:'z60tile r'}); if(z60Has(w.vi)) b.appendChild(z12Pic(w.vi,'xs')); b.appendChild(h('span',{text:z60En(w.en)})); b.onclick=function(){ if(selR) selR.el.classList.remove('sel'); selR={w:w,el:b}; b.classList.add('sel'); check() }; Rc.appendChild(b) });
-    sh.stage.appendChild(h('div',{class:'z60cols'},[L,Rc])) }
+      if(a.w===b.w){ var c=nm++%6; [a.el,b.el].forEach(function(e){ e.classList.add('ok'); e.disabled=true; e.style.setProperty('--pc',Z60D[c]); e.style.setProperty('--pb',Z60P[c]) }); sh.right(a.el); sh.right(b.el); if(!missed[a.w.vi]) st.ok++; st.done++; sh.prog(); left--;
+        if(!left) setTimeout(function(){ if(!sh.alive()) return; ri++; if(ri<rounds.length) round(); else sh.finish() },800) }
+      else { missed[a.w.vi]=1; missed[b.w.vi]=1; st.miss++; sh.prog(); sh.wrong(a.el); z60Shake(b.el) } }
+    Ls.forEach(function(w,i){ var lb=h('button',{class:'z60tile l'},[h('b',{text:w.vi})]); lb.onclick=function(){ zSay(w.vi); if(selL) selL.el.classList.remove('sel'); selL={w:w,el:lb}; lb.classList.add('sel'); check() };
+      var r=Rs[i], rb=h('button',{class:'z60tile r'}); if(z60Has(r.vi)) rb.appendChild(z60Pic(r.vi)); rb.appendChild(h('span',{text:z60En(r.en)})); rb.onclick=function(){ if(selR) selR.el.classList.remove('sel'); selR={w:r,el:rb}; rb.classList.add('sel'); check() };
+      grid.appendChild(lb); grid.appendChild(rb) });
+    sh.stage.appendChild(grid) }
   round() }
 
-/* Flash cards: picture and word, hear it, turn it over for the meaning and the word in a sentence. "Again" brings a card back once. */
-function z60Flash(g,set){ var q=shuffle(set.words).slice(0,12), sh=z60Shell(g,set,q.length), st=sh.st, again={};
-  function show(){ if(!q.length){ sh.finish(); return } var w=q[0], flipped=false; sh.stage.innerHTML='';
-    var front=h('div',{class:'z60face f'},[z60Has(w.vi)?z12Pic(w.vi,'sm'):null,h('div',{class:'z60vi',text:w.vi}),h('small',{text:'Say it out loud, then tap to turn over'})]);
+/* Flash cards: the card really turns over. Front: picture and word (and its sound). Back: meaning and the word in a sentence.
+   "Again" brings a card back once; on a phone you can also swipe the turned card left (again) or right (got it). */
+function z60Flash(g,set){ var q=z60Take(set.words,12), n0=q.length, sh=z60Shell(g,set,q.length), st=sh.st, again={}, seen=0;
+  function show(){ if(!q.length){ sh.finish(); return } var w=q[0], flipped=false, x0=null, c=z60Hash(w.vi)%6; sh.stage.innerHTML='';
+    var front=h('div',{class:'z60face f',style:'--pb:'+Z60P[c]+';--pc:'+Z60D[c]},[h('span',{class:'wm','aria-hidden':'true',text:w.vi.charAt(0).toUpperCase()}),z60Has(w.vi)?z60Pic(w.vi,'sm'):null,h('div',{class:'z60vi',text:w.vi}),h('small',{text:'Say it out loud, then tap to turn over'})]);
     var back=h('div',{class:'z60face b'},[h('div',{class:'z60en',text:w.en}),w.ex?h('div',{class:'z60ex'},[h('b',{text:w.ex}),h('span',{text:w.exen||''})]):null]);
-    var card=h('button',{class:'z60card',onclick:function(){ flipped=!flipped; card.classList.toggle('flip',flipped); btns.hidden=!flipped; if(flipped&&w.ex) zSay(w.ex); else zSay(w.vi) }},[front,back]);
+    var card=h('button',{class:'z60card',onclick:function(){ flipped=!flipped; card.classList.toggle('flip',flipped); btns.hidden=!flipped; z60Fx('flip'); if(flipped&&w.ex) zSay(w.ex); else zSay(w.vi) }},[h('div',{class:'z60in'},[front,back])]);
+    function grade(ok){ if(ok){ if(!again[w.vi]) st.ok++; st.done++; q.shift(); z60Fx('ok') } else { if(!again[w.vi]){ again[w.vi]=1; q.push(q.shift()) } else { st.done++; st.miss++; q.shift() } } sh.prog(); show() }
+    card.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX },{passive:true}); card.addEventListener('touchend',function(e){ if(x0==null||!flipped) return; var dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>70){ e.preventDefault(); grade(dx>0) } });
     var hear=h('button',{class:'z60hear',html:PLAY_ICON+'<span>Nghe · hear it</span>',onclick:function(){ zSay(flipped&&w.ex?w.ex:w.vi) }});
-    var btns=h('div',{class:'z60yn',hidden:true},[h('button',{class:'z60n',text:'Again',onclick:function(){ if(!again[w.vi]){ again[w.vi]=1; q.push(q.shift()) } else { st.done++; q.shift() } sh.prog(); show() }}),h('button',{class:'z60y',text:'Got it',onclick:function(){ if(!again[w.vi]) st.ok++; st.done++; q.shift(); sh.prog(); show() }})]);
+    var btns=h('div',{class:'z60yn',hidden:true},[h('button',{class:'z60n',text:'Again',onclick:function(){ grade(false) }}),h('button',{class:'z60y',text:'Got it',onclick:function(){ grade(true) }})]);
+    sh.stage.appendChild(h('p',{class:'z60tip',style:'text-align:center',text:'Card '+Math.min(n0,st.done+1)+' of '+n0}));
     sh.stage.appendChild(card); sh.stage.appendChild(hear); sh.stage.appendChild(btns); zSay(w.vi) }
   show() }
 
 /* Unjumble: the English is the clue, the tiles are the Vietnamese words. Tap to place, tap again to take back. */
-function z60Unj(g,set){ var q=shuffle(set.sents).slice(0,8), sh=z60Shell(g,set,q.length), st=sh.st, i=0;
-  function show(){ if(i>=q.length){ sh.finish(); return } var s=q[i], m=s.vi.trim().match(/^(.*?)([.?!…]*)$/), words=m[1].split(/\s+/), end=m[2]||'', missed=0, solved=false; sh.stage.innerHTML='';
+function z60Unj(g,set){ var q=shuffle(set.sents.filter(function(s){ return z60Chunks(s.vi).parts.length>=3 })).slice(0,8), sh=z60Shell(g,set,q.length), st=sh.st, i=0;
+  function show(){ if(i>=q.length){ sh.finish(); return } var s=q[i], ck=z60Chunks(s.vi), words=ck.parts, end=ck.end, missed=0, solved=false; sh.stage.innerHTML='';
     var ord=words.map(function(_,k){ return k }), tries=0; do{ ord=shuffle(ord); tries++ }while(tries<8&&words.length>1&&ord.every(function(v,k){ return v===k }));
     var line=h('div',{class:'z60line'}), tray=h('div',{class:'z60tray'}), endEl=h('span',{class:'z60endp',text:end});
     var chk=h('button',{class:'btn primary wide',text:'Kiểm tra · check',disabled:true}), msg=h('p',{class:'z60msg'});
     function upd(){ chk.disabled=solved||tray.children.length>0 }
-    ord.forEach(function(k){ var t=h('button',{class:'z60w',text:words[k]}); t.onclick=function(){ if(solved) return; if(t.parentNode===tray) line.insertBefore(t,endEl); else tray.appendChild(t); msg.textContent=''; upd() }; tray.appendChild(t) });
+    ord.forEach(function(k,n){ var t=h('button',{class:'z60w',style:'--pb:'+Z60P[n%6]+';--pc:'+Z60D[n%6],text:words[k]}); t.onclick=function(){ if(solved) return; if(t.parentNode===tray) line.insertBefore(t,endEl); else tray.appendChild(t); msg.textContent=''; upd() }; tray.appendChild(t) });
     line.appendChild(endEl);
-    function win(shown){ solved=true; line.classList.add('ok'); if(!missed&&!shown) st.ok++; st.done++; sh.prog(); zSay(s.vi); chk.textContent=i+1<q.length?'Tiếp · next':'Xong · finish'; chk.disabled=false; chk.onclick=function(){ i++; show() }; msg.textContent=shown?'This is the order. Say it out loud.':'Đúng rồi! Say it out loud.' }
+    function win(shown){ solved=true; line.classList.add('ok'); if(!missed&&!shown) st.ok++; st.done++; sh.prog(); if(!shown) sh.right(line); zSay(s.vi); chk.textContent=i+1<q.length?'Tiếp · next':'Xong · finish'; chk.disabled=false; chk.onclick=function(){ i++; show() }; msg.textContent=shown?'This is the order. Say it out loud.':'Đúng rồi! Say it out loud.' }
     chk.onclick=function(){ var got=[].map.call(line.querySelectorAll('.z60w'),function(x){ return x.textContent }); if(got.join(' ').toLowerCase()===words.join(' ').toLowerCase()){ win(false); return }
-      missed++; st.miss++; [].forEach.call(line.querySelectorAll('.z60w'),function(x,k){ if(x.textContent.toLowerCase()!==words[k].toLowerCase()) z60Shake(x) }); msg.textContent='Not yet. The red ones are in the wrong place.';
-      if(missed>=2&&!sh.stage.querySelector('.z60show')) sh.stage.appendChild(h('button',{class:'btn wide z60show',text:'Show me the answer',onclick:function(){ [].slice.call(sh.stage.querySelectorAll('.z60w')).forEach(function(x){ x.remove() }); words.forEach(function(w){ line.insertBefore(h('button',{class:'z60w',text:w}),endEl) }); var b=sh.stage.querySelector('.z60show'); if(b) b.remove(); win(true) }})) };
-    sh.stage.appendChild(h('div',{class:'z60clue'},[h('div',{},[h('span',{class:'lbl',text:'Say this in Vietnamese'}),h('b',{text:s.en||'Put the words in order'})]),h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(s.vi) }})]));
+      missed++; st.miss++; sh.prog(); z60Fx('no'); [].forEach.call(line.querySelectorAll('.z60w'),function(x,k){ if(x.textContent.toLowerCase()!==words[k].toLowerCase()) z60Shake(x) }); msg.textContent='Not yet. The red ones are in the wrong place.';
+      if(missed>=2&&!sh.stage.querySelector('.z60show')) sh.stage.appendChild(h('button',{class:'btn wide z60show',text:'Show me the answer',onclick:function(){ [].slice.call(sh.stage.querySelectorAll('.z60w')).forEach(function(x){ x.remove() }); words.forEach(function(w,n){ line.insertBefore(h('button',{class:'z60w',style:'--pb:'+Z60P[n%6]+';--pc:'+Z60D[n%6],text:w}),endEl) }); var b=sh.stage.querySelector('.z60show'); if(b) b.remove(); win(true) }})) };
+    sh.stage.appendChild(h('div',{class:'z60clue'},[h('div',{},[h('span',{class:'lbl',text:'Say this in Vietnamese · '+(i+1)+' / '+q.length}),h('b',{text:s.en||'Put the words in order'})]),h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(s.vi) }})]));
     sh.stage.appendChild(line); sh.stage.appendChild(tray); sh.stage.appendChild(msg); sh.stage.appendChild(chk) }
   show() }
 
 /* Find the match: eight words on the table. The meaning shows on top; tap its word and it leaves. */
-function z60Find(g,set){ var W=shuffle(set.words).slice(0,8), q=shuffle(W), sh=z60Shell(g,set,W.length), st=sh.st, missed=false, busy=false;
+function z60Find(g,set){ var W=z60Take(set.words,8), q=shuffle(W), sh=z60Shell(g,set,W.length), st=sh.st, missed=false, busy=false;
   var clue=h('div',{class:'z60find'}), grid=h('div',{class:'z60fg'});
-  function ask(){ if(!q.length){ sh.finish(); return } var w=q[0]; missed=false; busy=false; clue.innerHTML=''; if(z60Has(w.vi)) clue.appendChild(z12Pic(w.vi,'xs')); clue.appendChild(h('div',{},[h('span',{class:'lbl',text:'Find the word for'}),h('b',{text:z60En(w.en)})])) }
-  W.forEach(function(w){ var b=h('button',{class:'z60tile f'},[h('b',{text:w.vi})]); b.onclick=function(){ if(busy||b.classList.contains('gone')) return; if(w===q[0]){ busy=true; b.classList.add('ok'); zSay(w.vi); if(!missed) st.ok++; st.done++; sh.prog(); q.shift(); setTimeout(function(){ if(!sh.alive()) return; b.classList.add('gone'); ask() },650) } else { missed=true; st.miss++; z60Shake(b) } }; grid.appendChild(b) });
+  function ask(){ if(!q.length){ sh.finish(); return } var w=q[0]; missed=false; busy=false; clue.innerHTML=''; if(z60Has(w.vi)) clue.appendChild(z60Pic(w.vi,'xs big')); clue.appendChild(h('div',{},[h('span',{class:'lbl',text:'Find the word for · '+(W.length-q.length+1)+' / '+W.length}),h('b',{text:z60En(w.en)})])); clue.classList.remove('pop'); void clue.offsetWidth; clue.classList.add('pop') }
+  W.forEach(function(w,n){ var b=h('button',{class:'z60tile f',style:'--pb:'+Z60P[n%6]+';--pc:'+Z60D[n%6]},[h('b',{text:w.vi})]); b.onclick=function(){ if(busy||b.classList.contains('gone')) return; if(w===q[0]){ busy=true; b.classList.add('ok'); sh.right(b); zSay(w.vi); if(!missed) st.ok++; st.done++; sh.prog(); q.shift(); setTimeout(function(){ if(!sh.alive()) return; b.classList.add('gone'); ask() },650) } else { missed=true; st.miss++; sh.prog(); sh.wrong(b) } }; grid.appendChild(b) });
   sh.stage.appendChild(clue); sh.stage.appendChild(grid); ask() }
 
+/* Fill the gap: a sentence with one piece missing. The English is underneath. Pick the piece. */
+function z60Gap(g,set){ var known={}; set.words.forEach(function(w){ known[w.vi.toLowerCase()]=1 });
+  var items=[]; shuffle(set.sents).forEach(function(s){ if(items.length>=8) return; var ck=z60Chunks(s.vi), c=[]; ck.parts.forEach(function(p,i){ var k=p.toLowerCase().replace(/[,;:“”"()]/g,''); if(known[k]&&i>0) c.push(i) }); if(!c.length) ck.parts.forEach(function(p,i){ if(i>0&&!/[,;:“”"()]/.test(p)) c.push(i) }); if(!c.length||ck.parts.length<3) return; items.push({s:s,ck:ck,i:c[Math.floor(Math.random()*c.length)]}) });
+  var sh=z60Shell(g,set,items.length), st=sh.st, qi=0, bank=[]; set.words.forEach(function(w){ bank.push(w.vi) });
+  function show(){ if(qi>=items.length){ sh.finish(); return } var it=items[qi], ans=it.ck.parts[it.i], al=ans.toLowerCase(), done=false, missed=false; sh.stage.innerHTML=''; sh.stage.setAttribute('data-a',ans);
+    var opts=shuffle([ans].concat(shuffle(bank.filter(function(x){ return x.toLowerCase()!==al&&it.ck.parts.map(function(p){ return p.toLowerCase() }).indexOf(x.toLowerCase())<0 })).slice(0,3)));
+    var line=h('div',{class:'z60gapl'}), blank=h('span',{class:'z60blank',text:'\u00a0'}); it.ck.parts.forEach(function(p,i){ if(i) line.appendChild(document.createTextNode(' ')); if(i===it.i) line.appendChild(blank); else line.appendChild(h('span',{text:p})) }); line.appendChild(h('span',{text:it.ck.end}));
+    var nextB=h('button',{class:'btn primary wide',text:qi+1<items.length?'Tiếp · next':'Xong · finish',hidden:true,onclick:function(){ qi++; show() }}), og=h('div',{class:'z60opts two'});
+    opts.forEach(function(o,n){ var b=h('button',{class:'z60opt gap',style:'--pb:'+Z60P[n%6]+';--pc:'+Z60D[n%6]},[h('span',{text:o})]); b.setAttribute('data-k',o); b.onclick=function(){ if(done) return; if(o===ans){ done=true; b.classList.add('ok'); blank.textContent=ans; blank.classList.add('ok'); if(!missed) st.ok++; st.done++; sh.prog(); sh.right(line); zSay(it.s.vi); nextB.hidden=false } else { missed=true; st.miss++; sh.prog(); sh.wrong(b); b.classList.add('bad') } }; og.appendChild(b) });
+    sh.stage.appendChild(h('div',{class:'z60gapc'},[h('span',{class:'lbl',text:'Which word is missing? · '+(qi+1)+' / '+items.length}),line,h('p',{class:'z60gape',text:it.s.en||''})])); sh.stage.appendChild(og); sh.stage.appendChild(nextB) }
+  show() }
+
 /* Listen and choose: no text. Words first, then whole sentences. */
-function z60Listen(g,set){ var ws=shuffle(set.words).slice(0,set.sents.length>=4?6:10).map(function(w){ return {vi:w.vi,en:z60En(w.en),k:'w'} }), ss=set.sents.length>=4?shuffle(set.sents.filter(function(s){ return s.en })).slice(0,4).map(function(s){ return {vi:s.vi,en:s.en,k:'s'} }):[];
+function z60Listen(g,set){ var ws=z60Take(set.words,set.sents.length>=4?6:10).map(function(w){ return {vi:w.vi,en:z60En(w.en),k:'w'} }), ss=set.sents.length>=4?shuffle(set.sents.filter(function(s){ return s.en })).slice(0,4).map(function(s){ return {vi:s.vi,en:s.en,k:'s'} }):[];
   var q=ws.concat(ss), sh=z60Shell(g,set,q.length), st=sh.st, i=0;
   function show(){ if(i>=q.length){ sh.finish(); return } var it=q[i], pool=(it.k==='w'?set.words.map(function(w){ return {vi:w.vi,en:z60En(w.en)} }):set.sents.filter(function(s){ return s.en })).filter(function(x){ return x.vi!==it.vi&&x.en!==it.en });
     var opts=shuffle([it].concat(shuffle(pool).slice(0,it.k==='w'?3:2))), done=false; sh.stage.innerHTML=''; sh.stage.setAttribute('data-a',it.en);
     var big=h('button',{class:'z60spk','aria-label':'Play',html:'<svg viewBox="0 0 48 48" width="54" height="54"><path d="M8 18 h8 l11 -9 v30 l-11 -9 h-8 Z" fill="#fff"/><path d="M33 17 q6 7 0 14 M38 11 q11 13 0 26" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>',onclick:function(){ zSay(it.vi) }});
     var reveal=h('div',{class:'z60rev'}), nextB=h('button',{class:'btn primary wide',text:i+1<q.length?'Tiếp · next':'Xong · finish',hidden:true,onclick:function(){ i++; show() }});
     var ol=h('div',{class:'z60opts'+(it.k==='w'?' two':'')});
-    opts.forEach(function(o){ var b=h('button',{class:'z60opt'}); if(it.k==='w'&&z60Has(o.vi)) b.appendChild(z12Pic(o.vi,'xs')); b.appendChild(h('span',{text:o.en})); b.onclick=function(){ if(done) return; done=true; var ok=o===it; b.classList.add(ok?'ok':'bad'); if(ok) st.ok++; else { st.miss++; [].forEach.call(ol.children,function(c,k){ if(opts[k]===it) c.classList.add('ok') }) }
+    opts.forEach(function(o){ var b=h('button',{class:'z60opt'}); if(it.k==='w'&&z60Has(o.vi)) b.appendChild(z60Pic(o.vi)); b.appendChild(h('span',{text:o.en})); b.onclick=function(){ if(done) return; done=true; var ok=o===it; b.classList.add(ok?'ok':'bad'); if(ok){ st.ok++; sh.right(b) } else { st.miss++; sh.wrong(b); [].forEach.call(ol.children,function(c,k){ if(opts[k]===it) c.classList.add('ok') }) }
         st.done++; sh.prog(); reveal.appendChild(h('b',{text:it.vi})); reveal.appendChild(h('span',{text:it.en})); nextB.hidden=false; if(!ok) zSay(it.vi) }; ol.appendChild(b) });
-    sh.stage.appendChild(h('div',{class:'z60lis'},[big,h('span',{class:'lbl',text:it.k==='w'?'Nghe · which word is it?':'Nghe · what does it mean?'})])); sh.stage.appendChild(ol); sh.stage.appendChild(reveal); sh.stage.appendChild(nextB);
+    sh.stage.appendChild(h('div',{class:'z60lis'},[h('div',{class:'z60ring'},[big]),h('span',{class:'lbl',text:(it.k==='w'?'Nghe · which word is it?':'Nghe · what does it mean?')+'  '+(i+1)+' / '+q.length})])); sh.stage.appendChild(ol); sh.stage.appendChild(reveal); sh.stage.appendChild(nextB);
     setTimeout(function(){ if(sh.alive()&&!done) zSay(it.vi) },250) }
   show() }
 Z59.act.gam=function(){ z60Menu() };
@@ -2113,7 +2158,7 @@ Z59.act.gam=function(){ z60Menu() };
 function z60Ears(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Nghe · listening',null,null));
   body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Just listen'}),h('p',{class:'muted',text:'Ears first. The more you hear, the easier everything else gets.'})]));
   var grid=h('div',{class:'z60grid'}), sets=z60Sets(), cur=sets.length?z60Default(sets):null, all=sets.filter(function(s){ return s.id==='all' })[0];
-  function card(c,t,vi,d,ic,fn){ grid.appendChild(h('button',{class:'z60g',onclick:fn},[h('div',{class:'ic',style:'background:'+c,html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+ic+'</svg>'}),h('div',{class:'tx'},[h('b',{text:t}),h('i',{text:vi}),h('span',{text:d})])])) }
+  function card(c,t,vi,d,ic,fn){ grid.appendChild(h('button',{class:'z60g',style:'--c:'+c,onclick:fn},[h('div',{class:'pv ico',html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">'+ic+'</svg>'}),h('div',{class:'tx'},[h('b',{text:t}),h('i',{text:vi}),h('span',{text:d})])])) }
   if(cur) card('#0FA8A1','Listen and choose','Nghe và chọn','This lesson: hear it, pick the meaning.',Z60.byK.listen.ic,function(){ z60Play('listen',cur) });
   if(all) card('#2F7BF6','Everything so far','Nghe lại hết','The same game with all the words you have met.',Z60.byK.listen.ic,function(){ z60Play('listen',all) });
   card('#F0527A','Story by ear','Nghe truyện','A whole story with no text, then questions.','<path d="M24 12 q-8 -5 -18 -3 V37 q10 -2 18 3 q8 -5 18 -3 V9 q-10 -2 -18 3 Z M24 12 V40"/>',function(){ z13Story() });
@@ -2192,7 +2237,7 @@ function z62Menu(){ z62Load(function(){ var body=zOpen(); body.classList.add('z6
   var g=h('div',{class:'z62menu'}); z62Boards().forEach(function(b){ var st=z62St(b.id), seen=Object.keys(st.seen||{}).length;
     g.appendChild(h('button',{class:'z62m',style:'--c:'+b.c,onclick:function(){ z62Board(b.id) }},[h('div',{class:'z62mk',text:b.id==='tone'?'á à ả':(b.items[0].k+' '+b.items[1].k+' '+(b.items[2]?b.items[2].k:''))}),h('b',{text:b.t}),h('span',{text:b.en}),h('small',{text:seen+' / '+b.items.length+' heard'+(st.best!=null?' · test '+st.best+'%':'')})])) });
   body.appendChild(g);
-  body.appendChild(h('button',{class:'z60g',onclick:function(){ closeSheet(); location.hash='van' }},[h('div',{class:'ic',style:'background:#18203A',html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 38 V10 h20 l12 12 v16 Z M28 10 v12 h12"/></svg>'}),h('div',{class:'tx'},[h('b',{text:'Sound lessons'}),h('i',{text:'Bài học âm'}),h('span',{text:'17 short lessons with the spelling rules and mouth notes.'})])])) }) }
+  body.appendChild(h('button',{class:'z60g row',onclick:function(){ closeSheet(); location.hash='van' }},[h('div',{class:'ic',style:'background:#18203A',html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 38 V10 h20 l12 12 v16 Z M28 10 v12 h12"/></svg>'}),h('div',{class:'tx'},[h('b',{text:'Sound lessons'}),h('i',{text:'Bài học âm'}),h('span',{text:'17 short lessons with the spelling rules and mouth notes.'})])])) }) }
 function z62Tile(it,i,big,bare){ var b=h('button',{class:'z62t'+(big?' big':''),style:'--c:'+Z62.C[i%6]});
   if(it.path){ b.appendChild(h('span',{class:'z62tp',html:'<svg viewBox="0 0 60 44"><path d="'+it.path+'" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>'})); b.appendChild(h('b',{text:it.k})); b.appendChild(h('small',{text:it.nm})) }
   else { b.appendChild(h('b',{text:it.up?(it.k.toUpperCase()+' '+it.k):it.k})); if(!bare&&(big||!it.up)) b.appendChild(h('small',{text:it.w})) }

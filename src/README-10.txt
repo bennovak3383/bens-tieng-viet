@@ -496,3 +496,19 @@ A stage opens after 10 different sentences in the stage before (S.set.b64.st[sta
 an "everything open" account has all three. Stages 4 and 5 (time and dates; prices, food, age) are named on the screen, not built.
 Recording list: parts sc_com … sc_hot and sc_zb (builder questions, words and the stage-3 sentences) follow "ab". Total 5,196 lines.
 Test: src/tests/t61.py covers all nine scenes and stages 1–3.
+
+VERSION 67 — the games, lifted (Ben, after playing Match up on his iPhone: go through every game, better pictures and graphics,
+make sure they all work, an elevated level)
+Menu: two columns of cards, each with a drawn preview of the game (Z60G[].pv) and the stars you earned on that set.
+Game bar: the game's icon and name, ✓ and ✗ counts that update as you play, a sound switch (S.set.fx60; z60Fx makes the chimes
+with the Web Audio API, no files). Wrong answers also buzz on phones that support vibration.
+Pictures: z60Pic puts every drawing in a soft colour tile; z60Take picks about two pictured words in three, so rounds look alive.
+Match up: one grid, so a word and the meaning beside it are always the same height; each matched pair takes its own colour.
+Flash cards: the card turns over in 3D; swipe a turned card right (got it) or left (again); "Card n of N".
+Unjumble and the new Fill the gap (z60Gap, Điền từ) move whole words: z60Chunks keeps "cà phê", "Sài Gòn" and the like in one piece.
+Find the match: coloured tiles, bigger picture clue. Listen and choose: a pulsing speaker.
+End screen: Thầy Tâm with a speech bubble, stars, time and misses, confetti on three stars, the same words in another game.
+All game buttons: touch-action manipulation (no double-tap zoom on an iPhone), no text selection, no grey tap flash.
+Six games now: match, flash, unj, find, gap, listen. Test: src/tests/t60.py plays every one to the end.
+Checked at phone size (393 px, touch) in the lab browser for anything running off the screen: games, listening corner, sound
+boards, a scene check, the builder, the story reader. Not checked: a real iPhone, sound.

@@ -35,7 +35,7 @@ with sync_playwright() as p:
     # unjumble
     pg.locator('.z60g').nth(2).click(); pg.wait_for_timeout(300); sm=dict(T(SET+".sents.map(s=>[s.en,s.vi])")); k=0
     while pg.locator('.z60end').count()==0:
-        en=pg.locator('.z60clue b').inner_text().strip(); words=sm[en].rstrip('.?!…').split()
+        en=pg.locator('.z60clue b').inner_text().strip(); words=T("z60Chunks(%s).parts"%repr(sm[en]))
         if k==0: words=list(reversed(words))
         for w in words: pg.locator('.z60tray .z60w',has_text=w).filter(has_text=w).first.click() if False else [x for x in pg.locator('.z60tray .z60w').all() if x.inner_text()==w][0].click()
         pg.locator('.z60stage .btn.primary').click(); pg.wait_for_timeout(150)
@@ -52,12 +52,22 @@ with sync_playwright() as p:
         if c: c[0].click()
         pg.wait_for_timeout(750)
     end('find the match')
+    # fill the gap (one wrong pick first)
+    pg.locator('.z60g').nth(4).click(); pg.wait_for_timeout(300); k=0
+    while pg.locator('.z60end').count()==0:
+        a=pg.locator('.z60stage').get_attribute('data-a')
+        if k==0: pg.locator('.z60opt.gap:not([data-k="%s"])'%a).first.click(); k=1
+        pg.locator('.z60opt.gap[data-k="%s"]'%a).click(); pg.wait_for_timeout(100)
+        if k==1: print('gap filled:',pg.locator('.z60gapl').inner_text().replace('\n',' ')); k=2
+        pg.locator('.z60stage .btn.primary').click(); pg.wait_for_timeout(150)
+    end('fill the gap (1 miss)')
     # listen and choose
-    pg.locator('.z60g').nth(4).click(); pg.wait_for_timeout(400)
+    pg.locator('.z60g').nth(5).click(); pg.wait_for_timeout(400)
     while pg.locator('.z60end').count()==0:
         a=pg.locator('.z60stage').get_attribute('data-a'); [x for x in pg.locator('.z60opt').all() if x.inner_text().strip()==a][0].click(); pg.wait_for_timeout(100); pg.locator('.z60stage .btn.primary').click(); pg.wait_for_timeout(350)
     end('listen and choose')
     T("closeSheet()"); pg.locator('.z59-lis').click(); pg.wait_for_timeout(300); print('listening corner:',[x.inner_text().split('\n')[0] for x in pg.locator('.z60g').all()])
+    print('sound switch:',T("S.set.fx60"),'| compound stays whole:',T("z60Chunks('Anh muốn uống cà phê không?').parts.join('|')"))
     for i in range(2,6):
         pg.locator('.z60g').nth(i).click(); pg.wait_for_timeout(500); print('  opens:',pg.locator('#sheet-body .lbl').first.inner_text()); T("closeSheet()"); pg.locator('.z59-lis').click(); pg.wait_for_timeout(250)
     T("closeSheet()")
