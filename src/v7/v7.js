@@ -1873,3 +1873,22 @@ function z56Gate(ms,onInterim){ return new Promise(function(resolve){ var sb=$('
   at.parentNode.insertBefore(b,at.nextSibling);
   try{ mo=new MutationObserver(function(){ if(!at.isConnected||!b.isConnected||(!b.z56.on&&sb.querySelector('#rf-next'))){ try{ b.z56.kill() }catch(e){} clean() } }); mo.observe(sb,{childList:true,subtree:true}) }catch(e){} }) }
 zHear=function(ms,onInterim){ if(Z56.arm||!zMic()||!Z56.tap()) return zHear56(ms,onInterim); return z56Gate(ms,onInterim) };
+
+/* ===== 57 · user guide (data/guide.json, pictures in img/guide): More → Hướng dẫn, a button at the bottom of Home, and #guide ===== */
+var Z57={g:null};
+function z57Load(){ return Z57.g?Promise.resolve(Z57.g):fetch('data/guide.json').then(function(r){ return r.json() }).then(function(j){ Z57.g=j; return j }) }
+function z57Blocks(s){ var out=[]; (s.b||[]).forEach(function(b){
+    if(typeof b==='string') out.push(h('p',{text:b}));
+    else if(b.ol) out.push(h('ol',{class:'z57l'},b.ol.map(function(x){ return h('li',{text:x}) })));
+    else if(b.ul) out.push(h('ul',{class:'z57l'},b.ul.map(function(x){ return h('li',{text:x}) })));
+    else if(b.tb) out.push(h('div',{class:'z57tb'},b.tb.map(function(r){ return h('div',{class:'z57r'},[h('b',{text:r[0]}),h('span',{text:r[1]})]) })));
+    else if(b.img) out.push(h('figure',{class:'z57f'},[h('img',{src:'img/guide/'+b.img,alt:b.cap||'',loading:'lazy'}),b.cap?h('figcaption',{class:'small muted',text:b.cap}):null])) });
+  return out }
+function z57Guide(){ var body=zOpen(); body.appendChild(zTop('Hướng dẫn · how it works',null,null)); zSwap(body,[h('p',{class:'muted',text:'Loading…'})]);
+  z57Load().then(function(g){ var G=g.student, toc=h('div',{class:'z57toc'}), kids=[h('h1',{text:G.title}),h('p',{class:'muted',text:G.intro}),toc];
+    G.sections.forEach(function(s,i){ var sec=h('div',{class:'panel z57s'},[h('span',{class:'lbl',text:(i+1)+(s.vi?' · '+s.vi:'')}),h('h2',{text:s.t})].concat(z57Blocks(s)));
+      toc.appendChild(h('button',{class:'chip',text:(i+1)+' · '+s.t,onclick:function(){ try{ sec.scrollIntoView({block:'start',behavior:'smooth'}) }catch(e){} }})); kids.push(sec) });
+    kids.push(h('button',{class:'btn primary wide',text:'Done',onclick:function(){ closeSheet() }})); zSwap(body,kids) }).catch(function(){ zSwap(body,[h('p',{class:'muted',text:'The guide could not load. Check your connection and try again.'})]) }) }
+var z7RenderMore57=z7RenderMore; z7RenderMore=function(){ z7RenderMore57(); try{ var g=$('#z-more .setgrid'); if(g&&!g.querySelector('.z57t')) g.insertBefore(h('button',{class:'settile gt3 z57t',onclick:z57Guide},[h('span',{class:'gpic','aria-hidden':'true',text:'📖'}),h('b',{text:'Hướng dẫn'}),h('span',{class:'small muted',text:'How the app works'})]),g.firstChild) }catch(e){} };
+var zRenderHome57=zRenderHome; zRenderHome=function(){ zRenderHome57(); try{ var el=$('#z-home'); if(el&&!el.querySelector('.z57h')) el.appendChild(h('button',{class:'btn wide z57h',onclick:z57Guide},[h('b',{text:'Hướng dẫn'}),h('span',{text:' · how the app works'})])) }catch(e){} };
+try{ var z57Hash=function(){ if(location.hash==='#guide'){ try{ history.replaceState(null,'','#home') }catch(e){ location.hash='home' } setTimeout(function(){ try{ if(S.set.ob7&&$('#sheet').hidden) z57Guide() }catch(e){} },900) } }; window.addEventListener('hashchange',z57Hash); z57Hash() }catch(e){}

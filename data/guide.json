@@ -1,0 +1,497 @@
+{
+ "student": {
+  "title": "How the app works",
+  "intro": "A short guide. Read it once, then come back when you need it.",
+  "sections": [
+   {
+    "t": "What this app is for",
+    "vi": "Giới thiệu",
+    "b": [
+     "Your teacher teaches the lesson. This app is where you practise it between classes: the sounds, the words, the sentences, and most of all saying them out loud.",
+     "A little every day works much better than a lot once a week. Most days take 15 to 60 minutes, and you choose how long.",
+     {
+      "ul": [
+       "Everything is in the Saigon (southern) accent.",
+       "Your teacher can see what you did and hear your recordings, so class time goes on what you need.",
+       "Nothing here is a test you can fail. Mistakes just make a word come back sooner."
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Your first five minutes",
+    "vi": "Bắt đầu",
+    "b": [
+     {
+      "ol": [
+       "Open the app and type your name.",
+       "Answer the welcome questions (about 2 minutes). You get your plan: how long to study each day, how many new words, and why.",
+       "On Home, tap “Get my code”. Your code keeps your progress safe, lets you use the app on your phone and computer, and lets your teacher see your work. Write it down.",
+       "Turn the microphone on: at the bottom of Home, next to “Microphone off”, tap “Turn on”, and allow it when the browser asks. You need it to record yourself. It works best in Chrome."
+      ]
+     },
+     {
+      "img": "s-plan.jpg",
+      "cap": "Your plan after the welcome questions: your path, your goal, and how much to do each day."
+     }
+    ]
+   },
+   {
+    "t": "Home: what to do today",
+    "vi": "Trang chính",
+    "b": [
+     "Home always shows the lesson your teacher has opened for you, called Bài 1, Bài 2 and so on. Work through its parts from top to bottom. You don’t have to finish them all in one day.",
+     {
+      "ul": [
+       "A note from your teacher (homework, what to prepare) shows at the top of the lesson.",
+       "A part gets a ✓ when you’ve done it today. You can always do it again.",
+       "“Lộ trình · the whole course” shows every lesson. Grey ones open when your teacher releases them.",
+       "Under the lesson you’ll find extra practice: the story of the week, your plan, and the day’s route."
+      ]
+     },
+     {
+      "img": "s-home.jpg",
+      "cap": "A lesson on Home. Each row is one part. Tap the button on the right to start it."
+     }
+    ]
+   },
+   {
+    "t": "The parts of a lesson",
+    "vi": "Các phần của bài học",
+    "b": [
+     "Every lesson has the same parts, in the same order as your teacher’s class.",
+     {
+      "tb": [
+       [
+        "Phát âm · Pronunciation",
+        "One sound at a time. Hear it, compare it with a similar sound, then say it."
+       ],
+       [
+        "Hội thoại · Dialogues",
+        "Short conversations. Tap a line to hear it and see the English. Then play one of the people: your lines are hidden until you say them."
+       ],
+       [
+        "Từ vựng · Vocabulary",
+        "Picture cards for the lesson’s words. See “Cards” below."
+       ],
+       [
+        "Mẫu câu · Sample sentences",
+        "One sentence pattern at a time: examples, the new words, build the sentence, find the missing word, say it."
+       ],
+       [
+        "Thực hành nói · Oral practice",
+        "Say the pattern again and again with one word changed (to a man, to a woman, to an older person), then repeat sentences after the voice."
+       ],
+       [
+        "Thực hành viết · Written practice",
+        "Put the words in the right order. Turn a sentence into a question. Join two sentences."
+       ],
+       [
+        "Đọc hiểu · Reading",
+        "A short text. Tap any sentence to hear it and see the English, then answer true or false."
+       ],
+       [
+        "Thực hành nghe · Listening",
+        "Hear a line and choose the right reply. Hear a word and choose the right tone marks."
+       ],
+       [
+        "Thực tế · Real life",
+        "One small thing to do outside this week, like greeting a neighbour. Tap “I did it” when you have."
+       ]
+      ]
+     },
+     {
+      "img": "s-dialog.jpg",
+      "cap": "A dialogue in role-play. You see the English for your line, say it in Vietnamese, then check."
+     }
+    ]
+   },
+   {
+    "t": "Recording yourself",
+    "vi": "Thu âm",
+    "b": [
+     "Every speaking screen works the same way:",
+     {
+      "ol": [
+       "Tap the microphone button when you’re ready. Nothing starts by itself.",
+       "Say it. Take your time. A pause won’t cut you off.",
+       "Tap again to stop.",
+       "See what the app heard, or listen to yourself. Tap “Try again” as often as you like."
+      ]
+     },
+     {
+      "ul": [
+       "Story retells, voice notes, speaking topics and unit recordings go to your teacher. For cards and speaking topics, only your last try is sent.",
+       "If the app says it didn’t hear you, don’t worry. Speech recognition for Vietnamese is not perfect. Your teacher’s ears are what count.",
+       "No microphone? You can still do everything: say it out loud, tap “show me”, and mark yourself."
+      ]
+     },
+     {
+      "img": "s-record.jpg",
+      "cap": "Tap to record, tap to stop, try again. The same button everywhere."
+     }
+    ]
+   },
+   {
+    "t": "Cards: how words stick",
+    "vi": "Thẻ từ",
+    "b": [
+     "Cards bring each word back just before you would forget it. This is the part to never skip, even on a busy day.",
+     {
+      "ol": [
+       "First you hear a word and say what it means. The next day the same word comes back the other way: you see the picture and say it in Vietnamese.",
+       "Tap “Show the answer”, then mark yourself honestly."
+      ]
+     },
+     {
+      "tb": [
+       [
+        "Again",
+        "You didn’t know it. It comes back in 10 minutes."
+       ],
+       [
+        "Hard",
+        "You got it, slowly. It comes back soon."
+       ],
+       [
+        "Good",
+        "You knew it. It comes back in a few days."
+       ],
+       [
+        "Easy",
+        "Instant. It comes back much later."
+       ]
+      ]
+     },
+     "The app sets how many new cards you get each day from your plan. More new cards means more reviews every day after, so only raise it if the daily pile feels light.",
+     {
+      "img": "s-cards.jpg",
+      "cap": "A card after “Show the answer”. Mark yourself with one of the four buttons."
+     }
+    ]
+   },
+   {
+    "t": "The story of the week",
+    "vi": "Truyện",
+    "b": [
+     "Each story uses only words you’ve already learned, so you can follow it. One story takes three short days:",
+     {
+      "ol": [
+       "Day 1 · Listen. The text is hidden. Just follow the voice.",
+       "Day 2 · Read and listen. Tap a word to see what it means. The first four you tap become your words for this story.",
+       "Day 3 · Retell. Tell the story out loud in your own words for one minute and send it to your teacher. Then tell it again in 45 seconds."
+      ]
+     },
+     "The retell is where words you understand turn into words you can say. Broken sentences are fine. The only rule: don’t stop.",
+     {
+      "img": "s-story.jpg",
+      "cap": "The story card on Home shows which day you’re on."
+     }
+    ]
+   },
+   {
+    "t": "Ask your teacher",
+    "vi": "Hỏi Thầy",
+    "b": [
+     {
+      "ul": [
+       "See a “?” next to an example, or “? Ask Thầy” after tapping a word in a story? Tap it to ask why. Pick a ready question or type your own, in English if you like.",
+       "Your teacher answers before class. Home shows “your teacher answered” until you’ve read it.",
+       "After the first level, Home gives you one voice note topic a week: talk for about a minute, no script, and send it."
+      ]
+     },
+     {
+      "img": "s-ask.jpg",
+      "cap": "Asking about a sentence. The answer comes back to your Home page."
+     }
+    ]
+   },
+   {
+    "t": "Slow first, speed later",
+    "vi": "Chậm trước, nhanh sau",
+    "b": [
+     {
+      "ul": [
+       "Every lesson screen has speed buttons at the top: Very slow, Slow, A bit slower, Normal. Start slow.",
+       "“Lặp lại · Reps” plays sentences you know three times, with a gap for you to say each one. Hands-free, no marking.",
+       "For your first 10 structures there are no clocks at all. Later, a gentle bar nudges you to start talking sooner. You can change this in Settings → Pace: Slow and steady, Auto, or Push me.",
+       "Stuck for a word in real life? Learn the “lifelines” on the Practice page: how to say “again, please”, “slower, please” and “um, let me think”."
+      ]
+     },
+     {
+      "img": "s-reps.jpg",
+      "cap": "Reps: hear it slowly, say it, three times each."
+     }
+    ]
+   },
+   {
+    "t": "Your plan, your goal, your level",
+    "vi": "Kế hoạch",
+    "b": [
+     {
+      "ul": [
+       "The plan card on Home shows your 3-month goal as five “I can…” lines. Tick them as they become true.",
+       "Every four weeks the app asks two quick questions: how well you understand, and how well you speak. You and your teacher see the change.",
+       "At the end of each level there’s a check: 20 listening questions and 8 recorded answers. Your teacher listens and decides when you move up.",
+       "Changed your mind about time or goals? Tap “See my plan or change it”."
+      ]
+     }
+    ]
+   },
+   {
+    "t": "If something isn’t working",
+    "vi": "Khi có lỗi",
+    "b": [
+     {
+      "tb": [
+       [
+        "No sound",
+        "Check the volume. Then tap any play button once: phones only allow sound after a tap."
+       ],
+       [
+        "Recording doesn’t work",
+        "At the bottom of Home, tap “Turn on” next to “Microphone off”, and allow it when the browser asks. Chrome works best."
+       ],
+       [
+        "The app looks old or a new feature is missing",
+        "Reload the page. On an iPhone home-screen app, close it fully and open it again."
+       ],
+       [
+        "New phone, progress gone",
+        "On the first screen choose “I already have a code” and type your code. Lost the code? Your teacher can see it."
+       ],
+       [
+        "A lesson is greyed out",
+        "Your teacher hasn’t opened it yet. Ask them, and use the extra practice meanwhile."
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "teacher": {
+  "title": "How the teacher page works",
+  "intro": "A short guide to running your course with the app.",
+  "sections": [
+   {
+    "t": "What this page is",
+    "vi": "Giới thiệu",
+    "b": [
+     "You teach the lesson. The app is where your students practise it between classes. This page shows you what each student did, lets you hear them, and lets you decide what they work on next.",
+     {
+      "ul": [
+       "Your teacher link is private. Anyone who has it can see every student, so don’t share it. Students use the normal app link.",
+       "Opening or closing lessons never deletes a student’s progress. Only the red Delete and Remove buttons delete anything, and they need two taps.",
+       "Changes reach a student the next time they open the app."
+      ]
+     },
+     {
+      "img": "t-students.jpg",
+      "cap": "The first page: your tools along the top, your students below. Tap a student to open their page."
+     }
+    ]
+   },
+   {
+    "t": "Set up your course",
+    "vi": "Khóa học",
+    "b": [
+     "Open “Khóa học · course plan”. The app follows whatever you set here.",
+     {
+      "tb": [
+       [
+        "Level names",
+        "What the two beginner levels are called everywhere in the app (now E1 and E2)."
+       ],
+       [
+        "Each lesson",
+        "Its Vietnamese and English title, and where it ends: choose the last structure it covers. The line under it shows which structures and how many words the lesson includes."
+       ],
+       [
+        "Parts shown",
+        "Untick a part to hide it for that lesson (for example, no Reading in lesson 1)."
+       ],
+       [
+        "Real-life task and note",
+        "One small thing to do outside that week, and an optional standing note."
+       ],
+       [
+        "Dialogues",
+        "Type them one line at a time:  Name: Vietnamese | English.  Start each dialogue with  # Title | English title  and leave an empty line between dialogues."
+       ],
+       [
+        "Video links",
+        "Paste a link to your video for any part. Students get a “▶ Thầy’s video” button there."
+       ]
+      ]
+     },
+     "Tap “Save the course plan” at the bottom. The order of structures inside the course doesn’t change, because each one only uses words taught before it. You choose how they are grouped into lessons.",
+     {
+      "img": "t-plan.jpg",
+      "cap": "The course plan: level names, what the whole class has open, then one box per lesson."
+     }
+    ]
+   },
+   {
+    "t": "Open lessons and set what’s next",
+    "vi": "Mở bài",
+    "b": [
+     {
+      "tb": [
+       [
+        "For the whole class",
+        "On the course plan page: “Lessons open” (up to which lesson), “Work on next”, a homework note, and which parts show."
+       ],
+       [
+        "For one student",
+        "On that student’s page, in “Lộ trình · their lessons”. Use this for someone who is ahead or behind. “Follow the class again” removes their own setting."
+       ],
+       [
+        "Automatic",
+        "If you set nothing, the app opens each lesson when the student finishes the one before."
+       ]
+      ]
+     },
+     "Your homework note shows at the top of the student’s lesson on Home. Students can always do extra practice (cards, reps, stories, speaking), but only with words from lessons you’ve opened.",
+     {
+      "img": "t-lessons.jpg",
+      "cap": "One student’s lessons: what they’ve done, and what you’ve opened for them."
+     }
+    ]
+   },
+   {
+    "t": "Ten minutes before class",
+    "vi": "Trước giờ học",
+    "b": [
+     "Open the student and read down the page:",
+     {
+      "ol": [
+       "Kế hoạch · their plan: why they’re learning, their 3-month goal, how much time they have, what they find hardest.",
+       "Câu hỏi · their questions: what they asked about a sentence. Type a line or two and send, or keep it for class.",
+       "Tuần này · this week, for class: words they keep missing, weak grammar, tones you marked, and a ready class plan you can copy.",
+       "Recordings: listen to the newest ones (see the next section).",
+       "Notes to the student: leave a short note. It shows in their app."
+      ]
+     },
+     {
+      "img": "t-week.jpg",
+      "cap": "The top of a student’s page: their plan and their questions, with a box to answer."
+     }
+    ]
+   },
+   {
+    "t": "Listening to recordings",
+    "vi": "Bài thu âm",
+    "b": [
+     "Every recording has a play button, what the student was asked, and the date. Recordings are kept for 90 days. Use the filter buttons to see one kind:",
+     {
+      "tb": [
+       [
+        "Retells",
+        "The student telling the week’s story in their own words (about a minute). The best single thing to listen to."
+       ],
+       [
+        "Voice notes",
+        "One minute of free talk on the week’s topic."
+       ],
+       [
+        "Grammar",
+        "The sentences they said at the end of each structure."
+       ],
+       [
+        "Level checks",
+        "The 8 answers they record at the end of a level."
+       ],
+       [
+        "Questions, Cards, Sounds, Stories, Scenes",
+        "Short clips from daily practice. “Not understood” shows the ones the app couldn’t recognise."
+       ]
+      ]
+     },
+     {
+      "ul": [
+       "Hear a wrong tone? Tap that tone next to “Tone off:” under the recording. The student gets the line back on Home as something to fix, with the model to copy. “Write a note about this” sends them a comment on that recording.",
+       "For retells and voice notes, listen for whether they keep going. Fix one or two things in class, not everything."
+      ]
+     },
+     {
+      "img": "t-recs.jpg",
+      "cap": "A student’s recordings, with the filter buttons above the list."
+     }
+    ]
+   },
+   {
+    "t": "Levels and level checks",
+    "vi": "Cấp độ",
+    "b": [
+     {
+      "ul": [
+       "Cấp độ · course level: Automatic, open the second level now, keep at the first level, or open the B1 preview. Use this when you think a student is ready early, or needs more time.",
+       "When a student finishes a level, the app gives them a check: 20 listening questions and 8 recorded answers.",
+       "You’ll see it on their page with the listening score and the recordings. Tick the “can do” list, then tap “Passed” to open the next level or “Not yet”. They get your decision as a note."
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Fixing and adding content",
+    "vi": "Sửa nội dung",
+    "b": [
+     {
+      "tb": [
+       [
+        "Nền tảng · core course",
+        "Every structure with its examples, words and teaching note. Change anything that isn’t how people in Saigon say it. Add “street” versions. Your changes reach every student."
+       ],
+       [
+        "Từ vựng · word list",
+        "The picture-card words. Fix a word or its example, add a word, add a photo."
+       ],
+       [
+        "Người mới · beginner guide",
+        "What the first steps for a complete beginner cover, so you can match your first classes."
+       ],
+       [
+        "Your own exercises",
+        "Dialogues you type on the course plan page. For drills, listening and reading exercises, send the sentences to Ben and they’ll be added."
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "t": "Voices for the app",
+    "vi": "Thu âm giọng",
+    "b": [
+     "“Thu âm · recording links” is for the Saigon speakers who record the app’s sentences.",
+     {
+      "ul": [
+       "Each person has their own link. Type their name and choose man or woman; it saves by itself.",
+       "The row shows how many lines they’ve recorded.",
+       "Tap “Nghe lại · listen to their recordings” to hear them. “Good” marks a clip as checked. “Redo” (tap twice) removes a bad clip, and the line goes back on the list to record again.",
+       "Recording links are private too. They can only record; they can’t see students."
+      ]
+     },
+     {
+      "img": "t-voices.jpg",
+      "cap": "Listening to one speaker’s clips: play, mark Good, or send back with Redo."
+     }
+    ]
+   },
+   {
+    "t": "Good to know",
+    "vi": "Lưu ý",
+    "b": [
+     {
+      "ul": [
+       "A student appears in your list as soon as they finish the welcome screen. Their code is shown next to their name, in case they lose it.",
+       "“AI conversation” is off for each student until you turn it on. Each turn uses the website owner’s AI credit.",
+       "New Vietnamese in the app plays in a computer voice until one of the speakers records it.",
+       "To see what students see, tap “For students” at the top of this guide."
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

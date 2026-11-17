@@ -395,3 +395,12 @@ Guards: listenFor wrapper clears a stale SPEECH.fast=60000; closeSheet stops any
 Tests: src/tests/t56.py (run with "norec" = no speech recognition; without = recognition that fails at once) and
 t56b.py (scene and question-card gates). t40 selector updated for the "Show me without speaking" label.
 Not tested with real speech recognition or on a phone.
+
+VERSION 57 — user guides, with pictures, for students and for the teacher
+data/guide.json = both guides ({student, teacher}: sections of text, steps, lists, two-column rows and pictures).
+Pictures: img/guide/*.jpg (14 screenshots of the real screens with a made-up student, "Anna").
+To retake them after a design change: bash build.sh, then python3 src/tests/guide_shots.py (it seeds a local test
+server; nothing real is used).
+Student side: More → "Hướng dẫn · How the app works", a button at the bottom of Home, and the link …/#guide.
+Teacher side: "Hướng dẫn · guide" button on the first page, with two tabs: For teachers / For students.
+To change the wording, edit data/guide.json (no code change needed). Test: src/tests/t57.py.

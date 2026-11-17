@@ -365,3 +365,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 
 /* 55 · tap to record on cards */
 .z55rec.on{background:#B4472E;border-color:#B4472E;color:#fff;animation:z55p 1.2s ease-in-out infinite}@keyframes z55p{50%{opacity:.75}}
+/* 57 · guide */
+.z57toc{display:flex;flex-wrap:wrap;gap:6px}.z57s p{margin:0}.z57l{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.z57tb{display:flex;flex-direction:column;gap:8px}.z57r{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px}
+.z57f{margin:4px 0 0;display:flex;flex-direction:column;gap:6px;align-items:center}.z57f img{max-width:100%;width:340px;height:auto;border-radius:12px;border:1.5px solid var(--line)}
