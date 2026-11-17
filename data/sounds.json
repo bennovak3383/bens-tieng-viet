@@ -1,0 +1,292 @@
+{
+"v": 1,
+"note": "Sound names (bờ, cờ, …) and example words were chosen for the app and wait for Thầy Tâm's check.",
+"letters": [
+{
+"k": "a",
+"s": "a",
+"w": "áo",
+"en": "shirt"
+},
+{
+"k": "ă",
+"s": "ă",
+"w": "ăn",
+"en": "to eat"
+},
+{
+"k": "â",
+"s": "â",
+"w": "cây",
+"en": "tree"
+},
+{
+"k": "b",
+"s": "bờ",
+"w": "bánh mì",
+"en": "bread"
+},
+{
+"k": "c",
+"s": "cờ",
+"w": "cá",
+"en": "fish"
+},
+{
+"k": "d",
+"s": "dờ",
+"w": "dép",
+"en": "sandals"
+},
+{
+"k": "đ",
+"s": "đờ",
+"w": "đèn",
+"en": "lamp"
+},
+{
+"k": "e",
+"s": "e",
+"w": "em",
+"en": "younger brother or sister"
+},
+{
+"k": "ê",
+"s": "ê",
+"w": "ghế",
+"en": "chair"
+},
+{
+"k": "g",
+"s": "gờ",
+"w": "gió",
+"en": "wind"
+},
+{
+"k": "h",
+"s": "hờ",
+"w": "hoa",
+"en": "flower"
+},
+{
+"k": "i",
+"s": "i",
+"w": "bia",
+"en": "beer"
+},
+{
+"k": "k",
+"s": "ca",
+"w": "kem",
+"en": "ice cream"
+},
+{
+"k": "l",
+"s": "lờ",
+"w": "lá",
+"en": "leaf"
+},
+{
+"k": "m",
+"s": "mờ",
+"w": "mẹ",
+"en": "mother"
+},
+{
+"k": "n",
+"s": "nờ",
+"w": "nón",
+"en": "hat"
+},
+{
+"k": "o",
+"s": "o",
+"w": "chó",
+"en": "dog"
+},
+{
+"k": "ô",
+"s": "ô",
+"w": "cô",
+"en": "aunt; Miss"
+},
+{
+"k": "ơ",
+"s": "ơ",
+"w": "phở",
+"en": "phở"
+},
+{
+"k": "p",
+"s": "pờ",
+"w": "pin",
+"en": "battery"
+},
+{
+"k": "q",
+"s": "quờ",
+"w": "quả",
+"en": "fruit"
+},
+{
+"k": "r",
+"s": "rờ",
+"w": "rau",
+"en": "vegetables"
+},
+{
+"k": "s",
+"s": "sờ",
+"w": "sách",
+"en": "book"
+},
+{
+"k": "t",
+"s": "tờ",
+"w": "tay",
+"en": "hand"
+},
+{
+"k": "u",
+"s": "u",
+"w": "mua",
+"en": "to buy"
+},
+{
+"k": "ư",
+"s": "ư",
+"w": "thư",
+"en": "letter"
+},
+{
+"k": "v",
+"s": "vờ",
+"w": "vui",
+"en": "happy"
+},
+{
+"k": "x",
+"s": "xờ",
+"w": "xe",
+"en": "vehicle"
+},
+{
+"k": "y",
+"s": "y",
+"w": "yêu",
+"en": "to love"
+}
+],
+"pairs": [
+{
+"k": "ch",
+"s": "chờ",
+"w": "chó",
+"en": "dog"
+},
+{
+"k": "gh",
+"s": "gờ",
+"w": "ghế",
+"en": "chair"
+},
+{
+"k": "gi",
+"s": "giờ",
+"w": "gió",
+"en": "wind"
+},
+{
+"k": "kh",
+"s": "khờ",
+"w": "khóa",
+"en": "lock"
+},
+{
+"k": "ng",
+"s": "ngờ",
+"w": "người",
+"en": "person"
+},
+{
+"k": "ngh",
+"s": "ngờ",
+"w": "nghe",
+"en": "to listen"
+},
+{
+"k": "nh",
+"s": "nhờ",
+"w": "nhà",
+"en": "house"
+},
+{
+"k": "ph",
+"s": "phờ",
+"w": "phở",
+"en": "phở"
+},
+{
+"k": "th",
+"s": "thờ",
+"w": "thư",
+"en": "letter"
+},
+{
+"k": "tr",
+"s": "trờ",
+"w": "trà",
+"en": "tea"
+},
+{
+"k": "qu",
+"s": "quờ",
+"w": "quần",
+"en": "trousers"
+}
+],
+"tones": [
+{
+"k": "ngang",
+"w": "ma",
+"en": "ghost",
+"how": "level, no mark",
+"path": "M6 18 H54"
+},
+{
+"k": "sắc",
+"w": "má",
+"en": "mother (southern)",
+"how": "rising",
+"path": "M6 28 Q32 26 54 6"
+},
+{
+"k": "huyền",
+"w": "mà",
+"en": "but",
+"how": "low, falling",
+"path": "M6 16 Q30 20 54 34"
+},
+{
+"k": "hỏi",
+"w": "mả",
+"en": "grave",
+"how": "dips, then rises",
+"path": "M6 18 Q20 38 34 30 Q46 22 54 8"
+},
+{
+"k": "ngã",
+"w": "mã",
+"en": "code; horse",
+"how": "in Saigon: the same as hỏi",
+"path": "M6 18 Q20 38 34 30 Q46 22 54 8"
+},
+{
+"k": "nặng",
+"w": "mạ",
+"en": "rice seedling",
+"how": "low and heavy",
+"path": "M6 22 Q26 38 40 34 Q48 31 54 27"
+}
+]
+}

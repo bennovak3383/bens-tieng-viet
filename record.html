@@ -57,6 +57,8 @@ function other(c){ return CL[c.id]&&CL[c.id]!==WHO }
 function load(){ return api('voice/mine').then(function(j){ ALL=j.all||{}; LF=j.lineFix||{}; FX=j.fixes||{}; CL=j.claims||{}; G=j.g||{}; MYG=(j.me&&j.me.g)||(WHO==='voice1'?'f':WHO==='thay'?'m':''); PH=0; TXT=null }) }
 function home(){ load().then(home2).catch(home2) }
 function home2(){ app.innerHTML=''; var total=0, cov=0, my=0, ph=PHASE();
+  /* 62: a link with &part=<id> (for example &part=ab = alphabet and vowel pairs) opens straight on that part, once */
+  try{ var want=Q.get('part'); if(want&&!window.__part1){ window.__part1=1; var c0=CH.filter(function(c){ return c.id===want })[0]; if(c0&&left(c0)){ part(c0); return } } }catch(e){}
   CH.forEach(function(c){ c.lines.forEach(function(l){ total++; if(covered(l)) cov++; if(mine(l)) my++ }) });
   app.appendChild(h('h1',{text:'Thu âm cho app học tiếng Việt'}));
   app.appendChild(h('p',{class:'muted',text:'Cảm ơn bạn! Giọng của bạn sẽ giúp người nước ngoài học tiếng Việt giọng Sài Gòn.'}));

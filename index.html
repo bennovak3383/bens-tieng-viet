@@ -916,6 +916,144 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z60swb .ic{width:58px;height:58px}.z60swb .ic svg{width:34px;height:34px}
 @media (min-width:900px){ .z60grid{grid-template-columns:1fr 1fr} .z60fg{grid-template-columns:repeat(4,1fr)} .z60stage{max-width:720px;margin:0 auto;width:100%} }
 .z60b .z7speed{display:none}
+
+/* ===== 61 · stories reader ===== */
+.z61list{display:flex;flex-direction:column;gap:12px}
+.z61s{display:grid;grid-template-columns:64px 1fr;gap:6px 14px;align-items:center;padding:12px;border-radius:22px;border:1.5px solid var(--line);background:var(--surface);box-shadow:0 4px 0 var(--line)}
+.z61s.lock{opacity:.55}
+.z61b{width:64px;height:64px;border-radius:18px;background:var(--c);display:flex;align-items:center;justify-content:center}.z61b svg{width:38px;height:38px}
+.z61t b{display:block;font-size:19px;font-weight:900;line-height:1.2}.z61t span{display:block;color:var(--muted);font-weight:700;font-size:13.5px}
+.z61ch{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.z61ch button{padding:9px 13px;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-weight:800;font-size:14px;cursor:pointer;font-family:inherit}
+.z61ch button.done{border-color:#12A26E;background:#DFF6EC;color:#0B5E40}.z61ch i{font-style:normal}
+.z61bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:3;background:var(--bg);padding:6px 0}
+.z61play{display:flex;align-items:center;gap:8px;border:0;border-radius:999px;background:#F0527A;color:#fff;font-weight:900;font-size:15px;padding:11px 16px;box-shadow:0 4px 0 #C93A5F;cursor:pointer;font-family:inherit}
+.z61play:active{transform:translateY(3px);box-shadow:0 1px 0 #C93A5F}
+.z61story{background:var(--surface);border:1.5px solid var(--line);border-radius:24px;padding:20px 18px;display:flex;flex-direction:column;gap:12px}
+.z61p{margin:0;font-size:22px;line-height:1.75;font-weight:600}
+.z61en{margin:-4px 0 6px;color:var(--muted);font-size:15px;line-height:1.5;font-weight:600;border-left:3px solid #FFD877;padding-left:10px}
+.z61sent{border-radius:8px;transition:background .2s;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.z61sent.on{background:#FFF0C2}
+.z61story .zw{cursor:pointer;border-radius:6px;padding:1px 1px;border-bottom:2px dotted #C9D4E6}
+.z61story .zw.now{background:#FFD877;border-bottom-color:transparent}
+.z61pop{position:sticky;bottom:8px;z-index:4;background:#18203A;color:#fff;border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 30px rgba(24,32,58,.3);animation:z59in .2s both}
+.z61pop[hidden]{display:none}
+.z61pw{display:flex;align-items:center;gap:12px}
+.z61pw b{display:block;font-size:26px;font-weight:900;line-height:1.1}.z61pw span{display:block;font-size:16px;font-weight:700;color:#FFD877}
+.z61pw>div{flex:1}.z61pw .x{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:50%;width:34px;height:34px;font-size:20px;line-height:1;cursor:pointer}
+.z61ps{display:flex;gap:10px;align-items:center;text-align:left;background:rgba(255,255,255,.1);border:0;border-radius:16px;padding:10px 12px;color:#fff;cursor:pointer;font-family:inherit}
+.z61ps svg{width:14px;height:14px;fill:#fff}.z61ps b{display:block;font-size:15.5px;font-weight:700;line-height:1.35}.z61ps span{display:block;font-size:13.5px;color:#C9D4E6;line-height:1.35}
+.z61sv{align-self:flex-start}
+.z61qs{display:flex;flex-direction:column;gap:10px}.z61qs h2{margin:6px 2px 0;font-size:19px}
+.z61q{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.z61qr{display:flex;gap:12px;align-items:center}.z61qr b{display:block;font-size:18px;font-weight:800}.z61qr span{display:block;color:var(--muted);font-size:14px;font-weight:600}
+.z61a{background:#DFF6EC;border-radius:14px;padding:10px 12px;font-size:18px}
+.z61r .z7speed{display:none}
+.z61pop .play{background:#FFD877;color:#18203A;border:0;flex:none}
+.z61pop .z61sv{background:transparent!important;color:#fff!important;border:1.5px solid rgba(255,255,255,.4)!important}
+
+/* ===== 62 · sounds boards ===== */
+.z62menu{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.z62m{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:14px;border-radius:22px;border:0;background:var(--c);color:#fff;cursor:pointer;font-family:inherit;box-shadow:0 5px 0 rgba(0,0,0,.22);min-height:132px}
+.z62m:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.22)}
+.z62mk{font-size:25px;font-weight:900;letter-spacing:.02em;background:rgba(255,255,255,.2);border-radius:14px;padding:4px 10px;margin-bottom:8px}
+.z62m b{font-size:17.5px;font-weight:900;line-height:1.15}.z62m span{font-size:13px;font-weight:700;opacity:.95}.z62m small{font-size:11.5px;font-weight:700;opacity:.85;margin-top:auto;padding-top:6px}
+.z62tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--surface2);border-radius:18px;padding:5px}
+.z62tabs button{border:0;border-radius:14px;background:transparent;color:var(--muted);padding:8px 4px;cursor:pointer;font-family:inherit}
+.z62tabs button b{display:block;font-size:15.5px;font-weight:900}.z62tabs button small{display:block;font-size:11.5px;font-weight:700}
+.z62tabs button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px rgba(24,32,58,.12)}
+.z62card{display:flex;align-items:center;gap:14px;width:100%;min-height:118px;padding:14px;border-radius:26px;border:0;background:var(--c,#2F7BF6);color:#fff;font-family:inherit;text-align:left;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.2)}
+.z62card.tall{flex-direction:column;justify-content:center;min-height:330px;text-align:center;gap:20px}
+.z62card.pop,.z62t.pop{animation:z60pop .3s}
+.z62hint{margin:0 auto;font-weight:800;font-size:16px;opacity:.95}
+.z62big{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:104px}
+.z62big b{font-size:52px;font-weight:900;line-height:1}.z62card.tall .z62big b{font-size:96px}
+.z62big i{font-style:normal;font-weight:800;font-size:15px;opacity:.9;margin-top:4px}
+.z62tp svg{width:60px;height:44px;display:block}.z62card.tall .z62tp svg{width:120px;height:88px}
+.z62wd{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.95);color:#18203A;border-radius:18px;padding:8px 12px;flex:1;min-height:70px}
+.z62card.tall .z62wd{flex:none;min-width:70%}
+.z62wd .z12pic svg{background:#FFF7E8;border-radius:12px}
+.z62wd b{display:block;font-size:24px;font-weight:900;line-height:1.1}.z62wd span{display:block;font-size:13.5px;font-weight:700;color:#5B6584}
+.z62grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.z62grid.six{grid-template-columns:repeat(2,1fr);gap:12px}
+.z62t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:58px;padding:6px 2px;border-radius:16px;border:0;background:var(--c);color:#fff;cursor:pointer;font-family:inherit;box-shadow:0 4px 0 rgba(0,0,0,.2);transition:transform .08s}
+.z62t:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.z62t b{font-size:19px;font-weight:900;line-height:1.1;white-space:nowrap}.z62t small{font-size:11px;font-weight:700;opacity:.92}
+.z62grid.six .z62t,.z62t.big{min-height:92px}.z62grid.six .z62t b,.z62t.big b{font-size:30px}.z62grid.six .z62t small{font-size:13px}
+.z62t.on{outline:4px solid #FFD23F;outline-offset:2px}
+.z62t.right{outline:5px solid #12A26E;outline-offset:2px}.z62t.wrong{opacity:.4}
+.z62nav{display:flex;align-items:center;justify-content:center;gap:22px}
+.z62nav button{width:62px;height:62px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-size:32px;font-weight:900;line-height:1;cursor:pointer;box-shadow:0 4px 0 var(--line)}
+.z62cnt{font-weight:900;font-size:17px;color:var(--muted);min-width:64px;text-align:center}
+@media (min-width:900px){ .z62menu{grid-template-columns:repeat(4,1fr)} .z62grid{grid-template-columns:repeat(8,1fr)} .z62grid.six{grid-template-columns:repeat(3,1fr)} }
+
+/* ===== 63 · scenes, 64 · sentence builder ===== */
+.z63menu{display:flex;flex-direction:column;gap:14px}
+.z63m{display:flex;flex-direction:column;padding:0;border-radius:24px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);overflow:hidden;cursor:pointer;font-family:inherit;text-align:left;box-shadow:0 5px 0 var(--line)}
+.z63m:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+.z63th{height:150px;overflow:hidden;pointer-events:none}.z63th svg{width:100%;height:100%;display:block;object-fit:cover}
+.z63th .z63svg{height:auto;margin-top:-30px}
+.z63mt{position:relative;padding:12px 14px 14px}.z63mt b{display:block;font-size:21px;font-weight:900}.z63mt span{display:block;color:var(--muted);font-weight:700;font-size:13.5px}
+.z63mt em{position:absolute;right:12px;top:12px;font-style:normal;font-size:11px;font-weight:800;color:#12A26E;background:#E2F6EE;border-radius:999px;padding:3px 8px}
+.z63pic{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 6px 20px rgba(24,32,58,.10)}
+.z63svg{display:block;width:100%;height:auto}
+.z63p{cursor:pointer}
+.z63pi{transform-box:fill-box;transform-origin:50% 100%}
+.z63p.on .z63pi{animation:z63hop .5s}
+.z63p.ask .z63pi{animation:z63wig 1s ease-in-out infinite}
+.z63p.no .z63pi{animation:z63no .4s}
+@keyframes z63hop{0%{transform:scale(1)}40%{transform:scale(1.12) translateY(-6px)}100%{transform:scale(1)}}
+@keyframes z63wig{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+@keyframes z63no{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.z63tag{position:absolute;transform:translate(-50%,-100%);background:#18203A;color:#fff;font-weight:900;font-size:14px;border-radius:999px;padding:3px 10px;white-space:nowrap;pointer-events:none;animation:z59pop .25s both;box-shadow:0 3px 8px rgba(24,32,58,.25)}
+.z63tag[hidden]{display:none}
+.z63info{display:flex;flex-direction:column;gap:8px;min-height:74px;justify-content:center}
+.z63who{display:flex;align-items:center;gap:12px;background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:10px 12px}
+.z63who>div:nth-child(2){flex:1}.z63who b{display:block;font-size:26px;font-weight:900;line-height:1.1}.z63who span{display:block;color:var(--muted);font-weight:700}.z63who small{display:block;color:var(--muted);font-size:12px}
+.z63av{flex:none;width:58px;height:58px;display:block}.z63av.sm{width:44px;height:44px}.z63av svg{width:100%;height:100%;display:block}
+.z63ln{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:11px 14px;color:var(--ink);cursor:pointer;font-family:inherit}
+.z63ln>span{flex:none;width:34px;height:34px;border-radius:50%;background:#E4EEFF;color:#2F7BF6;display:flex;align-items:center;justify-content:center}.z63ln>span svg{width:13px;height:13px}
+.z63ln b{display:block;font-size:19px;font-weight:800;line-height:1.25}.z63ln div span{display:block;color:var(--muted);font-size:14px;font-weight:600}
+.z63acts,.z63opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.z63a,.z63o{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;border-radius:20px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-family:inherit;box-shadow:0 4px 0 var(--line)}
+.z63a .ic,.z63o .ic,.z64o .ic{width:44px;height:44px;display:block}.z63a .ic svg,.z63o .ic svg,.z64o .ic svg{width:100%;height:100%}
+.z63a b,.z63o b{font-size:18px;font-weight:900;text-align:center;line-height:1.15}.z63a small{color:var(--muted);font-weight:700;font-size:12.5px}
+.z63o{flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 12px}
+.z63o.ok{border-color:#12A26E;background:#DFF6EC;box-shadow:0 4px 0 #12A26E}.z63o.no{border-color:#E2434B;background:#FDE7E8;animation:z60shake .4s}
+.z63ask{display:flex;align-items:center;gap:12px;background:#FFF8E6;border:2px solid #FFD877;border-radius:20px;padding:12px 14px}
+.z63ask b{display:block;font-size:24px;font-weight:900;line-height:1.2}
+.z63pat{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.z63pr{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.z63pr b{background:#EDF2FA;border-radius:12px;padding:6px 10px;font-size:16.5px}.z63pr i{font-style:normal;color:var(--muted);font-weight:900}
+.z63dl{display:flex;flex-direction:column;gap:8px}
+.z63d{max-width:86%;text-align:left;border:0;border-radius:18px;padding:10px 14px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.z63d b{display:block;font-size:18px;font-weight:800}.z63d span{display:block;font-size:13.5px;font-weight:600;opacity:.8}
+.z63d.a{background:#E4EEFF;align-self:flex-start;border-bottom-left-radius:6px}.z63d.b{background:#DFF6EC;align-self:flex-end;border-bottom-right-radius:6px}
+.z64road{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:9px 12px}
+.z64road b{font-weight:900}.z64road span{color:var(--muted);font-weight:700;font-size:13px;flex:1}.z64road em{font-style:normal;font-weight:800;font-size:12px;color:#12A26E;background:#E2F6EE;border-radius:999px;padding:3px 9px}
+.z64st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.z64st button{border:2px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:9px 4px;cursor:pointer;font-family:inherit}
+.z64st button b{display:block;font-size:14px;font-weight:900;line-height:1.2}.z64st button small{display:block;font-size:10.5px;font-weight:700;color:var(--muted)}
+.z64st button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.2)}.z64st button[aria-pressed="true"] small{color:#fff;opacity:.9}
+.z64card{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--surface);border:2px solid var(--c);border-radius:26px;padding:16px 14px;box-shadow:0 6px 0 var(--c)}
+.z64pic{width:92px;height:92px}.z64pic svg{width:100%;height:100%;display:block}.z64pic.pl{border-radius:26px;background:var(--c);padding:16px}
+.z64s{font-size:27px;font-weight:900;line-height:1.5;text-align:center}
+.z64slot{font:inherit;color:#fff;background:var(--c);border:0;border-radius:14px;padding:2px 12px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.22);opacity:.75}
+.z64slot.on{opacity:1;outline:3px solid #FFD23F;outline-offset:2px}
+.z64en{margin:0;color:var(--muted);font-weight:700;font-size:15px;text-align:center}
+.z64play{display:flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--c);color:#fff;font-weight:900;font-size:15px;padding:11px 18px;box-shadow:0 4px 0 rgba(0,0,0,.22);cursor:pointer;font-family:inherit}
+.z64play svg{width:14px;height:14px;fill:#fff}
+.z64forms{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--surface2);border-radius:18px;padding:5px}
+.z64forms button{border:0;border-radius:14px;background:transparent;color:var(--muted);padding:8px 2px;cursor:pointer;font-family:inherit}
+.z64forms button b{display:block;font-size:14px;font-weight:900}.z64forms button small{display:block;font-size:11px;font-weight:700}
+.z64forms button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 2px 8px rgba(24,32,58,.12)}
+.z64grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.z64o{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;border-radius:18px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-family:inherit;box-shadow:0 3px 0 var(--line)}
+.z64o b{font-size:15px;font-weight:900;text-align:center;line-height:1.15}.z64o small{font-size:11px;font-weight:700;color:var(--muted);text-align:center;line-height:1.15}
+.z64o.on{border-color:#FFB800;background:#FFF8E6;box-shadow:0 3px 0 #FFB800}
+.z64next{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;color:var(--muted);font-weight:700;font-size:13.5px}
+.z64next summary{cursor:pointer;font-weight:800}.z64next ul{margin:8px 0 0;padding-left:16px;display:flex;flex-direction:column;gap:6px}
+@media (min-width:900px){ .z63menu{display:grid;grid-template-columns:repeat(3,1fr)} .z63pic{max-width:620px;margin:0 auto;width:100%} .z64grid{grid-template-columns:repeat(6,1fr)} }
+@media (prefers-reduced-motion:reduce){ .z63p .z63pi{animation:none!important} }
+.z59-scn .ic{width:84px;background:transparent;margin:-6px 0 -8px -6px;align-items:flex-end}.z59-scn .ic svg{width:84px;height:58px}
 </style>
 
 <div class="wrap" id="app">
@@ -5174,6 +5312,242 @@ function z60Ears(){ var body=zOpen(); body.classList.add('z60b'); body.appendChi
   card('#18203A','Hands-free playlist','Nghe thôi','Sentences in a row. For walking or the gym.','<path d="M16 10 L38 24 L16 38 Z"/>',function(){ z12Playlist() });
   body.appendChild(grid) }
 Z59.act.lis=function(){ z60Ears() };
+
+
+/* ===== 61 · Stories you can read: the text is there from the start, tap any word for its sound and meaning, play the whole story or one
+   sentence, show the English when you need it. Opened from the Truyện tile (z61List → z61Read). The Home "story of the week" loop (49) is unchanged. ===== */
+function z61Gloss(){ try{ if(Z27&&Z27.units&&!Z27._g61){ Z27._g61=1; Z27.units.forEach(function(u){ (u.w||[]).forEach(function(w){ var k=String(w[0]).toLowerCase().normalize('NFC'); if(!C6.gloss[k]) C6.gloss[k]=w[1] }) }) } }catch(e){} }
+function z61All(){ var a=[]; try{ a=zStories().slice() }catch(e){} try{ if(Z27&&Z27.st) Z27.st.forEach(function(g){ if(!z38Open(g)){ var s=z38Story(g); a.push({id:s.id,t:s.t,en:g.en,ch:s.ch,core:1,lock:g.at}) } }) }catch(e){}
+  a.sort(function(x,y){ return (x.core?0:1)-(y.core?0:1) }); return a }
+var Z61C=['#F0527A','#2F7BF6','#12A26E','#7C5CFC','#FF8A1F','#0FA8A1'];
+function z61List(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Truyện · stories',null,null));
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Pick a story'}),h('p',{class:'muted',text:'Read it, tap any word to hear it and see what it means.'})]));
+  var list=h('div',{class:'z61list'}), all=z61All(), n=0;
+  all.forEach(function(s){ var c=Z61C[n++%Z61C.length], card=h('div',{class:'z61s'+(s.lock?' lock':''),style:'--c:'+c},[h('div',{class:'z61b',html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 12 q-8 -5 -18 -3 V37 q10 -2 18 3 q8 -5 18 -3 V9 q-10 -2 -18 3 Z M24 12 V40"/></svg>'}),h('div',{class:'z61t'},[h('b',{text:s.t}),h('span',{text:s.lock?('Opens after unit '+s.lock):(String(s.en||'').split(' · ')[0])})])]);
+    if(!s.lock){ var row=h('div',{class:'z61ch'}); s.ch.forEach(function(ch,i){ var rd=zRead(zChId(s,i)); row.appendChild(h('button',{class:rd?'done':'',onclick:function(){ z61Read(s,i) }},[document.createTextNode(s.ch.length>1?((i+1)+' · '+ch.t):'Đọc · read'),rd?h('i',{text:' ✓'}):null])) }); card.appendChild(row) }
+    list.appendChild(card) });
+  if(!all.length) list.appendChild(h('div',{class:'panel'},[h('p',{text:'Stories open as you finish units.'})]));
+  body.appendChild(list) }
+function z61Read(s,ci){ z61Gloss(); var body=zOpen(), tok=Z.tok, ch=s.ch[ci], cid=zChId(s,ci), showEn=false, playing=false, run=0, sent=[], ens=[]; body.classList.add('z60b'); body.classList.add('z61r');
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden&&document.body.contains(story) }
+  body.appendChild(h('div',{class:'sess-top'},[h('button',{class:'x',text:'‹ Stories',onclick:function(){ z61List() }}),h('span',{style:'flex:1'}),h('button',{class:'x',text:'Close',onclick:closeSheet})]));
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('span',{class:'lbl',text:s.ch.length>1?(s.t+' · '+(ci+1)+' / '+s.ch.length):'Truyện · story'}),h('h1',{text:ch.t}),ch.en?h('p',{class:'muted',text:ch.en}):null]));
+  var playB=h('button',{class:'z61play'}), enB=h('button',{class:'chip','aria-pressed':'false',text:'English'}), slowB=h('button',{class:'chip','aria-pressed':String((S.set.speed||1)<=.75),text:'Slow'});
+  function lab(){ playB.innerHTML=(playing?'<svg viewBox="0 0 24 24" width="20" height="20"><rect x="5" y="4" width="5" height="16" rx="1.500" fill="#fff"/><rect x="14" y="4" width="5" height="16" rx="1.500" fill="#fff"/></svg><span>Dừng · pause</span>':'<svg viewBox="0 0 24 24" width="20" height="20"><path d="M7 4 L20 12 L7 20 Z" fill="#fff"/></svg><span>Nghe · play the story</span>') }
+  function stop(){ run++; playing=false; lab(); try{ ZS.tok++; stopAudio(); if(speechOK) speechSynthesis.cancel() }catch(e){} sent.forEach(function(x){ x.classList.remove('on') }) }
+  function playFrom(i){ stop(); playing=true; lab(); var my=run; (function nx(){ if(my!==run||!alive()) return; if(i>=sent.length){ stop(); return } sent.forEach(function(x){ x.classList.remove('on') }); var el=sent[i]; el.classList.add('on'); try{ el.scrollIntoView({block:'center',behavior:'smooth'}) }catch(e){} zSay(ch.lines[i].vi,{onend:function(){ if(my!==run) return; i++; setTimeout(nx,380) }}) })() }
+  playB.onclick=function(){ if(playing) stop(); else playFrom(0) };
+  enB.onclick=function(){ showEn=!showEn; enB.setAttribute('aria-pressed',String(showEn)); ens.forEach(function(e){ e.hidden=!showEn }) };
+  slowB.onclick=function(){ var slow=slowB.getAttribute('aria-pressed')!=='true'; S.set.speed=slow?.75:1; save(); slowB.setAttribute('aria-pressed',String(slow)) };
+  lab(); body.appendChild(h('div',{class:'z61bar'},[playB,enB,slowB]));
+  var story=h('div',{class:'z61story nocolor'}), pop=h('div',{class:'z61pop',hidden:true});
+  function tap(sp,key,phrase,li){ stop(); var l=ch.lines[li], g=C6.gloss[key]||C6.gloss[String(phrase).toLowerCase()]||'', name=!g&&/^[A-ZÀ-Ỹ]/.test(phrase);
+    [].forEach.call(story.querySelectorAll('.zw.now'),function(x){ x.classList.remove('now') }); sp.classList.add('now'); S.tap[key]=(S.tap[key]||0)+1; save();
+    pop.hidden=false; pop.innerHTML='';
+    pop.appendChild(h('div',{class:'z61pw'},[h('button',{class:'play','aria-label':'Hear the word',html:PLAY_ICON,onclick:function(){ zSay(String(phrase).toLowerCase()) }}),h('div',{},[h('b',{text:phrase}),h('span',{text:g||(name?'a name':'no note for this word yet')})]),h('button',{class:'x',text:'×','aria-label':'Close',onclick:function(){ pop.hidden=true; sp.classList.remove('now') }})]));
+    pop.appendChild(h('button',{class:'z61ps',onclick:function(){ zSay(l.vi) }},[h('span',{html:PLAY_ICON}),h('div',{},[h('b',{text:l.vi}),l.en?h('span',{text:l.en}):null])]));
+    if(g&&!S.w[key]) pop.appendChild(h('button',{class:'chip z61sv',text:'+ Save to my cards',onclick:function(ev){ S.w[key]={n:1,reps:0,due:Date.now(),vi:l.vi,en:l.en||'',cid:cid,t:s.t}; save(); ev.target.textContent='Saved ✓'; ev.target.disabled=true }}));
+    zSay(String(phrase).toLowerCase()) }
+  function paras(){ if(ch.lines.some(function(l){ return l.p===1 })) return z7Paras(ch); var out=[], cur=null; ch.lines.forEach(function(l,i){ var q=/^[“"]/.test(l.vi), pq=i>0&&/^[“"]/.test(ch.lines[i-1].vi); if(i===0||cur.length>=3||q||pq){ cur=[]; out.push(cur) } cur.push(i) }); return out }
+  function tidy(el){ var ns=[].slice.call(el.childNodes); ns.forEach(function(n,i){ if(n.nodeType!==3) return; if(/[“(]\s+$/.test(n.nodeValue)) n.nodeValue=n.nodeValue.replace(/\s+$/,''); var nx=ns[i+1]; if(/[“(]$/.test(n.nodeValue)&&nx&&nx.nodeType===3&&!nx.nodeValue.trim()) nx.nodeValue='' }) }
+  paras().forEach(function(idx){ var p=h('p',{class:'z61p'}), en=h('p',{class:'z61en',hidden:true}), et=[];
+    idx.forEach(function(li){ var l=ch.lines[li], sp=h('span',{class:'z61sent'},[zGlossSpans(l.vi,function(a,b,c){ tap(a,b,c,li) })]); tidy(sp); sent[li]=sp; p.appendChild(sp); p.appendChild(document.createTextNode(' ')); if(l.en) et.push(l.en) });
+    en.textContent=et.join(' '); ens.push(en); story.appendChild(p); story.appendChild(en) });
+  body.appendChild(story); body.appendChild(pop);
+  if(ch.qs&&ch.qs.length){ var qs=h('div',{class:'z61qs'},[h('h2',{text:'Câu hỏi · questions'})]); ch.qs.forEach(function(q){ var a=h('div',{class:'z61a',hidden:true},[h('b',{text:q.a||''})]);
+      qs.appendChild(h('div',{class:'z61q'},[h('div',{class:'z61qr'},[h('button',{class:'play','aria-label':'Hear the question',html:PLAY_ICON,onclick:function(){ zSay(q.q) }}),h('div',{},[h('b',{text:q.q}),q.en?h('span',{text:q.en}):null])]),h('button',{class:'chip',text:'Say your answer, then tap to check',onclick:function(ev){ a.hidden=false; ev.target.hidden=true; if(q.a) zSay(q.a) }}),a])) }); body.appendChild(qs) }
+  var nextI=ci+1<s.ch.length?ci+1:-1;
+  body.appendChild(h('button',{class:'btn primary wide',text:nextI>=0?'Xong · next chapter':'Xong · I read it',onclick:function(){ stop(); (S.st[cid]||(S.st[cid]={n:0})).n++; save(); if(nextI>=0) z61Read(s,nextI); else z61List() }})) }
+Z59.act.sto=function(){ z61List() };
+
+
+/* ===== 62 · Âm: letters and sounds as big boards (data/sounds.json + C7.chart). Three ways through every board, like a picture book:
+   Chạm · touch (tap any tile: hear it, see its word), Lật · one at a time (swipe or arrows, or let it play), Kiểm tra · test (hear one, pick it).
+   Boards: alphabet (29), consonant pairs, six tones, the vowel-pair groups. Seen/best: S.set.s62[boardId] = {seen:{k:1}, best, n}.
+   Until a real voice records the sound itself (recording part "ab"), a tile plays its example word. ===== */
+var Z62={d:null,C:['#2F7BF6','#F0527A','#12A26E','#FF8A1F','#7C5CFC','#0FA8A1']};
+function z62Load(cb){ if(Z62.d){ cb(); return } fetch('data/sounds.json').then(function(r){ return r.json() }).then(function(j){ Z62.d=j; cb() }).catch(function(){ Z62.d={letters:[],pairs:[],tones:[]}; cb() }) }
+function z62Boards(){ var d=Z62.d||{}, out=[];
+  out.push({id:'abc',t:'Bảng chữ cái',en:'The alphabet',sub:'29 letters',c:'#2F7BF6',items:(d.letters||[]).map(function(x){ return {k:x.k,s:x.s,w:x.w,en:x.en,up:1} })});
+  out.push({id:'cc',t:'Phụ âm ghép',en:'Letter pairs',sub:'ch, nh, ng, th…',c:'#7C5CFC',items:(d.pairs||[]).map(function(x){ return {k:x.k,s:x.s,w:x.w,en:x.en} })});
+  out.push({id:'tone',t:'Sáu thanh',en:'The six tones',sub:'ma má mà mả mã mạ',c:'#F0527A',items:(d.tones||[]).map(function(x){ return {k:x.w,s:'',w:x.w,en:x.k+' · '+x.how,path:x.path,nm:x.k} })});
+  try{ var N={'The six diphthong spellings':['Nguyên âm đôi','Two-part vowels','ia iê · ưa ươ · ua uô'],'Ending in i / y':['Vần có i / y','Ending in i or y','ai ay ây oi ôi ơi…'],'Ending in o / u':['Vần có o / u','Ending in o or u','ao au âu eo êu…'],'With “w” in front':['Vần có âm đệm','With a “w” sound first','oa oe uê uy uâ']}, cs=['#12A26E','#FF8A1F','#0FA8A1','#2F7BF6'];
+    C7.chart.slice(1).forEach(function(g,i){ var n=N[g[0]]||[g[0],g[0],'']; out.push({id:'v'+i,t:n[0],en:n[1],sub:n[2],c:cs[i%4],items:g[1].map(function(p){ return {k:p[0],s:p[0],w:p[1],en:(C6.gloss[p[1]]||'')} })}) }) }catch(e){}
+  return out.filter(function(b){ return b.items.length }) }
+function z62St(id){ var a=S.set.s62||(S.set.s62={}); return a[id]||(a[id]={seen:{}}) }
+function z62Play(it,done){ var said=false; function word(){ if(said) return; said=true; zSay(it.w,{onend:done}) }
+  try{ if(it.s&&it.s!==it.w&&clipFor(it.s)){ zSay(it.s,{onend:function(){ setTimeout(word,150) }}); return } }catch(e){} word() }
+function z62Menu(){ z62Load(function(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Âm · letters and sounds',null,null));
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Hear it, say it'}),h('p',{class:'muted',text:'Tap, listen, copy out loud. Then test your ears.'})]));
+  var g=h('div',{class:'z62menu'}); z62Boards().forEach(function(b){ var st=z62St(b.id), seen=Object.keys(st.seen||{}).length;
+    g.appendChild(h('button',{class:'z62m',style:'--c:'+b.c,onclick:function(){ z62Board(b.id) }},[h('div',{class:'z62mk',text:b.id==='tone'?'á à ả':(b.items[0].k+' '+b.items[1].k+' '+(b.items[2]?b.items[2].k:''))}),h('b',{text:b.t}),h('span',{text:b.en}),h('small',{text:seen+' / '+b.items.length+' heard'+(st.best!=null?' · test '+st.best+'%':'')})])) });
+  body.appendChild(g);
+  body.appendChild(h('button',{class:'z60g',onclick:function(){ closeSheet(); location.hash='van' }},[h('div',{class:'ic',style:'background:#18203A',html:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 38 V10 h20 l12 12 v16 Z M28 10 v12 h12"/></svg>'}),h('div',{class:'tx'},[h('b',{text:'Sound lessons'}),h('i',{text:'Bài học âm'}),h('span',{text:'17 short lessons with the spelling rules and mouth notes.'})])])) }) }
+function z62Tile(it,i,big,bare){ var b=h('button',{class:'z62t'+(big?' big':''),style:'--c:'+Z62.C[i%6]});
+  if(it.path){ b.appendChild(h('span',{class:'z62tp',html:'<svg viewBox="0 0 60 44"><path d="'+it.path+'" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>'})); b.appendChild(h('b',{text:it.k})); b.appendChild(h('small',{text:it.nm})) }
+  else { b.appendChild(h('b',{text:it.up?(it.k.toUpperCase()+' '+it.k):it.k})); if(!bare&&(big||!it.up)) b.appendChild(h('small',{text:it.w})) }
+  return b }
+function z62Board(id,mode){ var B=z62Boards().filter(function(b){ return b.id===id })[0]; if(!B){ z62Menu(); return } var body=zOpen(), tok=Z.tok, st=z62St(id), run=0; body.classList.add('z60b'); mode=mode||'touch';
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(h('div',{class:'sess-top'},[h('button',{class:'x',text:'‹ Sounds',onclick:function(){ run++; z62Menu() }}),h('span',{class:'lbl',text:B.t+' · '+B.en}),h('span',{style:'flex:1'}),h('button',{class:'x',text:'Close',onclick:closeSheet})]));
+  var tabs=h('div',{class:'z62tabs'}); [['touch','Chạm','Touch'],['flip','Lật','One by one'],['test','Kiểm tra','Test']].forEach(function(m){ tabs.appendChild(h('button',{'aria-pressed':String(m[0]===mode),onclick:function(){ run++; z62Board(id,m[0]) }},[h('b',{text:m[1]}),h('small',{text:m[2]})])) }); body.appendChild(tabs);
+  var stage=h('div',{class:'z60stage'}); body.appendChild(stage);
+  function seen(it){ if(!st.seen[it.k]){ st.seen[it.k]=1; save() } }
+  function show(card,it,i){ card.innerHTML=''; card.style.setProperty('--c',Z62.C[i%6]); var big=h('div',{class:'z62big'});
+    if(it.path) big.appendChild(h('span',{class:'z62tp',html:'<svg viewBox="0 0 60 44"><path d="'+it.path+'" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>'}));
+    big.appendChild(h('b',{text:it.up?(it.k.toUpperCase()+' '+it.k):it.k})); if(it.s&&it.s!==it.k) big.appendChild(h('i',{text:'“'+it.s+'”'}));
+    card.appendChild(big); var wd=h('div',{class:'z62wd'}); try{ if(z60Has(it.w)) wd.appendChild(z12Pic(it.w,'xs')) }catch(e){} wd.appendChild(h('div',{},[h('b',{text:it.w}),h('span',{text:it.en||''})])); card.appendChild(wd) }
+  if(mode==='touch'){ var card=h('button',{class:'z62card',onclick:function(){ if(cur) z62Play(cur) }}), grid=h('div',{class:'z62grid'+(B.items.length<=6?' six':'')}), cur=null, tiles=[];
+    card.appendChild(h('p',{class:'z62hint',text:'Tap a tile to hear it'}));
+    function pick(i,then){ var it=B.items[i]; cur=it; tiles.forEach(function(t){ t.classList.remove('on') }); tiles[i].classList.add('on'); tiles[i].classList.remove('pop'); void tiles[i].offsetWidth; tiles[i].classList.add('pop'); show(card,it,i); seen(it); z62Play(it,then) }
+    B.items.forEach(function(it,i){ var t=z62Tile(it,i); t.onclick=function(){ run++; allB.textContent='▶ Nghe hết · play them all'; pick(i) }; tiles.push(t); grid.appendChild(t) });
+    var allB=h('button',{class:'btn wide',text:'▶ Nghe hết · play them all',onclick:function(){ if(allB.textContent.charAt(0)==='■'){ run++; allB.textContent='▶ Nghe hết · play them all'; return } var my=++run, i=0; allB.textContent='■ Dừng · stop'; (function nx(){ if(my!==run||!alive()) return; if(i>=B.items.length){ allB.textContent='▶ Nghe hết · play them all'; return } var d=false; function go(){ if(d) return; d=true; i++; setTimeout(nx,500) } pick(i,go); setTimeout(go,4200) })() }});
+    stage.appendChild(card); stage.appendChild(grid); stage.appendChild(allB) }
+  else if(mode==='flip'){ var i=0, card2=h('div',{class:'z62card tall'}), cnt=h('span',{class:'z62cnt'}), x0=null;
+    function go(d){ i=(i+d+B.items.length)%B.items.length; draw() }
+    function draw(){ var it=B.items[i]; show(card2,it,i); card2.classList.remove('pop'); void card2.offsetWidth; card2.classList.add('pop'); cnt.textContent=(i+1)+' / '+B.items.length; seen(it); z62Play(it) }
+    card2.addEventListener('click',function(){ z62Play(B.items[i]) });
+    card2.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX },{passive:true}); card2.addEventListener('touchend',function(e){ if(x0==null) return; var dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>40) go(dx<0?1:-1) });
+    stage.appendChild(card2); stage.appendChild(h('div',{class:'z62nav'},[h('button',{'aria-label':'Back',text:'‹',onclick:function(){ go(-1) }}),cnt,h('button',{'aria-label':'Next',text:'›',onclick:function(){ go(1) }})]));
+    stage.appendChild(h('p',{class:'z60tip',style:'text-align:center',text:'Swipe or use the arrows. Tap the card to hear it again. Say it out loud each time.'})); draw() }
+  else { var q=shuffle(B.items).slice(0,Math.min(10,B.items.length)), qi=0, ok=0;
+    function ask(){ if(qi>=q.length){ fin(); return } var it=q[qi], opts=shuffle([it].concat(shuffle(B.items.filter(function(x){ return x!==it&&x.k!==it.k })).slice(0,3))), done=false; stage.innerHTML=''; stage.setAttribute('data-a',it.k);
+      stage.appendChild(h('div',{class:'z60lis'},[h('button',{class:'z60spk',style:'background:'+B.c+';box-shadow:0 6px 0 rgba(0,0,0,.25)','aria-label':'Play',html:'<svg viewBox="0 0 48 48" width="54" height="54"><path d="M8 18 h8 l11 -9 v30 l-11 -9 h-8 Z" fill="#fff"/><path d="M33 17 q6 7 0 14 M38 11 q11 13 0 26" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>',onclick:function(){ z62Play(it) }}),h('span',{class:'lbl',text:'Nghe · which one is it?  '+(qi+1)+' / '+q.length})]));
+      var g2=h('div',{class:'z62grid six'}); opts.forEach(function(o,k){ var t=z62Tile(o,B.items.indexOf(o),true,true); t.setAttribute('data-k',o.k); t.onclick=function(){ if(done) return; if(o===it){ done=true; t.classList.add('right'); ok+=miss?0:1; qi++; setTimeout(function(){ if(alive()) ask() },800) } else { miss=true; z60Shake(t); t.classList.add('wrong') } }; g2.appendChild(t) }); var miss=false;
+      stage.appendChild(g2); setTimeout(function(){ if(alive()&&!done) z62Play(it) },250) }
+    function fin(){ var pct=Math.round(ok/q.length*100); st.n=(st.n||0)+1; if(!(st.best>=pct)) st.best=pct; save(); stage.innerHTML=''; var stars=pct>=90?3:(pct>=65?2:1), sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.15)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
+      stage.appendChild(h('div',{class:'z60end'},[h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:ok+' / '+q.length}),h('p',{class:'muted',text:pct>=90?'Tai tốt lắm! Sharp ears.':'Go back to Touch, listen again, then try once more.'})]));
+      stage.appendChild(h('button',{class:'btn primary wide',text:'Làm lại · again',onclick:function(){ z62Board(id,'test') }})); stage.appendChild(h('button',{class:'btn wide',text:'All sounds',onclick:function(){ z62Menu() }})) }
+    ask() } }
+Z59.act.snd=function(){ z62Menu() };
+
+
+/* ===== 63 · Cảnh: tap-around scenes (data/scenes.json; words and patterns from Thầy Tâm's "Ai? – Who?" sheets, drawings our own).
+   Each scene: Khám phá · explore (tap a person: the word, "Đây là …", "… đang …"), Kiểm tra · check (tap who you hear, "Đây là ai?",
+   "… đang làm gì?"), Mẫu câu · sentences (patterns + model dialogue, and the same words in the games). People are drawn by z63Person
+   from a small "look"; backgrounds by z63Bg. Best check score: S.set.s63[sceneId].  ===== */
+var Z63={d:null};
+function z63Load(cb){ if(Z63.d){ cb(); return } fetch('data/scenes.json').then(function(r){ return r.json() }).then(function(j){ Z63.d=j; cb() }).catch(function(){ Z63.d={scenes:[],places:[]}; cb() }) }
+function z63Lc(s){ s=String(s||''); return s.charAt(0).toLowerCase()+s.slice(1) }
+function z63Person(L,tall){ L=L||{}; var skin=L.skin||'#F5CFA8', sh='#E3B58E', grey=(L.hair==='grey'||L.hair==='bun'), hc=grey?'#B9BFCA':'#2B2233', shirt=L.shirt||'#2F7BF6', o='', bot=tall?150:46;
+  if(L.hair==='long') o+='<path d="M-23 -36 Q-26 -62 0 -60 Q26 -62 23 -36 L26 4 Q15 10 12 -6 L-12 -6 Q-15 10 -26 4 Z" fill="'+hc+'"/>';
+  if(L.hair==='pony') o+='<path d="M16 -50 Q42 -46 32 -8 Q28 -24 17 -32 Z" fill="'+hc+'"/>';
+  o+='<path d="M-32 '+bot+' Q-35 -5 -12 -8 L12 -8 Q35 -5 32 '+bot+' Z" fill="'+shirt+'"/>';
+  if(L.coat) o+='<path d="M-32 '+bot+' Q-35 -5 -12 -8 L-5 '+bot+' Z M32 '+bot+' Q35 -5 12 -8 L5 '+bot+' Z" fill="#fff"/><path d="M-11 -8 Q-13 18 0 20 Q13 18 11 -8" fill="none" stroke="#3B4A6B" stroke-width="2.6" stroke-linecap="round"/><circle cx="0" cy="24" r="5" fill="#3B4A6B"/><circle cx="0" cy="24" r="2" fill="#C9D4E6"/>';
+  else o+='<path d="M-9 -8 L0 3 L9 -8" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>';
+  o+='<path d="M-7 -18 h14 v11 q-7 7 -14 0 Z" fill="'+sh+'"/><circle cx="-20" cy="-33" r="4.600" fill="'+skin+'"/><circle cx="20" cy="-33" r="4.600" fill="'+skin+'"/><ellipse cx="0" cy="-36" rx="20" ry="22" fill="'+skin+'"/>';
+  var top={short:'M-21 -38 Q-23 -61 0 -60 Q23 -61 21 -38 Q16 -51 2 -51 Q-12 -51 -21 -38 Z',short2:'M-21 -38 Q-25 -63 2 -61 Q23 -60 21 -40 Q10 -53 -8 -49 Q-16 -46 -21 -38 Z',grey:'M-21 -40 Q-22 -59 0 -59 Q22 -59 21 -40 Q14 -51 0 -51 Q-14 -51 -21 -40 Z',bun:'M-21 -40 Q-22 -59 0 -59 Q22 -59 21 -40 Q14 -51 0 -51 Q-14 -51 -21 -40 Z',long:'M-21 -38 Q-23 -61 0 -60 Q23 -61 21 -38 Q12 -53 -4 -51 Q-14 -48 -21 -38 Z',pony:'M-21 -38 Q-23 -61 0 -60 Q23 -61 21 -38 Q12 -53 -4 -51 Q-14 -48 -21 -38 Z',kid:'M-21 -38 Q-23 -61 0 -60 Q23 -61 21 -38 Q16 -49 6 -51 L2 -45 L-3 -51 Q-14 -50 -21 -38 Z'}[L.hair||'short'];
+  if(L.hair==='bun') o+='<circle cx="0" cy="-62" r="8.500" fill="'+hc+'"/>';
+  o+='<path d="'+top+'" fill="'+hc+'"/>'; if(L.hair==='kid') o+='<path d="M-2 -60 q3 -9 9 -6" fill="none" stroke="'+hc+'" stroke-width="3.200" stroke-linecap="round"/>';
+  o+='<circle cx="-13" cy="-27" r="3.600" fill="#F29C9C" opacity=".55"/><circle cx="13" cy="-27" r="3.600" fill="#F29C9C" opacity=".55"/><circle cx="-7.500" cy="-34" r="2.300" fill="#2B2233"/><circle cx="7.500" cy="-34" r="2.300" fill="#2B2233"/><path d="M-6 -24.500 Q0 -18.500 6 -24.500" fill="none" stroke="#2B2233" stroke-width="2.100" stroke-linecap="round"/>';
+  if(L.glasses) o+='<circle cx="-7.500" cy="-34" r="6.400" fill="rgba(255,255,255,.3)" stroke="#3B4A6B" stroke-width="1.800"/><circle cx="7.500" cy="-34" r="6.400" fill="rgba(255,255,255,.3)" stroke="#3B4A6B" stroke-width="1.800"/><path d="M-1.200 -34 h2.400" stroke="#3B4A6B" stroke-width="1.800"/>';
+  return o }
+function z63Av(L){ return '<svg viewBox="-34 -72 68 80" aria-hidden="true"><circle cx="0" cy="-30" r="38" fill="#EAF1FB"/><clipPath id="z63c"><circle cx="0" cy="-30" r="38"/></clipPath><g clip-path="url(#z63c)">'+z63Person(L,true)+'</g></svg>' }
+function z63Bg(k){ if(k==='home') return '<rect width="360" height="250" fill="#FFF1DC"/><rect y="206" width="360" height="44" fill="#F1D4A8"/><rect x="146" y="14" width="68" height="50" rx="6" fill="#BFE3FF" stroke="#fff" stroke-width="5"/><path d="M180 14 v50 M146 39 h68" stroke="#fff" stroke-width="3"/><rect x="26" y="22" width="44" height="34" rx="4" fill="#FFD877" stroke="#E8B64A" stroke-width="3"/><path d="M32 50 l10 -12 l8 8 l6 -6 l8 10 Z" fill="#12A26E"/><circle cx="310" cy="36" r="15" fill="#fff" stroke="#E0C9A4" stroke-width="3"/><path d="M310 27 v9 l6 4" fill="none" stroke="#8A6A3A" stroke-width="2.400" stroke-linecap="round"/>';
+  if(k==='hospital') return '<rect width="360" height="250" fill="#E6F6F1"/><rect y="204" width="360" height="46" fill="#C9E6DC"/><rect x="24" y="18" width="62" height="48" rx="6" fill="#BFE3FF" stroke="#fff" stroke-width="5"/><rect x="286" y="16" width="46" height="46" rx="10" fill="#fff"/><path d="M309 25 v28 M295 39 h28" stroke="#E2434B" stroke-width="9" stroke-linecap="round"/><path d="M338 74 V214" stroke="#9FB4C6" stroke-width="3"/><rect x="329" y="76" width="18" height="26" rx="5" fill="#CFEBFF" stroke="#9FB4C6" stroke-width="2"/>';
+  return '<rect width="360" height="250" fill="#EAF2FF"/><rect y="210" width="360" height="40" fill="#D5E3FA"/><rect x="134" y="16" width="208" height="96" rx="8" fill="#8A5A2B"/><rect x="140" y="22" width="196" height="84" rx="4" fill="#2E6B57"/><text x="238" y="58" text-anchor="middle" font-size="22" font-weight="800" fill="#fff" font-family="Nunito,sans-serif">Xin chào!</text><path d="M196 74 h84" stroke="#fff" stroke-width="2.500" stroke-dasharray="3 5" opacity=".7"/><rect x="18" y="20" width="58" height="46" rx="6" fill="#BFE3FF" stroke="#fff" stroke-width="5"/>' }
+function z63Fg(k,when){ /* furniture: 'mid' is drawn between the back row and the front row, 'top' in front of everyone */
+  if(k==='home'&&when==='mid') return '<rect x="26" y="126" width="308" height="70" rx="26" fill="#F9C784"/><rect x="14" y="160" width="332" height="90" rx="22" fill="#F7A94B"/><rect x="14" y="150" width="34" height="100" rx="14" fill="#F29A36"/><rect x="312" y="150" width="34" height="100" rx="14" fill="#F29A36"/>';
+  if(k==='hospital'&&when==='mid') return '<rect x="186" y="96" width="18" height="130" rx="6" fill="#B7C7D9"/><rect x="204" y="100" width="92" height="46" rx="14" fill="#fff" stroke="#DCE6F0" stroke-width="2"/>';
+  if(k==='hospital'&&when==='top') return '<path d="M196 178 h156 v72 h-156 Z" fill="#9AD0F5"/><path d="M196 178 h156 v14 h-156 Z" fill="#fff"/><rect x="186" y="170" width="170" height="10" rx="5" fill="#B7C7D9"/>';
+  if(k==='school'&&when==='top') return '<rect x="150" y="206" width="204" height="44" fill="#C98F4E"/><rect x="144" y="198" width="216" height="14" rx="5" fill="#E2AE6E"/><rect x="186" y="188" width="40" height="12" rx="2" fill="#fff" stroke="#C9D4E6"/><rect x="278" y="188" width="40" height="12" rx="2" fill="#FFE08A" stroke="#E8B64A"/>';
+  return '' }
+function z63Svg(sc,mini){ var o='<svg viewBox="0 0 360 250" class="z63svg">'+'<clipPath id="z63k'+sc.id+(mini?'m':'')+'"><rect width="360" height="250" rx="'+(mini?0:22)+'"/></clipPath><g clip-path="url(#z63k'+sc.id+(mini?'m':'')+')">'+z63Bg(sc.bg), back='', front='';
+  sc.people.forEach(function(p,i){ var tall=(sc.bg!=='home'||p.y>150), g='<g class="z63p" data-i="'+i+'" transform="translate('+p.x+' '+p.y+') scale('+p.s+')"><g class="z63pi">'+z63Person(p.look,tall)+'<rect x="-34" y="-70" width="68" height="'+(tall?140:118)+'" fill="transparent"/></g></g>'; if(sc.bg==='home'&&p.y<150) back+=g; else front+=g });
+  (sc.deco||[]).forEach(function(p){ front+='<g transform="translate('+p.x+' '+p.y+') scale('+p.s+')">'+z63Person(p.look,true)+'</g>' });
+  return o+back+z63Fg(sc.bg,'mid')+front+z63Fg(sc.bg,'top')+'</g></svg>' }
+var Z63IC={book:'<path d="M24 13 q-8 -5 -17 -3 v26 q9 -2 17 3 q8 -5 17 -3 V10 q-9 -2 -17 3 Z M24 13 v26"/>',pot:'<path d="M9 22 h30 v8 a10 10 0 0 1 -10 10 h-10 a10 10 0 0 1 -10 -10 Z M5 22 h38 M17 14 q-3 -4 0 -8 M25 14 q-3 -4 0 -8 M33 14 q-3 -4 0 -8"/>',pencil:'<path d="M10 38 l3 -10 l19 -19 l7 7 l-19 19 Z M28 13 l7 7 M10 38 h28"/>',tv:'<rect x="6" y="11" width="36" height="24" rx="4"/><path d="M17 41 h14 M24 35 v6 M20 20 l8 3.500 l-8 3.500 Z"/>',steth:'<path d="M12 6 v12 a8 8 0 0 0 16 0 V6 M20 26 v6 a8 8 0 0 0 16 0 v-4"/><circle cx="36" cy="24" r="4"/>',paper:'<path d="M12 6 h18 l8 8 v28 h-26 Z M30 6 v8 h8 M18 22 h14 M18 29 h14 M18 36 h8"/>',bed:'<path d="M5 36 V14 M5 28 h38 v8 M43 28 v-4 a6 6 0 0 0 -6 -6 H19 v10"/><circle cx="12" cy="22" r="3.500"/>',pill:'<rect x="6" y="16" width="36" height="16" rx="8" transform="rotate(-30 24 24)"/><path d="M19 15.500 l9 15.500"/>',board:'<rect x="6" y="8" width="36" height="24" rx="3"/><path d="M14 40 l6 -8 M34 40 l-6 -8 M13 16 h14 M13 22 h9"/>'};
+function z63Ic(k,c){ return '<svg viewBox="0 0 48 48" fill="none" stroke="'+(c||'#18203A')+'" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round">'+(Z63IC[k]||Z63IC.paper)+'</svg>' }
+function z63Sents(sc){ var out=[]; sc.people.forEach(function(p){ var a=sc.actions.filter(function(x){ return x.k===p.act })[0]; out.push({vi:'Đây là '+z63Lc(p.subj)+'.',en:'This is '+z63Lc(p.ens)+'.',p:p}); if(a) out.push({vi:p.subj+' đang '+a.k+'.',en:p.ens+' is '+a.ing+'.',p:p,a:a}) }); return out }
+Z60.extra.push(function(){ if(!Z63.d) return []; return Z63.d.scenes.map(function(sc){ return {id:'S'+sc.id,t:sc.vi,en:'Scene · '+sc.en,words:sc.people.map(function(p){ return {vi:p.k,en:p.en,ex:'Đây là '+z63Lc(p.subj)+'.',exen:'This is '+z63Lc(p.ens)+'.'} }).concat(sc.actions.map(function(a){ return {vi:a.k,en:a.en,ex:'',exen:''} })),sents:z63Sents(sc).filter(function(s){ return s.vi.split(/\s+/).length>=3 }).map(function(s){ return {vi:s.vi,en:s.en} })} }) });
+function z63Menu(){ z63Load(function(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Cảnh · scenes',null,null));
+  body.appendChild(h('div',{class:'stack',style:'gap:2px'},[h('h1',{text:'Who is this?'}),h('p',{class:'muted',text:'Tap the people in the picture. Hear who they are and what they are doing.'})]));
+  var g=h('div',{class:'z63menu'}); Z63.d.scenes.forEach(function(sc){ var st=(S.set.s63||{})[sc.id];
+    g.appendChild(h('button',{class:'z63m',onclick:function(){ z63Scene(sc.id) }},[h('div',{class:'z63th',html:z63Svg(sc,true)}),h('div',{class:'z63mt'},[h('b',{text:sc.vi}),h('span',{text:sc.en+' · '+sc.people.length+' people · '+sc.actions.length+' actions'}),st&&st.best!=null?h('em',{text:'Check '+st.best+'%'}):null])])) });
+  body.appendChild(g); body.appendChild(h('p',{class:'z60tip',text:'More scenes are coming: restaurant, café, company, transport, park and more.'})) }) }
+function z63Scene(id,mode){ var sc=Z63.d.scenes.filter(function(x){ return x.id===id })[0]; if(!sc){ z63Menu(); return } var body=zOpen(), tok=Z.tok; body.classList.add('z60b'); mode=mode||'see';
+  function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
+  body.appendChild(h('div',{class:'sess-top'},[h('button',{class:'x',text:'‹ Scenes',onclick:function(){ z63Menu() }}),h('span',{class:'lbl',text:sc.vi+' · '+sc.en}),h('span',{style:'flex:1'}),h('button',{class:'x',text:'Close',onclick:closeSheet})]));
+  var tabs=h('div',{class:'z62tabs'}); [['see','Khám phá','Explore'],['quiz','Kiểm tra','Check'],['say','Mẫu câu','Sentences']].forEach(function(m){ tabs.appendChild(h('button',{'aria-pressed':String(m[0]===mode),onclick:function(){ z63Scene(id,m[0]) }},[h('b',{text:m[1]}),h('small',{text:m[2]})])) }); body.appendChild(tabs);
+  var pic=h('div',{class:'z63pic',html:z63Svg(sc)}), tags=[], PS=[].slice.call(pic.querySelectorAll('.z63p'));
+  sc.people.forEach(function(p,i){ var t=h('span',{class:'z63tag',style:'left:'+(p.x/360*100)+'%;top:'+Math.max(1,(p.y-62*p.s)/250*100)+'%',text:p.k,hidden:true}); tags.push(t); pic.appendChild(t) });
+  function mark(i,cls){ PS.forEach(function(g){ g.classList.remove('on'); g.classList.remove('ask') }); if(i>=0){ var g=PS.filter(function(x){ return +x.getAttribute('data-i')===i })[0]; if(g){ g.classList.add(cls||'on'); void g.getBoundingClientRect() } } }
+  function act(k){ return sc.actions.filter(function(x){ return x.k===k })[0] }
+  function line(vi,en){ return h('button',{class:'z63ln',onclick:function(){ zSay(vi) }},[h('span',{html:PLAY_ICON}),h('div',{},[h('b',{text:vi}),h('span',{text:en})])]) }
+  var stage=h('div',{class:'z60stage'});
+  if(mode==='see'){ var info=h('div',{class:'z63info'},[h('p',{class:'z62hint',style:'color:var(--muted)',text:'Tap a person in the picture'})]), allOn=false;
+    function pick(i){ var p=sc.people[i], a=act(p.act); mark(i); tags.forEach(function(t,k){ t.hidden=!(allOn||k===i) }); info.innerHTML='';
+      info.appendChild(h('div',{class:'z63who'},[h('div',{class:'z63av',html:z63Av(p.look)}),h('div',{},[h('b',{text:p.k}),h('span',{text:p.en}),p.alt?h('small',{text:'also: '+p.alt}):null]),h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(p.k) }})]));
+      info.appendChild(line('Đây là '+z63Lc(p.subj)+'.','This is '+z63Lc(p.ens)+'.')); if(a) info.appendChild(line(p.subj+' đang '+a.k+'.',p.ens+' is '+a.ing+'.'));
+      var s=S.set.s63||(S.set.s63={}), o=s[sc.id]||(s[sc.id]={}); o.seen=o.seen||{}; if(!o.seen[p.k]){ o.seen[p.k]=1; save() } zSay(p.k) }
+    PS.forEach(function(g){ g.addEventListener('click',function(){ pick(+g.getAttribute('data-i')) }) });
+    stage.appendChild(pic); stage.appendChild(info);
+    stage.appendChild(h('button',{class:'chip',style:'align-self:flex-start','aria-pressed':'false',text:'Show every name',onclick:function(e){ allOn=!allOn; e.target.setAttribute('aria-pressed',String(allOn)); tags.forEach(function(t){ t.hidden=!allOn }) }}));
+    stage.appendChild(h('h2',{class:'z59h2',text:'Hành động · actions'}));
+    var ag=h('div',{class:'z63acts'}); sc.actions.forEach(function(a){ ag.appendChild(h('button',{class:'z63a',onclick:function(){ zSay(a.k) }},[h('span',{class:'ic',html:z63Ic(a.ic,sc.c)}),h('b',{text:a.k}),h('small',{text:a.en})])) }); stage.appendChild(ag) }
+  else if(mode==='quiz'){ var n=Math.min(4,sc.people.length), A=shuffle(sc.people).slice(0,n).map(function(p){ return {t:'tap',p:p} }), B=shuffle(sc.people).slice(0,n).map(function(p){ return {t:'who',p:p} }), C=shuffle(sc.people).slice(0,n).map(function(p){ return {t:'do',p:p} }), q=A.concat(B,C), qi=0, ok=0;
+    var bar=h('i',{style:'width:0%'}), ask=h('div',{class:'z63ask'}), opts=h('div',{class:'z63opts'});
+    stage.appendChild(h('div',{class:'bar'},[bar])); stage.appendChild(ask); stage.appendChild(pic); stage.appendChild(opts);
+    function next(){ qi++; bar.style.width=Math.round(qi/q.length*100)+'%'; setTimeout(function(){ if(alive()) show() },750) }
+    function show(){ if(qi>=q.length){ fin(); return } var it=q[qi], p=it.p, miss=false, done=false, pi=sc.people.indexOf(p); tags.forEach(function(t){ t.hidden=true }); opts.innerHTML=''; ask.innerHTML=''; stage.setAttribute('data-t',it.t); stage.setAttribute('data-a',it.t==='do'?p.act:p.k);
+      PS.forEach(function(g){ g.onclick=null });
+      if(it.t==='tap'){ mark(-1); ask.appendChild(h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(p.k) }})); ask.appendChild(h('div',{},[h('span',{class:'lbl',text:'Chạm vào · tap'}),h('b',{text:p.k})]));
+        PS.forEach(function(g){ g.onclick=function(){ if(done) return; var i=+g.getAttribute('data-i'); if(i===pi){ done=true; mark(i); tags[i].hidden=false; if(!miss) ok++; next() } else { miss=true; g.classList.remove('no'); void g.getBoundingClientRect(); g.classList.add('no'); setTimeout(function(){ g.classList.remove('no') },450) } } }); zSay(p.k) }
+      else { var Q=it.t==='who'?'Đây là ai?':(p.subj+' đang làm gì?'), list=it.t==='who'?shuffle(sc.people).map(function(x){ return {k:x.k,en:x.en,av:x.look} }):shuffle(sc.actions).map(function(x){ return {k:x.k,en:x.en,ic:x.ic} }), ans=it.t==='who'?p.k:p.act;
+        if(it.t==='who') list=shuffle([list.filter(function(x){ return x.k===ans })[0]].concat(list.filter(function(x){ return x.k!==ans }).slice(0,3)));
+        mark(pi,'ask'); ask.appendChild(h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(Q) }})); ask.appendChild(h('div',{},[h('span',{class:'lbl',text:it.t==='who'?'Who is this?':('What is '+z63Lc(p.ens)+' doing?')}),h('b',{text:Q})]));
+        list.forEach(function(o){ var b=h('button',{class:'z63o'},[o.av?h('span',{class:'z63av sm',html:z63Av(o.av)}):h('span',{class:'ic',html:z63Ic(o.ic,sc.c)}),h('b',{text:o.k})]); b.setAttribute('data-k',o.k);
+          b.onclick=function(){ if(done) return; if(o.k===ans){ done=true; b.classList.add('ok'); if(!miss) ok++; zSay(it.t==='who'?('Đây là '+z63Lc(p.subj)+'.'):(p.subj+' đang '+ans+'.')); next() } else { miss=true; z60Shake(b) } }; opts.appendChild(b) }); zSay(Q) } }
+    function fin(){ var pct=Math.round(ok/q.length*100), s=S.set.s63||(S.set.s63={}), o=s[sc.id]||(s[sc.id]={}); o.n=(o.n||0)+1; if(!(o.best>=pct)) o.best=pct; save(); stage.innerHTML=''; var stars=pct>=90?3:(pct>=65?2:1), sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.15)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
+      stage.appendChild(h('div',{class:'z60end'},[h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:ok+' / '+q.length}),h('p',{class:'muted',text:pct>=90?'Giỏi lắm! You know this scene.':'Explore the picture once more, then check again.'})]));
+      stage.appendChild(h('button',{class:'btn primary wide',text:'Làm lại · again',onclick:function(){ z63Scene(id,'quiz') }})); stage.appendChild(h('button',{class:'btn wide',text:'Mẫu câu · the sentences',onclick:function(){ z63Scene(id,'say') }})); stage.appendChild(h('button',{class:'btn wide',text:'All scenes',onclick:function(){ z63Menu() }})) }
+    show() }
+  else { stage.appendChild(h('div',{class:'z63pat'},[h('span',{class:'lbl',text:'Mẫu câu · the two patterns'}),h('div',{class:'z63pr'},[h('b',{text:'Đây là ai?'}),h('i',{text:'→'}),h('b',{text:'Đây là + người.'})]),h('div',{class:'z63pr'},[h('b',{text:'… đang làm gì?'}),h('i',{text:'→'}),h('b',{text:'… đang + việc.'})]),h('p',{class:'small muted',text:'Who is this? → This is … · What is … doing? → … is …ing.'})]));
+    stage.appendChild(h('h2',{class:'z59h2',text:'Hội thoại · dialogue'})); var dl=h('div',{class:'z63dl'}); (sc.dlg||[]).forEach(function(d,i){ dl.appendChild(h('button',{class:'z63d '+(i%2?'b':'a'),onclick:function(){ zSay(d[0]) }},[h('b',{text:(i%2?'B: ':'A: ')+d[0]}),h('span',{text:d[1]})])) }); stage.appendChild(dl);
+    stage.appendChild(h('h2',{class:'z59h2',text:'Mọi người · everyone'})); z63Sents(sc).forEach(function(s){ stage.appendChild(line(s.vi,s.en)) });
+    stage.appendChild(h('button',{class:'btn primary wide',text:'Chơi với các từ này · games with these words',onclick:function(){ z60Menu('S'+sc.id) }}));
+    stage.appendChild(h('button',{class:'btn wide',text:'Mẫu câu · build your own sentences',onclick:function(){ z64Build() }})) }
+  body.appendChild(stage) }
+Z59.act.scn=function(){ z63Menu() };
+
+/* ===== 64 · Mẫu câu: build sentences from a structure. Stage 1 = three structures (Đây là ai? · Đây là đâu? · … đang làm gì?).
+   Tap a slot, pick a word, hear the whole sentence; flip it into the question or add "phải không?". The words come from the scenes.
+   Later stages (listed, not open yet) follow Thầy Tâm's "Structure 1" sheet. Sentences made: S.set.b64 = {n, seen:{sentence:1}}. ===== */
+var Z64PL={'bệnh viện':'<path d="M10 40 V14 h28 v26 M4 40 h40 M24 19 v10 M19 24 h10 M20 40 v-6 h8 v6"/>','trường học':'<path d="M6 40 V20 l18 -10 l18 10 v20 M4 40 h40 M20 40 v-10 h8 v10 M24 10 V4 h7 v4 h-7"/>','nhà hàng':'<path d="M14 6 v14 a4 4 0 0 0 8 0 V6 M18 6 v36 M32 6 q-6 6 -6 16 h6 Z M32 6 v36"/>','quán cà phê':'<path d="M8 18 h24 v12 a10 10 0 0 1 -10 10 h-4 a10 10 0 0 1 -10 -10 Z M32 22 h4 a5 5 0 0 1 0 10 h-4 M15 12 q-2 -3 0 -6 M23 12 q-2 -3 0 -6"/>','siêu thị':'<path d="M4 8 h6 l5 22 h22 l4 -16 H12"/><circle cx="18" cy="38" r="3"/><circle cx="34" cy="38" r="3"/>','khách sạn':'<path d="M8 42 V8 h22 v34 M30 20 h10 v22 M4 42 h40 M14 15 h4 M22 15 h4 M14 23 h4 M22 23 h4 M17 42 v-8 h6 v8"/>','sân bay':'<path d="M4 28 l40 -12 l-6 10 l-12 4 l-6 12 l-4 -1 l2 -9 l-8 2 l-3 4 l-3 -1 l2 -6 Z"/>','công ty':'<path d="M10 42 V6 h20 v36 M30 18 h8 v24 M4 42 h40 M16 13 h8 M16 20 h8 M16 27 h8 M16 34 h8"/>','công viên':'<path d="M16 42 V30 M16 30 a10 10 0 1 1 0.100 0 M34 42 V34 M34 34 a7 7 0 1 1 0.100 0 M4 42 h40"/>','ngân hàng':'<path d="M6 18 L24 6 L42 18 Z M10 18 v18 M19 18 v18 M29 18 v18 M38 18 v18 M4 40 h40 M6 36 h36"/>','bưu điện':'<rect x="6" y="12" width="36" height="26" rx="3"/><path d="M6 14 l18 14 l18 -14"/>','nhà thuốc':'<rect x="8" y="8" width="32" height="32" rx="8"/><path d="M24 15 v18 M15 24 h18"/>','nhà':'<path d="M6 22 L24 8 L42 22 M10 20 V42 H38 V20 M20 42 V30 h8 v12"/>'};
+function z64Build(si){ z63Load(function(){ var body=zOpen(); body.classList.add('z60b'); var D=Z63.d, people=[], acts=[], seenA={};
+  D.scenes.forEach(function(sc){ sc.people.forEach(function(p){ people.push({k:p.k,en:p.en,who:z63Lc(p.subj),whoEn:z63Lc(p.ens),subj:p.subj,subjEn:p.ens,look:p.look,act:p.act}) }); sc.actions.forEach(function(a){ if(!seenA[a.k]){ seenA[a.k]=1; acts.push({k:a.k,en:a.en,ing:a.ing,ic:a.ic}) } }) });
+  var places=D.places.map(function(p){ return {k:p[0],en:p[1]} });
+  var ST=[{id:'ai',t:'Đây là ai?',en:'Who is this?',c:'#12A26E',slots:['who']},{id:'dau',t:'Đây là đâu?',en:'Where is this?',c:'#2F7BF6',slots:['place']},{id:'lam',t:'… đang làm gì?',en:'What is … doing?',c:'#7C5CFC',slots:['subj','act']}];
+  si=si||0; var X=ST[si], val={who:people[0],place:places[0],subj:people[0],act:acts.filter(function(a){ return a.k===people[0].act })[0]||acts[0]}, form='a', active=X.slots[0], B=S.set.b64||(S.set.b64={n:0,seen:{}});
+  body.appendChild(zTop('Mẫu câu · build sentences',null,null));
+  body.appendChild(h('div',{class:'z64road'},[h('b',{text:'Chặng 1 / 5'}),h('span',{text:'3 structures now · 15 by the end of level one'}),h('em',{text:(B.n||0)+' sentences made'})]));
+  var tabs=h('div',{class:'z64st'}); ST.forEach(function(s,i){ tabs.appendChild(h('button',{'aria-pressed':String(i===si),style:'--c:'+s.c,onclick:function(){ z64Build(i) }},[h('b',{text:s.t}),h('small',{text:s.en})])) }); body.appendChild(tabs);
+  var card=h('div',{class:'z64card',style:'--c:'+X.c}), forms=h('div',{class:'z64forms'}), grid=h('div',{class:'z64grid'}), gl=h('span',{class:'lbl'});
+  function text(){ var vi, en;
+    if(X.id==='ai'){ vi=form==='q'?'Đây là ai?':('Đây là '+val.who.who+(form==='p'?', phải không?':'.')); en=form==='q'?'Who is this?':('This is '+val.who.whoEn+(form==='p'?', right?':'.')) }
+    else if(X.id==='dau'){ vi=form==='q'?'Đây là đâu?':('Đây là '+val.place.k+(form==='p'?', phải không?':'.')); en=form==='q'?'Where is this?':('This is the '+val.place.en+(form==='p'?', right?':'.')) }
+    else { vi=form==='q'?(val.subj.subj+' đang làm gì?'):(val.subj.subj+' đang '+val.act.k+(form==='p'?', phải không?':'.')); en=form==='q'?('What is '+z63Lc(val.subj.subjEn)+' doing?'):(val.subj.subjEn+' is '+val.act.ing+(form==='p'?', right?':'.')) }
+    return [vi,en] }
+  function say(){ var t=text(); if(!B.seen[t[0]]){ B.seen[t[0]]=1; B.n=(B.n||0)+1; save(); var em=body.querySelector('.z64road em'); if(em) em.textContent=B.n+' sentences made' } zSay(t[0]) }
+  function slot(k,label){ return h('button',{class:'z64slot'+(k===active?' on':''),onclick:function(){ active=k; draw() }},[document.createTextNode(label)]) }
+  function draw(){ var t=text(); card.innerHTML=''; var s=h('div',{class:'z64s'}), pic=h('div',{class:'z64pic'});
+    if(X.id==='ai'){ pic.innerHTML=z63Av(val.who.look); if(form==='q') s.appendChild(h('span',{text:'Đây là ai?'})); else { s.appendChild(h('span',{text:'Đây là '})); s.appendChild(slot('who',val.who.who)); s.appendChild(h('span',{text:form==='p'?', phải không?':'.'})) } }
+    else if(X.id==='dau'){ pic.innerHTML='<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round">'+(Z64PL[val.place.k]||Z64PL['nhà'])+'</svg>'; pic.classList.add('pl'); if(form==='q') s.appendChild(h('span',{text:'Đây là đâu?'})); else { s.appendChild(h('span',{text:'Đây là '})); s.appendChild(slot('place',val.place.k)); s.appendChild(h('span',{text:form==='p'?', phải không?':'.'})) } }
+    else { pic.innerHTML=z63Av(val.subj.look); s.appendChild(slot('subj',val.subj.subj)); if(form==='q') s.appendChild(h('span',{text:' đang làm gì?'})); else { s.appendChild(h('span',{text:' đang '})); s.appendChild(slot('act',val.act.k)); s.appendChild(h('span',{text:form==='p'?', phải không?':'.'})) } }
+    card.appendChild(pic); card.appendChild(s); card.appendChild(h('p',{class:'z64en',text:t[1]})); card.appendChild(h('button',{class:'z64play',html:PLAY_ICON+'<span>Nghe · hear it, then say it</span>',onclick:say}));
+    [].forEach.call(forms.children,function(b,i){ b.setAttribute('aria-pressed',String(['a','q','p'][i]===form)) });
+    grid.innerHTML=''; var list=active==='place'?places:(active==='act'?acts:people); gl.textContent=active==='act'?'Chọn việc · pick an action':(active==='place'?'Chọn nơi · pick a place':'Chọn người · pick a person');
+    if(form==='q'&&X.id!=='lam'){ grid.appendChild(h('p',{class:'z60tip',text:'This is the question. Tap “Answer” to answer it with a new word.'})); return }
+    if(form==='q'&&active==='act'){ active='subj'; list=people; gl.textContent='Chọn người · pick a person' }
+    list.forEach(function(o){ var on=(val[active]===o), b=h('button',{class:'z64o'+(on?' on':''),onclick:function(){ val[active]=o; if(active==='subj'&&form!=='q'){ var a=acts.filter(function(a){ return a.k===o.act })[0]; if(a) val.act=a } draw(); say() }},[o.look?h('span',{class:'z63av sm',html:z63Av(o.look)}):(o.ic?h('span',{class:'ic',html:z63Ic(o.ic,X.c)}):h('span',{class:'ic',html:'<svg viewBox="0 0 48 48" fill="none" stroke="'+X.c+'" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round">'+(Z64PL[o.k]||Z64PL['nhà'])+'</svg>'})),h('b',{text:active==='subj'?o.subj:(active==='who'?o.who:o.k)}),h('small',{text:o.en})]); grid.appendChild(b) }) }
+  [['a','Trả lời','Answer'],['q','Câu hỏi','Question'],['p','… phải không?','…, right?']].forEach(function(f){ forms.appendChild(h('button',{onclick:function(){ form=f[0]; draw(); say() }},[h('b',{text:f[1]}),h('small',{text:f[2]})])) });
+  body.appendChild(card); body.appendChild(forms); body.appendChild(gl); body.appendChild(grid);
+  body.appendChild(h('details',{class:'z64next'},[h('summary',{text:'What comes next · stages 2 to 5'}),h('ul',{},[h('li',{text:'2 · Đó là cái gì? · Kia là con gì? · Đây là phương tiện gì?  (things, animals, transport)'}),h('li',{text:'3 · … phải không? · Anh là người nước nào? · Em đến … để làm gì?  (jobs, countries, places)'}),h('li',{text:'4 · Bây giờ là mấy giờ? · Hôm nay là ngày mấy? · … là thứ mấy?  (time, dates, days)'}),h('li',{text:'5 · Cái này bao nhiêu tiền? · Món này tên là gì? · Anh bao nhiêu tuổi?  (shopping, food, age)'})])]));
+  draw() }) }
+Z59.act.bld=function(){ z64Build() };
+z63Load(function(){});
+/* the Cảnh tile on Home shows two of the people instead of a line icon */
+try{ Z59IC.scn='<svg viewBox="-62 -66 124 84">'+'<g transform="translate(-28 0)">'+z63Person({hair:'grey',glasses:1,shirt:'#FFFFFF'},false)+'</g><g transform="translate(28 4) scale(.92)">'+z63Person({hair:'long',shirt:'#FFD23F'},false)+'</g></svg>' }catch(e){}
 
 go(location.hash.slice(1)||'home');
 renderAll();

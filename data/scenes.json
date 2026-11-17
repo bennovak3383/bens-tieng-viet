@@ -1,0 +1,398 @@
+{
+"v": 1,
+"note": "Words and patterns from Thầy Tâm's \"Ai? – Who?\" and \"Đây là đâu?\" sheets (used with permission). Drawings are our own.",
+"scenes": [
+{
+"id": "fam",
+"vi": "Gia đình",
+"en": "Family",
+"bg": "home",
+"c": "#FF8A1F",
+"place": [
+"nhà",
+"home"
+],
+"people": [
+{
+"k": "ông",
+"en": "grandfather",
+"subj": "Ông tôi",
+"ens": "My grandfather",
+"look": {
+"hair": "grey",
+"glasses": 1,
+"shirt": "#7A8CA8"
+},
+"x": 58,
+"y": 96,
+"s": 1,
+"act": "đọc sách"
+},
+{
+"k": "bà",
+"en": "grandmother",
+"subj": "Bà tôi",
+"ens": "My grandmother",
+"look": {
+"hair": "bun",
+"glasses": 1,
+"shirt": "#C9809A"
+},
+"x": 136,
+"y": 96,
+"s": 1,
+"act": "xem TV"
+},
+{
+"k": "ba",
+"en": "father",
+"subj": "Ba tôi",
+"ens": "My father",
+"look": {
+"hair": "short",
+"shirt": "#2F7BF6"
+},
+"x": 218,
+"y": 96,
+"s": 1,
+"act": "đọc sách",
+"alt": "bố (miền Bắc · northern)"
+},
+{
+"k": "mẹ",
+"en": "mother",
+"subj": "Mẹ tôi",
+"ens": "My mother",
+"look": {
+"hair": "long",
+"shirt": "#F0527A"
+},
+"x": 298,
+"y": 96,
+"s": 1,
+"act": "nấu ăn"
+},
+{
+"k": "anh",
+"en": "older brother",
+"subj": "Anh tôi",
+"ens": "My older brother",
+"look": {
+"hair": "short",
+"shirt": "#12A26E"
+},
+"x": 96,
+"y": 186,
+"s": 0.9,
+"act": "xem TV"
+},
+{
+"k": "chị",
+"en": "older sister",
+"subj": "Chị tôi",
+"ens": "My older sister",
+"look": {
+"hair": "pony",
+"shirt": "#7C5CFC"
+},
+"x": 180,
+"y": 186,
+"s": 0.9,
+"act": "học"
+},
+{
+"k": "em",
+"en": "younger brother or sister",
+"subj": "Em tôi",
+"ens": "My little brother",
+"look": {
+"hair": "kid",
+"shirt": "#FFC83D"
+},
+"x": 258,
+"y": 196,
+"s": 0.74,
+"act": "học"
+}
+],
+"actions": [
+{
+"k": "đọc sách",
+"en": "read",
+"ing": "reading a book",
+"ic": "book"
+},
+{
+"k": "nấu ăn",
+"en": "cook",
+"ing": "cooking",
+"ic": "pot"
+},
+{
+"k": "học",
+"en": "study",
+"ing": "studying",
+"ic": "pencil"
+},
+{
+"k": "xem TV",
+"en": "watch TV",
+"ing": "watching TV",
+"ic": "tv"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là ba tôi.",
+"This is my father."
+],
+[
+"Ba tôi đang làm gì?",
+"What is my father doing?"
+],
+[
+"Ba tôi đang đọc sách.",
+"My father is reading a book."
+]
+]
+},
+{
+"id": "hos",
+"vi": "Bệnh viện",
+"en": "Hospital",
+"bg": "hospital",
+"c": "#12A26E",
+"place": [
+"bệnh viện",
+"hospital"
+],
+"people": [
+{
+"k": "bác sĩ",
+"en": "doctor",
+"subj": "Bác sĩ",
+"ens": "The doctor",
+"look": {
+"hair": "short",
+"glasses": 1,
+"shirt": "#8FD3C8",
+"coat": 1
+},
+"x": 118,
+"y": 118,
+"s": 1.25,
+"act": "khám bệnh"
+},
+{
+"k": "bệnh nhân",
+"en": "patient",
+"subj": "Bệnh nhân",
+"ens": "The patient",
+"look": {
+"hair": "short2",
+"shirt": "#BFD9FF"
+},
+"x": 246,
+"y": 138,
+"s": 1.1,
+"act": "nằm nghỉ"
+}
+],
+"actions": [
+{
+"k": "khám bệnh",
+"en": "examine",
+"ing": "examining a patient",
+"ic": "steth"
+},
+{
+"k": "viết đơn thuốc",
+"en": "write a prescription",
+"ing": "writing a prescription",
+"ic": "paper"
+},
+{
+"k": "nằm nghỉ",
+"en": "rest",
+"ing": "resting",
+"ic": "bed"
+},
+{
+"k": "uống thuốc",
+"en": "take medicine",
+"ing": "taking medicine",
+"ic": "pill"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là bác sĩ.",
+"This is the doctor."
+],
+[
+"Bác sĩ đang làm gì?",
+"What is the doctor doing?"
+],
+[
+"Bác sĩ đang khám bệnh.",
+"The doctor is examining a patient."
+]
+]
+},
+{
+"id": "sch",
+"vi": "Trường học",
+"en": "School",
+"bg": "school",
+"c": "#2F7BF6",
+"place": [
+"trường học",
+"school"
+],
+"people": [
+{
+"k": "giáo viên",
+"en": "teacher",
+"subj": "Giáo viên",
+"ens": "The teacher",
+"look": {
+"hair": "long",
+"shirt": "#F0527A"
+},
+"x": 92,
+"y": 112,
+"s": 1.15,
+"act": "dạy"
+},
+{
+"k": "sinh viên",
+"en": "student",
+"subj": "Sinh viên",
+"ens": "The student",
+"look": {
+"hair": "short",
+"shirt": "#FFC83D"
+},
+"x": 210,
+"y": 170,
+"s": 0.95,
+"act": "học",
+"alt": "học viên (learner in a course)"
+}
+],
+"actions": [
+{
+"k": "dạy",
+"en": "teach",
+"ing": "teaching",
+"ic": "board"
+},
+{
+"k": "học",
+"en": "study",
+"ing": "studying",
+"ic": "pencil"
+},
+{
+"k": "đọc sách",
+"en": "read",
+"ing": "reading a book",
+"ic": "book"
+},
+{
+"k": "làm bài",
+"en": "do an exercise",
+"ing": "doing an exercise",
+"ic": "paper"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là giáo viên.",
+"This is the teacher."
+],
+[
+"Giáo viên đang làm gì?",
+"What is the teacher doing?"
+],
+[
+"Giáo viên đang dạy.",
+"The teacher is teaching."
+]
+],
+"deco": [
+{
+"look": {
+"hair": "pony",
+"shirt": "#12A26E"
+},
+"x": 298,
+"y": 170,
+"s": 0.95
+}
+]
+}
+],
+"places": [
+[
+"bệnh viện",
+"hospital"
+],
+[
+"trường học",
+"school"
+],
+[
+"nhà hàng",
+"restaurant"
+],
+[
+"quán cà phê",
+"café"
+],
+[
+"siêu thị",
+"supermarket"
+],
+[
+"khách sạn",
+"hotel"
+],
+[
+"sân bay",
+"airport"
+],
+[
+"công ty",
+"company"
+],
+[
+"công viên",
+"park"
+],
+[
+"ngân hàng",
+"bank"
+],
+[
+"bưu điện",
+"post office"
+],
+[
+"nhà thuốc",
+"pharmacy"
+]
+]
+}

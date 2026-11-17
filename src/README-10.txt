@@ -441,3 +441,37 @@ Every game ends on the same screen: stars, score, time, play again, the same wor
 Other blocks add sets with Z60.extra.push(function(){ return [ {id,t,en,words:[{vi,en,ex,exen}],sents:[{vi,en}]} ] }).
 z60Ears = the Nghe tile: the listening game for this lesson and for everything, story by ear, reps, listen-and-understand, playlist.
 Test: src/tests/t60.py (hub + every game played to the end). Not tested: sound, a real phone.
+
+VERSION 61 — stories you can read straight away
+z61List (the Truyện tile): every story as a card, chapters as buttons, locked graded stories shown greyed with their unit.
+z61Read(story, chapter): the text is visible from the start. Tap a word → a card with the word, its meaning, a play button, the whole
+sentence with its English (tap to hear) and "+ Save to my cards" (S.w, the same store as before). "Nghe · play the story" reads it
+sentence by sentence with the sentence lit; "English" shows the translation under each paragraph; "Slow" sets S.set.speed .75 / 1.
+Questions fold open one at a time; "Xong" marks the chapter read (S.st[cid].n). Meanings: C6.gloss, topped up once with every core
+unit word (z61Gloss). The Home "story of the week" loop (49) and the old #story page are unchanged.
+
+VERSION 62 — Âm: letters and sounds as boards
+data/sounds.json = letters (letter, sound name, example word), letter pairs, tones (with the Saigon contour path).
+The vowel-pair boards come from C7.chart. z62Menu → z62Board(id, mode): Chạm · touch, Lật · one by one (swipe, arrows), Kiểm tra · test.
+A tile plays its example word; once the sound itself has a recording (it.s, e.g. "bờ", "ia") that plays first (z62Play).
+Seen and best: S.set.s62[boardId]. The 17 sound lessons (#van) are one tap below the boards.
+Recording list: part "ab" (69 lines: sound names and vowel pairs on their own) is now FIRST in data/voice-lines.json.
+record.html: a recording link with &part=ab opens straight on that part (any part id works).
+
+VERSION 63 — Cảnh: tap-around scenes (from Thầy Tâm's "Ai? – Who?" sheets; Ben confirmed we may use them)
+data/scenes.json: scenes (people with a "look", position, the action they are doing; actions; a model dialogue) and places.
+Drawings are made in code: z63Person(look) draws a person (hair short / short2 / grey / bun / long / pony / kid, glasses, coat,
+shirt colour), z63Bg / z63Fg the room, z63Svg the whole picture. To add a scene: add it to data/scenes.json; a new room needs a
+case in z63Bg / z63Fg (otherwise it gets the classroom).
+z63Scene(id, mode): Khám phá (tap a person: name tag, "Đây là …", "… đang …"), Kiểm tra (tap who you hear → "Đây là ai?" →
+"… đang làm gì?", first-try score, S.set.s63[id].best), Mẫu câu (patterns, dialogue, every sentence, and the same words as a set
+in the games: Z60.extra, set id 'S'+scene id). Three scenes built: family, hospital, school. Recording parts sc_fam, sc_hos,
+sc_sch, sc_pl (55 lines) come right after "ab".
+
+VERSION 64 — Mẫu câu: sentence builder, stage 1 of 5
+z64Build: three structures (Đây là ai? · Đây là đâu? · … đang làm gì?). Tap a slot, pick a person / place / action, hear the
+sentence; switch between Answer, Question and "…, phải không?". Words come from the scenes and data/scenes.json places.
+Sentences made: S.set.b64 {n, seen}. Stages 2–5 are listed on the screen (from Thầy Tâm's "Structure 1" sheet) but not built.
+Built sentences have no recording of their own: they play from word clips or the phone voice.
+Test for 61–64: src/tests/t61.py.
+NOT built: Google sign-in (needs a Google client ID that only Ben can create), more scenes, builder stages 2–5, new guide pictures.

@@ -81,6 +81,28 @@ try:
     add('x1','Thi thử: hỏi và trả lời','Test practice: questions and answers',rows)
     add('x2','Thi thử: bài đọc','Test practice: reading texts',[(x,'') for t in X['read'] for x in t['text']])
 except FileNotFoundError: pass
+# 62: letters (their sound names), letter pairs, and the vowel pairs on their own, so the sound boards play a real voice
+try:
+    SD=json.load(open(repo+'/data/sounds.json')); rows=[]
+    for x in SD['letters']+SD['pairs']:
+        rows.append((x['s'],'the sound of the letter "%s", as in "%s"'%(x['k'],x['w']))); rows.append((x['w'],x['en']))
+    for g in C7['chart'][1:]:
+        for q in g[1]: rows.append((q[0],'the vowel sound "%s" on its own, as in "%s"'%(q[0],q[1]))); rows.append((q[1],''))
+    add('ab','Bảng chữ cái và vần','Alphabet, letter pairs and vowel pairs',rows)
+except FileNotFoundError: pass
+# 63: the tap-around scenes (people, actions, "Đây là …", "… đang …") and the places for "Đây là đâu?"
+try:
+    SC=json.load(open(repo+'/data/scenes.json')); lc=lambda t:t[0].lower()+t[1:]
+    for sc in SC['scenes']:
+        rows=[]
+        for q in sc['people']:
+            rows.append((q['k'],q['en'])); rows.append(('Đây là %s.'%lc(q['subj']),'This is %s.'%lc(q['ens'])))
+            a=[a for a in sc['actions'] if a['k']==q['act']]
+            if a: rows.append(('%s đang %s.'%(q['subj'],a[0]['k']),'%s is %s.'%(q['ens'],a[0]['ing']))); rows.append(('%s đang làm gì?'%q['subj'],'What is %s doing?'%lc(q['ens'])))
+        rows+=[(a['k'],a['en']) for a in sc['actions']]+[(d[0],d[1]) for d in sc['dlg']]
+        add('sc_'+sc['id'],'Cảnh: '+sc['vi'],'Scene: '+sc['en'],rows)
+    add('sc_pl','Cảnh: nơi chốn','Scenes: places',[('Đây là đâu?','Where is this?')]+[r for q in SC['places'] for r in ((q[0],q[1]),('Đây là %s.'%q[0],'This is the %s.'%q[1]))])
+except FileNotFoundError: pass
 ks=[p for p in parts if p['id'][0]=='k' and p['id'][1:].isdigit()]; gs={p['id']:p for p in parts if p['id'][0]=='g' and p['id'][1:].isdigit()}
 try: GAT=[(g['id'],g['at']) for g in json.load(open(repo+'/data/core.json')).get('st',[])]
 except FileNotFoundError: GAT=[]
@@ -88,6 +110,7 @@ core=[p for p in parts if p['id'] in ('x0','x0c')]
 for n,kp in enumerate(ks):
     core.append(kp); core+=[gs[g] for g,at in GAT if at==n+1 and g in gs]
 rest=[p for p in parts if p not in core]; at=next((n+1 for n,p in enumerate(rest) if p['id']=='z0'),0); parts=rest[:at]+core+rest[at:]
+first=[p for p in parts if p['id']=='ab']+[p for p in parts if p['id'].startswith('sc_')]; parts=first+[p for p in parts if p not in first]   # 62-63: the sound boards and scenes come first
 NOTES={'Anh nói với cô bán hàng: “Chào chị. Tôi muốn mưa một cái áo.”':'Câu này cố ý sai: trong truyện, Jake nói nhầm “mua” thành “mưa” nên cô bán hàng mới cười. Bạn cứ đọc đúng như chữ, có chữ “mưa”. · This mistake is on purpose: it is the joke of the story. Read it exactly as written.'}
 for p in parts:
     for l in p['lines']:
