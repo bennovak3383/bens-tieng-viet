@@ -774,3 +774,15 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z64s{overflow-wrap:anywhere}
 .z64note{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#FFF8E6;border:1.5px solid #FFD877;border-radius:14px;padding:8px 12px;font-weight:700;font-size:13.5px}.z64note[hidden]{display:none}
 @media (max-width:899px){ .z63menu{display:grid;grid-template-columns:1fr 1fr;gap:12px} .z63th{height:104px} .z63th .z63svg{margin-top:-12px} .z63mt{padding:9px 11px 11px} .z63mt b{font-size:17px} .z63mt span{font-size:11.5px;line-height:1.3} .z63mt em{position:static;display:inline-block;margin-top:4px} }
+
+/* 68 · hide text in stories; scene halo and action bubbles; word-only answers; scene pictures in games; hub tile drawings */
+.z61story.z68blind .z61sent{filter:blur(7px);user-select:none;-webkit-user-select:none}.z61story.z68blind .z61sent.on{filter:blur(4px)}.z61story.z68blind .zw{pointer-events:none;border-bottom-color:transparent}
+.z68hn{margin:0}
+.z63halo{fill:#FFE27A;opacity:0;transition:opacity .25s}.z63p.ask .z63halo,.z63p.on .z63halo{opacity:.85}
+.z63pic.asking .z63p:not(.ask){opacity:.38;transition:opacity .25s}.z63pic.asking .z63b:not(.ask){opacity:.25}
+.z63b{pointer-events:none;transition:opacity .25s}.z63bi{transform-box:fill-box;transform-origin:center}.z63b.ask .z63bi{animation:z68bub 1s ease-in-out infinite}
+@keyframes z68bub{0%,100%{transform:scale(1.25)}50%{transform:scale(1.6)}}
+.z63opts.z68w .z68o{justify-content:center;min-height:58px}.z63opts.z68w .z68o b{font-size:21px}
+.z68px svg{width:100%;height:100%;display:block}.z68px{padding:3px;box-sizing:border-box;overflow:hidden}
+.z59t .ic.art{width:84px;background:transparent;margin:-6px 0 -8px -6px;align-items:flex-end}.z59t .ic.art svg{width:84px;height:58px}
+@media (prefers-reduced-motion:reduce){ .z63b.ask .z63bi{animation:none;transform:scale(1.4)} }

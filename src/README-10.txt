@@ -512,3 +512,23 @@ All game buttons: touch-action manipulation (no double-tap zoom on an iPhone), n
 Six games now: match, flash, unj, find, gap, listen. Test: src/tests/t60.py plays every one to the end.
 Checked at phone size (393 px, touch) in the lab browser for anything running off the screen: games, listening corner, sound
 boards, a scene check, the builder, the story reader. Not checked: a real iPhone, sound.
+
+VERSION 68 — hide the story text, scenes that show what people are doing, pictures that match (Ben, from his iPhone: "hide the
+text if you want for listening"; "what is grandma doing? But she's not doing anything"; in the check "it showed the name and
+below same"; on Home "need more continuity with the images so everyone matches")
+Stories (z61Read): a chip "Ẩn chữ · hide text" next to English and Slow. It blurs the story (class z68blind), hides the English,
+turns off word taps and the English chip; play still works and the lit sentence is a little clearer. The choice is kept while
+the app is open (Z68.blind), so the next chapter opens hidden too. It is not saved after a reload.
+Scenes (z63Svg, not the small thumbnails): every person has a thought bubble by the head with the sign for what they are doing
+(the same sign as on the action cards: book, TV, pencil, pot …). In the check, the person being asked about stands in a yellow
+light, everyone else fades, and their bubble pulses (mark() adds .asking to the picture and .ask to the bubble).
+Check answers: the buttons are words only now. Before, each "who is this?" button carried the person's face and each "what is …
+doing?" button carried the action sign, so the picture gave the answer away. After a right "who" answer the name tag appears.
+Games with a scene's words: each word in a scene set carries its own picture (pic: the scene person's face, or the action sign).
+z60Play puts them in Z60.pix; z60Has and z60Pic use them first. Lesson sets are untouched and keep their own drawings.
+Home hub: all six tiles have a drawing in the same cartoon style as the scenes (Z68ART, built from z63Person plus one prop:
+a speech bubble with Â, word blocks, a star and a tick, a book, headphones and notes). z59Hub is wrapped to put them in; the old
+line icons (Z59IC) are still there underneath if a drawing fails.
+Tests: src/tests/t68.py (new). t60 and t61 still pass (t61's "English" click now finds the chip by name, because "hide text" is
+the first chip). Looked at by eye in the lab browser at phone size: hub, all nine scenes, the three check questions, four games,
+the story hidden and shown. Not checked: a real iPhone, sound. The guide pictures (img/guide) are older than this look.

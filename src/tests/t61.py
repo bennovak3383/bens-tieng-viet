@@ -13,7 +13,7 @@ with sync_playwright() as p:
     pg.locator('.z61ch button').first.click(); pg.wait_for_timeout(300); print('reader:',pg.locator('#sheet-body h1').inner_text(),'| paragraphs:',pg.locator('.z61p').count(),'| words to tap:',pg.locator('.z61story .zw').count(),'| text visible:',pg.locator('.z61p').first.is_visible())
     w=pg.locator('.z61story .zw',has_text='sống').first; w.click(); pg.wait_for_timeout(200); print('tap a word →',pg.locator('.z61pw').inner_text().replace('\n',' | '),'| its sentence:',pg.locator('.z61ps').inner_text().replace('\n',' | '))
     pg.locator('.z61sv').click(); print('saved to cards:',T("!!S.w['sống']"))
-    pg.locator('.z61bar .chip').first.click(); print('English shown:',pg.locator('.z61en').first.inner_text()[:50])
+    pg.locator('.z61bar .chip:text-is("English")').click(); print('English shown:',pg.locator('.z61en').first.inner_text()[:50])
     pg.locator('.z61play').click(); pg.wait_for_timeout(300); print('playing → button says:',pg.locator('.z61play').inner_text(),'| a sentence is lit:',pg.locator('.z61sent.on').count()); pg.locator('.z61play').click()
     print('questions:',pg.locator('.z61q').count()); pg.locator('.z61q .chip').first.click(); print('answer shown:',pg.locator('.z61a').first.inner_text())
     pg.locator('#sheet-body .btn.primary').last.click(); pg.wait_for_timeout(300); print('marked read:',pg.locator('.z61ch button.done').count()); T("closeSheet()")
