@@ -364,6 +364,7 @@ choose the reply · tone = hear it, choose the tone marks (listening) · tf = sh
 English, true/false (reading). Dialogues (lesson.dlg, "Name: Vietnamese | English", "# title | English"): tap a line
 for audio + English, hear all, or play a role with your own lines hidden until you say them.
 Bài 1 carries a full sample set modelled on Thầy Tâm's sample lesson "Xin lỗi, chị tên là gì?" — same teaching
-points and exercise types, but our own sentences (nothing copied from his slides or a textbook). They use the
+points and exercise types, in sentences written for the app. Ben confirmed (17 Nov) that Thầy Tâm wrote his
+sample lesson himself, so his own dialogues and sentences can go into the plan as they are. The samples use the
 computer voice until recorded, and need his check. acts are edited in data/plan.json for now (the teacher page
 keeps them on save and edits dialogues). Test: src/tests/t54.py.
