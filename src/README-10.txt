@@ -377,3 +377,21 @@ last try is saved for the teacher, when the card is graded. If speech recognitio
 recording the sound until the learner taps stop and shows a player instead of "it heard".
 Tests: src/tests/t55.py (no recognition) and t55b.py (recognition that fails at once). Not tested with real speech
 recognition or on a phone.
+
+VERSION 56 — one way to record everywhere: tap to record, tap to stop, try again
+z56Btn(o) is the shared button (label, again, cap, start, interim, done). While it records: SPEECH.fast=60000 (no cut on
+a pause), hard cap 20 s (45 s speaking topics, 60 s reading a paragraph, 15 s shadowing). If speech recognition ends by
+itself with nothing heard, a plain MediaRecorder keeps recording until the tap (res.plain=true).
+Now using it: recall (English → Vietnamese), unit say-it "🎤 Say it", first three minutes, shadowing, tongue twisters,
+story "Read it", questions after a story (no longer starts by itself; "Show the answer" is there too), sound-lesson
+sentence step (no longer starts by itself), speaking topics (record as often as you like; only the last one is sent,
+when you tap "show an example").
+z56Gate: the screens that listen by themselves (everyday question cards zCard, scenes zOpenScene, speak now z7Speak)
+wait for a "🎤 Tap to answer" button while z52Stage()===1 (units 1–10, or pace "Slow and steady"); from stage 2 they
+listen by themselves as before. Not gated: AI conversation, the timed say-it-three-times in writing (both call
+zHear56), rapid fire and the games (they call listenFor directly).
+Guards: listenFor wrapper clears a stale SPEECH.fast=60000; closeSheet stops any recording and sets SPEECH.fast=0
+(this also fixes an old leak where "speak now" left SPEECH.fast at 1500 after closing).
+Tests: src/tests/t56.py (run with "norec" = no speech recognition; without = recognition that fails at once) and
+t56b.py (scene and question-card gates). t40 selector updated for the "Show me without speaking" label.
+Not tested with real speech recognition or on a phone.

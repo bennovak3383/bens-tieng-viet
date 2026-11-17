@@ -14,7 +14,7 @@ with sync_playwright() as p:
     # open unit 1 and jump to the Say step directly
     T("Z39.last=Z27.units[0]; window.__sc={s:0,sn:0}; z27Say(Z27.units[0].ex.slice(0,4),function(){ window.__said=1 },window.__sc)"); pg.wait_for_timeout(400)
     for i in range(4):
-        pg.click('text=I said it · show me'); pg.wait_for_timeout(300)
+        pg.click('#sheet-body button:text-matches("I said it · show me|Show me without speaking")'); pg.wait_for_timeout(300)
         if pg.locator('#sheet-body .z36rec button').count():
             pg.locator('#sheet-body .z36rec button').first.click(); pg.wait_for_timeout(1500); pg.locator('#sheet-body .z36rec button').first.click(); pg.wait_for_timeout(1500)
             print(i,'graph drawn:',pg.locator('#sheet-body .z13graph').count(), '|', (pg.inner_text('#sheet-body .z13graph') if pg.locator('#sheet-body .z13graph').count() else pg.inner_text('#sheet-body')[-150:]).replace('\n',' ')[:140])
