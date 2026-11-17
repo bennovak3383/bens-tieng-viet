@@ -475,3 +475,24 @@ Sentences made: S.set.b64 {n, seen}. Stages 2–5 are listed on the screen (from
 Built sentences have no recording of their own: they play from word clips or the phone voice.
 Test for 61–64: src/tests/t61.py.
 NOT built: Google sign-in (needs a Google client ID that only Ben can create), more scenes, builder stages 2–5, new guide pictures.
+
+VERSION 65 — six more scenes, better drawings, movement (Ben: "keep adding the next sections, keep making the pictures a bit better, add some animation")
+Scenes: company, restaurant, transport (taxi), store, park, hotel added to data/scenes.json (9 in all), from the same "Ai? – Who?"
+sheets. A person with "back":1 is drawn behind the furniture (z63Fg 'mid'); everyone else stands in front and is cut by 'top'.
+z63Person: shading, eyebrows, hair shine, eye highlights, blinking (.z63eye), gentle breathing (.z63br), and new look options:
+hat 'chef' | 'cap' | 'sun' (hatc = colour), tie (colour), apron, must (moustache), hc (hair colour).
+Rooms (z63Bg / z63Fg) move: clock hands, clouds in the windows, the IV drip, chalk line, office chart, steam over the pot, taxi wheels
+and road, sun rays, a bouncing ball, the desk bell. They use SVG <animate>, so they also run inside the small menu pictures.
+Home: Thầy Tâm waves (an extra arm added in z59Tam), tile icons move a little; confetti (z60Conf) on any three-star result.
+Scene menu is two columns on a phone.
+
+VERSION 66 — sentence builder, stages 1 to 3 (nine structures)
+z64Structs(D) lists the structures; each has slots, forms, opts, txt(), pic(), mk(values, form) → {p: parts, en}. To add one, add an
+object there; the word lists are in data/scenes.json → build (things with their classifier, animals, rides, lands, goes).
+Stage 1: Đây là ai? · Đây là đâu? · … đang làm gì?   Stage 2: Đó là cái gì? · Kia là con gì? · Đây là phương tiện gì?
+Stage 3: … phải không? (jobs; with "Dạ phải" and "Không phải … không phải là …") · Anh là người nước nào? (eight flags, drawn in
+Z64FL) · Em đến … để làm gì?
+A stage opens after 10 different sentences in the stage before (S.set.b64.st[stage]); "Open it now" skips the wait (b64.open);
+an "everything open" account has all three. Stages 4 and 5 (time and dates; prices, food, age) are named on the screen, not built.
+Recording list: parts sc_com … sc_hot and sc_zb (builder questions, words and the stage-3 sentences) follow "ab". Total 5,196 lines.
+Test: src/tests/t61.py covers all nine scenes and stages 1–3.

@@ -456,6 +456,12 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z59mins button b{display:block;font-size:20px;font-weight:900}.z59mins button small{display:block;font-size:11.5px;font-weight:700;color:var(--muted)}
 .z59mins button[aria-pressed="true"]{border-color:#2F7BF6;background:#E4EEFF;box-shadow:0 3px 0 #2F7BF6}
 @media (prefers-reduced-motion:reduce){ .z59tam,.z59bub,.z59t{animation:none} .z59ring .arc,.z59bar .tr i{transition:none} }
+.z59w1{animation:z59wave 1.6s infinite}.z59w2{animation:z59wave 1.6s .25s infinite}
+@keyframes z59wave{0%,100%{opacity:.25}40%{opacity:1}}
+.z59-gam .ic svg{animation:z59tilt 3.4s ease-in-out infinite}.z59-sto .ic svg{animation:z59tilt 4s ease-in-out infinite reverse}.z59-lis .ic svg{animation:z59bop 1.4s ease-in-out infinite}.z59-bld .ic svg{animation:z59bop 2.6s ease-in-out infinite}
+@keyframes z59tilt{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes z59bop{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){ .z59w1,.z59w2,.z59t .ic svg{animation:none!important} }
 
 /* ===== 60 · games ===== */
 .z60b{gap:14px}
@@ -541,6 +547,10 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z60swb .ic{width:58px;height:58px}.z60swb .ic svg{width:34px;height:34px}
 @media (min-width:900px){ .z60grid{grid-template-columns:1fr 1fr} .z60fg{grid-template-columns:repeat(4,1fr)} .z60stage{max-width:720px;margin:0 auto;width:100%} }
 .z60b .z7speed{display:none}
+.z60conf{position:fixed;left:0;right:0;top:0;height:0;z-index:50;pointer-events:none}
+.z60conf i{position:absolute;top:-14px;width:9px;height:14px;border-radius:3px;animation:z60fall 2s ease-in forwards}
+@keyframes z60fall{0%{top:-14px;opacity:1}100%{top:92vh;opacity:0;margin-left:24px}}
+@media (prefers-reduced-motion:reduce){ .z60conf{display:none} }
 
 /* ===== 61 · stories reader ===== */
 .z61list{display:flex;flex-direction:column;gap:12px}
@@ -679,3 +689,19 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 @media (min-width:900px){ .z63menu{display:grid;grid-template-columns:repeat(3,1fr)} .z63pic{max-width:620px;margin:0 auto;width:100%} .z64grid{grid-template-columns:repeat(6,1fr)} }
 @media (prefers-reduced-motion:reduce){ .z63p .z63pi{animation:none!important} }
 .z59-scn .ic{width:84px;background:transparent;margin:-6px 0 -8px -6px;align-items:flex-end}.z59-scn .ic svg{width:84px;height:58px}
+.z63eye{transform-box:fill-box;transform-origin:50% 50%;animation:z63blink 4.2s infinite}
+@keyframes z63blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.12)}}
+.z63br{transform-box:fill-box;transform-origin:50% 100%;animation:z63breath 3.6s ease-in-out infinite}
+@keyframes z63breath{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.018)}}
+@media (prefers-reduced-motion:reduce){ .z63eye,.z63br{animation:none} }
+.z64stages{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.z64stages button{position:relative;border:2px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:6px 2px;cursor:pointer;font-family:inherit}
+.z64stages button b{display:block;font-size:19px;font-weight:900;line-height:1.1}.z64stages button small{display:block;font-size:10.5px;font-weight:800;color:var(--muted)}
+.z64stages button.on{background:#18203A;border-color:#18203A;color:#fff}.z64stages button.on small{color:#C9D4E6}
+.z64stages button.lock{opacity:.5}.z64stages button.new{border-color:#12A26E;background:#DFF6EC;animation:z60pop .5s 2}
+.z64forms.n2{grid-template-columns:repeat(2,1fr)}.z64forms.n4{grid-template-columns:repeat(4,1fr)}.z64forms.n4 button b{font-size:12.5px}
+.z64pic.fl{width:120px;height:80px}.z64pic.fl svg{width:100%;height:100%}
+.z64o .ic.art{width:52px;height:52px}.z64o .ic.fl{width:54px;height:36px;margin:4px 0}
+.z64s{overflow-wrap:anywhere}
+.z64note{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#FFF8E6;border:1.5px solid #FFD877;border-radius:14px;padding:8px 12px;font-weight:700;font-size:13.5px}.z64note[hidden]{display:none}
+@media (max-width:899px){ .z63menu{display:grid;grid-template-columns:1fr 1fr;gap:12px} .z63th{height:104px} .z63th .z63svg{margin-top:-12px} .z63mt{padding:9px 11px 11px} .z63mt b{font-size:17px} .z63mt span{font-size:11.5px;line-height:1.3} .z63mt em{position:static;display:inline-block;margin-top:4px} }

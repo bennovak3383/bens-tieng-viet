@@ -101,6 +101,11 @@ try:
             if a: rows.append(('%s đang %s.'%(q['subj'],a[0]['k']),'%s is %s.'%(q['ens'],a[0]['ing']))); rows.append(('%s đang làm gì?'%q['subj'],'What is %s doing?'%lc(q['ens'])))
         rows+=[(a['k'],a['en']) for a in sc['actions']]+[(d[0],d[1]) for d in sc['dlg']]
         add('sc_'+sc['id'],'Cảnh: '+sc['vi'],'Scene: '+sc['en'],rows)
+    BD=SC.get('build',{}); rows=[('Đó là cái gì?','What is that?'),('Kia là con gì?','What animal is that over there?'),('Đây là phương tiện gì?','What kind of transport is this?'),('Anh là người nước nào?','Which country are you from?')]
+    rows+=[('%s %s'%(x[2],x[0]),x[1]) for x in BD.get('things',[])]+[('con %s'%x[0],x[1]) for x in BD.get('animals',[])]+[(x[0],x[1]) for x in BD.get('rides',[])]
+    rows+=[r for x in BD.get('lands',[]) for r in ((x[0],'the country'),('Tôi là người %s.'%x[0],'I am %s.'%x[1]))]
+    rows+=[r for x in BD.get('goes',[]) for r in (('Em đến %s để làm gì?'%x[0],'What do you go to %s for?'%x[1]),('Em đến %s để %s.'%(x[0],x[2]),'I go to %s to %s.'%(x[1],x[3])))]
+    add('sc_zb','Mẫu câu: chặng 2 và 3','Sentence builder: stages 2 and 3',rows)
     add('sc_pl','Cảnh: nơi chốn','Scenes: places',[('Đây là đâu?','Where is this?')]+[r for q in SC['places'] for r in ((q[0],q[1]),('Đây là %s.'%q[0],'This is the %s.'%q[1]))])
 except FileNotFoundError: pass
 ks=[p for p in parts if p['id'][0]=='k' and p['id'][1:].isdigit()]; gs={p['id']:p for p in parts if p['id'][0]=='g' and p['id'][1:].isdigit()}

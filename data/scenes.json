@@ -21,12 +21,14 @@
 "look": {
 "hair": "grey",
 "glasses": 1,
-"shirt": "#7A8CA8"
+"shirt": "#7A8CA8",
+"must": 1
 },
 "x": 58,
 "y": 96,
 "s": 1,
-"act": "đọc sách"
+"act": "đọc sách",
+"back": 1
 },
 {
 "k": "bà",
@@ -41,7 +43,8 @@
 "x": 136,
 "y": 96,
 "s": 1,
-"act": "xem TV"
+"act": "xem TV",
+"back": 1
 },
 {
 "k": "ba",
@@ -56,7 +59,8 @@
 "y": 96,
 "s": 1,
 "act": "đọc sách",
-"alt": "bố (miền Bắc · northern)"
+"alt": "bố (miền Bắc · northern)",
+"back": 1
 },
 {
 "k": "mẹ",
@@ -70,7 +74,8 @@
 "x": 298,
 "y": 96,
 "s": 1,
-"act": "nấu ăn"
+"act": "nấu ăn",
+"back": 1
 },
 {
 "k": "anh",
@@ -199,7 +204,8 @@
 "x": 246,
 "y": 138,
 "s": 1.1,
-"act": "nằm nghỉ"
+"act": "nằm nghỉ",
+"back": 1
 }
 ],
 "actions": [
@@ -285,7 +291,8 @@
 "y": 170,
 "s": 0.95,
 "act": "học",
-"alt": "học viên (learner in a course)"
+"alt": "học viên (learner in a course)",
+"back": 1
 }
 ],
 "actions": [
@@ -340,8 +347,584 @@
 },
 "x": 298,
 "y": 170,
-"s": 0.95
+"s": 0.95,
+"back": 1
 }
+]
+},
+{
+"id": "com",
+"vi": "Công ty",
+"en": "Company",
+"bg": "office",
+"c": "#2F7BF6",
+"place": [
+"công ty",
+"company"
+],
+"people": [
+{
+"k": "giám đốc",
+"en": "director",
+"subj": "Giám đốc",
+"ens": "The director",
+"look": {
+"hair": "short2",
+"glasses": 1,
+"shirt": "#2B3A67",
+"tie": "#E2434B"
+},
+"x": 104,
+"y": 128,
+"s": 1.15,
+"act": "gọi điện"
+},
+{
+"k": "đồng nghiệp",
+"en": "colleague",
+"subj": "Đồng nghiệp tôi",
+"ens": "My colleague",
+"look": {
+"hair": "long",
+"shirt": "#12A26E"
+},
+"x": 262,
+"y": 150,
+"s": 1.0,
+"act": "làm việc",
+"back": 1
+}
+],
+"actions": [
+{
+"k": "làm việc",
+"en": "work",
+"ing": "working",
+"ic": "laptop"
+},
+{
+"k": "họp",
+"en": "have a meeting",
+"ing": "in a meeting",
+"ic": "meet"
+},
+{
+"k": "gọi điện",
+"en": "make a call",
+"ing": "making a call",
+"ic": "phone"
+},
+{
+"k": "viết",
+"en": "write",
+"ing": "writing",
+"ic": "pencil"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là giám đốc.",
+"This is the director."
+],
+[
+"Họ đang làm gì?",
+"What are they doing?"
+],
+[
+"Họ đang làm việc.",
+"They are working."
+]
+]
+},
+{
+"id": "res",
+"vi": "Nhà hàng",
+"en": "Restaurant",
+"bg": "rest",
+"c": "#FF8A1F",
+"place": [
+"nhà hàng",
+"restaurant"
+],
+"people": [
+{
+"k": "đầu bếp",
+"en": "chef",
+"subj": "Đầu bếp",
+"ens": "The chef",
+"look": {
+"hair": "short",
+"shirt": "#FFFFFF",
+"hat": "chef"
+},
+"x": 60,
+"y": 126,
+"s": 1.0,
+"act": "nấu ăn",
+"back": 1
+},
+{
+"k": "nhân viên phục vụ",
+"en": "waiter / waitress",
+"subj": "Nhân viên",
+"ens": "The waiter",
+"look": {
+"hair": "pony",
+"shirt": "#2B3A67",
+"apron": 1
+},
+"x": 178,
+"y": 132,
+"s": 1.1,
+"act": "phục vụ"
+},
+{
+"k": "khách",
+"en": "customer",
+"subj": "Khách",
+"ens": "The customer",
+"look": {
+"hair": "short2",
+"shirt": "#F0527A"
+},
+"x": 296,
+"y": 162,
+"s": 0.95,
+"act": "ăn",
+"back": 1
+}
+],
+"actions": [
+{
+"k": "nấu ăn",
+"en": "cook",
+"ing": "cooking",
+"ic": "pot"
+},
+{
+"k": "phục vụ",
+"en": "serve",
+"ing": "serving",
+"ic": "tray"
+},
+{
+"k": "chuẩn bị",
+"en": "prepare",
+"ing": "preparing the food",
+"ic": "knife"
+},
+{
+"k": "bưng đồ",
+"en": "carry",
+"ing": "carrying the food",
+"ic": "tray"
+},
+{
+"k": "ăn",
+"en": "eat",
+"ing": "eating",
+"ic": "eat"
+},
+{
+"k": "uống",
+"en": "drink",
+"ing": "drinking",
+"ic": "cup"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là đầu bếp.",
+"This is the chef."
+],
+[
+"Nhân viên đang làm gì?",
+"What is the waiter doing?"
+],
+[
+"Nhân viên đang phục vụ.",
+"The waiter is serving."
+]
+]
+},
+{
+"id": "tax",
+"vi": "Giao thông",
+"en": "Transport",
+"bg": "taxi",
+"c": "#E0A91E",
+"place": [
+"đường",
+"the street"
+],
+"people": [
+{
+"k": "hành khách",
+"en": "passenger",
+"subj": "Hành khách",
+"ens": "The passenger",
+"look": {
+"hair": "long",
+"shirt": "#F0527A"
+},
+"x": 132,
+"y": 132,
+"s": 0.78,
+"act": "trả tiền",
+"back": 1
+},
+{
+"k": "tài xế",
+"en": "driver",
+"subj": "Tài xế",
+"ens": "The driver",
+"look": {
+"hair": "short",
+"shirt": "#2F7BF6",
+"hat": "cap",
+"hatc": "#2B3A67"
+},
+"x": 236,
+"y": 132,
+"s": 0.78,
+"act": "chở hành khách",
+"back": 1
+}
+],
+"actions": [
+{
+"k": "chở hành khách",
+"en": "give a passenger a ride",
+"ing": "driving a passenger",
+"ic": "car"
+},
+{
+"k": "lên xe",
+"en": "get on",
+"ing": "getting in",
+"ic": "up"
+},
+{
+"k": "xuống xe",
+"en": "get off",
+"ing": "getting out",
+"ic": "down"
+},
+{
+"k": "trả tiền",
+"en": "pay",
+"ing": "paying",
+"ic": "money"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là tài xế.",
+"This is the driver."
+],
+[
+"Tài xế đang làm gì?",
+"What is the driver doing?"
+],
+[
+"Tài xế đang chở hành khách.",
+"The driver is driving a passenger."
+]
+]
+},
+{
+"id": "sto",
+"vi": "Cửa hàng",
+"en": "Store",
+"bg": "store",
+"c": "#7C5CFC",
+"place": [
+"cửa hàng",
+"store"
+],
+"people": [
+{
+"k": "nhân viên",
+"en": "staff",
+"subj": "Nhân viên",
+"ens": "The staff member",
+"look": {
+"hair": "pony",
+"shirt": "#E2434B",
+"hat": "cap",
+"hatc": "#E2434B",
+"apron": 1
+},
+"x": 70,
+"y": 130,
+"s": 1.05,
+"act": "bán hàng",
+"back": 1
+},
+{
+"k": "khách hàng",
+"en": "customer",
+"subj": "Khách hàng",
+"ens": "The customer",
+"look": {
+"hair": "long",
+"shirt": "#0FA8A1"
+},
+"x": 246,
+"y": 140,
+"s": 1.05,
+"act": "mua hàng"
+}
+],
+"actions": [
+{
+"k": "bán hàng",
+"en": "sell",
+"ing": "selling",
+"ic": "money"
+},
+{
+"k": "mua hàng",
+"en": "buy",
+"ing": "shopping",
+"ic": "cart"
+},
+{
+"k": "thu tiền",
+"en": "collect money",
+"ing": "taking the money",
+"ic": "money"
+},
+{
+"k": "sắp xếp hàng",
+"en": "arrange goods",
+"ing": "arranging the goods",
+"ic": "box"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là nhân viên.",
+"This is the staff member."
+],
+[
+"Nhân viên đang làm gì?",
+"What is the staff member doing?"
+],
+[
+"Nhân viên đang bán hàng.",
+"The staff member is selling."
+]
+]
+},
+{
+"id": "par",
+"vi": "Công viên",
+"en": "Park",
+"bg": "park",
+"c": "#12A26E",
+"place": [
+"công viên",
+"park"
+],
+"people": [
+{
+"k": "người tập thể dục",
+"en": "person exercising",
+"subj": "Người tập thể dục",
+"ens": "The person exercising",
+"look": {
+"hair": "grey",
+"glasses": 1,
+"shirt": "#FF8A1F"
+},
+"x": 72,
+"y": 150,
+"s": 1.0,
+"act": "tập thể dục"
+},
+{
+"k": "người lớn",
+"en": "adult",
+"subj": "Người lớn",
+"ens": "The adult",
+"look": {
+"hair": "long",
+"shirt": "#F0527A",
+"hat": "sun"
+},
+"x": 176,
+"y": 150,
+"s": 1.05,
+"act": "đi dạo"
+},
+{
+"k": "trẻ em",
+"en": "child",
+"subj": "Trẻ em",
+"ens": "The child",
+"look": {
+"hair": "kid",
+"shirt": "#2F7BF6"
+},
+"x": 276,
+"y": 176,
+"s": 0.78,
+"act": "chơi bóng"
+}
+],
+"actions": [
+{
+"k": "tập thể dục",
+"en": "exercise",
+"ing": "exercising",
+"ic": "flex"
+},
+{
+"k": "đi dạo",
+"en": "take a walk",
+"ing": "taking a walk",
+"ic": "walk"
+},
+{
+"k": "chạy",
+"en": "run",
+"ing": "running",
+"ic": "run"
+},
+{
+"k": "chơi bóng",
+"en": "play football",
+"ing": "playing football",
+"ic": "ball"
+},
+{
+"k": "nghỉ ngơi",
+"en": "rest",
+"ing": "resting",
+"ic": "bench"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là trẻ em.",
+"This is a child."
+],
+[
+"Cậu bé đang làm gì?",
+"What is the boy doing?"
+],
+[
+"Cậu bé đang chơi bóng.",
+"The boy is playing football."
+]
+]
+},
+{
+"id": "hot",
+"vi": "Khách sạn",
+"en": "Hotel",
+"bg": "hotel",
+"c": "#B5835A",
+"place": [
+"khách sạn",
+"hotel"
+],
+"people": [
+{
+"k": "lễ tân",
+"en": "receptionist",
+"subj": "Lễ tân",
+"ens": "The receptionist",
+"look": {
+"hair": "pony",
+"shirt": "#2B3A67",
+"tie": "#FFC83D"
+},
+"x": 96,
+"y": 128,
+"s": 1.08,
+"act": "làm thủ tục",
+"back": 1
+},
+{
+"k": "khách",
+"en": "guest",
+"subj": "Khách",
+"ens": "The guest",
+"look": {
+"hair": "short",
+"shirt": "#12A26E"
+},
+"x": 262,
+"y": 142,
+"s": 1.05,
+"act": "nhận phòng"
+}
+],
+"actions": [
+{
+"k": "làm thủ tục",
+"en": "do the paperwork (check in / out)",
+"ing": "doing the check-in",
+"ic": "paper"
+},
+{
+"k": "đặt phòng",
+"en": "book a room",
+"ing": "booking a room",
+"ic": "cal"
+},
+{
+"k": "nhận phòng",
+"en": "check in",
+"ing": "checking in",
+"ic": "key"
+},
+{
+"k": "trả phòng",
+"en": "check out",
+"ing": "checking out",
+"ic": "bag"
+}
+],
+"dlg": [
+[
+"Đây là ai?",
+"Who is this?"
+],
+[
+"Đây là lễ tân.",
+"This is the receptionist."
+],
+[
+"Anh ấy đang làm gì?",
+"What is he doing?"
+],
+[
+"Anh ấy đang làm thủ tục nhận phòng.",
+"He is doing the check-in."
+]
 ]
 }
 ],
@@ -394,5 +977,255 @@
 "nhà thuốc",
 "pharmacy"
 ]
+],
+"build": {
+"things": [
+[
+"bàn",
+"a table",
+"cái"
+],
+[
+"ghế",
+"a chair",
+"cái"
+],
+[
+"áo",
+"a shirt",
+"cái"
+],
+[
+"nón",
+"a hat",
+"cái"
+],
+[
+"ly",
+"a glass",
+"cái"
+],
+[
+"đèn",
+"a lamp",
+"cái"
+],
+[
+"cửa",
+"a door",
+"cái"
+],
+[
+"đồng hồ",
+"a watch",
+"cái"
+],
+[
+"điện thoại",
+"a phone",
+"cái"
+],
+[
+"túi",
+"a bag",
+"cái"
+],
+[
+"giường",
+"a bed",
+"cái"
+],
+[
+"quạt",
+"a fan",
+"cái"
+],
+[
+"tủ lạnh",
+"a fridge",
+"cái"
+],
+[
+"sách",
+"a book",
+"cuốn"
 ]
+],
+"animals": [
+[
+"chó",
+"a dog"
+],
+[
+"mèo",
+"a cat"
+],
+[
+"gà",
+"a chicken"
+],
+[
+"heo",
+"a pig"
+],
+[
+"bò",
+"a cow"
+],
+[
+"chim",
+"a bird"
+],
+[
+"cá",
+"a fish"
+],
+[
+"rắn",
+"a snake"
+]
+],
+"rides": [
+[
+"xe máy",
+"a motorbike"
+],
+[
+"xe hơi",
+"a car"
+],
+[
+"taxi",
+"a taxi"
+],
+[
+"xe buýt",
+"a bus"
+],
+[
+"xe đạp",
+"a bicycle"
+],
+[
+"máy bay",
+"a plane"
+],
+[
+"tàu lửa",
+"a train"
+],
+[
+"phà",
+"a ferry"
+]
+],
+"lands": [
+[
+"Việt Nam",
+"Vietnamese"
+],
+[
+"Mỹ",
+"American"
+],
+[
+"Trung Quốc",
+"Chinese"
+],
+[
+"Hàn Quốc",
+"Korean"
+],
+[
+"Nhật Bản",
+"Japanese"
+],
+[
+"Anh",
+"British"
+],
+[
+"Pháp",
+"French"
+],
+[
+"Đức",
+"German"
+]
+],
+"goes": [
+[
+"sân bay",
+"the airport",
+"đi du lịch",
+"travel"
+],
+[
+"khách sạn",
+"the hotel",
+"nhận phòng",
+"check in"
+],
+[
+"nhà hàng",
+"the restaurant",
+"ăn tối",
+"have dinner"
+],
+[
+"bệnh viện",
+"the hospital",
+"khám bệnh",
+"see a doctor"
+],
+[
+"siêu thị",
+"the supermarket",
+"mua đồ ăn",
+"buy food"
+],
+[
+"quán cà phê",
+"the café",
+"gặp bạn",
+"meet a friend"
+],
+[
+"ngân hàng",
+"the bank",
+"rút tiền",
+"take out money"
+],
+[
+"bưu điện",
+"the post office",
+"gửi thư",
+"send a letter"
+],
+[
+"nhà thuốc",
+"the pharmacy",
+"mua thuốc",
+"buy medicine"
+],
+[
+"nhà ga",
+"the train station",
+"mua vé",
+"buy a ticket"
+],
+[
+"bảo tàng",
+"the museum",
+"tham quan",
+"look around"
+],
+[
+"tiệm cắt tóc",
+"the hair salon",
+"cắt tóc",
+"get a haircut"
+]
+]
+}
 }
