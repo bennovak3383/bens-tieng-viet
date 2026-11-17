@@ -35,7 +35,7 @@ export async function onRequest(context) {
     }
     if (path === 'state') {
       const s = await student(env, request); if (!s) return J({ error: 'That code was not found.' }, 401);
-      if (m === 'GET') { const [st, notes, lv] = await Promise.all([env.KV.get('s:' + s.id, 'json'), env.KV.get('n:' + s.id, 'json'), env.KV.get('lv:' + s.id)]); return J({ id: s.id, name: s.name, state: st || {}, notes: notes || [], lv: lv || '' }); }
+      if (m === 'GET') { const [st, notes, lv, rl] = await Promise.all([env.KV.get('s:' + s.id, 'json'), env.KV.get('n:' + s.id, 'json'), env.KV.get('lv:' + s.id), env.KV.get('rl:' + s.id, 'json')]); return J({ id: s.id, name: s.name, state: st || {}, notes: notes || [], lv: lv || '', rl: rl || null }); }
       if (m === 'PUT') {
         const text = await request.text(); if (text.length > 3_000_000) return J({ error: 'Too large.' }, 413);
         let st; try { st = JSON.parse(text); } catch (e) { return J({ error: 'Bad data.' }, 400); }
@@ -136,6 +136,7 @@ export async function onRequest(context) {
       return new Response(r.value, { headers: { 'Content-Type': (r.metadata && r.metadata.ty) || 'audio/webm', 'Cache-Control': 'private, max-age=3600' } });
     }
     if (path === 'words' && m === 'GET') { const w = await env.KV.get('cfg:words', 'json'); return J(w || { e: {}, d: {}, a: [] }); }
+    if (path === 'plan' && m === 'GET') { const w = await env.KV.get('cfg:plan', 'json'); return J(w || {}); }   // 53: the teacher's course plan (E1/E2 lessons) and what the whole class has open
     if (path === 'core' && m === 'GET') { const w = await env.KV.get('cfg:core', 'json'); return J(w || { u: {} }); }   // 27: the teacher's fixes to the core course
     if (path === 'snap') {   // hand a photo from a phone to the laptop: the laptop makes a token, the phone posts to it, the laptop collects it once
       const tk = clean(url.searchParams.get('t') || '', 16).toUpperCase().replace(/[^A-Z0-9]/g, ''); if (tk.length < 10) return J({ error: 'Bad code.' }, 400);
@@ -274,9 +275,9 @@ export async function onRequest(context) {
       }
       const id = clean(url.searchParams.get('id') || '', 12).replace(/[^A-Z0-9]/g, '');
       if (path === 't/student') {
-        const [st, notes, recs, ai, wi, lv] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id), env.KV.get('wi:' + id, 'json'), env.KV.get('lv:' + id)]);
+        const [st, notes, recs, ai, wi, lv, rl] = await Promise.all([env.KV.get('s:' + id, 'json'), env.KV.get('n:' + id, 'json'), env.KV.list({ prefix: 'r:' + id + ':', limit: 300 }), env.KV.get('a:' + id), env.KV.get('wi:' + id, 'json'), env.KV.get('lv:' + id), env.KV.get('rl:' + id, 'json')]);
         if (st == null) return J({ error: 'No such student.' }, 404);
-        return J({ id, state: st, notes: notes || [], lv: lv || '', ai: !!ai, aiReady: !!(env.ANTHROPIC_API_KEY || env.OPENAI_API_KEY), recs: recs.keys.map(k => ({ key: k.name, ...(k.metadata || {}) })), writing: wi || [] });
+        return J({ id, state: st, notes: notes || [], lv: lv || '', rl: rl || null, ai: !!ai, aiReady: !!(env.ANTHROPIC_API_KEY || env.OPENAI_API_KEY), recs: recs.keys.map(k => ({ key: k.name, ...(k.metadata || {}) })), writing: wi || [] });
       }
 
       if (path === 't/w-photo') {
@@ -316,6 +317,16 @@ export async function onRequest(context) {
         if (b.on) await env.KV.put('a:' + sid, '1'); else await env.KV.delete('a:' + sid);
         return J({ ok: true, ai: !!b.on });
       }
+      if (path === 't/plan' && m === 'POST') {   // 53: save the course plan (lesson names, where each lesson ends, sounds, video links, real-life task, class release)
+        const t = await request.text(); if (t.length > 200000) return J({ error: 'Too large.' }, 413); let b; try { b = JSON.parse(t) } catch (e) { return J({ error: 'Bad plan.' }, 400) }
+        if (!b || typeof b !== 'object' || !Array.isArray(b.lessons)) return J({ error: 'Bad plan.' }, 400);
+        b.t = Date.now(); await env.KV.put('cfg:plan', JSON.stringify(b)); return J({ ok: true, plan: b });
+      }
+      if (path === 't/rel' && m === 'POST') {   // 53: what one student has open (overrides the class release); rel null = follow the class
+        const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid || (await env.KV.get('s:' + sid)) == null) return J({ error: 'No such student.' }, 404);
+        if (b.rel && typeof b.rel === 'object') { const r = JSON.stringify(b.rel); if (r.length > 20000) return J({ error: 'Too large.' }, 413); await env.KV.put('rl:' + sid, r); } else await env.KV.delete('rl:' + sid);
+        return J({ ok: true, rel: b.rel || null });
+      }
       if (path === 't/level' && m === 'POST') {   // 35: teacher opens or closes A2 for one student ('' = automatic: A2 opens after the 20 A1 units)
         const b = await request.json().catch(() => ({})); const sid = clean(b.id, 12).replace(/[^A-Z0-9]/g, ''); if (!sid || (await env.KV.get('s:' + sid)) == null) return J({ error: 'No such student.' }, 404);
         const lv = b.lv === 'A1' || b.lv === 'A2' || b.lv === 'B1' ? b.lv : ''; if (lv) await env.KV.put('lv:' + sid, lv); else await env.KV.delete('lv:' + sid);
@@ -347,7 +358,7 @@ export async function onRequest(context) {
         const us = await env.KV.list({ prefix: 'u:', limit: 1000 });
         for (const k of us.keys) { const u = await env.KV.get(k.name, 'json'); if (u && u.id === sid) await env.KV.delete(k.name); }
         for (const pre of ['wp:', 'wv:']) { const w = await env.KV.list({ prefix: pre + sid + ':', limit: 200 }); await Promise.all(w.keys.map(k => env.KV.delete(k.name))); }
-        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid), env.KV.delete('wi:' + sid), env.KV.delete('lv:' + sid)]);
+        await Promise.all([env.KV.delete('n:' + sid), env.KV.delete('a:' + sid), env.KV.delete('s:' + sid), env.KV.delete('wi:' + sid), env.KV.delete('lv:' + sid), env.KV.delete('rl:' + sid)]);
         return J({ ok: true, more: false });
       }
     }

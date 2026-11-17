@@ -344,3 +344,26 @@ Say-it prompts: when the microphone works, "🎤 Say it" listens first and then 
 speaking" is still there. Brave ladder (7 weekly real-world steps) on the plan card for learners who said speaking
 makes them nervous or who live here (S.set.brave52). Test: src/tests/t52.py (t51 now runs with pace 'push').
 The mic version of say-it was not tested (no speech recognition in the test browser).
+
+VERSION 53 — the teacher's course plan drives the app (E1/E2, 6 lessons each)
+data/plan.json = the default plan; the teacher's saved plan (KV cfg:plan, GET /api/plan, POST t/plan) replaces it.
+Level names: A1/A2 are shown as plan.names (E1/E2) by a text replacer in the app and on the teacher page; data keys
+stay A1/A2, so no progress is touched. A lesson = a run of the existing units (lesson.last = id of its last unit);
+unit order never changes. Parts per lesson, in the teacher's own order: Phát âm, Hội thoại, Từ vựng, Mẫu câu,
+Thực hành nói, Thực hành viết, Đọc hiểu, Thực hành nghe, Thực tế (real-life task, ours).
+Release: plan.rel (whole class) or KV rl:<student> via POST t/rel (one student) = {open: lessons open (0 = automatic),
+next: lesson id, hw: note, hp: hidden parts}. z27N() is capped by it. The student's own setting comes back with
+GET state as rl → S.set.rl53. Home: #z53 lesson card above the core card; "Lộ trình" course map; per-lesson part
+counts in S.set.ls53. Teacher page: "Khóa học · course plan" (names, class release, each lesson: title, where it
+ends, parts shown, real-life task, note, dialogues, video links) and "Lộ trình · their lessons" on each student.
+Test: src/tests/t53.py (t44 selectors now say E1/E2).
+
+VERSION 54 — the teacher's exercise types, made interactive (lesson.acts in the plan)
+sub = swap-one-word drill (oral) · fix = build / transform the sentence, reusing z27Order (written) · reply = hear it,
+choose the reply · tone = hear it, choose the tone marks (listening) · tf = short reading, tap a sentence for audio +
+English, true/false (reading). Dialogues (lesson.dlg, "Name: Vietnamese | English", "# title | English"): tap a line
+for audio + English, hear all, or play a role with your own lines hidden until you say them.
+Bài 1 carries a full sample set modelled on Thầy Tâm's sample lesson "Xin lỗi, chị tên là gì?" — same teaching
+points and exercise types, but our own sentences (nothing copied from his slides or a textbook). They use the
+computer voice until recorded, and need his check. acts are edited in data/plan.json for now (the teacher page
+keeps them on save and edits dialogues). Test: src/tests/t54.py.

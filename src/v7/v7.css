@@ -352,3 +352,13 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z52cue{font-weight:600;color:var(--muted);margin:4px 0}.z52cue.on{color:var(--accent)}
 .z52dots{display:flex;gap:6px;justify-content:center}.z52dots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--line)}.z52dots i.on{background:var(--green,#1F5A45);border-color:var(--green,#1F5A45)}.z52dots i.now{border-color:var(--accent);background:var(--accent)}
 .z52lad{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border:1.5px dashed var(--accent);border-radius:10px}
+/* 53 · teacher's lesson card */
+.z53parts{display:flex;flex-direction:column;gap:8px}.z53p{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px}
+.z53p.done{opacity:.75}.z53pt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}.z53v{white-space:nowrap}
+.z53l.lock{opacity:.5}
+.z53l{display:flex;justify-content:space-between;gap:12px;align-items:center;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+
+.z53dl{display:flex;flex-direction:column;gap:2px;text-align:left;font:inherit;font-size:18px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}.z53dl.me{border-style:dashed}.z53dl.now{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+
+/* 54 */
+.z54pass{font-size:19px;line-height:1.7}.z54s{cursor:pointer;border-bottom:1px dotted var(--line)}

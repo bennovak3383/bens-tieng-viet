@@ -1,0 +1,459 @@
+{
+ "v": 1,
+ "names": {
+  "A1": "E1",
+  "A2": "E2"
+ },
+ "parts": [
+  [
+   "sounds",
+   "Phát âm",
+   "Pronunciation"
+  ],
+  [
+   "dialog",
+   "Hội thoại",
+   "Dialogues"
+  ],
+  [
+   "vocab",
+   "Từ vựng",
+   "Vocabulary"
+  ],
+  [
+   "sample",
+   "Mẫu câu",
+   "Sample sentences"
+  ],
+  [
+   "oral",
+   "Thực hành nói",
+   "Oral practice"
+  ],
+  [
+   "written",
+   "Thực hành viết",
+   "Written practice"
+  ],
+  [
+   "reading",
+   "Đọc hiểu",
+   "Reading"
+  ],
+  [
+   "listening",
+   "Thực hành nghe",
+   "Listening"
+  ],
+  [
+   "life",
+   "Thực tế",
+   "Real life"
+  ]
+ ],
+ "lessons": [
+  {
+   "id": "e1l1",
+   "lv": "A1",
+   "t": "Xin lỗi, chị tên là gì?",
+   "en": "Excuse me, what is your name?",
+   "last": "u03",
+   "life": "Introduce yourself to one person this week: your name and where you’re from.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": "# Ở quán cà phê | At a café: meeting for the first time\nMinh: Chào chị. | Hello.\nAnna: Chào anh. Xin lỗi, anh tên là gì? | Hello. Excuse me, what is your name?\nMinh: Tôi tên là Minh. Còn chị? | My name is Minh. And you?\nAnna: Tôi tên là Anna. Rất vui được gặp anh. | My name is Anna. Nice to meet you.\nMinh: Rất vui được gặp chị. | Nice to meet you.\n\n# Gặp lại bạn | Running into a friend\nHoa: Chào anh Ben. Anh có khoẻ không? | Hello, Ben. How are you?\nBen: Chào chị Hoa. Tôi khoẻ, cảm ơn chị. Còn chị? | Hello, Hoa. I’m well, thank you. And you?\nHoa: Tôi cũng khoẻ. Cảm ơn anh. | I’m well too. Thank you.\nBen: Hẹn gặp lại chị. | See you again.\nHoa: Hẹn gặp lại. | See you.\n\n# Giới thiệu bạn | Introducing a friend to your teacher\nBen: Chào cô. Đây là bạn em. | Hello, teacher. This is my friend.\nCô Lan: Chào em. Em tên là gì? | Hello. What is your name?\nYuki: Dạ, em tên là Yuki. | My name is Yuki.\nCô Lan: Còn kia là ai? | And who is that over there?\nBen: Kia là anh Tom, bạn em. | That is Tom, my friend.",
+   "acts": [
+    {
+     "k": "sub",
+     "f": "Chào ___.",
+     "en": "Hello",
+     "o": [
+      [
+       "anh",
+       "a man a little older than you"
+      ],
+      [
+       "chị",
+       "a woman a little older than you"
+      ],
+      [
+       "ông",
+       "a much older man"
+      ],
+      [
+       "bà",
+       "a much older woman"
+      ],
+      [
+       "em",
+       "someone younger than you"
+      ]
+     ]
+    },
+    {
+     "k": "sub",
+     "f": "___ có khoẻ không?",
+     "en": "How are you?",
+     "o": [
+      [
+       "Anh",
+       "a man a little older than you"
+      ],
+      [
+       "Chị",
+       "a woman a little older than you"
+      ],
+      [
+       "Ông",
+       "a much older man"
+      ],
+      [
+       "Bà",
+       "a much older woman"
+      ]
+     ]
+    },
+    {
+     "k": "sub",
+     "f": "Rất vui được gặp ___.",
+     "en": "Nice to meet you",
+     "o": [
+      [
+       "anh",
+       "a man a little older than you"
+      ],
+      [
+       "chị",
+       "a woman a little older than you"
+      ],
+      [
+       "ông",
+       "a much older man"
+      ],
+      [
+       "bà",
+       "a much older woman"
+      ]
+     ]
+    },
+    {
+     "k": "sub",
+     "f": "Còn ___?",
+     "en": "And you?",
+     "o": [
+      [
+       "anh",
+       "a man a little older than you"
+      ],
+      [
+       "chị",
+       "a woman a little older than you"
+      ],
+      [
+       "cô",
+       "a woman teacher, or a young woman"
+      ],
+      [
+       "các bạn",
+       "a group of friends or classmates"
+      ]
+     ]
+    },
+    {
+     "k": "fix",
+     "q": [
+      [
+       "Tôi tên là Peter.",
+       "Put it in order: “My name is Peter.”"
+      ],
+      [
+       "Xin lỗi, cô tên là gì?",
+       "Put it in order: “Excuse me, what is your name?” (to a woman teacher)"
+      ],
+      [
+       "Chị Hoa có khoẻ không?",
+       "Make it a question with “có … không”:  Chị Hoa khoẻ."
+      ],
+      [
+       "Ông Nam có khoẻ không?",
+       "Make it a question with “có … không”:  Ông Nam khoẻ."
+      ],
+      [
+       "Đây là anh Minh, còn kia là chị Hoa.",
+       "Join them with “còn”:  Đây là anh Minh. Kia là chị Hoa."
+      ],
+      [
+       "Tôi tên là Ben, còn đây là bạn tôi.",
+       "Join them with “còn”:  Tôi tên là Ben. Đây là bạn tôi."
+      ]
+     ]
+    },
+    {
+     "k": "reply",
+     "q": [
+      [
+       "Xin lỗi, chị tên là gì?",
+       "Excuse me, what is your name?",
+       "Tôi tên là Mai.",
+       "Tôi cũng khoẻ.",
+       "Hẹn gặp lại."
+      ],
+      [
+       "Anh có khoẻ không?",
+       "How are you?",
+       "Tôi khoẻ, cảm ơn chị.",
+       "Tôi tên là Ben.",
+       "Kia là anh Tom."
+      ],
+      [
+       "Còn kia là ai?",
+       "And who is that over there?",
+       "Kia là anh Tom, bạn tôi.",
+       "Tôi khoẻ, cảm ơn.",
+       "Rất vui được gặp chị."
+      ],
+      [
+       "Rất vui được gặp anh.",
+       "Nice to meet you.",
+       "Rất vui được gặp chị.",
+       "Tôi tên là Hoa.",
+       "Đây là bạn tôi."
+      ],
+      [
+       "Hẹn gặp lại anh.",
+       "See you again.",
+       "Hẹn gặp lại chị.",
+       "Xin lỗi, anh tên là gì?",
+       "Tôi cũng khoẻ."
+      ]
+     ]
+    },
+    {
+     "k": "tone",
+     "q": [
+      [
+       "Chào",
+       "Cháo",
+       "Chảo",
+       "hello"
+      ],
+      [
+       "Xin lỗi",
+       "Xin lôi",
+       "Xin lối",
+       "excuse me, sorry"
+      ],
+      [
+       "Cảm ơn",
+       "Cam ơn",
+       "Cảm ờn",
+       "thank you"
+      ],
+      [
+       "Tên là gì?",
+       "Tên lá gi?",
+       "Tến la gì?",
+       "What is (your) name?"
+      ],
+      [
+       "Rất vui",
+       "Rật vui",
+       "Rát vúi",
+       "very glad"
+      ],
+      [
+       "Hẹn gặp lại",
+       "Hén gấp lai",
+       "Hèn gặp lái",
+       "see you again"
+      ]
+     ]
+    },
+    {
+     "k": "tf",
+     "p": [
+      [
+       "Hôm nay Ben gặp chị Hoa ở quán cà phê.",
+       "Today Ben meets Hoa at a café."
+      ],
+      [
+       "Chị Hoa khoẻ.",
+       "Hoa is well."
+      ],
+      [
+       "Ben cũng khoẻ.",
+       "Ben is well too."
+      ],
+      [
+       "Chị Hoa giới thiệu bạn của chị.",
+       "Hoa introduces her friend."
+      ],
+      [
+       "Bạn của chị Hoa tên là Minh.",
+       "Hoa’s friend is called Minh."
+      ],
+      [
+       "Ben nói: “Rất vui được gặp anh.”",
+       "Ben says: “Nice to meet you.”"
+      ]
+     ],
+     "s": [
+      [
+       "Ben gặp chị Hoa ở quán cà phê.",
+       true,
+       "Yes: “Hôm nay Ben gặp chị Hoa ở quán cà phê.”"
+      ],
+      [
+       "Chị Hoa không khoẻ.",
+       false,
+       "No: “Chị Hoa khoẻ.” She is well."
+      ],
+      [
+       "Bạn của chị Hoa tên là Minh.",
+       true,
+       "Yes: her friend’s name is Minh."
+      ],
+      [
+       "Ben không gặp anh Minh.",
+       false,
+       "No: Ben meets Minh and says “Rất vui được gặp anh.”"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e1l2",
+   "lv": "A1",
+   "t": "Hỏi và trả lời",
+   "en": "Questions, places, people",
+   "last": "u51",
+   "life": "Ask one person a question with “ở đâu?” and listen to the answer.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e1l3",
+   "lv": "A1",
+   "t": "Một ngày của tôi",
+   "en": "Your day: now, before, later",
+   "last": "u10",
+   "life": "Tell someone one thing you did yesterday and one thing you’ll do tomorrow.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e1l4",
+   "lv": "A1",
+   "t": "Muốn, cần, có thể",
+   "en": "Wants, needs and can",
+   "last": "u15",
+   "life": "In a shop or café, say what you want with “cho tôi…” or “tôi muốn…”.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e1l5",
+   "lv": "A1",
+   "t": "Đi lại",
+   "en": "Going places",
+   "last": "u18",
+   "life": "Tell a Grab driver or a xe ôm where you’re going, in Vietnamese only.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e1l6",
+   "lv": "A1",
+   "t": "Bao nhiêu?",
+   "en": "How much, how many, what people say",
+   "last": "u20",
+   "life": "Ask a price at the market and say the number back.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e2l1",
+   "lv": "A2",
+   "t": "Chuyện xảy ra",
+   "en": "Things that happen",
+   "last": "u24",
+   "life": "Tell someone about something that happened to you this week.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e2l2",
+   "lv": "A2",
+   "t": "Ngày và giờ",
+   "en": "Days, dates and time",
+   "last": "u29",
+   "life": "Make a plan with someone: the day and the time, in Vietnamese.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e2l3",
+   "lv": "A2",
+   "t": "Mua bán",
+   "en": "Buying, bargaining, finishing words",
+   "last": "u33",
+   "life": "Buy something and ask for a lower price, politely.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e2l4",
+   "lv": "A2",
+   "t": "So sánh",
+   "en": "Comparing, distance, how you do it",
+   "last": "u37",
+   "life": "Ask how far somewhere is and which way to go.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e2l5",
+   "lv": "A2",
+   "t": "Mô tả",
+   "en": "Describing people and places",
+   "last": "u42",
+   "life": "Describe your street or your home to someone in three or four sentences.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  },
+  {
+   "id": "e2l6",
+   "lv": "A2",
+   "t": "Kể chuyện",
+   "en": "Telling what happened, doctor, phone, Grab",
+   "last": "u50",
+   "life": "Call or message someone in Vietnamese to arrange a pickup.",
+   "video": {},
+   "hide": [],
+   "note": "",
+   "dlg": ""
+  }
+ ]
+}
