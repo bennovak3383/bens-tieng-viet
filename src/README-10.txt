@@ -404,3 +404,10 @@ server; nothing real is used).
 Student side: More → "Hướng dẫn · How the app works", a button at the bottom of Home, and the link …/#guide.
 Teacher side: "Hướng dẫn · guide" button on the first page, with two tabs: For teachers / For students.
 To change the wording, edit data/guide.json (no code change needed). Test: src/tests/t57.py.
+
+VERSION 58 — "open everything" for one account
+Teacher page → a student → "Lộ trình · their lessons" → tick "Open everything for this student" → Save. Stored as
+rel.all=true in KV rl:<id>. In the app (z58All): z27N() = all units (B1 preview included), every lesson and graded
+story open, the hidden tiles (Stories, Games, more ways to practise) shown, the weekly voice note on. Nothing is
+marked as done and no progress changes. "Follow the class again" turns it off. Level checks still wait for a
+finished level. Test: src/tests/t58.py.

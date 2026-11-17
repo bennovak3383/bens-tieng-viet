@@ -349,6 +349,10 @@
        [
         "Automatic",
         "If you set nothing, the app opens each lesson when the student finishes the one before."
+       ],
+       [
+        "Open everything",
+        "A tick box on a student’s page. Every lesson, structure, story and tool is open for that student, in any order. Use it for your own account or to show someone the whole app. It doesn’t mark anything as done."
        ]
       ]
      },

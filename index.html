@@ -4662,7 +4662,7 @@ function z53Parts(L,after){ var st=z53St(L.l.id), td=dayKey(), hid=z53Hid(L), nU
   row('vocab',dU?'Cards for this lesson’s words, plus the ones you keep missing':'The words come in with each structure below. Then review them here.',t('vocab'),dU?'Cards':'',function(){ fcSession(back('vocab'),20) });
   var nextU=-1; for(var i=L.from;i<=L.to;i++) if(!z27St().d[Z27.units[i].id]){ nextU=i; break }
   if(nextU<0) row('sample','All '+nU+' structures done. Open the list to redo one.',true,'List',function(){ z27List() });
-  else if(idx<L.from) row('sample','This lesson builds on the words before it. First: '+Z27.units[idx].en,'','Catch up',function(){ z27Unit(idx,back('')) });
+  else if(idx<L.from&&!z58All()) row('sample','This lesson builds on the words before it. First: '+Z27.units[idx].en,'','Catch up',function(){ z27Unit(idx,back('')) });
   else row('sample','Structure '+(nextU-L.from+1)+' of '+nU+' · '+Z27.units[nextU].en,dU?dU+'/'+nU:'','Learn',function(){ z27Unit(nextU,back('')) });
   var slow=z52Stage()===1; row('oral',slow?'Hear it slow, say it, three times each':'Say it in Vietnamese from the English, out loud',t('oral'),(some||z54Acts(L,'oral').length)?(st.oral?'Again':'Speak'):'',function(){ z54Run(L,'oral',function(){ if(!some) return back('oral')(); if(slow) z52Reps(back('oral'),8); else z27SayDay(back('oral')) }) });
   row('written','Put the words in order, then fill in the missing word',t('written'),(dU||z54Acts(L,'written').length)?(st.written?'Again':'Write'):'',function(){ z54Run(L,'written',function(){ if(!dU) return back('written')(); var us=[]; for(var i=L.from;i<=L.to;i++) if(z27St().d[Z27.units[i].id]) us.push(Z27.units[i]); var all=[], gaps=[]; us.forEach(function(u){ all=all.concat(u.ex.concat(u.w.map(function(w){ return [w[2],w[3]] })).filter(function(x){ return x[0]&&x[1] })); gaps=gaps.concat(z27Gaps(u)) });
@@ -4769,6 +4769,15 @@ function z57Guide(){ var body=zOpen(); body.appendChild(zTop('Hướng dẫn · 
 var z7RenderMore57=z7RenderMore; z7RenderMore=function(){ z7RenderMore57(); try{ var g=$('#z-more .setgrid'); if(g&&!g.querySelector('.z57t')) g.insertBefore(h('button',{class:'settile gt3 z57t',onclick:z57Guide},[h('span',{class:'gpic','aria-hidden':'true',text:'📖'}),h('b',{text:'Hướng dẫn'}),h('span',{class:'small muted',text:'How the app works'})]),g.firstChild) }catch(e){} };
 var zRenderHome57=zRenderHome; zRenderHome=function(){ zRenderHome57(); try{ var el=$('#z-home'); if(el&&!el.querySelector('.z57h')) el.appendChild(h('button',{class:'btn wide z57h',onclick:z57Guide},[h('b',{text:'Hướng dẫn'}),h('span',{text:' · how the app works'})])) }catch(e){} };
 try{ var z57Hash=function(){ if(location.hash==='#guide'){ try{ history.replaceState(null,'','#home') }catch(e){ location.hash='home' } setTimeout(function(){ try{ if(S.set.ob7&&$('#sheet').hidden) z57Guide() }catch(e){} },900) } }; window.addEventListener('hashchange',z57Hash); z57Hash() }catch(e){}
+
+/* ===== 58 · "everything open" for one account (the owner, or to show the app): set by the teacher on that student's page
+   (rel.all). Every lesson, unit, story and tool is open without marking anything as done. Progress is not touched. ===== */
+function z58All(){ try{ return !!(S.set.rl53&&S.set.rl53.all) }catch(e){ return false } }
+var z27N58=z27N; z27N=function(){ try{ if(z58All()&&Z27&&Z27.units) return Z27.units.length }catch(e){} return z27N58() };
+var z38Open58=z38Open; z38Open=function(g){ try{ if(z58All()) return !!(Z27&&Z27.on) }catch(e){} return z38Open58(g) };
+var z37Done58=z37Done; z37Done=function(){ return z58All()?99:z37Done58() };
+var z50VnOn58=z50VnOn; z50VnOn=function(){ try{ if(z58All()) return !!(Z27&&Z27.on) }catch(e){} return z50VnOn58() };
+var zRenderHome58=zRenderHome; zRenderHome=function(){ zRenderHome58(); try{ var c=$('#z53'); if(c&&z58All()&&!c.querySelector('.z58n')){ var b=c.querySelector('button.btn.wide:last-of-type'); c.insertBefore(h('p',{class:'small muted z58n',text:'Everything is open on this account: every lesson, story and tool, in any order. Your teacher set this.'}),c.lastChild) } }catch(e){} };
 
 go(location.hash.slice(1)||'home');
 renderAll();
