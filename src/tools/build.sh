@@ -10,7 +10,7 @@ cp $T/out/index.html $R/index.html
 node -e "const s=require('fs').readFileSync('$R/index.html','utf8'); const m=[...s.matchAll(/<script(?![^>]*type=\"(?:text\/plain|application\/json)\")[^>]*>([\s\S]*?)<\/script>/g)]; for(const x of m){ try{ new Function(x[1]) }catch(e){ console.log('SYNTAX',e.message); process.exit(1)} } console.log('syntax ok',m.length)"
 # test site
 S=/home/claude/site; rm -rf $S; mkdir -p $S
-cp -r $R/index.html $R/teacher.html $R/record.html $R/words.html $R/snap.html $R/functions $R/audio $R/data $R/art $R/img $R/lib $S/
+cp -r $R/index.html $R/teacher.html $R/record.html $R/words.html $R/snap.html $R/sw.js $R/manifest.webmanifest $R/functions $R/audio $R/data $R/art $R/img $R/lib $S/
 cp $R/src/site8/devserver.mjs $S/
 python3 - <<'PY'
 p='/home/claude/site/index.html'; s=open(p,encoding='utf8').read(); i=s.find('function z27Unit(ui,onDone){'); s=s[:i]+'window.__T=function(c){return eval(c)};'+s[i:]; open(p,'w',encoding='utf8').write(s)

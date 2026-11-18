@@ -694,3 +694,31 @@ NOT done: photos of real signs and menus. Free photo libraries have few good one
 street. Those would be copied into the app (img/sg/) and need no credit line.
 Tests: src/tests/t75.py (new). It checks the address, the credit and the fallback. It cannot check that the photos display, because
 the lab has no route to Wikimedia: that needs a look on a real phone.
+
+VERSION 76 — offline: the practice parts work with no internet (Ben, 18 Nov: "If I was on the plane no Wi-Fi could I use this app?"
+then "I just want a version where I can play the games, maybe do the writing drills … I don't need every function offline. Build
+what would work for me and then the rest can be used when it connects again.")
+Before this the app needed the internet to open. Now:
+  sw.js (site root)        a service worker. It keeps the app page, lesson data, pictures, fonts and the sound bundles on the device.
+                           App page and .json data: internet first (3.5 s / 2.5 s), the saved copy if there is no answer, so an
+                           online visit always gets the newest app. Pictures, sounds, fonts: the saved copy first.
+                           It never handles /api/ (sync, recordings, AI chat) or teacher.html / record.html / snap.html / words.html.
+  data/offline.json        the list of files to keep: 759 files (6.3 MB) + 27 sound bundles (32.8 MB).
+                           Made by:  python3 src/tools/offline_list.py .     RUN IT AGAIN after adding pictures or data files.
+  block 76 in v7.js        registers sw.js; 2.5 s after an online start it sends the list to sw.js (files already kept are skipped);
+                           S.set.off76 {t, n, fail, v}. A chip under the Home row shows the state ("saved for offline" / "saving…" /
+                           "offline now"). A yellow bar shows at the top when the phone is offline. z76Sheet() (Home chip, or Find
+                           anything → Ngoại tuyến) explains what works offline and what waits, with a "save now" button.
+  manifest.webmanifest, img/icon-180/192/512.png   so the app can sit on the Home Screen with its own icon (added to the page by
+                           script, not in the HTML head, because the build takes the head from the last commit).
+  src/tools/build.sh       now also copies sw.js and the manifest to the test site.
+Works offline: games, cards, review, scenes and animals, the builder, letters and sounds, stories, the writing drill, the Saigon
+boards, adding own words and sentences. Recorded voices come from the saved bundles; a word with no recording uses the phone's own
+Vietnamese voice (that depends on the phone having one).
+Waits for the internet: sending recordings, AI chat, new lessons and notes from the teacher, sync between devices, the real photos.
+What is done offline is in localStorage as always and goes up at the next online visit.
+Switch it off: open the site with ?nosw=1 (unregisters sw.js and clears the saved copy).
+Tests: src/tests/t76.py (new): opens online, waits for the save, cuts the internet, reloads, plays a pair in Match up, opens the
+writing drill, the review and a scene, checks pictures and a sound bundle come from the saved copy, goes back online, and checks the
+switch-off address. NOT checked: a real iPhone, airplane mode on a real phone, Safari's own storage rules (Safari can clear a site's
+saved copy after some weeks without a visit; adding the app to the Home Screen avoids most of that).

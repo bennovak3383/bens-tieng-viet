@@ -919,3 +919,11 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z75fig img{display:block;width:100%;height:auto;max-height:260px;object-fit:cover;min-height:120px}
 .z75fig figcaption{padding:6px 10px;font-size:11.5px;font-weight:700}.z75fig figcaption a{color:var(--muted);text-decoration:underline}
 .z75cam{width:22px;height:22px;flex:none}.z75cam .z70i{width:100%;height:100%;object-fit:contain}
+
+/* 76 · offline */
+.z76chip{display:block;width:100%;margin-top:10px;border:1.5px dashed var(--line);background:transparent;color:var(--muted);font-family:inherit;font-weight:800;font-size:13px;border-radius:14px;padding:9px 12px;cursor:pointer;text-align:center}
+.z76chip.ok{border-style:solid;border-color:#BFE6D3;color:#0C7C54;background:#F1FBF6}.z76chip.off{border-style:solid;border-color:#FFC83D;background:#FFF7DB;color:#7A4B00}
+.z76bar{position:fixed;left:0;right:0;top:0;z-index:60;border:0;background:#FFC83D;color:#3B2A00;font-family:inherit;font-weight:800;font-size:12.5px;padding:6px 12px;text-align:center;cursor:pointer;line-height:1.3}
+.z76off body{padding-top:30px}
+.z76prog{height:10px;border-radius:999px;background:var(--surface2);overflow:hidden;margin:4px 0 10px}.z76prog i{display:block;height:100%;width:0;background:#12A26E;border-radius:999px;transition:width .3s}
+.z76msg{font-weight:800;margin:0}

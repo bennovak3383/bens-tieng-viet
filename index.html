@@ -1294,6 +1294,14 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z75fig img{display:block;width:100%;height:auto;max-height:260px;object-fit:cover;min-height:120px}
 .z75fig figcaption{padding:6px 10px;font-size:11.5px;font-weight:700}.z75fig figcaption a{color:var(--muted);text-decoration:underline}
 .z75cam{width:22px;height:22px;flex:none}.z75cam .z70i{width:100%;height:100%;object-fit:contain}
+
+/* 76 · offline */
+.z76chip{display:block;width:100%;margin-top:10px;border:1.5px dashed var(--line);background:transparent;color:var(--muted);font-family:inherit;font-weight:800;font-size:13px;border-radius:14px;padding:9px 12px;cursor:pointer;text-align:center}
+.z76chip.ok{border-style:solid;border-color:#BFE6D3;color:#0C7C54;background:#F1FBF6}.z76chip.off{border-style:solid;border-color:#FFC83D;background:#FFF7DB;color:#7A4B00}
+.z76bar{position:fixed;left:0;right:0;top:0;z-index:60;border:0;background:#FFC83D;color:#3B2A00;font-family:inherit;font-weight:800;font-size:12.5px;padding:6px 12px;text-align:center;cursor:pointer;line-height:1.3}
+.z76off body{padding-top:30px}
+.z76prog{height:10px;border-radius:999px;background:var(--surface2);overflow:hidden;margin:4px 0 10px}.z76prog i{display:block;height:100%;width:0;background:#12A26E;border-radius:999px;transition:width .3s}
+.z76msg{font-weight:800;margin:0}
 </style>
 
 <div class="wrap" id="app">
@@ -6368,6 +6376,7 @@ function z74Items(){ function H(v){ return function(){ try{ closeSheet() }catch(
     ['Thêm truyện','Add a story or text','add story text import','books',F(function(){ zAddStory() })]]],
   ['Trợ giúp · help and settings',[
     ['Hướng dẫn','How the app works','guide help how huong dan','compass',F(function(){ z57Guide() })],
+    ['Ngoại tuyến','Offline: use it with no internet','offline plane airplane flight no internet wifi ngoai tuyen','airplane',F(function(){ z76Sheet() })],
     ['Cài đặt','Settings: voice, speed, look','settings voice speed look bright night cai dat','gear',F(function(){ openSettings() })]]],
   ['Cũ hơn · older tools',[
     ['Thư viện','Library: game path, class sheets, older drills','library old thu vien','card-file-box',H('today')],
@@ -6392,6 +6401,37 @@ function z75Page(f){ return 'https://commons.wikimedia.org/wiki/File:'+encodeURI
 function z75Photo(p){ if(!p||!p.f) return null; var fig=h('figure',{class:'z75fig'}), img=h('img',{src:z75Url(p.f,960),alt:'',loading:'lazy',referrerpolicy:'no-referrer'}); img.onerror=function(){ try{ fig.remove() }catch(e){} }; fig.appendChild(img);
   fig.appendChild(h('figcaption',{},[h('a',{href:z75Page(p.f),target:'_blank',rel:'noopener',text:'Ảnh thật · real photo: '+p.by+' · '+p.lic+' · Wikimedia Commons'})])); return fig }
 function z75Credits(B){ var L=B.items.filter(function(it){ return it[6]&&it[6].f }); if(!L.length) return null; var d=h('details',{class:'z74list'},[h('summary',{text:'Ảnh · photo credits ('+L.length+')'})]); L.forEach(function(it){ d.appendChild(h('div',{class:'z74row'},[h('div',{},[h('b',{text:it[0]}),h('span',{text:it[6].by+' · '+it[6].lic+' · Wikimedia Commons'})]),h('a',{class:'chip',href:z75Page(it[6].f),target:'_blank',rel:'noopener',text:'Source'})])) }); return d }
+
+/* ===== 76 · offline: the practice parts work with no internet (Ben, 18 Nov: "If I was on the plane no Wi-Fi could I use this app?")
+   sw.js keeps the app, its data, pictures and sound bundles on the device. data/offline.json is the list (src/tools/offline_list.py).
+   The page registers sw.js, sends it the list once it is online, and shows where it stands: a chip on Home, a bar when offline,
+   and a sheet (Find anything → Ngoại tuyến). Nothing here touches /api/: sync, recordings and AI chat wait for the internet.
+   Add ?nosw=1 to the address to switch it off and clear the saved copy. ===== */
+var Z76={st:null,cb:null,busy:false};
+function z76Can(){ try{ return 'serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1') }catch(e){ return false } }
+function z76Ready(){ var o=S.set.off76; return !!(o&&o.t&&!o.fail) }
+function z76Save(cb){ if(!z76Can()){ cb&&cb({err:'This browser cannot save the app for offline use.'}); return } if(Z76.busy){ Z76.cb=cb||Z76.cb; return } Z76.busy=true; Z76.cb=cb||null;
+  fetch('data/offline.json',{cache:'no-cache'}).then(function(r){ return r.json() }).then(function(j){ Z76.v=j.v; Z76.mb=(j.mb||0)+(j.audio_mb||0); var files=(j.files||[]).concat(j.audio||[]); Z76.st={done:0,total:files.length,fail:0,end:false}; z76Chip();
+    return navigator.serviceWorker.ready.then(function(reg){ var w=reg.active||navigator.serviceWorker.controller; if(!w) throw new Error('no worker'); w.postMessage({t:'save',files:files,id:Date.now()}) }) })
+  .catch(function(){ Z76.busy=false; var c=Z76.cb; Z76.cb=null; c&&c({err:'Could not start. Check the internet and try again.'}) }) }
+function z76Chip(){ try{ var m=document.querySelector('#z-hub'); if(!m) return; var c=m.querySelector('.z76chip'); if(!z76Can()){ if(c) c.remove(); return } if(!c){ c=h('button',{class:'z76chip',onclick:function(){ z76Sheet() }}); m.appendChild(c) }
+    var st=Z76.st, off=navigator.onLine===false; c.className='z76chip'+(off?' off':(z76Ready()?' ok':''));
+    c.textContent=off?'Không có mạng · offline now. Practice still works.':(Z76.busy&&st?('Đang lưu · saving for offline… '+st.done+' / '+st.total):(z76Ready()?'✓ Ngoại tuyến · saved for offline':'Ngoại tuyến · save for offline')) }catch(e){} }
+function z76Bar(){ try{ var off=navigator.onLine===false, b=document.querySelector('.z76bar'); document.documentElement.classList.toggle('z76off',off); if(off&&!b){ b=h('button',{class:'z76bar',text:'Không có mạng · offline. Games, cards, writing and review work. The rest waits for the internet.',onclick:function(){ z76Sheet() }}); document.body.appendChild(b) } else if(!off&&b) b.remove(); z76Chip() }catch(e){} }
+function z76Sheet(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Ngoại tuyến · offline',null,null)); var off=navigator.onLine===false, msg=h('p',{class:'z76msg'}), bar=h('div',{class:'z76prog'},[h('i',{})]), btn=h('button',{class:'btn primary wide',text:'Lưu ngay · save for offline now'});
+  function show(){ var st=Z76.st, o=S.set.off76; if(Z76.busy&&st){ msg.textContent='Saving… '+st.done+' of '+st.total+' files. Keep this page open.'; bar.firstChild.style.width=Math.round(st.done/Math.max(1,st.total)*100)+'%'; btn.disabled=true } else if(z76Ready()){ msg.textContent='✓ Saved on this device ('+o.n+' files, '+new Date(o.t).toLocaleDateString()+'). You can open the app with no internet.'; bar.firstChild.style.width='100%'; btn.disabled=off; btn.textContent='Lưu lại · save again' } else { msg.textContent=!z76Can()?'This browser cannot save the app for offline use. Try Safari or Chrome.':(off?'You are offline now and the app was not saved yet. Connect once and it saves itself.':(o&&o.fail?('Almost: '+o.fail+' files did not save. Tap to try again.'):'Not saved yet. Tap the button while you are on Wi-Fi. It is about '+Math.round(Z76.mb||40)+' MB with the sounds.')); btn.disabled=off||!z76Can() } }
+  btn.onclick=function(){ z76Save(function(st){ if(st&&st.err){ msg.textContent=st.err; btn.disabled=false; return } show() }); show() };
+  body.appendChild(h('div',{class:'panel'},[h('h1',{text:'Use it with no internet'}),msg,bar,btn,h('p',{class:'small muted',text:'The app saves itself the first time you open it online. Open it once on Wi-Fi before a flight and check for the tick here.'})]));
+  body.appendChild(h('div',{class:'panel'},[h('span',{class:'lbl',text:'Works offline'}),h('p',{text:'Games · cards · review quiz · scenes and animals · sentence builder · letters and sounds · stories · writing drill · Saigon boards · adding your own words and sentences.'}),h('span',{class:'lbl',text:'Waits for the internet'}),h('p',{text:'Sending recordings to your teacher · talking with the AI · new lessons and notes from your teacher · keeping your phone and computer in step · the real photos.'}),h('p',{class:'small muted',text:'What you do offline is saved on this device and goes to your teacher the next time you open the app online.'})]));
+  body.appendChild(h('div',{class:'panel'},[h('span',{class:'lbl',text:'iPhone and iPad'}),h('p',{text:'In Safari, tap Share, then “Add to Home Screen”. Open the app from that icon once while you are online. It then opens like a normal app, with or without internet.'}),h('span',{class:'lbl',text:'Sound'}),h('p',{text:'Recorded voices are saved too. A word with no recording uses the phone’s own Vietnamese voice.'})]));
+  Z76.ui=show; show() }
+try{ if(z76Can()){
+  if(/[?&]nosw=1/.test(location.search)){ navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister() }) }); function z76Wipe(){ try{ caches.keys().then(function(ks){ ks.forEach(function(k){ caches.delete(k) }) }) }catch(e){} } z76Wipe(); setTimeout(z76Wipe,1500); setTimeout(z76Wipe,4000); delete S.set.off76; save() }
+  else { [['link',{rel:'manifest',href:'manifest.webmanifest'}],['link',{rel:'apple-touch-icon',href:'img/icon-180.png'}],['meta',{name:'apple-mobile-web-app-capable',content:'yes'}],['meta',{name:'mobile-web-app-capable',content:'yes'}],['meta',{name:'apple-mobile-web-app-title',content:'Tiếng Việt'}]].forEach(function(x){ try{ var e=document.createElement(x[0]); Object.keys(x[1]).forEach(function(k){ e.setAttribute(k,x[1][k]) }); document.head.appendChild(e) }catch(e2){} });
+    navigator.serviceWorker.addEventListener('message',function(e){ var d=e.data||{}; if(d.t!=='saved') return; Z76.st={done:d.done,total:d.total,fail:d.fail,end:!!d.end}; if(d.end){ Z76.busy=false; S.set.off76={t:Date.now(),n:d.total-d.fail,fail:d.fail,v:Z76.v}; save() } z76Chip(); try{ if(Z76.ui&&document.querySelector('#sheet-body .z76prog')) Z76.ui() }catch(x){} if(d.end){ var c=Z76.cb; Z76.cb=null; c&&c(Z76.st) } });
+    navigator.serviceWorker.register('sw.js').then(function(){ setTimeout(function(){ if(navigator.onLine===false) return; fetch('data/offline.json',{cache:'no-cache'}).then(function(r){ return r.json() }).then(function(j){ Z76.mb=(j.mb||0)+(j.audio_mb||0); var o=S.set.off76; if(!(o&&o.v===j.v&&!o.fail)) z76Save() }).catch(function(){}) },2500) }).catch(function(){}) }
+  window.addEventListener('online',z76Bar); window.addEventListener('offline',z76Bar); setTimeout(z76Bar,600) } }catch(e){}
+var z59Hub76=z59Hub; z59Hub=function(){ z59Hub76(); z76Chip() };
 
 go(location.hash.slice(1)||'home');
 renderAll();
