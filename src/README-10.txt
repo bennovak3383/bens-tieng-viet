@@ -822,3 +822,16 @@ HANDBOOK (z80Book): one sheet linking to the tones room, letters, sound lessons,
   questions, Saigon, scenes; then a searchable word list (Vietnamese or English). It only links to rooms that already exist. Also listed in "find anything".
 Tests: src/tests/t80.py (new). t71 (Home), t74 (tools row) and t61 (stories) run again. The other older tests were NOT run again this time.
 NOT checked: a real phone (word tap depends on the browser finding the word under the finger; Safari on iPhone is the one to try first).
+
+VERSION 81 — lesson quiz that matches the teacher's course (Ben, 18 Nov: "the quizzes should match with the course which the teacher set".
+Also decided in the same message: cards are fine as they are; the course already has a road map the teacher can change; keep the fun
+practice; the teacher's after-lesson follow-up waits until Ben has talked with Thầy Tâm; the AI talk partner only if it can be good.)
+Every lesson page (z53Parts) has one more row: "Kiểm tra · Lesson quiz" (Z53.P.quiz, row added by z81Row).
+  z81Pool(L): only things from that lesson: words and example sentences of the structures the learner has finished in it, plus the lines of
+  the teacher's dialogues for that lesson (3 to 8 words). Built when the quiz opens, so if the teacher changes the lesson the quiz follows.
+  z81Quiz(L): runs z74Review on that set: 10 questions, the same four kinds (hear, pick, missing word, put in order).
+  z74Review(o) was edited in place to take {pool,R,title,n,done,back}. Called with nothing it is the review quiz exactly as before.
+  Score per lesson: S.set.ls53[lessonId].qz = {n,best,last,t,miss}; the row shows the last score and "today". The review quiz record
+  (S.set.rv74) is not touched by a lesson quiz. The row has no button until one structure of the lesson is done.
+  The teacher page cannot hide this row yet (its hide list comes from data/plan.json "parts"; quiz is not in that list).
+Tests: src/tests/t81.py (new), t74 (review quiz) run again. Others not re-run. NOT checked: a real phone.

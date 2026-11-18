@@ -1794,6 +1794,7 @@ function z53Parts(L,after){ var st=z53St(L.l.id), td=dayKey(), hid=z53Hid(L), nU
   if(z54Acts(L,'reading').length) row('reading','A short text: tap any sentence for the English, then true or false',t('reading'),st.reading?'Again':'Read',function(){ z54Run(L,'reading',back('reading')) });
   else if(g) row('reading',gopen?g.t+' · '+g.en+' · listen, read, answer, then retell':g.t+' · opens when this lesson’s structures are done',gs>=3?true:(gs?gs+'/3':''),gopen?(gs>=3?'Again':'Day '+(Math.min(gs,2)+1)):'',function(){ if(gs>=3) zOpenStory(z38Story(g),0,back('reading')); else z49Go(g) });
   row('listening',z54Acts(L,'listening').length?'Hear it and choose the right reply, then the right tones':'Hear a sentence, choose what it means',t('listening'),(some||z54Acts(L,'listening').length)?(st.listening?'Again':'Listen'):'',function(){ z54Run(L,'listening',function(){ if(!some) return back('listening')(); z27Hear(back('listening'),8) }) });
+  try{ z81Row(L,row,st,dU,after,td) }catch(e){}   /* v81: the lesson quiz */
   if(L.l.life) row('life',L.l.life,st.life?true:'',st.life?'':'I did it',function(){ st.life=td; save(); try{ accPush&&accPush(true) }catch(e){} if(after) after(); else zRenderHome() });
   return box }
 function z53Card(){ var L=z53Cur(); if(!L) return null; var r=z53Rel(), nU=L.to-L.from+1, dU=z53UDone(L), ls=z53Ls(), box=h('div',{class:'panel z53card',id:'z53'});
@@ -2850,12 +2851,12 @@ function z74Pool(){ var out=[], seen={}, d=(S.set.k27&&S.set.k27.d)||{}, n=0;
   if(out.length<8) try{ (Z27.units[0].w||[]).forEach(function(w){ add(w[0],w[1],w[2],w[3],'lesson') }) }catch(e){}
   return out }
 function z74Parts(xv){ var p=[]; try{ p=z60Chunks(xv).parts||[] }catch(e){} if(!p.length) p=String(xv).replace(/[.?!…]+$/,'').split(/\s+/); return p.map(function(x){ return typeof x==='string'?x:(x.t||x.vi||String(x)) }) }
-function z74Review(){ z63Load(function(){ var P=z74Pool(), R=S.set.rv74||(S.set.rv74={n:0,miss:{}}), body=zOpen(), tok=Z.tok; R.miss=R.miss||{}; body.classList.add('z60b');
+function z74Review(o){ o=(o&&o.pool)?o:{}; /* v81: o = {pool,R,title,n,done,back} runs the same quiz on a given set of items (the lesson quiz). With no o it is the review quiz, as before. */ z63Load(function(){ var P=o.pool||z74Pool(), R=o.R||S.set.rv74||(S.set.rv74={n:0,miss:{}}), body=zOpen(), tok=Z.tok; R.miss=R.miss||{}; body.classList.add('z60b');
   function alive(){ return tok===Z.tok&&!$('#sheet').hidden }
-  body.appendChild(h('div',{class:'sess-top'},[h('span',{class:'lbl',text:'Ôn tập · Review'}),h('span',{style:'flex:1'}),h('button',{class:'x',text:'Close',onclick:closeSheet})]));
+  body.appendChild(h('div',{class:'sess-top'},[h('span',{class:'lbl',text:o.title||'Ôn tập · Review'}),h('span',{style:'flex:1'}),h('button',{class:'x',text:'Close',onclick:closeSheet})]));
   var stage=h('div',{class:'z60stage'}); body.appendChild(stage);
   if(P.length<4){ stage.appendChild(h('div',{class:'panel'},[h('p',{text:'Finish your first lesson and the review opens with its words.'}),h('button',{class:'btn primary wide',text:'OK',onclick:closeSheet})])); return }
-  var q=P.map(function(x){ return {x:x,s:(R.miss[x.vi]||0)*3+Math.random()*2+(1-x.o/P.length)} }).sort(function(a,b){ return b.s-a.s }).slice(0,12).map(function(a){ return a.x }); q=shuffle(q);
+  var q=P.map(function(x){ return {x:x,s:(R.miss[x.vi]||0)*3+Math.random()*2+(1-x.o/P.length)} }).sort(function(a,b){ return b.s-a.s }).slice(0,o.n||12).map(function(a){ return a.x }); q=shuffle(q);
   var qi=0, ok=0, missed=[];
   function others(it,n){ return shuffle(P.filter(function(x){ return x!==it&&x.en!==it.en&&x.vi.toLowerCase()!==it.vi.toLowerCase() })).slice(0,n) }
   function kindOf(it,i){ var parts=it.xv?z74Parts(it.xv):[], hasW=it.xv&&it.xv.toLowerCase().indexOf(it.vi.toLowerCase())>=0&&it.xv.split(/\s+/).length>=3, k=['hear','gap','pick','order'][i%4]; if(k==='gap'&&!hasW) k='pick'; if(k==='order'&&!(parts.length>=3&&parts.length<=8)) k='hear'; return k }
@@ -2877,11 +2878,12 @@ function z74Review(){ z63Load(function(){ var P=z74Pool(), R=S.set.rv74||(S.set.
       var g=h('div',{class:'z73opts word'}); opts.forEach(function(o){ var b=h('button',{class:'z73o z74o','data-k':o.vi},[h('b',{text:kind==='hear'?o.en:o.vi})]); b.onclick=function(){ if(done||b.classList.contains('wrong')) return; if(o===it){ b.classList.add('right'); right() } else { b.classList.add('wrong'); wrong(b) } }; g.appendChild(b) }); stage.appendChild(g);
       if(kind==='hear') zSay(it.vi) }
     stage.appendChild(rev) }
-  function fin(){ var pct=Math.round(ok/q.length*100); R.n=(R.n||0)+1; if(!(R.best>=pct)) R.best=pct; R.last=pct; R.t=Date.now(); save(); try{ accPush(true) }catch(e){} stage.innerHTML=''; stage.removeAttribute('data-a'); stage.removeAttribute('data-t');
+  function fin(){ var pct=Math.round(ok/q.length*100); R.n=(R.n||0)+1; if(!(R.best>=pct)) R.best=pct; R.last=pct; R.t=Date.now(); try{ if(o.done) o.done(ok,q.length,pct) }catch(e){} save(); try{ accPush(true) }catch(e){} stage.innerHTML=''; stage.removeAttribute('data-a'); stage.removeAttribute('data-t');
     var stars=pct>=90?3:(pct>=65?2:1), sv=''; for(var i=0;i<3;i++) sv+='<svg viewBox="0 0 48 48" class="'+(i<stars?'on':'')+'" style="animation-delay:'+(i*.15)+'s"><path d="M24 4 l6 13 l14 2 l-10 10 l2.500 14 L24 36.500 L11.500 43 L14 29 L4 19 l14 -2 Z"/></svg>';
     stage.appendChild(h('div',{class:'z60end'},[h('div',{class:'z60stars',html:sv}),h('div',{class:'z60big',text:ok+' / '+q.length}),h('p',{class:'muted',text:pct>=90?'Nhớ tốt lắm! These words are staying with you.':'The ones you missed come back first next time.'})]));
     if(missed.length){ stage.appendChild(h('span',{class:'lbl',text:'Xem lại · look at these again'})); missed.forEach(function(it){ stage.appendChild(h('button',{class:'z73ln',onclick:function(){ zSay(it.xv||it.vi) }},[h('span',{class:'pl',html:PLAY_ICON}),h('div',{},[h('b',{text:it.vi+' = '+it.en}),h('small',{text:it.xv?(it.xv+'  '+(it.xe||'')):''})])])) }) }
-    stage.appendChild(z74Own('Review','Pick one word from this round and say something true about you with it. Thầy Tâm will see it.',true));
+    if(o.back) stage.appendChild(h('button',{class:'btn primary wide z81back',text:'‹ Về bài học · back to the lesson',onclick:function(){ try{ o.back() }catch(e){} }}));
+    stage.appendChild(z74Own(o.pool?'Lesson quiz':'Review','Pick one word from this round and say something true about you with it. Thầy Tâm will see it.',true));
     stage.appendChild(h('button',{class:'btn primary wide',text:'Làm lại · another round',onclick:function(){ z74Review() }})); stage.appendChild(h('button',{class:'btn wide',text:'Xong · done',onclick:closeSheet})) }
   ask() }) }
 /* (5) Saigon in real life */
@@ -3161,3 +3163,20 @@ var z59Hub80=z59Hub; z59Hub=function(){ z59Hub80(); try{ var hub=$('#z-hub'); if
     if(!S.set.tip80&&grid) hub.insertBefore(h('p',{class:'z80tip',text:'Mẹo · tip: tap any Vietnamese word in a sentence to hear it and see what it means.'}),hub.querySelector('.z80rooms'));
     var m=hub.querySelector('.z59more.z74strip'); if(m&&!m.querySelector('.z74-book')){ var b=h('button',{class:'z74b z74-book',onclick:function(){ z80Book() }},[h('span',{class:'pi',html:z70Slug('books')}),h('b',{text:'Sổ tay'}),h('small',{text:'Handbook'})]); m.insertBefore(b,m.querySelector('.z74-all')) } }catch(e){} };
 try{ var I80=z74Items; z74Items=function(){ var a=I80(); try{ a[0][1].push(['Sổ tay','Handbook: tones, patterns, word list','handbook reference tones patterns dictionary word list so tay look up','books',function(){ z80Book() }]) }catch(e){} return a } }catch(e){}
+
+
+/* ===== 81 · lesson quiz: a quiz that matches the teacher's course =====
+   Every lesson page has one more row, "Kiểm tra · Lesson quiz". Its questions come only from that lesson: the words and example sentences of the
+   structures the learner has finished in it, and the lines of the teacher's dialogues for that lesson. It is the review quiz (z74Review) run on
+   that set, so it has the same four kinds of question (hear, pick, missing word, put in order). When the teacher changes the lesson, the quiz
+   follows, because it is built when it opens. Score is kept per lesson in S.set.ls53[lesson].qz = {n,best,last,t,miss} and shows on the row. */
+try{ Z53.P.quiz=['Kiểm tra','Lesson quiz'] }catch(e){}
+function z81Pool(L){ var out=[], seen={}, d=z27St().d, n=0;
+  function add(vi,en,xv,xe,src){ vi=String(vi||'').trim(); en=String(en||'').split(';')[0].trim(); var k=vi.toLowerCase(); if(!k||!en||seen[k]) return; seen[k]=1; out.push({vi:vi,en:en,xv:xv||'',xe:xe||'',src:src,o:n++}) }
+  for(var i=L.from;i<=L.to;i++){ var u=Z27.units[i]; if(!u||!d[u.id]) continue; (u.w||[]).forEach(function(w){ add(w[0],w[1],w[2],w[3],'word') }); (u.ex||[]).forEach(function(e){ var m=String(e[0]||'').split(/\s+/).length; if(m>=3&&m<=8) add(e[0],e[1],e[0],e[1],'sentence') }) }
+  if(out.length) try{ z53Dlgs(L).forEach(function(dg){ (dg.lines||dg.li||[]).forEach(function(ln){ var vi=ln.vi||ln[1], en=ln.en||ln[2], m=String(vi||'').split(/\s+/).length; if(m>=3&&m<=8) add(vi,en,vi,en,'dialogue') }) }) }catch(e){}
+  return out }
+function z81Quiz(L,after){ var st=z53St(L.l.id); st.qz=st.qz||{n:0,miss:{}}; var P=z81Pool(L);
+  z74Review({pool:P,R:st.qz,n:10,title:'Kiểm tra · bài '+L.n+' · lesson quiz',done:function(){ st.quiz=dayKey() },back:function(){ if(after) after(); else z53Lesson(L) }}) }
+function z81Row(L,row,st,dU,after,td){ var q=st.qz||{}, n=z81Pool(L).length;
+  row('quiz',dU?(n+' things from this lesson: its words, its sentences and Thầy’s dialogues'+(q.n?' · best '+q.best+'%':'')):'Opens when you finish the first structure of this lesson',q.n?(st.quiz===td?'today · '+q.last+'%':q.last+'%'):'',(dU&&n>=4)?(q.n?'Again':'Quiz'):'',function(){ z81Quiz(L,after) }) }
