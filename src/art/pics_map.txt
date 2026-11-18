@@ -644,7 +644,7 @@ phòng gym|Person lifting weights
 căn hộ|Office building
 
 # --- things
-bàn|Desktop computer
+bàn|custom:table
 ghế|Chair
 cửa|Door
 cửa sổ|Window

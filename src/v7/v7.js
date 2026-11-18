@@ -2992,3 +2992,38 @@ try{ if(z76Can()){
     navigator.serviceWorker.register('sw.js').then(function(){ setTimeout(function(){ if(navigator.onLine===false) return; fetch('data/offline.json',{cache:'no-cache'}).then(function(r){ return r.json() }).then(function(j){ Z76.mb=(j.mb||0)+(j.audio_mb||0); var o=S.set.off76; if(!(o&&o.v===j.v&&!o.fail)) z76Save() }).catch(function(){}) },2500) }).catch(function(){}) }
   window.addEventListener('online',z76Bar); window.addEventListener('offline',z76Bar); setTimeout(z76Bar,600) } }catch(e){}
 var z59Hub76=z59Hub; z59Hub=function(){ z59Hub76(); z76Chip() };
+
+/* ===== 77 · movement, sharper pictures, drawn Saigon places =====
+   Movement is CSS (block 77 in v7.css) and only runs when the device does not ask for reduced motion.
+   z77Watch: puts a short "arrive" class on new parts of an open sheet, and a sparkle on a right answer. It only adds classes; it never changes what a screen does.
+   z77SgDeco: the Places board shows our own drawings (data/sgart.json, made by src/art/sg.py). A real photo, where there is one, stays as a link with its credit.
+   z77Pics: pictures went from 160 px to 256 px under the same file names, so a phone that saved the old ones must fetch them again (once). */
+var Z77={n:0,t0:0,hold:0,art:null};
+function z77Calm(){ try{ return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches) }catch(e){ return false } }
+function z77Burst(el){ try{ if(z77Calm()||!el||!el.getBoundingClientRect) return; var r=el.getBoundingClientRect(); if(!r.width||r.bottom<0||r.top>innerHeight) return;
+  var box=document.createElement('div'), cols=['#FFC83D','#12A26E','#2F7BF6','#FF7A59','#7A54E8','#FFDD00'], n=10, i, p; box.className='z77burst'; box.setAttribute('aria-hidden','true'); box.style.left=(r.left+r.width/2)+'px'; box.style.top=(r.top+r.height/2)+'px';
+  for(i=0;i<n;i++){ p=document.createElement('i'); if(i%2) p.className='s'; p.style.setProperty('--a',(i*36+Math.random()*20-10)+'deg'); p.style.setProperty('--d',(Math.min(90,r.width/2+18)+Math.random()*26)+'px'); p.style.setProperty('--c',cols[i%cols.length]); p.style.animationDelay=(Math.random()*.06)+'s'; box.appendChild(p) }
+  document.body.appendChild(box); setTimeout(function(){ try{ box.remove() }catch(e){} },900) }catch(e){} }
+function z77Mark(el,cls,d){ try{ el.classList.add(cls); if(d) el.style.setProperty('--z77d',d+'s'); setTimeout(function(){ try{ el.classList.remove(cls); el.style.removeProperty('--z77d') }catch(e){} },760+d*1000) }catch(e){} }
+function z77Watch(){ var sheet=document.getElementById('sheet'); if(!sheet||!window.MutationObserver||z77Calm()) return;
+  var BLOCK=/^(DIV|P|BUTTON|SECTION|H1|H2|H3|UL|OL|FIGURE|DETAILS|FORM|LABEL|TEXTAREA)$/, DEAL='.z60tile,.z60opt,.z73o,.z74o,.z74w,.z74sgi,.z74sgt,.z63a,.z60g,.z64o,.settile';
+  new MutationObserver(function(ms){ var now=Date.now(), k=0; if(now<Z77.hold) return; if(now-Z77.t0>1000){ Z77.t0=now; Z77.n=0 }
+    ms.forEach(function(m){
+      if(m.type==='attributes'){ var t=m.target; if(t.classList&&t.classList.contains('ok')&&!/(^|\s)ok(\s|$)/.test(m.oldValue||'')&&(t.tagName==='BUTTON'||t.matches('.z60blank,.z60line'))&&!(t.z77t&&now-t.z77t<700)){ t.z77t=now; z77Burst(t) } return }
+      [].forEach.call(m.addedNodes,function(n){ if(n.nodeType!==1||!BLOCK.test(n.tagName)||n.classList.contains('sess-top')||n.classList.contains('z77burst')) return; if(++Z77.n>60){ Z77.hold=now+2000; return }
+        var kids=[]; try{ kids=[].slice.call(n.matches(DEAL)?[]:n.querySelectorAll(DEAL),0,14) }catch(e){}
+        if(n.matches(DEAL)){ z77Mark(n,'z77dl',Math.min(k++,10)*.035); return }
+        if(kids.length){ kids.forEach(function(c,i){ z77Mark(c,'z77dl',.05+i*.035) }) } else if(m.target.id==='sheet-body'||m.target.classList.contains('z60stage')) z77Mark(n,'z77in',Math.min(k++,6)*.04) }) }) }).observe(sheet,{subtree:true,childList:true,attributes:true,attributeFilter:['class'],attributeOldValue:true}) }
+function z77Tap(e){ try{ var t=e.target&&e.target.closest&&e.target.closest('button,[role="button"]'); if(!t) return; var im=t.querySelector('.z70i,.z12pic svg'); if(!im) return; im.classList.remove('z77tap'); void im.getBoundingClientRect(); im.classList.add('z77tap') }catch(x){} }
+try{ if(!z77Calm()){ document.addEventListener('pointerdown',z77Tap,{passive:true}); document.addEventListener('animationend',function(e){ try{ if(e.animationName==='z77jelly') e.target.classList.remove('z77tap') }catch(x){} }) } z77Watch() }catch(e){}
+/* drawn Saigon places */
+function z77ArtLoad(cb){ if(Z77.art){ cb(); return } fetch('data/sgart.json').then(function(r){ return r.json() }).then(function(j){ Z77.art=j.art||{}; cb() }).catch(function(){ Z77.art={}; cb() }) }
+function z77Svg(k,sfx){ var s=Z77.art&&Z77.art[k]; return s?s.replace(/id="g(\w)"/g,'id="g$1'+sfx+'"').replace(/url\(#g(\w)\)/g,'url(#g$1'+sfx+')'):'' }
+function z77Fig(k){ var s=z77Svg(k,'f'); return s?h('figure',{class:'z77fig'},[h('div',{class:'z77art',html:s}),h('figcaption',{text:'Hình vẽ · our own drawing'})]):null }
+function z77SgDeco(){ var body=$('#sheet-body'); if(!body) return; [].forEach.call(body.querySelectorAll('.z74sgi[data-k]'),function(row){ var k=row.getAttribute('data-k'), fig=z77Fig(k), more=row.querySelector('.z74sgx'); if(!fig||!more||row.classList.contains('z77has')) return; row.classList.add('z77has');
+  var old=more.querySelector('.z75fig'); if(old){ var a=old.querySelector('figcaption a'); if(a) more.insertBefore(h('p',{class:'z77real'},[a]),old); old.remove() }
+  more.insertBefore(fig,more.firstChild); var pi=row.querySelector('.z74sgh .pi'); if(pi){ pi.classList.add('z77th'); pi.innerHTML=z77Svg(k,'t'); var sv=pi.querySelector('svg'); if(sv) sv.setAttribute('preserveAspectRatio','xMidYMid slice') } }) }
+var z74Saigon77=z74Saigon; z74Saigon=function(bid){ z74SgLoad(function(){ z77ArtLoad(function(){ z74Saigon77(bid); try{ z77SgDeco() }catch(e){} }) }) };
+/* pictures are sharper now: a phone that kept the old small ones fetches the new ones once */
+function z77Pics(){ try{ if(!window.caches||localStorage.getItem('btv_pic77')) return; fetch('data/offline.json',{cache:'no-cache'}).then(function(r){ if(!r.ok) throw 0; return caches.open('btv-1') }).then(function(c){ return c.keys().then(function(ks){ return Promise.all(ks.filter(function(q){ return /\/img\/p\//.test(q.url) }).map(function(q){ return c.delete(q) })) }) }).then(function(gone){ localStorage.setItem('btv_pic77','1'); if(gone&&gone.length){ try{ delete S.set.off76; save(); if(typeof z76Can==='function'&&z76Can()&&!/[?&]nosw=1/.test(location.search)) setTimeout(function(){ z76Save() },1500) }catch(e){} } }).catch(function(){}) }catch(e){} }
+try{ setTimeout(z77Pics,600) }catch(e){}

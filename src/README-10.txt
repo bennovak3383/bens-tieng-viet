@@ -722,3 +722,35 @@ Tests: src/tests/t76.py (new): opens online, waits for the save, cuts the intern
 writing drill, the review and a scene, checks pictures and a sound bundle come from the saved copy, goes back online, and checks the
 switch-off address. NOT checked: a real iPhone, airplane mode on a real phone, Safari's own storage rules (Safari can clear a site's
 saved copy after some weeks without a visit; adding the app to the Home Screen avoids most of that).
+
+VERSION 77 — more movement, sharper pictures, drawn Saigon places (Ben, 18 Nov: "add more animation … upgrade the photos and movements to
+up level the app". Asked what he meant, he chose: movement everywhere in chunks; pictures that move; better picture quality; better
+cartoons; and for the Saigon photos "just make cartoon or drawing versions".)
+MOVEMENT (block 77 in v7.css, all inside @media (prefers-reduced-motion:no-preference); with "reduce motion" on, nothing here moves)
+  Screens glide in (.view → z77view). A sheet slides up (z77sheet). New parts of an open sheet arrive one after another.
+  z77Watch (block 77 in v7.js): one MutationObserver on #sheet. It puts .z77in / .z77dl on new parts for under a second (z77Mark), then
+    takes them off, so they never fight the game's own pop / shake classes (both are written with :where(), weight zero). If a screen adds
+    more than 60 parts in a second it stops for 2 s. A button that gains the class "ok" gets a sparkle (z77Burst). It only adds classes.
+  Pictures (.z70i): pop in; float on the flash card, the animals card and the Saigon tiles; squish when tapped (z77Tap → .z77tap);
+    jump when the answer is right. Buttons press down; on a laptop tiles lift under the mouse. Home: the bars fill, the ring pops.
+PICTURES
+  src/art/pics.py now writes 256 px (was 160): the full size of the Fluent 3D set. All 736 remade. Same file names, data/pics.json unchanged.
+  New: a name written  custom:<name>  in pics_map.txt uses our own drawing src/art/custom/<name>.png → img/p/x-<name>.webp.
+  First one: bàn (table) → custom:table (src/art/custom/table.svg + .png). The computer-desk picture is no longer used for bàn.
+  To run pics.py the checkout needs the metadata files:  git -C <checkout> sparse-checkout set --no-cone /LICENSE '/assets/*/metadata.json'
+    first, or the emoji pass finds nothing and deletes about 95 pictures (it happened here once; "emoji 0" in its output is the sign).
+  z77Pics: a phone that saved the old small pictures keeps them (pictures are "saved copy first"), so once per device, when online, the
+    app deletes img/p/* from the saved copy and saves again. Marker: localStorage btv_pic77 (not in S, so it does not sync between devices).
+DRAWN SAIGON PLACES
+  src/art/sg.py → data/sgart.json: 12 drawings (320×200 SVG), one for every item on the Places board. Drawn by Claude from general
+  knowledge of each place; not traced from a photo; NOT checked by anyone who knows the buildings. Parts move (riders, flag, clock,
+  lanterns, boat, plane, neon) through classes z77cl/fl/rd/bt/bk/pl/sw/ln/wv/ck/ft/nt/wk/bd/sn in v7.css.
+  z77SgDeco (wraps z74Saigon): each row shows a small still of its drawing; the open item shows the moving drawing. The three real
+  photos (v75) are no longer loaded into the page: their credit line stays as a link to the photo's page, and the credits fold stays.
+  To add a drawing: add a block to sg.py with the item's exact Vietnamese name, run  python3 src/art/sg.py .  then offline_list.py.
+NOT done in 77: the people cartoons (Ben, Thầy Tâm, scene people) were not redrawn. They already blink, breathe, wave and hop; a real
+  redraw is its own job and needs Ben to say what look he wants. No change to teacher.html, sw.js, sounds or any lesson content.
+Offline list: 761 files (7.0 MB, was 6.3) + 27 sound bundles.
+Tests: src/tests/t77.py (new) runs everything twice: normal, and with "reduce motion" on. t60 t61 t68 t70–t76 run again, all as before
+  (t68 "word tap while hidden opens popup: False" was already so in v76). NOT checked: a real phone, how smooth it feels on an older
+  phone, Safari, the one-time picture refresh on a phone that already saved v76.

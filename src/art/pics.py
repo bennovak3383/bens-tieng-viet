@@ -1,21 +1,28 @@
 #!/usr/bin/env python3
 # Word pictures from Microsoft's Fluent Emoji set (3D style, MIT licence).
 #   python3 src/art/pics.py <path to a checkout of github.com/microsoft/fluentui-emoji> .
-# Reads src/art/pics_map.txt, copies each picture it names to img/p/<slug>.webp (160 px) and writes data/pics.json
+# A name written  custom:<name>  uses our own drawing src/art/custom/<name>.png instead (v77; first one: bàn = table).
+# Reads src/art/pics_map.txt, copies each picture it names to img/p/<slug>.webp (256 px) and writes data/pics.json
 # {map: {Vietnamese word: slug}, emo: {emoji: slug}, tile: {menu tile title: slug}}.  The checkout can be a sparse, blob-less clone: this script asks git for just the files it needs.
 import sys, os, re, json, subprocess
 from PIL import Image
 src, repo = sys.argv[1], sys.argv[2]
+SIZE = 256   # v77: was 160. 256 is the full size of the Fluent 3D pictures, so they stay sharp on phone screens
 files = subprocess.run(['git','-C',src,'ls-tree','-r','--name-only','HEAD'],capture_output=True,text=True).stdout.split('\n')
 by = {}
 for f in files:
     m = re.match(r'assets/([^/]+)/(?:Default/)?3D/.+\.png$', f)
     if m: by.setdefault(m.group(1).lower(), f)
-pairs, want, miss, tiles = [], {}, [], {}
+pairs, want, miss, tiles, custom = [], {}, [], {}, {}
 for l in open(os.path.join(repo,'src/art/pics_map.txt'),encoding='utf8'):
     l = l.strip()
     if not l or l[0] == '#': continue
     vi, nm = [x.strip() for x in l.split('|')]
+    if nm.lower().startswith('custom:'):                        # v77: our own drawing, src/art/custom/<name>.png (256 px, see-through background)
+        cn = re.sub(r'[^a-z0-9]+','-',nm[7:].lower()).strip('-'); cf = os.path.join(repo,'src/art/custom',cn+'.png')
+        if not os.path.exists(cf): miss.append(nm); continue
+        slug = 'x-'+cn; custom[slug] = cf
+        pairs.append((vi, slug)); continue
     f = by.get(nm.lower())
     if not f: miss.append(nm); continue
     slug = re.sub(r'[^a-z0-9]+','-',nm.lower()).strip('-')
@@ -48,10 +55,20 @@ if need:
 out = os.path.join(repo,'img/p'); os.makedirs(out,exist_ok=True); n = 0; total = 0
 for slug, f in sorted(want.items()):
     dst = os.path.join(out, slug+'.webp')
-    if not os.path.exists(dst):
-        im = Image.open(os.path.join(src,f)).convert('RGBA').resize((160,160), Image.LANCZOS); im.save(dst,'WEBP',quality=84,method=6); n += 1
+    stale = False
+    if os.path.exists(dst):
+        try: stale = Image.open(dst).size[0] != SIZE
+        except Exception: stale = True
+    if stale or not os.path.exists(dst):
+        im = Image.open(os.path.join(src,f)).convert('RGBA')
+        if im.size != (SIZE,SIZE): im = im.resize((SIZE,SIZE), Image.LANCZOS)
+        im.save(dst,'WEBP',quality=88,method=6); n += 1
     total += os.path.getsize(dst)
-keep = set(want)
+for slug, cf in sorted(custom.items()):
+    dst = os.path.join(out, slug+'.webp'); im = Image.open(cf).convert('RGBA')
+    if im.size != (SIZE,SIZE): im = im.resize((SIZE,SIZE), Image.LANCZOS)
+    im.save(dst,'WEBP',quality=88,method=6); total += os.path.getsize(dst)
+keep = set(want) | set(custom)
 for f in os.listdir(out):
     if f.endswith('.webp') and f[:-5] not in keep: os.remove(os.path.join(out,f))
 m = {}

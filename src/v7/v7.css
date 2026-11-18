@@ -927,3 +927,89 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z76off body{padding-top:30px}
 .z76prog{height:10px;border-radius:999px;background:var(--surface2);overflow:hidden;margin:4px 0 10px}.z76prog i{display:block;height:100%;width:0;background:#12A26E;border-radius:999px;transition:width .3s}
 .z76msg{font-weight:800;margin:0}
+
+/* 77 · movement, sharper pictures, drawn Saigon places.  Everything that moves sits inside "no-preference": with "reduce motion" on, nothing here moves. */
+.z77burst{position:fixed;z-index:95;width:0;height:0;pointer-events:none}
+.z77burst i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--c);opacity:0}
+.z77burst i.s{border-radius:0;clip-path:polygon(50% 0,62% 36%,100% 38%,70% 60%,80% 100%,50% 76%,20% 100%,30% 60%,0 38%,38% 36%);width:14px;height:14px;left:-7px;top:-7px}
+.z77fig{margin:0;width:100%;border-radius:18px;overflow:hidden;background:var(--surface2);box-shadow:0 6px 16px rgba(20,40,90,.16)}
+.z77art svg{display:block;width:100%;height:auto}
+.z77fig figcaption{padding:5px 10px;font-size:11.5px;font-weight:700;color:var(--muted)}
+.z77real{font-size:12px;font-weight:700}.z77real a{color:var(--muted);text-decoration:underline}
+.z74sgh .pi.z77th{width:66px;height:46px;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(20,40,90,.18)}
+.z77th svg{display:block;width:100%;height:100%}.z77th svg *{animation:none!important}
+/* where the moving parts of a drawing stand when they are not moving */
+.z77rd{transform:translateX(70px)}.z77rd.r{transform:translateX(250px) scaleX(-1)}.z77pl{transform:translate(170px,70px)}.z77bt{transform:translateX(110px)}
+.z77ft,.z77sn{transform-box:fill-box;transform-origin:50% 100%}.z77sn{transform-origin:50% 50%}
+
+@media (prefers-reduced-motion:no-preference){
+  @keyframes z77view{from{opacity:0;transform:translateY(10px) scale(.992)}to{opacity:1;transform:none}}
+  @keyframes z77sheet{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes z77rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes z77deal{0%{opacity:0;transform:translateY(16px) scale(.9)}70%{opacity:1;transform:translateY(-2px) scale(1.02)}100%{opacity:1;transform:none}}
+  @keyframes z77picin{0%{opacity:0;transform:scale(.55) rotate(-8deg)}70%{opacity:1;transform:scale(1.08) rotate(2deg)}100%{opacity:1;transform:none}}
+  @keyframes z77float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-2.5deg)}}
+  @keyframes z77jelly{0%{transform:scale(1)}25%{transform:scale(1.2,.84)}50%{transform:scale(.9,1.14) translateY(-6px)}75%{transform:scale(1.06,.96)}100%{transform:scale(1)}}
+  @keyframes z77joy{0%{transform:none}30%{transform:translateY(-9px) rotate(-9deg) scale(1.14)}62%{transform:translateY(0) rotate(6deg) scale(1.04)}100%{transform:none}}
+  @keyframes z77spark{0%{opacity:1;transform:rotate(var(--a)) translateX(4px) scale(1)}100%{opacity:0;transform:rotate(var(--a)) translateX(var(--d)) scale(.25)}}
+  @keyframes z77grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes z77score{0%{opacity:0;transform:scale(.4)}65%{opacity:1;transform:scale(1.16)}100%{transform:none}}
+  /* screens and sheets glide in */
+  .view:not([hidden]){animation:z77view .3s ease-out backwards}
+  #sheet:not([hidden])>#sheet-body{animation:z77sheet .34s cubic-bezier(.2,.8,.2,1) backwards}
+  /* new parts of a screen arrive (the class is put on by z77Watch and taken off again after a moment) */
+  :where(.z77in){animation:z77rise .32s ease-out var(--z77d,0s) backwards}
+  :where(.z77dl){animation:z77deal .38s cubic-bezier(.2,.8,.2,1) var(--z77d,0s) backwards}
+  /* pictures: pop in, float while you look at them, squish when tapped, jump when you are right */
+  :where(.z70i){animation:z77picin .42s cubic-bezier(.2,.8,.2,1) backwards}
+  .z60face.f .z60pf,.z73show .z70i,.z74sgt .pi .z70i{animation:z77float 3.6s ease-in-out infinite}
+  .z74sgt:nth-child(2n) .pi .z70i{animation-delay:-1.3s}.z74sgt:nth-child(3n) .pi .z70i{animation-delay:-2.2s}
+  .z77tap{animation:z77jelly .5s ease-out!important}
+  button.ok .z70i,button.ok .z60pf,button.ok .z12pic svg{animation:z77joy .6s ease-out}
+  .z77burst i{animation:z77spark .62s cubic-bezier(.15,.7,.3,1) forwards}
+  /* buttons press down; on a laptop they lift a little under the mouse */
+  :where(.z60tile,.z60opt,.z73o,.z74o,.z74w,.z63a,.z74sgt,.z74b,.z60g,.settile){transition:transform .14s ease-out,box-shadow .14s ease-out}
+  :where(.z60tile,.z60opt,.z73o,.z74o,.z74w,.z63a,.z74sgt,.z74b,.z60g,.settile):active{transform:translateY(3px) scale(.985)}
+  @media (hover:hover){
+    .z59t:hover:not(:active){transform:translateY(-4px)}.z59t:hover .ic svg{animation-duration:1.1s}
+    :where(.z60g,.z74sgt,.z74b,.settile,.z73o,.z63a):hover:not(:active){transform:translateY(-3px)}
+    .z74b:hover .z70i,.z60g:hover .z70i,.settile:hover .z70i{animation:z77jelly .55s ease-out}
+  }
+  /* Home: the bars fill, the ring pops */
+  .z59bar .tr i{transform-origin:0 50%;animation:z77grow .9s .25s cubic-bezier(.2,.8,.2,1) backwards}
+  .z59ring{animation:z77score .6s .1s backwards}
+  .z60end .z60big{animation:z77score .7s .15s backwards}
+  .z74sgx:not([hidden]){animation:z77rise .26s ease-out backwards}
+  /* the drawn places */
+  @keyframes z77cloud{from{transform:translateX(-14px)}to{transform:translateX(16px)}}
+  @keyframes z77flag{0%,100%{transform:skewY(0) scaleX(1)}50%{transform:skewY(-7deg) scaleX(.93)}}
+  @keyframes z77ride{from{transform:translateX(-30px)}to{transform:translateX(350px)}}
+  @keyframes z77rideR{from{transform:translateX(350px) scaleX(-1)}to{transform:translateX(-30px) scaleX(-1)}}
+  @keyframes z77boat{0%{transform:translate(-50px,0)}25%{transform:translate(55px,2px)}50%{transform:translate(160px,0)}75%{transform:translate(265px,2px)}100%{transform:translate(370px,0)}}
+  @keyframes z77blink{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes z77plane{0%{transform:translate(10px,176px) scale(.8)}22%{transform:translate(90px,172px) scale(.85)}100%{transform:translate(380px,-20px) scale(1.1)}}
+  @keyframes z77sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+  @keyframes z77lan{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+  @keyframes z77wave{from{transform:translateX(0)}to{transform:translateX(40px)}}
+  @keyframes z77spin{to{transform:rotate(360deg)}}
+  @keyframes z77fount{0%,100%{transform:scaleY(.8)}50%{transform:scaleY(1.12)}}
+  @keyframes z77note{0%{opacity:0;transform:translateY(6px)}30%{opacity:1}100%{opacity:0;transform:translateY(-18px)}}
+  @keyframes z77walk{0%,100%{transform:translate(0,0)}25%{transform:translate(2px,-2px)}50%{transform:translate(4px,0)}75%{transform:translate(2px,-2px)}}
+  @keyframes z77bird{0%{transform:translate(0,0)}50%{transform:translate(150px,-12px)}100%{transform:translate(300px,4px)}}
+  @keyframes z77sun{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .z77cl{animation:z77cloud 9s ease-in-out infinite alternate}.z77cl.s2{animation-duration:13s;animation-direction:alternate-reverse}
+  .z77fl{animation:z77flag 1.6s ease-in-out infinite}
+  .z77rd{animation:z77ride 8s linear infinite}.z77rd.r{animation:z77rideR 11s linear -4s infinite}
+  .z77bt{animation:z77boat 24s linear infinite}
+  .z77bk{animation:z77blink 1.6s ease-in-out infinite}.z77bk.d1{animation-delay:-.5s}.z77bk.d2{animation-delay:-1.1s}
+  .z77pl{animation:z77plane 7s ease-in infinite}
+  .z77sw{animation:z77sway 4s ease-in-out infinite}
+  .z77ln{animation:z77lan 2.6s ease-in-out infinite}.z77ln.b{animation-delay:-1.3s}
+  .z77wv{animation:z77wave 3s linear infinite}.z77wv.b{animation-duration:4.5s;animation-direction:reverse}
+  .z77ck{animation:z77spin 12s linear infinite}
+  .z77ft{animation:z77fount 1.4s ease-in-out infinite}
+  .z77nt{animation:z77note 3s ease-out infinite}.z77nt.b{animation-delay:-1.5s}
+  .z77wk{animation:z77walk 1.2s ease-in-out infinite}.z77wk.b{animation-delay:-.6s;animation-direction:reverse}
+  .z77bd{animation:z77bird 16s linear infinite}
+  .z77sn{animation:z77sun 4s ease-in-out infinite}
+}
