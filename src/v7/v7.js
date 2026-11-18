@@ -2544,7 +2544,7 @@ function z70Deco(){ Z70.q=0; if(!Z70.map) return; var used={};
   [].forEach.call(document.querySelectorAll('.settile:not(.z70s)'),function(t){ try{ t.classList.add('z70s'); if(t.querySelector('.gpic,.z12pic,.z70i,svg')) return; var b=t.querySelector('b'); var p=b&&z70Tile(b.textContent,used); if(p) t.insertBefore(h('span',{class:'gpic z70g','aria-hidden':'true',html:p}),t.firstChild) }catch(x){} }) }
 function z70Kick(){ if(Z70.q) return; Z70.q=1; (window.requestAnimationFrame||setTimeout)(z70Deco) }
 try{ new MutationObserver(z70Kick).observe(document.documentElement,{childList:true,subtree:true}) }catch(e){}
-fetch('data/pics.json').then(function(r){ return r.json() }).then(function(j){ Z70.map=j.map||{}; Z70.emo=j.emo||{}; Z70.tile=j.tile||{}; try{ renderAll() }catch(e){} z70Kick() }).catch(function(){ Z70.map={} });
+fetch('data/pics.json').then(function(r){ return r.json() }).then(function(j){ Z70.map=j.map||{}; Z70.emo=j.emo||{}; Z70.tile=j.tile||{}; Z70.vague=j.vague||[]; Z70.kw=j.kw||{}; Z70.sym=j.sym||[]; /* v83 */ try{ renderAll() }catch(e){} z70Kick() }).catch(function(){ Z70.map={} });
 
 /* ===== 71 · the last old drawings, brought up to the shaded style =====
    Thầy Tâm (Home welcome, game mascot, the round avatar) is now one of our shaded people with a waving arm.
@@ -3200,3 +3200,34 @@ var fcFresh82=fcFresh; fcFresh=function(){ var a=fcFresh82(); try{ if(!a.length|
     now.sort(function(x,y){ return FCBY[x.split('|')[0]].k27-FCBY[y.split('|')[0]].k27 }); return now.concat(dq,old,rest) }catch(e){ return a } };
 var fcRender82=fcRender; fcRender=function(){ fcRender82(); try{ var el=$('#z-fc'); if(!el||el.querySelector('.z82note')||!z53On()) return; var cur=z53Cur(), b=el.querySelector('.btn.primary'); if(!cur||!b) return; var n=0; z53Ls().filter(function(x){ return x.l.lv===cur.l.lv }).forEach(function(x,k){ if(x.l.id===cur.l.id) n=k+1 });
     b.parentNode.insertBefore(h('p',{class:'small muted z82note',text:'New cards follow your lesson: the words of bài '+n+' come first, then the everyday questions.'}),b.nextSibling) }catch(e){} };
+
+
+/* ===== 83 · Home order back, clearer game hints, the welcome picture =====
+   HOME (Ben, 18 Nov evening: "the new home page feels more busy when you put the lesson at the top, the other way looks cleaner"):
+     back to welcome · six big rooms · today's lesson · tools. The numbered path stays inside the lesson card and the Handbook stays in the tools row.
+   GAMES ("these emojis are not good enough, need something that makes way more sense"): data/pics.json now lists the pictures that are a
+     symbol, a face or a hand sign (key "vague", made by src/art/pics.py). In a game, a word with one of those shows its English meaning
+     instead of the picture (z83Vague → z60Has). Things you can point at (food, animals, places, objects, people, colours) keep their picture.
+   WELCOME PICTURE: Z21AL (the drawing on the first-run welcome screen) still had the first cartoons of Thầy Tâm and Ben. It is now the two
+     current figures (z71Tam, z78Ben) in front of a simple skyline. */
+var Z83={vg:null};
+/* A picture is a real hint only when it SHOWS the meaning. Test: does the word's English meaning share a word (or the first four letters of one)
+   with what the emoji set says the picture is (Z70.kw)? "cà phê = coffee" + picture "hot beverage, coffee, tea" → yes. "hơn = more" + picture "chart increasing" → no.
+   If the meaning is not known, fall back to the list of symbol / face / hand pictures (Z70.vague). People drawings and our own drawings always count. */
+var Z83STOP={the:1,and:1,not:1,for:1,with:1,you:1,are:1,one:1,from:1,that:1,this:1,have:1,very:1,what:1,how:1,can:1,get:1,per:1,out:1,off:1,too:1,its:1,your:1,face:1,sign:1,button:1,mark:1,symbol:1,person:1,hand:1,man:1,woman:1};
+function z83Vague(vi){ try{ var k=z70Key(vi); if(Z70L[k]) return false; var sl=(Z70.map&&Z70.map[k])||z70Card(k); if(!sl) return false; if(sl.indexOf('x-')===0) return false;
+    if(!Z83.sy){ Z83.sy={}; (Z70.sym||[]).forEach(function(s){ Z83.sy[s]=1 }) } if(Z83.sy[sl]) return true;
+    var g=''; try{ g=z80Dict()[z79K(vi)]||'' }catch(e){} var kw=Z70.kw&&Z70.kw[sl];
+    if(g&&kw){ var a=(g.toLowerCase().match(/[a-z]{3,}/g)||[]).filter(function(w){ return !Z83STOP[w] }), b=kw.split(' ').filter(function(w){ return !Z83STOP[w] }), hit=false;
+      a.forEach(function(x){ b.forEach(function(y){ if(x===y||(x.length>=4&&y.length>=4&&x.slice(0,4)===y.slice(0,4))) hit=true }) }); return !hit }
+    if(!Z83.vg){ Z83.vg={}; (Z70.vague||[]).forEach(function(s){ Z83.vg[s]=1 }) } return !!Z83.vg[sl] }catch(e){ return false } }
+var z60Has83=z60Has; z60Has=function(vi){ try{ var b=$('#sheet-body'); if(b&&b.classList.contains('z60play')&&z83Vague(vi)) return false }catch(e){} return z60Has83(vi) };
+var z59Hub83=z59Hub; z59Hub=function(){ z59Hub83(); try{ var hub=$('#z-hub'); if(!hub) return; hub.classList.remove('z80'); var day=hub.querySelector('.z59day'), grid=hub.querySelector('.z59grid'), hd=hub.querySelector('.z80rooms'), tip=hub.querySelector('.z80tip');
+    if(hd) hd.remove(); if(day&&grid) hub.insertBefore(grid,day); if(tip&&day) hub.insertBefore(tip,day.nextSibling) }catch(e){} };
+try{ Z21AL='<svg viewBox="0 0 390 220" aria-hidden="true"><rect width="390" height="220" fill="#CFE6FF"/><circle cx="300" cy="64" r="46" fill="#FFE39A"/>'+
+  '<g fill="#A9C7F2"><rect x="0" y="120" width="44" height="100"/><rect x="48" y="96" width="30" height="124"/><rect x="82" y="132" width="40" height="88"/><rect x="286" y="112" width="34" height="108"/><rect x="324" y="88" width="28" height="132"/><rect x="356" y="128" width="34" height="92"/></g>'+
+  '<g fill="#BFD6F7"><rect x="128" y="140" width="36" height="80"/><rect x="232" y="146" width="46" height="74"/></g><rect x="0" y="196" width="390" height="24" fill="#8FCF8A"/>'+
+  '<g transform="translate(150 150) scale(-1.02 1.02)">'+z71Tam(true)+'</g><g transform="translate(246 142) scale(1.12)">'+z78Ben(true)+'</g></svg>' }catch(e){}
+/* v83: the "inside a game" marker is cleared when the game closes, so cards and lists get their pictures back */
+function z83Clr(){ try{ var b=$('#sheet-body'); if(b) b.classList.remove('z60play') }catch(e){} }
+try{ var closeSheet83=closeSheet; closeSheet=function(){ var r=closeSheet83.apply(this,arguments); z83Clr(); return r }; var zOpen83=zOpen; zOpen=function(){ z83Clr(); return zOpen83.apply(this,arguments) } }catch(e){}

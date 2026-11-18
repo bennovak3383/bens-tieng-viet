@@ -846,3 +846,16 @@ Also decided: no AI speech build-out for now, he will use ChatGPT for free conve
     questions, (3) earlier lessons, (4) the topic levels. Only the order changed: which cards are open, the daily limit and the review
     schedule are the same. The Cards page says which lesson comes first (.z82note).
 Tests: src/tests/t82.py (new). Older tests not re-run for this change. NOT checked: a real phone.
+
+VERSION 83 (18 Nov 2026) - clearer game hints, Home back to rooms first, new welcome picture
+- GAME HINTS: inside games a picture is only shown when it clearly shows the word (rain, sleep, coffee, dog).
+  If the picture is a face, a hand, an arrow, a sign, or its keywords do not match the word's meaning,
+  the game shows the English meaning instead. Rule lives in z83Vague (block 83). Data: pics.json now also
+  has "vague", "sym" and "kw" (made by src/art/pics.py). About 330 words keep a picture, about 1,125 show English.
+  Cards and word lists outside games are unchanged.
+- HOME: rooms on top again, lesson card second. Path dots and Handbook stay. (z59Hub wrapper in block 83.)
+- WELCOME PICTURE: the old teacher + Ben drawing (Z21AL) is redrawn with the new style-B Thay Tam and Ben.
+- GUIDE: 9 of the 15 "how it works" screenshots re-made (img/guide) so they show the new look.
+- FIX: the "inside a game" marker is cleared when a game closes (z83Clr).
+- TESTED: src/tests/t83.py on the phone-size test browser, no errors. NOT tested: a real phone.
+- No new Vietnamese written in this version.
