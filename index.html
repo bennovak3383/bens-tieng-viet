@@ -1430,6 +1430,15 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z7speed.z82f{display:flex;flex-direction:column;align-items:flex-start;gap:8px}.z82sp{font-weight:800}
 .fcgrade.two{display:grid;grid-template-columns:1fr 1.6fr;gap:10px}.fcgrade.two .btn{min-height:64px}.fcgrade.two .fcg2{background:#12A26E;border-color:#0B7F55;color:#fff;box-shadow:0 4px 0 #0B7F55}
 .z82more{align-self:center;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:700;text-decoration:underline;cursor:pointer;padding:6px}
+/* ===== v97: gentle life for the painted word pictures (files named x-c-...). They pop in, then slowly zoom and drift. ===== */
+.z70i[src*="/x-c-"]{border-radius:20%;filter:drop-shadow(0 4px 6px rgba(24,32,58,.2))}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes z97drift{0%{transform:scale(1) translate(0,0) rotate(0)}50%{transform:scale(1.07) translate(1.2%,-1.6%) rotate(.7deg)}100%{transform:scale(1.03) translate(-1.2%,.8%) rotate(-.6deg)}}
+  .z70i[src*="/x-c-"]{animation:z77picin .42s cubic-bezier(.2,.8,.2,1) backwards,z97drift 7s ease-in-out .42s infinite alternate;will-change:transform}
+  .z70i[src*="/x-c-"][src$="a.webp"],.z70i[src*="/x-c-"][src$="o.webp"]{animation-duration:.42s,8.5s;animation-delay:0s,-2s}
+  .z70i[src*="/x-c-"][src$="i.webp"],.z70i[src*="/x-c-"][src$="u.webp"],.z70i[src*="/x-c-"][src$="g.webp"]{animation-duration:.42s,6s;animation-delay:0s,-3.5s;animation-direction:normal,alternate-reverse}
+  .z70i[src*="/x-c-"].z77tap{animation:z77jelly .5s ease-out!important}
+}
 </style>
 
 <div class="wrap" id="app">

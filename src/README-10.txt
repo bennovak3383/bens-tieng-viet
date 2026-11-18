@@ -963,3 +963,10 @@ VERSION 96 (19 Nov 2026) - 9 more ChatGPT sheets cut in: 81 pictures. All word d
 - Of 1,456 game words: 1,092 show a picture, 364 show the English meaning (grammar words).
 - Still to do: the 6 Home screen tiles in the same painted quality.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 97 (19 Nov 2026) - gentle motion for the painted word pictures
+- Every painted picture (file name x-c-...) pops in, then slowly zooms and drifts, a little differently from picture to picture.
+  A tap still gives the jelly bounce. All CSS at the end of v7.css (z97drift). No new files, works offline.
+- People who set "reduce motion" on their phone get no movement.
+- Ben's plan for the Home screen: richer / rotating art there later; everything else keeps this simple movement.
+- TESTED: src/tests/t97.py (painted moves, other pictures unchanged, reduce-motion off) and t84, no errors. NOT tested: a real phone.
