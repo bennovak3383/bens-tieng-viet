@@ -2181,3 +2181,18 @@ suy nghĩ | custom:c-nghi
 tưởng | custom:c-nghi
 định | custom:c-nghi
 tính | custom:c-nghi
+
+# --- Canva AI pictures added by canva_add.py
+chờ | custom:c-cho
+đợi | custom:c-cho
+chờ kết quả | custom:c-cho
+xem | custom:c-xem
+coi | custom:c-xem
+nhìn | custom:c-xem
+nhìn thấy | custom:c-xem
+thấy | custom:c-xem
+trông | custom:c-xem
+gặp | custom:c-gap
+làm quen | custom:c-gap
+người quen | custom:c-gap
+giới thiệu | custom:c-gap

@@ -915,3 +915,8 @@ VERSION 89 (18 Nov 2026) - 6 more Canva AI pictures (speak, ask, listen, tired, 
 - Canva stopped the run with "Your credit usage is cooling down". It limits how many pictures can be made in a short time,
   so 100 at once is not possible. Next ones queued: wait, watch, meet, hand over, push, pull, remember, friend, lift, family.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 90 (18 Nov 2026) - 3 more Canva AI pictures (wait, watch, meet). 20 in total.
+- Canva cooled down again after only 3, 45 minutes after the last run. So the real pace is slow: a few pictures per run.
+- Still queued: hand over, push, pull, remember, friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
