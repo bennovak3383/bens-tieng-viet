@@ -25,3 +25,10 @@ Secrets (AI key) live in Cloudflare only, never in this repo.
 - `data/voice-lines.json` is the list speakers record from. It is built from the app's own content by `python3 src/voice/make_lines.py .` — **run it again after any change to the words, phrases, situations or stories** and commit the result. The recording page picks up the new list straight away.
 - Recordings count by their words, not by line number, so rebuilding the list never loses one. A changed line becomes a gap again; a new line is a gap; a removed line just drops off the list.
 - Approved speaker fixes: `GET /api/voice/linefix` lists them (old → new wording). Put the new wording into the app content, then rebuild the list.
+
+## Zelus (training and food log) — temporary home
+- Live at `/zelus/`. A separate app that lives here until it moves to its own repo and Pages project.
+- `zelus/` — the whole app (`index.html`), its own offline worker (`sw.js`, scoped to `/zelus/` only) and icons.
+- `functions/zelus/api/[[path]].js` — its server. Uses this project's `KV` binding with every key prefixed `zl:`, so it never touches the Vietnamese app's data. If a namespace is bound as `ZELUS` it uses that instead, with no prefix.
+- Meal estimates use the same `ANTHROPIC_API_KEY`. Optional `INVITE` variable limits who can create an account.
+- Nothing in `zelus/` depends on the Vietnamese app, and the reverse.
