@@ -883,3 +883,18 @@ VERSION 85 (18 Nov 2026) - batch 3 of our own drawings
 - Now: 92 drawings cover 168 words. Of 1,456 game words 866 show a picture, 590 show English.
 - Drawn but left out as not clear enough: chia doi, vai (shoulder).
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 86-87 (18 Nov 2026) - full picture audit finished, and the drawings now use the Home screen people
+- PEOPLE: Ben asked why the word drawings did not feel like the Home screen. They now use the same people
+  (exported from the app's z63Person into src/art/people.json; words.py bust() and mini() place them, add arms, legs and moods).
+- BATCH 4 and 5: 67 more drawings (we, this, that, who, what, how many, when, OK, wrong, more, yesterday / now / later,
+  on time, follow, take, put, swap, explain, easy, hard, beautiful, short, thin, new, old, lose, around, face, throat, live,
+  most, open, close, jump, fish sauce, soy sauce, pepper, tofu, rolls, nine, five, double, split, missing, enough, wide,
+  tight, deep, ugly, cross, turn, turn back, nobody, sale, all gone, board, Vietnamese, translate, stove, towel, iron,
+  pool, pavement, roundabout, T-junction, neck).
+- AUDIT: every one of the 1,456 game words was looked at.
+  src/art/pics_ok.txt = pictures kept. src/art/pics_no.txt = pictures turned down (15). pics.json has "ok" and "no".
+- FINAL COUNT: 159 drawings cover 356 words. 1,092 words show a picture. 364 show the English meaning.
+  The 364 are grammar words and ideas (because, but, very, still, should, quality, responsibility ...) that a picture cannot show.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+- No new Vietnamese written.

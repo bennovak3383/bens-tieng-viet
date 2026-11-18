@@ -6112,7 +6112,7 @@ function z70Deco(){ Z70.q=0; if(!Z70.map) return; var used={};
   [].forEach.call(document.querySelectorAll('.settile:not(.z70s)'),function(t){ try{ t.classList.add('z70s'); if(t.querySelector('.gpic,.z12pic,.z70i,svg')) return; var b=t.querySelector('b'); var p=b&&z70Tile(b.textContent,used); if(p) t.insertBefore(h('span',{class:'gpic z70g','aria-hidden':'true',html:p}),t.firstChild) }catch(x){} }) }
 function z70Kick(){ if(Z70.q) return; Z70.q=1; (window.requestAnimationFrame||setTimeout)(z70Deco) }
 try{ new MutationObserver(z70Kick).observe(document.documentElement,{childList:true,subtree:true}) }catch(e){}
-fetch('data/pics.json').then(function(r){ return r.json() }).then(function(j){ Z70.map=j.map||{}; Z70.emo=j.emo||{}; Z70.tile=j.tile||{}; Z70.vague=j.vague||[]; Z70.kw=j.kw||{}; Z70.sym=j.sym||[]; Z70.ok=j.ok||[]; /* v83, v84 */ try{ renderAll() }catch(e){} z70Kick() }).catch(function(){ Z70.map={} });
+fetch('data/pics.json').then(function(r){ return r.json() }).then(function(j){ Z70.map=j.map||{}; Z70.emo=j.emo||{}; Z70.tile=j.tile||{}; Z70.vague=j.vague||[]; Z70.kw=j.kw||{}; Z70.sym=j.sym||[]; Z70.ok=j.ok||[]; Z70.no=j.no||[]; /* v83, v84, v86 */ try{ renderAll() }catch(e){} z70Kick() }).catch(function(){ Z70.map={} });
 
 /* ===== 71 · the last old drawings, brought up to the shaded style =====
    Thầy Tâm (Home welcome, game mascot, the round avatar) is now one of our shaded people with a waving arm.
@@ -6783,7 +6783,7 @@ var Z83={vg:null};
    with what the emoji set says the picture is (Z70.kw)? "cà phê = coffee" + picture "hot beverage, coffee, tea" → yes. "hơn = more" + picture "chart increasing" → no.
    If the meaning is not known, fall back to the list of symbol / face / hand pictures (Z70.vague). People drawings and our own drawings always count. */
 var Z83STOP={the:1,and:1,not:1,for:1,with:1,you:1,are:1,one:1,from:1,that:1,this:1,have:1,very:1,what:1,how:1,can:1,get:1,per:1,out:1,off:1,too:1,its:1,your:1,face:1,sign:1,button:1,mark:1,symbol:1,person:1,hand:1,man:1,woman:1};
-function z83Vague(vi){ try{ var k=z70Key(vi); if(Z70L[k]) return false; var sl=(Z70.map&&Z70.map[k])||z70Card(k); if(!sl) return false; if(sl.indexOf('x-')===0) return false; if(!Z83.ok){ Z83.ok={}; (Z70.ok||[]).forEach(function(s){ Z83.ok[s]=1 }) } if(Z83.ok[k]||Z83.ok[String(vi||'').toLowerCase().normalize('NFC')]) return false; /* v84: checked by eye */
+function z83Vague(vi){ try{ var k=z70Key(vi); if(Z70L[k]) return false; var sl=(Z70.map&&Z70.map[k])||z70Card(k); if(!sl) return false; if(sl.indexOf('x-')===0) return false; if(!Z83.no){ Z83.no={}; (Z70.no||[]).forEach(function(s){ Z83.no[s]=1 }) } if(Z83.no[k]||Z83.no[String(vi||'').toLowerCase().normalize('NFC')]) return true; /* v86: turned down by eye */ if(!Z83.ok){ Z83.ok={}; (Z70.ok||[]).forEach(function(s){ Z83.ok[s]=1 }) } if(Z83.ok[k]||Z83.ok[String(vi||'').toLowerCase().normalize('NFC')]) return false; /* v84: checked by eye */
     if(!Z83.sy){ Z83.sy={}; (Z70.sym||[]).forEach(function(s){ Z83.sy[s]=1 }) } if(Z83.sy[sl]) return true;
     var g=''; try{ g=z80Dict()[z79K(vi)]||'' }catch(e){} var kw=Z70.kw&&Z70.kw[sl];
     if(g&&kw){ var a=(g.toLowerCase().match(/[a-z]{3,}/g)||[]).filter(function(w){ return !Z83STOP[w] }), b=kw.split(' ').filter(function(w){ return !Z83STOP[w] }), hit=false;

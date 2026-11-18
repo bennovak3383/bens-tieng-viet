@@ -91,7 +91,8 @@ try:
 except Exception as e: print('vague list skipped:',e)
 print('vague pictures',len(vague))
 ok = sorted({t.strip().lower() for l in open(os.path.join(repo,'src/art/pics_ok.txt'),encoding='utf8') if not l.startswith('#') for t in l.split(';') if t.strip()})   # v84: pictures checked by eye
-json.dump({'v':2,'note':'Pictures: Microsoft Fluent Emoji (MIT licence), see img/p/LICENSE.txt','map':m,'emo':emo,'tile':tiles,'vague':vague,'sym':sym,'kw':kw,'ok':ok}, open(os.path.join(repo,'data/pics.json'),'w'), ensure_ascii=False, separators=(',',':'))
+no = sorted({t.strip().lower() for l in open(os.path.join(repo,'src/art/pics_no.txt'),encoding='utf8') if not l.startswith('#') for t in l.split(';') if t.strip()})   # v86: looked at and turned down
+json.dump({'v':2,'note':'Pictures: Microsoft Fluent Emoji (MIT licence), see img/p/LICENSE.txt','map':m,'emo':emo,'tile':tiles,'vague':vague,'sym':sym,'kw':kw,'ok':ok,'no':no}, open(os.path.join(repo,'data/pics.json'),'w'), ensure_ascii=False, separators=(',',':'))
 lic = os.path.join(src,'LICENSE')
 if os.path.exists(lic): open(os.path.join(out,'LICENSE.txt'),'w').write('The pictures in this folder come from Fluent Emoji by Microsoft (https://github.com/microsoft/fluentui-emoji), resized.\n\n'+open(lic).read())
 print('words',len(m),'| emoji',len(emo),'| tiles',len(tiles),'| pictures',len(want),'| new files',n,'| size %.1f MB'%(total/1e6))

@@ -1941,3 +1941,195 @@ cố lên | custom:w-khoe
 thăm | custom:w-den
 ghé | custom:w-den
 uống nhiều nước | custom:w-uong
+
+# --- v86: batch 4 (full audit)
+chúng ta | custom:w-chungta
+chúng tôi | custom:w-chungta
+tụi mình | custom:w-chungta
+tụi | custom:w-chungta
+này | custom:w-nay
+cái này | custom:w-nay
+đây | custom:w-nay
+nè | custom:w-nay
+nó | custom:w-nay
+kia | custom:w-kia
+đó | custom:w-kia
+cái đó | custom:w-kia
+ấy | custom:w-kia
+đằng kia | custom:w-kia
+kìa | custom:w-kia
+cái kia | custom:w-kia
+ở kia | custom:w-kia
+ai | custom:w-ai
+ai đó | custom:w-ai
+gì | custom:w-gi
+cái gì | custom:w-gi
+gì đó | custom:w-gi
+bao nhiêu | custom:w-baonhieu
+mấy | custom:w-baonhieu
+khi nào | custom:w-khinao
+chừng nào | custom:w-khinao
+bao giờ | custom:w-khinao
+được | custom:w-duoc
+được rồi | custom:w-duoc
+đúng | custom:w-duoc
+đúng rồi | custom:w-duoc
+ổn | custom:w-duoc
+không sao | custom:w-duoc
+tốt | custom:w-duoc
+có thể | custom:w-duoc
+được phép | custom:w-duoc
+cho phép | custom:w-duoc
+xài được | custom:w-duoc
+ừ | custom:w-duoc
+sai | custom:w-sai
+không thể | custom:w-sai
+tệ | custom:w-sai
+hủy | custom:w-sai
+không phải | custom:w-khong
+thêm | custom:w-them
+nữa | custom:w-them
+dư | custom:w-them
+hôm qua | custom:w-qua3
+hôm kia | custom:w-qua3
+năm ngoái | custom:w-qua3
+trước đây | custom:w-qua3
+lúc nãy | custom:w-qua3
+hồi đó | custom:w-qua3
+bây giờ | custom:w-nay3
+hiện tại | custom:w-nay3
+sau | custom:w-sau3
+sau đó | custom:w-sau3
+lát nữa | custom:w-sau3
+mốt | custom:w-sau3
+năm sau | custom:w-sau3
+lần sau | custom:w-sau3
+tiếp theo | custom:w-sau3
+đúng giờ | custom:w-dunggio
+kịp | custom:w-dunggio
+theo | custom:w-theo
+dẫn | custom:w-theo
+lấy | custom:w-lay
+đặt | custom:w-dat
+để | custom:w-dat
+đổi | custom:w-doi
+thay | custom:w-doi
+thay đổi | custom:w-doi
+đổi trả | custom:w-doi
+giải thích | custom:w-giaithich
+hướng dẫn | custom:w-giaithich
+dạy | custom:w-giaithich
+dễ | custom:w-de
+dễ dàng | custom:w-de
+đơn giản | custom:w-de
+khó | custom:w-kho
+khó khăn | custom:w-kho
+đẹp | custom:w-dep
+ngắn | custom:w-ngan
+ốm | custom:w-om
+mới | custom:w-moi
+mới tinh | custom:w-moi
+cũ | custom:w-cu
+đồ cũ | custom:w-cu
+làm mất | custom:w-lammat
+quanh | custom:w-quanh
+mặt | custom:w-mat2
+họng | custom:w-hong
+đau họng | custom:w-hong
+ở | custom:w-o
+sống | custom:w-o
+ở lại | custom:w-o
+đa số | custom:w-daso
+phần lớn | custom:w-daso
+mở | custom:w-mo2
+đóng | custom:w-dong
+đóng cửa | custom:w-dong
+nhảy | custom:w-nhay
+con người | custom:w-ho
+về | custom:w-den
+quay về | custom:w-den
+nhớ nhà | custom:w-nho
+kỷ niệm | custom:w-nho
+có | custom:w-cam
+với | custom:w-ban
+cùng | custom:w-ban
+hết | custom:w-xong
+rồi | custom:w-xong
+trông | custom:w-xem
+lên xe | custom:w-len
+xuống xe | custom:w-xuong
+chuẩn bị | custom:w-sansang
+kêu | custom:w-oi
+báo | custom:w-noi
+tiếng | custom:w-noi
+giọng | custom:w-noi
+khuyên | custom:w-noi
+tuyệt | custom:w-vui
+tuyệt vời | custom:w-vui
+định | custom:w-nghi
+tính | custom:w-nghi
+giùm | custom:w-giup
+bằng | custom:w-giong
+bước | custom:w-di
+anh đi đâu đó? | custom:w-di
+thả | custom:w-roi
+nghĩa là gì | custom:w-khong-hieu
+độc thân | custom:w-motminh
+chờ kết quả | custom:w-cho
+còn xa không | custom:w-xa
+gần tới | custom:w-gan
+đối tác | custom:w-dongy
+anh có khỏe không? | custom:w-khoe
+
+# --- v86: batch 5
+nước mắm | custom:w-nuocmam
+nước tương | custom:w-nuoctuong
+tiêu | custom:w-tieu
+đậu hũ | custom:w-dauhu
+gỏi cuốn | custom:w-goicuon
+bánh cuốn | custom:w-banhcuon
+chín | custom:w-so9
+năm | custom:w-so5
+gấp đôi | custom:w-gapdoi
+gấp | custom:w-gapdoi
+chia đôi | custom:w-chiadoi2
+thiếu | custom:w-thieu
+đủ | custom:w-du
+đầy đủ | custom:w-du
+rộng | custom:w-rong
+chật | custom:w-chat
+sâu | custom:w-sau2
+xấu | custom:w-xau
+qua | custom:w-qua
+sang | custom:w-qua
+quẹo | custom:w-queo
+trở lại | custom:w-quaylai
+quay | custom:w-quaylai
+không ai | custom:w-khongai
+khuyến mãi | custom:w-khuyenmai
+hết rồi | custom:w-het
+bảng | custom:w-bang
+tiếng việt | custom:w-vn
+người việt | custom:w-vn
+dịch | custom:w-dich
+dịch thuật | custom:w-dich
+bếp | custom:w-bep
+khăn | custom:w-khan
+khăn tắm | custom:w-khan
+ủi | custom:w-ui
+hồ bơi | custom:w-hoboi
+vỉa hè | custom:w-viahe
+bùng binh | custom:w-bungbinh
+ngã ba | custom:w-nga3
+cổ | custom:w-co
+trước | custom:w-qua3
+trước khi | custom:w-qua3
+đã | custom:w-qua3
+sau khi | custom:w-sau3
+sẽ | custom:w-sau3
+sắp | custom:w-sau3
+đang | custom:w-nay3
+nay | custom:w-nay3
+cuối cùng | custom:w-xong
+người quen | custom:w-gap
+giới thiệu | custom:w-gap

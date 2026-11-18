@@ -7,4 +7,5 @@
 <linearGradient id="ye" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#FFC531"/></linearGradient>
 <linearGradient id="pu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A58BFF"/><stop offset="1" stop-color="#7B5CF0"/></linearGradient>
 <linearGradient id="wh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E6ECF8"/></linearGradient>
+<clipPath id="gnd"><rect x="0" y="0" width="256" height="233"/></clipPath>
 </defs><ellipse cx="128" cy="232" rx="90" ry="9" fill="#18203A" opacity=".13"/><circle cx="128" cy="130" r="56" fill="#FFE27A" opacity=".45"/><circle cx="128" cy="136" r="26" fill="url(#pk)"/><circle cx="118.9" cy="126.9" r="7.8" fill="#fff" opacity=".45"/><path d="M56 140 h144 v70 q0 12 -12 12 h-120 q-12 0 -12 -12z" fill="#D9A066"/><rect x="48" y="130" width="160" height="18" rx="7" fill="#C48A50"/><path d="M48 132 l-18 -26 h30 l14 26z" fill="#E6B77E"/><path d="M208 132 l18 -26 h-30 l-14 26z" fill="#E6B77E"/></svg>

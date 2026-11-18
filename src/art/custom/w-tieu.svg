@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><defs>
+<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE0C2"/><stop offset="1" stop-color="#F2C39A"/></linearGradient>
+<linearGradient id="bl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B8DEF"/><stop offset="1" stop-color="#2F6BE0"/></linearGradient>
+<linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4CC9A0"/><stop offset="1" stop-color="#1FA57C"/></linearGradient>
+<linearGradient id="or" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB45C"/><stop offset="1" stop-color="#F58A1F"/></linearGradient>
+<linearGradient id="pk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8FA8"/><stop offset="1" stop-color="#EE5B7E"/></linearGradient>
+<linearGradient id="ye" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#FFC531"/></linearGradient>
+<linearGradient id="pu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A58BFF"/><stop offset="1" stop-color="#7B5CF0"/></linearGradient>
+<linearGradient id="wh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E6ECF8"/></linearGradient>
+<clipPath id="gnd"><rect x="0" y="0" width="256" height="233"/></clipPath>
+</defs><ellipse cx="128" cy="232" rx="70" ry="9" fill="#18203A" opacity=".13"/><path d="M92 110 h72 l10 110 q0 10 -10 10 h-72 q-10 0 -10 -10z" fill="url(#wh)" stroke="#B9C6E0" stroke-width="4"/><path d="M96 150 h64 l6 66 h-76z" fill="#5A4A42"/><path d="M90 110 q0 -44 38 -44 q38 0 38 44z" fill="#8D95AD"/><circle cx="116" cy="84" r="3.5" fill="#39456B"/><circle cx="128" cy="78" r="3.5" fill="#39456B"/><circle cx="140" cy="84" r="3.5" fill="#39456B"/><circle cx="122" cy="96" r="3.5" fill="#39456B"/><circle cx="134" cy="96" r="3.5" fill="#39456B"/><circle cx="198" cy="214" r="4" fill="#39456B"/><circle cx="212" cy="222" r="4" fill="#39456B"/><circle cx="204" cy="230" r="4" fill="#39456B"/><circle cx="46" cy="222" r="4" fill="#39456B"/><circle cx="58" cy="230" r="4" fill="#39456B"/></svg>
