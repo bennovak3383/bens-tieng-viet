@@ -898,3 +898,14 @@ VERSION 86-87 (18 Nov 2026) - full picture audit finished, and the drawings now 
   The 364 are grammar words and ideas (because, but, very, still, should, quality, responsibility ...) that a picture cannot show.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
 - No new Vietnamese written.
+
+VERSION 88 (18 Nov 2026) - first painted-style pictures made with Canva AI
+- Ben compared our drawings with a kids' Vietnamese app and wanted that level, for adults. Canva's AI picture maker
+  (his Pro account) gives it: people really doing the action.
+- 11 pictures in: eat, drink, go, want, like, understand, not understand, happy, hungry, help, late.
+  Originals in src/art/canva/. App copies are src/art/custom/c-*.png (256 px, white background removed). Wired at the end of pics_map.txt.
+- Same few people every time: the man in the blue polo, the woman in the yellow blouse, the older woman with a bun.
+  Canva media ids used as the look reference: man MAHbRDrOe3o, woman MAHbRGOW-9k, older woman MAHbRBFWy5o.
+- Ben's brief for the rest: about 80% Vietnamese-looking people, some mix of others; do about 100 at a time; redo the Home tiles too.
+- NOTE: the tool only hands back 200 px previews, so pictures are a little soft when shown big. Fine at hint size.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.

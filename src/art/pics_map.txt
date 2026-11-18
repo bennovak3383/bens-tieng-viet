@@ -2133,3 +2133,31 @@ nay | custom:w-nay3
 cuối cùng | custom:w-xong
 người quen | custom:w-gap
 giới thiệu | custom:w-gap
+
+# --- v88: painted-style pictures made with Canva AI (src/art/canva/*.png are the originals). Later lines win.
+ăn | custom:c-an
+giúp | custom:c-giup
+giúp đỡ | custom:c-giup
+hỗ trợ | custom:c-giup
+giùm | custom:c-giup
+trễ | custom:c-tre
+trễ giờ | custom:c-tre
+uống | custom:c-uong
+uống nhiều nước | custom:c-uong
+đi | custom:c-di
+đi bộ | custom:c-di
+bước | custom:c-di
+anh đi đâu đó? | custom:c-di
+muốn | custom:c-muon
+thích | custom:c-thich
+hiểu | custom:c-hieu
+biết | custom:c-hieu
+nghĩ ra | custom:c-hieu
+không hiểu | custom:c-khong-hieu
+nghĩa là gì | custom:c-khong-hieu
+vui | custom:c-vui
+vui vẻ | custom:c-vui
+hạnh phúc | custom:c-vui
+tuyệt | custom:c-vui
+tuyệt vời | custom:c-vui
+đói | custom:c-doi
