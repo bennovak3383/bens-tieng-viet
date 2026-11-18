@@ -2407,3 +2407,163 @@ khi nào | custom:c-khinao
 chừng nào | custom:c-khinao
 bao giờ | custom:c-khinao
 không ai | custom:c-khongai
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+nhiều | custom:c-nhieu
+ít | custom:c-it
+một chút | custom:c-it
+chút | custom:c-it
+tất cả | custom:c-tatca
+mọi thứ | custom:c-tatca
+cả | custom:c-tatca
+toàn bộ | custom:c-tatca
+vài | custom:c-vai
+một vài | custom:c-vai
+một số | custom:c-vai
+hơn | custom:c-hon
+gấp đôi | custom:c-gapdoi
+gấp | custom:c-gapdoi
+chia đôi | custom:c-chiadoi2
+thiếu | custom:c-thieu
+đủ | custom:c-du
+đầy đủ | custom:c-du
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+ủi | custom:c-ui
+hồ bơi | custom:c-hoboi
+vỉa hè | custom:c-viahe
+bùng binh | custom:c-bungbinh
+ngã ba | custom:c-nga3
+quẹo | custom:c-queo
+trái | custom:c-trai
+bên trái | custom:c-trai
+bên phải | custom:c-phai
+thẳng | custom:c-thang
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+nước mắm | custom:c-nuocmam
+nước tương | custom:c-nuoctuong
+tiêu | custom:c-tieu
+đậu hũ | custom:c-dauhu
+gỏi cuốn | custom:c-goicuon
+bánh cuốn | custom:c-banhcuon
+bếp | custom:c-bep
+khăn | custom:c-khan
+khăn tắm | custom:c-khan
+tủ lạnh | custom:c-tulanh
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+giống | custom:c-giong
+bằng | custom:c-giong
+khác | custom:c-khac
+mới | custom:c-moi
+mới tinh | custom:c-moi
+cũ | custom:c-cu
+đồ cũ | custom:c-cu
+đẹp | custom:c-dep
+xấu | custom:c-xau
+sạch | custom:c-sach
+hư | custom:c-hu
+bị hư | custom:c-hu
+bể | custom:c-hu
+đổ | custom:c-do
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+mở | custom:c-mo2
+đóng | custom:c-dong
+đóng cửa | custom:c-dong
+đầu | custom:c-dau
+mặt | custom:c-mat2
+bụng | custom:c-bung
+cổ | custom:c-co
+họng | custom:c-hong
+đau họng | custom:c-hong
+gối | custom:c-goi
+đa số | custom:c-daso
+phần lớn | custom:c-daso
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+rộng | custom:c-rong
+chật | custom:c-chat
+sâu | custom:c-sau2
+ngắn | custom:c-ngan
+giá | custom:c-gia
+giá cuối | custom:c-gia
+khuyến mãi | custom:c-khuyenmai
+hết rồi | custom:c-het
+bảng | custom:c-bang
+dịch | custom:c-dich
+dịch thuật | custom:c-dich
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+ăn | custom:c-an
+uống | custom:c-uong
+uống nhiều nước | custom:c-uong
+đi | custom:c-di
+đi bộ | custom:c-di
+bước | custom:c-di
+anh đi đâu đó? | custom:c-di
+muốn | custom:c-muon
+thích | custom:c-thich
+hiểu | custom:c-hieu
+biết | custom:c-hieu
+nghĩ ra | custom:c-hieu
+không hiểu | custom:c-khong-hieu
+nghĩa là gì | custom:c-khong-hieu
+vui | custom:c-vui
+vui vẻ | custom:c-vui
+hạnh phúc | custom:c-vui
+tuyệt | custom:c-vui
+tuyệt vời | custom:c-vui
+đói | custom:c-doi
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+giúp | custom:c-giup
+giúp đỡ | custom:c-giup
+hỗ trợ | custom:c-giup
+giùm | custom:c-giup
+trễ | custom:c-tre
+trễ giờ | custom:c-tre
+nói | custom:c-noi
+kể | custom:c-noi
+bảo | custom:c-noi
+báo | custom:c-noi
+tiếng | custom:c-noi
+giọng | custom:c-noi
+khuyên | custom:c-noi
+hỏi | custom:c-hoi
+nghe | custom:c-nghe
+nghe thấy | custom:c-nghe
+mệt | custom:c-met
+mỏi | custom:c-met
+mua | custom:c-mua
+nghĩ | custom:c-nghi
+suy nghĩ | custom:c-nghi
+tưởng | custom:c-nghi
+định | custom:c-nghi
+tính | custom:c-nghi
+chờ | custom:c-cho
+đợi | custom:c-cho
+chờ kết quả | custom:c-cho
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+xem | custom:c-xem
+coi | custom:c-xem
+nhìn | custom:c-xem
+nhìn thấy | custom:c-xem
+thấy | custom:c-xem
+trông | custom:c-xem
+gặp | custom:c-gap
+làm quen | custom:c-gap
+người quen | custom:c-gap
+giới thiệu | custom:c-gap
+đưa | custom:c-dua
+kéo | custom:c-keo
+đẩy | custom:c-day
+nhớ | custom:c-nho
+nhớ lại | custom:c-nho
+nhớ nhà | custom:c-nho
+kỷ niệm | custom:c-nho
+đọc | custom:c-doc
+viết | custom:c-viet
+chạy | custom:c-chay

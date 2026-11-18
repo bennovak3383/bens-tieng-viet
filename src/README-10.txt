@@ -954,3 +954,12 @@ VERSION 95 (19 Nov 2026) - 7 more ChatGPT sheets cut in: 63 pictures. 96 painted
 - Painted pictures now cover 246 words. Code drawings (words.py) still cover 110 words: 64 drawings, mostly things, food, roads, amounts.
 - Still to do on sheets: those 64, then redo the 24 white-background Canva ones with backgrounds, then the 6 Home tiles.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 96 (19 Nov 2026) - 9 more ChatGPT sheets cut in: 81 pictures. All word drawings are now painted.
+- Sheets H-M: food and kitchen, roads and directions, amounts, same/different/new/old, body, room/price/shop ideas.
+- Sheets N-P: the 24 early white-background Canva pictures redone with backgrounds, plus read, write, run.
+- 153 painted pictures now cover 324 words. Only 10 code drawings stay on purpose (35 words): the week-tick calendars
+  (always, usually, sometimes, never), yesterday / now / later strips, numbers 5 and 9, the Vietnam flag.
+- Of 1,456 game words: 1,092 show a picture, 364 show the English meaning (grammar words).
+- Still to do: the 6 Home screen tiles in the same painted quality.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
