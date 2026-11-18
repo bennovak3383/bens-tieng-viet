@@ -799,3 +799,26 @@ The Vietnamese labels added on the page ("từ ngắn", "câu", the help line) a
 Tests: t60 t61 t68 t70–t76 and t78 run again, same results as v78; t77 was NOT run again this time (it is slow and touches nothing changed here).
   src/tests/t79.py (new; it fakes the server answers and adds a look-inside line to the page while testing, the real file is not
   changed). NOT checked: a real recording saved from a phone with the new part names; the real server; the teacher page's line counts.
+
+VERSION 80 — simpler Home, tap any word, handbook (Ben, 18 Nov, after comparing with Lingora: "I don't want to just copy it. Take what they
+do good and beat it… tap anywhere for words, clean up all the other stuff, make ours more simple. But keep the fun stuff we have and the
+drill downs. Go ahead with your suggestions.")
+HOME (z59Hub wrapped in block 80; #z-hub gets class z80). Order now: welcome · TODAY card · practice rooms · tools. Nothing removed.
+  The today card moved above the six rooms. Inside it, z80Path(): "E1 · bài 4 / 6" and one numbered dot per lesson of the level
+  (green tick = done, blue = now, faded = not open yet). A dot opens that lesson (z53Lesson); a closed one opens the course map (z53Road).
+  The six rooms are the same buttons, three to a row and smaller. The tools row has a sixth button, Sổ tay · Handbook (two rows of three on a phone).
+  "Start today" is unchanged: it still runs the same daily route (the route already mixes the new unit, cards that are due and listening).
+TAP ANY WORD (z80Click → z80At → z80Show)
+  One click listener on the page. It reads the word under the finger from the text itself (caretPositionFromPoint / caretRangeFromPoint),
+  so no screen had to be re-drawn. It does nothing when the tap is on a button, link, input, anything with a pointer cursor, a story
+  (stories keep their own popup), or its own card. The stretch of text between separators must look Vietnamese (has a Vietnamese letter,
+  or every word in it is a known word), so English lines do not trigger it. The longest known phrase of up to 4 syllables wins
+  ("cà phê sữa đá" before "cà phê"). The card: hear it, meaning, "▶ the whole line", "+ Save to my cards". Tapped word is marked yellow
+  where the browser supports the Highlight API.
+  Meanings come from z80Dict(): story glosses, cards, core-unit words, the extra word levels and the learner's own words (1,846 now).
+  A Vietnamese word with no entry still opens the card with "no note for this word yet" and the sound.
+  Limit: words printed ON buttons (game tiles, answers) are not tappable for meaning; that is on purpose.
+HANDBOOK (z80Book): one sheet linking to the tones room, letters, sound lessons, sharp ears, the 15 patterns, the course map, everyday
+  questions, Saigon, scenes; then a searchable word list (Vietnamese or English). It only links to rooms that already exist. Also listed in "find anything".
+Tests: src/tests/t80.py (new). t71 (Home), t74 (tools row) and t61 (stories) run again. The other older tests were NOT run again this time.
+NOT checked: a real phone (word tap depends on the browser finding the word under the finger; Safari on iPhone is the one to try first).

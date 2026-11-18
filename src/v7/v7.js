@@ -3095,3 +3095,69 @@ function z79Aud(){ var c=AUD.idx&&AUD.idx.clips; if(!c) return {}; if(Z79.aud!==
 var clipFor79=clipFor; clipFor=function(text){ try{ var v=S.set.vx||'r', k=String(text).normalize('NFC').trim(), q=z79K(text);
     if(q&&AUD.el&&S.set.src!=='phone'&&(v==='r'||v==='both')&&!(Z17.map[k]||Z17.map[k.toLowerCase()])){ var m=z79Real()[q]; if(m&&m.length&&(v==='r'||Math.random()<.5)) return [pick(m),0,1e12,2] }
     var c=clipFor79(text); if(c||!q) return c; var k2=z79Aud()[q]; return (k2&&k2!==k&&k2!==k.toLowerCase())?clipFor79(k2):null }catch(e){ return clipFor79(text) } };
+
+
+/* ===== 80 · simpler Home (the path first), tap any word, a handbook =====
+   Home order is now: welcome · TODAY (lesson number, the numbered path, start) · the six rooms (smaller) · tools. Nothing was removed.
+   z80Path: the lessons of the level as numbered dots (done / now / next). Tap one to open that lesson; "Course map" opens the whole map.
+   z80Word: tap any Vietnamese word in plain text anywhere in the app → what it means, hear it, save it. It never fires on buttons, links,
+     inputs or anything else that is tappable, and stories keep their own word popup. No text is re-drawn for it: it reads the word under the finger.
+   z80Book: Sổ tay · handbook. Tones, letters, sound lessons, sentence patterns and a word list in one place. It only links to rooms that exist. */
+var Z80={dict:null,n:0,pop:null};
+function z80Dict(){ var seen=0; try{ seen=(C7.cards||[]).length+((S.set.myc13||[]).length)+((Z13&&Z13.wj)?1:0)+((Z27&&Z27.units)?Z27.units.length:0) }catch(e){} if(Z80.dict&&Z80.n===seen) return Z80.dict;
+  var d={}; function add(vi,en){ try{ var k=z79K(vi); if(k&&en&&!d[k]&&k.split(' ').length<=4) d[k]=String(en) }catch(e){} }
+  try{ z61Gloss(); Object.keys(C6.gloss||{}).forEach(function(k){ add(k,C6.gloss[k]) }) }catch(e){}
+  try{ (C7.cards||[]).forEach(function(c){ add(c.vi,c.en) }) }catch(e){}
+  try{ (Z27.units||[]).forEach(function(u){ (u.w||[]).forEach(function(w){ add(w[0],w[1]) }) }) }catch(e){}
+  try{ ((Z13.wj&&Z13.wj.levels)||[]).forEach(function(L){ (L.cards||[]).forEach(function(c){ add(c.vi,c.en) }) }) }catch(e){}
+  try{ (S.set.myc13||[]).forEach(function(c){ add(c.vi,c.en) }) }catch(e){}
+  Z80.dict=d; Z80.n=seen; return d }
+var Z80VN=/[ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]/i;
+function z80Busy(el){ for(var n=el,i=0;n&&n!==document.body&&i<12;n=n.parentNode,i++){ if(n.nodeType!==1) continue; var tg=n.tagName; if(/^(BUTTON|A|INPUT|TEXTAREA|SELECT|LABEL|SUMMARY|OPTION|svg|SVG|AUDIO|VIDEO|CANVAS)$/.test(tg)||n.isContentEditable||n.getAttribute('role')==='button'||n.classList.contains('z61story')||n.classList.contains('z80pop')||n.classList.contains('z80no')) return true; try{ if(getComputedStyle(n).cursor==='pointer') return true }catch(e){} } return false }
+function z80At(x,y){ var r=null, node=null, off=0; try{ if(document.caretPositionFromPoint){ var p=document.caretPositionFromPoint(x,y); if(p){ node=p.offsetNode; off=p.offset } } else if(document.caretRangeFromPoint){ r=document.caretRangeFromPoint(x,y); if(r){ node=r.startContainer; off=r.startOffset } } }catch(e){}
+  if(!node||node.nodeType!==3) return null; var s=node.nodeValue, toks=[], re=/[^\s.,!?…;:"“”()\[\]·|\/—–+=<>0-9]+/g, m; while((m=re.exec(s))) toks.push({w:m[0],a:m.index,b:m.index+m[0].length});
+  var ti=-1; for(var i=0;i<toks.length;i++) if(off>=toks[i].a&&off<=toks[i].b){ ti=i; break } if(ti<0) return null;
+  function box(a,b){ var g=document.createRange(); g.setStart(node,toks[a].a); g.setEnd(node,toks[b].b); return g }
+  try{ var q=box(ti,ti).getBoundingClientRect(); if(x<q.left-3||x>q.right+3||y<q.top-3||y>q.bottom+3) return null }catch(e){ return null }
+  /* the stretch of text between separators (· | — and sentence ends) that holds the word: it must look Vietnamese */
+  var lo=ti, hi=ti; while(lo>0&&!/[·|—–.!?…:;()\/]/.test(s.slice(toks[lo-1].b,toks[lo].a))) lo--; while(hi<toks.length-1&&!/[·|—–.!?…:;()\/]/.test(s.slice(toks[hi].b,toks[hi+1].a))) hi++;
+  var D=z80Dict(), seg=s.slice(toks[lo].a,toks[hi].b), allIn=true; for(i=lo;i<=hi;i++) if(!D[z79K(toks[i].w)]) allIn=false; if(!Z80VN.test(seg)&&!allIn) return null;
+  /* longest known phrase (up to 4 syllables) that includes the tapped word */
+  for(var len=Math.min(4,hi-lo+1);len>=1;len--) for(var a=Math.max(lo,ti-len+1);a<=ti&&a+len-1<=hi;a++){ var ph=s.slice(toks[a].a,toks[a+len-1].b), k=z79K(ph); if(D[k]) return {vi:ph.replace(/\s+/g,' '),en:D[k],range:box(a,a+len-1),line:seg.trim()} }
+  if(!Z80VN.test(toks[ti].w)) return null; return {vi:toks[ti].w,en:'',range:box(ti,ti),line:seg.trim()} }
+function z80Hide(){ try{ if(Z80.pop){ Z80.pop.remove(); Z80.pop=null } if(window.CSS&&CSS.highlights) CSS.highlights.delete('z80') }catch(e){} }
+function z80Show(w){ z80Hide(); try{ if(window.CSS&&CSS.highlights&&window.Highlight) CSS.highlights.set('z80',new Highlight(w.range)) }catch(e){}
+  var low=w.vi.charAt(0).toLowerCase()+w.vi.slice(1), p=h('div',{class:'z80pop z61pop',role:'dialog','aria-label':'Word'});
+  p.appendChild(h('div',{class:'z61pw'},[h('button',{class:'play','aria-label':'Hear the word',html:PLAY_ICON,onclick:function(){ zSay(low) }}),h('div',{},[h('b',{text:w.vi}),h('span',{text:w.en||'no note for this word yet'})]),h('button',{class:'x',text:'×','aria-label':'Close',onclick:z80Hide})]));
+  var row=h('div',{class:'z80row'}); if(w.line&&z79K(w.line)!==z79K(w.vi)&&w.line.length<=90) row.appendChild(h('button',{class:'chip z61sv',text:'▶ '+w.line,onclick:function(){ zSay(w.line) }}));
+  try{ if(w.en){ var sb=z74SaveBtn(low,w.en,'',''); sb.classList.add('z61sv'); row.appendChild(sb) } }catch(e){} if(row.children.length) p.appendChild(row);
+  document.body.appendChild(p); Z80.pop=p; try{ S.tap[z79K(w.vi)]=(S.tap[z79K(w.vi)]||0)+1; if(!S.set.tip80){ S.set.tip80=1; var tp=document.querySelector('.z80tip'); if(tp) tp.remove() } save() }catch(e){} try{ zSay(low) }catch(e){} }
+function z80Click(e){ try{ if(e.defaultPrevented||(typeof Z68!=='undefined'&&Z68.blind&&!$('#sheet').hidden)) return; var t=e.target; if(Z80.pop&&Z80.pop.contains(t)) return; if(!t||z80Busy(t)){ if(Z80.pop&&!(t&&t.closest&&t.closest('.z80pop'))) z80Hide(); return }
+    var w=z80At(e.clientX,e.clientY); if(w) z80Show(w); else z80Hide() }catch(x){} }
+try{ document.addEventListener('click',z80Click); window.addEventListener('hashchange',z80Hide); var closeSheet80=closeSheet; closeSheet=function(){ z80Hide(); return closeSheet80.apply(this,arguments) }; var zOpen80=zOpen; zOpen=function(){ z80Hide(); return zOpen80.apply(this,arguments) } }catch(e){}
+/* the numbered path on Home */
+function z80Path(){ try{ if(!z53On()||z26On()) return null; var cur=z53Cur(); if(!cur) return null; var ls=z53Ls().filter(function(x){ return x.l.lv===cur.l.lv }), box=h('div',{class:'z80path z80no'}), row=h('div',{class:'z80dots'}), at=0;
+    ls.forEach(function(L,k){ var nU=L.to-L.from+1, dU=z53UDone(L), done=dU>=nU, now=L.l.id===cur.l.id, open=z53Open(L); if(now) at=k+1;
+      row.appendChild(h('button',{class:'z80d'+(done?' done':'')+(now?' now':'')+(!open?' lock':''),title:L.l.t,'aria-label':'Bài '+(k+1)+': '+L.l.t+(done?' (done)':now?' (now)':open?'':' (not open yet)'),onclick:function(){ if(open) z53Lesson(L); else z53Road() }},[document.createTextNode(done?'✓':String(k+1))])) });
+    box.appendChild(h('div',{class:'z80ph'},[h('b',{text:z53Nm(cur.l.lv)+' · bài '+at+' / '+ls.length}),h('button',{class:'z80map',text:'Lộ trình · course map ›',onclick:function(){ z53Road() }})])); box.appendChild(row); return box }catch(e){ return null } }
+/* Sổ tay · handbook */
+function z80Book(){ var body=zOpen(); body.classList.add('z60b'); body.appendChild(zTop('Sổ tay · handbook',null,null));
+  body.appendChild(h('p',{class:'muted',text:'The things you look up again and again, in one place.'}));
+  function go(v){ return function(){ try{ closeSheet() }catch(e){} location.hash=v } }
+  var G=[['Âm và dấu · sounds and tones',[['Dấu','The six tones','musical-notes',go('tones')],['Chữ cái','Letters and sound boards','speaker-high-volume',function(){ z62Menu() }],['Bài âm','Sound lessons: vowel pairs, spelling, mouth','ear',go('van')],['Nghe kỹ','Sharp ears: words that sound close','ear',function(){ zEar10() }]]],
+         ['Câu · sentences',[['Mẫu câu','15 sentence patterns, step by step','puzzle-piece',function(){ z64Build() }],['Lộ trình','Course map: every lesson and its grammar','spiral-calendar',function(){ z53Road() }],['Hỏi đáp','Questions people ask you every day','microphone',go('quest')]]],
+         ['Đời sống · real life',[['Sài Gòn','Signs, menus, places, the Saigon way','cityscape',function(){ z74Saigon() }],['Cảnh','Scenes: who is who, what they do','people-hugging',function(){ z63Menu() }]]]];
+  G.forEach(function(g){ body.appendChild(h('h3',{class:'z80h',text:g[0]})); var grid=h('div',{class:'z80bk'}); g[1].forEach(function(x){ grid.appendChild(h('button',{class:'z80bi',onclick:function(){ try{ x[3]() }catch(e){} }},[h('span',{class:'pi',html:z70Slug(x[2])}),h('div',{},[h('b',{text:x[0]}),h('small',{text:x[1]})])])) }); body.appendChild(grid) });
+  body.appendChild(h('h3',{class:'z80h',text:'Từ điển · word list'}));
+  var D=z80Dict(), keys=Object.keys(D).sort(function(a,b){ return a.localeCompare(b,'vi') }), inp=h('input',{type:'search',class:'z74q',placeholder:'Tìm từ · find a word (Vietnamese or English)',autocomplete:'off','aria-label':'Find a word'}), out=h('div',{class:'z80wl'}), cnt=h('p',{class:'small muted'});
+  function draw(){ var q=z74Bare(inp.value.trim()), n=0; out.innerHTML=''; var hit=keys.filter(function(k){ return !q||z74Bare(k).indexOf(q)>=0||String(D[k]).toLowerCase().indexOf(q)>=0 }); hit.slice(0,q?60:24).forEach(function(k){ n++; out.appendChild(h('button',{class:'z80w',onclick:function(ev){ try{ ev.stopPropagation() }catch(e){} var g=document.createRange(); g.selectNodeContents(ev.currentTarget.firstChild); z80Show({vi:k,en:D[k],range:g,line:''}) }},[h('b',{text:k}),h('span',{text:D[k]})])) });
+    cnt.textContent=q?(hit.length+' found'+(hit.length>n?' · showing '+n:'')):(keys.length+' words · type to search') }
+  inp.oninput=draw; body.appendChild(inp); body.appendChild(cnt); body.appendChild(out); draw();
+  body.appendChild(h('p',{class:'small muted',text:'Tip: anywhere in the app, tap a Vietnamese word in a sentence to hear it and see what it means.'})) }
+/* Home: today first, rooms smaller, handbook in the tools row */
+var z59Hub80=z59Hub; z59Hub=function(){ z59Hub80(); try{ var hub=$('#z-hub'); if(!hub) return; hub.classList.add('z80');
+    var day=hub.querySelector('.z59day'), grid=hub.querySelector('.z59grid'); if(day&&grid){ hub.insertBefore(day,grid); var hd=day.querySelector('.z59dh'), pth=z80Path(); if(pth&&hd) day.insertBefore(pth,hd.nextSibling) }
+    if(grid&&!hub.querySelector('.z80rooms')) hub.insertBefore(h('h2',{class:'z80rooms',text:'Luyện tập · practice rooms'}),grid);
+    if(!S.set.tip80&&grid) hub.insertBefore(h('p',{class:'z80tip',text:'Mẹo · tip: tap any Vietnamese word in a sentence to hear it and see what it means.'}),hub.querySelector('.z80rooms'));
+    var m=hub.querySelector('.z59more.z74strip'); if(m&&!m.querySelector('.z74-book')){ var b=h('button',{class:'z74b z74-book',onclick:function(){ z80Book() }},[h('span',{class:'pi',html:z70Slug('books')}),h('b',{text:'Sổ tay'}),h('small',{text:'Handbook'})]); m.insertBefore(b,m.querySelector('.z74-all')) } }catch(e){} };
+try{ var I80=z74Items; z74Items=function(){ var a=I80(); try{ a[0][1].push(['Sổ tay','Handbook: tones, patterns, word list','handbook reference tones patterns dictionary word list so tay look up','books',function(){ z80Book() }]) }catch(e){} return a } }catch(e){}
