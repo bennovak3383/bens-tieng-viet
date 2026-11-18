@@ -754,3 +754,24 @@ Offline list: 761 files (7.0 MB, was 6.3) + 27 sound bundles.
 Tests: src/tests/t77.py (new) runs everything twice: normal, and with "reduce motion" on. t60 t61 t68 t70–t76 run again, all as before
   (t68 "word tap while hidden opens popup: False" was already so in v76). NOT checked: a real phone, how smooth it feels on an older
   phone, Safari, the one-time picture refresh on a phone that already saved v76.
+
+VERSION 78 — the people redrawn in one style (Ben, 18 Nov: shown a sample of a flat style A and a more detailed style B, he chose B; then
+"Tam: make a bit more Vietnamese in look, and me just a little bit older", sent a photo of himself, "close enough and blue [eyes]. Yes run
+them through the whole app so it all feels the same".)
+ONE FUNCTION DRAWS EVERYONE: z63Person(look, tall). Scene people (40 in data/scenes.json), family pictures on cards (Z70L), the Home tiles,
+Thầy Tâm (Z71T) and now Ben. Block 78 holds a SECOND  function z63Person  declaration. In one script the last declaration of a name wins
+from the start, so everything built while the app loads (tile art, the teacher badge Z21TA) uses the new one. The old one is still in
+block 63/69, unused. To change how people look, edit the one in block 78.
+  Kept: size, position, every look option (hair short/short2/long/pony/bun/grey/kid, shirt, glasses, must, coat, tie, apron, hats), the blink
+  and breathing classes. Changed: a jaw instead of a round face, smaller almond eyes with a lid line, shaped brows, a nose, a new smile,
+  hair texture, softer cheeks, slightly warmer default skin. No gradients and no ids (a person can be drawn many times on a page).
+  New look options: hair 'fade' / 'quiff', hl, hd, sh, eye, brow, beard (a colour), lines.
+Thầy Tâm: set inside z63Person (when the look is Z71T): black fade haircut, warmer skin, navy shirt. z71Arm's skin colour was edited in
+  place to match (#EDC69A). Drawn from Ben's description, NOT from a photo of him.
+Ben: Z78B + z78Ben() + z78BenEl(), from the photo Ben sent: short dark-blond hair lifted at the front, short beard, blue eyes, black button
+  shirt, a few light lines. He was not on any screen before (the old full-body Ben from src/art/ben.py is in scene art that no longer
+  shows). Now he stands beside Thầy Tâm on the end-of-round screen (z60Mascot wrapped), a little taller. That is the only place so far.
+The samples shown in the chat were bigger waist-up portraits with gradients; the app version is the same look fitted to the existing
+  small figures, so it is simpler than the sample.
+NOT done: the two children ("kid" hair) use the same adult face. No change to the scene backgrounds, teacher.html, or any words.
+Tests: src/tests/t78.py (new). t60 t61 t68 t70–t77 run again, same results as v77. NOT checked: a real phone; Thầy Tâm has not seen his cartoon.

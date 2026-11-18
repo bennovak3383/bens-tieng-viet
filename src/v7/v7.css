@@ -1013,3 +1013,8 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
   .z77bd{animation:z77bird 16s linear infinite}
   .z77sn{animation:z77sun 4s ease-in-out infinite}
 }
+
+/* 78 · people redrawn. Ben beside Thầy Tâm on the end-of-round screen (a little taller, facing in). */
+.z60mas .z59tam.z78ben{order:0;width:84px;height:122px;transform:scaleX(-1);animation:none}
+.z60mas .z59tam.z78ben svg{animation:z59bob 2.8s ease-in-out -1s infinite;transform-origin:50% 100%}
+@media (prefers-reduced-motion:reduce){ .z60mas .z59tam.z78ben svg{animation:none} }
