@@ -2161,3 +2161,23 @@ hạnh phúc | custom:c-vui
 tuyệt | custom:c-vui
 tuyệt vời | custom:c-vui
 đói | custom:c-doi
+
+# --- Canva AI pictures added by canva_add.py
+nói | custom:c-noi
+kể | custom:c-noi
+bảo | custom:c-noi
+báo | custom:c-noi
+tiếng | custom:c-noi
+giọng | custom:c-noi
+khuyên | custom:c-noi
+hỏi | custom:c-hoi
+nghe | custom:c-nghe
+nghe thấy | custom:c-nghe
+mệt | custom:c-met
+mỏi | custom:c-met
+mua | custom:c-mua
+nghĩ | custom:c-nghi
+suy nghĩ | custom:c-nghi
+tưởng | custom:c-nghi
+định | custom:c-nghi
+tính | custom:c-nghi

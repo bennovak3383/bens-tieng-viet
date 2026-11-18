@@ -909,3 +909,9 @@ VERSION 88 (18 Nov 2026) - first painted-style pictures made with Canva AI
 - Ben's brief for the rest: about 80% Vietnamese-looking people, some mix of others; do about 100 at a time; redo the Home tiles too.
 - NOTE: the tool only hands back 200 px previews, so pictures are a little soft when shown big. Fine at hint size.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 89 (18 Nov 2026) - 6 more Canva AI pictures (speak, ask, listen, tired, buy, think). 17 in total.
+- New helper: src/art/canva_add.py (see its first lines).
+- Canva stopped the run with "Your credit usage is cooling down". It limits how many pictures can be made in a short time,
+  so 100 at once is not possible. Next ones queued: wait, watch, meet, hand over, push, pull, remember, friend, lift, family.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
