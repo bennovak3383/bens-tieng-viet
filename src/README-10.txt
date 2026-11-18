@@ -920,3 +920,8 @@ VERSION 90 (18 Nov 2026) - 3 more Canva AI pictures (wait, watch, meet). 20 in t
 - Canva cooled down again after only 3, 45 minutes after the last run. So the real pace is slow: a few pictures per run.
 - Still queued: hand over, push, pull, remember, friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 91 (18 Nov 2026) - 2 more Canva AI pictures (hand over, pull). 22 in total.
+- Canva pace so far: 17, then 3, then 2 per run with about 50 minutes between. Treat it as roughly 2-3 pictures an hour.
+- Still queued: push, remember, friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
