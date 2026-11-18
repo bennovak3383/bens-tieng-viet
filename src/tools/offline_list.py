@@ -7,7 +7,7 @@ repo = sys.argv[1] if len(sys.argv) > 1 else '.'
 os.chdir(repo)
 files = ['./', 'manifest.webmanifest', 'lib/qrcode.js', 'art/cards.json', 'audio/index.json']
 files += sorted(f for f in glob.glob('data/*.json') if os.path.basename(f) not in ('offline.json', 'voice-lines.json'))
-files += sorted(glob.glob('img/*.jpg')) + sorted(glob.glob('img/icon-*.png')) + sorted(glob.glob('img/p/*.webp'))
+files += sorted(glob.glob('img/*.jpg')) + sorted(glob.glob('img/icon-*.png')) + sorted(glob.glob('img/p/*.webp')) + sorted(glob.glob('img/home/*.webp'))
 files = [f for f in files if f == './' or os.path.exists(f)]
 audio = []
 try: audio = ['audio/' + b for b in json.load(open('audio/index.json')).get('bundles', [])]
