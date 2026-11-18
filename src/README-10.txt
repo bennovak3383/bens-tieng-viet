@@ -930,3 +930,8 @@ VERSION 92 (19 Nov 2026) - 1 more Canva AI picture (push). 23 in total.
 - Canva let only 1 through after a 100 minute rest. The limit looks like a slow trickle, about 1 an hour, after the first 17.
 - Still queued: remember, friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 93 (19 Nov 2026) - 1 more Canva AI picture (remember). 24 in total.
+- Canva again let only 1 through. Pace is about 1 an hour through this connection.
+- Still queued: friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.

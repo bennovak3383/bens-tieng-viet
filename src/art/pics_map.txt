@@ -2203,3 +2203,9 @@ kéo | custom:c-keo
 
 # --- Canva AI pictures added by canva_add.py
 đẩy | custom:c-day
+
+# --- Canva AI pictures added by canva_add.py
+nhớ | custom:c-nho
+nhớ lại | custom:c-nho
+nhớ nhà | custom:c-nho
+kỷ niệm | custom:c-nho
