@@ -3231,3 +3231,21 @@ try{ Z21AL='<svg viewBox="0 0 390 220" aria-hidden="true"><rect width="390" heig
 /* v83: the "inside a game" marker is cleared when the game closes, so cards and lists get their pictures back */
 function z83Clr(){ try{ var b=$('#sheet-body'); if(b) b.classList.remove('z60play') }catch(e){} }
 try{ var closeSheet83=closeSheet; closeSheet=function(){ var r=closeSheet83.apply(this,arguments); z83Clr(); return r }; var zOpen83=zOpen; zOpen=function(){ z83Clr(); return zOpen83.apply(this,arguments) } }catch(e){}
+/* ===== v98: a richer Home. Each room tile shows painted art that changes every few seconds, and the app opens with a short welcome scene.
+   Pictures are in img/home (400 px copies of the painted word pictures). Nothing else on Home moves. ===== */
+var Z98={art:{snd:['noi','hoi','oi'],scn:['ban2','mua','quanh'],bld:['giaithich','noichuyen','viet'],gam:['vui','xong','chungta'],sto:['doc','nho','giadinh'],lis:['nghe','xem','hieu']},t:0,n:0};
+function z98Tiles(){ var hub=$('#z-hub'); if(!hub) return;
+  Z59.tiles.forEach(function(t,i){ var b=hub.querySelector('.z59-'+t[0]), a=Z98.art[t[0]]; if(!b||!a||b.querySelector('.z98ph')) return;
+    var ph=h('div',{class:'z98ph','aria-hidden':'true'}); a.forEach(function(k,j){ var im=document.createElement('img'); im.src='img/home/'+k+'.webp'; im.alt=''; im.decoding='async'; im.draggable=false; if(j===0) im.className='on'; ph.appendChild(im) });
+    b.classList.add('z98t'); b.insertBefore(ph,b.firstChild) });
+  clearInterval(Z98.t); Z98.t=setInterval(function(){ try{ var hb=$('#z-hub'), v=$('#v-hub'); if(!hb||!v||v.hidden||document.hidden) return; var ts=hb.querySelectorAll('.z98ph'); if(!ts.length) return;
+    var ph=ts[Z98.n%ts.length]; Z98.n++; var ims=ph.querySelectorAll('img'), cur=0; [].forEach.call(ims,function(m,j){ if(m.classList.contains('on')) cur=j }); ims[cur].classList.remove('on'); ims[(cur+1)%ims.length].classList.add('on') }catch(e){} },1500) }
+var z59Hub98=z59Hub; z59Hub=function(){ z59Hub98(); try{ z98Tiles() }catch(e){} };
+/* the opening scene: once each time the app is opened, about two seconds, a tap skips it */
+function z98Open(){ try{ if(!S.set||!S.set.ob7) return; if(sessionStorage.getItem('z98')) return; sessionStorage.setItem('z98','1'); if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var nm=(S.me&&S.me.name)||'', cards=['giadinh','an','ban','noichuyen','vui'], o=h('div',{id:'z98sp',role:'presentation'});
+    var fan=h('div',{class:'fan'}); cards.forEach(function(k,i){ var c=h('div',{class:'cd c'+i}); var im=document.createElement('img'); im.src='img/home/'+k+'.webp'; im.alt=''; c.appendChild(im); fan.appendChild(c) });
+    o.appendChild(h('div',{class:'sun'})); o.appendChild(fan); o.appendChild(h('div',{class:'tt'},[h('small',{text:nm?('Chào '+nm+'!'):'Xin chào!'}),h('b',{text:'Ben’s Tiếng Việt'})]));
+    document.body.appendChild(o); var done=false; function end(){ if(done) return; done=true; o.classList.add('out'); setTimeout(function(){ try{ o.remove() }catch(e){} },560) }
+    o.addEventListener('click',end); setTimeout(end,2500) }catch(e){} }
+try{ z98Open() }catch(e){}

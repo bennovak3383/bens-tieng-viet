@@ -970,3 +970,14 @@ VERSION 97 (19 Nov 2026) - gentle motion for the painted word pictures
 - People who set "reduce motion" on their phone get no movement.
 - Ben's plan for the Home screen: richer / rotating art there later; everything else keeps this simple movement.
 - TESTED: src/tests/t97.py (painted moves, other pictures unchanged, reduce-motion off) and t84, no errors. NOT tested: a real phone.
+
+VERSION 98 (19 Nov 2026) - richer Home screen and an opening scene
+- HOME TILES: each of the 6 room tiles now shows painted art across the top that fades into the tile colour.
+  Each tile has 3 pictures and changes to the next every few seconds (one tile at a time), with a slow zoom.
+  Pictures: img/home/*.webp (400 px copies of the painted word pictures). Sets are in Z98.art (block 98 in v7.js).
+- OPENING SCENE: when the app is opened, five painted cards fan in over a deep blue background with "Chao <name>!" and the app name,
+  then it zooms away into Home. About 2.5 seconds, a tap skips it, once per app open, never on the very first set-up,
+  and not for people who set "reduce motion".
+- Thay Tam's hello card at the top is unchanged. Layout order is unchanged (rooms first).
+- LATER: Ben's Home sheet from ChatGPT (teacher + tall student) can replace the hello card art and the opening cards.
+- TESTED: src/tests/t98.py (art loads, changes, tiles still open rooms, opening shows once and leaves) and t84/t97. NOT tested: a real phone.

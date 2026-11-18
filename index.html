@@ -1439,6 +1439,47 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
   .z70i[src*="/x-c-"][src$="i.webp"],.z70i[src*="/x-c-"][src$="u.webp"],.z70i[src*="/x-c-"][src$="g.webp"]{animation-duration:.42s,6s;animation-delay:0s,-3.5s;animation-direction:normal,alternate-reverse}
   .z70i[src*="/x-c-"].z77tap{animation:z77jelly .5s ease-out!important}
 }
+/* ===== v98: richer Home tiles (painted art that changes) and the opening scene ===== */
+.z59t.z98t{min-height:196px;padding:0;justify-content:flex-end;box-shadow:0 6px 0 var(--sh),0 16px 28px rgba(20,40,90,.22);border-radius:28px}
+.z59t.z98t>.ic{display:none}
+.z59t.z98t>div:not(.z98ph){position:relative;z-index:2;padding:0 14px 14px;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.z59t.z98t b{font-size:21px}
+.z59t.z98t:after{display:none}
+.z98ph{position:absolute;inset:0 0 34% 0;overflow:hidden;border-radius:28px 28px 0 0;z-index:0}
+.z98ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;transition:opacity 1.1s ease;transform:scale(1.04)}
+.z98ph img.on{opacity:1}
+.z98ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.14) 0,rgba(255,255,255,0) 26%,rgba(0,0,0,0) 52%,var(--c) 100%)}
+.z59t.z98t:before{content:"";position:absolute;left:0;right:0;top:auto;bottom:0;height:48%;border-radius:0;background:linear-gradient(180deg,rgba(0,0,0,0),var(--c) 46%);z-index:1}
+.z59t.z98t em{z-index:3;background:rgba(0,0,0,.34)}
+#z98sp{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:radial-gradient(120% 80% at 50% 0,#3E7BEA 0,#1E4FB8 46%,#11295F 100%);overflow:hidden;cursor:pointer}
+#z98sp .sun{position:absolute;top:8%;left:50%;width:420px;height:420px;margin-left:-210px;border-radius:50%;background:radial-gradient(circle,rgba(255,224,138,.55) 0,rgba(255,224,138,0) 68%)}
+#z98sp .fan{position:relative;width:min(84vw,360px);height:min(60vw,250px)}
+#z98sp .cd{position:absolute;left:50%;top:50%;width:46%;aspect-ratio:1;margin:-23% 0 0 -23%;border-radius:22px;overflow:hidden;border:4px solid #fff;box-shadow:0 18px 34px rgba(4,14,44,.45);background:#fff}
+#z98sp .cd img{display:block;width:100%;height:100%;object-fit:cover}
+#z98sp .c0{z-index:5;--x:0%;--y:-4%;--r:0deg;--s:1.12}
+#z98sp .c1{z-index:4;--x:-62%;--y:6%;--r:-9deg;--s:.94}
+#z98sp .c2{z-index:4;--x:62%;--y:6%;--r:9deg;--s:.94}
+#z98sp .c3{z-index:3;--x:-112%;--y:22%;--r:-17deg;--s:.8}
+#z98sp .c4{z-index:3;--x:112%;--y:22%;--r:17deg;--s:.8}
+#z98sp .cd{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s))}
+#z98sp .tt{position:relative;text-align:center;color:#fff}
+#z98sp .tt small{display:block;font-size:17px;font-weight:800;letter-spacing:.06em;opacity:.9}
+#z98sp .tt b{display:block;font-size:34px;font-weight:900;letter-spacing:-.01em;margin-top:4px;text-shadow:0 4px 18px rgba(4,14,44,.5)}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes z98kb{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.14) translate(-1.5%,-2%)}}
+  .z98ph img.on{animation:z98kb 9s ease-out both}
+  @keyframes z98card{0%{opacity:0;transform:translate(calc(var(--x)*.2),90%) rotate(calc(var(--r)*-1.5)) scale(.5);filter:blur(6px)}60%{opacity:1;filter:blur(0)}80%{transform:translate(var(--x),calc(var(--y) - 3%)) rotate(var(--r)) scale(calc(var(--s)*1.03))}100%{opacity:1;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s));filter:blur(0)}}
+  #z98sp .cd{animation:z98card .95s cubic-bezier(.2,.85,.25,1) both}
+  #z98sp .c0{animation-delay:.1s}#z98sp .c1{animation-delay:.22s}#z98sp .c2{animation-delay:.3s}#z98sp .c3{animation-delay:.4s}#z98sp .c4{animation-delay:.48s}
+  @keyframes z98fl{0%,100%{translate:0 0}50%{translate:0 -6px}}
+  #z98sp .fan{animation:z98fl 3.2s ease-in-out 1.2s infinite}
+  @keyframes z98up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  #z98sp .tt small{animation:z98up .6s ease-out .75s both}#z98sp .tt b{animation:z98up .7s cubic-bezier(.2,.85,.25,1) .9s both}
+  @keyframes z98sun{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+  #z98sp .sun{animation:z98sun 1.4s ease-out both}
+  #z98sp{transition:opacity .5s ease,transform .55s cubic-bezier(.4,0,.2,1)}
+  #z98sp.out{opacity:0;transform:scale(1.18);pointer-events:none}
+}
 </style>
 
 <div class="wrap" id="app">
@@ -6808,6 +6849,24 @@ try{ Z21AL='<svg viewBox="0 0 390 220" aria-hidden="true"><rect width="390" heig
 /* v83: the "inside a game" marker is cleared when the game closes, so cards and lists get their pictures back */
 function z83Clr(){ try{ var b=$('#sheet-body'); if(b) b.classList.remove('z60play') }catch(e){} }
 try{ var closeSheet83=closeSheet; closeSheet=function(){ var r=closeSheet83.apply(this,arguments); z83Clr(); return r }; var zOpen83=zOpen; zOpen=function(){ z83Clr(); return zOpen83.apply(this,arguments) } }catch(e){}
+/* ===== v98: a richer Home. Each room tile shows painted art that changes every few seconds, and the app opens with a short welcome scene.
+   Pictures are in img/home (400 px copies of the painted word pictures). Nothing else on Home moves. ===== */
+var Z98={art:{snd:['noi','hoi','oi'],scn:['ban2','mua','quanh'],bld:['giaithich','noichuyen','viet'],gam:['vui','xong','chungta'],sto:['doc','nho','giadinh'],lis:['nghe','xem','hieu']},t:0,n:0};
+function z98Tiles(){ var hub=$('#z-hub'); if(!hub) return;
+  Z59.tiles.forEach(function(t,i){ var b=hub.querySelector('.z59-'+t[0]), a=Z98.art[t[0]]; if(!b||!a||b.querySelector('.z98ph')) return;
+    var ph=h('div',{class:'z98ph','aria-hidden':'true'}); a.forEach(function(k,j){ var im=document.createElement('img'); im.src='img/home/'+k+'.webp'; im.alt=''; im.decoding='async'; im.draggable=false; if(j===0) im.className='on'; ph.appendChild(im) });
+    b.classList.add('z98t'); b.insertBefore(ph,b.firstChild) });
+  clearInterval(Z98.t); Z98.t=setInterval(function(){ try{ var hb=$('#z-hub'), v=$('#v-hub'); if(!hb||!v||v.hidden||document.hidden) return; var ts=hb.querySelectorAll('.z98ph'); if(!ts.length) return;
+    var ph=ts[Z98.n%ts.length]; Z98.n++; var ims=ph.querySelectorAll('img'), cur=0; [].forEach.call(ims,function(m,j){ if(m.classList.contains('on')) cur=j }); ims[cur].classList.remove('on'); ims[(cur+1)%ims.length].classList.add('on') }catch(e){} },1500) }
+var z59Hub98=z59Hub; z59Hub=function(){ z59Hub98(); try{ z98Tiles() }catch(e){} };
+/* the opening scene: once each time the app is opened, about two seconds, a tap skips it */
+function z98Open(){ try{ if(!S.set||!S.set.ob7) return; if(sessionStorage.getItem('z98')) return; sessionStorage.setItem('z98','1'); if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var nm=(S.me&&S.me.name)||'', cards=['giadinh','an','ban','noichuyen','vui'], o=h('div',{id:'z98sp',role:'presentation'});
+    var fan=h('div',{class:'fan'}); cards.forEach(function(k,i){ var c=h('div',{class:'cd c'+i}); var im=document.createElement('img'); im.src='img/home/'+k+'.webp'; im.alt=''; c.appendChild(im); fan.appendChild(c) });
+    o.appendChild(h('div',{class:'sun'})); o.appendChild(fan); o.appendChild(h('div',{class:'tt'},[h('small',{text:nm?('Chào '+nm+'!'):'Xin chào!'}),h('b',{text:'Ben’s Tiếng Việt'})]));
+    document.body.appendChild(o); var done=false; function end(){ if(done) return; done=true; o.classList.add('out'); setTimeout(function(){ try{ o.remove() }catch(e){} },560) }
+    o.addEventListener('click',end); setTimeout(end,2500) }catch(e){} }
+try{ z98Open() }catch(e){}
 
 go(location.hash.slice(1)||'home');
 renderAll();
