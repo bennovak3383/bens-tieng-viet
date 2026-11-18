@@ -1050,3 +1050,8 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 @media (min-width:620px){ .z59more.z74strip{grid-template-columns:repeat(6,1fr)} .z80bk{grid-template-columns:repeat(4,1fr)} }
 @media (min-width:900px){ #z-hub.z80 .z59grid{grid-template-columns:repeat(6,1fr)} }
 .z80pop .z61sv{align-self:auto;font-weight:800}.z80pop .z61sv:disabled{opacity:.7}
+
+/* 82 · cards: folded speed, two answer buttons */
+.z7speed.z82f{display:flex;flex-direction:column;align-items:flex-start;gap:8px}.z82sp{font-weight:800}
+.fcgrade.two{display:grid;grid-template-columns:1fr 1.6fr;gap:10px}.fcgrade.two .btn{min-height:64px}.fcgrade.two .fcg2{background:#12A26E;border-color:#0B7F55;color:#fff;box-shadow:0 4px 0 #0B7F55}
+.z82more{align-self:center;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:700;text-decoration:underline;cursor:pointer;padding:6px}

@@ -1425,6 +1425,11 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 @media (min-width:620px){ .z59more.z74strip{grid-template-columns:repeat(6,1fr)} .z80bk{grid-template-columns:repeat(4,1fr)} }
 @media (min-width:900px){ #z-hub.z80 .z59grid{grid-template-columns:repeat(6,1fr)} }
 .z80pop .z61sv{align-self:auto;font-weight:800}.z80pop .z61sv:disabled{opacity:.7}
+
+/* 82 · cards: folded speed, two answer buttons */
+.z7speed.z82f{display:flex;flex-direction:column;align-items:flex-start;gap:8px}.z82sp{font-weight:800}
+.fcgrade.two{display:grid;grid-template-columns:1fr 1.6fr;gap:10px}.fcgrade.two .btn{min-height:64px}.fcgrade.two .fcg2{background:#12A26E;border-color:#0B7F55;color:#fff;box-shadow:0 4px 0 #0B7F55}
+.z82more{align-self:center;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:700;text-decoration:underline;cursor:pointer;padding:6px}
 </style>
 
 <div class="wrap" id="app">
@@ -3631,7 +3636,7 @@ function fcQueue(max){ var now=Date.now(), due=[]; FC.forEach(function(c){ if(!f
   return max?q.slice(0,max):q }
 function fcViEl(text,size){ return z7col(h('div',{class:'fcvi',style:size?'font-size:'+size+'px':''},[colorize(text,false)])) }
 function fcSession(onDone,max){ var body=zOpen(), tok=Z.tok, queue=fcQueue(max||0), i=0, done=0, right=0, first={}, total=queue.length;
-  body.appendChild(zTop('Thẻ · cards',0,onDone?null:['Cards',function(){ closeSheet(); location.hash='fc' }]));
+  body.appendChild(zTop('Thẻ · cards',0,onDone?null:['Cards',function(){ closeSheet(); location.hash='fc' }])); try{ z82Speed(body) }catch(e){}   /* v82: the speed buttons fold into one */
   function end(){ document.onkeydown=null; zDay('fc'); tick(); save(); var c=fcCounts(), tomorrow=0, t=fcStartOfDay()+2*DAY; for(var k in S.fc) if(S.fc[k].due<t&&FCBY[k.split('|')[0]]) tomorrow++;
     zSwap(body,[h('div',{class:'panel',style:'align-items:center;text-align:center'},[h('span',{class:'lbl',text:'Cards done for now'}),h('div',{class:'score',text:right+' / '+done}),h('p',{class:'muted',text:'Right first time. '+c.learned+' of '+c.total+' cards learned. About '+tomorrow+' due by tomorrow.'}),h('button',{class:'btn primary wide',id:'rf-next',text:onDone?'Next part':'Done',onclick:function(){ if(onDone) onDone(); else { closeSheet(); location.hash='fc' } }})])]) }
   if(!queue.length){ zSwap(body,[h('div',{class:'panel'},[h('p',{text:'Nothing due and no new cards left for today. Come back tomorrow, or raise “new cards a day” on the Cards page.'}),h('button',{class:'btn primary wide',text:onDone?'Next part':'Done',onclick:function(){ if(onDone) onDone(); else closeSheet() }})])]); return }
@@ -3659,9 +3664,12 @@ function fcSession(onDone,max){ var body=zOpen(), tok=Z.tok, queue=fcQueue(max||
     function reveal(){ if(shown) return; shown=true; ctl.innerHTML=''; if(fcr) fcr.stop();
       out.appendChild(h('div',{class:'panel fcback rf-reveal'},[z12Pic(c.vi,'sm'),h('div',{class:'row',style:'justify-content:center;flex-wrap:nowrap'},[fcViEl(c.vi),zPlay(c.vi)]),h('div',{class:'fcen',text:c.en}),
         c.xv?h('div',{class:'fcex'},[h('div',{class:'row',style:'flex-wrap:nowrap;justify-content:center'},[fcViEl(c.xv,19),zPlay(c.xv)]),h('div',{class:'small muted',text:c.xe})]):null]));
-      var gr=h('div',{class:'fcgrade'}); [['Again',0,'1'],['Hard',1,'2'],['Good',2,'3'],['Easy',3,'4']].forEach(function(b){ var n=nextIvl(st?{ivl:st.ivl,ease:st.ease,reps:st.reps,lapses:st.lapses}:null,b[1]);
-        gr.appendChild(h('button',{class:'btn fcg'+b[1],onclick:function(){ grade(b[1]) }},[h('b',{text:b[0]}),h('small',{text:(n.ivl===0?'<10 min':ivlLabel(n.ivl))+' · '+b[2]})])) });
-      out.appendChild(gr); zSay(c.vi); try{ out.scrollIntoView({block:'nearest',behavior:'smooth'}) }catch(e){} }
+      /* v82: two buttons by default (Again / Got it = "Good"); the four Anki buttons are one tap away and the choice is remembered (S.set.fcg4) */
+      var gr=h('div',{class:'fcgrade'}), more=h('button',{class:'z82more'});
+      function grades(){ gr.innerHTML=''; var four=!!S.set.fcg4; gr.classList.toggle('two',!four); (four?[['Again',0,'1'],['Hard',1,'2'],['Good',2,'3'],['Easy',3,'4']]:[['Again',0,'1'],['Got it',2,'3']]).forEach(function(b){ var n=nextIvl(st?{ivl:st.ivl,ease:st.ease,reps:st.reps,lapses:st.lapses}:null,b[1]);
+        gr.appendChild(h('button',{class:'btn fcg'+b[1],onclick:function(){ grade(b[1]) }},[h('b',{text:b[0]}),h('small',{text:(n.ivl===0?'<10 min':ivlLabel(n.ivl))+' · '+b[2]})])) }); more.textContent=four?'Fewer choices · just Again / Got it':'More choices · Hard / Easy' }
+      more.onclick=function(){ S.set.fcg4=S.set.fcg4?0:1; save(); grades() }; grades();
+      out.appendChild(gr); out.appendChild(more); zSay(c.vi); try{ out.scrollIntoView({block:'nearest',behavior:'smooth'}) }catch(e){} }
     function grade(g){ if(fcr){ fcr.stop(); var lr=fcr.last; if(lr&&lr.res&&lr.res.blob){ try{ zRecSave({kind:'card',ref:cid,target:c.vi,heard:lr.j.heard,score:Math.round(lr.j.score*100)/100,ok:lr.j.ok},lr.res.blob) }catch(e){} } } var n=nextIvl(st?{ivl:st.ivl,ease:st.ease,reps:st.reps,lapses:st.lapses}:null,g); n.due=n.ivl===0?Date.now()+10*60000:fcStartOfDay()+n.ivl*DAY+4*3600000; n.first=(st&&st.first)||Date.now(); S.fc[key]=n;
       if(isNew){ var d=dayKey(); S.fcn[d]=(S.fcn[d]||0)+1 } if(!first[key]){ first[key]=1; done++; if(g>=2) right++ } if(g===0) queue.splice(Math.min(queue.length,i+4),0,key);
       save(); i++; next() }
@@ -6743,6 +6751,23 @@ function z81Quiz(L,after){ var st=z53St(L.l.id); st.qz=st.qz||{n:0,miss:{}}; var
   z74Review({pool:P,R:st.qz,n:10,title:'Kiểm tra · bài '+L.n+' · lesson quiz',done:function(){ st.quiz=dayKey() },back:function(){ if(after) after(); else z53Lesson(L) }}) }
 function z81Row(L,row,st,dU,after,td){ var q=st.qz||{}, n=z81Pool(L).length;
   row('quiz',dU?(n+' things from this lesson: its words, its sentences and Thầy’s dialogues'+(q.n?' · best '+q.best+'%':'')):'Opens when you finish the first structure of this lesson',q.n?(st.quiz===td?'today · '+q.last+'%':q.last+'%'):'',(dU&&n>=4)?(q.n?'Again':'Quiz'):'',function(){ z81Quiz(L,after) }) }
+
+
+/* ===== 82 · cards: one Speed button, two answer buttons, new cards follow the lesson =====
+   z82Speed: in a card session the five speed buttons are folded behind one "Speed: Slow ▾" button (the same buttons, shown when it is tapped).
+   Two answer buttons are in fcSession itself (see the v82 note there).
+   fcFresh (wrapped): new cards now come in this order: (1) the lesson the learner is on, oldest unfinished structure first,
+   (2) the everyday questions, (3) earlier lessons, (4) the topic levels. Before it was everyday questions, then all finished lessons mixed, then topics.
+   Only the ORDER of new cards changed. Which cards are open, how many are new each day and when a card comes back are all unchanged. */
+function z82Speed(body){ var w=body.querySelector('.z7speed'); if(!w||w.classList.contains('z82f')) return; var row=w.querySelector('.speed'), lab=w.querySelector('span'); if(!row||!lab) return; w.classList.add('z82f');
+  function name(){ var on=row.querySelector('[aria-pressed="true"]')||row.querySelector('.on')||row.querySelector('.chip.sel'); if(on) return on.textContent.trim(); try{ var k=S.set.speed||1, b=null; SPEEDS.forEach(function(x){ if(Math.abs(x.k-k)<.01) b=x.l }); return b||'Normal' }catch(e){ return '' } }
+  var btn=h('button',{class:'chip z82sp','aria-expanded':'false'}); function draw(){ btn.textContent='Speed: '+name()+(row.hidden?' ▾':' ▴') } row.hidden=true; lab.replaceWith(btn);
+  btn.onclick=function(){ row.hidden=!row.hidden; btn.setAttribute('aria-expanded',String(!row.hidden)); draw() }; row.addEventListener('click',function(){ setTimeout(function(){ row.hidden=true; btn.setAttribute('aria-expanded','false'); draw() },160) }); draw() }
+var fcFresh82=fcFresh; fcFresh=function(){ var a=fcFresh82(); try{ if(!a.length||!z53On()) return a; var cur=z53Cur(); if(!cur) return a; var now=[], dq=[], old=[], rest=[];
+    a.forEach(function(x){ var c=FCBY[x.split('|')[0]]; if(c&&c.c==='dq') dq.push(x); else if(c&&c.k27!=null) (c.k27>=cur.from&&c.k27<=cur.to?now:old).push(x); else rest.push(x) });
+    now.sort(function(x,y){ return FCBY[x.split('|')[0]].k27-FCBY[y.split('|')[0]].k27 }); return now.concat(dq,old,rest) }catch(e){ return a } };
+var fcRender82=fcRender; fcRender=function(){ fcRender82(); try{ var el=$('#z-fc'); if(!el||el.querySelector('.z82note')||!z53On()) return; var cur=z53Cur(), b=el.querySelector('.btn.primary'); if(!cur||!b) return; var n=0; z53Ls().filter(function(x){ return x.l.lv===cur.l.lv }).forEach(function(x,k){ if(x.l.id===cur.l.id) n=k+1 });
+    b.parentNode.insertBefore(h('p',{class:'small muted z82note',text:'New cards follow your lesson: the words of bài '+n+' come first, then the everyday questions.'}),b.nextSibling) }catch(e){} };
 
 go(location.hash.slice(1)||'home');
 renderAll();

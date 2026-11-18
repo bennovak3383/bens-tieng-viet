@@ -835,3 +835,14 @@ Every lesson page (z53Parts) has one more row: "Kiểm tra · Lesson quiz" (Z53.
   (S.set.rv74) is not touched by a lesson quiz. The row has no button until one structure of the lesson is done.
   The teacher page cannot hide this row yet (its hide list comes from data/plan.json "parts"; quiz is not in that list).
 Tests: src/tests/t81.py (new), t74 (review quiz) run again. Others not re-run. NOT checked: a real phone.
+
+VERSION 82 — cards tidied (Ben, 18 Nov: asked whether the cards are good enough; told "yes, three small fixes"; "Yes fix those things".
+Also decided: no AI speech build-out for now, he will use ChatGPT for free conversation.)
+1 · One Speed button. z82Speed(body) folds the five speed buttons of a card session behind "Speed: Slow ▾". Tap to open, pick, it folds again.
+    Only in card sessions (fcSession). Other screens that show the speed row are unchanged.
+2 · Two answer buttons. In fcSession the answer row is now "Again" and "Got it" ("Got it" = the old "Good"). A link under it, "More choices ·
+    Hard / Easy", switches to the four Anki buttons and back; the choice is kept in S.set.fcg4. Keys 1 to 4 still work.
+3 · New cards follow the lesson. fcFresh is wrapped: (1) cards of the lesson the learner is on, oldest structure first, (2) the everyday
+    questions, (3) earlier lessons, (4) the topic levels. Only the order changed: which cards are open, the daily limit and the review
+    schedule are the same. The Cards page says which lesson comes first (.z82note).
+Tests: src/tests/t82.py (new). Older tests not re-run for this change. NOT checked: a real phone.
