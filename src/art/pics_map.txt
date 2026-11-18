@@ -2209,3 +2209,36 @@ nhớ | custom:c-nho
 nhớ lại | custom:c-nho
 nhớ nhà | custom:c-nho
 kỷ niệm | custom:c-nho
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+bạn | custom:c-ban
+bạn bè | custom:c-ban
+bạn thân | custom:c-ban
+kết bạn | custom:c-ban
+cùng nhau | custom:c-ban
+với nhau | custom:c-ban
+với | custom:c-ban
+cùng | custom:c-ban
+nâng | custom:c-nang
+gia đình | custom:c-giadinh
+cầm | custom:c-cam
+giữ | custom:c-cam
+nắm | custom:c-cam
+có | custom:c-cam
+đến | custom:c-den
+tới | custom:c-den
+tới nơi | custom:c-den
+về | custom:c-den
+quay về | custom:c-den
+thăm | custom:c-den
+ghé | custom:c-den
+bán | custom:c-ban2
+chọn | custom:c-chon
+lựa chọn | custom:c-chon
+lựa | custom:c-chon
+quyết định | custom:c-chon
+giải thích | custom:c-giaithich
+hướng dẫn | custom:c-giaithich
+dạy | custom:c-giaithich
+theo | custom:c-theo
+dẫn | custom:c-theo

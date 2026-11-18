@@ -935,3 +935,13 @@ VERSION 93 (19 Nov 2026) - 1 more Canva AI picture (remember). 24 in total.
 - Canva again let only 1 through. Pace is about 1 an hour through this connection.
 - Still queued: friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 94 (19 Nov 2026) - picture sheets from ChatGPT (new, faster way). 33 painted pictures in total.
+- Canva's connection only trickles about 1 picture an hour, so Ben asked for another way.
+- NEW WAY: Ben makes one 3x3 sheet (9 scenes) in ChatGPT with our prompt and the "eat" picture as the look, sends it in the chat,
+  and src/art/sheet_add.py cuts it into 9 pictures (keeps the painted background, rounds the corners).
+- Sheet 1 in: friend, lift, family, hold, arrive, sell, choose, explain, follow.
+- Ben likes the painted backgrounds better than plain white. So new sheets keep backgrounds, and the 24 white-background
+  Canva pictures should be redone with backgrounds on later sheets.
+- The hourly Canva runs are stopped (no need to spend his Canva allowance).
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
