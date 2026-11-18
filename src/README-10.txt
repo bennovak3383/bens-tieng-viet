@@ -775,3 +775,27 @@ The samples shown in the chat were bigger waist-up portraits with gradients; the
   small figures, so it is simpler than the sample.
 NOT done: the two children ("kid" hair) use the same adult face. No change to the scene backgrounds, teacher.html, or any words.
 Tests: src/tests/t78.py (new). t60 t61 t68 t70–t77 run again, same results as v77. NOT checked: a real phone; Thầy Tâm has not seen his cartoon.
+
+VERSION 79 — recordings carry over; the recording page puts the most useful lines first (Ben, 18 Nov: "make those shared if they are
+capital or not capital", "move up the things that help the most. However still let them choose if they want to do something else. Also when
+something finished drop it to the bottom and move up unfinished ones".)
+HOW IT ALREADY WORKED (found, not changed): make_lines.py never lists the same words twice, and the app finds a recording by its words, not
+  by the screen. So one recording of a line already played everywhere that line appears. The 5,454 lines are 5,454 different lines:
+  2,205 of 1 to 3 syllables (words, short phrases) and 3,249 sentences.
+SAME WORDS = ONE RECORDING, WHATEVER THE CAPITALS OR PUNCTUATION
+  29 groups of lines (30 extra lines) differed only by punctuation or a capital ("năm chục ngàn" / "Năm chục ngàn.").
+  record.html: K() now also drops . , ! ? … ; : quotes, brackets and dashes, and squeezes spaces. A speaker is not asked for a twin.
+  App: block 79 in v7.js wraps clipFor. Exact text first, as before; then the same words by z79K (same rule). Tone marks still count.
+  data/voice-lines.json and the line ids are NOT changed (recordings are stored by id; removing a line would shift the ids after it).
+  So the counts on the pages still say 5,454 lines; a twin simply shows as recorded when its partner is.
+RECORDING ORDER (record.html, build())
+  Each part is split in two: lines of 1 to 3 syllables, then sentences. All the word parts come first (157 parts), then all the sentence
+  parts (180). Inside each group the order from make_lines.py is kept. Two headings on the page: "1 · words and short phrases", "2 · sentences".
+  Part names for the server changed: <part>_w<n> and <part>_s<n> (was <part> or <part>_<n>). Only the "someone else is on this one" note
+  used them, and those notes run out after 50 minutes. A link with &part=ab now opens the first unfinished part that starts with ab.
+  Unchanged: the speaker can still tap any part; finished parts leave the list and sit at the bottom behind "show finished parts";
+  opening a part starts on its first unrecorded line; the short / medium / long filter.
+The Vietnamese labels added on the page ("từ ngắn", "câu", the help line) are by Claude and not checked by a speaker.
+Tests: t60 t61 t68 t70–t76 and t78 run again, same results as v78; t77 was NOT run again this time (it is slow and touches nothing changed here).
+  src/tests/t79.py (new; it fakes the server answers and adds a look-inside line to the page while testing, the real file is not
+  changed). NOT checked: a real recording saved from a phone with the new part names; the real server; the teacher page's line counts.

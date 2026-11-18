@@ -41,7 +41,8 @@ function N(s){ return String(s||'').normalize('NFC').trim() }
 function TX(l){ return LF[l.id]||l.vi }
 /* who has a good recording of this line (the wording must match what the line says now) */
 /* who has recorded these exact words (any line, any part). Matching by words, not line number, so recordings still count when the word lists are rebuilt. */
-var TXT=null; function K(t){ return N(t).toLowerCase() }
+/* 79: capitals, punctuation and extra spaces do not count. "Tại sao?" and "tại sao" are one recording. */
+var TXT=null; function K(t){ return N(t).toLowerCase().replace(/[.,!?…;:"“”()]/g,'').replace(/[-–—]/g,' ').replace(/\s+/g,' ').trim() }
 function txt(){ if(TXT) return TXT; TXT={}; Object.keys(ALL).forEach(function(w){ Object.keys(ALL[w]||{}).forEach(function(i){ var k=K(ALL[w][i][1]); if(!k) return; (TXT[k]=TXT[k]||[]); if(TXT[k].indexOf(w)<0) TXT[k].push(w) }) }); Object.keys(PRE).forEach(function(t){ var k=K(t); (TXT[k]=TXT[k]||[]); if(TXT[k].indexOf('voice1')<0) TXT[k].push('voice1') }); return TXT }
 function speakers(l){ return (txt()[K(TX(l))]||[]).slice() }
 function mine(l){ return speakers(l).indexOf(WHO)>=0 }
@@ -50,15 +51,21 @@ function covered(l){ return speakers(l).length>0 }
 var PH=0; function PHASE(){ return PH||(PH=CH.some(function(c){ return c.lines.some(function(l){ return !covered(l) }) })?1:2) }
 function need(l){ if(mine(l)) return false; if(PHASE()===1) return !covered(l); if(!MYG) return true; return !speakers(l).some(function(w){ return (G[w]||(w==='voice1'?'f':''))===MYG }) }
 function left(c){ return c.lines.filter(need).length }
-function build(){ var ps=PARTS.slice(); /* the line list is already in priority order (src/voice/make_lines.py) */ CH=[];
-  ps.forEach(function(p){ if(p.lines.length<=30){ CH.push({id:p.id,vi:p.vi,en:p.en,lines:p.lines}); return } var n=Math.ceil(p.lines.length/25);
-    for(var k=0;k<n;k++) CH.push({id:p.id+'_'+(k+1),vi:p.vi+' · phần '+(k+1)+'/'+n,en:p.en+' · part '+(k+1)+' of '+n,lines:p.lines.slice(k*25,(k+1)*25)}) }) }
+/* 79: each part is split in two. Words and short phrases (1 to 3 syllables) come first for every part, because one recording of a word is used
+   everywhere the app says it. Sentences come after. Inside each group the parts keep their order from src/voice/make_lines.py.
+   Chunk ids: <part>_w<n> for words, <part>_s<n> for sentences (the server allows a-z 0-9 _). */
+function syl(l){ return K(l.vi).split(' ').length }
+function build(){ var ps=PARTS.slice(), W=[], S2=[]; CH=[];
+  function cut(p,lines,kind,into){ if(!lines.length) return; var n=lines.length<=30?1:Math.ceil(lines.length/25), tv=kind==='w'?' · từ ngắn':' · câu', te=kind==='w'?' · words':' · sentences';
+    for(var k=0;k<n;k++) into.push({id:p.id+'_'+kind+(k+1),kind:kind,vi:p.vi+tv+(n>1?' · phần '+(k+1)+'/'+n:''),en:p.en+te+(n>1?' · part '+(k+1)+' of '+n:''),lines:n>1?lines.slice(k*25,(k+1)*25):lines}) }
+  ps.forEach(function(p){ cut(p,p.lines.filter(function(l){ return syl(l)<=3 }),'w',W); cut(p,p.lines.filter(function(l){ return syl(l)>3 }),'s',S2) });
+  CH=W.concat(S2) }
 function other(c){ return CL[c.id]&&CL[c.id]!==WHO }
 function load(){ return api('voice/mine').then(function(j){ ALL=j.all||{}; LF=j.lineFix||{}; FX=j.fixes||{}; CL=j.claims||{}; G=j.g||{}; MYG=(j.me&&j.me.g)||(WHO==='voice1'?'f':WHO==='thay'?'m':''); PH=0; TXT=null }) }
 function home(){ load().then(home2).catch(home2) }
 function home2(){ app.innerHTML=''; var total=0, cov=0, my=0, ph=PHASE();
   /* 62: a link with &part=<id> (for example &part=ab = alphabet and vowel pairs) opens straight on that part, once */
-  try{ var want=Q.get('part'); if(want&&!window.__part1){ window.__part1=1; var c0=CH.filter(function(c){ return c.id===want })[0]; if(c0&&left(c0)){ part(c0); return } } }catch(e){}
+  try{ var want=Q.get('part'); if(want&&!window.__part1){ window.__part1=1; var c0=CH.filter(function(c){ return (c.id===want||c.id.indexOf(want+'_')===0)&&left(c) })[0]; if(c0){ part(c0); return } } }catch(e){}
   CH.forEach(function(c){ c.lines.forEach(function(l){ total++; if(covered(l)) cov++; if(mine(l)) my++ }) });
   app.appendChild(h('h1',{text:'Thu âm cho app học tiếng Việt'}));
   app.appendChild(h('p',{class:'muted',text:'Cảm ơn bạn! Giọng của bạn sẽ giúp người nước ngoài học tiếng Việt giọng Sài Gòn.'}));
@@ -76,14 +83,15 @@ function home2(){ app.innerHTML=''; var total=0, cov=0, my=0, ph=PHASE();
   var todo=CH.filter(function(c){ return left(c) }), next=todo.filter(function(c){ return !other(c) })[0]||todo[0];
   function mins(n){ return Math.max(1,Math.round(n*20/60)) }
   if(next) app.appendChild(h('button',{class:'btn primary',text:'Thu tiếp · '+next.vi+' ('+left(next)+' câu, ~'+mins(left(next))+' phút)',onclick:function(){ part(next) }}));
-  if(next) app.appendChild(h('p',{class:'small muted',text:'Phần quan trọng nhất ở trên. Bạn cũng có thể chọn bất kỳ phần nào bên dưới, ngắn hay dài tùy bạn. · The most important part is first, but you can pick any part below, short or long.'}));
+  if(next) app.appendChild(h('p',{class:'small muted',text:'Từ ngắn ở trên cùng, vì thu một lần là dùng được ở khắp app. Bạn vẫn có thể chọn bất kỳ phần nào bên dưới. Phần nào xong sẽ chuyển xuống cuối. · Short words are at the top because one recording is used all over the app. You can still pick any part below. Finished parts move to the bottom.'}));
   else app.appendChild(h('p',{class:'panel',text:'Xong hết rồi! Cảm ơn bạn rất nhiều. · All done, thank you!'}));
   app.appendChild(h('h2',{text:'Chọn phần bạn muốn thu · pick a part'}));
   var SZ=0, list=h('div',{}), chips=h('div',{class:'row',style:'gap:6px;flex-wrap:wrap;margin-bottom:8px'});
   [['Tất cả · all',0],['Ngắn · short (≤10)',1],['Vừa · medium (11–20)',2],['Dài · long (21+)',3]].forEach(function(o){ chips.appendChild(h('button',{class:'x szc','aria-pressed':String(o[1]===0),text:o[0],onclick:function(e){ SZ=o[1]; Array.prototype.forEach.call(chips.children,function(b){ b.setAttribute('aria-pressed',String(b===e.target)) }); drawList() }})) });
   app.appendChild(chips); app.appendChild(list);
   function fits(n){ return !SZ||(SZ===1&&n<=10)||(SZ===2&&n>10&&n<=20)||(SZ===3&&n>20) }
-  function drawList(){ list.innerHTML=''; var shown=0; todo.forEach(function(c){ var l=left(c); if(!fits(l)) return; shown++; list.appendChild(h('button',{class:'part',onclick:function(){ part(c) }},[h('div',{},[h('b',{text:c.vi}),h('span',{class:'small muted',text:c.en+(other(c)?' · người khác đang thu phần này · someone else is on this one':'')})]),h('span',{class:'n',text:'còn '+l+' · ~'+mins(l)+' phút'})])) }); if(!shown) list.appendChild(h('p',{class:'small muted',text:'Không có phần nào cỡ này. · No parts this size left.'})) }
+  function head(kind){ var n=0; todo.forEach(function(c){ if(c.kind===kind) n+=left(c) }); list.appendChild(h('h3',{class:'grp',style:'margin:14px 0 6px;font-size:15px',text:(kind==='w'?'1 · Từ và cụm từ ngắn · Words and short phrases':'2 · Câu · Sentences')+' (còn '+n+')'})) }
+  function drawList(){ list.innerHTML=''; var shown=0, last=''; todo.forEach(function(c){ var l=left(c); if(!fits(l)) return; shown++; if(c.kind!==last){ last=c.kind; head(c.kind) } list.appendChild(h('button',{class:'part',onclick:function(){ part(c) }},[h('div',{},[h('b',{text:c.vi}),h('span',{class:'small muted',text:c.en+(other(c)?' · người khác đang thu phần này · someone else is on this one':'')})]),h('span',{class:'n',text:'còn '+l+' · ~'+mins(l)+' phút'})])) }); if(!shown) list.appendChild(h('p',{class:'small muted',text:'Không có phần nào cỡ này. · No parts this size left.'})) }
   drawList();
   var dn=CH.filter(function(c){ return !left(c) });
   if(dn.length){ var box=h('div',{}); app.appendChild(h('button',{class:'x',text:'Xem '+dn.length+' phần đã xong · show finished parts',onclick:function(e){ e.target.remove(); dn.forEach(function(c){ box.appendChild(h('button',{class:'part done',onclick:function(){ part(c) }},[h('div',{},[h('b',{text:c.vi}),h('span',{class:'small muted',text:c.en})]),h('span',{class:'n',text:'Xong'})])) }) }})); app.appendChild(box) } }

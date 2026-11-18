@@ -3082,3 +3082,16 @@ function z78Ben(wave){ var arm=''; try{ if(wave) arm=z71Arm().split('#27336B').j
 function z78BenEl(){ return h('div',{class:'z59tam z78ben','aria-hidden':'true',html:'<svg viewBox="-40 -80 100 141">'+z78Ben(true)+'</svg>'}) }
 /* the end-of-round screen: Ben stands beside Thầy Tâm */
 var z60Mascot78=z60Mascot; z60Mascot=function(text){ var m=z60Mascot78(text); try{ m.insertBefore(z78BenEl(),m.firstChild) }catch(e){} return m };
+
+
+/* ===== 79 · one recording for the same words, whatever the capitals or punctuation =====
+   Before: a real recording played only where the text matched exactly (apart from capitals). "Tại sao?" recorded did not play for "tại sao".
+   Now clipFor tries the exact text first, as before, and then the same words with punctuation, capitals and extra spaces taken out (z79K).
+   record.html uses the same rule (its K), so a speaker is not asked for the same words twice. */
+function z79K(t){ return String(t==null?'':t).normalize('NFC').toLowerCase().replace(/[.,!?…;:"“”()]/g,'').replace(/[-–—]/g,' ').replace(/\s+/g,' ').trim() }
+var Z79={src:null,real:{},aud:null,audk:{}};
+function z79Real(){ if(Z79.src!==Z17.map){ Z79.src=Z17.map; Z79.real={}; Object.keys(Z17.map||{}).forEach(function(k){ var q=z79K(k); if(q) Z79.real[q]=(Z79.real[q]||[]).concat(Z17.map[k]) }) } return Z79.real }
+function z79Aud(){ var c=AUD.idx&&AUD.idx.clips; if(!c) return {}; if(Z79.aud!==c){ Z79.aud=c; Z79.audk={}; Object.keys(c).forEach(function(k){ var q=z79K(k); if(q&&!Z79.audk[q]) Z79.audk[q]=k }) } return Z79.audk }
+var clipFor79=clipFor; clipFor=function(text){ try{ var v=S.set.vx||'r', k=String(text).normalize('NFC').trim(), q=z79K(text);
+    if(q&&AUD.el&&S.set.src!=='phone'&&(v==='r'||v==='both')&&!(Z17.map[k]||Z17.map[k.toLowerCase()])){ var m=z79Real()[q]; if(m&&m.length&&(v==='r'||Math.random()<.5)) return [pick(m),0,1e12,2] }
+    var c=clipFor79(text); if(c||!q) return c; var k2=z79Aud()[q]; return (k2&&k2!==k&&k2!==k.toLowerCase())?clipFor79(k2):null }catch(e){ return clipFor79(text) } };
