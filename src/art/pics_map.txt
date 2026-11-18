@@ -1768,3 +1768,93 @@ con mèo|Cat
 =prop elephant|Elephant
 =prop snake|Snake
 =prop cake|Birthday cake
+
+# --- v84: our own drawings for words an emoji cannot show (made by src/art/words.py). Later lines win over earlier ones.
+ăn | custom:w-an
+uống | custom:w-uong
+đi | custom:w-di
+đi bộ | custom:w-di
+muốn | custom:w-muon
+thích | custom:w-thich
+hiểu | custom:w-hieu
+không hiểu | custom:w-khong-hieu
+vui | custom:w-vui
+vui vẻ | custom:w-vui
+hạnh phúc | custom:w-vui
+đói | custom:w-doi
+hơn | custom:w-hon
+giúp | custom:w-giup
+giúp đỡ | custom:w-giup
+hỗ trợ | custom:w-giup
+nhớ | custom:w-nho
+nhớ lại | custom:w-nho
+trễ | custom:w-tre
+trễ giờ | custom:w-tre
+bạn | custom:w-ban
+bạn bè | custom:w-ban
+bạn thân | custom:w-ban
+kết bạn | custom:w-ban
+gần | custom:w-gan
+xa | custom:w-xa
+nói | custom:w-noi
+nói chuyện | custom:w-noi
+hỏi | custom:w-hoi
+nghe | custom:w-nghe
+nghe thấy | custom:w-nghe
+mệt | custom:w-met
+mỏi | custom:w-met
+chờ | custom:w-cho
+đợi | custom:w-cho
+mua | custom:w-mua
+không | custom:w-khong
+đừng | custom:w-khong
+từ chối | custom:w-khong
+nghĩ | custom:w-nghi
+suy nghĩ | custom:w-nghi
+tưởng | custom:w-nghi
+xem | custom:w-xem
+coi | custom:w-xem
+nhìn | custom:w-xem
+nhìn thấy | custom:w-xem
+thấy | custom:w-xem
+đến | custom:w-den
+tới | custom:w-den
+tới nơi | custom:w-den
+lên | custom:w-len
+xuống | custom:w-xuong
+trên | custom:w-tren
+dưới | custom:w-duoi
+trong | custom:w-trong
+ngoài | custom:w-ngoai
+nhiều | custom:w-nhieu
+ít | custom:w-it
+một chút | custom:w-it
+chút | custom:w-it
+họ | custom:w-ho
+mọi người | custom:w-ho
+người ta | custom:w-ho
+gia đình | custom:w-giadinh
+tôi | custom:w-toi
+mình | custom:w-toi
+một mình | custom:w-motminh
+cô đơn | custom:w-motminh
+đưa | custom:w-dua
+cầm | custom:w-cam
+giữ | custom:w-cam
+nắm | custom:w-cam
+khỏe | custom:w-khoe
+mạnh | custom:w-khoe
+sức khỏe | custom:w-khoe
+sức | custom:w-khoe
+khỏe hơn | custom:w-khoe
+té | custom:w-te
+gặp | custom:w-gap
+làm quen | custom:w-gap
+ơi | custom:w-oi
+đẩy | custom:w-day
+kéo | custom:w-keo
+nâng | custom:w-nang
+rơi | custom:w-roi
+xếp hàng | custom:w-xephang
+họp | custom:w-hop
+cuộc họp | custom:w-hop

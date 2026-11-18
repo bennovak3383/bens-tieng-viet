@@ -1,0 +1,25 @@
+# v84: words whose picture was checked by eye and clearly shows the word, so games may use it as the hint.
+# One word or several per line, separated by ; . A word not here (and with no keyword match, no own drawing) shows its English meaning in games.
+vết thương; băng cá nhân; du lịch; chuyến bay; bay; cất cánh; dậy; màu; ổ; ký; phòng ngủ; nằm; mền; phòng đơn; tuổi; canh; cháo; bánh
+công việc; việc làm; kinh doanh; hôm nay; lịch hẹn; hẹn; ảnh; hình thẻ; chụp; chụp hình; cúp điện; bảo tàng; đại sứ quán; lãnh sự quán; ủy ban
+dzô; chúc; hẹn hò; thực đơn; danh sách; mặc; tiền lẻ; đồng; hướng; miền bắc; lạc; lạc đường; tiệm; bán hàng; mở tiệm; nội thất; phòng khách; bò
+đêm; khuya; nước ngọt; nướng; trung tâm thương mại; màn hình; tiền mặt; tiền boa; phòng; cổng; lối vô; lối ra; nước; nước suối; hấp; luộc
+sạc; ổ cắm; cục sạc; lớn; to; tem; gửi; rừng; mùa; đi chơi; tủ đồ; tết; chúc mừng năm mới; đèn xe; bữa; nhà hàng; đặt bàn; chữ ký; may; may mắn
+giòn; xăng; đầy bình; chúc ngủ ngon; máy; cao; nước ngoài; đất nước; nổi tiếng; đại học; giáo dục; món chay; ăn kiêng; giữ xe; mập; siêng
+phòng khám; quán; quán cà phê; cay; ớt; phòng đôi; hẻm; khu; thẻ tập; bình nước; luật sư; thuê; thuê xe; nhận phòng; làm việc; nửa; một nửa
+đầu gối; mật khẩu; ồn; ồn ào; thông báo; vali; trả phòng; đi công tác; tìm; kiếm; tìm thấy; thời gian; hợp đồng; ghi; thi; đăng ký; hát
+sim; ứng dụng; đặt xe; quét mã; nhắn tin; chuyển khoản; lương; trả tiền; trả; ngứa; xe; chạy xe; chở; cao tốc; cây số; nhỏ; thác; mùi; cuốn; bài
+công ty; căn hộ; lầu; đón; kẹt xe; rưỡi; đọc; câu chuyện; đồ; hàng; sản phẩm; nhận hàng; giấy; giấy đăng ký xe; toa thuốc; giấy phép lao động
+nhuộm; lễ; viết; điền; ạ; giãn cơ; nghỉ; nghỉ ngơi; bình tĩnh; bận; tập; tập thể dục; nặng; phòng gym; máy chạy bộ; cơ thể; phần
+nhà thuốc; thuốc giảm đau; tiệm thuốc tây; chia; cấp cứu; bản sao; dán; nhanh; nhanh chóng; mau; tốc độ; vượt; tính tiền; báo giá; truyền thống
+gói quà; có gia đình; anh có vợ chưa?; tiệm vàng; khăn giấy; sớm; con gà; địa chỉ; ở đâu; chỗ; nơi; ở đây; đâu; chạy; cắt; cắt ngắn; lịch sử
+phát triển; môi trường; vá; xào; miền tây; an toàn; bảo hiểm; chùa; chợ; lấy đồ; siêu thị; đặt hàng; gội đầu; hải sản; chạy chậm; máy lạnh
+rửa; đôi; bún thịt nướng; tuần; tuần sau; tuần rồi; thứ hai; thứ bảy; chủ nhật; sân; nước mỹ; tôi là người mỹ.; quán ăn; món; huyết áp; phút
+dài; mét; đo; cỡ; ngày; trưa; trời; kem chống nắng; ngày mai; cảnh; chiều; gói lại; tài xế grab; tháng; gọi; gọi lại; chương trình; sốt; lấy số
+giỏi; thành công; đạt; sinh tố; chậm; ướt; chơi; đổ rác; biển; sông; bơm bánh xe; quạt; thở; quận; khu vực; miền; cho; mua một tặng một; sửa; vải
+học; lớp; cuối tuần; ngày nghỉ; rảnh; nhắc; dịch vụ; kêu món; quầy; thức ăn; đồ ăn; đánh; mục tiêu; mục đích; trung tâm; điểm đón; đứa; trả góp
+tương lai; đoán; tự do; mang; đem; mở tài khoản; đầy; dây sạc; anh có con chưa?; nhất
+# faces, hands and signs that are still clear
+ngủ trưa; sợ; ghét; bất ngờ; ngạc nhiên; căng thẳng; chán; bực; mắc cười; vui tính; thông minh; đau bụng; ho; cảm; bị cảm; ngon lắm; chúc mừng
+đùa; yêu; tay; tạm biệt; mắc cỡ; hiền; công nghệ; hộ chiếu; rút tiền; đậu xe; cẩn thận; nguy hiểm; coi chừng; chú ý; cấm; miễn phí; mạng
+đổi tiền; tỷ giá; hai; tên; số; thông tin; chữ; tiếng anh; qua đường; tai nạn; ổ gà; dơ; khen; tốt lắm

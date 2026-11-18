@@ -859,3 +859,17 @@ VERSION 83 (18 Nov 2026) - clearer game hints, Home back to rooms first, new wel
 - FIX: the "inside a game" marker is cleared when a game closes (z83Clr).
 - TESTED: src/tests/t83.py on the phone-size test browser, no errors. NOT tested: a real phone.
 - No new Vietnamese written in this version.
+
+VERSION 84 (18 Nov 2026) - our own drawings for words, and every game picture checked by eye
+- 50 OWN DRAWINGS (src/art/words.py makes src/art/custom/w-*.svg + .png) cover 88 words an emoji could not show:
+  eat, drink, go, want, like, understand, happy, hungry, more than, help, remember, late, friend, near, far, speak, ask,
+  listen, tired, wait, buy, no, think, look, arrive, up, down, on, under, in, outside, many, few, they, family, I, alone,
+  hand over, hold, strong, fall over, meet, hey, push, pull, lift, drop, queue, meeting, not understand.
+  Wired in at the end of src/art/pics_map.txt (word | custom:w-name).
+- CHECKED LIST: src/art/pics_ok.txt = 369 words whose existing picture was looked at and clearly shows the word.
+  pics.py writes it to pics.json as "ok"; z83Vague lets those through.
+- Result for the 1,456 game words: 781 show a picture (88 of them our own drawing), 675 show the English meaning.
+  The 675 are grammar words and ideas with no clear picture yet. More drawings can be added in batches the same way.
+- TO ADD A DRAWING: add X('name','word','meaning', ...) in words.py, run it, render the png, add a line to pics_map.txt, run pics.py.
+- TESTED: src/tests/t84.py (drawings load, show in a game, no errors). NOT tested: a real phone.
+- No new Vietnamese written.
