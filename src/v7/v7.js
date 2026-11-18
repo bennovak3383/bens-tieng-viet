@@ -3249,3 +3249,12 @@ function z98Open(){ try{ if(!S.set||!S.set.ob7) return; if(sessionStorage.getIte
     document.body.appendChild(o); var done=false; function end(){ if(done) return; done=true; o.classList.add('out'); setTimeout(function(){ try{ o.remove() }catch(e){} },560) }
     o.addEventListener('click',end); setTimeout(end,2500) }catch(e){} }
 try{ z98Open() }catch(e){}
+/* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
+   build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
+   A small "Version N" line at the bottom of Home shows which one is running. ===== */
+var Z99V=99;
+function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
+      var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
+      var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
+try{ z99Check(); document.addEventListener('visibilitychange',function(){ if(!document.hidden) z99Check() }) }catch(e){}
+var z59Hub99=z59Hub; z59Hub=function(){ z59Hub99(); try{ var hub=$('#z-hub'); if(hub&&!hub.querySelector('.z99v')) hub.appendChild(h('div',{class:'z99v',text:'Version '+Z99V})) }catch(e){} };

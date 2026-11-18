@@ -8,6 +8,8 @@ git -C $R show HEAD:index.html > $T/live.html
 python3 $R/src/patch10.py $T/old $R/src $T/live.html $T/out
 cp $T/out/index.html $R/index.html
 node -e "const s=require('fs').readFileSync('$R/index.html','utf8'); const m=[...s.matchAll(/<script(?![^>]*type=\"(?:text\/plain|application\/json)\")[^>]*>([\s\S]*?)<\/script>/g)]; for(const x of m){ try{ new Function(x[1]) }catch(e){ console.log('SYNTAX',e.message); process.exit(1)} } console.log('syntax ok',m.length)"
+# v99: the version number the app checks against (taken from Z99V in v7.js)
+V=$(grep -o "^var Z99V=[0-9]*" $R/src/v7/v7.js | grep -o "[0-9]*$"); echo "{\"v\":$V}" > $R/data/ver.json
 # test site
 S=/home/claude/site; rm -rf $S; mkdir -p $S
 cp -r $R/index.html $R/teacher.html $R/record.html $R/words.html $R/snap.html $R/sw.js $R/manifest.webmanifest $R/functions $R/audio $R/data $R/art $R/img $R/lib $S/

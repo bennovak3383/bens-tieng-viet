@@ -982,3 +982,13 @@ VERSION 98 (19 Nov 2026) - richer Home screen and an opening scene
 - LATER: Ben's Home sheet from ChatGPT (teacher + tall student) can replace the hello card art and the opening cards.
 - TESTED: src/tests/t98.py (art loads, changes, tiles still open rooms, opening shows once and leaves) and t84/t97. NOT tested: a real phone.
 - v98 fix: img/home is now in the offline list, so the Home art and opening scene work with no internet.
+
+VERSION 99 (19 Nov 2026) - the app updates itself, and shows its version number
+- Ben opened the app after v98 and still saw the old one (the phone was showing its saved offline copy).
+- NEW: Z99V in v7.js is the build number. build.sh writes it to data/ver.json. On opening (and when the app comes back to the front)
+  the app asks the server for ver.json; if the server has a higher number it throws away the saved page and reloads once.
+- RULE FOR EVERY RELEASE FROM NOW ON: raise Z99V by one before building.
+- "Version 99" shows in small grey text at the bottom of Home, so Ben can see which one is running.
+- A phone still on an older copy cannot run this check yet. One-time fix: open https://bens-tieng-viet.pages.dev/?nosw=1 once
+  (it clears the saved copy), then open the normal link.
+- TESTED: src/tests/t99.py (no reload when equal, one reload when newer, no loop) and t98. NOT tested: a real phone.

@@ -1105,3 +1105,4 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
   #z98sp{transition:opacity .5s ease,transform .55s cubic-bezier(.4,0,.2,1)}
   #z98sp.out{opacity:0;transform:scale(1.18);pointer-events:none}
 }
+.z99v{text-align:center;font-size:11.5px;font-weight:700;color:var(--muted);opacity:.7;padding:10px 0 2px}
