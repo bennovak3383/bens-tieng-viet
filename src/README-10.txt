@@ -873,3 +873,13 @@ VERSION 84 (18 Nov 2026) - our own drawings for words, and every game picture ch
 - TO ADD A DRAWING: add X('name','word','meaning', ...) in words.py, run it, render the png, add a line to pics_map.txt, run pics.py.
 - TESTED: src/tests/t84.py (drawings load, show in a game, no errors). NOT tested: a real phone.
 - No new Vietnamese written.
+
+VERSION 85 (18 Nov 2026) - batch 3 of our own drawings
+- Redrew three weak ones: khong (arms crossed), hon (small pile vs big pile of apples), toi (glow moved behind the face).
+- 42 new drawings: always / usually / sometimes / never (a week of ticks), agree, chat, forget, ready, clean, price, cheap,
+  expensive, sell, choose, start, finished, short, weak, left, right, straight, middle, next to, in front, behind, opposite,
+  upstairs, downstairs, go in, go out, all, a few, alike, different, dream, full, head, belly, pillow, fridge, broken, spill.
+- More words share earlier drawings (biet -> hieu, cung nhau -> ban, ke -> noi ...).
+- Now: 92 drawings cover 168 words. Of 1,456 game words 866 show a picture, 590 show English.
+- Drawn but left out as not clear enough: chia doi, vai (shoulder).
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.

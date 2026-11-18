@@ -1858,3 +1858,86 @@ rơi | custom:w-roi
 xếp hàng | custom:w-xephang
 họp | custom:w-hop
 cuộc họp | custom:w-hop
+
+# --- v85: batch 3 of our own drawings, and more words sharing earlier drawings
+luôn | custom:w-luon
+lúc nào cũng | custom:w-luon
+thường | custom:w-thuong
+thường xuyên | custom:w-thuong
+đôi khi | custom:w-doikhi
+ít khi | custom:w-doikhi
+không bao giờ | custom:w-khongbaogio
+chưa bao giờ | custom:w-khongbaogio
+đồng ý | custom:w-dongy
+chấp nhận | custom:w-dongy
+nói chuyện | custom:w-noichuyen
+tán gẫu | custom:w-noichuyen
+trả lời | custom:w-noichuyen
+quên | custom:w-quen
+quên mất | custom:w-quen
+sẵn sàng | custom:w-sansang
+sạch | custom:w-sach
+giá | custom:w-gia
+giá cuối | custom:w-gia
+rẻ | custom:w-re
+mắc | custom:w-mac
+đắt | custom:w-mac
+mắc quá | custom:w-mac
+bán | custom:w-ban2
+chọn | custom:w-chon
+lựa chọn | custom:w-chon
+lựa | custom:w-chon
+quyết định | custom:w-chon
+bắt đầu | custom:w-batdau
+xong | custom:w-xong
+kết thúc | custom:w-xong
+hoàn thành | custom:w-xong
+thấp | custom:w-thap
+yếu | custom:w-yeu
+trái | custom:w-trai
+bên trái | custom:w-trai
+bên phải | custom:w-phai
+thẳng | custom:w-thang
+giữa | custom:w-giua
+cạnh | custom:w-canh
+kế bên | custom:w-canh
+phía trước | custom:w-truoc
+phía sau | custom:w-sau
+đối diện | custom:w-doidien
+trên lầu | custom:w-trenlau
+dưới lầu | custom:w-duoilau
+vào | custom:w-vao
+vô | custom:w-vao
+ra | custom:w-ra
+rời | custom:w-ra
+tất cả | custom:w-tatca
+mọi thứ | custom:w-tatca
+cả | custom:w-tatca
+toàn bộ | custom:w-tatca
+vài | custom:w-vai
+một vài | custom:w-vai
+một số | custom:w-vai
+giống | custom:w-giong
+khác | custom:w-khac
+mơ | custom:w-mo
+no rồi | custom:w-noroi
+đầu | custom:w-dau
+bụng | custom:w-bung
+gối | custom:w-goi
+tủ lạnh | custom:w-tulanh
+hư | custom:w-hu
+bị hư | custom:w-hu
+bể | custom:w-hu
+đổ | custom:w-do
+biết | custom:w-hieu
+nghĩ ra | custom:w-hieu
+cùng nhau | custom:w-ban
+với nhau | custom:w-ban
+nhóm | custom:w-ho
+ai cũng | custom:w-ho
+kể | custom:w-noi
+bảo | custom:w-noi
+cố lên | custom:w-khoe
+thăm | custom:w-den
+ghé | custom:w-den
+uống nhiều nước | custom:w-uong

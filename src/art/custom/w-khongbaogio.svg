@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><defs>
+<linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCE0C2"/><stop offset="1" stop-color="#F2C39A"/></linearGradient>
+<linearGradient id="bl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B8DEF"/><stop offset="1" stop-color="#2F6BE0"/></linearGradient>
+<linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4CC9A0"/><stop offset="1" stop-color="#1FA57C"/></linearGradient>
+<linearGradient id="or" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB45C"/><stop offset="1" stop-color="#F58A1F"/></linearGradient>
+<linearGradient id="pk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8FA8"/><stop offset="1" stop-color="#EE5B7E"/></linearGradient>
+<linearGradient id="ye" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#FFC531"/></linearGradient>
+<linearGradient id="pu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A58BFF"/><stop offset="1" stop-color="#7B5CF0"/></linearGradient>
+<linearGradient id="wh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E6ECF8"/></linearGradient>
+</defs><ellipse cx="128" cy="216" rx="100" ry="9" fill="#18203A" opacity=".13"/><rect x="18" y="70" width="220" height="120" rx="18" fill="url(#wh)" stroke="#C9D4EA" stroke-width="3"/><rect x="18" y="70" width="220" height="34" rx="16" fill="url(#bl)"/><circle cx="38" cy="87" r="4" fill="#fff"/><circle cx="38" cy="146" r="13" fill="#E6ECF8"/><circle cx="68" cy="87" r="4" fill="#fff"/><circle cx="68" cy="146" r="13" fill="#E6ECF8"/><circle cx="98" cy="87" r="4" fill="#fff"/><circle cx="98" cy="146" r="13" fill="#E6ECF8"/><circle cx="128" cy="87" r="4" fill="#fff"/><circle cx="128" cy="146" r="13" fill="#E6ECF8"/><circle cx="158" cy="87" r="4" fill="#fff"/><circle cx="158" cy="146" r="13" fill="#E6ECF8"/><circle cx="188" cy="87" r="4" fill="#fff"/><circle cx="188" cy="146" r="13" fill="#E6ECF8"/><circle cx="218" cy="87" r="4" fill="#fff"/><circle cx="218" cy="146" r="13" fill="#E6ECF8"/></svg>
