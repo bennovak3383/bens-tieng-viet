@@ -2200,3 +2200,6 @@ giới thiệu | custom:c-gap
 # --- Canva AI pictures added by canva_add.py
 đưa | custom:c-dua
 kéo | custom:c-keo
+
+# --- Canva AI pictures added by canva_add.py
+đẩy | custom:c-day

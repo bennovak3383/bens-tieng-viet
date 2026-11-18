@@ -925,3 +925,8 @@ VERSION 91 (18 Nov 2026) - 2 more Canva AI pictures (hand over, pull). 22 in tot
 - Canva pace so far: 17, then 3, then 2 per run with about 50 minutes between. Treat it as roughly 2-3 pictures an hour.
 - Still queued: push, remember, friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 92 (19 Nov 2026) - 1 more Canva AI picture (push). 23 in total.
+- Canva let only 1 through after a 100 minute rest. The limit looks like a slow trickle, about 1 an hour, after the first 17.
+- Still queued: remember, friend, lift, family, hold, arrive, then the rest of the people drawings, then the Home tiles.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
