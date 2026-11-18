@@ -2242,3 +2242,168 @@ hướng dẫn | custom:c-giaithich
 dạy | custom:c-giaithich
 theo | custom:c-theo
 dẫn | custom:c-theo
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+không | custom:c-khong
+đừng | custom:c-khong
+từ chối | custom:c-khong
+không phải | custom:c-khong
+tôi | custom:c-toi
+mình | custom:c-toi
+một mình | custom:c-motminh
+cô đơn | custom:c-motminh
+độc thân | custom:c-motminh
+khỏe | custom:c-khoe
+mạnh | custom:c-khoe
+sức khỏe | custom:c-khoe
+sức | custom:c-khoe
+khỏe hơn | custom:c-khoe
+cố lên | custom:c-khoe
+anh có khỏe không? | custom:c-khoe
+té | custom:c-te
+ơi | custom:c-oi
+kêu | custom:c-oi
+rơi | custom:c-roi
+thả | custom:c-roi
+xếp hàng | custom:c-xephang
+họp | custom:c-hop
+cuộc họp | custom:c-hop
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+đồng ý | custom:c-dongy
+chấp nhận | custom:c-dongy
+đối tác | custom:c-dongy
+nói chuyện | custom:c-noichuyen
+tán gẫu | custom:c-noichuyen
+trả lời | custom:c-noichuyen
+quên | custom:c-quen
+quên mất | custom:c-quen
+sẵn sàng | custom:c-sansang
+chuẩn bị | custom:c-sansang
+bắt đầu | custom:c-batdau
+xong | custom:c-xong
+kết thúc | custom:c-xong
+hoàn thành | custom:c-xong
+hết | custom:c-xong
+rồi | custom:c-xong
+cuối cùng | custom:c-xong
+lấy | custom:c-lay
+đặt | custom:c-dat
+để | custom:c-dat
+đổi | custom:c-doi2
+thay | custom:c-doi2
+thay đổi | custom:c-doi2
+đổi trả | custom:c-doi2
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+dễ | custom:c-de
+dễ dàng | custom:c-de
+đơn giản | custom:c-de
+khó | custom:c-kho
+khó khăn | custom:c-kho
+yếu | custom:c-yeu
+ốm | custom:c-om
+thấp | custom:c-thap
+rẻ | custom:c-re
+mắc | custom:c-mac
+đắt | custom:c-mac
+mắc quá | custom:c-mac
+làm mất | custom:c-lammat
+mơ | custom:c-mo
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+no rồi | custom:c-noroi
+được | custom:c-duoc
+được rồi | custom:c-duoc
+đúng | custom:c-duoc
+đúng rồi | custom:c-duoc
+ổn | custom:c-duoc
+không sao | custom:c-duoc
+tốt | custom:c-duoc
+có thể | custom:c-duoc
+được phép | custom:c-duoc
+cho phép | custom:c-duoc
+xài được | custom:c-duoc
+ừ | custom:c-duoc
+sai | custom:c-sai
+không thể | custom:c-sai
+tệ | custom:c-sai
+hủy | custom:c-sai
+thêm | custom:c-them
+nữa | custom:c-them
+dư | custom:c-them
+đúng giờ | custom:c-dunggio
+kịp | custom:c-dunggio
+nhảy | custom:c-nhay
+ở | custom:c-o
+sống | custom:c-o
+ở lại | custom:c-o
+vào | custom:c-vao
+vô | custom:c-vao
+ra | custom:c-ra
+rời | custom:c-ra
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+lên | custom:c-len
+lên xe | custom:c-len
+xuống | custom:c-xuong
+xuống xe | custom:c-xuong
+trên | custom:c-tren
+dưới | custom:c-duoi
+trong | custom:c-trong
+ngoài | custom:c-ngoai
+gần | custom:c-gan
+gần tới | custom:c-gan
+xa | custom:c-xa
+còn xa không | custom:c-xa
+quanh | custom:c-quanh
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+phía trước | custom:c-truoc
+phía sau | custom:c-sau
+cạnh | custom:c-canh
+kế bên | custom:c-canh
+giữa | custom:c-giua
+đối diện | custom:c-doidien
+trên lầu | custom:c-trenlau
+dưới lầu | custom:c-duoilau
+qua | custom:c-qua
+sang | custom:c-qua
+trở lại | custom:c-quaylai
+quay | custom:c-quaylai
+
+# --- pictures cut from a ChatGPT sheet by sheet_add.py
+chúng ta | custom:c-chungta
+chúng tôi | custom:c-chungta
+tụi mình | custom:c-chungta
+tụi | custom:c-chungta
+họ | custom:c-ho
+mọi người | custom:c-ho
+người ta | custom:c-ho
+nhóm | custom:c-ho
+ai cũng | custom:c-ho
+con người | custom:c-ho
+này | custom:c-nay
+cái này | custom:c-nay
+đây | custom:c-nay
+nè | custom:c-nay
+nó | custom:c-nay
+kia | custom:c-kia
+đó | custom:c-kia
+cái đó | custom:c-kia
+ấy | custom:c-kia
+đằng kia | custom:c-kia
+kìa | custom:c-kia
+cái kia | custom:c-kia
+ở kia | custom:c-kia
+ai | custom:c-ai
+ai đó | custom:c-ai
+gì | custom:c-gi
+cái gì | custom:c-gi
+gì đó | custom:c-gi
+bao nhiêu | custom:c-baonhieu
+mấy | custom:c-baonhieu
+khi nào | custom:c-khinao
+chừng nào | custom:c-khinao
+bao giờ | custom:c-khinao
+không ai | custom:c-khongai

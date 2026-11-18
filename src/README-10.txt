@@ -945,3 +945,12 @@ VERSION 94 (19 Nov 2026) - picture sheets from ChatGPT (new, faster way). 33 pai
   Canva pictures should be redone with backgrounds on later sheets.
 - The hourly Canva runs are stopped (no need to spend his Canva allowance).
 - TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
+
+VERSION 95 (19 Nov 2026) - 7 more ChatGPT sheets cut in: 63 pictures. 96 painted pictures in total.
+- Sheets A-G: no, me, alone, strong, fall, call, drop, queue, meeting / agree, chat, forget, ready, start, finished, take, put, swap /
+  easy, hard, weak, thin, short, cheap, expensive, lose, dream / full, OK, wrong, more, on time, jump, live, go in, go out /
+  up, down, on, under, in, outside, near, far, around / in front, behind, next to, middle, opposite, upstairs, downstairs, cross, turn back /
+  we, they, this, that, who, what, how many, when, nobody.
+- Painted pictures now cover 246 words. Code drawings (words.py) still cover 110 words: 64 drawings, mostly things, food, roads, amounts.
+- Still to do on sheets: those 64, then redo the 24 white-background Canva ones with backgrounds, then the 6 Home tiles.
+- TESTED: src/tests/t84.py, no errors. NOT tested: a real phone.
