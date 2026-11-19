@@ -26,9 +26,12 @@ Secrets (AI key) live in Cloudflare only, never in this repo.
 - Recordings count by their words, not by line number, so rebuilding the list never loses one. A changed line becomes a gap again; a new line is a gap; a removed line just drops off the list.
 - Approved speaker fixes: `GET /api/voice/linefix` lists them (old → new wording). Put the new wording into the app content, then rebuild the list.
 
-## Zelus (training and food log) — temporary home
-- Live at `/zelus/`. A separate app that lives here until it moves to its own repo and Pages project.
-- `zelus/` — the whole app (`index.html`), its own offline worker (`sw.js`, scoped to `/zelus/` only) and icons.
-- `functions/zelus/api/[[path]].js` — its server. Uses this project's `KV` binding with every key prefixed `zl:`, so it never touches the Vietnamese app's data. If a namespace is bound as `ZELUS` it uses that instead, with no prefix.
-- Meal estimates use the same `ANTHROPIC_API_KEY`. Optional `INVITE` variable limits who can create an account.
-- Nothing in `zelus/` depends on the Vietnamese app, and the reverse.
+## English with Ben (An's English app)
+- Live at `/english/`. A separate vocabulary app: spaced-review cards (53 decks), eight games, speaking prompts and a page for Ben.
+- `english/index.html` is the whole app; `english/img/` holds its photos and the painted pictures it reuses from `img/p/`.
+- No server part yet: progress is kept in the browser (localStorage key `ewb2`). It shares nothing with the Vietnamese app.
+- The site's offline worker (`sw.js`) saves pictures the first time they load and never refreshes them, so give a changed picture a new file name.
+
+## Zelus (training and food log) — taken off the site for now
+- Removed on 2026-11-19 at Ben's request, to come back later in its own home. The last version is in git history: commit `3820409` has `zelus/` and `functions/zelus/`.
+- Its saved data was not touched: it is still in the `KV` namespace under keys starting `zl:`.
