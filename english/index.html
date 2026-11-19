@@ -46,8 +46,8 @@ nav button{flex:1;max-width:190px;border:0;background:none;padding:9px 4px 12px;
 .pair{display:flex;gap:8px;margin:8px 0}.pair button{flex:1}
 .toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.92rem;z-index:9;opacity:0;transition:opacity .25s;pointer-events:none;max-width:90%;text-align:center}.toast.on{opacity:1}
 .ans{border-left:4px solid var(--sun);padding-left:10px;margin:10px 0}
-.intro{position:relative;height:290px;border-radius:26px;overflow:hidden;background:#ccd;box-shadow:0 5px 0 var(--line)}
-.intro img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.intro{position:relative;height:420px;border-radius:26px;overflow:hidden;background:#ccd;box-shadow:0 5px 0 var(--line)}
+.intro img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;transition:opacity .25s}
 .intro:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,33,72,0) 45%,rgba(27,33,72,.8))}
 .intro div{position:absolute;left:18px;bottom:14px;z-index:1;color:#fff}.intro h1{font-family:var(--head);font-size:2.3rem;margin:0;line-height:1}.intro p{margin:2px 0 0}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;margin-bottom:12px}.stats b{display:block;font-size:1.6rem;font-family:var(--head);line-height:1.1}.stats span{font-size:.72rem;color:var(--muted)}
@@ -65,6 +65,9 @@ img.thumb{width:44px;height:44px;border-radius:12px;object-fit:cover;flex:none;v
 .wd{border-radius:12px;border:2px solid var(--line);background:#fff;box-shadow:0 3px 0 var(--line);padding:8px 12px;font-size:1rem}.wd.y{background:var(--sun);border-color:#E7C441;box-shadow:0 3px 0 #D9B22E}
 @media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}.intro{height:380px}.dtile{flex-basis:170px}}
 @media(prefers-reduced-motion:no-preference){.card,.dtile,.gtile{animation:up .25s ease both}@keyframes up{from{opacity:0;transform:translateY(6px)}}}
+.dots{position:absolute;right:14px;bottom:16px;z-index:2;display:flex;gap:6px}.dots button{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.5)}.dots button.on{background:#fff}
+img.donepic{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 8%;margin-bottom:6px}
+@media(min-width:640px){.intro{height:560px}}
 </style>
 </head>
 <body>
@@ -442,7 +445,7 @@ const startGame=g=>({match:gMatch,gap:gGap,hear:gHear,spell:gSpell,speed:gSpeed,
 function vHome(){
   const due=dueList().length,nw=Math.min(newLeft(),newList().length),wk=Object.keys(S.days).filter(k=>{const s=String(k),dt=new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6));return (Date.now()-dt)/864e5<7&&Object.keys(S.days[k]).length}).length,total=ALL().length;
   const deckTile=p=>{const all=ALL().filter(x=>x.pack===p.id),k=all.filter(x=>S.cards[x.w]).length,d=dueList(p.id).length;return `<button class="dtile" data-pack="${p.id}">${img(p.art||DECKART[p.id],'cover')}<b>${p.t}</b><div class="bar"><i style="width:${100*k/all.length}%"></i></div><span>${k}/${all.length} words${d?' · <em>'+d+' due</em>':''}</span></button>`};
-  R(`<div class="intro"><img src="../img/hero.jpg" alt="" style="object-position:50% 60%"><div><h1>Hi An</h1><p>Your English, all in one place.</p></div></div>
+  R(`<div class="intro"><img id="introimg" src="img/an-${(S.intro||0)+1}.jpg" alt=""><div><h1>Hi An</h1><p>Your English, all in one place.</p></div><span class="dots">${[0,1,2,3,4].map(i=>`<button data-intro="${i}" class="${i===(S.intro||0)?"on":""}" aria-label="Picture ${i+1}"></button>`).join("")}</span></div>
   <div class="card today"><div class="stats"><div><b>${due}</b><span>to review</span></div><div><b>${nw}</b><span>new today</span></div><div><b>${known()}</b><span>of ${total} learned</span></div><div><b>${wk}/6</b><span>days this week</span></div></div>
   <button class="btn wide big3" data-a="study">${due+nw?'Study now':'All done for today. Play a game'}</button>
   <div class="note"><img src="img/ben.jpg" alt=""><div><b>Ben</b><br>Do your cards, play one game, then tell me about your day tonight.</div></div></div>
@@ -451,13 +454,16 @@ function vHome(){
   <div class="cap">Cài đặt · Settings</div><div class="card"><div class="row sb"><span>Vietnamese help</span><div class="seg" style="width:140px"><button class="${S.vi?'on':''}" data-vi="1">On</button><button class="${!S.vi?'on':''}" data-vi="0">Off</button></div></div>
   <div class="row sb" style="margin-top:10px"><span>Voice speed</span><div class="seg" style="width:140px"><button class="${S.slow?'on':''}" data-slow="1">Slow</button><button class="${!S.slow?'on':''}" data-slow="0">Normal</button></div></div>
   <div class="row sb" style="margin-top:10px"><span>New cards a day</span><div class="seg" style="width:170px">${[5,10,20].map(n=>`<button class="${S.perDay===n?'on':''}" data-per="${n}">${n}</button>`).join('')}</div></div></div>`);
+  clearInterval(tick);tick=setInterval(()=>setIntro(((S.intro||0)+1)%5),7000);
   $('#app').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.intro!=null){setIntro(+b.dataset.intro);return}
     if(b.dataset.a==='study')(due+nw)?study():go('games');
     else if(b.dataset.pack)vDeck(b.dataset.pack);else if(b.dataset.game){GD='learned';startGame(b.dataset.game)}
     else if(b.dataset.vi){S.vi=b.dataset.vi==='1';save();go('home')}
     else if(b.dataset.slow){S.slow=b.dataset.slow==='1';save();vHome();say('This is how fast I will speak.')}
     else if(b.dataset.per){S.perDay=+b.dataset.per;save();vHome()}}}
 
+function setIntro(i){S.intro=i;const im=$('#introimg');if(!im)return;im.style.opacity=0;setTimeout(()=>{im.src='img/an-'+(i+1)+'.jpg';im.style.opacity=1},250);document.querySelectorAll('.dots button').forEach((x,k)=>x.classList.toggle('on',k===i))}
 function vDeck(pid){
   const p=decks().find(x=>x.id===pid),all=ALL().filter(x=>x.pack===pid),d=dueList(pid).length,n=newList(pid).length;
   R(`<button class="back" data-a="back">‹ Home</button><h2>${p.t}</h2><p class="muted">${d} to review · ${n} new · ${all.length} cards</p>
@@ -470,7 +476,7 @@ function study(pid){
   const fresh=newList(pid).slice(0,pid?8:newLeft()).map(x=>({x,nw:true}));q=q.concat(fresh);
   if(!q.length&&pid)q=shuffle(ALL().filter(x=>x.pack===pid)).map(x=>({x,nw:false,extra:true}));
   let done=0,flip=false;const total=q.length;
-  const show=()=>{if(!q.length){D().st=1;save();R(`<div class="card flash"><div class="big">Done</div><p class="muted">${total} cards. They come back just before you would forget them.</p><div class="row" style="justify-content:center"><button class="btn" data-a="game">Play a game</button><button class="btn alt" data-a="home">Home</button></div></div>`);
+  const show=()=>{if(!q.length){D().st=1;save();R(`<div class="card flash"><img class="donepic" src="img/an-4.jpg" alt=""><div class="big">Done</div><p class="muted">${total} cards. They come back just before you would forget them.</p><div class="row" style="justify-content:center"><button class="btn" data-a="game">Play a game</button><button class="btn alt" data-a="home">Home</button></div></div>`);
       $('#app').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.a==='game'?'games':'home')};return}
     const it=q[0],x=it.x,c=S.cards[x.w],rev=!it.nw&&c&&c.s>=2; // older cards: recall the English word
     const back=`${img(x.pic)}<div class="big">${esc(x.w)}</div><div class="muted">${esc(x.p)}</div><div class="vi">${esc(x.vi)}</div>${x.b?`<div><span class="chip r">Instead of: ${esc(x.b)}</span></div>`:''}${x.ex?`<div class="ex">${exHtml(x.ex)}</div>`:''}`;
