@@ -66,7 +66,7 @@ img.thumb{width:44px;height:44px;border-radius:12px;object-fit:cover;flex:none;v
 @media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}.intro{height:380px}.dtile{flex-basis:170px}}
 @media(prefers-reduced-motion:no-preference){.card,.dtile,.gtile{animation:up .25s ease both}@keyframes up{from{opacity:0;transform:translateY(6px)}}}
 .dots{position:absolute;right:14px;bottom:16px;z-index:2;display:flex;gap:6px}.dots button{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.5)}.dots button.on{background:#fff}
-img.donepic{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 45%;margin-bottom:6px}
+img.donepic{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 8%;margin-bottom:6px}
 @media(min-width:640px){.intro{height:560px}}
 .poster{flex:0 0 150px;border-radius:22px;overflow:hidden;border:2px solid var(--line);box-shadow:0 5px 0 var(--line);align-self:stretch;min-height:188px;background:#dde}.poster img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
 .gbanner{height:230px;border-radius:26px;overflow:hidden;box-shadow:0 5px 0 var(--line)}.gbanner img{width:100%;height:100%;object-fit:cover;object-position:50% 4%;display:block}
@@ -470,11 +470,10 @@ function vHome(){
   const due=dueList().length,nw=Math.min(newLeft(),newList().length),wk=Object.keys(S.days).filter(k=>{const s=String(k),dt=new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6));return (Date.now()-dt)/864e5<7&&Object.keys(S.days[k]).length}).length,total=ALL().length;
   const deckTile=p=>{const all=ALL().filter(x=>x.pack===p.id),k=all.filter(x=>S.cards[x.w]).length,d=dueList(p.id).length;return `<button class="dtile" data-pack="${p.id}">${COVER[p.id]?`<img class="cover" src="img/c-${COVER[p.id]}.jpg" alt="">`:img(p.art||DECKART[p.id],'cover')}<b>${p.t}</b><div class="bar"><i style="width:${100*k/all.length}%"></i></div><span>${k}/${all.length} words${d?' · <em>'+d+' due</em>':''}</span></button>`};
   const h0=(S.intro||0)%PH.length;
-  R(`<div class="hero" id="hero"><div class="hbar">${PH.map((x,i)=>`<i class="${i<h0?'done':i===h0?'on':''}"><b></b></i>`).join('')}</div><img class="himg on" src="img/ph-${PH[h0][0]}.jpg" style="object-position:${PH[h0][2]}" alt=""><img class="himg" alt=""><button class="hnav" data-hero="-1" aria-label="Previous picture"></button><button class="hnav r" data-hero="1" aria-label="Next picture"></button><div class="htag">English with Ben</div><div class="hcap"><h1>Hi An</h1><p id="hcapt">${PH[h0][1]}</p></div></div>
+  R(`<div class="hero" id="hero"><div class="hbar">${PH.map((x,i)=>`<i class="${i<h0?'done':i===h0?'on':''}"><b></b></i>`).join('')}</div><img class="himg on" src="img/${PH[h0][0]}.jpg" style="object-position:${PH[h0][2]}" alt=""><img class="himg" alt=""><button class="hnav" data-hero="-1" aria-label="Previous picture"></button><button class="hnav r" data-hero="1" aria-label="Next picture"></button><div class="htag">English with Ben</div><div class="hcap"><h1>Hi An</h1><p id="hcapt">${PH[h0][1]}</p></div></div>
   <div class="card today lift"><div class="stats"><div><b>${due}</b><span>to review</span></div><div><b>${nw}</b><span>new today</span></div><div><b>${known()}</b><span>of ${total} learned</span></div><div><b>${wk}/6</b><span>days this week</span></div></div>
   <button class="btn wide big3" data-a="study">${due+nw?'Study now':'All done for today. Play a game'}</button>
   <div class="note"><img src="img/ben.jpg" alt=""><div><b>Ben</b><br>Do your cards, play one game, then tell me about your day tonight.</div></div></div>
-  <div class="cap">Album · ${PH.length} photos</div><div class="scroll album">${PH.map((x,i)=>`<button class="snap" data-ph="${i}" style="--r:${[-2.5,1.5,-1,2.5,-1.5,1][i%6]}deg"><img loading="lazy" src="img/pt-${x[0]}.jpg" style="object-position:${x[2]}" alt=""><span>${x[1]}</span></button>`).join('')}</div>
   <div class="cap">Trò chơi · Games</div><div class="scroll"><div class="poster"><img src="img/p-games.jpg" alt=""></div>${gameTiles()}</div>
   ${GROUPS.map(g=>{const ds=decks().filter(p=>grp(p)===g[0]);return ds.length?`<div class="cap">${g[1]} · ${ds.reduce((a,p)=>a+p.w.length,0)} words</div><div class="scroll">${POSTER[g[0]]?`<div class="poster"><img src="img/p-${g[0]}.jpg" alt=""></div>`:''}${ds.map(deckTile).join('')}</div>`:''}).join('')}
   <div class="cap">Cài đặt · Settings</div><div class="card"><div class="row sb"><span>Vietnamese help</span><div class="seg" style="width:140px"><button class="${S.vi?'on':''}" data-vi="1">On</button><button class="${!S.vi?'on':''}" data-vi="0">Off</button></div></div>
@@ -490,13 +489,13 @@ function vHome(){
     else if(b.dataset.slow){S.slow=b.dataset.slow==='1';save();vHome();say('This is how fast I will speak.')}
     else if(b.dataset.per){S.perDay=+b.dataset.per;save();vHome()}}}
 
-const PH=[['04','That laugh','50% 45%'],['16','Aquarium dinner','50% 45%'],['02','Pickleball day','50% 15%'],['09','Beach club sunset','30% 40%'],['03','Coffee time','50% 35%'],['06','At the wedding','50% 55%'],['13','Bike ride in Hoi An','55% 35%'],['12','On the river','42% 50%'],['10','City lights','60% 22%'],['07','Dressed up','50% 35%'],['05','By the sea','50% 15%'],['01','Winter café','50% 55%'],['15','Hotel lobby','50% 50%'],['11','Elevator selfie','50% 40%'],['08','Seaside steps','60% 15%'],['14','Sleepy flight','50% 55%']];
+const PH=[1,2,3,4,5].map(n=>['an-'+n,'Your English, all in one place.','50% 12%']);
 function setHero(d){const h=$('#hero');if(!h)return;const n=PH.length,i=((S.intro||0)+d+n)%n,x=PH[i];S.intro=i;
   const ims=h.querySelectorAll('.himg'),cur=h.querySelector('.himg.on'),nx=ims[0]===cur?ims[1]:ims[0];
   const sw=()=>{if(S.intro!==i)return;nx.style.objectPosition=x[2];cur.classList.remove('on');nx.classList.add('on');$('#hcapt').textContent=x[1];h.querySelectorAll('.hbar i').forEach((b,k)=>b.className=k<i?'done':k===i?'on':'')};
-  nx.onload=sw;nx.onerror=sw;nx.src='img/ph-'+x[0]+'.jpg'}
+  nx.onload=sw;nx.onerror=sw;nx.src='img/'+x[0]+'.jpg'}
 function lbox(i){const n=PH.length;let o=$('#lbox');if(!o){o=document.createElement('div');o.id='lbox';document.body.appendChild(o)}
-  const draw=()=>{o.innerHTML=`<button class="lx" data-l="x" aria-label="Close">×</button><img src="img/ph-${PH[i][0]}.jpg" alt=""><div class="lcap"><button data-l="-1" aria-label="Previous picture">‹</button><span>${PH[i][1]} · ${i+1}/${n}</span><button data-l="1" aria-label="Next picture">›</button></div>`};draw();
+  const draw=()=>{o.innerHTML=`<button class="lx" data-l="x" aria-label="Close">×</button><img src="img/${PH[i][0]}.jpg" alt=""><div class="lcap"><button data-l="-1" aria-label="Previous picture">‹</button><span>${PH[i][1]} · ${i+1}/${n}</span><button data-l="1" aria-label="Next picture">›</button></div>`};draw();
   o.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.l!=='x'){i=(i+ +b.dataset.l+n)%n;draw()}else if(b||e.target===o)o.remove()}}
 function vDeck(pid){
   const p=decks().find(x=>x.id===pid),all=ALL().filter(x=>x.pack===pid),d=dueList(pid).length,n=newList(pid).length;
@@ -510,7 +509,7 @@ function study(pid){
   const fresh=newList(pid).slice(0,pid?8:newLeft()).map(x=>({x,nw:true}));q=q.concat(fresh);
   if(!q.length&&pid)q=shuffle(ALL().filter(x=>x.pack===pid)).map(x=>({x,nw:false,extra:true}));
   let done=0,flip=false;const total=q.length;
-  const show=()=>{if(!q.length){D().st=1;save();R(`<div class="card flash"><img class="donepic" src="img/pt-04.jpg" alt=""><div class="big">Done</div><p class="muted">${total} cards. They come back just before you would forget them.</p><div class="row" style="justify-content:center"><button class="btn" data-a="game">Play a game</button><button class="btn alt" data-a="home">Home</button></div></div>`);
+  const show=()=>{if(!q.length){D().st=1;save();R(`<div class="card flash"><img class="donepic" src="img/an-4.jpg" alt=""><div class="big">Done</div><p class="muted">${total} cards. They come back just before you would forget them.</p><div class="row" style="justify-content:center"><button class="btn" data-a="game">Play a game</button><button class="btn alt" data-a="home">Home</button></div></div>`);
       $('#app').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.a==='game'?'games':'home')};return}
     const it=q[0],x=it.x,c=S.cards[x.w],rev=!it.nw&&c&&c.s>=2; // older cards: recall the English word
     const back=`${img(x.pic)}<div class="big">${esc(x.w)}</div><div class="muted">${esc(x.p)}</div><div class="vi">${esc(x.vi)}</div>${x.b?`<div><span class="chip r">Instead of: ${esc(x.b)}</span></div>`:''}${x.ex?`<div class="ex">${exHtml(x.ex)}</div>`:''}`;

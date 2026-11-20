@@ -29,7 +29,7 @@ Secrets (AI key) live in Cloudflare only, never in this repo.
 ## English with Ben (An's English app)
 - Live at `/english/`. A separate vocabulary app: spaced-review cards (53 decks), eight games, speaking prompts and a page for Ben.
 - `english/index.html` is the whole app; `english/img/` holds its photos and the painted pictures it reuses from `img/p/`.
-- Home page photos: `english/img/ph-NN.jpg` (full) and `pt-NN.jpg` (small) are An and Ben's own photos with a light painted finish; the `PH` list in `english/index.html` sets their order, caption and focal point for the cover, the album strip and the full-screen viewer.
+- Home page cover: the `PH` list in `english/index.html` sets the cover pictures (`english/img/an-N.jpg`), their caption and focal point. Cartoon pictures only: Ben does not want real photos of An on the site.
 - No server part yet: progress is kept in the browser (localStorage key `ewb2`). It shares nothing with the Vietnamese app.
 - Sign-in gate: `functions/english/_middleware.js` asks for a code once per device before serving anything under `/english/` (cookie `en_in`, one year). Only the code's hash is in the file; an `ENGLISH_CODE` variable on the Pages project overrides it. Wrong tries are limited to 10 per 10 minutes per address (KV keys `en:try:`). The gate covers the site only: while this repo is public, the files in `english/` can still be read on GitHub.
 - Voices: `english/audio/` holds one clip per word (`NNNw.mp3`) and per example sentence (`NNNs.mp3`), listed in `english/audio/index.json` by their text. Made with Kokoro (voices af_heart and am_michael, alternating by card).
