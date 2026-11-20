@@ -472,7 +472,7 @@ function vHome(){
   const due=dueList().length,nw=Math.min(newLeft(),newList().length),wk=Object.keys(S.days).filter(k=>{const s=String(k),dt=new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6));return (Date.now()-dt)/864e5<7&&Object.keys(S.days[k]).length}).length,total=ALL().length;
   const used=new Set(),deckTile=p=>{const all=ALL().filter(x=>x.pack===p.id),k=all.filter(x=>S.cards[x.w]).length,d=dueList(p.id).length;let art=[HOMEART[p.id],p.art,DECKART[p.id],...all.map(x=>x.pic)].find(a=>a&&!used.has(a))||'';used.add(art);return `<button class="dtile" data-pack="${p.id}">${img(art,'cover')}<b>${p.t}</b><div class="bar"><i style="width:${100*k/all.length}%"></i></div><span>${k}/${all.length} words${d?' · <em>'+d+' due</em>':''}</span></button>`};
   const h0=(S.intro||0)%PH.length;
-  R(`<div class="hero" id="hero"><div class="hbar">${PH.map((x,i)=>`<i class="${i<h0?'done':i===h0?'on':''}"><b></b></i>`).join('')}</div><img class="himg on" src="img/${PH[h0][0]}.jpg" style="object-position:${PH[h0][2]}" alt=""><img class="himg" alt=""><button class="hnav" data-hero="-1" aria-label="Previous picture"></button><button class="hnav r" data-hero="1" aria-label="Next picture"></button><div class="htag">English with Ben</div><div class="hcap"><h1>Hi An</h1><p id="hcapt">${PH[h0][1]}</p></div></div>
+  R(`<div class="hero" id="hero"><div class="hbar">${PH.map((x,i)=>`<i class="${i<h0?'done':i===h0?'on':''}"><b></b></i>`).join('')}</div><img class="himg on" src="img/${PH[h0][0]}.jpg" alt=""><img class="himg" alt=""><button class="hnav" data-hero="-1" aria-label="Previous picture"></button><button class="hnav r" data-hero="1" aria-label="Next picture"></button><div class="htag">English with Ben</div><div class="hcap"><h1>Hi An</h1><p id="hcapt">${PH[h0][1]}</p></div></div>
   <div class="card today lift"><div class="stats"><div><b>${due}</b><span>to review</span></div><div><b>${nw}</b><span>new today</span></div><div><b>${known()}</b><span>of ${total} learned</span></div><div><b>${wk}/6</b><span>days this week</span></div></div>
   <button class="btn wide big3" data-a="study">${due+nw?'Study now':'All done for today. Play a game'}</button>
   <div class="note"><img src="img/ben.jpg" alt=""><div><b>Ben</b><br>Do your cards, play one game, then tell me about your day tonight.</div></div></div>
@@ -481,6 +481,7 @@ function vHome(){
   <div class="cap">Cài đặt · Settings</div><div class="card"><div class="row sb"><span>Vietnamese help</span><div class="seg" style="width:140px"><button class="${S.vi?'on':''}" data-vi="1">On</button><button class="${!S.vi?'on':''}" data-vi="0">Off</button></div></div>
   <div class="row sb" style="margin-top:10px"><span>Voice speed</span><div class="seg" style="width:140px"><button class="${S.slow?'on':''}" data-slow="1">Slow</button><button class="${!S.slow?'on':''}" data-slow="0">Normal</button></div></div>
   <div class="row sb" style="margin-top:10px"><span>New cards a day</span><div class="seg" style="width:170px">${[5,10,20].map(n=>`<button class="${S.perDay===n?'on':''}" data-per="${n}">${n}</button>`).join('')}</div></div></div>`);
+  {const a=$('.himg.on');a._f=PH[h0][2];a.onload=()=>fitH(a);fitH(a)}
   clearInterval(tick);tick=setInterval(()=>{if(!$('#lbox'))setHero(1)},6000);
   $('#app').onclick=e=>{const b=e.target.closest('button');if(!b)return;
     if(b.dataset.hero){setHero(+b.dataset.hero);clearInterval(tick);tick=setInterval(()=>{if(!$('#lbox'))setHero(1)},6000);return}
@@ -491,10 +492,14 @@ function vHome(){
     else if(b.dataset.slow){S.slow=b.dataset.slow==='1';save();vHome();say('This is how fast I will speak.')}
     else if(b.dataset.per){S.perDay=+b.dataset.per;save();vHome()}}}
 
-const PH=[1,2,3,4,5].map(n=>['an-'+n,'Your English, all in one place.','50% 12%']);
+const PH=[[.475,.19],[.5,.2],[.46,.13],[.495,.127],[.53,.17]].map((f,n)=>['an-'+(n+1),'Your English, all in one place.',f]);
+function fitH(im,f){const h=$('#hero');if(f)im._f=f;f=im._f;if(!h||!f||!im.naturalWidth)return;const W=h.clientWidth,H=h.clientHeight,iw=im.naturalWidth,ih=im.naturalHeight,T=.3;
+  const s=Math.max(W/iw,H/ih,Math.min(T*H/(f[1]*ih),ZOOM*H/ih)),w=iw*s,hh=ih*s,l=Math.min(0,Math.max(W-w,W/2-f[0]*w)),t=Math.min(0,Math.max(H-hh,T*H-f[1]*hh));
+  im.style.cssText=`inset:auto;left:${l}px;top:${t}px;width:${w}px;height:${hh}px;max-width:none`}
+const ZOOM=2.2;addEventListener('resize',()=>document.querySelectorAll('.himg').forEach(m=>fitH(m)));
 function setHero(d){const h=$('#hero');if(!h)return;const n=PH.length,i=((S.intro||0)+d+n)%n,x=PH[i];S.intro=i;
   const ims=h.querySelectorAll('.himg'),cur=h.querySelector('.himg.on'),nx=ims[0]===cur?ims[1]:ims[0];
-  const sw=()=>{if(S.intro!==i)return;nx.style.objectPosition=x[2];cur.classList.remove('on');nx.classList.add('on');$('#hcapt').textContent=x[1];h.querySelectorAll('.hbar i').forEach((b,k)=>b.className=k<i?'done':k===i?'on':'')};
+  const sw=()=>{if(S.intro!==i)return;fitH(nx,x[2]);cur.classList.remove('on');nx.classList.add('on');$('#hcapt').textContent=x[1];h.querySelectorAll('.hbar i').forEach((b,k)=>b.className=k<i?'done':k===i?'on':'')};
   nx.onload=sw;nx.onerror=sw;nx.src='img/'+x[0]+'.jpg'}
 function lbox(i){const n=PH.length;let o=$('#lbox');if(!o){o=document.createElement('div');o.id='lbox';document.body.appendChild(o)}
   const draw=()=>{o.innerHTML=`<button class="lx" data-l="x" aria-label="Close">×</button><img src="img/${PH[i][0]}.jpg" alt=""><div class="lcap"><button data-l="-1" aria-label="Previous picture">‹</button><span>${PH[i][1]} · ${i+1}/${n}</span><button data-l="1" aria-label="Next picture">›</button></div>`};draw();
