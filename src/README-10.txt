@@ -992,3 +992,13 @@ VERSION 99 (19 Nov 2026) - the app updates itself, and shows its version number
 - A phone still on an older copy cannot run this check yet. One-time fix: open https://bens-tieng-viet.pages.dev/?nosw=1 once
   (it clears the saved copy), then open the normal link.
 - TESTED: src/tests/t99.py (no reload when equal, one reload when newer, no loop) and t98. NOT tested: a real phone.
+
+VERSION 100 (24 Nov 2026) - laptop layout and tidy-ups
+- Ben uses the app mostly on his laptop, sometimes on his phone.
+- Home on a wide screen (1180 px and up): two columns. Left: Thay Tam's hello and today's lesson card with Start, visible
+  without scrolling. Right: the six painted rooms (2 x 3), the tip and the shortcut row. Phone layout unchanged. CSS block v100 at the end of v7.css.
+- Shortcut row (Review, Sai Gon, Cards, + Tu, Handbook, Find anything): drawn line icons instead of emoji pictures (Z100I, z100Ico at the end of v7.js).
+- Today: the city banner is a 240 px strip on screens 900 px and up (it used to fill the whole laptop screen).
+- Sharp ears: no picture hints on the choices. Only some words had one (for example "5" on nam), which gave the answer away.
+- build.sh has /home/claude paths; in a fresh clone run patch10.py by hand (see build.sh) and write data/ver.json.
+- TESTED: src/tests/t100.py (new) at 1440, 1280 and 390 px, plus t99, t98, t97, t84 again. NOT tested: a real phone or Ben's laptop.

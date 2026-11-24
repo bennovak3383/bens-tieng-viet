@@ -3252,9 +3252,25 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=99;
+var Z99V=100;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
 try{ z99Check(); document.addEventListener('visibilitychange',function(){ if(!document.hidden) z99Check() }) }catch(e){}
 var z59Hub99=z59Hub; z59Hub=function(){ z59Hub99(); try{ var hub=$('#z-hub'); if(hub&&!hub.querySelector('.z99v')) hub.appendChild(h('div',{class:'z99v',text:'Version '+Z99V})) }catch(e){} };
+/* ===== v100: laptop layout and tidy-ups. Ben mostly uses a laptop.
+   - Shortcut row under the lesson card: drawn line icons instead of emoji pictures (z100Ico).
+   - The rest is CSS at the end of v7.css (block v100): two-column Home on wide screens, shorter Today banner,
+     Sharp ears choices without picture hints. ===== */
+var Z100I={
+  rev:['#E08A00','<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4.5V11h-6.5"/>'],
+  sg:['#12A26E','<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'],
+  fc:['#7C5CFC','<rect x="3.5" y="6.5" width="12.5" height="14" rx="2.2"/><path d="M8 3.5h10.3a2.2 2.2 0 0 1 2.2 2.2V17"/>'],
+  add:['#F0527A','<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>'],
+  book:['#2F7BF6','<path d="M3 5.6C5.6 4 9 4 12 6c3-2 6.4-2 9-.4V19c-2.6-1.5-6-1.5-9 .5-3-2-6.4-2-9-.5z"/><path d="M12 6v13.4"/>'],
+  all:['#0FA8A1','<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>']};
+function z100Ico(){ try{ Object.keys(Z100I).forEach(function(k){ var b=document.querySelector('#z-hub .z74-'+k), pi=b&&b.querySelector('.pi'); if(!pi||pi.dataset.z100) return; var c=Z100I[k];
+      pi.dataset.z100='1'; pi.classList.add('z100i'); pi.style.setProperty('--c',c[0]);
+      pi.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+c[1]+'</svg>' }) }catch(e){} }
+var z59Hub100=z59Hub; z59Hub=function(){ z59Hub100(); z100Ico() };
+try{ z100Ico() }catch(e){}
