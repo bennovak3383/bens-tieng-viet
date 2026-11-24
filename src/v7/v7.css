@@ -1127,3 +1127,7 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
   #z-hub>.z76chip,#z-hub>.z99v{grid-column:1/-1}
   #z-hub>.z59grid .z59t{min-height:0;height:190px}
 }
+/* v100: game speed button under the game header */
+.z100gsw{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-2px 0 6px}
+.z100gsw .speed{display:flex;flex-wrap:wrap;gap:6px}
+.z100gsw .speed[hidden]{display:none}

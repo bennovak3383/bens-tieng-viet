@@ -1502,6 +1502,10 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
   #z-hub>.z76chip,#z-hub>.z99v{grid-column:1/-1}
   #z-hub>.z59grid .z59t{min-height:0;height:190px}
 }
+/* v100: game speed button under the game header */
+.z100gsw{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-2px 0 6px}
+.z100gsw .speed{display:flex;flex-wrap:wrap;gap:6px}
+.z100gsw .speed[hidden]{display:none}
 </style>
 
 <div class="wrap" id="app">
@@ -6721,7 +6725,8 @@ function z63Person(L,tall){ L=L||{};
   if(L.glasses) o+='<circle cx="-7.800" cy="-34.200" r="6.300" fill="rgba(255,255,255,.2)" stroke="#3B4A6B" stroke-width="1.700"/><circle cx="7.800" cy="-34.200" r="6.300" fill="rgba(255,255,255,.2)" stroke="#3B4A6B" stroke-width="1.700"/><path d="M-1.500 -34.700 q1.500 -1 3 0 M-14 -34.700 L-19 -36 M14 -34.700 L19 -36" fill="none" stroke="#3B4A6B" stroke-width="1.500" stroke-linecap="round"/><path d="M-11.500 -37.700 q1.500 -2 4 -2.300 M4 -37.700 q1.500 -2 4 -2.300" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity=".9"/>';
   return o }
 /* Ben, from the photo he sent (18 Nov): short dark-blond hair lifted at the front, short beard, blue eyes, black button shirt. He stands a little taller than Thầy Tâm. */
-var Z78B={hair:'quiff',hc:'#A9824E',hl:'#D9B77E',hd:'#735530',skin:'#FCE3CE',sh:'#EDBE9C',eye:'#3F6FA8',brow:'#7A5C33',beard:'#8A6A3F',lines:1,shirt:'#1F1F24'};
+/* v100: Ben said the drawing made him look like an old man. Face lines off (they read as wrinkles), beard and hair a touch warmer. */
+var Z78B={hair:'quiff',hc:'#B48A4E',hl:'#E2C083',hd:'#735530',skin:'#FCE3CE',sh:'#EDBE9C',eye:'#3F6FA8',brow:'#7A5C33',beard:'#9C7440',lines:0,shirt:'#1F1F24'};
 function z78Ben(wave){ var arm=''; try{ if(wave) arm=z71Arm().split('#27336B').join('#1F1F24').split('#EDC69A').join(Z78B.skin).split('#F4F7FC').join('#33333B') }catch(e){}
   return z63Person(Z78B,true)+'<path d="M-12.500 -9 L-2.500 6 L0 1.500 L-8 -10.500 Z M12.500 -9 L2.500 6 L0 1.500 L8 -10.500 Z" fill="#33333B"/><path d="M0 4 V150" stroke="rgba(0,0,0,.4)" stroke-width="1.400"/><circle cx="0" cy="15" r="1.600" fill="#4A4A55"/><circle cx="0" cy="30" r="1.600" fill="#4A4A55"/><circle cx="0" cy="45" r="1.600" fill="#4A4A55"/>'+arm }
 function z78BenEl(){ return h('div',{class:'z59tam z78ben','aria-hidden':'true',html:'<svg viewBox="-40 -80 100 141">'+z78Ben(true)+'</svg>'}) }
@@ -6914,6 +6919,19 @@ function z100Ico(){ try{ Object.keys(Z100I).forEach(function(k){ var b=document.
       pi.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+c[1]+'</svg>' }) }catch(e){} }
 var z59Hub100=z59Hub; z59Hub=function(){ z59Hub100(); z100Ico() };
 try{ z100Ico() }catch(e){}
+/* v100: games have their own speed (Ben: "the speech on the game card was really slow"). Lessons keep the app-wide speed (Slow by default);
+   inside a game the voice uses S.set.gsp (default Normal). A "Speed: Normal ▾" button in the game header opens the choices. */
+var Z100GS=[{k:.75,l:'Slow'},{k:.9,l:'A bit slower'},{k:1,l:'Normal'},{k:1.15,l:'A bit faster'}];
+function z100InGame(){ try{ var b=document.getElementById('sheet-body'); return !!(b&&b.classList.contains('z60play')) }catch(e){ return false } }
+var SP100=SP; SP=function(){ if(z100InGame()) return S.set.gsp||1; return SP100() };
+var speakOne100=speakOne; speakOne=function(text,o){ if(z100InGame()){ o=Object.assign({},o||{}); if(!o.rate) o.rate=S.set.gsp||1 } return speakOne100(text,o) };
+function z100GameSpeed(){ var cur=function(){ var k=S.set.gsp||1, l='Normal'; Z100GS.forEach(function(x){ if(Math.abs(x.k-k)<.01) l=x.l }); return l };
+  var row=h('div',{class:'speed z100gs',hidden:true}), btn=h('button',{class:'chip z82sp z100gsb','aria-expanded':'false'});
+  function draw(){ btn.textContent='Speed: '+cur()+(row.hidden?' ▾':' ▴'); Array.prototype.forEach.call(row.children,function(c,i){ c.setAttribute('aria-pressed',String(Math.abs(Z100GS[i].k-(S.set.gsp||1))<.01)) }) }
+  Z100GS.forEach(function(x){ row.appendChild(h('button',{class:'chip',text:x.l,onclick:function(){ S.set.gsp=x.k; save(); row.hidden=true; btn.setAttribute('aria-expanded','false'); draw() }})) });
+  btn.onclick=function(){ row.hidden=!row.hidden; btn.setAttribute('aria-expanded',String(!row.hidden)); draw() }; draw();
+  return h('div',{class:'z100gsw'},[btn,row]) }
+var z60Shell100=z60Shell; z60Shell=function(g,set,total){ var sh=z60Shell100(g,set,total); try{ var hd=sh.body.querySelector('.z60hd'); if(hd&&!sh.body.querySelector('.z100gsw')) hd.parentNode.insertBefore(z100GameSpeed(),hd.nextSibling) }catch(e){} return sh };
 
 go(location.hash.slice(1)||'home');
 renderAll();

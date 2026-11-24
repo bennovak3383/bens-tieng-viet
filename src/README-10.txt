@@ -1002,3 +1002,8 @@ VERSION 100 (24 Nov 2026) - laptop layout and tidy-ups
 - Sharp ears: no picture hints on the choices. Only some words had one (for example "5" on nam), which gave the answer away.
 - build.sh has /home/claude paths; in a fresh clone run patch10.py by hand (see build.sh) and write data/ver.json.
 - TESTED: src/tests/t100.py (new) at 1440, 1280 and 390 px, plus t99, t98, t97, t84 again. NOT tested: a real phone or Ben's laptop.
+- Ben's picture (Z78B, the cartoon of him on the welcome screen and end-of-game screen): face lines off, beard and hair a touch warmer.
+  He said it made him look like an old man.
+- Games have their own voice speed: S.set.gsp, default Normal (1). Lessons keep the app-wide speed (Slow by default). A "Speed: Normal"
+  button under the game header opens Slow / A bit slower / Normal / A bit faster. SP and speakOne are wrapped (z100InGame) so the game
+  speed only applies while a game is open.
