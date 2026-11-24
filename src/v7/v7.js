@@ -3253,7 +3253,7 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=100;
+var Z99V=101;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
@@ -3288,3 +3288,18 @@ function z100GameSpeed(){ var cur=function(){ var k=S.set.gsp||1, l='Normal'; Z1
   btn.onclick=function(){ row.hidden=!row.hidden; btn.setAttribute('aria-expanded',String(!row.hidden)); draw() }; draw();
   return h('div',{class:'z100gsw'},[btn,row]) }
 var z60Shell100=z60Shell; z60Shell=function(g,set,total){ var sh=z60Shell100(g,set,total); try{ var hd=sh.body.querySelector('.z60hd'); if(hd&&!sh.body.querySelector('.z100gsw')) hd.parentNode.insertBefore(z100GameSpeed(),hd.nextSibling) }catch(e){} return sh };
+/* ===== v101: Today in the painted style, and the main action first.
+   - The flat city drawing at the top of Today is now a strip of four painted scenes (a day in Saigon: phở, the market,
+     coffee with a friend, meeting someone). Pictures are the img/home ones, already in the offline list.
+   - Order (CSS, block v101): today's route with Start, how long today, then the lesson, the sounds course, saving online, your plan.
+     On a laptop: route on the left, the lesson's ten steps on the right.
+   - The older "How this app works" button is hidden; "Hướng dẫn · how the app works" (the newer guide) stays. ===== */
+var Z101ART=[['an','Ăn phở'],['ban2','Đi chợ'],['noichuyen','Cà phê'],['gap','Gặp bạn']];
+function z101Today(){ try{ var hero=$('#v-home .zhero'); if(!hero) return; var sc=hero.querySelector('.z12scene');
+    if(!hero.querySelector('.z101strip')){ var st=h('div',{class:'z101strip','aria-hidden':'true'});
+      Z101ART.forEach(function(a){ var f=h('figure',{},[]), im=document.createElement('img'); im.src='img/home/'+a[0]+'.webp'; im.alt=''; im.decoding='async'; im.draggable=false; f.appendChild(im); f.appendChild(h('figcaption',{text:a[1]})); st.appendChild(f) });
+      hero.insertBefore(st,hero.firstChild) }
+    var s2=hero.querySelector('.z101strip'); if(s2&&hero.firstChild!==s2) hero.insertBefore(s2,hero.firstChild)
+    var zh=$('#z-home'); if(zh&&zh.querySelector('.z57h')) Array.prototype.forEach.call(zh.querySelectorAll(':scope>button.btn.wide'),function(b){ if(b.textContent.trim()==='How this app works') b.hidden=true }) }catch(e){} }
+var zRenderHome101=zRenderHome; zRenderHome=function(){ zRenderHome101(); z101Today() };
+try{ z101Today() }catch(e){}

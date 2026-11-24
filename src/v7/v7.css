@@ -1131,3 +1131,29 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z100gsw{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-2px 0 6px}
 .z100gsw .speed{display:flex;flex-wrap:wrap;gap:6px}
 .z100gsw .speed[hidden]{display:none}
+/* ===== v101: Today in the painted style, main action first ===== */
+#v-home .zhero{padding-top:0;overflow:hidden}
+#v-home .zhero .z12scene{display:none!important} /* the old flat city drawing; z12Hero puts it back if removed, so it is hidden instead */
+.z101strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 -20px 14px;height:168px;position:relative}
+.z101strip figure{margin:0;position:relative;overflow:hidden}
+.z101strip img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.z101strip figcaption{position:absolute;left:10px;bottom:9px;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.88);color:#1B1230;font-weight:800;font-size:12.5px}
+.z101strip::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(transparent,var(--surface,#fff));pointer-events:none}
+@media (max-width:620px){ .z101strip{grid-template-columns:repeat(3,1fr);height:132px;margin:0 -16px 12px} .z101strip figure:nth-child(4){display:none} .z101strip figcaption{font-size:11px;left:6px;bottom:6px;padding:2px 8px} }
+#z-home>*{order:20}
+#z-home>.z12sec{order:2}
+#z-home>#z-plan{order:1}
+#z-home>.z59fold{order:3}
+#z-home>#z53{order:4}
+#z-home>#z27{order:5}
+#z-home>#z31acc{order:6}
+#z-home>#z48{order:7}
+@media (min-width:1180px){
+  #app #v-home{max-width:1240px}
+  #z-home{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:22px;row-gap:14px;align-items:start;grid-auto-flow:row dense}
+  #z-home>*{grid-column:1/-1}
+  #z-home>.z12sec,#z-home>#z-plan,#z-home>.z59fold,#z-home>#z27,#z-home>#z31acc,#z-home>#z48{grid-column:1}
+  #z-home>#z53{grid-column:2;grid-row:1 / span 6}
+  .z101strip{height:200px}
+}
+.z101strip figure:first-child figcaption{left:18px}

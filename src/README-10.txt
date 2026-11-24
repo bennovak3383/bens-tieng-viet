@@ -1007,3 +1007,11 @@ VERSION 100 (24 Nov 2026) - laptop layout and tidy-ups
 - Games have their own voice speed: S.set.gsp, default Normal (1). Lessons keep the app-wide speed (Slow by default). A "Speed: Normal"
   button under the game header opens Slow / A bit slower / Normal / A bit faster. SP and speakOne are wrapped (z100InGame) so the game
   speed only applies while a game is open.
+
+VERSION 101 (24 Nov 2026) - Today in the painted style, main action first
+- Top of Today: a strip of four painted scenes (img/home: an, ban2, noichuyen, gap) with short captions, three on a phone.
+  The old flat city drawing is hidden with CSS (z12Hero puts it back if it is removed). Code: z101Today, Z101ART at the end of v7.js.
+- Order on Today (CSS order, block v101): today's route with Start, how long today, the lesson's ten steps, sounds course,
+  save online, your plan. On a laptop (1180 px+) two columns: route and the rest on the left, the lesson steps on the right.
+- The older "How this app works" button is hidden when the newer "Huong dan · how the app works" guide button is there.
+- TESTED: src/tests/t101.py (new), t100, t99, t98. NOT tested: a real phone or Ben's laptop.
