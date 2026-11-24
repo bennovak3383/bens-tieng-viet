@@ -1008,6 +1008,8 @@ VERSION 100 (24 Nov 2026) - laptop layout and tidy-ups
   button under the game header opens Slow / A bit slower / Normal / A bit faster. SP and speakOne are wrapped (z100InGame) so the game
   speed only applies while a game is open.
 
+VERSION 102 (2026-11-24): smooth listening. A phrase with no whole recording was stitched from single-word clips in random voices (man and woman mixed), which sounded choppy, e.g. in Listen and choose. Now the device's Vietnamese voice says it in one go when there is one; otherwise every word comes from the same voice. Whole recordings unchanged. Test: src/tests/t102.py.
+
 VERSION 101 (24 Nov 2026) - Today in the painted style, main action first
 - Top of Today: a strip of four painted scenes (img/home: an, ban2, noichuyen, gap) with short captions, three on a phone.
   The old flat city drawing is hidden with CSS (z12Hero puts it back if it is removed). Code: z101Today, Z101ART at the end of v7.js.

@@ -6923,7 +6923,7 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=101;
+var Z99V=102;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
@@ -6973,6 +6973,20 @@ function z101Today(){ try{ var hero=$('#v-home .zhero'); if(!hero) return; var s
     var zh=$('#z-home'); if(zh&&zh.querySelector('.z57h')) Array.prototype.forEach.call(zh.querySelectorAll(':scope>button.btn.wide'),function(b){ if(b.textContent.trim()==='How this app works') b.hidden=true }) }catch(e){} }
 var zRenderHome101=zRenderHome; zRenderHome=function(){ zRenderHome101(); z101Today() };
 try{ z101Today() }catch(e){}
+/* ---- v102: smooth listening. A phrase with no whole recording used to be stitched from single-word clips,
+   each word in a random voice (man, woman, real), so it sounded choppy. Now: one voice per phrase, and if this
+   device has a Vietnamese voice, it says the unrecorded phrase in one smooth go instead of stitching. ---- */
+var Z102V=null, Z102OFF=false;
+function z102List(text){ if(!AUD.idx||!AUD.el||S.set.src==='phone') return null; var k=String(text).normalize('NFC').trim(), c=AUD.idx.clips[k]||AUD.idx.clips[k.toLowerCase()]; return c&&c.length?c:null }
+clipFor=function(text){ var c=z102List(text); if(!c) return null; if(Z102OFF&&!/\s/.test(String(text).trim())) return null; if(Z102V!=null){ var m=c.filter(function(x){ return x[3]===Z102V }); if(m.length) return pick(m) } return pick(c) };
+function z102Voice(lists){ var n={}; lists.forEach(function(l){ var seen={}; l.forEach(function(x){ var v=x[3]==null?-1:x[3]; if(!seen[v]){ seen[v]=1; n[v]=(n[v]||0)+1 } }) }); var best=null; Object.keys(n).forEach(function(v){ if(v!=='-1'&&(best===null||n[v]>n[best]||(n[v]===n[best]&&+v<+best))) best=v }); return best===null?null:+best }
+var zSay101=zSay; zSay=function(text,o){ var t=String(text).normalize('NFC').trim();
+  if(z102List(t)){ Z102V=null; return zSay101(text,o) }
+  var lists=tokens(zDigits(t)).filter(isWord).map(function(w){ return z102List(w.toLowerCase()) });
+  if(!lists.length||!lists.every(Boolean)){ Z102V=null; return zSay101(text,o) }
+  if(speechOK&&VOICES.length){ Z102OFF=true; try{ return zSay101(text,o) } finally{ Z102OFF=false } }
+  Z102V=z102Voice(lists); return zSay101(text,o) };
+var speak101=speak; speak=function(text,o){ var c=z102List(text); Z102V=c?pick(c)[3]:null; if(Z102V===undefined) Z102V=null; return speak101(text,o) };
 
 go(location.hash.slice(1)||'home');
 renderAll();
