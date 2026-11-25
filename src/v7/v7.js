@@ -3253,7 +3253,7 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=102;
+var Z99V=103;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
@@ -3317,3 +3317,66 @@ var zSay101=zSay; zSay=function(text,o){ var t=String(text).normalize('NFC').tri
   if(speechOK&&VOICES.length){ Z102OFF=true; try{ return zSay101(text,o) } finally{ Z102OFF=false } }
   Z102V=z102Voice(lists); return zSay101(text,o) };
 var speak101=speak; speak=function(text,o){ var c=z102List(text); Z102V=c?pick(c)[3]:null; if(Z102V===undefined) Z102V=null; return speak101(text,o) };
+/* ---- v103: tap any Vietnamese on any screen. A card opens with the whole sentence and its English, and every word in it
+   can be tapped for its own meaning and sound. Translations come from the app's own lessons and lists (no AI).
+   Not on buttons (they keep their own job) and not on a game question until it is answered. ---- */
+var Z103={d:null,p:null,el:null};
+var Z103VN=/[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]/i;
+function z103VN(s){ return Z103VN.test(String(s||'')) }
+function z103En(s){ return typeof s==='string'&&/[a-z]/i.test(s)&&!Z103VN.test(s) }
+function z103Eng(s){ var w=String(s).toLowerCase().match(/[\p{L}]+/gu)||[], n=0; w.forEach(function(x){ if(/^(the|a|an|is|are|to|and|or|you|it|for|of|with|in|on|at|say|use|not|do|does|when|i|your|this|that|be|can|means|tap|word|words|first|then)$/.test(x)) n++ }); return n>=2&&n>=w.length*.2 }
+function z103Key(s){ return String(s||'').normalize('NFC').replace(/[“”"«»‘’]/g,'').replace(/\s+/g,' ').trim().replace(/^[\-–·•\s]+|[.!?…:;,\s]+$/g,'').toLowerCase() }
+function z103Put(d,vi,en){ var k=z103Key(vi); if(k&&!d[k]) d[k]=String(en).trim() }
+function z103Walk(o,d,dep){ if(!o||dep>12) return;
+  if(Array.isArray(o)){ if(o.length>=2&&typeof o[0]==='string'&&o[0].length<300&&z103VN(o[0])&&z103En(o[1])) z103Put(d,o[0],o[1]); for(var i=0;i<o.length;i++) if(o[i]&&typeof o[i]==='object') z103Walk(o[i],d,dep+1); return }
+  if(typeof o!=='object') return;
+  Object.keys(o).forEach(function(k){ var v=o[k];
+    if(typeof v==='string'){ if(v.length<300&&z103VN(v)){ var ek=[k+'En',k+'en',k+'_en',(/^(vi|t|w|s|q|a|text|line|say|p)$/.test(k)?'en':''),(k==='ex'?'exen':'')];
+      for(var j=0;j<ek.length;j++) if(ek[j]&&z103En(o[ek[j]])){ z103Put(d,v,o[ek[j]]); break } } }
+    else if(v&&typeof v==='object') z103Walk(v,d,dep+1) }) }
+var Z103F=['core','beginner','situations','scenes','saigon','words13','exam','guide','sounds','voice-lines','plan'];
+function z103Load(){ if(Z103.p) return Z103.p; var d={};
+  try{ z103Walk(C6,d,0) }catch(e){} try{ Object.keys(C6.gloss||{}).forEach(function(k){ z103Put(d,k,C6.gloss[k]) }) }catch(e){}
+  try{ (S.my||[]).forEach(function(m){ if(m&&m.vi&&m.en) z103Put(d,m.vi,m.en) }) }catch(e){}
+  Z103.p=Promise.all(Z103F.map(function(f){ return fetch('data/'+f+'.json').then(function(r){ return r.ok?r.json():null }).then(function(j){ if(j) z103Walk(j,d,0) }).catch(function(){}) })).then(function(){
+    Z103.d=d; try{ Object.keys(d).forEach(function(k){ if(k.split(' ').length<=3&&!C6.gloss[k]) C6.gloss[k]=d[k] }) }catch(e){} return d });
+  return Z103.p }
+function z103Mean(w){ var k=z103Key(w), d=Z103.d||{}; return d[k]||(C6.gloss&&C6.gloss[k])||'' }
+function z103Close(){ if(Z103.el){ Z103.el.remove(); Z103.el=null } $$('.z103on').forEach(function(x){ x.classList.remove('z103on') }) }
+function z103Show(line,wl,sp,phrase){ $$('.zw.now',line).forEach(function(x){ x.classList.remove('now') }); if(sp) sp.classList.add('now'); var m=z103Mean(phrase);
+  wl.hidden=false; wl.innerHTML=''; wl.appendChild(h('b',{text:phrase})); wl.appendChild(document.createTextNode(m?' · '+m:' · no meaning saved for this word yet')) }
+function z103Open(sent,word,en,src){ z103Close(); en=en||'';
+  var wl=h('div',{class:'z103w',hidden:true}), line=h('div',{class:'z103s'});
+  line.appendChild(zGlossSpans(sent,function(sp,key,phrase){ z103Show(line,wl,sp,phrase); try{ zSay(phrase) }catch(e){} }));
+  var card=h('div',{id:'z103',class:'z103',role:'dialog','aria-label':'Meaning'},[
+    h('div',{class:'z103top'},[h('span',{class:'lbl',text:'Tap any word for its meaning'}),h('button',{class:'x','aria-label':'Close',text:'✕',onclick:z103Close})]),
+    h('div',{class:'z103row'},[h('button',{class:'play','aria-label':'Play the whole sentence',html:PLAY_ICON,onclick:function(){ try{ zSay(sent) }catch(e){} }}),line]),
+    h('p',{class:'z103en'+(en?'':' muted'),text:en?en:'No English saved for this whole line. Tap the words to see what each one means.'}),wl]);
+  document.body.appendChild(card); Z103.el=card; if(src) src.classList.add('z103on');
+  if(word){ var wk=z103Key(word), hit=null; $$('.zw',line).forEach(function(sp){ if(!hit&&z103Key(sp.textContent)===wk) hit=sp }); if(!hit) $$('.zw',line).forEach(function(sp){ if(!hit&&z103Key(sp.textContent).split(' ').indexOf(wk)>=0) hit=sp });
+    if(hit) z103Show(line,wl,hit,z103Mean(hit.textContent)||!z103Mean(word)?hit.textContent:word) } }
+var Z103SKIP='button,a,input,textarea,select,option,label,summary,[contenteditable],[role="button"],.zw,.zstory,#z103,.z103no';
+function z103Block(t){ var el=t; for(var i=0;i<6&&el&&el!==document.body;i++){ var tx=(el.textContent||'').trim(); if(tx.length>400) return null; if(getComputedStyle(el).display!=='inline'&&z103VN(tx)) return el; el=el.parentElement } return null }
+function z103Caret(x,y){ try{ if(document.caretRangeFromPoint) return document.caretRangeFromPoint(x,y); if(document.caretPositionFromPoint){ var p=document.caretPositionFromPoint(x,y); if(p){ var r=document.createRange(); r.setStart(p.offsetNode,p.offset); r.collapse(true); return r } } }catch(e){} return null }
+function z103Fallback(b){ if(!/vi/i.test(b.className||'')) return ''; var n=b.nextElementSibling; for(var i=0;i<2&&n;i++){ var tx=(n.textContent||'').trim(); if(tx&&tx.length<240&&z103En(tx)&&/(^|[\s-])(en|[a-z0-9]*en|tr|muted|gloss)($|[\s-])/i.test(n.className||'')&&!n.querySelector('button')) return tx; n=n.nextElementSibling } return '' }
+function z103Click(e){ try{ if(e.button) return; var t=e.target; if(!t||!t.closest) return; if(Z103.el&&!t.closest('#z103')) z103Close(); if(t.closest(Z103SKIP)) return;
+    if(t.closest('.z60stage')&&!t.closest('.z60rev')) return;
+    if(window.getSelection&&String(window.getSelection()).trim()) return;
+    var b=z103Block(t); if(!b) return; var full=(b.textContent||'').replace(/\s+/g,' ').trim(); if(!z103VN(full)) return;
+    var off=-1, word='', r=z103Caret(e.clientX,e.clientY);
+    if(r&&b.contains(r.startContainer)){ var pre=document.createRange(); pre.setStart(b,0); pre.setEnd(r.startContainer,r.startOffset); off=pre.toString().replace(/\s+/g,' ').replace(/^\s+/,'').length;
+      var tn=r.startContainer.textContent||'', a=r.startOffset, z=r.startOffset; while(a>0&&/[\p{L}\p{M}\d]/u.test(tn[a-1])) a--; while(z<tn.length&&/[\p{L}\p{M}\d]/u.test(tn[z])) z++; word=tn.slice(a,z) }
+    z103Load().then(function(){ var rs=z103Resolve(b,full,off,word); if(rs) z103Open(rs.sent,word,rs.en,b) }) }catch(x){} }
+function z103Resolve(b,full,off,word){ var d=Z103.d||{};
+    var fb='', segs=full.split(/\s+[·|]\s+|\s+[—–]\s+/);
+    if(segs.length>1&&segs.some(z103En)&&segs.some(z103VN)){ var hi=-1; segs.forEach(function(sg,k){ if(hi<0&&z103VN(sg)&&word&&sg.indexOf(word)>=0) hi=k }); if(hi<0) segs.forEach(function(sg,k){ if(hi<0&&z103VN(sg)) hi=k });
+      full=segs[hi].replace(/^[A-Za-z ]+:\s*/,''); fb=z103En(segs[hi+1])?segs[hi+1]:(z103En(segs[hi-1])?segs[hi-1]:''); off=-1 }
+    if(!fb&&d[z103Key(full)]) off=-1;
+    var parts=full.match(/[^.!?…]+[.!?…]*["”]?\s*/g)||[full], sent=full, pos=0;
+    if(parts.length>1&&off>=0){ for(var i=0;i<parts.length;i++){ if(off<pos+parts[i].length){ sent=parts[i].trim(); break } pos+=parts[i].length } }
+    if(z103Eng(sent)){ var qs=sent.match(/["“][^"”]+["”]/g)||[], qh=qs.filter(function(q){ return word&&q.indexOf(word)>=0 })[0]; sent=qh?qh.replace(/["“”]/g,''):word; if(!sent||!z103VN(sent)&&!qh) return null }
+    if(!z103VN(sent)) return null; if(!fb&&sent===full) fb=z103Fallback(b);
+    return {sent:sent,en:d[z103Key(sent)]||fb} }
+document.addEventListener('click',z103Click,false);
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&Z103.el) z103Close() });
+try{ setTimeout(function(){ z103Load() },2500) }catch(e){}

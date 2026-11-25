@@ -1008,6 +1008,8 @@ VERSION 100 (24 Nov 2026) - laptop layout and tidy-ups
   button under the game header opens Slow / A bit slower / Normal / A bit faster. SP and speakOne are wrapped (z100InGame) so the game
   speed only applies while a game is open.
 
+VERSION 103 (2026-11-25): tap any Vietnamese on any screen (not buttons, not a game question before it is answered). A card shows the whole sentence with its English and a play button; every word in it can be tapped for its meaning and sound. English comes from the app's own data (about 5,700 pairs harvested at runtime from content6 and data/*.json), else from an English part next to it. Code: v103 block at the end of src/v7/v7.js (z103*). Test: src/tests/t103.py (also prints a per-screen audit).
+
 VERSION 102 (2026-11-24): smooth listening. A phrase with no whole recording was stitched from single-word clips in random voices (man and woman mixed), which sounded choppy, e.g. in Listen and choose. Now the device's Vietnamese voice says it in one go when there is one; otherwise every word comes from the same voice. Whole recordings unchanged. Test: src/tests/t102.py.
 
 VERSION 101 (24 Nov 2026) - Today in the painted style, main action first
