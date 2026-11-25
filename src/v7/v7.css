@@ -1163,3 +1163,11 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
 .z103s small{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#FFD877;margin-bottom:2px}
 .z103s .z103e{color:#fff!important;font-size:15px!important;font-weight:600;margin-top:3px}
 .z103s .z103e.z103no{color:#C9D4E6!important;font-weight:500;font-size:13px!important}
+.z103sel .z61pw b.z103v{font-size:20px;font-weight:800;line-height:1.25;max-height:7.5em;overflow:auto}
+.z103sel .z61pw small.z103k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#C9D4E6;margin-bottom:3px}
+.z103sel .z61pw span.z103e{color:#FFD877;font-size:16px;font-weight:700;margin-top:4px}
+.z103sel .z61pw span.z103e.z103no{color:#C9D4E6;font-weight:500;font-size:13px}
+.z103sel .z103w{margin:0;font-size:14px;line-height:1.45;color:#fff}
+.z103sel .z103s{width:100%}
+.z103tip{margin:0;font-size:12.5px;line-height:1.35;color:#C9D4E6}
+.z61story .z61sent{-webkit-user-select:text;user-select:text}

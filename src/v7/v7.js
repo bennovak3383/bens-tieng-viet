@@ -2207,6 +2207,7 @@ function z61Read(s,ci){ z61Gloss(); var body=zOpen(), tok=Z.tok, ch=s.ch[ci], ci
     pop.hidden=false; pop.innerHTML='';
     pop.appendChild(h('div',{class:'z61pw'},[h('button',{class:'play','aria-label':'Hear the word',html:PLAY_ICON,onclick:function(){ zSay(String(phrase).toLowerCase()) }}),h('div',{},[h('b',{text:phrase}),h('span',{text:g||(name?'a name':'no note for this word yet')})]),h('button',{class:'x',text:'×','aria-label':'Close',onclick:function(){ pop.hidden=true; sp.classList.remove('now') }})]));
     pop.appendChild(h('button',{class:'z61ps',onclick:function(){ zSay(l.vi) }},[h('span',{html:PLAY_ICON}),h('div',{},[h('b',{text:l.vi}),l.en?h('span',{text:l.en}):null])]));
+    try{ var n103=S.set.tip103||0; if(n103<4){ S.set.tip103=n103+1; pop.appendChild(h('p',{class:'z103tip',text:'Tip: press and drag across a sentence to see what it means as a whole.'})) } }catch(e){}
     if(g&&!S.w[key]) pop.appendChild(h('button',{class:'chip z61sv',text:'+ Save to my cards',onclick:function(ev){ S.w[key]={n:1,reps:0,due:Date.now(),vi:l.vi,en:l.en||'',cid:cid,t:s.t}; save(); ev.target.textContent='Saved ✓'; ev.target.disabled=true }}));
     zSay(String(phrase).toLowerCase()) }
   function paras(){ if(ch.lines.some(function(l){ return l.p===1 })) return z7Paras(ch); var out=[], cur=null; ch.lines.forEach(function(l,i){ var q=/^[“"]/.test(l.vi), pq=i>0&&/^[“"]/.test(ch.lines[i-1].vi); if(i===0||cur.length>=3||q||pq){ cur=[]; out.push(cur) } cur.push(i) }); return out }
@@ -3253,7 +3254,7 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=103;
+var Z99V=104;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
@@ -3355,3 +3356,44 @@ var z80Show103=z80Show; z80Show=function(w){ var f=w&&w.range?z103Find(w):null; 
     if(row) Array.prototype.slice.call(row.querySelectorAll('.chip')).forEach(function(c){ if(/^▶ /.test(c.textContent||'')) c.remove() });   /* the old "▶ the whole line" chip: the sentence box below plays it too */
     var box=z103Box(f); if(row){ p.insertBefore(box,row); if(!row.children.length) row.remove() } else p.appendChild(box) }catch(e){} };
 try{ setTimeout(function(){ z103Load() },6000) }catch(e){}
+
+/* ===== 103b · Highlight to see the whole meaning. Everywhere in the app, stories too: tap one word for that word (as before),
+   or press and drag to highlight a sentence or a few words and see what they mean together. The meaning comes from data/sent.json:
+   the exact words first, then each sentence in them, then the sentence they sit in, and word by word only as a last resort. ===== */
+var Z103b={t:0,last:'',drag:0};
+function z103bSel(){ try{ var s=window.getSelection&&getSelection(); if(!s||s.isCollapsed||!s.rangeCount) return null; var a=document.activeElement;
+    if(a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable)) return null;
+    var r=s.getRangeAt(0), c=r.commonAncestorContainer, el=c.nodeType===1?c:c.parentNode; if(!el||(el.closest&&el.closest('.z80pop,input,textarea,[contenteditable]'))) return null;
+    var t=String(s.toString()||'').normalize('NFC').replace(/\s+/g,' ').replace(/^[\s·|—–:;,]+|[\s·|—–:;,]+$/g,'').trim();
+    if(!t||t.length>400||!Z80VN.test(t)) return null; var n=(t.match(/[^\s.,!?…;:"“”()\[\]·|\/—–+=<>0-9]+/g)||[]).length; if(n<2) return null;
+    return {t:t,r:r} }catch(e){ return null } }
+function z103bClean(x){ return String(x||'').replace(/^[“"]+|[”"]+$/g,'').trim() }
+function z103bMean(t,r){ var en=z103En(t); if(en) return {en:z103bClean(en)};
+  var parts=t.match(/[^.!?…]+[.!?…]*[”"’)]*/g)||[t]; if(parts.length>1){ var all=[]; if(parts.every(function(p){ p=p.trim(); if(!p) return true; var e=z103En(p); if(e) all.push(z103bClean(e)); return !!e })&&all.length) return {en:all.join(' ')} }
+  try{ var at=z103Text(r.startContainer,r.startOffset); if(at){ var cs=z103Cands(at.t,at.p), tk=z79K(t);
+      for(var i=0;i<cs.length;i++){ var ck=z79K(cs[i].t); if(ck&&ck!==tk&&ck.indexOf(tk)>=0&&cs[i].t.length<=220){ var e2=z103En(cs[i].t); if(e2) return {part:z103Name(cs[i].t),en:z103bClean(e2)} } } } }catch(e){}
+  try{ var D=z80Dict(), w=t.match(/[^\s.,!?…;:"“”()\[\]·|\/—–+=<>0-9]+/g)||[], out=[], i2=0; while(i2<w.length){ var hit=null;
+      for(var L=Math.min(4,w.length-i2);L>=1&&!hit;L--){ var ph=w.slice(i2,i2+L).join(' '), g=D[z79K(ph)]; if(g){ hit={vi:ph,en:String(g).split(/[;,]/)[0].trim(),n:L} } }
+      if(hit){ out.push(hit.vi+' = '+hit.en); i2+=hit.n } else { out.push(w[i2]+' = ?'); i2++ } } if(out.length) return {words:out.join(' · ')} }catch(e){}
+  return {} }
+function z103bShow(t,r){ if(Z103b.last===t&&Z80.pop&&Z80.pop.classList.contains('z103sel')) return; z80Hide(); Z103b.last=t;
+  var p=h('div',{class:'z80pop z61pop z103sel',role:'dialog','aria-label':'What you highlighted'}), en=h('span',{class:'z103e',text:Z103.s?'':'…'}), extra=h('div',{class:'z103x'}), row=h('div',{class:'z80row'});
+  p.appendChild(h('div',{class:'z61pw'},[h('button',{class:'play','aria-label':'Hear it',html:PLAY_ICON,onclick:function(){ zSay(t) }}),h('div',{},[h('small',{class:'z103k',text:'Phần bạn chọn · what you highlighted'}),h('b',{class:'z103v',text:t}),en]),h('button',{class:'x',text:'×','aria-label':'Close',onclick:function(){ z80Hide(); Z103b.last=''; try{ getSelection().removeAllRanges() }catch(e){} }})]));
+  p.appendChild(extra); p.appendChild(row);
+  function fill(){ var m=z103bMean(t,r); extra.innerHTML=''; row.innerHTML='';
+    if(m.en&&!m.part){ en.textContent=m.en; en.className='z103e'; try{ var sb=z74SaveBtn(t,m.en,'',''); sb.classList.add('z61sv'); row.appendChild(sb) }catch(e){} }
+    else if(m.part){ en.textContent='Part of the sentence below'; en.className='z103e z103no'; extra.appendChild(z103Box({vi:m.part,en:m.en})) }
+    else if(m.words){ en.textContent='No meaning for these words together yet. Word by word:'; en.className='z103e z103no'; extra.appendChild(h('p',{class:'z103w',text:m.words})) }
+    else { en.textContent='No meaning for these words together yet.'; en.className='z103e z103no' }
+    row.hidden=!row.children.length; extra.hidden=!extra.children.length }
+  document.body.appendChild(p); Z80.pop=p; if(Z103.s) fill(); else { row.hidden=extra.hidden=true; z103Load().then(function(){ if(Z80.pop===p) fill() }) }
+  try{ S.set.tip103=9; save() }catch(e){} }
+function z103bCheck(){ try{ if(typeof Z68!=='undefined'&&Z68.blind&&!$('#sheet').hidden) return; var s=z103bSel(); if(s) z103bShow(s.t,s.r) }catch(e){} }
+try{ document.addEventListener('selectionchange',function(){ clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,Z103b.drag?900:450) });
+  document.addEventListener('pointerdown',function(e){ Z103b.drag=1; if(!(e.target&&e.target.closest&&e.target.closest('.z80pop'))) Z103b.last='' },true);
+  document.addEventListener('pointerup',function(){ Z103b.drag=0; clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,60) },true);
+  document.addEventListener('touchend',function(){ Z103b.drag=0; clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,300) },true);
+  /* the click that ends a drag across words is not a tap on one word, so it opens no word card (stories included) */
+  document.addEventListener('click',function(e){ try{ var t=e.target; if(t&&t.closest&&t.closest('button,a,input,textarea,select,label,.z80pop')) return; if(z103bSel()){ e.stopPropagation(); e.preventDefault() } }catch(x){} },true) }catch(e){}
+/* a short hint under the word card, the first few times, so the second way is easy to find */
+var z80Show103b=z80Show; z80Show=function(w){ z80Show103b.apply(this,arguments); try{ var p=Z80.pop, n=S.set.tip103||0; if(!p||n>=4) return; S.set.tip103=n+1; save(); p.appendChild(h('p',{class:'z103tip',text:'Tip: press and drag across a sentence to see what it means as a whole.'})) }catch(e){} };

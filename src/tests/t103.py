@@ -1,4 +1,4 @@
-# v103: tap a word, the card also shows the whole sentence with its English. Word part unchanged.
+# v103: tap a word, and v104: highlight words, the card also shows the whole sentence with its English. Word part unchanged.
 # Usage: python3 src/tests/t103.py [URL]   (test site from src/tools/build.sh, with window.__T)
 from playwright.sync_api import sync_playwright
 import sys
@@ -14,5 +14,12 @@ with sync_playwright() as p:
     r = pg.evaluate('''c=>window.__T(c)''', '''(function(){ var p=document.querySelector('.z80pop'); if(!p) return null; var s=p.querySelector('.z103s');
       return {word:p.querySelector('.z61pw b').textContent, sent:s&&s.querySelector('b').textContent, en:s&&s.querySelector('.z103e').textContent, save:!!p.querySelector('.z80row')} })()''')
     print(r)
-    ok = r and r['word'].lower().startswith('bớt') and r['sent'] == 'Bớt chút được không cô?' and r['en'] == 'Can you take a little off?' and not errs
+    ok = r and r['word'].lower().startswith('bớt') and r['sent'] == 'Bớt chút được không cô?' and r['en'] == 'Can you take a little off?'
+    # v104: drag across the words to highlight them: the card shows what they mean together, and no word card opens on mouse-up
+    t = pg.locator('#t103'); bb = t.bounding_box(); y = bb['y']+bb['height']/2
+    x0 = pg.evaluate('''c=>window.__T(c)''', '''(function(){ var n=document.getElementById('t103').lastChild, r=document.createRange(); r.setStart(n,1); r.setEnd(n,2); return r.getBoundingClientRect().left-8 })()''')
+    pg.mouse.click(5, 5); pg.mouse.move(x0, y); pg.mouse.down(); pg.mouse.move(bb['x']+bb['width']-2, y, steps=8); pg.mouse.up(); pg.wait_for_timeout(700)
+    r2 = pg.evaluate('''c=>window.__T(c)''', '''(function(){ var p=document.querySelector('.z80pop.z103sel'); return p?{vi:p.querySelector('.z103v').textContent,en:p.querySelector('.z103e').textContent}:null })()''')
+    print(r2)
+    ok = ok and r2 and 'chút được không cô' in r2['vi'] and r2['en'] in ('Can you take a little off?', 'Part of the sentence below') and not errs
     print('errors', errs); print('PASS' if ok else 'FAIL'); b.close()
