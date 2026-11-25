@@ -6938,7 +6938,7 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=105;
+var Z99V=106;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
@@ -7047,7 +7047,7 @@ try{ setTimeout(function(){ z103Load() },6000) }catch(e){}
 var Z103b={t:0,last:'',drag:0};
 function z103bSel(){ try{ var s=window.getSelection&&getSelection(); if(!s||s.isCollapsed||!s.rangeCount) return null; var a=document.activeElement;
     if(a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable)) return null;
-    var r=s.getRangeAt(0).cloneRange(), c=r.commonAncestorContainer, el=c.nodeType===1?c:c.parentNode; if(!el||(el.closest&&el.closest('.z80pop,input,textarea,[contenteditable]'))) return null;
+    var r=s.getRangeAt(0).cloneRange(), c=r.commonAncestorContainer, el=c.nodeType===1?c:c.parentNode; if(!el||(el.closest&&el.closest('.z80pop,input,textarea,[contenteditable],[hidden]'))||!el.getClientRects().length) return null;
     /* a drag that starts or ends inside a word takes the whole word */
     var L=/[A-Za-z0-9\u00C0-\u024F\u1E00-\u1EFF\u0300-\u036F]/;
     try{ var a=r.startContainer, o=r.startOffset; if(a.nodeType===3){ while(o>0&&L.test(a.nodeValue.charAt(o-1))) o--; r.setStart(a,o) }
@@ -7080,10 +7080,12 @@ function z103bShow(t,r){ if(Z103b.last===t&&Z80.pop&&Z80.pop.classList.contains(
 function z103bCheck(){ try{ if(typeof Z68!=='undefined'&&Z68.blind&&!$('#sheet').hidden) return; var s=z103bSel(); if(s) z103bShow(s.t,s.r) }catch(e){} }
 try{ document.addEventListener('selectionchange',function(){ clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,Z103b.drag?900:450) });
   document.addEventListener('pointerdown',function(e){ Z103b.drag=1; if(!(e.target&&e.target.closest&&e.target.closest('.z80pop'))) Z103b.last='' },true);
-  document.addEventListener('pointerup',function(){ Z103b.drag=0; clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,60) },true);
+  document.addEventListener('pointerup',function(e){ Z103b.drag=0; clearTimeout(Z103b.t); if(e.target&&e.target.closest&&e.target.closest('button,a,.z80pop')) return; Z103b.t=setTimeout(z103bCheck,60) },true);
   document.addEventListener('touchend',function(){ Z103b.drag=0; clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,300) },true);
   /* the click that ends a drag across words is not a tap on one word, so it opens no word card (stories included) */
   document.addEventListener('click',function(e){ try{ var t=e.target; if(t&&t.closest&&t.closest('button,a,input,textarea,select,label,.z80pop')) return; if(z103bSel()){ e.stopPropagation(); e.preventDefault() } }catch(x){} },true) }catch(e){}
+/* a screen that closes or opens takes the highlight with it */
+try{ var closeSheet103b=closeSheet; closeSheet=function(){ try{ getSelection().removeAllRanges() }catch(e){} Z103b.last=''; return closeSheet103b.apply(this,arguments) }; var zOpen103b=zOpen; zOpen=function(){ try{ getSelection().removeAllRanges() }catch(e){} Z103b.last=''; return zOpen103b.apply(this,arguments) } }catch(e){}
 /* a short hint under the word card, the first few times, so the second way is easy to find */
 var z80Show103b=z80Show; z80Show=function(w){ z80Show103b.apply(this,arguments); try{ var p=Z80.pop, n=S.set.tip103||0; if(!p||n>=4) return; S.set.tip103=n+1; save(); p.appendChild(h('p',{class:'z103tip',text:'Tip: press and drag across a sentence to see what it means as a whole.'})) }catch(e){} };
 
