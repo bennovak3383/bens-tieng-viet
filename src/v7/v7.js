@@ -3363,8 +3363,12 @@ try{ setTimeout(function(){ z103Load() },6000) }catch(e){}
 var Z103b={t:0,last:'',drag:0};
 function z103bSel(){ try{ var s=window.getSelection&&getSelection(); if(!s||s.isCollapsed||!s.rangeCount) return null; var a=document.activeElement;
     if(a&&(/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)||a.isContentEditable)) return null;
-    var r=s.getRangeAt(0), c=r.commonAncestorContainer, el=c.nodeType===1?c:c.parentNode; if(!el||(el.closest&&el.closest('.z80pop,input,textarea,[contenteditable]'))) return null;
-    var t=String(s.toString()||'').normalize('NFC').replace(/\s+/g,' ').replace(/^[\s·|—–:;,]+|[\s·|—–:;,]+$/g,'').trim();
+    var r=s.getRangeAt(0).cloneRange(), c=r.commonAncestorContainer, el=c.nodeType===1?c:c.parentNode; if(!el||(el.closest&&el.closest('.z80pop,input,textarea,[contenteditable]'))) return null;
+    /* a drag that starts or ends inside a word takes the whole word */
+    var L=/[A-Za-z0-9\u00C0-\u024F\u1E00-\u1EFF\u0300-\u036F]/;
+    try{ var a=r.startContainer, o=r.startOffset; if(a.nodeType===3){ while(o>0&&L.test(a.nodeValue.charAt(o-1))) o--; r.setStart(a,o) }
+      var b=r.endContainer, e=r.endOffset; if(b.nodeType===3){ while(e<b.nodeValue.length&&L.test(b.nodeValue.charAt(e))) e++; r.setEnd(b,e) } }catch(x){}
+    var t=String(r.toString()||'').normalize('NFC').replace(/\s+/g,' ').replace(/^[\s·|—–:;,]+|[\s·|—–:;,]+$/g,'').trim();
     if(!t||t.length>400||!Z80VN.test(t)) return null; var n=(t.match(/[^\s.,!?…;:"“”()\[\]·|\/—–+=<>0-9]+/g)||[]).length; if(n<2) return null;
     return {t:t,r:r} }catch(e){ return null } }
 function z103bClean(x){ return String(x||'').replace(/^[“"]+|[”"]+$/g,'').trim() }
@@ -3386,6 +3390,7 @@ function z103bShow(t,r){ if(Z103b.last===t&&Z80.pop&&Z80.pop.classList.contains(
     else if(m.words){ en.textContent='No meaning for these words together yet. Word by word:'; en.className='z103e z103no'; extra.appendChild(h('p',{class:'z103w',text:m.words})) }
     else { en.textContent='No meaning for these words together yet.'; en.className='z103e z103no' }
     row.hidden=!row.children.length; extra.hidden=!extra.children.length }
+  try{ [].forEach.call(document.querySelectorAll('.z61pop:not(.z80pop)'),function(x){ x.hidden=true }); [].forEach.call(document.querySelectorAll('.zw.now'),function(x){ x.classList.remove('now') }) }catch(e){}   /* the story's own word card makes way */
   document.body.appendChild(p); Z80.pop=p; if(Z103.s) fill(); else { row.hidden=extra.hidden=true; z103Load().then(function(){ if(Z80.pop===p) fill() }) }
   try{ S.set.tip103=9; save() }catch(e){} }
 function z103bCheck(){ try{ if(typeof Z68!=='undefined'&&Z68.blind&&!$('#sheet').hidden) return; var s=z103bSel(); if(s) z103bShow(s.t,s.r) }catch(e){} }
