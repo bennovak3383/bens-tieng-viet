@@ -1770,7 +1770,7 @@ function z53Dlg(L,back){ var body=zOpen(), tok=Z.tok, ds=z53Dlgs(L), di=0; body.
     var cue=h('p',{class:'z52cue'}), go=h('button',{class:'btn primary wide',hidden:true,text:'I said it · next'});
     function run(k){ if(!alive()) return; rows.forEach(function(r,x){ r.classList.toggle('now',x===k) }); if(k>=d.lines.length){ cue.textContent=role?'Done. Swap roles and go again.':''; go.hidden=true; return } var l=d.lines[k]; rows[k].scrollIntoView({block:'center',behavior:'smooth'});
       if(role&&l[0]===role){ cue.textContent='Your line · say it from the English, out loud'; cue.classList.add('on'); go.hidden=false; go.textContent='I said it · check'; go.onclick=function(){ var sp=rows[k].querySelector('span'); if(sp&&sp.hidden){ sp.hidden=false; zSay(l[1]); go.textContent='Next line'; return } cue.classList.remove('on'); go.hidden=true; run(k+1) } } else { cue.textContent='Listen…'; zSay(l[1],{onend:function(){ setTimeout(function(){ run(k+1) },350) }}) } }
-    var kids=[h('span',{class:'lbl',text:'Dialogue '+(di+1)+' of '+ds.length}),d.t?h('h2',{text:d.t}):null,d.en?h('p',{class:'small muted',text:d.en}):null,h('p',{class:'small muted',text:'Tap a line to hear it and see the English.'}),list,cue,go,
+    var kids=[h('span',{class:'lbl',text:'Dialogue '+(di+1)+' of '+ds.length}),d.t?h('h2',{text:d.t}):null,d.en?h('p',{class:'small muted',text:d.en}):null,h('p',{class:'small muted',text:'Tap a line to hear it and see the English. Then tap a word in it for just that word.'}),list,cue,go,
       h('button',{class:'btn wide',text:'▶ Hear the whole dialogue',onclick:function(){ draw('') }}),
       h('div',{class:'row',style:'gap:8px;flex-wrap:wrap'},who.map(function(w){ return h('button',{class:'chip','aria-pressed':String(role===w),text:'Be '+w,onclick:function(){ draw(w) }}) })),
       h('div',{class:'row',style:'gap:8px'},[di>0?h('button',{class:'btn',text:'‹ Back',onclick:function(){ di--; draw() }}):null,h('button',{class:'btn primary',style:'flex:1',text:di<ds.length-1?'Next dialogue':'Done',onclick:function(){ if(di<ds.length-1){ di++; draw() } else back() }})])];
@@ -1842,7 +1842,7 @@ function z54Tf(a,next){ var body=zOpen(), left=a.s.length, right=0; body.appendC
   var qs=h('div',{class:'stack'}), end=h('div',{class:'stack'});
   a.s.forEach(function(x){ var fb=h('div',{class:'small muted'}), row=h('div',{class:'row',style:'gap:8px'}), done=false; [['Đúng · true',true],['Sai · false',false]].forEach(function(o){ var b=h('button',{class:'btn z13opt',style:'flex:1',text:o[0],onclick:function(){ if(done) return; done=true; var ok=o[1]===x[1]; if(ok) right++; b.classList.add(ok?'good':'bad'); fb.textContent=(ok?'✓ ':'✗ ')+x[2]; left--; if(!left) end.appendChild(h('button',{class:'btn primary wide',text:right+' of '+a.s.length+' · next',onclick:next})) }}); row.appendChild(b) });
     qs.appendChild(h('div',{class:'panel'},[h('div',{class:'row',style:'flex-wrap:nowrap;gap:8px'},[h('div',{style:'flex:1'},[zVi(x[0],18)]),zPlay(x[0])]),row,fb])) });
-  zSwap(body,[h('span',{class:'lbl',text:'Read it. Tap a sentence to hear it and see the English.'}),h('div',{class:'panel'},[pass,h('button',{class:'btn wide',text:'▶ Hear it all',onclick:function(){ zSay(a.p.map(function(x){ return x[0] }).join(' ')) }})]),h('span',{class:'lbl',text:'True or false?'}),qs,end]) }
+  zSwap(body,[h('span',{class:'lbl',text:'Read it. Tap a sentence to hear it and see the English, then tap a word in it for just that word.'}),h('div',{class:'panel'},[pass,h('button',{class:'btn wide',text:'▶ Hear it all',onclick:function(){ zSay(a.p.map(function(x){ return x[0] }).join(' ')) }})]),h('span',{class:'lbl',text:'True or false?'}),qs,end]) }
 
 /* ===== 56 · one way to record everywhere: tap to record, tap to stop, try again. Nothing cuts you off on a pause.
    z56Btn = the button. z56Gate = for the screens that used to start listening by themselves (everyday questions, scenes,
@@ -3254,7 +3254,7 @@ try{ z98Open() }catch(e){}
 /* ===== v99: the app checks for a newer version by itself. Z99V is this build's number (raise it by one with every release;
    build.sh copies it into data/ver.json). If the phone is showing an older saved copy, it throws that copy away and reloads once.
    A small "Version N" line at the bottom of Home shows which one is running. ===== */
-var Z99V=106;
+var Z99V=107;
 function z99Check(){ try{ if(navigator.onLine===false) return; fetch('data/ver.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.ok?r.json():null }).then(function(j){ if(!j||!j.v||j.v<=Z99V) return;
       var k='z99r'+j.v; if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,'1'); sessionStorage.removeItem('z98');
       var go=function(){ location.reload() }; try{ caches.keys().then(function(ks){ return Promise.all(ks.map(function(n){ return caches.open(n).then(function(c){ return Promise.all([c.delete('./'),c.delete('index.html'),c.delete(location.pathname)]) }) })) }).then(go,go) }catch(e){ go() } }).catch(function(){}) }catch(e){} }
@@ -3400,6 +3400,13 @@ try{ document.addEventListener('selectionchange',function(){ clearTimeout(Z103b.
   document.addEventListener('touchend',function(){ Z103b.drag=0; clearTimeout(Z103b.t); Z103b.t=setTimeout(z103bCheck,300) },true);
   /* the click that ends a drag across words is not a tap on one word, so it opens no word card (stories included) */
   document.addEventListener('click',function(e){ try{ var t=e.target; if(t&&t.closest&&t.closest('button,a,input,textarea,select,label,.z80pop')) return; if(z103bSel()){ e.stopPropagation(); e.preventDefault() } }catch(x){} },true) }catch(e){}
+/* lines you tap for their English (dialogue lines, reading sentences): the first tap still plays the line and shows its English;
+   once it is open, tapping a word in it opens the word card for that word instead of playing the line again */
+var Z103L=[['.z53dl',function(el){ var e=el.querySelector('div.small.muted'), v=el.querySelector('span'); return e&&!e.hidden&&v&&!v.hidden }],
+  ['.z54s',function(el){ var n=el.nextSibling; return n&&n.nodeType===1&&!n.hidden }]];
+try{ document.addEventListener('click',function(e){ try{ if(typeof Z68!=='undefined'&&Z68.blind&&!$('#sheet').hidden) return; var t=e.target; if(!t||!t.closest) return;
+    for(var i=0;i<Z103L.length;i++){ var el=t.closest(Z103L[i][0]); if(!el) continue; if(!Z103L[i][1](el)) return; if(t.closest('.play,.z80pop')) return;
+      var w=z80At(e.clientX,e.clientY); if(!w||!Z80VN.test(w.vi)&&!w.en) return; e.stopPropagation(); e.preventDefault(); z80Show(w); return } }catch(x){} },true) }catch(e){}
 /* a screen that closes or opens takes the highlight with it */
 try{ var closeSheet103b=closeSheet; closeSheet=function(){ try{ getSelection().removeAllRanges() }catch(e){} Z103b.last=''; return closeSheet103b.apply(this,arguments) }; var zOpen103b=zOpen; zOpen=function(){ try{ getSelection().removeAllRanges() }catch(e){} Z103b.last=''; return zOpen103b.apply(this,arguments) } }catch(e){}
 /* a short hint under the word card, the first few times, so the second way is easy to find */
