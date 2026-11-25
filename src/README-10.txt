@@ -1008,6 +1008,11 @@ VERSION 100 (24 Nov 2026) - laptop layout and tidy-ups
   button under the game header opens Slow / A bit slower / Normal / A bit faster. SP and speakOne are wrapped (z100InGame) so the game
   speed only applies while a game is open.
 
+VERSION 103 (2026-11-25): whole sentence. Tap any word: the card is the same as before (the word, what it means, hear it, save it), and under it there is now "Cả câu · whole sentence": the sentence or phrase the word sits in, with its own English, because the whole often means something a little different from the words one by one. Tap it to hear it. It replaces the old "▶ the whole line" chip, which had no English. Stories keep their own popup (it already shows each line in English).
+- The English comes from data/sent.json (about 7,100 sentences and phrases). It is built by src/sent/make_sent.py from every content block in index.html, every data/*.json and art/cards.json, then src/sent/extra.tsv, which holds about 575 hand-written lines (Saigon usage) for text that had no English: the Q&A situations, delivery-call questions, story answers, the reading tests and their options, lesson titles, numbers. extra.tsv wins over the content, so corrections go there.
+- AFTER ANY CONTENT CHANGE run:  python3 src/sent/make_sent.py .   (add --gaps to list Vietnamese lines that still have no English; what is left now is English notes, drill templates with ___ and the deliberate misspellings in the spelling drill.)
+- Code: block 103 at the end of v7.js (z103Find reads the whole block of text around the word, so bold words, links and a "Name:" in front do not break the sentence). CSS: .z103s. Test: src/tests/t103.py.
+
 VERSION 102 (2026-11-24): smooth listening. A phrase with no whole recording was stitched from single-word clips in random voices (man and woman mixed), which sounded choppy, e.g. in Listen and choose. Now the device's Vietnamese voice says it in one go when there is one; otherwise every word comes from the same voice. Whole recordings unchanged. Test: src/tests/t102.py.
 
 VERSION 101 (24 Nov 2026) - Today in the painted style, main action first

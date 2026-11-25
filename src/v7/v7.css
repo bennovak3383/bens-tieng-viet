@@ -1157,3 +1157,9 @@ h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:0}
   .z101strip{height:200px}
 }
 .z101strip figure:first-child figcaption{left:18px}
+/* 103 · whole sentence in the tap-a-word card */
+.z80pop .z103s{width:100%}
+.z103s .z103p{flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16)}
+.z103s small{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#FFD877;margin-bottom:2px}
+.z103s .z103e{color:#fff!important;font-size:15px!important;font-weight:600;margin-top:3px}
+.z103s .z103e.z103no{color:#C9D4E6!important;font-weight:500;font-size:13px!important}
